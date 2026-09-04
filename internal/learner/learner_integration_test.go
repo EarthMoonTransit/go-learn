@@ -103,7 +103,7 @@ func TestLearnerWorkflowSupportsEveryV2SubmissionKind(t *testing.T) {
 				t.Fatal(err)
 			}
 			item := progress.Tasks[fixture.id]
-			if !item.Completed || item.Attempts != 3 || item.ActivitySeconds != 150 || len(item.SkillEncounters) == 0 || len(item.Feedback) != 1 {
+			if !item.Completed || item.Attempts != 3 || item.ActivitySeconds != 180 || len(item.SkillEncounters) == 0 || len(item.Feedback) != 1 {
 				t.Fatalf("incomplete learner progress: %+v", item)
 			}
 			after, err := tasking.TaskContentDigest(taskDirectory)
@@ -168,6 +168,7 @@ func TestLearnerCLICommandSurfaceAndStableScheduler(t *testing.T) {
 		{"show", "synthetic-fixed-v2-001"},
 		{"next"},
 		{"start", "synthetic-fixed-v2-001"},
+		{"pause"},
 		{"resume", "synthetic-fixed-v2-001"},
 	} {
 		run(0, command...)

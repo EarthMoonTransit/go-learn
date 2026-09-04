@@ -76,8 +76,8 @@ Learner CLI сам создаёт отдельный workspace и не изме�
 
 ```bash
 go run ./cmd/learn list
-go run ./cmd/learn show detached-append-001
-go run ./cmd/learn start detached-append-001
+go run ./cmd/learn show map-take-001
+go run ./cmd/learn start map-take-001
 # измените файлы в напечатанном workspace
 go run ./cmd/learn check
 go run ./cmd/learn complete
@@ -85,3 +85,7 @@ go run ./cmd/learn complete
 
 Полный список команд, правила локального progress и граница hidden material:
 [`docs/LEARNER_CLI.md`](docs/LEARNER_CLI.md).
+
+Первое живое прохождение: `map-take-001`, затем `detached-append-001`.
+На перерыв используйте `learn pause`, по возвращении — `learn resume <task-id>`.
+[Протокол и feedback](docs/LEARNER_CLI.md#first-human-trial).

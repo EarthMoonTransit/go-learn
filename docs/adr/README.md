@@ -12,3 +12,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0006` — single-pass task verification и reusable check collection (`accepted`)
 - `0007` — Task Contract v2 и declarative verification profiles (`accepted`)
 - `0008` — multi-source Provenance v2 и original content identity (`accepted`)
+- `0009` — learner work sessions across verification attempts (`accepted`)

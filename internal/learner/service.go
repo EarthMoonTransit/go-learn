@@ -147,6 +147,7 @@ func (s *Service) Start(id string) (string, error) {
 		}
 		published = true
 		createdTarget = true
+		pauseOtherSessions(progress, id, now)
 		progress.Tasks[id] = &TaskProgress{
 			TaskID: id, Status: "in-progress", Workspace: filepath.ToSlash(filepath.Join("workspaces", id)),
 			Activity: info.Activity, PrimarySkill: info.PrimarySkill,
@@ -183,7 +184,10 @@ func (s *Service) Resume(id string) (string, error) {
 		if err != nil {
 			return err
 		}
-		task.ActiveSessionStartedAt = now
+		pauseOtherSessions(progress, id, now)
+		if !task.Completed && task.ActiveSessionStartedAt == "" {
+			task.ActiveSessionStartedAt = now
+		}
 		task.LastInteractionAt = now
 		progress.CurrentTaskID = id
 		return nil
@@ -191,11 +195,28 @@ func (s *Service) Resume(id string) (string, error) {
 	return workspace, err
 }
 
+func (s *Service) Pause() error {
+	now := s.timestamp()
+	return withProgressLock(s.home, func(progress *Progress) error {
+		if progress.CurrentTaskID == "" {
+			return errors.New("no current task; use start or resume")
+		}
+		task, err := requireSameCurrent(progress, progress.CurrentTaskID)
+		if err != nil {
+			return err
+		}
+		endActiveSession(task, now)
+		task.LastInteractionAt = now
+		return nil
+	})
+}
+
 func (s *Service) Check() (tasking.LearnerVerificationResult, error) {
 	progress, _, info, workspace, err := s.currentTask()
 	if err != nil {
 		return tasking.LearnerVerificationResult{}, err
 	}
+	verificationStarted := s.timestamp()
 	result, err := tasking.VerifyLearnerWorkspace(s.root, info.ID, workspace, tasking.LearnerPublicChecks)
 	if err != nil {
 		return tasking.LearnerVerificationResult{}, err
@@ -207,7 +228,7 @@ func (s *Service) Check() (tasking.LearnerVerificationResult, error) {
 			return err
 		}
 		stored.Attempts++
-		endActiveSession(stored, now)
+		finishVerificationSession(stored, verificationStarted, now, !stored.Completed)
 		stored.LastInteractionAt = now
 		stored.LastPublicCheck = &PublicCheckRecord{
 			CheckedAt: now, Passed: result.Passed, Summary: result.Summary, Diagnostic: result.Diagnostic,
@@ -225,6 +246,7 @@ func (s *Service) Complete() (tasking.LearnerVerificationResult, error) {
 	if task.Completed {
 		return tasking.LearnerVerificationResult{}, errors.New("task is already completed")
 	}
+	verificationStarted := s.timestamp()
 	result, err := tasking.VerifyLearnerWorkspace(s.root, info.ID, workspace, tasking.LearnerFullChecks)
 	if err != nil {
 		return tasking.LearnerVerificationResult{}, err
@@ -236,7 +258,7 @@ func (s *Service) Complete() (tasking.LearnerVerificationResult, error) {
 			return err
 		}
 		stored.Attempts++
-		endActiveSession(stored, now)
+		finishVerificationSession(stored, verificationStarted, now, !result.Passed && !stored.Completed)
 		stored.LastInteractionAt = now
 		stored.LastCompletionSummary = result.Summary
 		if result.Passed && !stored.Completed {
@@ -414,7 +436,18 @@ func (s *Service) Next() (SchedulerChoice, error) {
 }
 
 func (s *Service) Progress() (Progress, error) {
-	return loadProgress(s.home)
+	progress, err := loadProgress(s.home)
+	if err != nil {
+		return Progress{}, err
+	}
+	// Show elapsed work in the snapshot without persisting or closing the session.
+	now := s.timestamp()
+	for _, task := range progress.Tasks {
+		started := task.ActiveSessionStartedAt
+		endActiveSession(task, now)
+		task.ActiveSessionStartedAt = started
+	}
+	return progress, nil
 }
 
 func (s *Service) Feedback(text string) error {
@@ -455,16 +488,7 @@ func (s *Service) ResetTask(id string, confirmed bool) error {
 		if _, ok := progress.Tasks[id]; !ok {
 			return fmt.Errorf("task %q has no local progress", id)
 		}
-		workspace := filepath.Join(s.home, "workspaces", id)
-		info, err := os.Lstat(workspace)
-		if err == nil {
-			if info.Mode()&os.ModeSymlink != 0 || !info.IsDir() {
-				return errors.New("refusing to remove a non-directory learner workspace")
-			}
-			if err := os.RemoveAll(workspace); err != nil {
-				return err
-			}
-		} else if !errors.Is(err, os.ErrNotExist) {
+		if err := removeLearnerWorkspace(s.home, id); err != nil {
 			return err
 		}
 		delete(progress.Tasks, id)
@@ -581,6 +605,22 @@ func endActiveSession(progress *TaskProgress, now string) {
 		progress.ActivitySeconds += int64(ended.Sub(started) / time.Second)
 	}
 	progress.ActiveSessionStartedAt = ""
+}
+
+func pauseOtherSessions(progress *Progress, selectedID, now string) {
+	for id, task := range progress.Tasks {
+		if id != selectedID {
+			endActiveSession(task, now)
+		}
+	}
+}
+
+func finishVerificationSession(progress *TaskProgress, started, ended string, continueWorking bool) {
+	wasActive := progress.ActiveSessionStartedAt != ""
+	endActiveSession(progress, started)
+	if wasActive && continueWorking {
+		progress.ActiveSessionStartedAt = ended
+	}
 }
 
 func loadSkillMetadata(root string) (map[string]SkillMetadata, error) {
