@@ -196,6 +196,101 @@ func TestCheckRejectsMissingGrader(t *testing.T) {
 	assertGateFails(t, report, "package-contract")
 }
 
+func TestCheckEnforcesPureGoBoundary(t *testing.T) {
+	tests := []struct {
+		name   string
+		mutate func(*testing.T, string)
+		want   string
+	}{
+		{
+			name: "import C",
+			mutate: func(t *testing.T, root string) {
+				writeTaskTestFile(t, taskFile(root, "starter/identity.go"), "package subject\n\nimport \"C\"\n\nfunc Identity(value int) int { return value + 1 }\n")
+			},
+			want: "cgo import is forbidden",
+		},
+		{
+			name: "compiler and linker flags",
+			mutate: func(t *testing.T, root string) {
+				writeTaskTestFile(t, taskFile(root, "starter/identity.go"), "package subject\n\n/*\n#cgo CFLAGS: -DUSE_NATIVE\n#cgo LDFLAGS: -lm\n*/\nfunc Identity(value int) int { return value + 1 }\n")
+			},
+			want: "cgo compiler or linker directive is forbidden",
+		},
+		{
+			name: "native source",
+			mutate: func(t *testing.T, root string) {
+				writeTaskTestFile(t, taskFile(root, "native.cpp"), "int identity(int value) { return value; }\n")
+			},
+			want: "native source or binary file is forbidden",
+		},
+		{
+			name: "toolchain directive",
+			mutate: func(t *testing.T, root string) {
+				path := taskFile(root, "go.mod")
+				content, err := os.ReadFile(path)
+				if err != nil {
+					t.Fatal(err)
+				}
+				writeTaskTestFile(t, path, string(content)+"toolchain go1.27.1\n")
+			},
+			want: "toolchain directive is forbidden",
+		},
+		{
+			name: "external dependency",
+			mutate: func(t *testing.T, root string) {
+				path := taskFile(root, "go.mod")
+				content, err := os.ReadFile(path)
+				if err != nil {
+					t.Fatal(err)
+				}
+				writeTaskTestFile(t, path, string(content)+"require example.com/native v1.0.0\n")
+			},
+			want: "directive require is not allowed",
+		},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			root := fixtureRepository(t)
+			test.mutate(t, root)
+			report := checkWithoutError(t, root)
+			assertGateFails(t, report, "package-contract")
+			if !gateDetailsContain(report, "package-contract", test.want) {
+				t.Fatalf("package-contract details do not contain %q: %#v", test.want, report.Gates)
+			}
+		})
+	}
+}
+
+func TestUnsupportedRacePlatformIsExplicitFailingStatus(t *testing.T) {
+	root := fixtureRepository(t)
+	taskPath := taskFile(root, "task.yaml")
+	content, err := os.ReadFile(taskPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	updated := strings.ReplaceAll(string(content), "functions.signatures-results", "goroutines.launch-lifecycle")
+	updated = strings.Replace(updated, "types.declarations-inference", "functions.function-values", 1)
+	writeTaskTestFile(t, taskPath, updated)
+
+	runner := newFakeExecutionRunner()
+	runner.raceUnsupported = true
+	session, err := newCheckSessionWithRunner(root, runner)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = session.Close() })
+	report, err := session.Check(syntheticID)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if report.RaceStatus != "infrastructure-unsupported" || report.TechnicalStatus != "fail" || report.Passed {
+		t.Fatalf("unsupported race status was not preserved as a failure: %#v", report)
+	}
+	if runner.metrics.VariantRuns != 5 {
+		t.Fatalf("unsupported race preflight must not count a child variant: %+v", runner.metrics)
+	}
+}
+
 func TestCheckRejectsStarterThatPasses(t *testing.T) {
 	root := fixtureRepository(t)
 	replaceInFile(t, taskFile(root, "starter/identity.go"), "return value + 1", "return value")
@@ -794,4 +889,20 @@ func assertGateFails(t *testing.T, report QualityReport, id string) {
 		}
 	}
 	t.Fatalf("gate %s not found", id)
+}
+
+func gateDetailsContain(report QualityReport, id, want string) bool {
+	for _, gate := range report.Gates {
+		if gate.ID == id {
+			return strings.Contains(strings.Join(gate.Details, "\n"), want)
+		}
+	}
+	return false
+}
+
+func writeTaskTestFile(t *testing.T, path, content string) {
+	t.Helper()
+	if err := os.WriteFile(path, []byte(content), 0o644); err != nil {
+		t.Fatal(err)
+	}
 }

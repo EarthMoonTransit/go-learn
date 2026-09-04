@@ -11,10 +11,11 @@ import (
 // fakeExecutionRunner keeps ordinary unit tests process-free. The real Go
 // subprocess behavior is exercised only by taskintegration-tagged tests.
 type fakeExecutionRunner struct {
-	metrics      ExecutionMetrics
-	workspaceIDs []string
-	cacheIDs     []string
-	closed       bool
+	metrics         ExecutionMetrics
+	workspaceIDs    []string
+	cacheIDs        []string
+	raceUnsupported bool
+	closed          bool
 }
 
 func newFakeExecutionRunner() *fakeExecutionRunner {
@@ -22,6 +23,12 @@ func newFakeExecutionRunner() *fakeExecutionRunner {
 }
 
 func (r *fakeExecutionRunner) RunVariant(request variantRequest) variantResult {
+	if request.Race && r.raceUnsupported {
+		return variantResult{
+			FailureKind: variantFailureRaceUnsupported, FailurePhase: variantPhaseInfrastructure,
+			Diagnostic: "race detector is unsupported on synthetic/architecture",
+		}
+	}
 	r.metrics.VariantRuns++
 	r.metrics.Workspaces++
 	r.metrics.ChildGoRuns++
@@ -30,7 +37,7 @@ func (r *fakeExecutionRunner) RunVariant(request variantRequest) variantResult {
 	implementation := readTestFiles(request.Implementation)
 	tests := readTestFiles(request.Tests)
 	if strings.Contains(implementation, "synthetic compile failure") {
-		return variantResult{}
+		return variantResult{FailureKind: variantFailureCompile, FailurePhase: variantPhaseCompile, Diagnostic: "synthetic compile failure"}
 	}
 	meaningful := strings.Contains(tests, "subject.Identity")
 	passed := true
@@ -39,7 +46,13 @@ func (r *fakeExecutionRunner) RunVariant(request variantRequest) variantResult {
 			!strings.Contains(implementation, "return value + 1") &&
 			!strings.Contains(implementation, "return 0")
 	}
-	return variantResult{Compiled: true, Passed: passed, Canonical: "run|task/subject|Test\npass|task/subject|Test"}
+	result := variantResult{Compiled: true, Passed: passed, Canonical: "run|task/subject|Test\npass|task/subject|Test", FailureKind: variantFailureNone, FailurePhase: variantPhaseNone}
+	if !passed {
+		result.FailureKind = variantFailureTest
+		result.FailurePhase = variantPhaseTest
+		result.Diagnostic = "synthetic test failure"
+	}
+	return result
 }
 
 func (r *fakeExecutionRunner) RunLegacy(_ string, commands []string) ([]isolation.CommandResult, error) {

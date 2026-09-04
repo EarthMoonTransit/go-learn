@@ -13,6 +13,7 @@ var packagePattern = regexp.MustCompile(`^\./(?:\.\.\.|[a-zA-Z0-9_-]+(?:/[a-zA-Z
 // validation command.
 type LegacyCommand struct {
 	ExpectFailure bool
+	Mode          ExecutionMode
 	Args          []string
 }
 
@@ -24,7 +25,7 @@ func ParseLegacyCommand(value string) (LegacyCommand, error) {
 	if err != nil {
 		return LegacyCommand{}, err
 	}
-	result := LegacyCommand{}
+	result := LegacyCommand{Mode: ExecutionModeNormal}
 	if len(words) > 0 && words[0] == "!" {
 		result.ExpectFailure = true
 		words = words[1:]
@@ -48,7 +49,10 @@ func ParseLegacyCommand(value string) (LegacyCommand, error) {
 			return LegacyCommand{}, fmt.Errorf("vet flag or argument %q is not allowed", word)
 		}
 		switch {
-		case word == "-race", word == "-count=1", word == "-run=^$":
+		case word == "-race":
+			result.Mode = ExecutionModeRace
+			result.Args = append(result.Args, word)
+		case word == "-count=1", word == "-run=^$":
 			result.Args = append(result.Args, word)
 		case word == "-run" && index+1 < len(words) && words[index+1] == "^$":
 			result.Args = append(result.Args, word, words[index+1])

@@ -36,8 +36,15 @@ mutant. Пустой public test обнаруживается тем, что sta
 текущего runtime по абсолютному пути; произвольного process API у task checker
 нет. Среда строится из allowlist: отдельные `HOME`, `TMPDIR`, `GOCACHE`,
 `GOMODCACHE`, плюс `GOWORK=off`, `GOPROXY=off`, `GOTOOLCHAIN=local`,
-`GOFLAGS=-mod=readonly`, `GOENV=off`, `GOTELEMETRY=off`, `CGO_ENABLED=0` и
-фиксированный `PATH`. Не связанные переменные, включая secrets, не наследуются.
+`GOFLAGS=-mod=readonly`, `GOENV=off`, `GOTELEMETRY=off` и фиксированный `PATH`.
+Типизированный execution mode задаёт `CGO_ENABLED=0` обычным runs и
+`CGO_ENABLED=1` только race runs; runner не выводит mode из текста команды.
+Не связанные переменные, включая secrets, не наследуются.
+
+Разрешение cgo для самого race detector не меняет pure-Go task contract.
+Checker статически отклоняет `import "C"`, cgo compiler/linker directives,
+C/C++/Objective-C и другие native source/object files. Task `go.mod` по-прежнему
+не допускает `toolchain`, external dependencies и прочие dependency directives.
 
 Legacy `validation_commands` проходят лексический parser до первого запуска.
 Разрешены только `go test` и `go vet`, безопасные test flags и явные `./...`
@@ -45,6 +52,12 @@ package paths. Pipes, redirections, traversal, `$()`/environment expansion,
 shell metacharacters и другие программы отклоняются. Затем каждая команда
 запускается напрямую в отдельной копии package. Это hygiene boundary для
 доверенного repository content, а не OS sandbox против hostile Go code.
+
+Race support проверяется явно для текущей GOOS/GOARCH. Неподдерживаемая
+платформа получает `infrastructure-unsupported`, а не pass; на поддерживаемой
+платформе отсутствие compiler/cgo или любой race failure остаётся failing gate.
+Variant failure различает assembly, compile, test, timeout и race/cgo; bounded
+diagnostic очищается от absolute temporary paths до попадания в отчёт.
 
 ## Toolchain policy
 

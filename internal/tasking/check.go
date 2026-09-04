@@ -89,12 +89,12 @@ func (s *CheckSession) checkLocated(located LocatedTask) (QualityReport, error) 
 	referenceSecond := s.runner.RunVariant(variantRequest{TaskID: data.Task.ID, GoVersion: s.policy.GoLanguageVersion, Implementation: layout.Reference, Tests: appendCopy(layout.PublicTests, layout.GraderTests)})
 	var referenceProblems []string
 	if !referenceFirst.Compiled {
-		referenceProblems = append(referenceProblems, "reference does not compile with full tests")
+		referenceProblems = append(referenceProblems, describeVariantFailure("reference with full tests", referenceFirst))
 	} else if !referenceFirst.Passed {
-		referenceProblems = append(referenceProblems, "reference fails full tests")
+		referenceProblems = append(referenceProblems, describeVariantFailure("reference with full tests", referenceFirst))
 	}
 	if !referenceSecond.Compiled || !referenceSecond.Passed {
-		referenceProblems = append(referenceProblems, "reference fails the repeated full test run")
+		referenceProblems = append(referenceProblems, describeVariantFailure("repeated reference run", referenceSecond))
 	}
 	if referenceFirst.Canonical != referenceSecond.Canonical {
 		referenceProblems = append(referenceProblems, "repeated reference runs have different observable test events")
@@ -107,12 +107,16 @@ func (s *CheckSession) checkLocated(located LocatedTask) (QualityReport, error) 
 	for _, mutant := range layout.Mutants {
 		result := s.runner.RunVariant(variantRequest{TaskID: data.Task.ID, GoVersion: s.policy.GoLanguageVersion, Implementation: mutant.Files, Tests: layout.GraderTests})
 		if !result.Compiled {
-			mutantProblems = append(mutantProblems, fmt.Sprintf("mutant %s does not compile", mutant.ID))
+			mutantProblems = append(mutantProblems, describeVariantFailure("mutant "+mutant.ID, result))
 			continue
 		}
 		if result.Passed {
 			c.report.Mutants.Survived = append(c.report.Mutants.Survived, mutant.ID)
 			mutantProblems = append(mutantProblems, fmt.Sprintf("mutant %s survives full tests", mutant.ID))
+			continue
+		}
+		if result.FailureKind != variantFailureTest {
+			mutantProblems = append(mutantProblems, describeVariantFailure("mutant "+mutant.ID, result))
 			continue
 		}
 		c.report.Mutants.Detected++
@@ -125,11 +129,15 @@ func (s *CheckSession) checkLocated(located LocatedTask) (QualityReport, error) 
 
 	if isConcurrencyTask(data.Task) {
 		race := s.runner.RunVariant(variantRequest{TaskID: data.Task.ID, GoVersion: s.policy.GoLanguageVersion, Race: true, Implementation: layout.Reference, Tests: appendCopy(layout.PublicTests, layout.GraderTests)})
-		var raceProblems []string
-		if !race.Compiled || !race.Passed {
-			raceProblems = append(raceProblems, "reference fails go test -race with full tests")
+		if race.FailureKind == variantFailureRaceUnsupported {
+			c.infrastructureUnsupported("race", race.Diagnostic)
+		} else {
+			var raceProblems []string
+			if !race.Compiled || !race.Passed {
+				raceProblems = append(raceProblems, describeVariantFailure("reference go test -race with full tests", race))
+			}
+			c.gate("race", raceProblems)
 		}
-		c.gate("race", raceProblems)
 	} else {
 		c.notApplicable("race", "task does not assess goroutines, channels, sync, or context")
 	}
@@ -162,6 +170,10 @@ func (c *checker) notApplicable(id, detail string) {
 	c.report.Gates = append(c.report.Gates, Gate{ID: id, Status: "not-applicable", Details: []string{detail}})
 }
 
+func (c *checker) infrastructureUnsupported(id, detail string) {
+	c.report.Gates = append(c.report.Gates, Gate{ID: id, Status: "infrastructure-unsupported", Details: []string{detail}})
+}
+
 func (c *checker) finish() {
 	c.report.TechnicalStatus = "pass"
 	c.report.ReviewStatus = "not-applicable"
@@ -170,7 +182,7 @@ func (c *checker) finish() {
 			c.report.ReviewStatus = gate.Status
 			continue
 		}
-		if gate.Status == "fail" {
+		if gate.Status == "fail" || gate.Status == "infrastructure-unsupported" {
 			c.report.TechnicalStatus = "fail"
 			c.report.FailingGateIDs = append(c.report.FailingGateIDs, gate.ID)
 		}
@@ -237,6 +249,7 @@ func checkPackageContract(root string, data packageData) ([]string, packageLayou
 	if _, err := os.Lstat(filepath.Join(data.Located.Path, "go.work")); err == nil {
 		problems = append(problems, "go.work is not allowed in a task package")
 	}
+	problems = append(problems, checkPureGoBoundary(data.Located.Path)...)
 	goMod, err := os.ReadFile(layout.GoMod)
 	if err == nil {
 		policy, policyErr := toolchainpolicy.Load(root)
@@ -271,6 +284,61 @@ func checkPackageContract(root string, data packageData) ([]string, packageLayou
 		}
 	}
 	return uniqueSorted(problems), layout
+}
+
+func checkPureGoBoundary(taskDirectory string) []string {
+	nativeExtensions := map[string]bool{
+		".a": true, ".c": true, ".cc": true, ".cpp": true, ".cxx": true,
+		".dll": true, ".dylib": true, ".h": true, ".hh": true, ".hpp": true,
+		".m": true, ".mm": true, ".o": true, ".s": true, ".so": true,
+		".sx": true, ".syso": true,
+	}
+	var problems []string
+	err := filepath.WalkDir(taskDirectory, func(path string, entry os.DirEntry, walkErr error) error {
+		if walkErr != nil {
+			return walkErr
+		}
+		if entry.IsDir() {
+			return nil
+		}
+		relative, err := filepath.Rel(taskDirectory, path)
+		if err != nil {
+			return err
+		}
+		relative = filepath.ToSlash(relative)
+		extension := strings.ToLower(filepath.Ext(entry.Name()))
+		if nativeExtensions[extension] {
+			problems = append(problems, fmt.Sprintf("native source or binary file is forbidden by the pure-Go boundary: %s", relative))
+			return nil
+		}
+		if extension != ".go" {
+			return nil
+		}
+		fileset := token.NewFileSet()
+		parsed, err := parser.ParseFile(fileset, path, nil, parser.ParseComments)
+		if err != nil {
+			return nil // collectGoDirectory reports syntax errors with task-facing paths.
+		}
+		for _, imported := range parsed.Imports {
+			importPath, err := strconv.Unquote(imported.Path.Value)
+			if err == nil && importPath == "C" {
+				problems = append(problems, fmt.Sprintf("cgo import is forbidden by the pure-Go boundary: %s", relative))
+			}
+		}
+		for _, group := range parsed.Comments {
+			for _, comment := range group.List {
+				text := strings.ToLower(comment.Text)
+				if strings.Contains(text, "#cgo") || strings.Contains(text, "//go:cgo_") {
+					problems = append(problems, fmt.Sprintf("cgo compiler or linker directive is forbidden by the pure-Go boundary: %s", relative))
+				}
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		problems = append(problems, "inspect pure-Go boundary: "+err.Error())
+	}
+	return uniqueSorted(problems)
 }
 
 type directoryKind int
@@ -761,10 +829,13 @@ func canonicalTestEvents(output []byte, taskID string) (string, bool) {
 
 func expectFailure(label string, result variantResult) []string {
 	if !result.Compiled {
-		return []string{label + " does not compile"}
+		return []string{describeVariantFailure(label, result)}
 	}
 	if result.Passed {
 		return []string{label + " unexpectedly passes"}
+	}
+	if result.FailureKind != variantFailureTest {
+		return []string{describeVariantFailure(label, result)}
 	}
 	return nil
 }

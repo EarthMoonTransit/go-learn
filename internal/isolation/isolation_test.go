@@ -48,6 +48,20 @@ func TestLegacyParserAcceptsPinnedManifestGrammar(t *testing.T) {
 	}
 }
 
+func TestLegacyParserReturnsTypedRaceMode(t *testing.T) {
+	normal, err := ParseLegacyCommand("go test ./...")
+	if err != nil {
+		t.Fatal(err)
+	}
+	race, err := ParseLegacyCommand("go test -race ./...")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if normal.Mode != ExecutionModeNormal || race.Mode != ExecutionModeRace {
+		t.Fatalf("unexpected modes: normal=%q race=%q", normal.Mode, race.Mode)
+	}
+}
+
 func TestEnvironmentDoesNotInheritSecrets(t *testing.T) {
 	t.Setenv("TASK_SECRET_FOR_TEST", "must-not-leak")
 	environment, err := NewEnvironment("minimal-env")
@@ -55,7 +69,11 @@ func TestEnvironmentDoesNotInheritSecrets(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer environment.Close()
-	joined := strings.Join(environment.GoEnv(), "\n")
+	values, err := environment.GoEnv(RunGoOptions{Mode: ExecutionModeNormal})
+	if err != nil {
+		t.Fatal(err)
+	}
+	joined := strings.Join(values, "\n")
 	if strings.Contains(joined, "TASK_SECRET_FOR_TEST") || strings.Contains(joined, "must-not-leak") {
 		t.Fatal("isolated environment inherited an unrelated variable")
 	}
@@ -65,6 +83,57 @@ func TestEnvironmentDoesNotInheritSecrets(t *testing.T) {
 			t.Fatalf("%s is not rooted in isolated environment: %s", key, joined)
 		}
 	}
+}
+
+func TestGoEnvironmentUsesCGOOnlyForTypedRaceMode(t *testing.T) {
+	t.Setenv("CGO_CFLAGS", "-DUNTRUSTED_NATIVE_FLAG")
+	t.Setenv("CGO_LDFLAGS", "-luntrusted")
+	t.Setenv("CC", "/untrusted/compiler")
+	environment, err := NewEnvironment("execution-mode")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer environment.Close()
+
+	normal, err := environment.GoEnv(RunGoOptions{Mode: ExecutionModeNormal})
+	if err != nil {
+		t.Fatal(err)
+	}
+	race, err := environment.GoEnv(RunGoOptions{Mode: ExecutionModeRace})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !containsEnvironmentValue(normal, "CGO_ENABLED=0") {
+		t.Fatalf("normal environment does not disable cgo: %v", normal)
+	}
+	if !containsEnvironmentValue(race, "CGO_ENABLED=1") {
+		t.Fatalf("race environment does not enable cgo: %v", race)
+	}
+	joinedRace := strings.Join(race, "\n")
+	if strings.Contains(joinedRace, "CGO_CFLAGS=") || strings.Contains(joinedRace, "CGO_LDFLAGS=") || strings.Contains(joinedRace, "CC=") || strings.Contains(joinedRace, "UNTRUSTED") {
+		t.Fatalf("race environment inherited native compiler or linker flags: %v", race)
+	}
+	if _, err := environment.GoEnv(RunGoOptions{Mode: ExecutionMode("invalid")}); err == nil {
+		t.Fatal("unknown execution mode was accepted")
+	}
+}
+
+func TestRaceDetectorSupportMatrixIncludesGitHubLinuxAMD64(t *testing.T) {
+	if !RaceDetectorSupported("linux", "amd64") {
+		t.Fatal("linux/amd64 must never be classified as race-unsupported")
+	}
+	if RaceDetectorSupported("js", "wasm") {
+		t.Fatal("js/wasm must be classified as race-unsupported")
+	}
+}
+
+func containsEnvironmentValue(values []string, want string) bool {
+	for _, value := range values {
+		if value == want {
+			return true
+		}
+	}
+	return false
 }
 
 func TestCopyTreeRejectsSymlink(t *testing.T) {

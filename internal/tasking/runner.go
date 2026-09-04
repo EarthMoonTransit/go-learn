@@ -1,16 +1,43 @@
 package tasking
 
 import (
+	"bufio"
+	"bytes"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
+	"runtime"
+	"strings"
 	"time"
+	"unicode"
 
 	"go-practice-bank/internal/isolation"
 )
 
 const taskCommandTimeout = 60 * time.Second
+
+const maxVariantDiagnosticRunes = 2048
+
+type variantFailureKind string
+type variantFailurePhase string
+
+const (
+	variantFailureNone            variantFailureKind = "none"
+	variantFailureAssembly        variantFailureKind = "assembly"
+	variantFailureCompile         variantFailureKind = "compile"
+	variantFailureTest            variantFailureKind = "test"
+	variantFailureTimeout         variantFailureKind = "timeout"
+	variantFailureRaceUnsupported variantFailureKind = "race-unsupported"
+	variantFailureRaceCGO         variantFailureKind = "race-cgo-incompatible"
+
+	variantPhaseNone           variantFailurePhase = "none"
+	variantPhaseAssembly       variantFailurePhase = "assembly"
+	variantPhaseCompile        variantFailurePhase = "compile"
+	variantPhaseTest           variantFailurePhase = "test"
+	variantPhaseInfrastructure variantFailurePhase = "infrastructure"
+)
 
 type variantRequest struct {
 	TaskID         string
@@ -21,9 +48,12 @@ type variantRequest struct {
 }
 
 type variantResult struct {
-	Compiled  bool
-	Passed    bool
-	Canonical string
+	Compiled     bool
+	Passed       bool
+	Canonical    string
+	FailureKind  variantFailureKind
+	FailurePhase variantFailurePhase
+	Diagnostic   string
 }
 
 type executionRunner interface {
@@ -50,41 +80,54 @@ func newRealExecutionRunner() (*realExecutionRunner, error) {
 }
 
 func (r *realExecutionRunner) RunVariant(request variantRequest) variantResult {
+	if request.Race && !isolation.RaceDetectorSupported(runtime.GOOS, runtime.GOARCH) {
+		return variantResult{
+			FailureKind: variantFailureRaceUnsupported, FailurePhase: variantPhaseInfrastructure,
+			Diagnostic: fmt.Sprintf("race detector is unsupported on %s/%s", runtime.GOOS, runtime.GOARCH),
+		}
+	}
 	r.metrics.VariantRuns++
 	workspace, err := r.environment.NewWorkspace(request.TaskID)
 	if err != nil {
-		return variantResult{}
+		return assemblyFailure("create isolated workspace", err, r.environment.Root, "")
 	}
 	r.metrics.Workspaces++
 	goMod := []byte("module task.local/" + request.TaskID + "\n\ngo " + request.GoVersion + "\n")
 	if err := os.WriteFile(filepath.Join(workspace, "go.mod"), goMod, 0o600); err != nil {
-		return variantResult{}
+		return assemblyFailure("write isolated go.mod", err, r.environment.Root, workspace)
 	}
 	subject := filepath.Join(workspace, "subject")
 	if err := os.Mkdir(subject, 0o700); err != nil {
-		return variantResult{}
+		return assemblyFailure("create isolated subject package", err, r.environment.Root, workspace)
 	}
 	for index, path := range request.Implementation {
 		name := fmt.Sprintf("impl_%03d_%s", index, filepath.Base(path))
 		if err := isolation.CopyFile(path, filepath.Join(subject, name)); err != nil {
-			return variantResult{}
+			return assemblyFailure("copy implementation", err, r.environment.Root, workspace, path)
 		}
 	}
 	for index, path := range request.Tests {
 		name := fmt.Sprintf("check_%03d_%s", index, filepath.Base(path))
 		if err := isolation.CopyFile(path, filepath.Join(subject, name)); err != nil {
-			return variantResult{}
+			return assemblyFailure("copy tests", err, r.environment.Root, workspace, path)
 		}
 	}
+	mode := isolation.ExecutionModeNormal
 	args := []string{"test", "-json", "-count=1"}
 	if request.Race {
+		mode = isolation.ExecutionModeRace
 		args = append(args, "-race")
 	}
 	args = append(args, "./subject")
 	r.metrics.ChildGoRuns++
-	output, runErr := r.environment.RunGo(workspace, taskCommandTimeout, args...)
+	output, runErr := r.environment.RunGo(workspace, taskCommandTimeout, isolation.RunGoOptions{Mode: mode}, args...)
 	canonical, compiled := canonicalTestEvents(output, request.TaskID)
-	return variantResult{Compiled: compiled, Passed: runErr == nil, Canonical: canonical}
+	result := variantResult{Compiled: compiled, Passed: runErr == nil, Canonical: canonical, FailureKind: variantFailureNone, FailurePhase: variantPhaseNone}
+	if runErr != nil {
+		result.FailureKind, result.FailurePhase = classifyVariantFailure(request.Race, compiled, output, runErr)
+		result.Diagnostic = sanitizeVariantDiagnostic(output, runErr, r.environment.Root, workspace, request.TaskID)
+	}
+	return result
 }
 
 func (r *realExecutionRunner) RunLegacy(source string, commands []string) ([]isolation.CommandResult, error) {
@@ -113,4 +156,91 @@ func closeWithPrimary(primary error, closeFn func() error) error {
 		return primary
 	}
 	return errors.Join(primary, fmt.Errorf("close task-check session: %w", closeErr))
+}
+
+func assemblyFailure(label string, err error, root, workspace string, taskPaths ...string) variantResult {
+	return variantResult{
+		FailureKind:  variantFailureAssembly,
+		FailurePhase: variantPhaseAssembly,
+		Diagnostic:   sanitizeVariantDiagnostic(nil, fmt.Errorf("%s: %w", label, err), root, workspace, "", taskPaths...),
+	}
+}
+
+func classifyVariantFailure(race, compiled bool, output []byte, runErr error) (variantFailureKind, variantFailurePhase) {
+	if errors.Is(runErr, isolation.ErrCommandTimeout) {
+		return variantFailureTimeout, variantPhaseInfrastructure
+	}
+	lower := strings.ToLower(string(output) + "\n" + runErr.Error())
+	if race && (strings.Contains(lower, "-race requires cgo") ||
+		strings.Contains(lower, "cgo: c compiler") ||
+		strings.Contains(lower, "c compiler") && strings.Contains(lower, "not found") ||
+		strings.Contains(lower, "cannot use -race")) {
+		return variantFailureRaceCGO, variantPhaseCompile
+	}
+	if !compiled {
+		return variantFailureCompile, variantPhaseCompile
+	}
+	return variantFailureTest, variantPhaseTest
+}
+
+func sanitizeVariantDiagnostic(output []byte, runErr error, root, workspace, taskID string, taskPaths ...string) string {
+	var lines []string
+	scanner := bufio.NewScanner(bytes.NewReader(output))
+	for scanner.Scan() {
+		line := scanner.Text()
+		var event struct {
+			Output string `json:"Output"`
+		}
+		if json.Unmarshal([]byte(line), &event) == nil {
+			if strings.TrimSpace(event.Output) != "" {
+				lines = append(lines, strings.TrimSpace(event.Output))
+			}
+			continue
+		}
+		if strings.TrimSpace(line) != "" {
+			lines = append(lines, strings.TrimSpace(line))
+		}
+	}
+	if len(lines) == 0 && runErr != nil {
+		lines = append(lines, runErr.Error())
+	}
+	diagnostic := strings.Join(lines, "\n")
+	for _, replacement := range []struct{ old, new string }{
+		{workspace, "<workspace>"},
+		{root, "<isolation-root>"},
+		{filepath.ToSlash(workspace), "<workspace>"},
+		{filepath.ToSlash(root), "<isolation-root>"},
+	} {
+		if replacement.old != "" {
+			diagnostic = strings.ReplaceAll(diagnostic, replacement.old, replacement.new)
+		}
+	}
+	if taskID != "" {
+		diagnostic = strings.ReplaceAll(diagnostic, "task.local/"+taskID, "task.local/<task>")
+	}
+	for _, taskPath := range taskPaths {
+		if taskPath != "" {
+			diagnostic = strings.ReplaceAll(diagnostic, taskPath, "<task-file>")
+			diagnostic = strings.ReplaceAll(diagnostic, filepath.ToSlash(taskPath), "<task-file>")
+		}
+	}
+	diagnostic = strings.Map(func(character rune) rune {
+		if character == '\n' || character == '\t' || !unicode.IsControl(character) {
+			return character
+		}
+		return -1
+	}, diagnostic)
+	runes := []rune(strings.TrimSpace(diagnostic))
+	if len(runes) > maxVariantDiagnosticRunes {
+		diagnostic = string(runes[:maxVariantDiagnosticRunes-1]) + "…"
+	}
+	return diagnostic
+}
+
+func describeVariantFailure(label string, result variantResult) string {
+	detail := fmt.Sprintf("%s failed during %s (%s)", label, result.FailurePhase, result.FailureKind)
+	if result.Diagnostic != "" {
+		detail += ": " + result.Diagnostic
+	}
+	return detail
 }

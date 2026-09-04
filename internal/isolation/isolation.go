@@ -20,6 +20,21 @@ const maxCopiedFileSize = 8 << 20
 
 var ErrCommandTimeout = errors.New("Go command timed out")
 
+// ExecutionMode selects the minimum Go build environment required by a
+// verifier operation. Callers choose this mode from trusted task metadata;
+// RunGo never infers it by inspecting command text.
+type ExecutionMode string
+
+const (
+	ExecutionModeNormal ExecutionMode = "normal"
+	ExecutionModeRace   ExecutionMode = "race"
+)
+
+// RunGoOptions is the typed execution policy for one Go command.
+type RunGoOptions struct {
+	Mode ExecutionMode
+}
+
 // Environment owns a disposable directory and isolated Go caches.
 type Environment struct {
 	Root string
@@ -63,9 +78,17 @@ func (e *Environment) NewWorkspace(name string) (string, error) {
 	return path, nil
 }
 
-func (e *Environment) GoEnv() []string {
+func (e *Environment) GoEnv(options RunGoOptions) ([]string, error) {
+	cgoEnabled := "0"
+	switch options.Mode {
+	case ExecutionModeNormal:
+	case ExecutionModeRace:
+		cgoEnabled = "1"
+	default:
+		return nil, fmt.Errorf("unknown Go execution mode %q", options.Mode)
+	}
 	values := map[string]string{
-		"CGO_ENABLED": "0",
+		"CGO_ENABLED": cgoEnabled,
 		"GOENV":       "off",
 		"GOCACHE":     filepath.Join(e.Root, "cache"),
 		"GOMODCACHE":  filepath.Join(e.Root, "modcache"),
@@ -94,13 +117,31 @@ func (e *Environment) GoEnv() []string {
 	for _, key := range keys {
 		result = append(result, key+"="+values[key])
 	}
-	return result
+	return result, nil
+}
+
+// RaceDetectorSupported reports whether the active Go toolchain documents
+// race-detector support for a GOOS/GOARCH pair. Compiler availability is a
+// separate infrastructure property and is diagnosed by the Go command.
+func RaceDetectorSupported(goos, goarch string) bool {
+	switch goos {
+	case "linux":
+		switch goarch {
+		case "amd64", "arm64", "loong64", "ppc64le", "riscv64", "s390x":
+			return true
+		}
+	case "darwin":
+		return goarch == "amd64" || goarch == "arm64"
+	case "freebsd", "netbsd", "windows":
+		return goarch == "amd64"
+	}
+	return false
 }
 
 // RunGo executes the Go binary from the active runtime in a disposable
 // workspace. It provides process and filesystem hygiene for trusted repository
 // inputs, not an operating-system security sandbox for hostile code.
-func (e *Environment) RunGo(dir string, timeout time.Duration, args ...string) ([]byte, error) {
+func (e *Environment) RunGo(dir string, timeout time.Duration, options RunGoOptions, args ...string) ([]byte, error) {
 	canonicalRoot, err := filepath.EvalSymlinks(e.Root)
 	if err != nil {
 		return nil, fmt.Errorf("resolve isolated root: %w", err)
@@ -121,7 +162,11 @@ func (e *Environment) RunGo(dir string, timeout time.Duration, args ...string) (
 	}
 	cmd := exec.CommandContext(ctx, executable, args...)
 	cmd.Dir = canonicalDir
-	cmd.Env = e.GoEnv()
+	goEnv, err := e.GoEnv(options)
+	if err != nil {
+		return nil, err
+	}
+	cmd.Env = goEnv
 	output, runErr := cmd.CombinedOutput()
 	if errors.Is(ctx.Err(), context.DeadlineExceeded) {
 		return output, fmt.Errorf("%w after %s", ErrCommandTimeout, timeout)
@@ -260,7 +305,7 @@ func (e *Environment) RunLegacyCommandsInCopies(sourceDirectory string, commands
 		if err := CopyTree(sourceDirectory, workspace); err != nil {
 			return results, err
 		}
-		output, runErr := e.RunGo(workspace, timeout, parsed[index].Args...)
+		output, runErr := e.RunGo(workspace, timeout, RunGoOptions{Mode: parsed[index].Mode}, parsed[index].Args...)
 		if parsed[index].ExpectFailure {
 			if errors.Is(runErr, ErrCommandTimeout) {
 				// A timeout is an infrastructure failure, never an expected test failure.

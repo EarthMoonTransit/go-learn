@@ -41,13 +41,15 @@
     "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "state": {"enum": ["draft", "in-review", "ready", "rejected", "retired"]},
     "status": {"enum": ["pass", "fail", "not-applicable"]},
+    "gate_status": {"enum": ["pass", "fail", "not-applicable", "infrastructure-unsupported"]},
+    "race_status": {"enum": ["pass", "fail", "not-applicable", "infrastructure-unsupported"]},
     "gate": {
       "type": "object",
       "additionalProperties": false,
       "required": ["id", "status", "details"],
       "properties": {
         "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
-        "status": {"$ref": "#/$defs/status"},
+        "status": {"$ref": "#/$defs/gate_status"},
         "details": {"type": "array", "items": {"type": "string"}}
       }
     },
@@ -78,7 +80,7 @@
         "failing_gate_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
         "starter_status": {"$ref": "#/$defs/status"},
         "reference_status": {"$ref": "#/$defs/status"},
-        "race_status": {"$ref": "#/$defs/status"},
+        "race_status": {"$ref": "#/$defs/race_status"},
         "gates": {"type": "array", "items": {"$ref": "#/$defs/gate"}},
         "mutants": {"$ref": "#/$defs/mutants"}
       }

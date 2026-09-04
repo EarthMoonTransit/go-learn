@@ -4,7 +4,7 @@ toolchain_policy_digest: 51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a515
 tasks:
     - id: defined-types-001
       state: ready
-      input_digest: a724a129ca2818ca4de85f0475f9ace4094549edb55de76b9e217d9f6339838b
+      input_digest: 1ca92b08192f60d8be360297356576a5e86be1766b126c95701b1c18e6b4a4be
       task_type: refactor
       primary_skill: types.named-underlying
       technical_status: pass
@@ -22,7 +22,7 @@ tasks:
       legacy: true
     - id: variadic-sum-001
       state: ready
-      input_digest: 5e506467f4c99b466747db36ecc736bd286b39bca362ba7d64b53f91a6493792
+      input_digest: 34df0af6760295a955b081b76d364deddf71124051d77bd33344b5e54a010af9
       task_type: implement
       primary_skill: functions.variadic
       technical_status: pass
@@ -40,7 +40,7 @@ tasks:
       legacy: true
     - id: zero-state-001
       state: ready
-      input_digest: 768cdcc42099fcc4ee8ec854335ee28126dc473334e9cb1be5fec8c3d4e6c67d
+      input_digest: 3118f1b85d3e6a9892ba6be4c5a1fbbcf7e1ad6f24f0de943614fcaa812316aa
       task_type: debug
       primary_skill: types.zero-values
       technical_status: pass

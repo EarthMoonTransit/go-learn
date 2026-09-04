@@ -60,6 +60,11 @@ runner; они проверяют policy, schemas, digests, promotion и report 
 `taskintegration`; одна integration session покрывает valid, adversarial,
 race, legacy и isolation scenarios с отдельными workspaces.
 
+Race regression использует тот же single-pass runner и отдельный типизированный
+mode: normal variants работают с cgo disabled, race variant — с cgo enabled.
+Integration test делает skip только после явного определения unsupported
+GOOS/GOARCH; linux/amd64 всегда обязан выполнить реальный race command.
+
 CI строит binaries один раз. Затем один `task-check -all` пишет collection во
 временный path, а validator и `task-report -check` повторно используют её.
 `-checks` несовместим с `-run-commands`, чтобы скрытый второй execution pass был

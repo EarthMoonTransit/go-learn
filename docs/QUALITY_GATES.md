@@ -51,6 +51,9 @@ Lifecycle использует состояния `draft`, `in-review`, `ready`,
 - tests не используют uncontrolled clock, randomness, network, environment или
   external processes; `time.Sleep` запрещён;
 - concurrency reference дополнительно проходит `go test -race`.
+- task package остаётся pure Go: запрещены `import "C"`, cgo directives,
+  native source/object files, native compiler/linker flags, external modules и
+  `toolchain` directive;
 
 Варианты собираются checker-owned способом: implementations не содержат tests,
 а canonical public/grader tests нельзя заменить solution binding. Все команды
@@ -70,9 +73,11 @@ offline module resolution и отдельными home/cache/temp paths.
 
 Одиночный `task-check -id` выдаёт документ
 `schemas/task-quality-report.schema.json`; `task-check -all` выдаёт versioned
-`schemas/task-check-collection.schema.json`. Каждый gate имеет `pass`, `fail`
-или `not-applicable`; mutant summary фиксирует
-`required`, `total`, `detected` и `survived`. Дополнительно фиксируются
+`schemas/task-check-collection.schema.json`. Gate использует `pass`, `fail`
+или `not-applicable`; race gate дополнительно использует
+`infrastructure-unsupported` для явно неподдерживаемой GOOS/GOARCH. Такой
+статус не является pass и делает technical status failing. Mutant summary
+фиксирует `required`, `total`, `detected` и `survived`. Дополнительно фиксируются
 technical/review status, promotion eligibility, failing gate IDs, starter,
 reference, race и legacy compatibility.
 

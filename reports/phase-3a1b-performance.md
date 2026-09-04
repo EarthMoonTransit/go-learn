@@ -55,7 +55,10 @@ Production full-bank execution: 4 passes → 1. Подробная декомп�
 Collection не заявляется attestation: CI доверяет только обязательному
 предыдущему producer step в том же job.
 
-## Acceptance
+## Local acceptance при подготовке Phase 3A.1b
+
+Эти результаты относятся только к локальной машине и не утверждают состояние
+GitHub Actions.
 
 | Проверка | Результат |
 | --- | --- |
@@ -68,6 +71,18 @@ Collection не заявляется attestation: CI доверяет тольк
 | validator reuse через `-checks` | pass |
 | report reuse/check через `-checks` | pass |
 | повторная collection byte comparison | pass |
+
+## GitHub Actions acceptance
+
+`remote_ci: failed`
+
+Run [`33870475260`](https://github.com/EarthMoonTransit/go-learn/actions/runs/33870475260)
+для commit `a75ee43bae297a2a8e5aeee98e5603f00c126e88` прошёл обычные tests,
+outer race и vet, но упал на `go test -tags taskintegration ./...`.
+`TestRealRunnerAdversarialMatrixUsesOneEnvironment` обнаружил portability
+defect: isolation безусловно задавал `CGO_ENABLED=0`, тогда как внутренний
+linux/amd64 race variant требует cgo. Исправление документируется отдельно в
+Phase 3A.1c; этот раздел сохраняет фактическую историю красного run.
 
 ## Protected artifacts
 

@@ -17,7 +17,7 @@
     "failing_gate_ids": {"type": "array", "items": {"type": "string", "pattern": "^[a-z0-9-]+$"}, "uniqueItems": true},
     "starter_status": {"enum": ["pass", "fail", "not-applicable"]},
     "reference_status": {"enum": ["pass", "fail", "not-applicable"]},
-    "race_status": {"enum": ["pass", "fail", "not-applicable"]},
+    "race_status": {"enum": ["pass", "fail", "not-applicable", "infrastructure-unsupported"]},
     "gates": {
       "type": "array",
       "items": {
@@ -26,7 +26,7 @@
         "required": ["id", "status", "details"],
         "properties": {
           "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
-          "status": {"enum": ["pass", "fail", "not-applicable"]},
+          "status": {"enum": ["pass", "fail", "not-applicable", "infrastructure-unsupported"]},
           "details": {"type": "array", "items": {"type": "string"}}
         }
       }

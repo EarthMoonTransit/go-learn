@@ -5,6 +5,7 @@ package tasking
 import (
 	"os"
 	"path/filepath"
+	"runtime"
 	"testing"
 
 	"go-practice-bank/internal/isolation"
@@ -87,13 +88,24 @@ func TestRealRunnerAdversarialMatrixUsesOneEnvironment(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	race := runner.RunVariant(variantRequest{
-		TaskID: syntheticID, GoVersion: session.policy.GoLanguageVersion, Race: true,
-		Implementation: []string{referencePath}, Tests: []string{publicPath, graderPath},
+	raceRuns := 0
+	t.Run("typed race mode", func(t *testing.T) {
+		supported := isolation.RaceDetectorSupported(runtime.GOOS, runtime.GOARCH)
+		if runtime.GOOS == "linux" && runtime.GOARCH == "amd64" && !supported {
+			t.Fatal("GitHub Actions linux/amd64 must never skip the race regression")
+		}
+		if !supported {
+			t.Skipf("race detector is explicitly unsupported on %s/%s", runtime.GOOS, runtime.GOARCH)
+		}
+		raceRuns++
+		race := runner.RunVariant(variantRequest{
+			TaskID: syntheticID, GoVersion: session.policy.GoLanguageVersion, Race: true,
+			Implementation: []string{referencePath}, Tests: []string{publicPath, graderPath},
+		})
+		if !race.Compiled || !race.Passed {
+			t.Fatalf("real race variant failed: %s", describeVariantFailure("race regression", race))
+		}
 	})
-	if !race.Compiled || !race.Passed {
-		t.Fatal("real race variant failed")
-	}
 
 	legacyRoot := legacyFixtureRepository(t)
 	legacySource := filepath.Join(legacyRoot, "tasks/ready/defined-types-001")
@@ -107,7 +119,12 @@ func TestRealRunnerAdversarialMatrixUsesOneEnvironment(t *testing.T) {
 	}
 
 	metrics := runner.Metrics()
-	if metrics.Sessions != 1 || metrics.ChildGoRuns != 32 || metrics.ChildGoRuns != metrics.Workspaces || metrics.ChildGoRuns != metrics.VariantRuns+metrics.LegacyCommands {
+	const variantsPerDynamicCheck = 5 // two starter, two reference, one mutant
+	const dynamicChecks = 6           // valid plus five adversarial dynamic checks
+	expectedVariants := variantsPerDynamicCheck*dynamicChecks + raceRuns
+	expectedLegacyCommands := len(legacyResults)
+	expectedChildRuns := expectedVariants + expectedLegacyCommands
+	if metrics.Sessions != 1 || metrics.VariantRuns != expectedVariants || metrics.LegacyCommands != expectedLegacyCommands || metrics.ChildGoRuns != expectedChildRuns || metrics.ChildGoRuns != metrics.Workspaces {
 		t.Fatalf("unexpected real execution topology: %+v", metrics)
 	}
 	entries, err := os.ReadDir(filepath.Join(runner.environment.Root, "workspaces"))
