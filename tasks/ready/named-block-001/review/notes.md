@@ -1,0 +1,3 @@
+Named array identity and value-copy behavior are jointly observable. This is not a rename of the legacy numeric-unit refactoring API: the learner chooses array versus slice representation and distinguishes copy semantics; the four defects change alias identity, ownership, length, and element type. Supplied any/reflect plumbing is not a learner prerequisite.
+
+Independent review approved on 2026-09-05 after repairing invalid-path preservation coverage and the non-compiling fallback defect. Reference and required defects passed disposable checks. Human calibration remains pending. No upstream task material was used.

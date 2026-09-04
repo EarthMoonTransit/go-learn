@@ -1,0 +1,48 @@
+schema_version: 2
+id: slice-window-001
+title: Return a bounded slice window
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: slices.header-model
+    secondary:
+        - slices.len-cap-slicing
+prerequisites:
+    - arrays.value-semantics
+    - types.zero-values
+    - expressions.boolean-logic
+    - functions.signatures-results
+new_concepts:
+    - slices.header-model
+    - slices.len-cap-slicing
+difficulty: introductory
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - capacity-bound
+        - trim-capacity
+        - copy-window
+        - reject-empty
+        - clear-invalid
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
