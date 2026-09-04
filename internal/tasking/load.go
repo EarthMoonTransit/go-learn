@@ -62,12 +62,16 @@ func validateSchema(root, schemaName string, value any) error {
 }
 
 type packageData struct {
-	Located    LocatedTask
-	Task       Task
-	Lifecycle  Lifecycle
-	Review     Review
-	Provenance Provenance
-	Prompt     []byte
+	Located           LocatedTask
+	ContractVersion   int
+	ProvenanceVersion int
+	Task              Task
+	TaskV2            TaskV2
+	Lifecycle         Lifecycle
+	Review            Review
+	Provenance        Provenance
+	ProvenanceV2      ProvenanceV2
+	Prompt            []byte
 }
 
 func loadPackage(root string, located LocatedTask) (packageData, []string) {
@@ -76,15 +80,35 @@ func loadPackage(root string, located LocatedTask) (packageData, []string) {
 	if err := inspectTree(located.Path); err != nil {
 		return result, []string{err.Error()}
 	}
+	taskPath := filepath.Join(located.Path, "task.yaml")
+	taskVersion, err := documentSchemaVersion(taskPath)
+	if err != nil {
+		problems = append(problems, "task.yaml: "+err.Error())
+	} else {
+		result.ContractVersion = taskVersion
+		switch taskVersion {
+		case 1:
+			if err := decodeAndValidate(root, taskPath, "task.schema.json", &result.Task); err != nil {
+				problems = append(problems, "task.yaml: "+err.Error())
+			}
+		case 2:
+			if err := decodeAndValidate(root, taskPath, "task-v2.schema.json", &result.TaskV2); err != nil {
+				problems = append(problems, "task.yaml: "+err.Error())
+			} else {
+				result.Task = normalizeTaskV2(result.TaskV2)
+			}
+		default:
+			problems = append(problems, fmt.Sprintf("task.yaml: unsupported schema_version %d", taskVersion))
+		}
+	}
+
 	files := []struct {
 		name   string
 		value  any
 		schema string
 	}{
-		{"task.yaml", &result.Task, "task.schema.json"},
 		{"lifecycle.yaml", &result.Lifecycle, "task-lifecycle.schema.json"},
 		{"review/review.yaml", &result.Review, "task-review.schema.json"},
-		{"provenance.yaml", &result.Provenance, "task-provenance.schema.json"},
 	}
 	for _, file := range files {
 		path := filepath.Join(located.Path, filepath.FromSlash(file.name))
@@ -96,6 +120,25 @@ func loadPackage(root string, located LocatedTask) (packageData, []string) {
 			problems = append(problems, fmt.Sprintf("%s: %v", file.name, err))
 		}
 	}
+	provenancePath := filepath.Join(located.Path, "provenance.yaml")
+	provenanceVersion, err := documentSchemaVersion(provenancePath)
+	if err != nil {
+		problems = append(problems, "provenance.yaml: "+err.Error())
+	} else {
+		result.ProvenanceVersion = provenanceVersion
+		switch provenanceVersion {
+		case 1:
+			if err := decodeAndValidate(root, provenancePath, "task-provenance.schema.json", &result.Provenance); err != nil {
+				problems = append(problems, "provenance.yaml: "+err.Error())
+			}
+		case 2:
+			if err := decodeAndValidate(root, provenancePath, "task-provenance-v2.schema.json", &result.ProvenanceV2); err != nil {
+				problems = append(problems, "provenance.yaml: "+err.Error())
+			}
+		default:
+			problems = append(problems, fmt.Sprintf("provenance.yaml: unsupported schema_version %d", provenanceVersion))
+		}
+	}
 	prompt, err := os.ReadFile(filepath.Join(located.Path, "TASK.md"))
 	if err != nil {
 		problems = append(problems, fmt.Sprintf("TASK.md: %v", err))
@@ -103,4 +146,66 @@ func loadPackage(root string, located LocatedTask) (packageData, []string) {
 		result.Prompt = prompt
 	}
 	return result, problems
+}
+
+func decodeAndValidate(root, path, schema string, value any) error {
+	if err := decodeStrictFile(path, value); err != nil {
+		return err
+	}
+	return validateSchema(root, schema, value)
+}
+
+func documentSchemaVersion(path string) (int, error) {
+	var header struct {
+		SchemaVersion int `yaml:"schema_version"`
+	}
+	content, err := os.ReadFile(path)
+	if err != nil {
+		return 0, err
+	}
+	if err := yaml.Unmarshal(content, &header); err != nil {
+		return 0, err
+	}
+	if header.SchemaVersion == 0 {
+		return 0, errors.New("schema_version is required")
+	}
+	return header.SchemaVersion, nil
+}
+
+func normalizeTaskV2(task TaskV2) Task {
+	taskType := map[string]string{
+		"implementation": "implement", "debugging": "debug", "refactoring": "refactor",
+		"api-design": "implement", "test-writing": "test-writing", "test-repair": "test-writing",
+		"fuzz-test-writing": "test-writing", "integration": "implement", "performance": "performance",
+		"code-review-patch": "debug",
+	}[task.Activity]
+	return Task{
+		SchemaVersion: task.SchemaVersion, ID: task.ID, Title: task.Title, TaskType: taskType,
+		Skills: task.Skills, Prerequisites: task.Prerequisites, NewConcepts: task.NewConcepts,
+		Difficulty: task.Difficulty, EstimatedTimeMinutes: task.EstimatedTimeMinutes,
+		QualityStatus: task.QualityStatus,
+	}
+}
+
+func loadTaskIndex(path string) (Task, error) {
+	version, err := documentSchemaVersion(path)
+	if err != nil {
+		return Task{}, err
+	}
+	switch version {
+	case 1:
+		var task Task
+		if err := decodeStrictFile(path, &task); err != nil {
+			return Task{}, err
+		}
+		return task, nil
+	case 2:
+		var task TaskV2
+		if err := decodeStrictFile(path, &task); err != nil {
+			return Task{}, err
+		}
+		return normalizeTaskV2(task), nil
+	default:
+		return Task{}, fmt.Errorf("unsupported task schema_version %d", version)
+	}
 }

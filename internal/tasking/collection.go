@@ -17,15 +17,23 @@ import (
 )
 
 var taskDigestContracts = []string{
+	"LICENSE",
+	"THIRD_PARTY_NOTICES",
 	"schemas/task.schema.json",
+	"schemas/task-v2.schema.json",
 	"schemas/task-lifecycle.schema.json",
 	"schemas/task-review.schema.json",
 	"schemas/task-provenance.schema.json",
+	"schemas/task-provenance-v2.schema.json",
+	"schemas/project-identity.schema.json",
+	"schemas/outbound-license-policy.schema.json",
 	"schemas/task-quality-report.schema.json",
 	"schemas/task-check-collection.schema.json",
 	"schemas/taxonomy-v3.schema.json",
 	"schemas/toolchain-policy.schema.json",
 	"config/toolchain.yaml",
+	"config/project-identity.yaml",
+	"config/outbound-license.yaml",
 	"curriculum/skills.yaml",
 	"sources/registry.yaml",
 }

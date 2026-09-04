@@ -1,0 +1,16 @@
+schema_version: 2
+kind: original
+project:
+  identity: go-practice-bank
+  repository: https://github.com/EarthMoonTransit/go-learn
+  license: Apache-2.0
+  content_digest: 4a06e4d2758846dd6d7b32d3357c8bcd963410c6c7997ea99b190eda097f44e7
+creation:
+  author: synthetic-fixture
+  created_at: "2026-09-04"
+  summary: Original synthetic mutation-testing fixture.
+sources: []
+attribution_file: ATTRIBUTION.md
+release:
+  binding: deferred-to-release-manifest
+  manifest: provenance/releases/synthetic-mutation-v2-001.yaml

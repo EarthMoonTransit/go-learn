@@ -15,28 +15,7 @@ func checkInactive(root string, located LocatedTask) (QualityReport, error) {
 		FailingGateIDs: []string{}, StarterStatus: "not-applicable", ReferenceStatus: "not-applicable", RaceStatus: "not-applicable",
 		Mutants: MutantSummary{Survived: []string{}},
 	}}
-	data := packageData{Located: located}
-	var loadProblems []string
-	if err := inspectTree(located.Path); err != nil {
-		loadProblems = append(loadProblems, err.Error())
-	}
-	for _, item := range []struct {
-		name   string
-		value  any
-		schema string
-	}{
-		{"task.yaml", &data.Task, "task.schema.json"},
-		{"lifecycle.yaml", &data.Lifecycle, "task-lifecycle.schema.json"},
-		{"provenance.yaml", &data.Provenance, "task-provenance.schema.json"},
-	} {
-		if err := decodeStrictFile(filepath.Join(located.Path, filepath.FromSlash(item.name)), item.value); err != nil {
-			loadProblems = append(loadProblems, item.name+": "+err.Error())
-			continue
-		}
-		if err := validateSchema(root, item.schema, item.value); err != nil {
-			loadProblems = append(loadProblems, item.name+": "+err.Error())
-		}
-	}
+	data, loadProblems := loadPackage(root, located)
 	c.gate("package-metadata", loadProblems)
 	c.gate("taxonomy-and-lifecycle", checkMetadata(root, data))
 	c.gate("provenance-license", checkProvenance(root, data))

@@ -7,7 +7,7 @@
   "required": ["schema_version", "contract_version", "toolchain_policy_digest", "tasks", "execution"],
   "properties": {
     "schema_version": {"const": 1},
-    "contract_version": {"const": "task-check/v1"},
+    "contract_version": {"const": "task-check/v2"},
     "toolchain_policy_digest": {"$ref": "#/$defs/digest"},
     "tasks": {
       "type": "array",

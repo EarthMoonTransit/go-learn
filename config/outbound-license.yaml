@@ -1,0 +1,11 @@
+schema_version: 1
+original_content_license: Apache-2.0
+third_party_rule: retain-source-license
+compatible_source_licenses:
+  - MIT
+  - BSD-2-Clause
+  - BSD-3-Clause
+  - Apache-2.0
+  - CC-BY-3.0
+  - CC-BY-4.0
+notices_file: THIRD_PARTY_NOTICES

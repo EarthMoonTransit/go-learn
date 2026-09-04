@@ -44,10 +44,20 @@ Copyleft, non-commercial, no-derivatives, custom/ambiguous terms и смешан
 
 ## Оригинальные задачи
 
-`transformation_type: original` означает независимую авторскую работу на основе
-taxonomy, спецификации языка и общих API-фактов. Она всё равно получает provenance
-на внутреннюю source entry и commit первого review. Совпадение с известным
-упражнением проверяется до публикации.
+Для legacy provenance v1 сохраняется прежняя source-модель только ради чтения
+существующих пакетов. Новые задачи используют provenance v2: независимая работа
+ссылается на `config/project-identity.yaml`, лицензию Apache-2.0, creation record и
+digest авторского content. Не существующий ещё commit не выдумывается. Release
+manifest позднее связывает content digest с фактическим VCS commit. Совпадение с
+известным упражнением проверяется до публикации.
+
+## Outbound licensing
+
+Машиночитаемая политика находится в `config/outbound-license.yaml`. Оригинальный
+tooling и task content публикуются под Apache-2.0. Заимствованные артефакты всегда
+сохраняют исходную лицензию; `THIRD_PARTY_NOTICES` описывает обязательства, но не
+перелицензирует их. Разрешённый список совместимости охватывает проверенные MIT,
+BSD, Apache-2.0 и CC-BY записи. Он не меняет более строгий `usage_mode` registry.
 
 ## Attribution output
 

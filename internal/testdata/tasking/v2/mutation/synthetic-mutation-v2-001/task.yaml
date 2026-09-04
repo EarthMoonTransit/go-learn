@@ -1,0 +1,33 @@
+schema_version: 2
+id: synthetic-mutation-v2-001
+title: Strengthen tests for an integer identity function
+activity: test-writing
+submission:
+  kind: tests
+  editable_paths: []
+  workspace_skeleton: []
+skills:
+  primary: testing.basics-diagnostics
+  secondary: []
+prerequisites:
+  - toolchain.build-run
+  - functions.signatures-results
+new_concepts:
+  - testing.basics-diagnostics
+difficulty: basic
+estimated_time_minutes: {min: 15, max: 25}
+verification:
+  profile: mutation-tests
+  packages: [./subject]
+  public_checks: [./subject]
+  grader_checks: [./subject]
+  reference_checks: [./subject]
+  required_mutants: [constant-zero]
+  race_required: false
+  vet: false
+  limits:
+    command_timeout_seconds: 30
+    determinism_runs: 2
+    fuzz_seconds: 0
+    benchmark_runs: 1
+quality_status: draft

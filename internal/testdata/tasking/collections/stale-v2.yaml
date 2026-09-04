@@ -1,0 +1,5 @@
+schema_version: 1
+contract_version: task-check/v2
+toolchain_policy_digest: 0000000000000000000000000000000000000000000000000000000000000000
+tasks: []
+execution: {sessions: 0, task_checks: 0, workspaces: 0, variant_runs: 0, legacy_commands: 0, child_go_runs: 0}

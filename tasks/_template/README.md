@@ -6,3 +6,7 @@
 
 Template намеренно не содержит учебного API, starter code или tests. README в
 пустых каталогах описывают контракт и не копируются в создаваемый package.
+
+`task-init` по умолчанию создаёт metadata/provenance v2. Конкретная физическая
+раскладка зависит от выбранного verification profile и описана в
+`docs/TASK_CONTRACT_V2.md`; этот каталог остаётся content-free общей основой.

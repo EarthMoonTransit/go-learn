@@ -44,6 +44,49 @@ type TaskSource struct {
 	License    string `yaml:"license" json:"license"`
 }
 
+// TaskV2 separates what the learner does, what files are submitted, and how
+// the submission is verified. It deliberately contains no executable command
+// strings; the checker owns the finite verification profiles.
+type TaskV2 struct {
+	SchemaVersion        int              `yaml:"schema_version" json:"schema_version"`
+	ID                   string           `yaml:"id" json:"id"`
+	Title                string           `yaml:"title" json:"title"`
+	Activity             string           `yaml:"activity" json:"activity"`
+	Submission           Submission       `yaml:"submission" json:"submission"`
+	Skills               TaskSkills       `yaml:"skills" json:"skills"`
+	Prerequisites        []string         `yaml:"prerequisites" json:"prerequisites"`
+	NewConcepts          []string         `yaml:"new_concepts" json:"new_concepts"`
+	Difficulty           string           `yaml:"difficulty" json:"difficulty"`
+	EstimatedTimeMinutes TimeRange        `yaml:"estimated_time_minutes" json:"estimated_time_minutes"`
+	Verification         VerificationPlan `yaml:"verification" json:"verification"`
+	QualityStatus        string           `yaml:"quality_status" json:"quality_status"`
+}
+
+type Submission struct {
+	Kind              string   `yaml:"kind" json:"kind"`
+	EditablePaths     []string `yaml:"editable_paths" json:"editable_paths"`
+	WorkspaceSkeleton []string `yaml:"workspace_skeleton" json:"workspace_skeleton"`
+}
+
+type VerificationPlan struct {
+	Profile         string             `yaml:"profile" json:"profile"`
+	Packages        []string           `yaml:"packages" json:"packages"`
+	PublicChecks    []string           `yaml:"public_checks" json:"public_checks"`
+	GraderChecks    []string           `yaml:"grader_checks" json:"grader_checks"`
+	ReferenceChecks []string           `yaml:"reference_checks" json:"reference_checks"`
+	RequiredMutants []string           `yaml:"required_mutants" json:"required_mutants"`
+	RaceRequired    bool               `yaml:"race_required" json:"race_required"`
+	Vet             bool               `yaml:"vet" json:"vet"`
+	Limits          VerificationLimits `yaml:"limits" json:"limits"`
+}
+
+type VerificationLimits struct {
+	CommandTimeoutSeconds int `yaml:"command_timeout_seconds" json:"command_timeout_seconds"`
+	DeterminismRuns       int `yaml:"determinism_runs" json:"determinism_runs"`
+	FuzzSeconds           int `yaml:"fuzz_seconds" json:"fuzz_seconds"`
+	BenchmarkRuns         int `yaml:"benchmark_runs" json:"benchmark_runs"`
+}
+
 type Lifecycle struct {
 	SchemaVersion int          `yaml:"schema_version" json:"schema_version"`
 	State         State        `yaml:"state" json:"state"`
@@ -100,6 +143,50 @@ type ProvenanceTransform struct {
 	Excluded              []string `yaml:"excluded" json:"excluded"`
 }
 
+type ProvenanceV2 struct {
+	SchemaVersion   int                  `yaml:"schema_version" json:"schema_version"`
+	Kind            string               `yaml:"kind" json:"kind"`
+	Project         ProvenanceProject    `yaml:"project" json:"project"`
+	Creation        ProvenanceCreation   `yaml:"creation" json:"creation"`
+	Sources         []ProvenanceSourceV2 `yaml:"sources" json:"sources"`
+	AttributionFile string               `yaml:"attribution_file" json:"attribution_file"`
+	Release         ProvenanceRelease    `yaml:"release" json:"release"`
+}
+
+type ProvenanceProject struct {
+	Identity      string `yaml:"identity" json:"identity"`
+	Repository    string `yaml:"repository" json:"repository"`
+	License       string `yaml:"license" json:"license"`
+	ContentDigest string `yaml:"content_digest" json:"content_digest"`
+}
+
+type ProvenanceCreation struct {
+	Author    string `yaml:"author" json:"author"`
+	CreatedAt string `yaml:"created_at" json:"created_at"`
+	Summary   string `yaml:"summary" json:"summary"`
+}
+
+type ProvenanceSourceV2 struct {
+	RegistryID string                 `yaml:"registry_id" json:"registry_id"`
+	Repository string                 `yaml:"repository" json:"repository"`
+	Commit     string                 `yaml:"commit" json:"commit"`
+	License    string                 `yaml:"license" json:"license"`
+	UsageMode  string                 `yaml:"usage_mode" json:"usage_mode"`
+	Role       string                 `yaml:"role" json:"role"`
+	Artifacts  []ProvenanceArtifactV2 `yaml:"artifacts" json:"artifacts"`
+}
+
+type ProvenanceArtifactV2 struct {
+	Path   string `yaml:"path" json:"path"`
+	SHA256 string `yaml:"sha256" json:"sha256"`
+	Usage  string `yaml:"usage" json:"usage"`
+}
+
+type ProvenanceRelease struct {
+	Binding  string `yaml:"binding" json:"binding"`
+	Manifest string `yaml:"manifest" json:"manifest"`
+}
+
 type Gate struct {
 	ID      string   `yaml:"id" json:"id"`
 	Status  string   `yaml:"status" json:"status"`
@@ -130,7 +217,7 @@ type QualityReport struct {
 	Mutants           MutantSummary `yaml:"mutants" json:"mutants"`
 }
 
-const CheckContractVersion = "task-check/v1"
+const CheckContractVersion = "task-check/v2"
 
 type ExecutionMetrics struct {
 	Sessions       int `yaml:"sessions" json:"sessions"`

@@ -1,0 +1,13 @@
+schema_version: 1
+reviewer: synthetic-reviewer
+reviewed_at: "2026-09-04"
+decision: approve
+story_free: true
+prompt_test_alignment: true
+public_api_stable: true
+provenance_verified: true
+license_verified: true
+reference_only_clean_room_verified: true
+solution_leakage_checked: true
+minimum_mutants: 1
+notes: Synthetic workspace fixture reviewed only for infrastructure behavior.

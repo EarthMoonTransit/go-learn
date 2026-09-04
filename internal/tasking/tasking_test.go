@@ -696,7 +696,8 @@ func TestLegacyCompatibilityUsesExplicitPolicy(t *testing.T) {
 func TestInitCreatesScaffoldWithoutEducationalContent(t *testing.T) {
 	root := fixtureRepository(t)
 	created, err := Init(root, InitOptions{
-		Slug: "tooling-draft", PrimarySkill: "functions.signatures-results", SourceID: "exercism-go",
+		SchemaVersion: 1,
+		Slug:          "tooling-draft", PrimarySkill: "functions.signatures-results", SourceID: "exercism-go",
 		SourcePath: "exercises/practice/hello-world", Actor: "author", Date: "2026-09-04",
 	})
 	if err != nil {
@@ -730,8 +731,9 @@ func fixtureRepository(t *testing.T) string {
 		}
 	}
 	for _, relative := range []string{
-		"schemas/task.schema.json", "schemas/task-lifecycle.schema.json", "schemas/task-review.schema.json", "schemas/task-provenance.schema.json", "schemas/task-quality-report.schema.json", "schemas/task-check-collection.schema.json", "schemas/task-aggregate-report.schema.json", "schemas/taxonomy-v3.schema.json", "schemas/toolchain-policy.schema.json",
-		"config/toolchain.yaml",
+		"LICENSE", "THIRD_PARTY_NOTICES",
+		"schemas/task.schema.json", "schemas/task-v2.schema.json", "schemas/task-lifecycle.schema.json", "schemas/task-review.schema.json", "schemas/task-provenance.schema.json", "schemas/task-provenance-v2.schema.json", "schemas/project-identity.schema.json", "schemas/outbound-license-policy.schema.json", "schemas/task-quality-report.schema.json", "schemas/task-check-collection.schema.json", "schemas/task-aggregate-report.schema.json", "schemas/taxonomy-v3.schema.json", "schemas/toolchain-policy.schema.json",
+		"config/toolchain.yaml", "config/project-identity.yaml", "config/outbound-license.yaml",
 		"curriculum/skills.yaml", "sources/registry.yaml",
 	} {
 		if err := isolation.CopyFile(filepath.Join(repositoryRoot, filepath.FromSlash(relative)), filepath.Join(root, filepath.FromSlash(relative))); err != nil {
@@ -758,7 +760,7 @@ func legacyFixtureRepository(t *testing.T) string {
 			t.Fatal(err)
 		}
 	}
-	for _, relative := range []string{"config/toolchain.yaml", "schemas/task.schema.json", "schemas/task-lifecycle.schema.json", "schemas/task-review.schema.json", "schemas/task-provenance.schema.json", "schemas/task-quality-report.schema.json", "schemas/task-check-collection.schema.json"} {
+	for _, relative := range []string{"LICENSE", "THIRD_PARTY_NOTICES", "config/toolchain.yaml", "config/project-identity.yaml", "config/outbound-license.yaml", "schemas/task.schema.json", "schemas/task-v2.schema.json", "schemas/task-lifecycle.schema.json", "schemas/task-review.schema.json", "schemas/task-provenance.schema.json", "schemas/task-provenance-v2.schema.json", "schemas/project-identity.schema.json", "schemas/outbound-license-policy.schema.json", "schemas/task-quality-report.schema.json", "schemas/task-check-collection.schema.json"} {
 		if err := isolation.CopyFile(filepath.Join(repository, relative), filepath.Join(root, relative)); err != nil {
 			t.Fatal(err)
 		}

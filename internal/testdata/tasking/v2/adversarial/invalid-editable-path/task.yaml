@@ -1,0 +1,26 @@
+schema_version: 2
+id: synthetic-invalid-path-001
+title: Synthetic invalid editable path contract
+activity: integration
+submission:
+  kind: workspace-patch
+  editable_paths: [../tests/grader/bypass_test.go]
+  workspace_skeleton: [subject/api.go]
+skills:
+  primary: functions.signatures-results
+  secondary: []
+prerequisites: [types.declarations-inference]
+new_concepts: [functions.signatures-results]
+difficulty: basic
+estimated_time_minutes: {min: 10, max: 20}
+verification:
+  profile: workspace-tests
+  packages: [./subject]
+  public_checks: [./subject]
+  grader_checks: [./subject]
+  reference_checks: [./subject]
+  required_mutants: [required-behavior]
+  race_required: false
+  vet: false
+  limits: {command_timeout_seconds: 30, determinism_runs: 2, fuzz_seconds: 0, benchmark_runs: 1}
+quality_status: draft

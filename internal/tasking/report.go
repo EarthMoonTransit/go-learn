@@ -41,8 +41,8 @@ func BuildAggregateReportFromChecks(root string, checks CheckCollection) (Aggreg
 		byID[check.TaskID] = check
 	}
 	for _, item := range located {
-		var task Task
-		if err := decodeStrictFile(filepath.Join(item.Path, "task.yaml"), &task); err != nil {
+		task, err := loadTaskIndex(filepath.Join(item.Path, "task.yaml"))
+		if err != nil {
 			return AggregateReport{}, fmt.Errorf("decode %s: %w", item.ID, err)
 		}
 		checked := byID[item.ID]

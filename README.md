@@ -1,10 +1,10 @@
 # Go Practice Bank
 
 Кураторский банк практических задач по Go. Репозиторий находится в ранней
-**ФАЗЕ 3A**. Taxonomy v3 и полный pedagogical triage Exercism зафиксированы;
-добавлена infrastructure для draft/review lifecycle, изолированной проверки и
-atomic promotion. В репозитории остаётся ранее созданный ручной batch из трёх
-ready-задач; ФАЗА 3A не создаёт новых учебных задач. Массовая генерация и
+**ФАЗЕ 3A.2**. Taxonomy v3 и полный pedagogical triage Exercism зафиксированы;
+добавлены lifecycle, Task Contract v2, multi-source provenance и изолированные
+fixed/mutation/workspace verification profiles. В репозитории остаётся ранее
+созданный ручной batch из трёх ready-задач; ФАЗА 3A.2 не создаёт новых учебных задач. Массовая генерация и
 пользовательский интерфейс отсутствуют.
 
 ## Быстрые команды
@@ -17,7 +17,7 @@ go test -tags=taskintegration ./...
 go run ./cmd/source-sync -root . -source exercism-go
 go run ./cmd/harvest -root . -source exercism-go
 go run ./cmd/catalog-report -root . -source exercism-go
-go run ./cmd/task-init -root . -slug <slug> -primary <skill> -source <source-id> -source-path <path>
+go run ./cmd/task-init -root . -slug <slug> -primary <skill>
 go run ./cmd/task-check -root . -id <task-id>
 mkdir -p .tmp/results
 go run ./cmd/task-check -root . -all -output .tmp/results/task-checks.yaml
@@ -59,6 +59,9 @@ tasks/                    drafts/review/ready/rejected/retired task packages
 
 Формат task package и жизненный цикл описаны в
 [`docs/TASK_SPEC.md`](docs/TASK_SPEC.md).
+Разделение activity/submission/verification и provenance v2 описаны в
+[`docs/TASK_CONTRACT_V2.md`](docs/TASK_CONTRACT_V2.md) и
+[`docs/PROVENANCE_V2.md`](docs/PROVENANCE_V2.md).
 
 Изменения принимаются только через feature branch и зелёный PR check
 `validate`. Локальный защитный hook и полный workflow описаны в

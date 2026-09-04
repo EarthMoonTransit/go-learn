@@ -7,7 +7,7 @@
 go run ./cmd/task-check -root . -all -output .tmp/results/task-checks.yaml
 ```
 
-Формат фиксирует `schema_version: 1`, `contract_version: task-check/v1`, digest
+Формат фиксирует `schema_version: 1`, `contract_version: task-check/v2`, digest
 toolchain policy, упорядоченные task results и структурные execution metrics.
 Контракт задан `schemas/task-check-collection.schema.json`.
 
@@ -17,9 +17,10 @@ Digest включает:
 
 - checker contract version и lifecycle state;
 - относительный path, permissions и содержимое каждого файла task package;
-- task lifecycle/review/provenance/quality/collection schemas;
+- task v1/v2, lifecycle/review, provenance v1/v2, quality/collection schemas;
 - taxonomy/toolchain schemas, `curriculum/skills.yaml`,
-  `sources/registry.yaml` и `config/toolchain.yaml`.
+  `sources/registry.yaml`, project identity, outbound-license policy, `LICENSE`,
+  `THIRD_PARTY_NOTICES` и `config/toolchain.yaml`.
 
 Generated reports и сама collection не включаются. Любое изменение package,
 state или учитываемого contract input делает collection stale.

@@ -10,3 +10,5 @@ ADR фиксируют изменения стабильных контракт�
 - `0004` — task lifecycle и первоначальная isolation model (`accepted`)
 - `0005` — checker-owned test assembly, minimal env и promotion hardening (`accepted`)
 - `0006` — single-pass task verification и reusable check collection (`accepted`)
+- `0007` — Task Contract v2 и declarative verification profiles (`accepted`)
+- `0008` — multi-source Provenance v2 и original content identity (`accepted`)
