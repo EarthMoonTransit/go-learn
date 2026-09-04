@@ -1,0 +1,43 @@
+schema_version: 2
+id: zero-results-001
+title: Construct exact zero values
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: types.zero-values
+    secondary: []
+prerequisites:
+    - types.declarations-inference
+new_concepts:
+    - types.zero-values
+difficulty: introductory
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - nonzero-count
+        - enabled
+        - label-marker
+        - empty-slice
+        - empty-map
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

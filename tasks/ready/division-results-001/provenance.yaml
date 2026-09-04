@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "26647ef9e4c022048a685accb49390d3856e080a33e167bf1ce0ff62ee3aaf63"
+  },
+  "creation": {
+    "author": "beginner-foundations-author",
+    "created_at": "2026-09-05",
+    "summary": "Original beginner exercise: Repair a three-result function. Statement, API, examples, tests and defect models authored within this batch without external task content."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/division-results-001.yaml"
+  }
+}

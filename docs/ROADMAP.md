@@ -95,11 +95,11 @@ and repairs an introduced defect. Automatic checks alone are not human mastery.
 
 | Measure | Verified state on 2026-09-05 |
 | --- | --- |
-| Learner-visible ready tasks | 2 (`map-take-001`, `detached-append-001`) |
+| Learner-visible ready tasks | 7 (five new beginner lessons plus the two initial tasks) |
 | Human-completed tasks | 1 (`map-take-001`: four attempts, one hint, no solution reveal) |
 | Confirmed mastered skills | 0; one assisted completion is not mastery |
-| Next product result | 12-task sequential beginning; 10 additional tasks needed |
-| Current gap | Beginner content and route-aware selection |
+| Next product result | 12-task sequential beginning; 5 additional tasks needed |
+| Current gap | Collection bridge lessons and route-aware selection |
 
 The stored session duration includes any time without an explicit pause and is
 not claimed as independently measured active learning time. The first feedback

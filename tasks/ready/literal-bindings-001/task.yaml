@@ -1,0 +1,44 @@
+schema_version: 2
+id: literal-bindings-001
+title: Choose the types of four package variables
+activity: implementation
+submission:
+    kind: workspace-patch
+    editable_paths:
+        - subject/bindings.go
+    workspace_skeleton:
+        - subject/api.go
+skills:
+    primary: types.declarations-inference
+    secondary: []
+prerequisites:
+    - toolchain.build-run
+new_concepts:
+    - types.declarations-inference
+difficulty: introductory
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: workspace-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - floating-count
+        - integer-scale
+        - rune-label
+        - disabled
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

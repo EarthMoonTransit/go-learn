@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-09-05"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-09-05"
+      actor: beginner-foundations-author
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-09-05"
+      actor: beginner-foundations-author
+      reason: Submit beginner task after disposable technical checks
+    - from: in-review
+      to: ready
+      at: "2026-09-05"
+      actor: independent-content-review
+      reason: Independent content review approved; reference passes and distinct required mutants detected
