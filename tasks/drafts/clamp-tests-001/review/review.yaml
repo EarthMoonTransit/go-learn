@@ -1,13 +1,13 @@
 schema_version: 1
-reviewer: unassigned
+reviewer: phase-3c-red-team
 reviewed_at: "2026-09-04"
 decision: request-changes
-story_free: false
+story_free: true
 prompt_test_alignment: false
-public_api_stable: false
+public_api_stable: true
 provenance_verified: false
-license_verified: false
+license_verified: true
 reference_only_clean_room_verified: false
-solution_leakage_checked: false
+solution_leakage_checked: true
 minimum_mutants: 4
-notes: Technical authoring is complete; independent pedagogical, API, provenance, and leakage review is still required.
+notes: Return to draft. Mutation execution proves behavioral boundary detection but cannot prove the declared table-driven structure, named cases, or diagnostic quality. The task therefore lacks executable evidence for its primary skill. Exact attribution and durable clean-room evidence also remain incomplete. Redesign the verification contract or change the assessed skill before another review.

@@ -3,40 +3,44 @@ id: error-chain-query-001
 title: Build and query a structured error chain
 activity: implementation
 submission:
-  kind: implementation
-  editable_paths: []
-  workspace_skeleton: []
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
 skills:
-  primary: errors.wrapping
-  secondary:
-    - errors.is
-    - errors.as
+    primary: errors.wrapping
+    secondary:
+        - errors.is
+        - errors.as
 prerequisites:
-  - errors.propagation-context
-  - errors.typed
+    - errors.propagation-context
+    - errors.typed
 new_concepts:
-  - errors.wrapping
-  - errors.as
+    - errors.wrapping
+    - errors.as
 difficulty: intermediate
 estimated_time_minutes:
-  min: 25
-  max: 40
+    min: 25
+    max: 40
 verification:
-  profile: fixed-tests
-  packages: [./subject]
-  public_checks: [./subject]
-  grader_checks: [./subject]
-  reference_checks: [./subject]
-  required_mutants:
-    - direct-type-assert
-    - dropped-cause
-    - string-compare
-    - wrap-nil
-  race_required: false
-  vet: true
-  limits:
-    command_timeout_seconds: 30
-    determinism_runs: 2
-    fuzz_seconds: 0
-    benchmark_runs: 1
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - direct-type-assert
+        - dropped-cause
+        - string-compare
+        - wrap-nil
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
 quality_status: draft

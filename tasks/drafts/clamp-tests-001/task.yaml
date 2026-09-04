@@ -3,39 +3,43 @@ id: clamp-tests-001
 title: Write table-driven tests for integer clamping
 activity: test-writing
 submission:
-  kind: tests
-  editable_paths: []
-  workspace_skeleton: []
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
 skills:
-  primary: testing.table-driven
-  secondary:
-    - testing.basics-diagnostics
+    primary: testing.table-driven
+    secondary:
+        - testing.basics-diagnostics
 prerequisites:
-  - slices.header-model
-  - toolchain.build-run
-  - functions.signatures-results
+    - slices.header-model
+    - toolchain.build-run
+    - functions.signatures-results
 new_concepts:
-  - testing.table-driven
+    - testing.table-driven
 difficulty: basic
 estimated_time_minutes:
-  min: 20
-  max: 35
+    min: 20
+    max: 35
 verification:
-  profile: mutation-tests
-  packages: [./subject]
-  public_checks: [./subject]
-  grader_checks: [./subject]
-  reference_checks: [./subject]
-  required_mutants:
-    - missing-lower-bound
-    - missing-upper-bound
-    - shift-lower-result
-    - shift-upper-result
-  race_required: false
-  vet: true
-  limits:
-    command_timeout_seconds: 30
-    determinism_runs: 2
-    fuzz_seconds: 0
-    benchmark_runs: 1
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - missing-lower-bound
+        - missing-upper-bound
+        - shift-lower-result
+        - shift-upper-result
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
 quality_status: draft

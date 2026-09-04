@@ -1,0 +1,19 @@
+schema_version: 1
+state: rejected
+updated_at: "2026-09-04"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-09-04"
+      actor: phase-3b-authoring
+      reason: initialize foundation pilot task for technical validation
+    - from: draft
+      to: in-review
+      at: "2026-09-04"
+      actor: phase-3c-red-team
+      reason: independent red-team found a broad reflection predicate outside the declared skill
+    - from: in-review
+      to: rejected
+      at: "2026-09-04"
+      actor: phase-3c-red-team
+      reason: reflection predicate does not focus the declared typed-nil interface skill
