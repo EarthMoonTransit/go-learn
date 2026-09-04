@@ -37,3 +37,13 @@ human gate.
 - Original scaffolds are valid before their first release commit.
 - Artifact attribution survives future transformations.
 - `provenance.yaml` plus a notice file does not erase upstream obligations.
+
+## Authoring-policy alignment
+
+The first learner-trial audit found that AGENTS.md still applied the v1 internal
+source rule to v2 originals. The policy now explicitly follows this accepted
+decision for v2 and retains the registry rule for v1. No schema, task metadata,
+source registry entry, or content digest changes are required. Existing v2
+packages already use this representation; release-time commit binding remains
+required before public release/export. This clarification does not promote any draft
+or treat automated verification as human calibration.
