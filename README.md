@@ -60,6 +60,10 @@ tasks/                    drafts/review/ready/rejected/retired task packages
 Формат task package и жизненный цикл описаны в
 [`docs/TASK_SPEC.md`](docs/TASK_SPEC.md).
 
+Изменения принимаются только через feature branch и зелёный PR check
+`validate`. Локальный защитный hook и полный workflow описаны в
+[`CONTRIBUTING.md`](CONTRIBUTING.md).
+
 ## Начать решать
 
 Каждая задача — отдельный Go module. Работайте с копией, чтобы не изменять

@@ -2,13 +2,18 @@ name: validate
 
 on:
   pull_request:
+    branches:
+      - master
   push:
+    branches:
+      - master
 
 permissions:
   contents: read
 
 jobs:
   partial-bank-contracts:
+    name: validate
     runs-on: ubuntu-latest
     env:
       GOFLAGS: -mod=vendor

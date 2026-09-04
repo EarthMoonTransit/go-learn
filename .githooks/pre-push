@@ -1,0 +1,16 @@
+#!/bin/sh
+
+protected_ref="refs/heads/master"
+
+while read -r local_ref local_oid remote_ref remote_oid; do
+    if [ "$remote_ref" = "$protected_ref" ]; then
+        cat >&2 <<'EOF'
+Direct pushes to master are blocked for this repository.
+Push a codex/<topic> branch, open a pull request, wait for validate, then merge.
+Do not bypass this process with --no-verify.
+EOF
+        exit 1
+    fi
+done
+
+exit 0

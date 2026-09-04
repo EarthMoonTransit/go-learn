@@ -34,3 +34,8 @@
    обязаны выполняться только в disposable copy.
 10. Не перемещать task packages между lifecycle-каталогами вручную. Использовать
     `task-promote`, не обходить review metadata и не перезаписывать ready id.
+11. Не коммитить и не пушить изменения напрямую в `master`. Каждый batch
+    выполняется в отдельной ветке `codex/<topic>`, публикуется как PR и
+    сливается только после успешного GitHub Actions check `validate`. Пока
+    server-side branch protection недоступна, это обязательный process gate;
+    локальный hook нельзя обходить через `--no-verify`.
