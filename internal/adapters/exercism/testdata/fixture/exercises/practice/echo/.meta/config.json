@@ -1,0 +1,9 @@
+{
+  "files": {
+    "solution": ["echo.go"],
+    "test": ["echo_test.go"],
+    "example": [".meta/example.go"],
+    "invalidator": ["go.mod"]
+  }
+}
+

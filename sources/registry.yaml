@@ -1,0 +1,275 @@
+version: 1
+audited_at: "2026-09-04"
+policy: docs/LICENSE_POLICY.md
+
+sources:
+  - id: golang-go
+    repository: https://go.googlesource.com/go
+    default_branch: master
+    commit: 2c31595783c74564c1299a5401dc6e606f379cc7
+    license:
+      expression: BSD-3-Clause
+      evidence_path: LICENSE
+      notes: Root PATENTS must travel with copied first-party code; repository exceptions exist.
+    usage_mode: adapt
+    adapter: go-first-party-source-v1
+    scope: Manual allowlist of small first-party examples/tests; never recursive repository ingestion.
+    attribution:
+      - Preserve the BSD copyright notice, conditions, and disclaimer.
+      - Preserve PATENTS when distributing copied code.
+    evidence:
+      - https://go.googlesource.com/go/+/2c31595783c74564c1299a5401dc6e606f379cc7
+      - https://raw.githubusercontent.com/golang/go/2c31595783c74564c1299a5401dc6e606f379cc7/LICENSE
+      - https://raw.githubusercontent.com/golang/go/2c31595783c74564c1299a5401dc6e606f379cc7/README.md
+    risks:
+      - Vendor, generated, binary corpus, and testdata trees contain separate provenance or licenses.
+      - Most compiler/runtime/stdlib code is not pedagogically suitable as an exercise.
+      - Go Gopher artwork is CC-BY-4.0 and is excluded.
+
+  - id: golang-tour-support
+    repository: https://go.googlesource.com/tour
+    default_branch: master
+    commit: 11c9ad7eadf5e916a1137ad4dcc113f307f27874
+    license:
+      expression: BSD-3-Clause
+      evidence_path: LICENSE
+      notes: The actual Tour pages moved to golang.org/x/website.
+    usage_mode: reference-only
+    adapter: go-tour-support-reference-v1
+    scope: API/dependency fact-checking only; this is no longer the exercise corpus.
+    attribution:
+      - Preserve the BSD notice if a separately approved artifact is ever copied.
+    evidence:
+      - https://go.googlesource.com/tour/+/11c9ad7eadf5e916a1137ad4dcc113f307f27874
+      - https://raw.githubusercontent.com/golang/tour/11c9ad7eadf5e916a1137ad4dcc113f307f27874/LICENSE
+      - https://raw.githubusercontent.com/golang/tour/11c9ad7eadf5e916a1137ad4dcc113f307f27874/README.md
+    risks:
+      - Treating this repository as the Tour would produce an incomplete and misleading inventory.
+
+  - id: golang-website-tour
+    repository: https://go.googlesource.com/website
+    default_branch: master
+    commit: c4a9d59f9775d994f1700d18fa37414c3c85fa7b
+    license:
+      expression: BSD-3-Clause
+      evidence_path: LICENSE
+      notes: Root PATENTS applies; third-party static subtree has separate licenses.
+    usage_mode: adapt
+    adapter: go-website-tour-exercise-v1
+    scope: Allowlist _content/tour articles and exercise files; exclude solutions and static assets.
+    attribution:
+      - Preserve the BSD copyright notice, conditions, and disclaimer.
+      - Preserve PATENTS when distributing copied first-party code.
+    evidence:
+      - https://go.googlesource.com/website/+/c4a9d59f9775d994f1700d18fa37414c3c85fa7b
+      - https://raw.githubusercontent.com/golang/website/c4a9d59f9775d994f1700d18fa37414c3c85fa7b/LICENSE
+      - https://raw.githubusercontent.com/golang/website/c4a9d59f9775d994f1700d18fa37414c3c85fa7b/README.md
+      - https://raw.githubusercontent.com/golang/website/c4a9d59f9775d994f1700d18fa37414c3c85fa7b/_content/tour/static/lib/codemirror/LICENSE
+    risks:
+      - Solutions must remain reference material and never leak into public task payloads.
+      - Static UI, CodeMirror, minified JavaScript, and images have different provenance and are excluded.
+
+  - id: golang-example
+    repository: https://go.googlesource.com/example
+    default_branch: master
+    commit: 7f05d217867b2af52b0a28c6d1c91df97e1b5b39
+    license:
+      expression: BSD-3-Clause
+      evidence_path: LICENSE
+      notes: Root PATENTS is present.
+    usage_mode: adapt
+    adapter: go-example-module-v1
+    scope: Manually selected, decomposed examples and tests; no whole-application conversion.
+    attribution:
+      - Preserve BSD notice and PATENTS for copied first-party material.
+    evidence:
+      - https://go.googlesource.com/example/+/7f05d217867b2af52b0a28c6d1c91df97e1b5b39
+      - https://raw.githubusercontent.com/golang/example/7f05d217867b2af52b0a28c6d1c91df97e1b5b39/LICENSE
+      - https://raw.githubusercontent.com/golang/example/7f05d217867b2af52b0a28c6d1c91df97e1b5b39/README.md
+    risks:
+      - Complete applications are not atomic exercises and some environment-specific samples may be dated.
+
+  - id: exercism-go
+    repository: https://github.com/exercism/go
+    default_branch: main
+    commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+    license:
+      expression: MIT
+      evidence_path: LICENSE
+      notes: Shared/generated exercises may carry provenance from exercism/problem-specifications.
+    usage_mode: adapt
+    adapter: exercism-go-v1
+    scope: Selected concept/practice exercises after metadata, solution, and canonical-data separation.
+    attribution:
+      - Preserve the MIT copyright and permission notice in copies or substantial derivatives.
+      - Preserve per-exercise authors/contributors and multi-hop provenance where present.
+    evidence:
+      - https://github.com/exercism/go/commit/ae1477abfeeb9fbeaf971caee220e91f9e4df790
+      - https://github.com/exercism/go/blob/ae1477abfeeb9fbeaf971caee220e91f9e4df790/LICENSE
+      - https://github.com/exercism/go/blob/ae1477abfeeb9fbeaf971caee220e91f9e4df790/config.json
+    risks:
+      - Solutions, tests, instructions, generated canonical data, and learner files coexist.
+      - Public upstream tests cannot serve unchanged as confidential grader tests.
+      - Some exercises are algorithmic puzzles rather than atomic Go practice.
+
+  - id: exercism-problem-specifications
+    repository: https://github.com/exercism/problem-specifications
+    default_branch: main
+    commit: 25c2ae53b8d328790d45e626784434aaed3783c0
+    license:
+      expression: MIT
+      evidence_path: LICENSE
+      notes: Canonical data and descriptions may carry exercise-level lineage that must be retained separately.
+    usage_mode: reference-only
+    adapter: problem-specifications-provenance-v1
+    scope: Exact companion provenance resolution for generated Exercism data; no candidate harvest or content copying.
+    attribution:
+      - Preserve the MIT notice for any separately approved substantial reuse.
+      - Preserve exercise metadata lineage and canonical case UUIDs when recording provenance.
+    evidence:
+      - https://github.com/exercism/problem-specifications/commit/25c2ae53b8d328790d45e626784434aaed3783c0
+      - https://github.com/exercism/problem-specifications/blob/25c2ae53b8d328790d45e626784434aaed3783c0/LICENSE
+      - https://github.com/exercism/problem-specifications/blob/25c2ae53b8d328790d45e626784434aaed3783c0/README.md
+    risks:
+      - Descriptions and canonical data are shared across language tracks and are not Go-specific skill evidence.
+      - Per-exercise metadata can name earlier sources whose licenses and attribution require separate review.
+      - Reference-only mode forbids importing descriptions, canonical cases, or generated code into ready tasks.
+    provenance_commits:
+      - commit: 03f83310ed0547b902d211a05d23b3d74661df02
+        evidence: https://github.com/exercism/problem-specifications/commit/03f83310ed0547b902d211a05d23b3d74661df02
+      - commit: 0682194ca9b3b91c6ec57c0fb7c6bbe56fae843f
+        evidence: https://github.com/exercism/problem-specifications/commit/0682194ca9b3b91c6ec57c0fb7c6bbe56fae843f
+      - commit: 0bdd27dfbb8c519aafa644202a5fd9497abc81c7
+        evidence: https://github.com/exercism/problem-specifications/commit/0bdd27dfbb8c519aafa644202a5fd9497abc81c7
+      - commit: 22becaa41e9d1009b00dab1de9276dc16d1462fe
+        evidence: https://github.com/exercism/problem-specifications/commit/22becaa41e9d1009b00dab1de9276dc16d1462fe
+      - commit: 25c2ae53b8d328790d45e626784434aaed3783c0
+        evidence: https://github.com/exercism/problem-specifications/commit/25c2ae53b8d328790d45e626784434aaed3783c0
+      - commit: 2e820e1a2efbd21e84b4806176afe484c606dfce
+        evidence: https://github.com/exercism/problem-specifications/commit/2e820e1a2efbd21e84b4806176afe484c606dfce
+      - commit: dc8a9b24ed33e55cf52ba8789e59bbc4dca954f5
+        evidence: https://github.com/exercism/problem-specifications/commit/dc8a9b24ed33e55cf52ba8789e59bbc4dca954f5
+
+  - id: learn-go-with-tests
+    repository: https://github.com/quii/learn-go-with-tests
+    default_branch: main
+    commit: 4675d96ad50b815d3e9fdc2122ab3dbc14636252
+    license:
+      expression: MIT
+      evidence_path: LICENSE.md
+      notes: Copyright line contains literal bracketed placeholders and must be retained verbatim.
+    usage_mode: adapt
+    adapter: learn-go-with-tests-v1
+    scope: Manually selected stages from fundamental TDD chapters; images and external assets excluded.
+    attribution:
+      - Preserve the MIT notice verbatim for copied or substantially adapted material.
+      - Preserve chapter path, version directory, and commit.
+    evidence:
+      - https://github.com/quii/learn-go-with-tests/commit/4675d96ad50b815d3e9fdc2122ab3dbc14636252
+      - https://github.com/quii/learn-go-with-tests/blob/4675d96ad50b815d3e9fdc2122ab3dbc14636252/LICENSE.md
+      - https://github.com/quii/learn-go-with-tests/blob/4675d96ad50b815d3e9fdc2122ab3dbc14636252/SUMMARY.md
+    risks:
+      - Narrative, tests, intermediate code, and completed solutions are interleaved across version directories.
+      - Some chapters are integration lessons outside the fundamental track.
+
+  - id: ardanlabs-gotraining
+    repository: https://github.com/ardanlabs/gotraining
+    default_branch: master
+    commit: 4ae5a46bfc665909a7cb29e11c18775330c63401
+    license:
+      expression: Apache-2.0
+      evidence_path: LICENSE
+      notes: Preserve NOTICE if present in selected paths and mark modifications.
+    usage_mode: adapt
+    adapter: ardan-gotraining-v1
+    scope: Strict allowlist under topics/go; exercise/template material separated from answers.
+    attribution:
+      - Include Apache License 2.0 and preserve applicable notices.
+      - Mark modified material clearly and retain patent/trademark notices.
+    evidence:
+      - https://github.com/ardanlabs/gotraining/commit/4ae5a46bfc665909a7cb29e11c18775330c63401
+      - https://github.com/ardanlabs/gotraining/blob/4ae5a46bfc665909a7cb29e11c18775330c63401/LICENSE
+      - https://github.com/ardanlabs/gotraining/tree/4ae5a46bfc665909a7cb29e11c18775330c63401/topics/go/exercises
+    risks:
+      - Vendored dependencies and externally hosted Playground answers need separate audits and are excluded.
+      - Material is instructor-led and often intermediate or opinionated rather than beginner-level.
+
+  - id: go-algorithms-0xax
+    repository: https://github.com/0xAX/go-algorithms
+    default_branch: master
+    commit: 9e7a1904a528eeb4a971cca7267a7c627f01b8b3
+    license:
+      expression: NOASSERTION
+      evidence_path: LICENSE (absent)
+      notes: No license grant found at the pinned root; GitHub reports license null.
+    usage_mode: blocked
+    adapter: blocked-no-adapter
+    scope: Audit record only; no ingestion, copying, adaptation, or distribution.
+    attribution: []
+    evidence:
+      - https://github.com/0xAX/go-algorithms/commit/9e7a1904a528eeb4a971cca7267a7c627f01b8b3
+      - https://github.com/0xAX/go-algorithms/tree/9e7a1904a528eeb4a971cca7267a7c627f01b8b3
+      - https://api.github.com/repos/0xAX/go-algorithms
+    risks:
+      - No copyright license grant permits reuse.
+      - The repository contains completed algorithms, uneven tests, and legacy GOPATH-era structure.
+
+  - id: gobyexample
+    repository: https://github.com/mmcgrana/gobyexample
+    default_branch: master
+    commit: 7d705626375ba0263b616865a286e1587d6989c8
+    license:
+      expression: CC-BY-3.0
+      evidence_path: README.md#license
+      notes: CC BY is stated for the work but is unusual for software; asset exceptions remain.
+    usage_mode: adapt
+    adapter: gobyexample-examples-v1
+    scope: Individually reviewed text/code examples; generated public output, tooling, and visual assets excluded.
+    attribution:
+      - Credit Mark McGranaghan, link to the original work and CC BY 3.0, and identify modifications.
+    evidence:
+      - https://github.com/mmcgrana/gobyexample/commit/7d705626375ba0263b616865a286e1587d6989c8
+      - https://github.com/mmcgrana/gobyexample/blob/7d705626375ba0263b616865a286e1587d6989c8/README.md#license
+    risks:
+      - Tests are not materially present and must be authored independently.
+      - Go Gopher artwork has separate Renée French attribution and is excluded.
+
+  - id: go101
+    repository: https://github.com/go101/go101
+    default_branch: master
+    commit: c13b00435002a00f574430b61eb65ec5a268acfe
+    license:
+      expression: LicenseRef-Go101-Custom
+      evidence_path: LICENSE
+      notes: Custom terms reserve English/Chinese distribution and limit other use; not a standard open-source grant.
+    usage_mode: concepts-only
+    adapter: go101-concept-inventory-v1
+    scope: Topic-gap checking only; no text, code, tests, translation, close paraphrase, or automated content extraction.
+    attribution:
+      - Record repository/path/commit when a topic influences gap analysis; attribution does not create reuse permission.
+    evidence:
+      - https://github.com/go101/go101/commit/c13b00435002a00f574430b61eb65ec5a268acfe
+      - https://github.com/go101/go101/blob/c13b00435002a00f574430b61eb65ec5a268acfe/LICENSE
+    risks:
+      - Custom wording is ambiguous for English derivative educational material and repository tooling.
+      - Explicit permission is required before any mode broader than concepts-only.
+
+  - id: learngo
+    repository: https://github.com/inancgumus/learngo
+    default_branch: master
+    commit: 3c475a78e54336c6255e925ff66b8ef4da6a2ae7
+    license:
+      expression: CC-BY-NC-SA-4.0
+      evidence_path: LICENSE
+      notes: NonCommercial and ShareAlike compatibility with the future bank distribution is unresolved.
+    usage_mode: reference-only
+    adapter: learngo-reference-index-v1
+    scope: Read-only topic coverage review; no text, code, tests, assets, or adaptations enter the bank.
+    attribution:
+      - If policy ever changes, credit Inanc Gumus, retain notices, link source/license, and identify changes.
+    evidence:
+      - https://github.com/inancgumus/learngo/commit/3c475a78e54336c6255e925ff66b8ef4da6a2ae7
+      - https://github.com/inancgumus/learngo/blob/3c475a78e54336c6255e925ff66b8ef4da6a2ae7/LICENSE
+    risks:
+      - NC/ShareAlike obligations may conflict with commercial use or the future outbound license.
+      - Asset-level third-party rights require separate review.

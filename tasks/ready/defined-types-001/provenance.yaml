@@ -1,0 +1,28 @@
+schema_version: 1
+source:
+  id: exercism-go
+  repository: https://github.com/exercism/go
+  path: exercises/concept/chessboard
+  commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+  license: MIT
+  usage_mode: adapt
+upstream_authors:
+  - brugnara
+  - tehsphinx
+upstream_contributors:
+  - eklatzer
+upstream_lineage:
+  - elixir/chessboard
+transformation:
+  type: adapted
+  summary: The defined-type concept was isolated from the broader range-iteration exercise and placed in a new API.
+  independently_authored:
+    - Technical statement and examples
+    - Function and type names
+    - Public and grader test cases
+    - Reference and deliberately incorrect implementations
+  excluded:
+    - Upstream narrative
+    - Upstream tests
+    - Upstream exemplar and starter code
+attribution_file: ATTRIBUTION.md

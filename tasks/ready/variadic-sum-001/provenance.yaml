@@ -1,0 +1,25 @@
+schema_version: 1
+source:
+  id: exercism-go
+  repository: https://github.com/exercism/go
+  path: exercises/concept/card-tricks
+  commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+  license: MIT
+  usage_mode: adapt
+upstream_authors:
+  - tehsphinx
+upstream_contributors:
+  - norbs57
+transformation:
+  type: adapted
+  summary: The broad source exercise was decomposed to isolate variadic declaration and slice expansion.
+  independently_authored:
+    - Technical statement and examples
+    - Function names and API contract
+    - Public and grader test cases
+    - Reference and deliberately incorrect implementations
+  excluded:
+    - Upstream narrative
+    - Upstream tests
+    - Upstream exemplar and starter code
+attribution_file: ATTRIBUTION.md

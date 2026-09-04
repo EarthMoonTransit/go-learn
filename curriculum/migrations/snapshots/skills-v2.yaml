@@ -1,0 +1,715 @@
+version: 2
+track: go-fundamentals
+target_ready_tasks: {min: 350, max: 500}
+coverage_policy:
+  counted_status: ready
+  primary_skill_per_task: 1
+  prerequisite_counts_as_occurrence: false
+  note: Each of 99 atomic skills requires 4 primary and 6 total encounters.
+
+domains:
+  - id: toolchain
+    title: Toolchain
+    skills:
+      - id: toolchain.modules-workspaces
+        prerequisites: []
+        common_misconceptions: ["A module is the same thing as a package", "GOPATH is required for every project"]
+        recommended_exercise_types: [implement, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Creates and edits a minimal go.mod deliberately", "Explains module, package, workspace, and import path boundaries"]
+      - id: toolchain.build-run
+        prerequisites: [toolchain.modules-workspaces]
+        common_misconceptions: ["go run and go build produce identical artifacts", "Every package is executable"]
+        recommended_exercise_types: [implement, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Builds, runs, and tests the intended package", "Diagnoses package and entry-point errors from tool output"]
+      - id: toolchain.formatting-vetting
+        prerequisites: [toolchain.build-run]
+        common_misconceptions: ["Formatting is cosmetic and configurable per team", "go vet proves program correctness"]
+        recommended_exercise_types: [debug, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses gofmt/go fmt and interprets stable formatting", "Uses vet findings as targeted diagnostics rather than a proof"]
+      - id: toolchain.docs-environment
+        prerequisites: [toolchain.build-run]
+        common_misconceptions: ["Documentation requires a browser", "GOOS and GOARCH only affect file names"]
+        recommended_exercise_types: [predict, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Finds symbol documentation with go doc", "Inspects relevant go env values and predicts build selection"]
+
+  - id: types
+    title: Types, declarations, and constants
+    skills:
+      - id: types.declarations-inference
+        prerequisites: [toolchain.build-run]
+        common_misconceptions: ["Short declarations work outside functions", "Inferred values have no concrete type"]
+        recommended_exercise_types: [implement, predict]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Chooses var, short declaration, or explicit type intentionally", "Predicts scope and type of mixed short declarations"]
+      - id: types.zero-values
+        prerequisites: [types.declarations-inference]
+        common_misconceptions: ["Uninitialized variables contain garbage", "Every zero value is immediately usable"]
+        recommended_exercise_types: [predict, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["States zero values for fundamental and composite types", "Distinguishes valid zero values from nil values that reject writes"]
+      - id: types.numeric-conversions
+        prerequisites: [types.declarations-inference]
+        common_misconceptions: ["Go performs arbitrary implicit numeric conversions", "Narrowing preserves every value"]
+        recommended_exercise_types: [predict, debug, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Makes explicit conversions at type boundaries", "Predicts truncation, overflow, and integer division"]
+      - id: types.constants-iota
+        prerequisites: [types.numeric-conversions]
+        common_misconceptions: ["Constants always have a fixed machine type", "iota is a runtime counter"]
+        recommended_exercise_types: [predict, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses typed and untyped constants without accidental overflow", "Reads and constructs nontrivial iota declarations"]
+      - id: types.named-underlying
+        prerequisites: [types.declarations-inference]
+        common_misconceptions: ["A defined type is an alias", "Equal underlying types are always assignable"]
+        recommended_exercise_types: [predict, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Distinguishes defined types from aliases", "Predicts assignability and conversion using underlying types"]
+
+  - id: functions
+    title: Functions
+    skills:
+      - id: functions.signatures-results
+        prerequisites: [types.declarations-inference]
+        common_misconceptions: ["Named results must be used with naked returns", "Multiple results form an ordinary tuple value"]
+        recommended_exercise_types: [implement, predict]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Designs signatures with explicit multiple results", "Uses blank identifiers and named results without obscuring flow"]
+      - id: functions.variadic
+        prerequisites: [functions.signatures-results]
+        common_misconceptions: ["A variadic parameter accepts arbitrary types", "A slice expands without the ellipsis"]
+        recommended_exercise_types: [implement, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Calls and implements variadic functions correctly", "Explains the slice observed by a variadic callee"]
+      - id: functions.first-class-closures
+        prerequisites: [functions.signatures-results]
+        common_misconceptions: ["Closures copy every captured variable", "Function values are comparable"]
+        recommended_exercise_types: [implement, predict, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Passes and returns functions with clear contracts", "Predicts capture and lifetime behavior"]
+      - id: functions.defer
+        prerequisites: [functions.signatures-results]
+        common_misconceptions: ["Deferred arguments are evaluated on return", "defer runs at the end of a lexical block"]
+        recommended_exercise_types: [predict, debug, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Predicts LIFO order and argument evaluation", "Places cleanup at the correct function lifetime"]
+
+  - id: expressions
+    title: Expressions and operators
+    skills:
+      - id: expressions.arithmetic
+        prerequisites: [types.declarations-inference]
+        common_misconceptions: ["Integer division preserves a fractional part", "Operator precedence is evaluated strictly left to right"]
+        recommended_exercise_types: [implement, predict, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Evaluates arithmetic expressions with the intended numeric types", "Uses precedence and parentheses without accidental integer semantics"]
+      - id: expressions.boolean-logic
+        prerequisites: [types.declarations-inference]
+        common_misconceptions: ["Boolean operators accept truthy non-bool values", "Both operands of && and || are always evaluated"]
+        recommended_exercise_types: [implement, predict, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Builds boolean expressions without truthiness assumptions", "Predicts short-circuit evaluation and its observable effects"]
+      - id: expressions.comparison
+        prerequisites: [types.declarations-inference]
+        common_misconceptions: ["Every pair of values can be compared with ==", "Chained comparisons such as a < b < c are valid Go"]
+        recommended_exercise_types: [predict, debug, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Selects equality or ordering operators for compatible operands", "Recognizes non-comparable values and writes explicit range comparisons"]
+
+  - id: control-flow
+    title: Control flow
+    skills:
+      - id: control-flow.if
+        prerequisites: [expressions.boolean-logic]
+        common_misconceptions: ["if conditions accept non-bool truthy values", "A variable declared in an if initializer remains visible after the statement"]
+        recommended_exercise_types: [implement, debug, predict]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses if, else-if and statement initializers with deliberate scope", "Expresses mutually exclusive branches without unreachable or duplicated conditions"]
+      - id: control-flow.switch
+        prerequisites: [control-flow.if, expressions.comparison]
+        common_misconceptions: ["Go switch cases fall through by default", "Every switch must provide an expression"]
+        recommended_exercise_types: [implement, debug, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses expression and expressionless switches intentionally", "Predicts case selection, break behavior, and explicit fallthrough"]
+      - id: control-flow.for
+        prerequisites: [expressions.boolean-logic]
+        common_misconceptions: ["Go has a separate while keyword", "Loop variables are always scoped outside the for statement"]
+        recommended_exercise_types: [implement, debug, predict]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Chooses three-clause, condition-only, or infinite for forms", "Controls loop termination with correctly scoped state, break, and continue"]
+      - id: control-flow.range
+        prerequisites: [control-flow.for]
+        common_misconceptions: ["range always yields mutable references to elements", "Every ranged source produces the same key and value types"]
+        recommended_exercise_types: [implement, predict, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Predicts key/value results for supported range operands", "Distinguishes iteration values from addressable source elements"]
+
+  - id: arrays
+    title: Arrays
+    skills:
+      - id: arrays.value-semantics
+        prerequisites: [types.named-underlying]
+        common_misconceptions: ["Arrays are references to backing storage", "Length is not part of an array type"]
+        recommended_exercise_types: [predict, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Predicts copies on assignment and calls", "Uses length as part of an array contract"]
+      - id: arrays.indexing-iteration
+        prerequisites: [arrays.value-semantics]
+        common_misconceptions: ["Range always exposes mutable elements", "Every index expression is runtime-safe"]
+        recommended_exercise_types: [implement, debug, predict]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Chooses index or range iteration intentionally", "Avoids mutating only the range value copy"]
+
+  - id: slices
+    title: Slices
+    skills:
+      - id: slices.model
+        prerequisites: [arrays.value-semantics, types.zero-values]
+        common_misconceptions: ["A slice contains its elements inline", "Nil and empty slices are identical in every API"]
+        recommended_exercise_types: [predict, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Explains pointer/length/capacity behavior", "Distinguishes nil, empty, and allocated slices where observable"]
+      - id: slices.capacity-bounds
+        prerequisites: [slices.model]
+        common_misconceptions: ["Two-index slicing cannot expose capacity", "The upper bound is always limited by len"]
+        recommended_exercise_types: [predict, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Computes len/cap after slicing", "Uses full-slice expressions to constrain capacity"]
+      - id: slices.append-aliasing
+        prerequisites: [slices.capacity-bounds]
+        common_misconceptions: ["append always allocates", "append always mutates the caller-visible header"]
+        recommended_exercise_types: [debug, predict, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Predicts whether append reuses backing storage", "Controls aliasing at API boundaries"]
+      - id: slices.copy-overlap
+        prerequisites: [slices.model]
+        common_misconceptions: ["copy requires equal lengths", "Overlapping copies are undefined"]
+        recommended_exercise_types: [implement, predict]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Predicts copy count from both lengths", "Uses copy safely for overlapping regions"]
+      - id: slices.growth-allocation
+        prerequisites: [slices.append-aliasing]
+        common_misconceptions: ["Capacity growth factor is a language guarantee", "Preallocation must set length to final size"]
+        recommended_exercise_types: [performance, refactor, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Preallocates length or capacity to match write strategy", "Avoids relying on implementation-specific growth"]
+
+  - id: strings
+    title: Strings
+    skills:
+      - id: strings.immutable-bytes
+        prerequisites: [types.declarations-inference]
+        common_misconceptions: ["A string index returns a character", "String bytes can be modified in place"]
+        recommended_exercise_types: [predict, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Treats strings as immutable byte sequences", "Predicts byte indexing and slicing behavior"]
+      - id: strings.construction-conversion
+        prerequisites: [strings.immutable-bytes, slices.model]
+        common_misconceptions: ["String/byte-slice conversion always aliases", "Repeated concatenation has no allocation cost"]
+        recommended_exercise_types: [implement, performance, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Chooses strings.Builder, byte slice, or concatenation appropriately", "Makes conversion and allocation boundaries explicit"]
+
+  - id: unicode
+    title: Bytes, runes, and UTF-8
+    skills:
+      - id: unicode.utf8-runes
+        prerequisites: [strings.immutable-bytes, types.numeric-conversions]
+        common_misconceptions: ["A rune is always one byte", "len(string) counts visible characters"]
+        recommended_exercise_types: [predict, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Distinguishes bytes, code points, and grapheme-like display units", "Encodes and decodes runes as UTF-8 deliberately"]
+      - id: unicode.range-decoding
+        prerequisites: [unicode.utf8-runes]
+        common_misconceptions: ["Range indexes are rune ordinals", "Range yields byte values"]
+        recommended_exercise_types: [predict, debug, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Predicts byte offsets and rune values from range", "Chooses byte or rune iteration for the contract"]
+      - id: unicode.invalid-utf8
+        prerequisites: [unicode.range-decoding]
+        common_misconceptions: ["Every Go string is valid UTF-8", "Invalid sequences make range panic"]
+        recommended_exercise_types: [debug, test-writing, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Detects invalid UTF-8 at trust boundaries", "Predicts replacement-rune behavior during decoding"]
+
+  - id: maps
+    title: Maps
+    skills:
+      - id: maps.operations-comma-ok
+        prerequisites: [types.zero-values]
+        common_misconceptions: ["A missing key is distinguishable from a stored zero without comma-ok", "Map reads require initialization"]
+        recommended_exercise_types: [implement, predict]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses lookup, insert, update, and comma-ok correctly", "Separates absence from a stored zero value"]
+      - id: maps.nil-delete-clear
+        prerequisites: [maps.operations-comma-ok]
+        common_misconceptions: ["Writes to a nil map allocate it", "delete panics for a missing key"]
+        recommended_exercise_types: [debug, predict, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Handles nil maps according to the API contract", "Uses delete/clear without redundant existence checks"]
+      - id: maps.iteration-comparability
+        prerequisites: [maps.operations-comma-ok, types.named-underlying]
+        common_misconceptions: ["Map iteration order is insertion order", "Any value can be a map key"]
+        recommended_exercise_types: [predict, debug, test-writing]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Writes order-independent map logic and tests", "Determines whether a key type is comparable"]
+
+  - id: structs
+    title: Structs
+    skills:
+      - id: structs.literals-zero
+        prerequisites: [types.zero-values]
+        common_misconceptions: ["Unkeyed literals are robust across field changes", "A struct zero value is never useful"]
+        recommended_exercise_types: [implement, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses keyed literals and zero values intentionally", "Designs structs whose invariant is explicit"]
+      - id: structs.copy-equality
+        prerequisites: [structs.literals-zero, types.named-underlying]
+        common_misconceptions: ["Assigning a struct aliases every field", "All structs are comparable"]
+        recommended_exercise_types: [predict, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Predicts shallow-copy behavior", "Determines comparability from all fields"]
+      - id: structs.field-visibility-tags
+        prerequisites: [structs.literals-zero]
+        common_misconceptions: ["Lowercase fields are private to an instance", "Tags change behavior without a consumer"]
+        recommended_exercise_types: [debug, implement, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses export rules across packages", "Treats tags as metadata interpreted by specific APIs"]
+
+  - id: methods
+    title: Methods
+    skills:
+      - id: methods.receivers-method-sets
+        prerequisites: [structs.literals-zero, functions.signatures-results]
+        common_misconceptions: ["Pointer and value method sets are identical", "Methods can be declared on any imported type"]
+        recommended_exercise_types: [predict, implement, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Chooses a legal receiver and predicts its method set", "Explains addressable-call convenience separately from method sets"]
+      - id: methods.values-expressions
+        prerequisites: [methods.receivers-method-sets, functions.first-class-closures]
+        common_misconceptions: ["Method values do not capture a receiver", "Method expressions have the same signature as method values"]
+        recommended_exercise_types: [predict, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Constructs and calls method values and expressions", "Predicts receiver capture for value and pointer receivers"]
+
+  - id: pointers
+    title: Pointers
+    skills:
+      - id: pointers.address-deref-nil
+        prerequisites: [types.zero-values]
+        common_misconceptions: ["Go pointer arithmetic is available", "Dereferencing nil produces a zero value"]
+        recommended_exercise_types: [predict, debug, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses address and dereference operators safely", "Makes nil handling an explicit part of the contract"]
+      - id: pointers.mutation-sharing
+        prerequisites: [pointers.address-deref-nil, structs.copy-equality]
+        common_misconceptions: ["Passing a pointer makes Go pass-by-reference", "Pointers are required for all shared state"]
+        recommended_exercise_types: [debug, predict, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Explains copied pointer values and shared pointees", "Chooses value or pointer APIs based on mutation and identity"]
+      - id: pointers.receiver-choice
+        prerequisites: [pointers.mutation-sharing, methods.receivers-method-sets]
+        common_misconceptions: ["Receiver choice is only a performance decision", "Mixing receiver kinds has no API effect"]
+        recommended_exercise_types: [refactor, debug, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Selects receiver kind consistently from semantics", "Accounts for copying, nil receivers, and interface satisfaction"]
+
+  - id: embedding
+    title: Embedding and promotion
+    skills:
+      - id: embedding.field-promotion
+        prerequisites: [structs.field-visibility-tags]
+        common_misconceptions: ["Embedding is inheritance", "A promoted field is declared directly on the outer type"]
+        recommended_exercise_types: [predict, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Resolves promoted field selectors", "Uses explicit composition when promotion obscures ownership"]
+      - id: embedding.method-promotion-ambiguity
+        prerequisites: [embedding.field-promotion, methods.receivers-method-sets]
+        common_misconceptions: ["All embedded methods are always promoted", "Ambiguous selectors choose the first field"]
+        recommended_exercise_types: [debug, predict, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Computes promoted method sets for value and pointer forms", "Detects and resolves selector ambiguity explicitly"]
+
+  - id: interfaces
+    title: Interfaces
+    skills:
+      - id: interfaces.implicit-satisfaction
+        prerequisites: [methods.receivers-method-sets]
+        common_misconceptions: ["Types declare that they implement interfaces", "Satisfaction ignores receiver method sets"]
+        recommended_exercise_types: [predict, implement, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Determines interface satisfaction at compile time", "Uses compile-time assertions where they improve clarity"]
+      - id: interfaces.dynamic-values-nil
+        prerequisites: [interfaces.implicit-satisfaction, pointers.address-deref-nil]
+        common_misconceptions: ["An interface holding a nil pointer is nil", "Interfaces contain only a value"]
+        recommended_exercise_types: [predict, debug, test-writing]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Explains dynamic type/value pairs", "Prevents typed-nil bugs at API boundaries"]
+      - id: interfaces.assertions-switches
+        prerequisites: [interfaces.dynamic-values-nil]
+        common_misconceptions: ["A failed one-result assertion returns zero", "Type switches change the original interface"]
+        recommended_exercise_types: [implement, debug, predict]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses comma-ok assertions without panics", "Narrows types with exhaustive, purposeful switches"]
+      - id: interfaces.small-contracts
+        prerequisites: [interfaces.implicit-satisfaction]
+        common_misconceptions: ["Interfaces should list every method a type has", "Interfaces must be defined by implementers"]
+        recommended_exercise_types: [refactor, test-writing, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Defines minimal consumer-side contracts", "Composes interfaces without leaking implementation detail"]
+
+  - id: errors
+    title: Errors
+    skills:
+      - id: errors.creation-propagation
+        prerequisites: [functions.signatures-results, interfaces.implicit-satisfaction]
+        common_misconceptions: ["Every error needs a custom type", "Logging and returning the same error is always useful"]
+        recommended_exercise_types: [implement, refactor, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Creates contextual errors at the right boundary", "Propagates each failure exactly once without losing cause"]
+      - id: errors.wrapping-is
+        prerequisites: [errors.creation-propagation]
+        common_misconceptions: ["String comparison is stable error classification", "Formatting with %v preserves the chain"]
+        recommended_exercise_types: [debug, implement, test-writing]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Wraps with %w where identity matters", "Uses errors.Is for chain-aware classification"]
+      - id: errors.typed-as
+        prerequisites: [errors.wrapping-is]
+        common_misconceptions: ["errors.As compares messages", "A pointer target is never needed"]
+        recommended_exercise_types: [debug, implement, predict]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Designs typed errors only for structured recovery", "Uses errors.As with the correct target shape"]
+      - id: errors.panic-recover-boundaries
+        prerequisites: [functions.defer, errors.creation-propagation]
+        common_misconceptions: ["panic is ordinary error handling", "recover works outside a deferred call on the panicking goroutine"]
+        recommended_exercise_types: [predict, debug, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Reserves panic for broken invariants or process boundaries", "Places recover narrowly and converts failures deliberately"]
+
+  - id: generics
+    title: Generics
+    skills:
+      - id: generics.type-parameters-inference
+        prerequisites: [functions.signatures-results, types.named-underlying]
+        common_misconceptions: ["Every generic call needs explicit type arguments", "Type parameters are runtime reflection"]
+        recommended_exercise_types: [implement, predict]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Declares useful type parameters and relies on inference when clear", "Explains which arguments participate in inference"]
+      - id: generics.constraints-type-sets
+        prerequisites: [generics.type-parameters-inference, interfaces.small-contracts]
+        common_misconceptions: ["Constraint interfaces are always usable as value types", "any permits every operation"]
+        recommended_exercise_types: [predict, implement, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Chooses constraints that expose exactly required operations", "Distinguishes basic value interfaces from non-basic constraints"]
+      - id: generics.approximation-unions
+        prerequisites: [generics.constraints-type-sets]
+        common_misconceptions: ["~T means values are converted to T", "Union terms are runtime alternatives"]
+        recommended_exercise_types: [predict, debug, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses unions and approximation for intended defined types", "Predicts the resulting type set and permitted operations"]
+      - id: generics.reusable-data-structures
+        prerequisites: [generics.constraints-type-sets, types.zero-values]
+        common_misconceptions: ["Generic containers eliminate all interface use", "Zero values of T can be written as nil"]
+        recommended_exercise_types: [implement, test-writing, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Implements a zero-value-aware generic structure", "Avoids constraints not required by the algorithm"]
+
+  - id: packages
+    title: Packages and project boundaries
+    skills:
+      - id: packages.imports-exports-naming
+        prerequisites: [toolchain.modules-workspaces, structs.field-visibility-tags]
+        common_misconceptions: ["Exported means globally visible without import", "Package names must equal repository names"]
+        recommended_exercise_types: [debug, refactor, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Builds acyclic imports with idiomatic package names", "Controls API visibility through identifiers and package boundaries"]
+      - id: packages.init-order-cycles
+        prerequisites: [packages.imports-exports-naming]
+        common_misconceptions: ["init order is arbitrary", "Import cycles can be resolved by init functions"]
+        recommended_exercise_types: [predict, debug, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Predicts initialization from dependency and file rules", "Refactors cycles by moving ownership or contracts"]
+      - id: packages.internal-layout-tests
+        prerequisites: [packages.imports-exports-naming, toolchain.build-run]
+        common_misconceptions: ["internal means private to one package", "External test packages can access unexported names"]
+        recommended_exercise_types: [debug, test-writing, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses internal boundaries according to import rules", "Chooses same-package or external-package tests intentionally"]
+
+  - id: io
+    title: I/O abstractions
+    skills:
+      - id: io.reader-writer-contracts
+        prerequisites: [interfaces.small-contracts, errors.creation-propagation, slices.model]
+        common_misconceptions: ["Read fills the entire buffer", "A positive byte count cannot accompany an error"]
+        recommended_exercise_types: [implement, debug, test-writing]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Handles n and err independently according to the contracts", "Implements small Reader/Writer adapters correctly"]
+      - id: io.copy-limit-pipe
+        prerequisites: [io.reader-writer-contracts]
+        common_misconceptions: ["io.Copy buffers the entire input", "LimitReader reports an error at its limit"]
+        recommended_exercise_types: [implement, debug, performance]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Composes Copy, LimitReader, TeeReader, and Pipe safely", "Makes byte limits and pipe lifecycles explicit"]
+      - id: io.buffering-scanning
+        prerequisites: [io.reader-writer-contracts, strings.construction-conversion]
+        common_misconceptions: ["Scanner accepts arbitrarily large tokens", "Buffered writes reach the destination immediately"]
+        recommended_exercise_types: [debug, implement, performance]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Selects Scanner, Reader, or buffered I/O from token requirements", "Configures limits and flushes at ownership boundaries"]
+      - id: io.files-cleanup
+        prerequisites: [io.reader-writer-contracts, functions.defer]
+        common_misconceptions: ["Open files close when a function returns", "A successful write guarantees durable data"]
+        recommended_exercise_types: [implement, debug, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Closes resources on all paths and handles cleanup errors", "Uses file flags, permissions, and temporary files deliberately"]
+
+  - id: encoding
+    title: Encoding and serialization
+    skills:
+      - id: encoding.json-shape-tags
+        prerequisites: [structs.field-visibility-tags, io.reader-writer-contracts]
+        common_misconceptions: ["JSON can populate unexported fields", "omitempty means omit every semantic zero in every version"]
+        recommended_exercise_types: [implement, debug, test-writing]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Models stable JSON shapes with explicit tags", "Distinguishes absent, null, zero, and unknown fields where required"]
+      - id: encoding.streaming-strictness
+        prerequisites: [encoding.json-shape-tags]
+        common_misconceptions: ["Unmarshal and Decoder have identical stream semantics", "Decoding one value proves there is no trailing input"]
+        recommended_exercise_types: [debug, implement, test-writing]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Consumes streams with explicit trailing-data policy", "Applies size and unknown-field constraints at trust boundaries"]
+      - id: encoding.text-binary-custom
+        prerequisites: [encoding.json-shape-tags, methods.receivers-method-sets]
+        common_misconceptions: ["Custom marshaling is JSON-specific", "Binary encodings are self-describing"]
+        recommended_exercise_types: [implement, debug, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Implements text or binary marshal contracts symmetrically", "Validates lengths, versions, and malformed inputs"]
+
+  - id: time
+    title: Time
+    skills:
+      - id: time.duration-arithmetic
+        prerequisites: [types.constants-iota]
+        common_misconceptions: ["Duration is a wall-clock timestamp", "Multiplying a duration by an untrusted integer cannot overflow"]
+        recommended_exercise_types: [predict, implement, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Performs duration arithmetic with explicit units", "Separates elapsed durations from civil times"]
+      - id: time.parsing-zones
+        prerequisites: [time.duration-arithmetic, errors.creation-propagation]
+        common_misconceptions: ["Layouts use strftime tokens", "A zone abbreviation uniquely identifies an offset"]
+        recommended_exercise_types: [implement, debug, test-writing]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Parses and formats using Go reference layouts", "Handles locations, offsets, and DST-aware civil times explicitly"]
+      - id: time.timers-tickers
+        prerequisites: [time.duration-arithmetic]
+        common_misconceptions: ["Tickers deliver every missed tick", "Stopping a timer closes its channel"]
+        recommended_exercise_types: [debug, implement, test-writing]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Owns Stop/reset lifecycle without goroutine leaks", "Tests time-dependent code through controllable boundaries"]
+
+  - id: testing
+    title: Testing
+    skills:
+      - id: testing.table-subtests
+        prerequisites: [toolchain.build-run, functions.signatures-results]
+        common_misconceptions: ["Table tests are always better than focused tests", "Subtest names need not be stable"]
+        recommended_exercise_types: [test-writing, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Builds readable tables with diagnostic case names", "Uses subtests when independent selection or setup adds value"]
+      - id: testing.helpers-cleanup
+        prerequisites: [testing.table-subtests, functions.defer]
+        common_misconceptions: ["Helper failures always report the caller automatically", "defer and Cleanup have identical scope in subtests"]
+        recommended_exercise_types: [test-writing, refactor, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Marks helpers and reports actionable failures", "Registers cleanup at the lifecycle that owns the resource"]
+      - id: testing.seams-doubles
+        prerequisites: [testing.table-subtests, interfaces.small-contracts]
+        common_misconceptions: ["Mocks are required for every dependency", "Testing private implementation gives stronger contracts"]
+        recommended_exercise_types: [test-writing, refactor, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Creates narrow deterministic seams at nondeterministic boundaries", "Prefers simple fakes/stubs when interaction verification is unnecessary"]
+      - id: testing.parallel-race
+        prerequisites: [testing.table-subtests, pointers.mutation-sharing]
+        common_misconceptions: ["t.Parallel makes only the loop body concurrent", "Passing -race proves the absence of races"]
+        recommended_exercise_types: [debug, test-writing]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Scopes fixtures safely for parallel tests", "Uses the race detector and interprets its evidence"]
+      - id: testing.examples-golden
+        prerequisites: [testing.table-subtests, io.files-cleanup]
+        common_misconceptions: ["Example output is informal documentation only", "Golden files should be updated automatically in CI"]
+        recommended_exercise_types: [test-writing, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Writes executable examples with intentional output contracts", "Reviews golden updates as behavior changes"]
+
+  - id: fuzzing
+    title: Fuzzing
+    skills:
+      - id: fuzzing.targets-seeds
+        prerequisites: [testing.table-subtests, toolchain.build-run]
+        common_misconceptions: ["A fuzz target may accept any parameter type", "Seed cases replace deterministic unit tests"]
+        recommended_exercise_types: [test-writing, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Defines deterministic fuzz targets with representative seeds", "Separates invalid-input rejection from harness failures"]
+      - id: fuzzing.invariants-reproduction
+        prerequisites: [fuzzing.targets-seeds]
+        common_misconceptions: ["No crash means useful properties were tested", "A failing input should remain only in the fuzz cache"]
+        recommended_exercise_types: [test-writing, debug, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["States round-trip or semantic invariants precisely", "Turns minimized failures into stable regression tests"]
+
+  - id: benchmarks
+    title: Benchmarks
+    skills:
+      - id: benchmarks.loops-allocations
+        prerequisites: [testing.table-subtests, toolchain.formatting-vetting]
+        common_misconceptions: ["The benchmark loop count is fixed", "ns/op alone explains allocation behavior"]
+        recommended_exercise_types: [performance, predict]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses benchmark loop APIs without timing setup accidentally", "Reports and interprets allocations with runtime caveats"]
+      - id: benchmarks.experimental-design
+        prerequisites: [benchmarks.loops-allocations]
+        common_misconceptions: ["One run establishes a speedup", "Dead-code elimination cannot affect benchmarks"]
+        recommended_exercise_types: [performance, test-writing, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Designs representative inputs and observable results", "Compares distributions and validates semantic equivalence before optimizing"]
+
+  - id: goroutines
+    title: Goroutines
+    skills:
+      - id: goroutines.launch-lifecycle
+        prerequisites: [functions.first-class-closures]
+        common_misconceptions: ["A program waits for all goroutines before exit", "Starting a goroutine transfers ownership automatically"]
+        recommended_exercise_types: [predict, debug, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Defines start and termination conditions for every goroutine", "Waits using explicit synchronization rather than timing"]
+      - id: goroutines.capture-arguments
+        prerequisites: [goroutines.launch-lifecycle, functions.first-class-closures]
+        common_misconceptions: ["Closures always snapshot loop state", "Passing an argument shares the loop variable itself"]
+        recommended_exercise_types: [predict, debug, test-writing]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Predicts captures under the active Go language version", "Passes values explicitly when lifetime or identity matters"]
+      - id: goroutines.ownership-results
+        prerequisites: [goroutines.launch-lifecycle, pointers.mutation-sharing]
+        common_misconceptions: ["Concurrent readers and writers are safe for all built-ins", "Returning first makes remaining workers disappear"]
+        recommended_exercise_types: [implement, refactor, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Assigns mutable state to a clear owner", "Collects results and errors without abandoned workers"]
+      - id: goroutines.leaks-panics
+        prerequisites: [goroutines.ownership-results, errors.panic-recover-boundaries]
+        common_misconceptions: ["Garbage collection stops blocked goroutines", "A recover in one goroutine catches another goroutine's panic"]
+        recommended_exercise_types: [debug, test-writing, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Finds blocked-send/receive and forgotten-worker leaks", "Contains panics at the goroutine boundary when policy requires"]
+
+  - id: channels
+    title: Channels
+    skills:
+      - id: channels.send-receive-close
+        prerequisites: [goroutines.launch-lifecycle, types.zero-values]
+        common_misconceptions: ["Receivers should close channels", "A closed channel cannot be received from"]
+        recommended_exercise_types: [predict, debug, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Predicts blocking and closed-channel receives", "Assigns close responsibility to the sending owner"]
+      - id: channels.range-drain
+        prerequisites: [channels.send-receive-close]
+        common_misconceptions: ["Range stops when a channel is temporarily empty", "Draining is unnecessary after early consumer exit"]
+        recommended_exercise_types: [debug, implement, predict]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses range only with a defined close path", "Designs early-exit behavior without stranding senders"]
+      - id: channels.buffering-backpressure
+        prerequisites: [channels.send-receive-close]
+        common_misconceptions: ["A buffer removes synchronization", "Larger buffers always improve throughput"]
+        recommended_exercise_types: [predict, performance, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Chooses buffer capacity from bounded in-flight work", "Explains how buffering changes blocking and backpressure"]
+      - id: channels.select-nil
+        prerequisites: [channels.send-receive-close]
+        common_misconceptions: ["Select chooses the first source case", "A nil channel behaves like a closed channel"]
+        recommended_exercise_types: [predict, debug, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Handles nondeterministic ready-case choice", "Uses nil channels intentionally to disable select cases"]
+      - id: channels.pipeline-fan
+        prerequisites: [channels.range-drain, channels.select-nil, goroutines.ownership-results]
+        common_misconceptions: ["Closing one pipeline stage cancels upstream work", "Fan-in preserves source ordering"]
+        recommended_exercise_types: [implement, debug, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Builds bounded fan-out/fan-in with explicit termination", "Propagates early cancellation across every stage"]
+
+  - id: sync
+    title: Synchronization
+    skills:
+      - id: sync.mutex-invariants
+        prerequisites: [goroutines.ownership-results, functions.defer]
+        common_misconceptions: ["A mutex protects data by declaration", "Copying a used mutex is safe"]
+        recommended_exercise_types: [debug, implement, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Documents and preserves the invariant protected by each mutex", "Keeps lock scope correct on all return paths"]
+      - id: sync.rwmutex-tradeoffs
+        prerequisites: [sync.mutex-invariants, benchmarks.experimental-design]
+        common_misconceptions: ["RWMutex is always faster for readers", "Upgrading a read lock is atomic"]
+        recommended_exercise_types: [performance, debug, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Chooses RWMutex only from measured contention", "Avoids upgrade and recursive-lock assumptions"]
+      - id: sync.waitgroup-lifecycle
+        prerequisites: [goroutines.launch-lifecycle]
+        common_misconceptions: ["Add after launch is always safe", "WaitGroup communicates worker errors"]
+        recommended_exercise_types: [debug, implement, predict]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Balances task registration and completion without races", "Combines waiting with a separate result/error path"]
+      - id: sync.once-initialization
+        prerequisites: [goroutines.ownership-results]
+        common_misconceptions: ["Once retries after a panic", "Once is a general resettable cache"]
+        recommended_exercise_types: [predict, debug, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses one-time initialization with explicit failure semantics", "Avoids hiding lifecycle that requires reset or teardown"]
+      - id: sync.atomics
+        prerequisites: [goroutines.ownership-results, benchmarks.experimental-design]
+        common_misconceptions: ["Atomic operations make compound invariants atomic", "Race-free atomic code is automatically logically correct"]
+        recommended_exercise_types: [debug, predict, performance]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses atomics only for a precisely defined state transition", "Explains why every access to shared atomic state follows one synchronization discipline"]
+      - id: sync.cond
+        prerequisites: [sync.mutex-invariants]
+        common_misconceptions: ["Cond signals are stored for future waiters", "Wait may be called without checking a predicate"]
+        recommended_exercise_types: [debug, predict, implement]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Waits in a predicate loop while holding the associated lock", "Chooses Signal/Broadcast deliberately and considers channels for simpler event flows"]
+      - id: sync.pool
+        prerequisites: [goroutines.ownership-results, benchmarks.experimental-design]
+        common_misconceptions: ["Values placed in Pool remain until Get", "Pool is a general-purpose bounded object cache"]
+        recommended_exercise_types: [performance, debug, refactor]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Uses Pool only for disposable allocation reuse", "Validates that pooling preserves semantics and improves measured allocation behavior"]
+
+  - id: context
+    title: Context
+    skills:
+      - id: context.derive-cancel
+        prerequisites: [channels.select-nil, functions.defer]
+        common_misconceptions: ["Canceling a child cancels its parent", "A derived cancel function is optional cleanup"]
+        recommended_exercise_types: [implement, debug, predict]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Derives context from the incoming parent", "Calls every owned cancel function on all paths"]
+      - id: context.deadlines-timeouts
+        prerequisites: [context.derive-cancel, time.timers-tickers]
+        common_misconceptions: ["A child can extend its parent's deadline", "Timeout automatically interrupts arbitrary computation"]
+        recommended_exercise_types: [debug, implement, test-writing]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Composes deadlines without unintentionally lengthening budgets", "Makes blocking work observe Done or context-aware APIs"]
+      - id: context.propagation-api
+        prerequisites: [context.derive-cancel, packages.imports-exports-naming]
+        common_misconceptions: ["Context belongs in a long-lived struct", "Nil is an acceptable context argument"]
+        recommended_exercise_types: [refactor, implement, debug]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Passes context explicitly as the first parameter", "Does not create background contexts inside request call chains"]
+      - id: context.values-boundaries
+        prerequisites: [context.propagation-api, interfaces.dynamic-values-nil]
+        common_misconceptions: ["Context values are optional function arguments", "String keys are collision-safe across packages"]
+        recommended_exercise_types: [refactor, debug, test-writing]
+        minimum_occurrences: {primary: 4, total: 6}
+        mastery: ["Stores only request-scoped cross-boundary metadata", "Uses private comparable key types and typed accessors"]

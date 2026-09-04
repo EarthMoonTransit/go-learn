@@ -1,0 +1,22 @@
+{
+  "slug": "go",
+  "files": {
+    "solution": ["*.go"],
+    "test": ["*_test.go"],
+    "example": [".meta/example.go"],
+    "exemplar": [".meta/exemplar.go"]
+  },
+  "concepts": [
+    {"slug": "slices"},
+    {"slug": "strings"}
+  ],
+  "exercises": {
+    "concept": [
+      {"slug": "slice-lab", "concepts": ["slices"], "prerequisites": []}
+    ],
+    "practice": [
+      {"slug": "echo", "practices": ["strings"], "prerequisites": [], "difficulty": 2, "topics": ["strings"]}
+    ]
+  }
+}
+

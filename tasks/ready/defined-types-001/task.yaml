@@ -1,0 +1,29 @@
+schema_version: 1
+id: defined-types-001
+title: Replace aliases with defined numeric types
+task_type: refactor
+skills:
+  primary: types.named-underlying
+  secondary: []
+prerequisites:
+  - types.declarations-inference
+new_concepts:
+  - types.named-underlying
+difficulty: basic
+estimated_time_minutes:
+  min: 20
+  max: 35
+source:
+  id: exercism-go
+  repository: https://github.com/exercism/go
+  path: exercises/concept/chessboard
+  commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+  license: MIT
+transformation_type: adapted
+validation_commands:
+  - go vet ./...
+  - go test ./starter
+  - go test ./solution/reference
+  - go test -run '^$' ./solution/incorrect
+  - "! go test ./solution/incorrect"
+quality_status: ready

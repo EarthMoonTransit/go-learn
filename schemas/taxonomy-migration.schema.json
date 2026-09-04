@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:go-practice-bank:taxonomy-migration:v2-to-v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "from_taxonomy_version", "to_taxonomy_version", "decision", "baseline", "target_assignable_skill_count", "entries", "additions", "legacy_task_references"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "from_taxonomy_version": {"const": 2},
+    "to_taxonomy_version": {"const": 3},
+    "decision": {"const": "docs/adr/0003-taxonomy-v3.md"},
+    "target_assignable_skill_count": {"type": "integer", "minimum": 1},
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["taxonomy_path", "taxonomy_sha256", "skill_count", "skill_ids_sha256", "mapping_path", "mapping_sha256", "evidence_path", "evidence_sha256", "evidence_review_count"],
+      "properties": {
+        "taxonomy_path": {"const": "curriculum/migrations/snapshots/skills-v2.yaml"},
+        "taxonomy_sha256": {"$ref": "#/$defs/hash"},
+        "skill_count": {"const": 99},
+        "skill_ids_sha256": {"$ref": "#/$defs/hash"},
+        "mapping_path": {"const": "curriculum/migrations/snapshots/exercism-map-v2.yaml"},
+        "mapping_sha256": {"$ref": "#/$defs/hash"},
+        "evidence_path": {"const": "curriculum/migrations/snapshots/exercism-evidence-v2.yaml"},
+        "evidence_sha256": {"$ref": "#/$defs/hash"},
+        "evidence_review_count": {"const": 10}
+      }
+    },
+    "entries": {"type": "array", "minItems": 99, "maxItems": 99, "items": {"$ref": "#/$defs/entry"}},
+    "additions": {"type": "array", "items": {"$ref": "#/$defs/addition"}},
+    "legacy_task_references": {"type": "array", "items": {"$ref": "#/$defs/taskRef"}}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "skillId": {"type": "string", "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$"},
+    "taskRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_id", "field", "old_id", "manifest_sha256", "resolved_skill_id", "coverage_behavior"],
+      "properties": {
+        "task_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-[0-9]{3}$"},
+        "field": {"enum": ["skills.primary", "skills.secondary", "prerequisites", "new_concepts"]},
+        "old_id": {"$ref": "#/$defs/skillId"},
+        "manifest_sha256": {"$ref": "#/$defs/hash"},
+        "resolved_skill_id": {"$ref": "#/$defs/skillId"},
+        "coverage_behavior": {"enum": ["native", "count-resolved", "no-coverage"]}
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["old_id", "new_ids", "migration_type", "rationale", "affected_evidence", "affected_task_references", "compatibility_behavior"],
+      "properties": {
+        "old_id": {"$ref": "#/$defs/skillId"},
+        "new_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/skillId"}},
+        "migration_type": {"enum": ["preserved", "split", "renamed", "deprecated", "merged"]},
+        "rationale": {"type": "string", "minLength": 20},
+        "affected_evidence": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 3}},
+        "affected_task_references": {"type": "array", "items": {"$ref": "#/$defs/taskRef"}},
+        "compatibility_behavior": {"enum": ["active-id", "reject-deprecated", "explicit-legacy-resolution"]}
+      }
+    },
+    "addition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "rationale"],
+      "properties": {
+        "id": {"$ref": "#/$defs/skillId"},
+        "rationale": {"type": "string", "minLength": 20}
+      }
+    }
+  }
+}

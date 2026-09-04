@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:go-practice-bank:skill-evidence:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_id", "source_commit", "taxonomy_version", "migration_review", "reviews"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "source_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "taxonomy_version": {"const": 3},
+    "migration_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewed_by", "reviewed_at", "decision", "previous_evidence_sha256"],
+      "properties": {
+        "status": {"const": "reviewed"},
+        "reviewed_by": {"type": "string", "minLength": 2},
+        "reviewed_at": {"type": "string", "format": "date"},
+        "decision": {"const": "docs/adr/0003-taxonomy-v3.md"},
+        "previous_evidence_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "reviews": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "exercise_kind", "slug", "source_path", "upstream_concept", "skill_id", "basis", "strength", "decision", "coverage_eligible", "reviewed_by", "reviewed_at", "rationale"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9]+(?:[./-][a-z0-9]+)*$"},
+          "exercise_kind": {"enum": ["concept", "practice"]},
+          "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "source_path": {"type": "string", "pattern": "^exercises/(concept|practice)/[a-z0-9-]+$"},
+          "upstream_concept": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "skill_id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$"},
+          "basis": {"enum": ["upstream-concept-label", "manual-artifact-review"]},
+          "strength": {"enum": ["direct", "supporting"]},
+          "decision": {"enum": ["accepted", "rejected", "needs-review"]},
+          "coverage_eligible": {"const": false},
+          "reviewed_by": {"type": "string", "minLength": 2},
+          "reviewed_at": {"type": "string", "format": "date"},
+          "rationale": {"type": "string", "minLength": 10},
+          "artifact_path": {"type": "string", "minLength": 1, "maxLength": 300},
+          "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    }
+  }
+}

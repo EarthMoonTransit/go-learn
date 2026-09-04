@@ -1,0 +1,927 @@
+schema_version: 1
+from_taxonomy_version: 2
+to_taxonomy_version: 3
+decision: docs/adr/0003-taxonomy-v3.md
+baseline:
+    taxonomy_path: curriculum/migrations/snapshots/skills-v2.yaml
+    taxonomy_sha256: 0b24bbf892ec41715f7fcea86d8df2d4006b097928ed82ae3c3715fbc7d99686
+    skill_count: 99
+    skill_ids_sha256: 09ed4a682e2b9a4542678e9696822799ad1cc148818b656dc5ca46b6f6c1d6fb
+    mapping_path: curriculum/migrations/snapshots/exercism-map-v2.yaml
+    mapping_sha256: b6fb5db7f63583ccb0dc29e6f1cfb0abf37b682ca03f99bd5999986b9f1ea8c3
+    evidence_path: curriculum/migrations/snapshots/exercism-evidence-v2.yaml
+    evidence_sha256: 3c41aeeaa62c13601f4b5a7dbdaf9b94be9056b05a4bff5a4a10d76bf79b6ca5
+    evidence_review_count: 10
+target_assignable_skill_count: 142
+entries:
+    - old_id: arrays.indexing-iteration
+      new_ids:
+        - arrays.indexing-iteration
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: arrays.value-semantics
+      new_ids:
+        - arrays.value-semantics
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: benchmarks.experimental-design
+      new_ids:
+        - benchmarks.experimental-design
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: benchmarks.loops-allocations
+      new_ids:
+        - benchmarks.allocations
+        - benchmarks.loops-timing
+      migration_type: split
+      rationale: Benchmark timing boundaries and allocation reporting need different controls.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: channels.buffering-backpressure
+      new_ids:
+        - channels.buffering-backpressure
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: channels.pipeline-fan
+      new_ids:
+        - channels.cancellation
+        - channels.fan-out-in
+        - channels.pipeline
+      migration_type: split
+      rationale: Stage composition, fan topology, and end-to-end cancellation have different invariants.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: channels.range-drain
+      new_ids:
+        - channels.range-drain
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: channels.select-nil
+      new_ids:
+        - channels.nil-disabling
+        - channels.select
+      migration_type: split
+      rationale: Select readiness/fair choice and nil-channel case disabling are independent rules.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: channels.send-receive-close
+      new_ids:
+        - channels.close-semantics
+        - channels.operations-blocking
+        - channels.ownership
+      migration_type: split
+      rationale: Send/receive blocking, post-close behavior, and the right to close are independently testable.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: context.deadlines-timeouts
+      new_ids:
+        - context.deadlines
+        - context.timeouts
+      migration_type: split
+      rationale: Absolute inherited deadlines and relative timeout budgeting require different reasoning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: context.derive-cancel
+      new_ids:
+        - context.cancellation
+        - context.derivation
+      migration_type: split
+      rationale: Parent-child derivation and cancel-function ownership have different leak and propagation failures.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: context.propagation-api
+      new_ids:
+        - context.propagation-api
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: context.values-boundaries
+      new_ids:
+        - context.values-boundaries
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: control-flow.for
+      new_ids:
+        - control-flow.for
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence:
+        - concept/bird-watcher/control-flow-for
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: control-flow.if
+      new_ids:
+        - control-flow.if
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence:
+        - concept/vehicle-purchase/control-flow-if
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: control-flow.range
+      new_ids:
+        - control-flow.range
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence:
+        - concept/chessboard/control-flow-range
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: control-flow.switch
+      new_ids:
+        - control-flow.switch
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence:
+        - concept/blackjack/control-flow-switch
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: embedding.field-promotion
+      new_ids:
+        - embedding.field-promotion
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: embedding.method-promotion-ambiguity
+      new_ids:
+        - embedding.method-promotion-ambiguity
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: encoding.json-shape-tags
+      new_ids:
+        - encoding.json-shape-tags
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: encoding.streaming-strictness
+      new_ids:
+        - encoding.streaming-strictness
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: encoding.text-binary-custom
+      new_ids:
+        - encoding.binary-marshaling
+        - encoding.text-marshaling
+      migration_type: split
+      rationale: Text and binary representations have different malformed-input and framing contracts.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: errors.creation-propagation
+      new_ids:
+        - errors.propagation-context
+        - errors.sentinels-creation
+      migration_type: split
+      rationale: Creating classifiable errors and propagating contextual failures are separate API decisions.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: errors.panic-recover-boundaries
+      new_ids:
+        - errors.panic-recover-boundaries
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: errors.typed-as
+      new_ids:
+        - errors.as
+        - errors.typed
+      migration_type: split
+      rationale: Designing a typed error and extracting one from a chain require different target-shape knowledge.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: errors.wrapping-is
+      new_ids:
+        - errors.is
+        - errors.wrapping
+      migration_type: split
+      rationale: Building an unwrap chain and inspecting it with errors.Is are independently testable.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: expressions.arithmetic
+      new_ids:
+        - expressions.arithmetic
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence:
+        - concept/cars-assemble/expressions-arithmetic
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: expressions.boolean-logic
+      new_ids:
+        - expressions.boolean-logic
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence:
+        - concept/annalyns-infiltration/expressions-boolean-logic
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: expressions.comparison
+      new_ids:
+        - expressions.comparison
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence:
+        - concept/vehicle-purchase/expressions-comparison
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: functions.defer
+      new_ids:
+        - functions.defer
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: functions.first-class-closures
+      new_ids:
+        - functions.closure-capture
+        - functions.function-values
+      migration_type: split
+      rationale: Calling and passing function values is independent from capture lifetime and mutation.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: functions.signatures-results
+      new_ids:
+        - functions.signatures-results
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references:
+        - task_id: variadic-sum-001
+          field: prerequisites
+          old_id: functions.signatures-results
+          manifest_sha256: 7aabb8f89546a7a031e0f0359911ee9f4bb876aabd840c078014f618ab6613f6
+          resolved_skill_id: functions.signatures-results
+          coverage_behavior: native
+      compatibility_behavior: active-id
+    - old_id: functions.variadic
+      new_ids:
+        - functions.variadic
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence:
+        - concept/card-tricks/functions-variadic
+      affected_task_references:
+        - task_id: variadic-sum-001
+          field: new_concepts
+          old_id: functions.variadic
+          manifest_sha256: 7aabb8f89546a7a031e0f0359911ee9f4bb876aabd840c078014f618ab6613f6
+          resolved_skill_id: functions.variadic
+          coverage_behavior: native
+        - task_id: variadic-sum-001
+          field: skills.primary
+          old_id: functions.variadic
+          manifest_sha256: 7aabb8f89546a7a031e0f0359911ee9f4bb876aabd840c078014f618ab6613f6
+          resolved_skill_id: functions.variadic
+          coverage_behavior: native
+      compatibility_behavior: active-id
+    - old_id: fuzzing.invariants-reproduction
+      new_ids:
+        - fuzzing.invariants
+        - fuzzing.reproduction
+      migration_type: split
+      rationale: Stating a property and preserving a minimized failure are separate review steps.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: fuzzing.targets-seeds
+      new_ids:
+        - fuzzing.targets-seeds
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: generics.approximation-unions
+      new_ids:
+        - generics.approximation-unions
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: generics.constraints-type-sets
+      new_ids:
+        - generics.constraints-type-sets
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: generics.reusable-data-structures
+      new_ids:
+        - generics.reusable-data-structures
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: generics.type-parameters-inference
+      new_ids:
+        - generics.type-parameters-inference
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: goroutines.capture-arguments
+      new_ids:
+        - goroutines.capture-arguments
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: goroutines.launch-lifecycle
+      new_ids:
+        - goroutines.launch-lifecycle
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: goroutines.leaks-panics
+      new_ids:
+        - goroutines.leak-prevention
+        - goroutines.panic-boundaries
+      migration_type: split
+      rationale: Blocked-worker leaks and goroutine-local panic containment require different diagnostics.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: goroutines.ownership-results
+      new_ids:
+        - goroutines.result-error-collection
+        - goroutines.state-ownership
+      migration_type: split
+      rationale: Mutable-state ownership and complete result/error collection fail independently.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: interfaces.assertions-switches
+      new_ids:
+        - interfaces.type-assertions
+        - interfaces.type-switches
+      migration_type: split
+      rationale: Single assertions and multi-branch type switches have different control-flow and exhaustiveness tests.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: interfaces.dynamic-values-nil
+      new_ids:
+        - interfaces.dynamic-type-value
+        - interfaces.typed-nil
+      migration_type: split
+      rationale: Dynamic representation can be understood without correctly handling a nil pointer stored in an interface.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: interfaces.implicit-satisfaction
+      new_ids:
+        - interfaces.implicit-satisfaction
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: interfaces.small-contracts
+      new_ids:
+        - interfaces.small-contracts
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: io.buffering-scanning
+      new_ids:
+        - io.buffered
+        - io.scanning
+      migration_type: split
+      rationale: Flush ownership and token-size/scanning semantics fail independently.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: io.copy-limit-pipe
+      new_ids:
+        - io.copy-limit-composition
+        - io.pipe-lifecycle
+      migration_type: split
+      rationale: Stream copying/limiting and synchronous pipe ownership have different blocking behavior.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: io.files-cleanup
+      new_ids:
+        - io.files-cleanup
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: io.reader-writer-contracts
+      new_ids:
+        - io.reader-writer-contracts
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: maps.iteration-comparability
+      new_ids:
+        - maps.iteration
+        - maps.key-comparability
+      migration_type: split
+      rationale: Unspecified iteration order and key-type comparability are separate language rules.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: maps.nil-delete-clear
+      new_ids:
+        - maps.nil-delete-clear
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: maps.operations-comma-ok
+      new_ids:
+        - maps.operations-comma-ok
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: methods.receivers-method-sets
+      new_ids:
+        - methods.method-sets
+        - methods.receiver-semantics
+      migration_type: split
+      rationale: Receiver mutation/copying and method-set membership are independently testable.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: methods.values-expressions
+      new_ids:
+        - methods.values-expressions
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: packages.imports-exports-naming
+      new_ids:
+        - packages.imports-exports-naming
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: packages.init-order-cycles
+      new_ids:
+        - packages.import-cycles
+        - packages.initialization-order
+      migration_type: split
+      rationale: Initialization ordering is a runtime prediction problem; import cycles are a compile-time architecture problem.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: packages.internal-layout-tests
+      new_ids:
+        - packages.internal-boundaries
+        - packages.test-package-boundaries
+      migration_type: split
+      rationale: Internal import visibility and same/external test package access are independent boundaries.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: pointers.address-deref-nil
+      new_ids:
+        - pointers.address-deref-nil
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: pointers.mutation-sharing
+      new_ids:
+        - pointers.mutation-sharing
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: pointers.receiver-choice
+      new_ids:
+        - methods.receiver-semantics
+      migration_type: merged
+      rationale: Receiver choice belongs with receiver semantics rather than general pointer operations.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: slices.append-aliasing
+      new_ids:
+        - slices.append-growth
+        - slices.backing-array-aliasing
+      migration_type: split
+      rationale: Append allocation behavior and cross-slice aliasing require different counterexamples.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: slices.capacity-bounds
+      new_ids:
+        - slices.full-slice-expressions
+        - slices.len-cap-slicing
+      migration_type: split
+      rationale: Ordinary len/cap calculations do not require full-slice capacity control.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: slices.copy-overlap
+      new_ids:
+        - slices.copy-overlap
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: slices.growth-allocation
+      new_ids:
+        - slices.append-growth
+        - slices.preallocation
+      migration_type: split
+      rationale: Growth behavior and deliberate preallocation are related but independently measurable.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: slices.model
+      new_ids:
+        - slices.header-model
+        - slices.nil-empty
+      migration_type: split
+      rationale: Slice header sharing and nil-versus-empty API state are independently observable.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: strings.construction-conversion
+      new_ids:
+        - strings.building
+        - strings.byte-rune-conversions
+      migration_type: split
+      rationale: Efficient construction and representation conversion have different allocation and correctness contracts.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: strings.immutable-bytes
+      new_ids:
+        - strings.immutable-bytes
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: structs.copy-equality
+      new_ids:
+        - structs.copy-equality
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: structs.field-visibility-tags
+      new_ids:
+        - structs.field-visibility-tags
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: structs.literals-zero
+      new_ids:
+        - structs.literals-zero
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: sync.atomics
+      new_ids:
+        - sync.atomics
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: sync.cond
+      new_ids:
+        - sync.cond
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: sync.mutex-invariants
+      new_ids:
+        - sync.mutex-critical-sections
+        - sync.mutex-ownership
+      migration_type: split
+      rationale: Lock ownership/lifecycle and the invariant protected inside critical sections are independently reviewable.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: sync.once-initialization
+      new_ids:
+        - sync.once-initialization
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: sync.pool
+      new_ids:
+        - sync.pool
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: sync.rwmutex-tradeoffs
+      new_ids:
+        - sync.rwmutex-tradeoffs
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: sync.waitgroup-lifecycle
+      new_ids:
+        - sync.waitgroup-lifecycle
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: testing.examples-golden
+      new_ids:
+        - testing.examples
+        - testing.golden
+      migration_type: split
+      rationale: Executable examples and reviewed golden snapshots have different maintenance contracts.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: testing.helpers-cleanup
+      new_ids:
+        - testing.cleanup
+        - testing.helpers
+      migration_type: split
+      rationale: Failure attribution and resource cleanup attach to different test lifecycles.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: testing.parallel-race
+      new_ids:
+        - testing.parallel
+        - testing.race-detector
+      migration_type: split
+      rationale: Parallel test scheduling and interpreting dynamic race reports are different skills.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: testing.seams-doubles
+      new_ids:
+        - testing.seams-doubles
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: testing.table-subtests
+      new_ids:
+        - testing.basics-diagnostics
+        - testing.subtests
+        - testing.table-driven
+      migration_type: split
+      rationale: Basic testing diagnostics, data-driven cases, and subtest lifecycle are three distinct capabilities.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: time.duration-arithmetic
+      new_ids:
+        - time.duration-arithmetic
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: time.parsing-zones
+      new_ids:
+        - time.parsing-zones
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: time.timers-tickers
+      new_ids:
+        - time.timers-tickers
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: toolchain.build-run
+      new_ids:
+        - toolchain.build-run
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: toolchain.docs-environment
+      new_ids:
+        - toolchain.docs-environment
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: toolchain.formatting-vetting
+      new_ids:
+        - toolchain.formatting-vetting
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: toolchain.modules-workspaces
+      new_ids:
+        - toolchain.modules-workspaces
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: types.constants-iota
+      new_ids:
+        - types.constants
+        - types.iota-enumeration
+      migration_type: split
+      rationale: Typed and untyped constants do not require iota, while enumeration patterns add independent declaration semantics.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+    - old_id: types.declarations-inference
+      new_ids:
+        - types.declarations-inference
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references:
+        - task_id: defined-types-001
+          field: prerequisites
+          old_id: types.declarations-inference
+          manifest_sha256: e3ad517e28445b1f8bda6bf18d34acd64e33212a34788b71136933e8568a5b62
+          resolved_skill_id: types.declarations-inference
+          coverage_behavior: native
+        - task_id: zero-state-001
+          field: prerequisites
+          old_id: types.declarations-inference
+          manifest_sha256: d3070151d72ad954b05ffb43a057a10214f46f5a5839b3897e0f07cede0404bd
+          resolved_skill_id: types.declarations-inference
+          coverage_behavior: native
+      compatibility_behavior: active-id
+    - old_id: types.named-underlying
+      new_ids:
+        - types.named-underlying
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence:
+        - concept/chessboard/types-named-underlying
+      affected_task_references:
+        - task_id: defined-types-001
+          field: new_concepts
+          old_id: types.named-underlying
+          manifest_sha256: e3ad517e28445b1f8bda6bf18d34acd64e33212a34788b71136933e8568a5b62
+          resolved_skill_id: types.named-underlying
+          coverage_behavior: native
+        - task_id: defined-types-001
+          field: skills.primary
+          old_id: types.named-underlying
+          manifest_sha256: e3ad517e28445b1f8bda6bf18d34acd64e33212a34788b71136933e8568a5b62
+          resolved_skill_id: types.named-underlying
+          coverage_behavior: native
+      compatibility_behavior: active-id
+    - old_id: types.numeric-conversions
+      new_ids:
+        - types.numeric-conversions
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: types.zero-values
+      new_ids:
+        - types.zero-values
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence:
+        - concept/census/types-zero-values
+      affected_task_references:
+        - task_id: zero-state-001
+          field: new_concepts
+          old_id: types.zero-values
+          manifest_sha256: d3070151d72ad954b05ffb43a057a10214f46f5a5839b3897e0f07cede0404bd
+          resolved_skill_id: types.zero-values
+          coverage_behavior: native
+        - task_id: zero-state-001
+          field: skills.primary
+          old_id: types.zero-values
+          manifest_sha256: d3070151d72ad954b05ffb43a057a10214f46f5a5839b3897e0f07cede0404bd
+          resolved_skill_id: types.zero-values
+          coverage_behavior: native
+      compatibility_behavior: active-id
+    - old_id: unicode.invalid-utf8
+      new_ids:
+        - unicode.invalid-utf8
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: unicode.range-decoding
+      new_ids:
+        - unicode.range-decoding
+      migration_type: preserved
+      rationale: The v2 learner-facing mechanism remains independently teachable; v3 adds an explicit contract without changing its meaning.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: active-id
+    - old_id: unicode.utf8-runes
+      new_ids:
+        - unicode.rune-model
+        - unicode.utf8-encoding
+      migration_type: split
+      rationale: Code-point semantics and UTF-8 byte encoding are distinct mechanisms.
+      affected_evidence: []
+      affected_task_references: []
+      compatibility_behavior: reject-deprecated
+additions:
+    - id: channels.directional
+      rationale: Directional channel types encode ownership and API permissions independently from runtime blocking.
+    - id: interfaces.stringer-contract
+      rationale: Implementing fmt.Stringer exposes receiver, formatting, and interface-contract mistakes not covered by general formatting.
+    - id: slices.subslice-retention
+      rationale: Small subslices can retain large backing arrays even when functional behavior is correct.
+    - id: strings.formatting
+      rationale: Format verbs and argument contracts form an independently testable standard-library boundary.
+    - id: strings.standard-library
+      rationale: Searching, splitting, trimming, and replacing with package strings is a distinct reusable API skill.
+    - id: sync.data-races-happens-before
+      rationale: Race freedom and happens-before reasoning are prerequisites for selecting synchronization primitives safely.
+    - id: testing.deterministic-boundaries
+      rationale: Deterministic control of time, randomness, scheduling, environment, and I/O is a prerequisite for trustworthy tests.
+    - id: types.floating-point-semantics
+      rationale: Floating-point representation, comparison, NaN, infinity, and rounding are independently testable and were a v2 gap.
+legacy_task_references: []

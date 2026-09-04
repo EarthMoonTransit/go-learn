@@ -1,0 +1,42 @@
+schema_version: 1
+source_id: exercism-go
+source_commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+concepts:
+  - arithmetic-operators
+  - basics
+  - booleans
+  - comments
+  - comparison
+  - conditionals-if
+  - conditionals-switch
+  - constants
+  - error-wrapping
+  - errors
+  - first-class-functions
+  - floating-point-numbers
+  - for-loops
+  - functions
+  - interfaces
+  - maps
+  - methods
+  - multiple-return-values
+  - numbers
+  - packages
+  - pointers
+  - randomness
+  - range-iteration
+  - regular-expressions
+  - runes
+  - slices
+  - string-formatting
+  - stringers
+  - strings
+  - strings-package
+  - structs
+  - time
+  - type-assertion
+  - type-conversion
+  - type-definitions
+  - variables
+  - variadic-functions
+  - zero-values

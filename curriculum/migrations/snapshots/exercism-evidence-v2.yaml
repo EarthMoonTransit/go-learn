@@ -1,0 +1,135 @@
+schema_version: 1
+source_id: exercism-go
+source_commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+taxonomy_version: 2
+reviews:
+  - id: concept/cars-assemble/expressions-arithmetic
+    exercise_kind: concept
+    slug: cars-assemble
+    source_path: exercises/concept/cars-assemble
+    upstream_concept: arithmetic-operators
+    skill_id: expressions.arithmetic
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares arithmetic-operators as a taught concept.
+  - id: concept/annalyns-infiltration/expressions-boolean-logic
+    exercise_kind: concept
+    slug: annalyns-infiltration
+    source_path: exercises/concept/annalyns-infiltration
+    upstream_concept: booleans
+    skill_id: expressions.boolean-logic
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares booleans as a taught concept.
+  - id: concept/vehicle-purchase/expressions-comparison
+    exercise_kind: concept
+    slug: vehicle-purchase
+    source_path: exercises/concept/vehicle-purchase
+    upstream_concept: comparison
+    skill_id: expressions.comparison
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares comparison as a taught concept.
+  - id: concept/vehicle-purchase/control-flow-if
+    exercise_kind: concept
+    slug: vehicle-purchase
+    source_path: exercises/concept/vehicle-purchase
+    upstream_concept: conditionals-if
+    skill_id: control-flow.if
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares conditionals-if as a taught concept.
+  - id: concept/blackjack/control-flow-switch
+    exercise_kind: concept
+    slug: blackjack
+    source_path: exercises/concept/blackjack
+    upstream_concept: conditionals-switch
+    skill_id: control-flow.switch
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares conditionals-switch as a taught concept.
+  - id: concept/bird-watcher/control-flow-for
+    exercise_kind: concept
+    slug: bird-watcher
+    source_path: exercises/concept/bird-watcher
+    upstream_concept: for-loops
+    skill_id: control-flow.for
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares for-loops as a taught concept.
+  - id: concept/chessboard/control-flow-range
+    exercise_kind: concept
+    slug: chessboard
+    source_path: exercises/concept/chessboard
+    upstream_concept: range-iteration
+    skill_id: control-flow.range
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares range-iteration as a taught concept.
+  - id: concept/chessboard/types-named-underlying
+    exercise_kind: concept
+    slug: chessboard
+    source_path: exercises/concept/chessboard
+    upstream_concept: type-definitions
+    skill_id: types.named-underlying
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares type-definitions as a taught concept.
+  - id: concept/card-tricks/functions-variadic
+    exercise_kind: concept
+    slug: card-tricks
+    source_path: exercises/concept/card-tricks
+    upstream_concept: variadic-functions
+    skill_id: functions.variadic
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares variadic-functions as a taught concept.
+  - id: concept/census/types-zero-values
+    exercise_kind: concept
+    slug: census
+    source_path: exercises/concept/census
+    upstream_concept: zero-values
+    skill_id: types.zero-values
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares zero-values as a taught concept.

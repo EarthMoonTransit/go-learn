@@ -1,0 +1,162 @@
+schema_version: 1
+source_id: exercism-go
+source_commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+taxonomy_version: 2
+review:
+  status: reviewed
+  reviewed_by: codex-curriculum-review
+  reviewed_at: "2026-09-04"
+  decision: docs/adr/0001-taxonomy-v2-expressions-control-flow.md
+concepts:
+  - upstream: arithmetic-operators
+    status: exact
+    skill_ids: [expressions.arithmetic]
+    rationale: The label directly names evaluation of arithmetic expressions.
+  - upstream: basics
+    status: gap
+    skill_ids: []
+    rationale: The label is an umbrella and cannot identify one atomic current skill.
+  - upstream: booleans
+    status: exact
+    skill_ids: [expressions.boolean-logic]
+    rationale: The label directly targets boolean values and boolean operators.
+  - upstream: comments
+    status: scope-deferred
+    skill_ids: []
+    rationale: Comment authoring needs a separate decision on the fundamentals track boundary.
+  - upstream: comparison
+    status: exact
+    skill_ids: [expressions.comparison]
+    rationale: The label directly targets equality and ordering comparisons.
+  - upstream: conditionals-if
+    status: exact
+    skill_ids: [control-flow.if]
+    rationale: The label directly identifies if-based conditional control flow.
+  - upstream: conditionals-switch
+    status: exact
+    skill_ids: [control-flow.switch]
+    rationale: The label directly identifies switch-based conditional control flow.
+  - upstream: constants
+    status: ambiguous
+    skill_ids: [types.constants-iota]
+    rationale: The current skill also includes iota and numeric behavior not guaranteed by the broad label.
+  - upstream: error-wrapping
+    status: ambiguous
+    skill_ids: [errors.wrapping-is]
+    rationale: The current skill combines construction of wrapping chains with inspection through errors.Is.
+  - upstream: errors
+    status: ambiguous
+    skill_ids: [errors.creation-propagation, errors.wrapping-is, errors.typed-as, errors.panic-recover-boundaries]
+    rationale: The source label does not distinguish creation, propagation, wrapping, typed errors, or panic boundaries.
+  - upstream: first-class-functions
+    status: ambiguous
+    skill_ids: [functions.first-class-closures]
+    rationale: The current skill also includes closure capture and lifetime mechanics.
+  - upstream: floating-point-numbers
+    status: gap
+    skill_ids: []
+    rationale: Taxonomy v2 has no atomic floating-point representation and rounding skill.
+  - upstream: for-loops
+    status: exact
+    skill_ids: [control-flow.for]
+    rationale: The label directly identifies Go for-loop forms and termination mechanics.
+  - upstream: functions
+    status: ambiguous
+    skill_ids: [functions.signatures-results, functions.variadic, functions.first-class-closures, functions.defer]
+    rationale: The umbrella label cannot select one of the distinct function mechanics.
+  - upstream: interfaces
+    status: ambiguous
+    skill_ids: [interfaces.implicit-satisfaction, interfaces.dynamic-values-nil, interfaces.assertions-switches, interfaces.small-contracts]
+    rationale: The label spans satisfaction, dynamic values, type inspection, nil behavior, and contract design.
+  - upstream: maps
+    status: ambiguous
+    skill_ids: [maps.operations-comma-ok, maps.nil-delete-clear, maps.iteration-comparability]
+    rationale: The label spans lookup, mutation, nil behavior, iteration, and key comparability.
+  - upstream: methods
+    status: ambiguous
+    skill_ids: [methods.receivers-method-sets, methods.values-expressions]
+    rationale: The label does not distinguish receiver and method-set semantics from method values.
+  - upstream: multiple-return-values
+    status: exact
+    skill_ids: [functions.signatures-results]
+    rationale: The label directly identifies multiple function results within signature semantics.
+  - upstream: numbers
+    status: gap
+    skill_ids: []
+    rationale: The umbrella label spans literals, arithmetic, conversions, integer division, and representation.
+  - upstream: packages
+    status: ambiguous
+    skill_ids: [packages.imports-exports-naming, packages.init-order-cycles, packages.internal-layout-tests]
+    rationale: The label does not identify imports, initialization, layout, visibility, or test boundaries separately.
+  - upstream: pointers
+    status: ambiguous
+    skill_ids: [pointers.address-deref-nil, pointers.mutation-sharing, pointers.receiver-choice]
+    rationale: The label spans addressability, nil, sharing, mutation, and receiver selection.
+  - upstream: randomness
+    status: scope-deferred
+    skill_ids: []
+    rationale: Random number generation is a standard-library topic requiring a separate track-boundary decision.
+  - upstream: range-iteration
+    status: exact
+    skill_ids: [control-flow.range]
+    rationale: The label directly targets the mechanics of the range clause.
+  - upstream: regular-expressions
+    status: scope-deferred
+    skill_ids: []
+    rationale: Regular expressions are a library topic and are not automatically part of language fundamentals.
+  - upstream: runes
+    status: ambiguous
+    skill_ids: [unicode.utf8-runes, unicode.range-decoding]
+    rationale: The label does not distinguish the rune model from UTF-8 decoding during iteration.
+  - upstream: slices
+    status: ambiguous
+    skill_ids: [slices.model, slices.capacity-bounds, slices.append-aliasing, slices.copy-overlap, slices.growth-allocation]
+    rationale: The label spans representation, slicing, append, aliasing, copy, and allocation.
+  - upstream: string-formatting
+    status: gap
+    skill_ids: []
+    rationale: Taxonomy v2 has no atomic formatting skill for fmt-style contracts.
+  - upstream: stringers
+    status: gap
+    skill_ids: []
+    rationale: Taxonomy v2 has no atomic fmt.Stringer implementation skill.
+  - upstream: strings
+    status: ambiguous
+    skill_ids: [strings.immutable-bytes, strings.construction-conversion]
+    rationale: The label does not distinguish byte semantics, construction, conversion, or allocation.
+  - upstream: strings-package
+    status: gap
+    skill_ids: []
+    rationale: Taxonomy v2 has no atomic standard-library strings package skill.
+  - upstream: structs
+    status: ambiguous
+    skill_ids: [structs.literals-zero, structs.copy-equality, structs.field-visibility-tags]
+    rationale: The label spans literals, zero values, copying, equality, visibility, and tags.
+  - upstream: time
+    status: ambiguous
+    skill_ids: [time.duration-arithmetic, time.parsing-zones, time.timers-tickers]
+    rationale: The label does not distinguish durations, parsing and zones, or timers and tickers.
+  - upstream: type-assertion
+    status: ambiguous
+    skill_ids: [interfaces.assertions-switches]
+    rationale: The current skill combines single assertions with type switches.
+  - upstream: type-conversion
+    status: ambiguous
+    skill_ids: [types.numeric-conversions, strings.construction-conversion]
+    rationale: The label does not identify numeric conversion versus string and slice conversion.
+  - upstream: type-definitions
+    status: exact
+    skill_ids: [types.named-underlying]
+    rationale: The label directly identifies defined types and their underlying types.
+  - upstream: variables
+    status: exact
+    skill_ids: [types.declarations-inference]
+    rationale: The label directly identifies variable declarations and inferred concrete types.
+  - upstream: variadic-functions
+    status: exact
+    skill_ids: [functions.variadic]
+    rationale: The label directly identifies variadic declarations and calls.
+  - upstream: zero-values
+    status: exact
+    skill_ids: [types.zero-values]
+    rationale: The label directly identifies zero values of Go types.
