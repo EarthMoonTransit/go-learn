@@ -380,6 +380,16 @@ func buildLearnerWorkspaceFiles(loaded learnerPackage) ([]LearnerWorkspaceFile, 
 	}
 	seen := map[string]bool{}
 	result := make([]LearnerWorkspaceFile, 0, len(mapped))
+	if loaded.data.TaskV2.Submission.Kind == "tests" {
+		declarations, err := learnerTestAPI(loaded.layout.VerificationReference)
+		if err != nil {
+			return nil, err
+		}
+		if len(declarations) > 0 {
+			seen[learnerAPIPath] = true
+			result = append(result, LearnerWorkspaceFile{Path: learnerAPIPath, Content: declarations})
+		}
+	}
 	for _, item := range mapped {
 		if err := cleanRelativePath(item.file.Relative); err != nil {
 			return nil, err
@@ -473,6 +483,11 @@ func inspectLearnerSubmission(loaded learnerPackage, workspace string) (learnerS
 		return learnerSubmission{}, err
 	}
 	for _, file := range loaded.files {
+		// This optional editor aid did not exist in older test workspaces.
+		// Its absence must not invalidate their tests or progress.
+		if loaded.data.TaskV2.Submission.Kind == "tests" && file.Path == learnerAPIPath && !file.Editable {
+			continue
+		}
 		if loaded.data.TaskV2.Submission.Kind == "workspace-patch" || !file.Editable {
 			if !found[file.Path] {
 				return learnerSubmission{}, fmt.Errorf("required learner workspace file is missing: %s", file.Path)
@@ -498,6 +513,11 @@ func inspectLearnerSubmission(loaded learnerPackage, workspace string) (learnerS
 				}
 				result.implementation = append(result.implementation, path)
 			} else {
+				if declared, ok := expected["subject/"+entry.Name()]; ok && declared.Path == learnerAPIPath && !declared.Editable {
+					// The filesystem inspection above verified these exact bytes.
+					// Editor declarations never enter the verification submission.
+					continue
+				}
 				if !strings.HasSuffix(entry.Name(), "_test.go") {
 					return learnerSubmission{}, fmt.Errorf("test submission may contain only *_test.go files: %s", entry.Name())
 				}
