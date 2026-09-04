@@ -373,6 +373,14 @@ func (s *Service) Next() (SchedulerChoice, error) {
 	if err != nil {
 		return SchedulerChoice{}, err
 	}
+	route, err := loadRoute(s.root)
+	if err != nil {
+		return SchedulerChoice{}, err
+	}
+	if route != nil {
+		return routeNext(*route, tasks, progress)
+	}
+
 	skills, err := loadSkillMetadata(s.root)
 	if err != nil {
 		return SchedulerChoice{}, err
@@ -396,7 +404,7 @@ func (s *Service) Next() (SchedulerChoice, error) {
 		if item := progress.Tasks[task.ID]; item != nil && item.Completed {
 			continue
 		}
-		choice := SchedulerChoice{Task: task, RecentTypeCount: recent[task.Activity]}
+		choice := SchedulerChoice{Resume: progress.Tasks[task.ID] != nil, Task: task, RecentTypeCount: recent[task.Activity]}
 		for _, prerequisite := range task.Prerequisites {
 			if !known[prerequisite] {
 				choice.MissingPrerequisites = append(choice.MissingPrerequisites, prerequisite)

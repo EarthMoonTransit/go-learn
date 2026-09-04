@@ -17,6 +17,7 @@ go test -race ./...
 go vet ./...
 go test -tags=taskintegration ./...
 go run ./cmd/learn list
+go run ./cmd/learn roadmap
 go run ./cmd/learn next
 go run ./cmd/source-sync -root . -source exercism-go
 go run ./cmd/harvest -root . -source exercism-go
@@ -79,20 +80,22 @@ tasks/                    drafts/review/ready/rejected/retired task packages
 
 ## Начать решать
 
-Learner CLI сам создаёт отдельный workspace и не изменяет canonical package:
+В терминале GoLand используйте короткую команду learn, установленную локально:
 
-```bash
-go run ./cmd/learn list
-go run ./cmd/learn show map-take-001
-go run ./cmd/learn start map-take-001
-# измените файлы в напечатанном workspace
-go run ./cmd/learn check
-go run ./cmd/learn complete
-```
+    learn roadmap
+    learn next
+    learn start literal-bindings-001
+    learn check
+    learn complete
 
-Полный список команд, правила локального progress и граница hidden material:
-[`docs/LEARNER_CLI.md`](docs/LEARNER_CLI.md).
+Откройте напечатанную папку Workspace как проект GoLand. В первой задаче
+редактируется subject/bindings.go. У каждой следующей задачи её TASK.md
+перечисляет редактируемые файлы. Вводная подготовка:
+[docs/LEARNER_START.md](docs/LEARNER_START.md).
 
-Первое живое прохождение: `map-take-001`, затем `detached-append-001`.
-На перерыв используйте `learn pause`, по возвращении — `learn resume <task-id>`.
-[Протокол и feedback](docs/LEARNER_CLI.md#first-human-trial).
+CLI сохраняет ранее пройденные задачи. На перерыв используйте learn pause,
+по возвращении — learn resume TASK-ID. Полный контракт:
+[docs/LEARNER_CLI.md](docs/LEARNER_CLI.md).
+
+Для запуска без локальной команды из корня репозитория используйте
+go run ./cmd/learn с теми же аргументами.
