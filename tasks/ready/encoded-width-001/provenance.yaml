@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "baed9c7825d45cc094936eb669c878023be57430f9af9e9e743885294085cc85"
+  },
+  "creation": {
+    "author": "beginner-foundations-author",
+    "created_at": "2026-09-05",
+    "summary": "Original beginner exercise: Repair exact switch case selection. Statement, API, examples, tests and defect models authored within this batch without external task content."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/encoded-width-001.yaml"
+  }
+}

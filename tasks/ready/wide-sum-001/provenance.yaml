@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "df33e71e6803c5cc14bfd84ab24841eee32effd537b6ca914b30115f8f2a806f"
+  },
+  "creation": {
+    "author": "beginner-foundations-author",
+    "created_at": "2026-09-05",
+    "summary": "Original beginner exercise: Widen operands before adding. Statement, API, examples, tests and defect models authored within this batch without external task content."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/wide-sum-001.yaml"
+  }
+}

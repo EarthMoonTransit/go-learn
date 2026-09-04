@@ -108,38 +108,80 @@
       ]
     },
     {
+      "id": "control-and-verification",
+      "title": "3. Control flow, numeric conversions and verification",
+      "steps": [
+        {
+          "task_id": "bounded-value-001",
+          "role": "introduction",
+          "skills": [
+            "control-flow.if",
+            "expressions.comparison"
+          ]
+        },
+        {
+          "task_id": "wide-sum-001",
+          "role": "introduction",
+          "skills": [
+            "types.numeric-conversions"
+          ]
+        },
+        {
+          "task_id": "encoded-width-001",
+          "role": "introduction",
+          "skills": [
+            "control-flow.switch"
+          ]
+        },
+        {
+          "task_id": "range-offset-001",
+          "role": "introduction",
+          "skills": [
+            "control-flow.range"
+          ]
+        },
+        {
+          "task_id": "clamp-tests-001",
+          "role": "practice",
+          "skills": [
+            "expressions.comparison"
+          ]
+        }
+      ]
+    },
+    {
       "id": "text",
-      "title": "3. Strings and Unicode",
+      "title": "4. Strings and Unicode",
       "steps": []
     },
     {
       "id": "contracts",
-      "title": "4. Structs, pointers, methods, embedding, interfaces and errors",
+      "title": "5. Structs, pointers, methods, embedding, interfaces and errors",
       "steps": []
     },
     {
       "id": "libraries",
-      "title": "5. Packages, generics, I/O, encoding and time",
+      "title": "6. Packages, generics, I/O, encoding and time",
       "steps": []
     },
     {
       "id": "verification",
-      "title": "6. Testing, fuzzing and benchmarks",
+      "title": "7. Testing, fuzzing and benchmarks",
       "steps": []
     },
     {
       "id": "concurrency",
-      "title": "7. Goroutines, channels, sync and context",
+      "title": "8. Goroutines, channels, sync and context",
       "steps": []
     },
     {
       "id": "backend",
-      "title": "8. HTTP and PostgreSQL",
+      "title": "9. HTTP and PostgreSQL",
       "steps": []
     },
     {
       "id": "production",
-      "title": "9. Background work, operations and the final service",
+      "title": "10. Background work, operations and the final service",
       "steps": []
     }
   ]

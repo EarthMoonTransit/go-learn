@@ -56,16 +56,15 @@ tasks:
         detected: 4
         survived: []
       legacy: false
-    - id: clamp-tests-001
-      state: draft
-      input_digest: 3f7f29c5635d0a5581c33e08eaa0a296604c71855da8455acf13849ae3852277
-      task_type: test-writing
-      primary_skill: testing.table-driven
+    - id: bounded-value-001
+      state: ready
+      input_digest: 4697ac79d9cab7e4c75cf01963a8bbf2287b63d343ad85dd24af59746e3e439f
+      task_type: implement
+      primary_skill: control-flow.if
       technical_status: pass
-      review_status: fail
+      review_status: pass
       promotion_eligible: true
-      failing_gate_ids:
-        - review-evidence
+      failing_gate_ids: []
       starter_status: pass
       reference_status: pass
       race_status: not-applicable
@@ -73,6 +72,24 @@ tasks:
         required: 4
         total: 4
         detected: 4
+        survived: []
+      legacy: false
+    - id: clamp-tests-001
+      state: ready
+      input_digest: 808fb55df8762ddf87884cbcc44bed1decbb552b58ec7772b7be1b31a1e09786
+      task_type: test-writing
+      primary_skill: expressions.comparison
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
         survived: []
       legacy: false
     - id: counter-receiver-001
@@ -165,6 +182,24 @@ tasks:
         required: 5
         total: 5
         detected: 5
+        survived: []
+      legacy: false
+    - id: encoded-width-001
+      state: ready
+      input_digest: c4b683f1485ecd0bf5024b711e69dcaca3e78e8660f5d2fb4305b56af04bd622
+      task_type: debug
+      primary_skill: control-flow.switch
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
         survived: []
       legacy: false
     - id: error-chain-query-001
@@ -282,6 +317,24 @@ tasks:
       input_digest: 669644e5d4f83e8c35ce64edb97c84b5d4520524c3d62e06ae8613c8b9db0a56
       task_type: implement
       primary_skill: types.named-underlying
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
+    - id: range-offset-001
+      state: ready
+      input_digest: 2106d091cd92eacd035ae44eaa34dc2714767b249dcc341b597f8809e85685c8
+      task_type: debug
+      primary_skill: control-flow.range
       technical_status: pass
       review_status: pass
       promotion_eligible: true
@@ -425,6 +478,24 @@ tasks:
         detected: 0
         survived: []
       legacy: true
+    - id: wide-sum-001
+      state: ready
+      input_digest: 9ee2fe93f5c9e10dfb0fd01bdddce3440945a264cc6ea894d7269d6a8becc197
+      task_type: debug
+      primary_skill: types.numeric-conversions
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
     - id: zero-results-001
       state: ready
       input_digest: 9a8e5a91db311fabe0ed3b6063d5b58d5e10fe39936c7fff5547fc55bd5b801a
@@ -463,20 +534,20 @@ tasks:
       legacy: true
 states:
     - state: draft
-      count: 9
+      count: 8
     - state: in-review
       count: 0
     - state: ready
-      count: 15
+      count: 20
     - state: rejected
       count: 1
     - state: retired
       count: 0
 task_types:
     - task_type: debug
-      count: 7
+      count: 10
     - task_type: implement
-      count: 13
+      count: 14
     - task_type: refactor
       count: 3
     - task_type: test-writing
