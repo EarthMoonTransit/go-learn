@@ -1,5 +1,13 @@
 # Local learner CLI
 
+For test-writing exercises with supported simple APIs, new workspaces include
+a read-only `subject/learn_api.go` so GoLand can resolve the tested functions.
+Write your tests in the editable test file and run `learn check` or
+`learn complete`. The editor declarations deliberately have no working
+implementation and are excluded from verification. Older workspaces without
+this file still work. Complex APIs retain the checker-only workflow described
+in ADR 0011 until their declaration support is added.
+
 `learn` is a local, text-only workflow for ready Task Contract v2 packages. It
 does not expose legacy task packages, authoring lifecycle states, or hidden
 verification material.

@@ -46,6 +46,12 @@ func TestLearnerWorkflowSupportsEveryV2SubmissionKind(t *testing.T) {
 				t.Fatal(err)
 			}
 			assertLearnerWorkspaceSafe(t, workspace)
+			if fixture.profile == "mutation" {
+				api, err := os.ReadFile(filepath.Join(workspace, "subject", "learn_api.go"))
+				if err != nil || !strings.Contains(string(api), "func Identity(") || !strings.Contains(string(api), "panic(") {
+					t.Fatalf("missing editor API declaration: %q err=%v", api, err)
+				}
+			}
 			if _, err := service.Solution(false); err == nil {
 				t.Fatal("solution was revealed without an explicit action")
 			}
