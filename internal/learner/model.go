@@ -70,6 +70,10 @@ type SkillMetadata struct {
 }
 
 type SchedulerChoice struct {
+	Resume               bool
+	RouteBlock           string
+	RouteRole            string
+	Preparation          string
 	Task                 tasking.LearnerTaskInfo
 	MissingPrerequisites []string
 	RecentTypeCount      int

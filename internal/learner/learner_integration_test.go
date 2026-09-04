@@ -224,6 +224,11 @@ func learnerFixtureRepository(t *testing.T) string {
 			t.Fatalf("copy %s: %v", directory, err)
 		}
 	}
+	// Synthetic repositories exercise the generic fallback; they do not
+	// contain the real course lessons or its preparation guide.
+	if err := os.Remove(filepath.Join(root, "curriculum", "route.yaml")); err != nil && !os.IsNotExist(err) {
+		t.Fatal(err)
+	}
 	for _, file := range []string{"LICENSE", "THIRD_PARTY_NOTICES"} {
 		if err := isolation.CopyFile(filepath.Join(repository, file), filepath.Join(root, file)); err != nil {
 			t.Fatalf("copy %s: %v", file, err)
