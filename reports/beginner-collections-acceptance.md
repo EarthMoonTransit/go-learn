@@ -28,6 +28,12 @@ Promotions used task-promote after independent approval. Full local acceptance
 passed fast tests, race, vet and taskintegration; one 25-package collection was
 reused by phase1 validation and deterministic report checks.
 
+Combined acceptance with the sequential-route tooling also passed fast tests,
+race, vet and tagged integration. Phase1 validation and report check reused the
+existing 25-package collection: no task content or verification contract changed
+when the route tooling was integrated. The route binds all twelve ready lessons
+to their declared skills and prerequisites.
+
 No human completion, hint, session or mastery record was fabricated. The initial
 assisted map-take completion remains the only observed human completion.
 Estimated times and the expanded route await human calibration. This batch is

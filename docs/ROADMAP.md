@@ -68,10 +68,11 @@ extension of the final service.
 
 ## Engine changes, when needed
 
-Add a versioned route description and `learn roadmap`: current block, completed
-tasks, the next available task and planned material. `learn next` follows the
-route and explains missing preparation instead of silently jumping ahead.
-Existing task IDs and learner completion records remain intact.
+Implemented for the opening course: a versioned route description and
+`learn roadmap` show the current block, completed tasks and planned material.
+`learn next` follows the route and explains missing preparation instead of
+silently jumping ahead. Existing task IDs and learner completion records remain
+intact. ADR 0010 records this change; later engine work follows below.
 
 Separate task completion from skill mastery and support repetitions. Any change
 to progress storage needs a version, backup and tested migration preserving
@@ -98,19 +99,30 @@ and repairs an introduced defect. Automatic checks alone are not human mastery.
 | Learner-visible ready tasks | 12 (ten reviewed beginner lessons plus the two initial tasks) |
 | Human-completed tasks | 1 (`map-take-001`: four attempts, one hint, no solution reveal) |
 | Confirmed mastered skills | 0; one assisted completion is not mastery |
-| Next product result | Human trial of the opening blocks; next course milestone is 60 ready tasks |
+| Next product result | Human trial of the opening blocks; 48 more ready tasks reach the 60-task milestone |
 | Current gap | Human feedback on the opening block; mastery and spaced repetition remain scheduled for the working-course milestone |
 
 The stored session duration includes any time without an explicit pause and is
 not claimed as independently measured active learning time. The first feedback
 and review-context export are stored privately in learner home.
 
+## Opening work delivered
+
+1. Recorded this roadmap and aligned the product vision with the personal finish line.
+2. Prepared two reviewed English content batches of five tasks, with explicit
+   prerequisites and positions in the learning route.
+3. Added `learn roadmap`, sequential selection and an English GoLand preparation
+   guide. The opening set contains 12 available tasks. Automated acceptance is
+   complete; the beginner usability criterion still needs real learner feedback.
+
 ## Next batches
 
-1. Record this roadmap and align the product vision with the personal finish line.
-2. Prepare a small English beginner content batch with explicit prerequisites
-   and positions in the learning route.
-3. Add `learn roadmap` and sequential selection; complete the opening set of 12.
+Use the first five real opening-course solutions to adjust the next block.
+Continue toward 60 tasks in batches of 5–10: fill out the initial types,
+expressions, control flow, functions and collections, and introduce test-writing
+tasks. Add independent-skill evidence and repetition through a separate ADR and
+tooling batch, including a versioned, backed-up progress migration. Do not count
+an automated trial or the existing assisted completion as independent mastery.
 
 After every accepted batch update this checkpoint: ready tasks, human-completed
 tasks, confirmed skills, next result and blockers. Planned, draft and legacy-only
