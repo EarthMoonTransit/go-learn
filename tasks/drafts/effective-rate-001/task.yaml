@@ -1,0 +1,41 @@
+schema_version: 2
+id: effective-rate-001
+title: Compute a fractional effective rate
+activity: implementation
+submission:
+  kind: implementation
+  editable_paths: []
+  workspace_skeleton: []
+skills:
+  primary: types.numeric-conversions
+  secondary:
+    - expressions.arithmetic
+prerequisites:
+  - types.declarations-inference
+new_concepts:
+  - types.numeric-conversions
+  - expressions.arithmetic
+difficulty: basic
+estimated_time_minutes:
+  min: 15
+  max: 25
+verification:
+  profile: fixed-tests
+  packages: [./subject]
+  public_checks: [./subject]
+  grader_checks: [./subject]
+  reference_checks: [./subject]
+  required_mutants:
+    - fixed-full-rate
+    - integer-order
+    - missing-percent-scale
+    - round-result
+    - truncate-percent
+  race_required: false
+  vet: true
+  limits:
+    command_timeout_seconds: 30
+    determinism_runs: 2
+    fuzz_seconds: 0
+    benchmark_runs: 1
+quality_status: draft

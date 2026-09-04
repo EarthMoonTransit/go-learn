@@ -1,0 +1,26 @@
+schema_version: 2
+kind: adapted
+project:
+  identity: go-practice-bank
+  repository: https://github.com/EarthMoonTransit/go-learn
+  license: Apache-2.0
+  content_digest: 2272a1d713d0cb5cf0468bd87a0829fd8b706f2913ea773a4227eaac1af7b4bb
+creation:
+  author: phase-3b-authoring
+  created_at: "2026-09-04"
+  summary: Independently authored task using only pinned concept metadata; no upstream statement, cases, tests, code, or solution were copied.
+sources:
+  - registry_id: exercism-go
+    repository: https://github.com/exercism/go
+    commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+    license: MIT
+    usage_mode: adapt
+    role: concept-seed
+    artifacts:
+      - path: exercises/concept/airport-robot/.meta/config.json
+        sha256: 7268a45f4d7920ed81c8d34f74f4233c24801778915b13fa31cc406d0fef4b58
+        usage: concept-only
+attribution_file: ATTRIBUTION.md
+release:
+  binding: deferred-to-release-manifest
+  manifest: provenance/releases/formatter-contract-001.yaml

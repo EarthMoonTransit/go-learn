@@ -1,0 +1,42 @@
+schema_version: 2
+id: counter-receiver-001
+title: Refactor a counter helper to mutate its receiver
+activity: refactoring
+submission:
+  kind: implementation
+  editable_paths: []
+  workspace_skeleton: []
+skills:
+  primary: methods.receiver-semantics
+  secondary:
+    - methods.method-sets
+prerequisites:
+  - types.named-underlying
+  - pointers.mutation-sharing
+  - functions.signatures-results
+new_concepts:
+  - methods.receiver-semantics
+  - methods.method-sets
+difficulty: intermediate
+estimated_time_minutes:
+  min: 20
+  max: 35
+verification:
+  profile: fixed-tests
+  packages: [./subject]
+  public_checks: [./subject]
+  grader_checks: [./subject]
+  reference_checks: [./subject]
+  required_mutants:
+    - copy-before-interface
+    - ignore-delta
+    - replace-value
+    - value-receiver
+  race_required: false
+  vet: true
+  limits:
+    command_timeout_seconds: 30
+    determinism_runs: 2
+    fuzz_seconds: 0
+    benchmark_runs: 1
+quality_status: draft
