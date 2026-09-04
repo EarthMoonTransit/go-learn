@@ -135,3 +135,20 @@ After every accepted batch update this checkpoint: ready tasks, human-completed
 tasks, confirmed skills, next result and blockers. Planned, draft and legacy-only
 packages never count as available learner content. Human calibration gates later
 milestones; automated fixture completions cannot satisfy them.
+
+## Deferred final plan item: theory companion
+
+User decision, 2026-09-05: keep building the practical course now; schedule this
+item at the end of the plan. It does not block the next content batches.
+
+Add short English introductions before new topics, with separate worked
+examples and common mistakes. Link specific relevant sections of Go Tour or
+other approved sources, then connect reading to the corresponding exercises.
+After completion, explain the reasoning, edge cases and alternative approaches;
+link later repetition to the same topic. Worked examples must not disclose the
+pending exercise's solution, and source reuse follows the existing registry.
+
+Acceptance: the learner can see what to read before a block and where to find
+its post-completion explanation from the normal `learn` workflow. At present,
+the course has task statements, hints and a toolchain/workspace preparation
+guide; a systematic theory companion is not implemented.
