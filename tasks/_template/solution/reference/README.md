@@ -1,4 +1,4 @@
 # Reference solution
 
-Минимальное идиоматичное решение хранится отдельно от starter и public export.
-Оно обязано проходить public и grader tests.
+Минимальная идиоматичная реализация и `*_test.go` binding к public/grader
+suites. Не включать в student export.

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:go-practice-bank:task-lifecycle:v1",
+  "title": "Task lifecycle record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "state", "updated_at", "transitions"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "state": {"enum": ["draft", "in-review", "ready", "rejected", "retired"]},
+    "updated_at": {"type": "string", "format": "date"},
+    "transitions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from", "to", "at", "actor", "reason"],
+        "properties": {
+          "from": {"enum": ["", "draft", "in-review", "ready", "rejected", "retired"]},
+          "to": {"enum": ["draft", "in-review", "ready", "rejected", "retired"]},
+          "at": {"type": "string", "format": "date"},
+          "actor": {"type": "string", "minLength": 1, "maxLength": 100},
+          "reason": {"type": "string", "minLength": 1, "maxLength": 300}
+        }
+      }
+    }
+  }
+}

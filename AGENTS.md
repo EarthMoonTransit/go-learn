@@ -26,3 +26,8 @@
 8. Перед завершением batch запускать `go test ./...` и
    `go run ./cmd/validate -root . -coverage -run-commands` (в ФАЗЕ 1 допустим
    `-phase1`).
+9. Никогда не запускать authored task code или task tests непосредственно из
+   source checkout. Использовать `task-check`; legacy validation commands также
+   обязаны выполняться только в disposable copy.
+10. Не перемещать task packages между lifecycle-каталогами вручную. Использовать
+    `task-promote`, не обходить review metadata и не перезаписывать ready id.

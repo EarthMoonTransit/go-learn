@@ -19,7 +19,8 @@ skill. Циклы запрещены.
 - `total` — навык указан как primary или secondary;
 - одна задача даёт не более одной встречи одному skill;
 - prerequisite не считается встречей;
-- quarantined/retired/draft/review/validated без `ready` не входят в coverage.
+- lifecycle states `draft`, `in-review`, `rejected`, `retired` не входят в
+  coverage; legacy schema value `validated` также не учитывается без `ready`.
 
 `minimum_occurrences.primary` и `.total` — нижние границы, не квоты. Taxonomy v3
 использует три обоснованных уровня: 2/4 для specialist-механик, 3/5 как базовый

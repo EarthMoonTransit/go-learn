@@ -54,3 +54,12 @@ taxonomy, спецификации языка и общих API-фактов. О
 Сборка публичного банка генерирует `THIRD_PARTY_NOTICES` из provenance, не из
 текста условия. Любая ошибка или утрата provenance переводит задачу в
 `quarantined` до восстановления цепочки.
+
+## Authoring gate
+
+Для нового task package `provenance.yaml` проходит отдельную schema и точно
+совпадает с `task.yaml` и registry по source id, repository, path, commit,
+license и usage mode. Promotion в `ready` требует reviewer evidence о лицензии,
+clean-room для `reference-only`/`concepts-only` и отсутствии близкого копирования.
+Автоматический validator проверяет согласованность metadata, но не объявляет
+семантическую проверку копирования полностью автоматизируемой.

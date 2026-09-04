@@ -1,4 +1,4 @@
 # Starter boundary
 
-Здесь находится минимальный learner-facing Go module/package. Он не содержит
-reference implementation или подсказок из grader tests.
+`*.go` — минимальная компилируемая learner-facing реализация. Tests сюда не
+помещаются; binding к starter находится в `tests/public` и `tests/grader`.

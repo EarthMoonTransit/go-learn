@@ -1,0 +1,40 @@
+schema_version: 1
+tasks:
+    - id: defined-types-001
+      state: ready
+      task_type: refactor
+      primary_skill: types.named-underlying
+      legacy: true
+    - id: variadic-sum-001
+      state: ready
+      task_type: implement
+      primary_skill: functions.variadic
+      legacy: true
+    - id: zero-state-001
+      state: ready
+      task_type: debug
+      primary_skill: types.zero-values
+      legacy: true
+states:
+    - state: draft
+      count: 0
+    - state: in-review
+      count: 0
+    - state: ready
+      count: 3
+    - state: rejected
+      count: 0
+    - state: retired
+      count: 0
+task_types:
+    - task_type: debug
+      count: 1
+    - task_type: implement
+      count: 1
+    - task_type: refactor
+      count: 1
+gates:
+    - id: task-type-diversity
+      status: not-applicable
+      details:
+        - fewer than 10 lifecycle tasks

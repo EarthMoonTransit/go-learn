@@ -1,0 +1,29 @@
+schema_version: 1
+id: synthetic-identity-001
+title: Return an integer without changing its value
+task_type: implement
+skills:
+  primary: functions.signatures-results
+  secondary: []
+prerequisites:
+  - types.declarations-inference
+new_concepts:
+  - functions.signatures-results
+difficulty: introductory
+estimated_time_minutes:
+  min: 10
+  max: 15
+source:
+  id: exercism-go
+  repository: https://github.com/exercism/go
+  path: exercises/practice/hello-world
+  commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+  license: MIT
+transformation_type: adapted
+validation_commands:
+  - go test -run '^$' ./...
+  - "! go test ./tests/public"
+  - "! go test ./tests/grader"
+  - go test ./solution/reference
+  - "! go test ./solution/mutants/..."
+quality_status: draft

@@ -1,0 +1,18 @@
+schema_version: 1
+source:
+  id: exercism-go
+  repository: https://github.com/exercism/go
+  path: exercises/practice/hello-world
+  commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+  license: MIT
+  usage_mode: adapt
+upstream_authors: []
+upstream_contributors: []
+transformation:
+  type: adapted
+  summary: Synthetic local fixture used only to verify Phase 3A infrastructure.
+  independently_authored:
+    - All synthetic code, tests, and text in this fixture
+  excluded:
+    - All upstream code, tests, canonical data, and statements
+attribution_file: ATTRIBUTION.md

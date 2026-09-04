@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:go-practice-bank:task-aggregate-report:v1",
+  "title": "Deterministic aggregate task report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "tasks", "states", "task_types", "gates"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "state", "task_type", "primary_skill", "legacy"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-[0-9]{3}$"},
+          "state": {"enum": ["draft", "in-review", "ready", "rejected", "retired"]},
+          "task_type": {"enum": ["implement", "debug", "predict", "refactor", "test-writing", "performance"]},
+          "primary_skill": {"type": "string", "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$"},
+          "legacy": {"type": "boolean"}
+        }
+      }
+    },
+    "states": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["state", "count"],
+        "properties": {
+          "state": {"enum": ["draft", "in-review", "ready", "rejected", "retired"]},
+          "count": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "task_types": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["task_type", "count"],
+        "properties": {
+          "task_type": {"type": "string"},
+          "count": {"type": "integer", "minimum": 1}
+        }
+      }
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "status", "details"],
+        "properties": {
+          "id": {"type": "string"},
+          "status": {"enum": ["pass", "fail", "not-applicable"]},
+          "details": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}

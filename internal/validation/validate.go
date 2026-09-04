@@ -8,16 +8,18 @@ import (
 	"io"
 	"net/url"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"regexp"
 	"sort"
 	"strings"
+	"time"
 
 	"github.com/santhosh-tekuri/jsonschema/v5"
 	"go-practice-bank/internal/catalog"
 	curriculumdata "go-practice-bank/internal/curriculum"
+	"go-practice-bank/internal/isolation"
 	sourcepolicy "go-practice-bank/internal/sources"
+	"go-practice-bank/internal/tasking"
 	"go-practice-bank/internal/triage"
 	"gopkg.in/yaml.v3"
 )
@@ -53,6 +55,13 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 		{"catalog/reviews/exercism-go.yaml", "schemas/candidate-review.schema.json", "Exercism candidate reviews"},
 		{"catalog/clusters/exercism-go.yaml", "schemas/candidate-clusters.schema.json", "Exercism candidate clusters"},
 		{"catalog/seed-plans/exercism-foundation-pilot.yaml", "schemas/seed-plan.schema.json", "Exercism seed plan"},
+	}
+	for _, schemaName := range []string{
+		"task-lifecycle.schema.json", "task-review.schema.json", "task-provenance.schema.json", "task-quality-report.schema.json", "task-aggregate-report.schema.json",
+	} {
+		if _, schemaErr := compileYAMLSchema(filepath.Join(root, "schemas", schemaName)); schemaErr != nil {
+			problems = append(problems, schemaErr)
+		}
 	}
 	for _, item := range staticSchemas {
 		schema, schemaErr := compileYAMLSchema(filepath.Join(root, filepath.FromSlash(item.schema)))
@@ -149,6 +158,31 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 
 	if len(paths) == 0 && !opts.AllowEmpty {
 		problems = append(problems, errors.New("tasks/ready contains no task.yaml manifests"))
+	}
+	if aggregate, err := tasking.BuildAggregateReport(root); err != nil {
+		problems = append(problems, fmt.Errorf("task lifecycle inventory: %w", err))
+	} else if err := tasking.ValidateAggregateReport(root, aggregate); err != nil {
+		problems = append(problems, fmt.Errorf("task lifecycle report schema: %w", err))
+	} else {
+		expectedYAML, marshalErr := tasking.MarshalAggregateYAML(aggregate)
+		if marshalErr != nil {
+			problems = append(problems, fmt.Errorf("marshal task lifecycle report: %w", marshalErr))
+		} else {
+			for _, artifact := range []struct {
+				path     string
+				expected []byte
+			}{
+				{"reports/task-quality.md", tasking.MarshalAggregateMarkdown(aggregate)},
+				{"reports/task-quality.yaml", expectedYAML},
+			} {
+				actual, readErr := os.ReadFile(filepath.Join(root, filepath.FromSlash(artifact.path)))
+				if readErr != nil {
+					problems = append(problems, fmt.Errorf("read deterministic %s: %w", artifact.path, readErr))
+				} else if !bytes.Equal(actual, artifact.expected) {
+					problems = append(problems, fmt.Errorf("%s is stale; run task-report", artifact.path))
+				}
+			}
+		}
 	}
 	problems = append(problems, validateMigrationTaskReferences(root, result.Migration, result.Tasks)...)
 	result.Coverage = calculateCoverage(result.Curriculum, result.Tasks, domainBySkill, migrationIndex)
@@ -554,12 +588,14 @@ func validateTask(root, path string, task Task, skills map[string]Skill, sources
 			}
 		}
 		if runCommands {
-			for _, command := range task.ValidationCommands {
-				cmd := exec.Command("sh", "-eu", "-c", command)
-				cmd.Dir = dir
-				output, err := cmd.CombinedOutput()
-				if err != nil {
-					problems = append(problems, fmt.Errorf("%s: validation command %q failed: %w\n%s", prefix, command, err, output))
+			results, err := isolation.RunShellCommandsInCopies(dir, task.ValidationCommands, 60*time.Second)
+			if err != nil {
+				problems = append(problems, fmt.Errorf("%s: prepare isolated validation commands: %w", prefix, err))
+			} else {
+				for _, result := range results {
+					if result.Err != nil {
+						problems = append(problems, fmt.Errorf("%s: validation command %q failed: %w\n%s", prefix, result.Command, result.Err, result.Output))
+					}
 				}
 			}
 		}

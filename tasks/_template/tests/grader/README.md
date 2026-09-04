@@ -1,4 +1,4 @@
 # Grader tests
 
-Непубличные при student export тесты проверяют границы, типичные misconceptions и
-hardcoding. Для готовой задачи этот placeholder заменяется исполняемыми Go tests.
+Внутренняя suite и `*_test.go` binding к starter. Проверяет edge cases и
+hardcoding. Не включать в student export.

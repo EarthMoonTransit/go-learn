@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:go-practice-bank:task-review:v1",
+  "title": "Task review decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "reviewer", "reviewed_at", "decision", "story_free",
+    "prompt_test_alignment", "public_api_stable", "provenance_verified",
+    "license_verified", "reference_only_clean_room_verified",
+    "solution_leakage_checked", "minimum_mutants", "notes"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "reviewer": {"type": "string", "minLength": 1, "maxLength": 100},
+    "reviewed_at": {"type": "string", "format": "date"},
+    "decision": {"enum": ["approve", "request-changes", "reject"]},
+    "story_free": {"type": "boolean"},
+    "prompt_test_alignment": {"type": "boolean"},
+    "public_api_stable": {"type": "boolean"},
+    "provenance_verified": {"type": "boolean"},
+    "license_verified": {"type": "boolean"},
+    "reference_only_clean_room_verified": {"type": "boolean"},
+    "solution_leakage_checked": {"type": "boolean"},
+    "minimum_mutants": {"type": "integer", "minimum": 1, "maximum": 20},
+    "notes": {"type": "string", "minLength": 1, "maxLength": 1000}
+  }
+}
