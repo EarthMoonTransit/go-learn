@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "23f75ee7e0535090faf76f55b0a62e548529f5a3590c5a21572611defbfee20f"
+  },
+  "creation": {
+    "author": "beginner-foundations-author",
+    "created_at": "2026-09-05",
+    "summary": "Original beginner exercise: Construct exact zero values. Statement, API, examples, tests and defect models authored within this batch without external task content."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/zero-results-001.yaml"
+  }
+}

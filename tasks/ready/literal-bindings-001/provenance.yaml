@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "f427ca2b6b99603eab0f689a70e9955066c974f5b91d1521b795e5a14292947b"
+  },
+  "creation": {
+    "author": "beginner-foundations-author",
+    "created_at": "2026-09-05",
+    "summary": "Original beginner exercise: Choose the types of four package variables. Statement, API, examples, tests and defect models authored within this batch without external task content."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/literal-bindings-001.yaml"
+  }
+}

@@ -1,0 +1,45 @@
+schema_version: 2
+id: division-results-001
+title: Repair a three-result function
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: functions.signatures-results
+    secondary:
+        - expressions.arithmetic
+prerequisites:
+    - types.declarations-inference
+    - expressions.boolean-logic
+new_concepts:
+    - functions.signatures-results
+    - expressions.arithmetic
+difficulty: introductory
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - swapped-results
+        - zero-success
+        - exact-failure
+        - positive-remainder
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

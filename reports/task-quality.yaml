@@ -2,6 +2,24 @@ schema_version: 1
 source_check_contract: task-check/v2
 toolchain_policy_digest: 51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51590385dc8e
 tasks:
+    - id: access-logic-001
+      state: ready
+      input_digest: 0b961a7e937b235bee75bce33fe24c9ddc4e587c797e690e0b5cae91fc3e4ff8
+      task_type: implement
+      primary_skill: expressions.boolean-logic
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
     - id: clamp-tests-001
       state: draft
       input_digest: 3f7f29c5635d0a5581c33e08eaa0a296604c71855da8455acf13849ae3852277
@@ -76,6 +94,24 @@ tasks:
         detected: 4
         survived: []
       legacy: false
+    - id: division-results-001
+      state: ready
+      input_digest: 24683f4e4c8d6a22bc310c8553a21bbea69b30d1b256983985e410ae39879100
+      task_type: debug
+      primary_skill: functions.signatures-results
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
     - id: effective-rate-001
       state: draft
       input_digest: acb4dd90a9ca9321bb3f84e4be6738806c4af67f64b511e2b2b3f8c2002f87b4
@@ -114,6 +150,24 @@ tasks:
         detected: 4
         survived: []
       legacy: false
+    - id: exclusive-loop-001
+      state: ready
+      input_digest: 4c5af5fc8b5db6bdfbda29eb2859f0d4667da5b4d3940ed4caefb7f7568f9d78
+      task_type: debug
+      primary_skill: control-flow.for
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
     - id: formatter-contract-001
       state: draft
       input_digest: a84c2b7ac9c60653164aa69605a346e7656285f14faf5a04932e526123ebb401
@@ -124,6 +178,24 @@ tasks:
       promotion_eligible: true
       failing_gate_ids:
         - review-evidence
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
+    - id: literal-bindings-001
+      state: ready
+      input_digest: 00e44d1098a4969fb6474a1b39292eff1bd4c2aa280ace26c90c5fb82afd86a7
+      task_type: implement
+      primary_skill: types.declarations-inference
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
       starter_status: pass
       reference_status: pass
       race_status: not-applicable
@@ -263,6 +335,24 @@ tasks:
         detected: 0
         survived: []
       legacy: true
+    - id: zero-results-001
+      state: ready
+      input_digest: 9a8e5a91db311fabe0ed3b6063d5b58d5e10fe39936c7fff5547fc55bd5b801a
+      task_type: implement
+      primary_skill: types.zero-values
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 5
+        total: 5
+        detected: 5
+        survived: []
+      legacy: false
     - id: zero-state-001
       state: ready
       input_digest: fd51358857af2a0711e30fc320be40c17841548c90107ae990ec7527e7fddda9
@@ -287,16 +377,16 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 5
+      count: 10
     - state: rejected
       count: 1
     - state: retired
       count: 0
 task_types:
     - task_type: debug
-      count: 4
-    - task_type: implement
       count: 6
+    - task_type: implement
+      count: 9
     - task_type: refactor
       count: 3
     - task_type: test-writing

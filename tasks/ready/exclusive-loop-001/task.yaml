@@ -1,0 +1,44 @@
+schema_version: 2
+id: exclusive-loop-001
+title: Repair an exclusive loop boundary
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: control-flow.for
+    secondary: []
+prerequisites:
+    - expressions.boolean-logic
+    - expressions.arithmetic
+    - functions.signatures-results
+new_concepts:
+    - control-flow.for
+difficulty: introductory
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - inclusive-limit
+        - skip-zero
+        - count-odd
+        - skip-second
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
