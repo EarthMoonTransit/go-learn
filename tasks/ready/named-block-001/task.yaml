@@ -1,0 +1,46 @@
+schema_version: 2
+id: named-block-001
+title: Define a named array value
+activity: implementation
+submission:
+    kind: workspace-patch
+    editable_paths:
+        - subject/bindings.go
+    workspace_skeleton:
+        - subject/api.go
+skills:
+    primary: types.named-underlying
+    secondary:
+        - arrays.value-semantics
+prerequisites:
+    - types.declarations-inference
+new_concepts:
+    - types.named-underlying
+    - arrays.value-semantics
+difficulty: introductory
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: workspace-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - alias
+        - slice-storage
+        - wrong-length
+        - wrong-element-type
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

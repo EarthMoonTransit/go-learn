@@ -20,6 +20,42 @@ tasks:
         detected: 4
         survived: []
       legacy: false
+    - id: append-value-001
+      state: ready
+      input_digest: ccbd6f1ce1257c2b408709f348109b4c236bdae7ee43796d8a55776cd08aba64
+      task_type: debug
+      primary_skill: slices.append-growth
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
+    - id: array-copy-001
+      state: ready
+      input_digest: 0c6f87243593f195b85f00f77b208ebafdf7aae3e11972968a55824ecf4035e2
+      task_type: implement
+      primary_skill: arrays.value-semantics
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
     - id: clamp-tests-001
       state: draft
       input_digest: 3f7f29c5635d0a5581c33e08eaa0a296604c71855da8455acf13849ae3852277
@@ -205,11 +241,47 @@ tasks:
         detected: 4
         survived: []
       legacy: false
+    - id: map-presence-001
+      state: ready
+      input_digest: d41f9e745fbef836b03160342b005b73c0a6edb0bb256952eebedd9aa7167692
+      task_type: implement
+      primary_skill: maps.operations-comma-ok
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
     - id: map-take-001
       state: ready
       input_digest: 4579c0556922eb92d723a9b2e1be09176b301323a6741325d7029c9bb20be26e
       task_type: implement
       primary_skill: maps.nil-delete-clear
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
+    - id: named-block-001
+      state: ready
+      input_digest: 669644e5d4f83e8c35ce64edb97c84b5d4520524c3d62e06ae8613c8b9db0a56
+      task_type: implement
+      primary_skill: types.named-underlying
       technical_status: pass
       review_status: pass
       promotion_eligible: true
@@ -259,6 +331,24 @@ tasks:
         required: 4
         total: 4
         detected: 4
+        survived: []
+      legacy: false
+    - id: slice-window-001
+      state: ready
+      input_digest: a66220fae3390e098a975b7880e59a5df05007ee7f562aad1685ec92cd95bdc7
+      task_type: implement
+      primary_skill: slices.header-model
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 5
+        total: 5
+        detected: 5
         survived: []
       legacy: false
     - id: stream-normalize-001
@@ -377,16 +467,16 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 10
+      count: 15
     - state: rejected
       count: 1
     - state: retired
       count: 0
 task_types:
     - task_type: debug
-      count: 6
+      count: 7
     - task_type: implement
-      count: 9
+      count: 13
     - task_type: refactor
       count: 3
     - task_type: test-writing

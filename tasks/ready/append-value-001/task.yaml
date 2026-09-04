@@ -1,0 +1,43 @@
+schema_version: 2
+id: append-value-001
+title: Keep the result of append
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: slices.append-growth
+    secondary: []
+prerequisites:
+    - slices.len-cap-slicing
+    - functions.signatures-results
+new_concepts:
+    - slices.append-growth
+difficulty: introductory
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - lost-header
+        - replace-last
+        - drop-prefix
+        - nil-rejected
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
