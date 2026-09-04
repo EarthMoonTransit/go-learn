@@ -4,11 +4,11 @@ project:
   identity: go-practice-bank
   repository: https://github.com/EarthMoonTransit/go-learn
   license: Apache-2.0
-  content_digest: 3b10bd455316730f209e170a642dfb425296d9940776764ea9650141b3b325af
+  content_digest: 4481920ea7d390f718e297034f4a66ea5c73a865beb1bd9a9df71eeecd0f0eac
 creation:
   author: phase-3b-authoring
   created_at: "2026-09-04"
-  summary: Independently authored task using only pinned concept metadata; no upstream statement, cases, tests, code, or solution were copied.
+  summary: Gross-store metadata supplied only the maps direction; the take-and-delete API, cases, implementation, and defect models were independently authored without consulting upstream statements, canonical cases, code, tests, exemplars, or solutions.
 sources:
   - registry_id: exercism-go
     repository: https://github.com/exercism/go
@@ -17,10 +17,10 @@ sources:
     usage_mode: adapt
     role: concept-seed
     artifacts:
-      - path: exercises/concept/card-tricks/.meta/config.json
-        sha256: 36de25af5278bafa8add6eea7eebfe6a15a229e3f347351d11685d77e1a73dbb
+      - path: exercises/concept/gross-store/.meta/config.json
+        sha256: c6c37b8652475867b14518ed1981d6218d34bacd64a06b96c4b6925774efe249
         usage: concept-only
 attribution_file: ATTRIBUTION.md
 release:
   binding: deferred-to-release-manifest
-  manifest: provenance/releases/detached-append-001.yaml
+  manifest: provenance/releases/map-take-001.yaml

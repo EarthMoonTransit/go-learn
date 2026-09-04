@@ -14,7 +14,7 @@ func Take(values map[string]int, key string) (value int, ok bool)
 
 - Return the stored value and `true` when `key` exists.
 - Treat an existing zero value as present.
-- Delete the entry only when it exists.
+- Remove an existing entry after reading it.
 - Return `0, false` for a missing key.
 - Return `0, false` for a nil map without panicking.
 - Preserve every unrelated entry.

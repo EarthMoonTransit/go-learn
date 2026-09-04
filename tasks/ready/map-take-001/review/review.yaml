@@ -1,0 +1,13 @@
+schema_version: 1
+reviewer: phase-3c-red-team
+reviewed_at: "2026-09-04"
+decision: approve
+story_free: true
+prompt_test_alignment: true
+public_api_stable: true
+provenance_verified: true
+license_verified: true
+reference_only_clean_room_verified: true
+solution_leakage_checked: true
+minimum_mutants: 4
+notes: Five independent read-only roles reviewed correctness, tests and mutation quality, pedagogy, provenance and license, and learner experience. Comma-ok is now an explicit prerequisite rather than a new assessed skill, and the prompt no longer requires an unobservable conditional delete. Public and grader checks cover stored zero, removal, missing and nil maps, and unrelated entries. Pinned metadata identity and MIT attribution were verified; later clean-room comparison found no copied upstream material. All four distinct mutants are detected.
