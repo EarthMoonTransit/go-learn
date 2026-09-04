@@ -43,10 +43,13 @@ maps, conversions and range. Existing Unicode drafts should be repaired when
 their prerequisites are taught. These observations are curriculum debt, not a
 claim of complete coverage or learner mastery.
 
-The separate learner export issue for test submissions must be checked before
-delivery: the exported test workspace currently lacks its checker-supplied API
-declaration for the editor. Runtime verification uses disposable assembly; an
-IDE support repair belongs in a tooling batch.
+The separate learner export issue was reproduced in a temporary test workspace:
+it lacked the checker-supplied API declaration for the editor. The companion
+tooling batch adds a read-only declaration aid and excludes it from verification.
+An actual temporary clamp workflow passed public checking, rejected the weak
+test suite and accepted the complete suite; an older no-aid workspace still
+worked without modification. See editor-api-acceptance.md for the bounded
+export contract and independent review. No GoLand UI trial is claimed.
 
 ## Local acceptance
 
@@ -56,3 +59,10 @@ the deterministic report check reused that same collection. Promotions used
 task-promote after independent review. These are partial-bank checks, not a
 foundation coverage release. Human progress remains one assisted completion;
 no trial or authoring check is counted as learner mastery.
+
+Combined acceptance with the editor API tooling passed fast tests, race, vet and
+tagged integration. Validator and report check reused the same 29-package
+collection because task files and verification contracts were unchanged by
+that tooling. Real-home roadmap/next commands, run from the existing learner
+workspace, showed 17 ready lessons and the preserved completion without changing
+progress bytes.
