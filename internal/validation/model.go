@@ -174,12 +174,14 @@ type Coverage struct {
 }
 
 type Result struct {
-	Curriculum Curriculum
-	Migration  Migration
-	Registry   Registry
-	Tasks      []Task
-	Coverage   []Coverage
-	ReadyTasks int
+	Curriculum         Curriculum
+	Migration          Migration
+	Registry           Registry
+	Tasks              []Task
+	Coverage           []Coverage
+	ReadyTasks         int
+	ReviewedCandidates int
+	SelectedSeeds      int
 }
 
 type Options struct {

@@ -48,6 +48,7 @@ func printSummary(result validation.Result) {
 	}
 	fmt.Printf("taxonomy: %d domains, %d assignable skills, %d deprecated stubs, minimum %d primary / %d total encounters\n", len(result.Curriculum.Domains), len(result.Coverage), deprecated, totalPrimary, totalRequired)
 	fmt.Printf("sources: %d audited entries\n", len(result.Registry.Sources))
+	fmt.Printf("candidate triage: %d reviewed, %d selected pilot seeds\n", result.ReviewedCandidates, result.SelectedSeeds)
 	fmt.Printf("tasks: %d manifests, %d ready\n", len(result.Tasks), result.ReadyTasks)
 	fmt.Println("coverage by domain (actual/required primary, actual/required total):")
 	type totals struct{ ap, rp, at, rt int }

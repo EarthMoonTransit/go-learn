@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:go-practice-bank:candidate-review:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_id", "source_commit", "taxonomy_version", "reviewed_by", "reviewed_at", "reviews"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "source_id": {"const": "exercism-go"},
+    "source_commit": {"$ref": "#/$defs/commit"},
+    "taxonomy_version": {"const": 3},
+    "reviewed_by": {"type": "string", "minLength": 2},
+    "reviewed_at": {"type": "string", "format": "date"},
+    "reviews": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/review"}}
+  },
+  "$defs": {
+    "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "candidateId": {"type": "string", "pattern": "^(concept|practice)/[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "skillId": {"type": "string", "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$"},
+    "skillIds": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/skillId"}},
+    "texts": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 8}},
+    "forms": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["implementation", "debugging", "write-tests", "repair-tests", "refactoring", "API-design", "code-review", "integration", "fuzzing", "benchmark", "concurrency-debugging"]}
+    },
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["go_specificity", "conceptual_focus", "test_quality", "edge_case_quality", "production_transfer", "rewrite_burden", "uniqueness", "suitability_for_beginners", "suitability_for_deliberate_practice"],
+      "properties": {
+        "go_specificity": {"type": "integer", "minimum": 0, "maximum": 5},
+        "conceptual_focus": {"type": "integer", "minimum": 0, "maximum": 5},
+        "test_quality": {"type": "integer", "minimum": 0, "maximum": 5},
+        "edge_case_quality": {"type": "integer", "minimum": 0, "maximum": 5},
+        "production_transfer": {"type": "integer", "minimum": 0, "maximum": 5},
+        "rewrite_burden": {"type": "integer", "minimum": 0, "maximum": 5},
+        "uniqueness": {"type": "integer", "minimum": 0, "maximum": 5},
+        "suitability_for_beginners": {"type": "integer", "minimum": 0, "maximum": 5},
+        "suitability_for_deliberate_practice": {"type": "integer", "minimum": 0, "maximum": 5}
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_id", "source_path", "source_commit", "exercise_kind", "proposed_primary_skills", "proposed_secondary_skills", "prerequisites", "conceptual_mechanisms", "likely_misconceptions", "possible_task_forms", "provenance_status", "review_status", "scores", "decision_reason", "reviewer_rationale"],
+      "properties": {
+        "candidate_id": {"$ref": "#/$defs/candidateId"},
+        "source_path": {"type": "string", "pattern": "^exercises/(concept|practice)/[a-z0-9-]+$"},
+        "source_commit": {"$ref": "#/$defs/commit"},
+        "exercise_kind": {"enum": ["concept", "practice"]},
+        "proposed_primary_skills": {"$ref": "#/$defs/skillIds"},
+        "proposed_secondary_skills": {"$ref": "#/$defs/skillIds"},
+        "prerequisites": {"$ref": "#/$defs/skillIds"},
+        "conceptual_mechanisms": {"$ref": "#/$defs/texts"},
+        "likely_misconceptions": {"$ref": "#/$defs/texts"},
+        "possible_task_forms": {"$ref": "#/$defs/forms"},
+        "duplicate_cluster": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "provenance_status": {"enum": ["source-exact", "multi-hop-exact", "generated-data-unresolved", "blocked"]},
+        "review_status": {"enum": ["accept-as-seed", "accept-after-rewrite", "split-into-multiple-seeds", "merge-with-other-candidate", "idea-only", "deferred", "reject-duplicate", "reject-low-value", "reject-bad-tests", "reject-too-algorithmic", "reject-too-broad", "reject-provenance", "reject-license"]},
+        "scores": {"$ref": "#/$defs/scores"},
+        "decision_reason": {"type": "string", "minLength": 15},
+        "reviewer_rationale": {"type": "string", "minLength": 20}
+      }
+    }
+  }
+}

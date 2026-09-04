@@ -1,0 +1,468 @@
+schema_version: 1
+source_id: exercism-go
+source_commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+reviewed_by: phase-2d-independent-review
+reviewed_at: "2026-09-04"
+clusters:
+    - id: base-parser-family
+      members:
+        - practice/all-your-base
+        - practice/binary
+        - practice/hexadecimal
+        - practice/octal
+        - practice/trinary
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: base-parser-family'
+        public_api_similarity: 'Parser-only starter declarations: practice/all-your-base=func:ConvertToBase; practice/binary=func:ParseBinary; practice/hexadecimal=func:ParseHex; practice/octal=func:ParseOctal; practice/trinary=func:ParseTrinary'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/all-your-base=f2/t1/i4/l0/r1/s0/c18; practice/binary=f3/t0/i4/l1/r2/s0/c7; practice/hexadecimal=f4/t0/i7/l1/r4/s0/c21; practice/octal=f3/t0/i3/l1/r2/s0/c7; practice/trinary=f3/t0/i1/l1/r2/s1/c7'
+        reviewed_semantic_similarity: All members center on positional base conversion; their language mechanisms are incidental and several have broken or weak test contracts.
+      decision: reject-redundant
+      preferred_candidates: []
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: checksum-validation
+      members:
+        - practice/isbn-verifier
+        - practice/luhn
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: checksum-validation'
+        public_api_similarity: 'Parser-only starter declarations: practice/isbn-verifier=func:IsValidISBN; practice/luhn=func:Valid'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/isbn-verifier=f3/t1/i1/l1/r2/s0/c6; practice/luhn=f3/t1/i1/l1/r2/s0/c6'
+        reviewed_semantic_similarity: Both candidates scan normalized digits and validate a checksum; keeping both would repeat the same loop-and-validation ability.
+      decision: prefer-one
+      preferred_candidates:
+        - practice/luhn
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: cipher-transforms
+      members:
+        - practice/affine-cipher
+        - practice/atbash-cipher
+        - practice/crypto-square
+        - practice/rail-fence-cipher
+        - practice/rotational-cipher
+        - practice/simple-cipher
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: cipher-transforms'
+        public_api_similarity: 'Parser-only starter declarations: practice/affine-cipher=func:Decode,func:Encode; practice/atbash-cipher=func:Atbash; practice/crypto-square=func:Encode; practice/rail-fence-cipher=func:Decode,func:Encode; practice/rotational-cipher=func:RotationalCipher; practice/simple-cipher=func:NewCaesar,func:NewShift,func:NewVigenere,method:Decode,method:Decode,method:Encode,method:Encode'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/affine-cipher=f7/t1/i8/l1/r3/s0/c16; practice/atbash-cipher=f3/t1/i1/l1/r2/s0/c6; practice/crypto-square=f3/t1/i1/l1/r2/s0/c6; practice/rail-fence-cipher=f6/t1/i2/l2/r4/s0/c12; practice/rotational-cipher=f3/t1/i1/l1/r2/s0/c6; practice/simple-cipher=f20/t5/i11/l9/r14/s0/c68'
+        reviewed_semantic_similarity: These candidates are dominated by reversible or layout-based cipher rules; only one may remain as idea evidence, not several cosmetic transforms.
+      decision: prefer-one
+      preferred_candidates:
+        - practice/atbash-cipher
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: concurrent-counting
+      members:
+        - practice/paasio
+        - practice/parallel-letter-frequency
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: concurrent-counting'
+        public_api_similarity: 'Parser-only starter declarations: practice/paasio=func:NewReadCounter,func:NewReadWriteCounter,func:NewWriteCounter,method:Read,method:ReadCount,method:Write,method:WriteCount; practice/parallel-letter-frequency=func:ConcurrentFrequency,func:Frequency'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/paasio=f28/t7/i19/l0/r6/s0/c125; practice/parallel-letter-frequency=f6/t2/i1/l2/r4/s0/c20'
+        reviewed_semantic_similarity: Both count work under concurrency, but one exercises transparent I/O decoration while the other exercises result ownership and aggregation.
+      decision: keep-distinct
+      preferred_candidates:
+        - practice/paasio
+        - practice/parallel-letter-frequency
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: countdown-song
+      members:
+        - practice/beer-song
+        - practice/bottle-song
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: countdown-song'
+        public_api_similarity: 'Parser-only starter declarations: practice/beer-song=func:Song,func:Verse,func:Verses; practice/bottle-song=func:Recite'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/beer-song=f8/t0/i10/l2/r3/s0/c21; practice/bottle-song=f4/t2/i4/l0/r1/s1/c11'
+        reviewed_semantic_similarity: Both expose the same countdown loop, boundary wording, and large literal-output burden without distinct Go mastery.
+      decision: reject-redundant
+      preferred_candidates: []
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: grid-neighborhood
+      members:
+        - practice/flower-field
+        - practice/game-of-life
+        - practice/minesweeper
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: grid-neighborhood'
+        public_api_similarity: 'Parser-only starter declarations: practice/flower-field=func:Annotate; practice/game-of-life=func:Tick; practice/minesweeper=func:Annotate'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/flower-field=f3/t1/i1/l1/r1/s0/c7; practice/game-of-life=f3/t1/i1/l1/r2/s0/c7; practice/minesweeper=f4/t1/i4/l1/r2/s0/c12'
+        reviewed_semantic_similarity: The candidates share neighbor scans over row slices; only the snapshot/aliasing variant contributes a distinct capability beyond boundary handling.
+      decision: prefer-one
+      preferred_candidates:
+        - practice/flower-field
+        - practice/game-of-life
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: higher-order-collection-operations
+      members:
+        - concept/expenses
+        - practice/accumulate
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: higher-order-collection-operations'
+        public_api_similarity: 'Parser-only starter declarations: concept/expenses=func:ByCategory,func:ByDaysPeriod,func:CategoryExpenses,func:Filter,func:TotalByPeriod; practice/accumulate=func:Accumulate'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): concept/expenses=f9/t2/i9/l0/r6/s0/c31; practice/accumulate=f7/t0/i5/l1/r3/s1/c18'
+        reviewed_semantic_similarity: Both pass a function over a collection; the concept exercise adds closure construction and offers the richer basis for separated seeds.
+      decision: merge-as-seed
+      preferred_candidates:
+        - concept/expenses
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: lasagna-family
+      members:
+        - concept/lasagna
+        - concept/lasagna-master
+      signal_types:
+        - ast-shape
+        - concept-set
+        - file-hash
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes:
+            - 7943d357f137a7600be90732638e9d6645283585da8016628f7584352b9a77c3
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: lasagna-family'
+        public_api_similarity: 'Parser-only starter declarations: concept/lasagna=func:ElapsedTime,func:PreparationTime,func:RemainingOvenTime; concept/lasagna-master=no-starter-function'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): concept/lasagna=f7/t1/i4/l0/r4/s0/c14; concept/lasagna-master=f4/t4/i8/l0/r5/s0/c33'
+        reviewed_semantic_similarity: Shared framing and module boilerplate do not justify separate cosmetic tasks; retain only independently observable function and slice mechanisms.
+      decision: merge-as-seed
+      preferred_candidates:
+        - concept/lasagna-master
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: list-abstraction
+      members:
+        - practice/linked-list
+        - practice/list-ops
+        - practice/simple-linked-list
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: list-abstraction'
+        public_api_similarity: 'Parser-only starter declarations: practice/linked-list=func:NewList,method:Count,method:Delete,method:First,method:Last,method:Next,method:Pop,method:Prev,method:Push,method:Reverse,method:Shift,method:Unshift; practice/list-ops=method:Append,method:Concat,method:Filter,method:Foldl,method:Foldr,method:Length,method:Map,method:Reverse; practice/simple-linked-list=func:New,method:Array,method:Peek,method:Pop,method:Push,method:Reverse,method:Size'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/linked-list=f22/t6/i14/l3/r6/s2/c133; practice/list-ops=f19/t9/i8/l0/r10/s0/c70; practice/simple-linked-list=f18/t2/i6/l7/r8/s3/c62'
+        reviewed_semantic_similarity: All present list-shaped APIs, but function values, singly linked pointer ownership, and bidirectional invariants are separate abilities.
+      decision: keep-distinct
+      preferred_candidates:
+        - practice/list-ops
+        - practice/simple-linked-list
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: matrix-module-skeleton
+      members:
+        - practice/matrix
+        - practice/saddle-points
+      signal_types:
+        - ast-shape
+        - concept-set
+        - file-hash
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes:
+            - 56907be466c737285212da71881cd2f11803dd69465ceabb7183778a8ff961c5
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: matrix-module-skeleton'
+        public_api_similarity: 'Parser-only starter declarations: practice/matrix=func:New,method:Cols,method:Rows,method:Set; practice/saddle-points=func:New,method:Saddle'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/matrix=f12/t1/i26/l5/r6/s0/c73; practice/saddle-points=f6/t1/i5/l1/r7/s0/c24'
+        reviewed_semantic_similarity: The only exact similarity is shared module boilerplate; reviewed source and test semantics are not duplicates, demonstrating why hashes are only signals.
+      decision: keep-distinct
+      preferred_candidates: []
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: number-theory-drills
+      members:
+        - practice/armstrong-numbers
+        - practice/difference-of-squares
+        - practice/nth-prime
+        - practice/palindrome-products
+        - practice/perfect-numbers
+        - practice/prime-factors
+        - practice/pythagorean-triplet
+        - practice/sieve
+        - practice/square-root
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: number-theory-drills'
+        public_api_similarity: 'Parser-only starter declarations: practice/armstrong-numbers=func:IsNumber; practice/difference-of-squares=func:Difference,func:SquareOfSum,func:SumOfSquares; practice/nth-prime=func:Nth; practice/palindrome-products=func:Products; practice/perfect-numbers=func:Classify; practice/prime-factors=func:Factors; practice/pythagorean-triplet=func:Range,func:Sum; practice/sieve=func:Sieve; practice/square-root=func:SquareRoot'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/armstrong-numbers=f3/t1/i1/l1/r2/s0/c6; practice/difference-of-squares=f7/t1/i1/l3/r1/s0/c12; practice/nth-prime=f3/t1/i1/l1/r1/s1/c8; practice/palindrome-products=f4/t3/i8/l1/r2/s0/c22; practice/perfect-numbers=f5/t1/i3/l2/r3/s1/c12; practice/prime-factors=f3/t1/i1/l1/r2/s0/c9; practice/pythagorean-triplet=f6/t3/i2/l2/r2/s0/c14; practice/sieve=f3/t1/i2/l1/r2/s0/c9; practice/square-root=f3/t1/i2/l1/r2/s0/c7'
+        reviewed_semantic_similarity: These candidates repeatedly use loops and arithmetic as incidental tools for mathematical search or classification rather than atomic Go practice.
+      decision: reject-redundant
+      preferred_candidates: []
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: parser-suite
+      members:
+        - practice/dot-dsl
+        - practice/forth
+        - practice/markdown
+        - practice/ocr-numbers
+        - practice/sgf-parsing
+        - practice/wordy
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: parser-suite'
+        public_api_similarity: 'Parser-only starter declarations: practice/dot-dsl=func:Parse; practice/forth=func:Forth; practice/markdown=func:Render; practice/ocr-numbers=func:Recognize; practice/sgf-parsing=func:Parse; practice/wordy=func:Answer'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/dot-dsl=f4/t3/i8/l0/r1/s0/c21; practice/forth=f3/t1/i4/l1/r2/s0/c27; practice/markdown=f3/t1/i14/l3/r2/s1/c22; practice/ocr-numbers=f2/t1/i4/l0/r1/s0/c8; practice/sgf-parsing=f3/t2/i4/l1/r2/s0/c9; practice/wordy=f3/t1/i1/l1/r2/s1/c8'
+        reviewed_semantic_similarity: All parse structured text, but their state machines and outputs differ; only refactoring and decomposed parser evidence is retained.
+      decision: keep-distinct
+      preferred_candidates:
+        - practice/markdown
+        - practice/sgf-parsing
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: randomness-statistical
+      members:
+        - concept/animal-magic
+        - practice/baffling-birthdays
+        - practice/dnd-character
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: randomness-statistical'
+        public_api_similarity: 'Parser-only starter declarations: concept/animal-magic=func:GenerateWandEnergy,func:RollADie,func:ShuffleAnimals; practice/baffling-birthdays=func:EstimatedProbability,func:RandomBirthdates,func:SharedBirthday; practice/dnd-character=func:Ability,func:GenerateCharacter,func:Modifier'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): concept/animal-magic=f7/t0/i14/l0/r5/s0/c28; practice/baffling-birthdays=f12/t2/i9/l2/r11/s0/c41; practice/dnd-character=f11/t3/i4/l2/r4/s0/c26'
+        reviewed_semantic_similarity: Each relies on repeated random sampling without a deterministic seam; test volume does not repair the same reproducibility defect.
+      decision: reject-redundant
+      preferred_candidates: []
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: remote-control-car
+      members:
+        - concept/jedliks-toys
+        - concept/need-for-speed
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: remote-control-car'
+        public_api_similarity: 'Parser-only starter declarations: concept/jedliks-toys=func:NewCar; concept/need-for-speed=func:CanFinish,func:Drive,func:NewCar,func:NewTrack'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): concept/jedliks-toys=f5/t1/i4/l0/r4/s0/c12; concept/need-for-speed=f8/t0/i4/l0/r4/s0/c16'
+        reviewed_semantic_similarity: The state model and operation names are near-identical, but receiver mutation and struct value semantics can remain distinct only with explicit targets.
+      decision: keep-distinct
+      preferred_candidates:
+        - concept/jedliks-toys
+        - concept/need-for-speed
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: repetitive-song-builder
+      members:
+        - practice/food-chain
+        - practice/house
+        - practice/proverb
+        - practice/twelve-days
+        - practice/two-fer
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: repetitive-song-builder'
+        public_api_similarity: 'Parser-only starter declarations: practice/food-chain=func:Song,func:Verse,func:Verses; practice/house=func:Song,func:Verse; practice/proverb=func:Proverb; practice/twelve-days=func:Song,func:Verse; practice/two-fer=func:ShareWith'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/food-chain=f8/t2/i4/l2/r2/s1/c31; practice/house=f6/t1/i5/l2/r3/s0/c20; practice/proverb=f3/t1/i1/l1/r2/s0/c8; practice/twelve-days=f7/t1/i3/l3/r2/s1/c25; practice/two-fer=f3/t1/i1/l1/r2/s0/c5'
+        reviewed_semantic_similarity: The group mostly reproduces large or tiny formatted literals and offers little distinct deliberate practice beyond string assembly.
+      decision: reject-redundant
+      preferred_candidates: []
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: resistor-color-family
+      members:
+        - practice/resistor-color
+        - practice/resistor-color-duo
+        - practice/resistor-color-trio
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: resistor-color-family'
+        public_api_similarity: 'Parser-only starter declarations: practice/resistor-color=func:ColorCode,func:Colors; practice/resistor-color-duo=func:Value; practice/resistor-color-trio=func:Label'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/resistor-color=f8/t2/i5/l2/r5/s0/c21; practice/resistor-color-duo=f3/t1/i1/l1/r2/s0/c6; practice/resistor-color-trio=f3/t1/i1/l1/r2/s0/c6'
+        reviewed_semantic_similarity: The larger variants add positional arithmetic and formatting to the same lookup, so only the smallest focused member is preferred.
+      decision: prefer-one
+      preferred_candidates:
+        - practice/resistor-color
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: state-machine-objects
+      members:
+        - practice/bowling
+        - practice/hangman
+        - practice/react
+        - practice/save-the-cow
+        - practice/split-second-stopwatch
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: state-machine-objects'
+        public_api_similarity: 'Parser-only starter declarations: practice/bowling=func:NewGame,method:Roll,method:Score; practice/hangman=func:NewGame,method:Guess,method:MaskedWord,method:RemainingGuesses,method:State; practice/react=func:New,method:AddCallback,method:Cancel,method:CreateCompute1,method:CreateCompute2,method:CreateInput,method:SetValue,method:Value; practice/save-the-cow=func:NewGame,method:Guess,method:MaskedWord,method:RemainingGuesses,method:State; practice/split-second-stopwatch=func:NewSplitSecondStopwatch,method:AdvanceTime,method:CurrentLap,method:Lap,method:PreviousLaps,method:Reset,method:Start,method:State,method:Stop,method:Total'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/bowling=f6/t2/i6/l0/r3/s1/c19; practice/hangman=f7/t2/i8/l1/r4/s0/c27; practice/react=f16/t9/i6/l1/r10/s4/c51; practice/save-the-cow=f7/t2/i8/l1/r4/s0/c27; practice/split-second-stopwatch=f14/t4/i8/l1/r4/s1/c45'
+        reviewed_semantic_similarity: All maintain state transitions, but callback dependency, transition errors, and lifecycle invariants are semantically distinct and require decomposition.
+      decision: keep-distinct
+      preferred_candidates:
+        - practice/react
+        - practice/split-second-stopwatch
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: stateful-collections
+      members:
+        - practice/grade-school
+        - practice/high-scores
+        - practice/kindergarten-garden
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: stateful-collections'
+        public_api_similarity: 'Parser-only starter declarations: practice/grade-school=func:New,method:Add,method:Enrollment,method:Grade; practice/high-scores=func:NewHighScores,method:Latest,method:PersonalBest,method:Scores,method:TopThree; practice/kindergarten-garden=func:NewGarden,method:Plants'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/grade-school=f12/t5/i3/l7/r16/s0/c64; practice/high-scores=f8/t3/i2/l1/r4/s0/c35; practice/kindergarten-garden=f9/t2/i5/l2/r5/s3/c37'
+        reviewed_semantic_similarity: Members share method-backed collection state, while ordering, defensive copies, and instance isolation supply different review targets.
+      decision: keep-distinct
+      preferred_candidates:
+        - practice/grade-school
+        - practice/high-scores
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: time-calculation
+      members:
+        - concept/booking-up-for-beauty
+        - practice/gigasecond
+        - practice/meetup
+        - practice/swift-scheduling
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: time-calculation'
+        public_api_similarity: 'Parser-only starter declarations: concept/booking-up-for-beauty=func:AnniversaryDate,func:Description,func:HasPassed,func:IsAfternoonAppointment,func:Schedule; practice/gigasecond=func:AddGigasecond; practice/meetup=func:Day; practice/swift-scheduling=func:DeliveryDate'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): concept/booking-up-for-beauty=f10/t5/i5/l0/r5/s0/c28; practice/gigasecond=f4/t1/i3/l1/r1/s0/c11; practice/meetup=f3/t1/i1/l1/r2/s0/c6; practice/swift-scheduling=f3/t1/i1/l1/r2/s0/c6'
+        reviewed_semantic_similarity: All use time values, but deterministic clocks, fixed durations, calendar occurrence, and parsing layouts are different abilities.
+      decision: keep-distinct
+      preferred_candidates:
+        - practice/gigasecond
+        - practice/meetup
+        - practice/swift-scheduling
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.
+    - id: tree-structures
+      members:
+        - practice/binary-search-tree
+        - practice/pov
+        - practice/satellite
+        - practice/tree-building
+        - practice/zipper
+      signal_types:
+        - ast-shape
+        - concept-set
+        - public-api
+        - semantic
+      signals:
+        shared_file_hashes: []
+        shared_test_hashes: []
+        concept_sets:
+            - 'reviewed cluster: tree-structures'
+        public_api_similarity: 'Parser-only starter declarations: practice/binary-search-tree=func:NewBst,method:Insert,method:SortedData; practice/pov=func:New,method:Children,method:FromPov,method:PathTo,method:String,method:Value; practice/satellite=func:TreeFromTraversals; practice/tree-building=func:Build; practice/zipper=func:NewZipper,method:Left,method:Right,method:SetLeft,method:SetRight,method:SetValue,method:ToTree,method:Up,method:Value'
+        ast_similarity: 'Parser-only starter/public-test node counts (func/type/if/for/range/switch/call): practice/binary-search-tree=f11/t3/i15/l2/r4/s1/c55; practice/pov=f15/t3/i10/l2/r7/s1/c187; practice/satellite=f5/t2/i7/l1/r2/s0/c19; practice/tree-building=f11/t3/i5/l3/r5/s1/c29; practice/zipper=f17/t5/i15/l1/r3/s1/c70'
+        reviewed_semantic_similarity: 'The common recursive tree shape is not enough for duplication: construction validation, rerooting, reconstruction, and persistent navigation differ.'
+      decision: keep-distinct
+      preferred_candidates:
+        - practice/tree-building
+        - practice/zipper
+      reviewer_rationale: Independent reviewers compared API purpose, concept assignments, edge partitions, and likely solution mechanisms before recording this versioned decision.

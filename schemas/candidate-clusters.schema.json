@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:go-practice-bank:candidate-clusters:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_id", "source_commit", "reviewed_by", "reviewed_at", "clusters"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "source_id": {"const": "exercism-go"},
+    "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "reviewed_by": {"type": "string", "minLength": 2},
+    "reviewed_at": {"type": "string", "format": "date"},
+    "clusters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "members", "signal_types", "signals", "decision", "preferred_candidates", "reviewer_rationale"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "members": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "pattern": "^(concept|practice)/[a-z0-9-]+$"}},
+          "signal_types": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["file-hash", "test-hash", "concept-set", "public-api", "ast-shape", "semantic"]}},
+          "signals": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["shared_file_hashes", "shared_test_hashes", "concept_sets", "public_api_similarity", "ast_similarity", "reviewed_semantic_similarity"],
+            "properties": {
+              "shared_file_hashes": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+              "shared_test_hashes": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+              "concept_sets": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+              "public_api_similarity": {"type": "string"},
+              "ast_similarity": {"type": "string"},
+              "reviewed_semantic_similarity": {"type": "string", "minLength": 15}
+            }
+          },
+          "decision": {"enum": ["keep-distinct", "prefer-one", "merge-as-seed", "reject-redundant"]},
+          "preferred_candidates": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^(concept|practice)/[a-z0-9-]+$"}},
+          "reviewer_rationale": {"type": "string", "minLength": 20}
+        }
+      }
+    }
+  }
+}

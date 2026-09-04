@@ -18,6 +18,7 @@ import (
 	"go-practice-bank/internal/catalog"
 	curriculumdata "go-practice-bank/internal/curriculum"
 	sourcepolicy "go-practice-bank/internal/sources"
+	"go-practice-bank/internal/triage"
 	"gopkg.in/yaml.v3"
 )
 
@@ -49,6 +50,9 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 		{"curriculum/migrations/v2-to-v3.yaml", "schemas/taxonomy-migration.schema.json", "taxonomy migration"},
 		{"curriculum/mappings/exercism-go.yaml", "schemas/exercism-concept-map.schema.json", "Exercism concept map"},
 		{"curriculum/evidence/exercism-go.yaml", "schemas/skill-evidence.schema.json", "Exercism skill evidence"},
+		{"catalog/reviews/exercism-go.yaml", "schemas/candidate-review.schema.json", "Exercism candidate reviews"},
+		{"catalog/clusters/exercism-go.yaml", "schemas/candidate-clusters.schema.json", "Exercism candidate clusters"},
+		{"catalog/seed-plans/exercism-foundation-pilot.yaml", "schemas/seed-plan.schema.json", "Exercism seed plan"},
 	}
 	for _, item := range staticSchemas {
 		schema, schemaErr := compileYAMLSchema(filepath.Join(root, filepath.FromSlash(item.schema)))
@@ -98,6 +102,19 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 		}
 		if mapErr == nil && evidenceErr == nil && inventoryErr == nil && candidatesErr == nil {
 			problems = append(problems, curriculumdata.Validate(mapping, evidence, exercismSource, result.Curriculum.Version, skillSet(skills), inventory.Concepts, candidates))
+			bundle, bundleErr := triage.Load(root)
+			taxonomyVersion, contracts, contractsErr := triage.LoadSkillContracts(root)
+			if bundleErr != nil {
+				problems = append(problems, bundleErr)
+			}
+			if contractsErr != nil {
+				problems = append(problems, contractsErr)
+			}
+			if bundleErr == nil && contractsErr == nil {
+				problems = append(problems, triage.Validate(bundle, candidates, contracts, taxonomyVersion, exercismSource))
+				result.ReviewedCandidates = len(bundle.Reviews.Reviews)
+				result.SelectedSeeds = len(bundle.Seeds.SelectedSeeds)
+			}
 		}
 	}
 
