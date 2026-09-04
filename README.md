@@ -58,6 +58,10 @@ sources/registry.yaml     реестр аудированных источник
 tasks/                    drafts/review/ready/rejected/retired task packages
 ```
 
+Конечное видение продукта, текущая контрольная точка, roadmap и brief для
+независимого model audit зафиксированы в
+[`docs/PROJECT_VISION.md`](docs/PROJECT_VISION.md).
+
 Детали trust boundary и cache: [`docs/SOURCE_SYNC.md`](docs/SOURCE_SYNC.md).
 
 Формат task package и жизненный цикл описаны в
