@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"go-practice-bank/internal/safeio"
@@ -42,8 +43,8 @@ func main() {
 			var collection tasking.CheckCollection
 			collection, err = tasking.CheckAll(*root, states)
 			value = collection
-			for _, report := range collection.Reports {
-				if !report.Passed {
+			for _, checked := range collection.Tasks {
+				if !checked.Report.Passed {
 					passed = false
 				}
 			}
@@ -65,11 +66,44 @@ func main() {
 	}
 	if *output == "-" {
 		_, _ = os.Stdout.Write(content)
-	} else if _, err := safeio.AtomicWrite(*root, *output, content, 2<<20); err != nil {
+	} else if err := writeOutput(*root, *output, content); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 	if !passed {
 		os.Exit(1)
 	}
+}
+
+func writeOutput(root, path string, content []byte) error {
+	if !filepath.IsAbs(path) {
+		_, err := safeio.AtomicWrite(root, filepath.ToSlash(path), content, 2<<20)
+		return err
+	}
+	directory := filepath.Dir(path)
+	if err := os.MkdirAll(directory, 0o700); err != nil {
+		return err
+	}
+	temporary, err := os.CreateTemp(directory, ".task-check-*")
+	if err != nil {
+		return err
+	}
+	temporaryPath := temporary.Name()
+	defer os.Remove(temporaryPath)
+	if err := temporary.Chmod(0o600); err != nil {
+		_ = temporary.Close()
+		return err
+	}
+	if _, err := temporary.Write(content); err != nil {
+		_ = temporary.Close()
+		return err
+	}
+	if err := temporary.Sync(); err != nil {
+		_ = temporary.Close()
+		return err
+	}
+	if err := temporary.Close(); err != nil {
+		return err
+	}
+	return os.Rename(temporaryPath, path)
 }

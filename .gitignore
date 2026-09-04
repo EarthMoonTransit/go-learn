@@ -5,3 +5,4 @@ bin/
 coverage.out
 .cache/
 .source-cache/
+.tmp/

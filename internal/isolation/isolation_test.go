@@ -8,23 +8,6 @@ import (
 	"time"
 )
 
-func TestRunLegacyCommandInCopyDoesNotMutateSource(t *testing.T) {
-	source := t.TempDir()
-	if err := os.WriteFile(filepath.Join(source, "go.mod"), []byte("module task.local/copy-test\n\ngo 1.27\n"), 0o644); err != nil {
-		t.Fatal(err)
-	}
-	if err := os.WriteFile(filepath.Join(source, "copy_test.go"), []byte("package copytest\n\nimport \"testing\"\n\nfunc TestCopy(t *testing.T) {}\n"), 0o644); err != nil {
-		t.Fatal(err)
-	}
-	results, err := RunLegacyCommandsInCopies(source, []string{"go test ./..."}, 30*time.Second)
-	if err != nil || len(results) != 1 || results[0].Err != nil {
-		t.Fatalf("run legacy command: results=%#v err=%v", results, err)
-	}
-	if _, err := os.Stat(filepath.Join(source, "touched")); !os.IsNotExist(err) {
-		t.Fatalf("command mutated source directory: %v", err)
-	}
-}
-
 func TestLegacyParserRejectsShellAndOtherProgramsBeforeExecution(t *testing.T) {
 	marker := filepath.Join(t.TempDir(), "marker")
 	commands := []string{

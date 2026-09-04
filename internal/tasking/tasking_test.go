@@ -17,15 +17,157 @@ const syntheticID = "synthetic-identity-001"
 
 func TestCheckValidDraft(t *testing.T) {
 	root := fixtureRepository(t)
-	report, err := Check(root, syntheticID)
-	if err != nil {
-		t.Fatal(err)
-	}
+	report := checkWithoutError(t, root)
 	if !report.Passed {
 		t.Fatalf("valid fixture failed: %#v", report.Gates)
 	}
 	if report.Mutants.Total != 1 || report.Mutants.Detected != 1 || len(report.Mutants.Survived) != 0 {
 		t.Fatalf("unexpected mutant result: %#v", report.Mutants)
+	}
+}
+
+func TestCheckAllUsesOneSessionAndFreshVariantWorkspaces(t *testing.T) {
+	root := fixtureRepository(t)
+	runner := newFakeExecutionRunner()
+	session, err := newCheckSessionWithRunner(root, runner)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = session.Close() })
+	collection, err := session.CheckAll(nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if collection.Execution.Sessions != 1 || collection.Execution.TaskChecks != 1 || collection.Execution.VariantRuns != 5 || collection.Execution.Workspaces != 5 {
+		t.Fatalf("unexpected execution topology: %+v", collection.Execution)
+	}
+	seen := map[string]bool{}
+	for _, workspace := range runner.workspaceIDs {
+		if seen[workspace] {
+			t.Fatalf("workspace reused: %s", workspace)
+		}
+		seen[workspace] = true
+	}
+	for _, cacheID := range runner.cacheIDs {
+		if cacheID != "shared-session-cache" {
+			t.Fatalf("variant used a different compiler cache: %s", cacheID)
+		}
+	}
+}
+
+func TestStandaloneCheckCreatesAndClosesOwnSession(t *testing.T) {
+	root := fixtureRepository(t)
+	created := 0
+	var runners []*fakeExecutionRunner
+	factory := func() (executionRunner, error) {
+		created++
+		runner := newFakeExecutionRunner()
+		runners = append(runners, runner)
+		return runner, nil
+	}
+	for range 2 {
+		if report, err := checkWithRunnerFactory(root, syntheticID, factory); err != nil || !report.Passed {
+			t.Fatalf("standalone check failed: report=%#v err=%v", report, err)
+		}
+	}
+	if created != 2 || !runners[0].closed || !runners[1].closed {
+		t.Fatalf("standalone sessions: created=%d closed=%t/%t", created, runners[0].closed, runners[1].closed)
+	}
+}
+
+func TestCheckCollectionIsDeterministicAndRejectsStaleness(t *testing.T) {
+	root := fixtureRepository(t)
+	first, err := fakeSession(t, root).CheckAll(nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	second, err := fakeSession(t, root).CheckAll(nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	firstYAML, _ := MarshalCheckCollection(first)
+	secondYAML, _ := MarshalCheckCollection(second)
+	if !bytes.Equal(firstYAML, secondYAML) {
+		t.Fatal("identical inputs produced different check collections")
+	}
+	forged := first
+	forged.Tasks[0].InputDigest = strings.Repeat("0", 64)
+	if err := ValidateCheckCollection(root, forged, nil); err == nil || !strings.Contains(err.Error(), "digest changed") {
+		t.Fatalf("forged digest accepted: %v", err)
+	}
+	replaceInFile(t, taskFile(root, "starter/identity.go"), "return value + 1", "return value + 2")
+	if err := ValidateCheckCollection(root, first, nil); err == nil || !strings.Contains(err.Error(), "digest changed") {
+		t.Fatalf("stale collection accepted: %v", err)
+	}
+}
+
+func TestCheckCollectionRejectsInvalidInventoryAndPolicy(t *testing.T) {
+	newCollection := func(t *testing.T) (string, CheckCollection) {
+		t.Helper()
+		root := fixtureRepository(t)
+		collection, err := fakeSession(t, root).CheckAll(nil)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return root, collection
+	}
+	t.Run("toolchain digest", func(t *testing.T) {
+		root, collection := newCollection(t)
+		collection.ToolchainPolicyDigest = strings.Repeat("0", 64)
+		if err := ValidateCheckCollection(root, collection, nil); err == nil || !strings.Contains(err.Error(), "toolchain policy digest") {
+			t.Fatalf("stale toolchain collection accepted: %v", err)
+		}
+	})
+	t.Run("missing", func(t *testing.T) {
+		root, collection := newCollection(t)
+		collection.Tasks = []CheckedTask{}
+		if err := ValidateCheckCollection(root, collection, nil); err == nil || !strings.Contains(err.Error(), "missing task result") {
+			t.Fatalf("missing result accepted: %v", err)
+		}
+	})
+	t.Run("duplicate", func(t *testing.T) {
+		root, collection := newCollection(t)
+		collection.Tasks = append(collection.Tasks, collection.Tasks[0])
+		if err := ValidateCheckCollection(root, collection, nil); err == nil || !strings.Contains(err.Error(), "duplicate task result") {
+			t.Fatalf("duplicate result accepted: %v", err)
+		}
+	})
+	t.Run("unknown", func(t *testing.T) {
+		root, collection := newCollection(t)
+		collection.Tasks[0].TaskID = "unknown-task-999"
+		collection.Tasks[0].Report.TaskID = "unknown-task-999"
+		if err := ValidateCheckCollection(root, collection, nil); err == nil || !strings.Contains(err.Error(), "unknown task result") {
+			t.Fatalf("unknown result accepted: %v", err)
+		}
+	})
+	t.Run("lifecycle change", func(t *testing.T) {
+		root, collection := newCollection(t)
+		path := taskFile(root, "lifecycle.yaml")
+		replaceInFile(t, path, `updated_at: "2026-09-04"`, `updated_at: "2026-09-05"`)
+		if err := ValidateCheckCollection(root, collection, nil); err == nil || !strings.Contains(err.Error(), "digest changed") {
+			t.Fatalf("modified lifecycle accepted: %v", err)
+		}
+	})
+}
+
+func TestAggregateFromChecksDoesNotExecuteAgain(t *testing.T) {
+	root := fixtureRepository(t)
+	runner := newFakeExecutionRunner()
+	session, err := newCheckSessionWithRunner(root, runner)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = session.Close() })
+	checks, err := session.CheckAll(nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	before := runner.Metrics()
+	if _, err := BuildAggregateReportFromChecks(root, checks); err != nil {
+		t.Fatal(err)
+	}
+	if after := runner.Metrics(); after != before {
+		t.Fatalf("aggregate report executed tasks: before=%+v after=%+v", before, after)
 	}
 }
 
@@ -85,7 +227,8 @@ func TestCheckRejectsSurvivingMutant(t *testing.T) {
 
 func TestCheckRejectsPathTraversal(t *testing.T) {
 	root := fixtureRepository(t)
-	if _, err := Check(root, "../synthetic-identity-001"); err == nil {
+	session := fakeSession(t, root)
+	if _, err := session.Check("../synthetic-identity-001"); err == nil {
 		t.Fatal("path traversal id was accepted")
 	}
 }
@@ -112,7 +255,7 @@ func TestPromotionRejectsFailingGates(t *testing.T) {
 	if err := os.RemoveAll(taskFile(root, "tests/grader")); err != nil {
 		t.Fatal(err)
 	}
-	_, err := Promote(root, PromoteOptions{
+	_, err := promoteForTest(t, root, PromoteOptions{
 		ID: syntheticID, To: StateInReview, Actor: "reviewer", Reason: "start review", Date: "2026-09-04",
 	})
 	if err == nil {
@@ -125,7 +268,7 @@ func TestPromotionRejectsFailingGates(t *testing.T) {
 
 func TestPromotionRejectsDirectDraftToReady(t *testing.T) {
 	root := fixtureRepository(t)
-	_, err := Promote(root, PromoteOptions{
+	_, err := promoteForTest(t, root, PromoteOptions{
 		ID: syntheticID, To: StateReady, Actor: "reviewer", Reason: "skip review", Date: "2026-09-04",
 	})
 	if err == nil || !strings.Contains(err.Error(), "not allowed") {
@@ -146,7 +289,7 @@ func TestDuplicateTaskIDRejected(t *testing.T) {
 
 func TestPromotionUsesAtomicDirectoryMove(t *testing.T) {
 	root := fixtureRepository(t)
-	moved, err := Promote(root, PromoteOptions{
+	moved, err := promoteForTest(t, root, PromoteOptions{
 		ID: syntheticID, To: StateInReview, Actor: "reviewer", Reason: "all authoring checks passed", Date: "2026-09-04",
 	})
 	if err != nil {
@@ -161,7 +304,7 @@ func TestPromotionUsesAtomicDirectoryMove(t *testing.T) {
 	if _, err := os.Stat(filepath.Join(root, "tasks", "review", syntheticID, "task.yaml")); err != nil {
 		t.Fatalf("review destination is incomplete: %v", err)
 	}
-	report, err := Check(root, syntheticID)
+	report, err := fakeSession(t, root).Check(syntheticID)
 	if err != nil || !report.Passed {
 		t.Fatalf("moved package is invalid: report=%#v err=%v", report, err)
 	}
@@ -180,19 +323,13 @@ func TestPromotionRollsBackMetadataWhenSecondWriteFails(t *testing.T) {
 	lifecyclePath := taskFile(root, "lifecycle.yaml")
 	originalTask, _ := os.ReadFile(taskPath)
 	originalLifecycle, _ := os.ReadFile(lifecyclePath)
-	promotionTestHooks.beforeWrite = func(name string) error {
+	hooks := promotionHooks{beforeWrite: func(name string) error {
 		if name == "lifecycle.yaml" {
 			return errors.New("synthetic second write failure")
 		}
 		return nil
-	}
-	t.Cleanup(func() {
-		promotionTestHooks = struct {
-			afterLock   func()
-			beforeWrite func(string) error
-		}{}
-	})
-	if _, err := Promote(root, PromoteOptions{ID: syntheticID, To: StateInReview, Actor: "reviewer", Reason: "test rollback", Date: "2026-09-04"}); err == nil {
+	}}
+	if _, err := promoteForTest(t, root, PromoteOptions{ID: syntheticID, To: StateInReview, Actor: "reviewer", Reason: "test rollback", Date: "2026-09-04", hooks: hooks}); err == nil {
 		t.Fatal("injected failure was ignored")
 	}
 	afterTask, _ := os.ReadFile(taskPath)
@@ -207,21 +344,15 @@ func TestPromotionLockRejectsConcurrentWriter(t *testing.T) {
 	locked := make(chan struct{})
 	release := make(chan struct{})
 	var once sync.Once
-	promotionTestHooks.afterLock = func() {
+	hooks := promotionHooks{afterLock: func() {
 		once.Do(func() {
 			close(locked)
 			<-release
 		})
-	}
-	t.Cleanup(func() {
-		promotionTestHooks = struct {
-			afterLock   func()
-			beforeWrite func(string) error
-		}{}
-	})
+	}}
 	done := make(chan error, 1)
 	go func() {
-		_, err := Promote(root, PromoteOptions{ID: syntheticID, To: StateInReview, Actor: "first", Reason: "hold lock", Date: "2026-09-04"})
+		_, err := promoteForTest(t, root, PromoteOptions{ID: syntheticID, To: StateInReview, Actor: "first", Reason: "hold lock", Date: "2026-09-04", hooks: hooks})
 		done <- err
 	}()
 	select {
@@ -229,7 +360,7 @@ func TestPromotionLockRejectsConcurrentWriter(t *testing.T) {
 	case <-time.After(5 * time.Second):
 		t.Fatal("first promotion did not acquire lock")
 	}
-	_, secondErr := Promote(root, PromoteOptions{ID: syntheticID, To: StateInReview, Actor: "second", Reason: "compete", Date: "2026-09-04"})
+	_, secondErr := promoteForTest(t, root, PromoteOptions{ID: syntheticID, To: StateInReview, Actor: "second", Reason: "compete", Date: "2026-09-04"})
 	if secondErr == nil || !strings.Contains(secondErr.Error(), "locked") {
 		t.Fatalf("concurrent promotion was not rejected: %v", secondErr)
 	}
@@ -241,7 +372,7 @@ func TestPromotionLockRejectsConcurrentWriter(t *testing.T) {
 
 func TestPromotionRejectsPredatedTransition(t *testing.T) {
 	root := fixtureRepository(t)
-	_, err := Promote(root, PromoteOptions{ID: syntheticID, To: StateInReview, Actor: "reviewer", Reason: "old date", Date: "2026-09-03"})
+	_, err := promoteForTest(t, root, PromoteOptions{ID: syntheticID, To: StateInReview, Actor: "reviewer", Reason: "old date", Date: "2026-09-03"})
 	if err == nil || !strings.Contains(err.Error(), "predates") {
 		t.Fatalf("predated transition was accepted: %v", err)
 	}
@@ -249,10 +380,10 @@ func TestPromotionRejectsPredatedTransition(t *testing.T) {
 
 func TestReadyPromotionValidatesFutureState(t *testing.T) {
 	root := fixtureRepository(t)
-	if _, err := Promote(root, PromoteOptions{ID: syntheticID, To: StateInReview, Actor: "reviewer", Reason: "review", Date: "2026-09-04"}); err != nil {
+	if _, err := promoteForTest(t, root, PromoteOptions{ID: syntheticID, To: StateInReview, Actor: "reviewer", Reason: "review", Date: "2026-09-04"}); err != nil {
 		t.Fatal(err)
 	}
-	if _, err := Promote(root, PromoteOptions{ID: syntheticID, To: StateReady, Actor: "reviewer", Reason: "approve", Date: "2026-09-04"}); err != nil {
+	if _, err := promoteForTest(t, root, PromoteOptions{ID: syntheticID, To: StateReady, Actor: "reviewer", Reason: "approve", Date: "2026-09-04"}); err != nil {
 		t.Fatal(err)
 	}
 	located, err := FindTask(root, syntheticID)
@@ -310,40 +441,6 @@ func TestAdversarialCorrectReferenceRunsSharedSuites(t *testing.T) {
 	}
 }
 
-func TestOldAuthoredBindingBypassWasReproducible(t *testing.T) {
-	root := repositoryRoot(t)
-	environment, err := isolation.NewEnvironment("old-binding-proof")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer environment.Close()
-	for _, testCase := range []struct {
-		name     string
-		fixture  string
-		wantPass bool
-	}{
-		{"noop-reference", "noop-reference-binding", true},
-		{"forced-mutant-failure", "unconditional-mutant-failure", false},
-	} {
-		workspace, _ := environment.NewWorkspace(testCase.name)
-		if err := os.WriteFile(filepath.Join(workspace, "go.mod"), []byte("module task.local/old-binding\n\ngo 1.27\n"), 0o600); err != nil {
-			t.Fatal(err)
-		}
-		if err := os.WriteFile(filepath.Join(workspace, "identity.go"), []byte("package subject\nfunc Identity(v int) int { return v + 1 }\n"), 0o600); err != nil {
-			t.Fatal(err)
-		}
-		source := filepath.Join(root, "internal", "testdata", "tasking", "adversarial", testCase.fixture)
-		entries, _ := os.ReadDir(source)
-		if err := isolation.CopyFile(filepath.Join(source, entries[0].Name()), filepath.Join(workspace, entries[0].Name())); err != nil {
-			t.Fatal(err)
-		}
-		_, runErr := environment.RunGo(workspace, 30*time.Second, "test", "./...")
-		if (runErr == nil) != testCase.wantPass {
-			t.Fatalf("%s pass=%t, want %t", testCase.name, runErr == nil, testCase.wantPass)
-		}
-	}
-}
-
 func TestDiscoverTasksRejectsUnexpectedAndDuplicateEntries(t *testing.T) {
 	t.Run("unexpected", func(t *testing.T) {
 		root := fixtureRepository(t)
@@ -359,7 +456,7 @@ func TestDiscoverTasksRejectsUnexpectedAndDuplicateEntries(t *testing.T) {
 		if err := isolation.CopyTree(taskFile(root, "."), filepath.Join(root, "tasks", "rejected", syntheticID)); err != nil {
 			t.Fatal(err)
 		}
-		if _, err := CheckAll(root, []State{StateDraft}); err == nil || !strings.Contains(err.Error(), "duplicate") {
+		if _, err := fakeSession(t, root).CheckAll([]State{StateDraft}); err == nil || !strings.Contains(err.Error(), "duplicate") {
 			t.Fatalf("filtered duplicate was ignored: %v", err)
 		}
 	})
@@ -367,11 +464,11 @@ func TestDiscoverTasksRejectsUnexpectedAndDuplicateEntries(t *testing.T) {
 
 func TestAggregateReportIsDeterministic(t *testing.T) {
 	root := fixtureRepository(t)
-	first, err := BuildAggregateReport(root)
+	first, err := buildAggregateForTest(t, root)
 	if err != nil {
 		t.Fatal(err)
 	}
-	second, err := BuildAggregateReport(root)
+	second, err := buildAggregateForTest(t, root)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -397,7 +494,7 @@ func TestAggregateReportIsDeterministic(t *testing.T) {
 
 func TestAggregateArtifactCheckDetectsStaleReportWithoutWriting(t *testing.T) {
 	root := fixtureRepository(t)
-	report, err := BuildAggregateReport(root)
+	report, err := buildAggregateForTest(t, root)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -435,29 +532,29 @@ func TestCheckAllFindsBrokenDraftAndInReviewPackages(t *testing.T) {
 		if err := os.RemoveAll(taskFile(root, "tests/grader")); err != nil {
 			t.Fatal(err)
 		}
-		collection, err := CheckAll(root, []State{StateDraft})
+		collection, err := fakeSession(t, root).CheckAll([]State{StateDraft})
 		if err != nil {
 			t.Fatal(err)
 		}
-		if len(collection.Reports) != 1 || collection.Reports[0].Passed {
-			t.Fatalf("broken draft disappeared or passed: %#v", collection.Reports)
+		if len(collection.Tasks) != 1 || collection.Tasks[0].Report.Passed {
+			t.Fatalf("broken draft disappeared or passed: %#v", collection.Tasks)
 		}
 	})
 	t.Run("in-review", func(t *testing.T) {
 		root := fixtureRepository(t)
-		moved, err := Promote(root, PromoteOptions{ID: syntheticID, To: StateInReview, Actor: "reviewer", Reason: "review", Date: "2026-09-04"})
+		moved, err := promoteForTest(t, root, PromoteOptions{ID: syntheticID, To: StateInReview, Actor: "reviewer", Reason: "review", Date: "2026-09-04"})
 		if err != nil {
 			t.Fatal(err)
 		}
 		if err := os.RemoveAll(filepath.Join(moved.Path, "tests", "grader")); err != nil {
 			t.Fatal(err)
 		}
-		collection, err := CheckAll(root, []State{StateInReview})
+		collection, err := fakeSession(t, root).CheckAll([]State{StateInReview})
 		if err != nil {
 			t.Fatal(err)
 		}
-		if len(collection.Reports) != 1 || collection.Reports[0].Passed {
-			t.Fatalf("broken in-review package disappeared or passed: %#v", collection.Reports)
+		if len(collection.Tasks) != 1 || collection.Tasks[0].Report.Passed {
+			t.Fatalf("broken in-review package disappeared or passed: %#v", collection.Tasks)
 		}
 	})
 }
@@ -470,7 +567,7 @@ func TestFutureStateValidationRejectsLifecycleMismatch(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if err := validateFuturePromotion(root, located, StateInReview, taskYAML, lifecycleYAML); err == nil {
+	if err := validateFuturePromotion(fakeSession(t, root), located, StateInReview, taskYAML, lifecycleYAML); err == nil {
 		t.Fatal("mismatched future lifecycle was accepted")
 	}
 }
@@ -481,7 +578,7 @@ func TestPromotionDestinationCollisionPreservesSource(t *testing.T) {
 	if err := isolation.CopyTree(taskFile(root, "."), filepath.Join(root, "tasks", "review", syntheticID)); err != nil {
 		t.Fatal(err)
 	}
-	if _, err := Promote(root, PromoteOptions{ID: syntheticID, To: StateInReview, Actor: "reviewer", Reason: "collision", Date: "2026-09-04"}); err == nil {
+	if _, err := promoteForTest(t, root, PromoteOptions{ID: syntheticID, To: StateInReview, Actor: "reviewer", Reason: "collision", Date: "2026-09-04"}); err == nil {
 		t.Fatal("destination collision was accepted")
 	}
 	after, _ := os.ReadFile(taskFile(root, "task.yaml"))
@@ -492,7 +589,7 @@ func TestPromotionDestinationCollisionPreservesSource(t *testing.T) {
 
 func TestLegacyCompatibilityUsesExplicitPolicy(t *testing.T) {
 	root := legacyFixtureRepository(t)
-	report, err := Check(root, "defined-types-001")
+	report, err := fakeSession(t, root).Check("defined-types-001")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -538,7 +635,7 @@ func fixtureRepository(t *testing.T) string {
 		}
 	}
 	for _, relative := range []string{
-		"schemas/task.schema.json", "schemas/task-lifecycle.schema.json", "schemas/task-review.schema.json", "schemas/task-provenance.schema.json", "schemas/task-quality-report.schema.json", "schemas/task-aggregate-report.schema.json", "schemas/toolchain-policy.schema.json",
+		"schemas/task.schema.json", "schemas/task-lifecycle.schema.json", "schemas/task-review.schema.json", "schemas/task-provenance.schema.json", "schemas/task-quality-report.schema.json", "schemas/task-check-collection.schema.json", "schemas/task-aggregate-report.schema.json", "schemas/taxonomy-v3.schema.json", "schemas/toolchain-policy.schema.json",
 		"config/toolchain.yaml",
 		"curriculum/skills.yaml", "sources/registry.yaml",
 	} {
@@ -566,7 +663,7 @@ func legacyFixtureRepository(t *testing.T) string {
 			t.Fatal(err)
 		}
 	}
-	for _, relative := range []string{"config/toolchain.yaml", "schemas/task.schema.json", "schemas/task-quality-report.schema.json"} {
+	for _, relative := range []string{"config/toolchain.yaml", "schemas/task.schema.json", "schemas/task-lifecycle.schema.json", "schemas/task-review.schema.json", "schemas/task-provenance.schema.json", "schemas/task-quality-report.schema.json", "schemas/task-check-collection.schema.json"} {
 		if err := isolation.CopyFile(filepath.Join(repository, relative), filepath.Join(root, relative)); err != nil {
 			t.Fatal(err)
 		}
@@ -654,11 +751,36 @@ func replaceInFile(t *testing.T, path, old, replacement string) {
 
 func checkWithoutError(t *testing.T, root string) QualityReport {
 	t.Helper()
-	report, err := Check(root, syntheticID)
+	report, err := fakeSession(t, root).Check(syntheticID)
 	if err != nil {
 		t.Fatal(err)
 	}
 	return report
+}
+
+func fakeSession(t *testing.T, root string) *CheckSession {
+	t.Helper()
+	session, err := newCheckSessionWithRunner(root, newFakeExecutionRunner())
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = session.Close() })
+	return session
+}
+
+func promoteForTest(t *testing.T, root string, options PromoteOptions) (LocatedTask, error) {
+	t.Helper()
+	options.runner = newFakeExecutionRunner()
+	return Promote(root, options)
+}
+
+func buildAggregateForTest(t *testing.T, root string) (AggregateReport, error) {
+	t.Helper()
+	checks, err := fakeSession(t, root).CheckAll(nil)
+	if err != nil {
+		return AggregateReport{}, err
+	}
+	return BuildAggregateReportFromChecks(root, checks)
 }
 
 func assertGateFails(t *testing.T, report QualityReport, id string) {

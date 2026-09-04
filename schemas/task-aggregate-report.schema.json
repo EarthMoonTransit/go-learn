@@ -4,18 +4,21 @@
   "title": "Deterministic aggregate task report",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "tasks", "states", "task_types", "gates"],
+  "required": ["schema_version", "source_check_contract", "toolchain_policy_digest", "tasks", "states", "task_types", "gates"],
   "properties": {
     "schema_version": {"const": 1},
+    "source_check_contract": {"const": "task-check/v1"},
+    "toolchain_policy_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "tasks": {
       "type": "array",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "state", "task_type", "primary_skill", "technical_status", "review_status", "promotion_eligible", "failing_gate_ids", "starter_status", "reference_status", "race_status", "mutants", "legacy"],
+        "required": ["id", "state", "input_digest", "task_type", "primary_skill", "technical_status", "review_status", "promotion_eligible", "failing_gate_ids", "starter_status", "reference_status", "race_status", "mutants", "legacy"],
         "properties": {
           "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-[0-9]{3}$"},
           "state": {"enum": ["draft", "in-review", "ready", "rejected", "retired"]},
+          "input_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
           "task_type": {"enum": ["implement", "debug", "predict", "refactor", "test-writing", "performance"]},
           "primary_skill": {"type": "string", "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$"},
           "technical_status": {"enum": ["pass", "fail", "not-applicable"]},

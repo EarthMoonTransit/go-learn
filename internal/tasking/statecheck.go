@@ -6,7 +6,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	"go-practice-bank/internal/isolation"
 	"go-practice-bank/internal/toolchainpolicy"
 )
 
@@ -48,7 +47,8 @@ func checkInactive(root string, located LocatedTask) (QualityReport, error) {
 	return c.validatedReport(root)
 }
 
-func checkLegacy(root string, located LocatedTask) (QualityReport, error) {
+func (s *CheckSession) checkLegacy(located LocatedTask) (QualityReport, error) {
+	root := s.root
 	c := checker{report: QualityReport{
 		SchemaVersion: 1, TaskID: located.ID, State: located.State, Legacy: true,
 		ReviewStatus: "not-applicable", StarterStatus: "not-applicable", ReferenceStatus: "not-applicable", RaceStatus: "not-applicable",
@@ -91,7 +91,7 @@ func checkLegacy(root string, located LocatedTask) (QualityReport, error) {
 
 	var commandProblems []string
 	if len(metadataProblems) == 0 && len(toolchainProblems) == 0 {
-		results, runErr := isolation.RunLegacyCommandsInCopies(located.Path, task.ValidationCommands, taskCommandTimeout)
+		results, runErr := s.runner.RunLegacy(located.Path, task.ValidationCommands)
 		if runErr != nil {
 			commandProblems = append(commandProblems, runErr.Error())
 		} else {

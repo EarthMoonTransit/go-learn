@@ -1,6 +1,9 @@
 package validation
 
-import "go-practice-bank/internal/sources"
+import (
+	"go-practice-bank/internal/sources"
+	"go-practice-bank/internal/tasking"
+)
 
 type Curriculum struct {
 	Version          int      `yaml:"version"`
@@ -188,4 +191,5 @@ type Options struct {
 	EnforceCoverage bool
 	AllowEmpty      bool
 	RunCommands     bool
+	Checks          *tasking.CheckCollection
 }

@@ -6,6 +6,7 @@ import (
 	"os"
 	"sort"
 
+	"go-practice-bank/internal/tasking"
 	"go-practice-bank/internal/validation"
 )
 
@@ -14,16 +15,31 @@ func main() {
 	phase1 := flag.Bool("phase1", false, "allow an empty ready-task catalog")
 	coverage := flag.Bool("coverage", false, "enforce curriculum minimums and 350..500 ready tasks")
 	runCommands := flag.Bool("run-commands", false, "run validation_commands for ready tasks")
+	checksPath := flag.String("checks", "", "reuse a current task-check collection without executing task code")
 	flag.Parse()
 
 	if *phase1 && *coverage {
 		fmt.Fprintln(os.Stderr, "-phase1 and -coverage are mutually exclusive")
 		os.Exit(2)
 	}
+	if *checksPath != "" && *runCommands {
+		fmt.Fprintln(os.Stderr, "-checks and -run-commands are mutually exclusive")
+		os.Exit(2)
+	}
+	var checks *tasking.CheckCollection
+	if *checksPath != "" {
+		collection, err := tasking.LoadCheckCollection(*root, *checksPath)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+		checks = &collection
+	}
 	result, err := validation.ValidateRoot(*root, validation.Options{
 		AllowEmpty:      *phase1,
 		EnforceCoverage: *coverage,
 		RunCommands:     *runCommands,
+		Checks:          checks,
 	})
 	printSummary(result)
 	if err != nil {

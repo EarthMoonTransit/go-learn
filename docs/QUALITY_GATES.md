@@ -68,13 +68,17 @@ offline module resolution и отдельными home/cache/temp paths.
 
 ## Machine-readable status
 
-`task-check` выдаёт документ `schemas/task-quality-report.schema.json`. Каждый
-gate имеет `pass`, `fail` или `not-applicable`; mutant summary фиксирует
+Одиночный `task-check -id` выдаёт документ
+`schemas/task-quality-report.schema.json`; `task-check -all` выдаёт versioned
+`schemas/task-check-collection.schema.json`. Каждый gate имеет `pass`, `fail`
+или `not-applicable`; mutant summary фиксирует
 `required`, `total`, `detected` и `survived`. Дополнительно фиксируются
 technical/review status, promotion eligibility, failing gate IDs, starter,
 reference, race и legacy compatibility.
 
-`task-report` детерминированно создаёт `reports/task-quality.yaml` и Markdown.
+Collection фиксирует task input digests и структурные execution counters без
+timestamps. `task-report` детерминированно создаёт `reports/task-quality.yaml`
+и Markdown из validated collection.
 После появления десяти lifecycle packages aggregate gate требует минимум три
 task types и не более 60% одного типа. Curriculum policy остаётся строже: не
 более 50% primary-встреч одного типа на домен.
@@ -87,9 +91,10 @@ Authoring infrastructure и неполные content batches:
 go test ./...
 go test -race ./...
 go vet ./...
-go run ./cmd/validate -root . -phase1 -run-commands
-go run ./cmd/task-check -root . -all
-go run ./cmd/task-report -root . -check
+go test -tags=taskintegration ./...
+go run ./cmd/task-check -root . -all -output .tmp/results/task-checks.yaml
+go run ./cmd/validate -root . -phase1 -checks .tmp/results/task-checks.yaml
+go run ./cmd/task-report -root . -check -checks .tmp/results/task-checks.yaml
 ```
 
 Release coverage дополнительно использует `-coverage`. Ни `-phase1`, ни наличие

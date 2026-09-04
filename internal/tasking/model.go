@@ -130,14 +130,36 @@ type QualityReport struct {
 	Mutants           MutantSummary `yaml:"mutants" json:"mutants"`
 }
 
+const CheckContractVersion = "task-check/v1"
+
+type ExecutionMetrics struct {
+	Sessions       int `yaml:"sessions" json:"sessions"`
+	TaskChecks     int `yaml:"task_checks" json:"task_checks"`
+	Workspaces     int `yaml:"workspaces" json:"workspaces"`
+	VariantRuns    int `yaml:"variant_runs" json:"variant_runs"`
+	LegacyCommands int `yaml:"legacy_commands" json:"legacy_commands"`
+	ChildGoRuns    int `yaml:"child_go_runs" json:"child_go_runs"`
+}
+
+type CheckedTask struct {
+	TaskID      string        `yaml:"task_id" json:"task_id"`
+	State       State         `yaml:"state" json:"state"`
+	InputDigest string        `yaml:"input_digest" json:"input_digest"`
+	Report      QualityReport `yaml:"report" json:"report"`
+}
+
 type CheckCollection struct {
-	SchemaVersion int             `yaml:"schema_version" json:"schema_version"`
-	Reports       []QualityReport `yaml:"reports" json:"reports"`
+	SchemaVersion         int              `yaml:"schema_version" json:"schema_version"`
+	ContractVersion       string           `yaml:"contract_version" json:"contract_version"`
+	ToolchainPolicyDigest string           `yaml:"toolchain_policy_digest" json:"toolchain_policy_digest"`
+	Tasks                 []CheckedTask    `yaml:"tasks" json:"tasks"`
+	Execution             ExecutionMetrics `yaml:"execution" json:"execution"`
 }
 
 type AggregateTask struct {
 	ID                string        `yaml:"id" json:"id"`
 	State             State         `yaml:"state" json:"state"`
+	InputDigest       string        `yaml:"input_digest" json:"input_digest"`
 	TaskType          string        `yaml:"task_type" json:"task_type"`
 	Primary           string        `yaml:"primary_skill" json:"primary_skill"`
 	TechnicalStatus   string        `yaml:"technical_status" json:"technical_status"`
@@ -162,9 +184,11 @@ type TypeCount struct {
 }
 
 type AggregateReport struct {
-	SchemaVersion int             `yaml:"schema_version" json:"schema_version"`
-	Tasks         []AggregateTask `yaml:"tasks" json:"tasks"`
-	States        []StateCount    `yaml:"states" json:"states"`
-	TaskTypes     []TypeCount     `yaml:"task_types" json:"task_types"`
-	Gates         []Gate          `yaml:"gates" json:"gates"`
+	SchemaVersion         int             `yaml:"schema_version" json:"schema_version"`
+	SourceCheckContract   string          `yaml:"source_check_contract" json:"source_check_contract"`
+	ToolchainPolicyDigest string          `yaml:"toolchain_policy_digest" json:"toolchain_policy_digest"`
+	Tasks                 []AggregateTask `yaml:"tasks" json:"tasks"`
+	States                []StateCount    `yaml:"states" json:"states"`
+	TaskTypes             []TypeCount     `yaml:"task_types" json:"task_types"`
+	Gates                 []Gate          `yaml:"gates" json:"gates"`
 }

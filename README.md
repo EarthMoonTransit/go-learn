@@ -11,17 +11,21 @@ ready-задач; ФАЗА 3A не создаёт новых учебных за
 
 ```bash
 go test ./...
-go run ./cmd/validate -root . -phase1 -run-commands
+go test -race ./...
+go vet ./...
+go test -tags=taskintegration ./...
 go run ./cmd/source-sync -root . -source exercism-go
 go run ./cmd/harvest -root . -source exercism-go
 go run ./cmd/catalog-report -root . -source exercism-go
 go run ./cmd/task-init -root . -slug <slug> -primary <skill> -source <source-id> -source-path <path>
 go run ./cmd/task-check -root . -id <task-id>
-go run ./cmd/task-check -root . -all
+mkdir -p .tmp/results
+go run ./cmd/task-check -root . -all -output .tmp/results/task-checks.yaml
 go run ./cmd/task-promote -root . -id <task-id> -to in-review -actor <name> -reason <reason>
 go run ./cmd/task-report -root .
-go run ./cmd/task-report -root . -check
-go run ./cmd/validate -root . -coverage -run-commands
+go run ./cmd/validate -root . -phase1 -checks .tmp/results/task-checks.yaml
+go run ./cmd/task-report -root . -check -checks .tmp/results/task-checks.yaml
+go run ./cmd/validate -root . -coverage -checks .tmp/results/task-checks.yaml
 ```
 
 Последняя команда станет зелёной только после наполнения банка в следующих фазах.

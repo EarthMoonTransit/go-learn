@@ -231,6 +231,18 @@ type CommandResult struct {
 // RunLegacyCommandsInCopies accepts only the legacy go test/go vet manifest
 // grammar. Every command receives a new package copy; no shell is involved.
 func RunLegacyCommandsInCopies(sourceDirectory string, commands []string, timeout time.Duration) ([]CommandResult, error) {
+	environment, err := NewEnvironment("go-task-legacy")
+	if err != nil {
+		return nil, err
+	}
+	results, runErr := environment.RunLegacyCommandsInCopies(sourceDirectory, commands, timeout)
+	closeErr := environment.Close()
+	return results, errors.Join(runErr, closeErr)
+}
+
+// RunLegacyCommandsInCopies reuses this environment's compiler caches while
+// retaining a fresh workspace for every command.
+func (e *Environment) RunLegacyCommandsInCopies(sourceDirectory string, commands []string, timeout time.Duration) ([]CommandResult, error) {
 	parsed := make([]LegacyCommand, len(commands))
 	for index, command := range commands {
 		value, err := ParseLegacyCommand(command)
@@ -239,21 +251,16 @@ func RunLegacyCommandsInCopies(sourceDirectory string, commands []string, timeou
 		}
 		parsed[index] = value
 	}
-	environment, err := NewEnvironment("go-task-legacy")
-	if err != nil {
-		return nil, err
-	}
-	defer environment.Close()
 	results := make([]CommandResult, 0, len(commands))
 	for index, command := range commands {
-		workspace, err := environment.NewWorkspace("task")
+		workspace, err := e.NewWorkspace("legacy")
 		if err != nil {
-			return nil, err
+			return results, err
 		}
 		if err := CopyTree(sourceDirectory, workspace); err != nil {
-			return nil, err
+			return results, err
 		}
-		output, runErr := environment.RunGo(workspace, timeout, parsed[index].Args...)
+		output, runErr := e.RunGo(workspace, timeout, parsed[index].Args...)
 		if parsed[index].ExpectFailure {
 			if errors.Is(runErr, ErrCommandTimeout) {
 				// A timeout is an infrastructure failure, never an expected test failure.

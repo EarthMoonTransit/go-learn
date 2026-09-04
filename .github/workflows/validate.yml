@@ -17,13 +17,34 @@ jobs:
       GOTOOLCHAIN: local
     steps:
       - uses: actions/checkout@v4
+      - name: Read pinned CI toolchain
+        id: toolchain
+        shell: bash
+        run: |
+          version="$(awk '/^ci_toolchain:/ {print $2}' config/toolchain.yaml)"
+          test -n "$version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-go@v5
         with:
-          go-version: "1.27.x"
+          go-version: ${{ steps.toolchain.outputs.version }}
           cache: true
       - run: go test ./...
       - run: go test -race ./...
       - run: go vet ./...
-      - run: go run ./cmd/validate -root . -phase1 -run-commands
-      - run: go run ./cmd/task-check -root . -all
-      - run: go run ./cmd/task-report -root . -check
+      - run: go test -tags taskintegration ./...
+      - name: Build verification commands once
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/go-practice-bank/bin" "$RUNNER_TEMP/go-practice-bank/results"
+          go build -o "$RUNNER_TEMP/go-practice-bank/bin/task-check" ./cmd/task-check
+          go build -o "$RUNNER_TEMP/go-practice-bank/bin/validate" ./cmd/validate
+          go build -o "$RUNNER_TEMP/go-practice-bank/bin/task-report" ./cmd/task-report
+      - name: Execute the task bank once
+        shell: bash
+        run: "$RUNNER_TEMP/go-practice-bank/bin/task-check -root . -all -output $RUNNER_TEMP/go-practice-bank/results/checks.yaml"
+      - name: Reuse collection in repository validation
+        shell: bash
+        run: "$RUNNER_TEMP/go-practice-bank/bin/validate -root . -phase1 -checks $RUNNER_TEMP/go-practice-bank/results/checks.yaml"
+      - name: Reuse collection in deterministic report check
+        shell: bash
+        run: "$RUNNER_TEMP/go-practice-bank/bin/task-report -root . -check -checks $RUNNER_TEMP/go-practice-bank/results/checks.yaml"

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:go-practice-bank:task-check-collection:v1",
+  "title": "Versioned deterministic task-check collection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "contract_version", "toolchain_policy_digest", "tasks", "execution"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "contract_version": {"const": "task-check/v1"},
+    "toolchain_policy_digest": {"$ref": "#/$defs/digest"},
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["task_id", "state", "input_digest", "report"],
+        "properties": {
+          "task_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-[0-9]{3}$"},
+          "state": {"$ref": "#/$defs/state"},
+          "input_digest": {"$ref": "#/$defs/digest"},
+          "report": {"$ref": "#/$defs/report"}
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sessions", "task_checks", "workspaces", "variant_runs", "legacy_commands", "child_go_runs"],
+      "properties": {
+        "sessions": {"type": "integer", "minimum": 0, "maximum": 1},
+        "task_checks": {"type": "integer", "minimum": 0},
+        "workspaces": {"type": "integer", "minimum": 0},
+        "variant_runs": {"type": "integer", "minimum": 0},
+        "legacy_commands": {"type": "integer", "minimum": 0},
+        "child_go_runs": {"type": "integer", "minimum": 0}
+      }
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "state": {"enum": ["draft", "in-review", "ready", "rejected", "retired"]},
+    "status": {"enum": ["pass", "fail", "not-applicable"]},
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "status", "details"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+        "status": {"$ref": "#/$defs/status"},
+        "details": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "mutants": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "total", "detected", "survived"],
+      "properties": {
+        "required": {"type": "integer", "minimum": 0},
+        "total": {"type": "integer", "minimum": 0},
+        "detected": {"type": "integer", "minimum": 0},
+        "survived": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "report": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "task_id", "state", "passed", "technical_status", "review_status", "promotion_eligible", "legacy", "failing_gate_ids", "starter_status", "reference_status", "race_status", "gates", "mutants"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "task_id": {"type": "string"},
+        "state": {"$ref": "#/$defs/state"},
+        "passed": {"type": "boolean"},
+        "technical_status": {"$ref": "#/$defs/status"},
+        "review_status": {"$ref": "#/$defs/status"},
+        "promotion_eligible": {"type": "boolean"},
+        "legacy": {"type": "boolean"},
+        "failing_gate_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "starter_status": {"$ref": "#/$defs/status"},
+        "reference_status": {"$ref": "#/$defs/status"},
+        "race_status": {"$ref": "#/$defs/status"},
+        "gates": {"type": "array", "items": {"$ref": "#/$defs/gate"}},
+        "mutants": {"$ref": "#/$defs/mutants"}
+      }
+    }
+  }
+}

@@ -14,9 +14,20 @@ func main() {
 	markdownPath := flag.String("markdown", "reports/task-quality.md", "repository-relative Markdown report path")
 	yamlPath := flag.String("yaml", "reports/task-quality.yaml", "repository-relative machine-readable report path")
 	check := flag.Bool("check", false, "verify committed reports are current without writing")
+	checksPath := flag.String("checks", "", "reuse a current task-check collection without executing task code")
 	flag.Parse()
 
-	report, err := tasking.BuildAggregateReport(*root)
+	var report tasking.AggregateReport
+	var err error
+	if *checksPath == "" {
+		report, err = tasking.BuildAggregateReport(*root)
+	} else {
+		var collection tasking.CheckCollection
+		collection, err = tasking.LoadCheckCollection(*root, *checksPath)
+		if err == nil {
+			report, err = tasking.BuildAggregateReportFromChecks(*root, collection)
+		}
+	}
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)

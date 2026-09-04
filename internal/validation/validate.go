@@ -12,12 +12,10 @@ import (
 	"regexp"
 	"sort"
 	"strings"
-	"time"
 
 	"github.com/santhosh-tekuri/jsonschema/v5"
 	"go-practice-bank/internal/catalog"
 	curriculumdata "go-practice-bank/internal/curriculum"
-	"go-practice-bank/internal/isolation"
 	sourcepolicy "go-practice-bank/internal/sources"
 	"go-practice-bank/internal/tasking"
 	"go-practice-bank/internal/toolchainpolicy"
@@ -64,7 +62,7 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 		problems = append(problems, policyErr)
 	}
 	for _, schemaName := range []string{
-		"task-lifecycle.schema.json", "task-review.schema.json", "task-provenance.schema.json", "task-quality-report.schema.json", "task-aggregate-report.schema.json",
+		"task-lifecycle.schema.json", "task-review.schema.json", "task-provenance.schema.json", "task-quality-report.schema.json", "task-check-collection.schema.json", "task-aggregate-report.schema.json",
 	} {
 		if _, schemaErr := compileYAMLSchema(filepath.Join(root, "schemas", schemaName)); schemaErr != nil {
 			problems = append(problems, schemaErr)
@@ -157,7 +155,7 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 		} else {
 			seenTaskIDs[task.ID] = path
 		}
-		problems = append(problems, validateTask(root, path, task, skills, sources, migrationIndex, opts.RunCommands)...)
+		problems = append(problems, validateTask(root, path, task, skills, sources, migrationIndex)...)
 		if task.QualityStatus == result.Curriculum.CoveragePolicy.CountedStatus {
 			result.ReadyTasks++
 		}
@@ -166,10 +164,26 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 	if len(paths) == 0 && !opts.AllowEmpty {
 		problems = append(problems, errors.New("tasks/ready contains no task.yaml manifests"))
 	}
-	if aggregate, err := tasking.BuildAggregateReport(root); err != nil {
-		problems = append(problems, fmt.Errorf("task lifecycle inventory: %w", err))
+	var aggregate tasking.AggregateReport
+	var aggregateErr error
+	switch {
+	case opts.Checks != nil:
+		aggregate, aggregateErr = tasking.BuildAggregateReportFromChecks(root, *opts.Checks)
+	case opts.RunCommands:
+		var checks tasking.CheckCollection
+		checks, aggregateErr = tasking.CheckAll(root, nil)
+		if aggregateErr == nil {
+			aggregate, aggregateErr = tasking.BuildAggregateReportFromChecks(root, checks)
+		}
+	default:
+		aggregateErr = decodeStrict(filepath.Join(root, "reports", "task-quality.yaml"), &aggregate)
+	}
+	if aggregateErr != nil {
+		problems = append(problems, fmt.Errorf("task lifecycle inventory: %w", aggregateErr))
 	} else if err := tasking.ValidateAggregateReport(root, aggregate); err != nil {
 		problems = append(problems, fmt.Errorf("task lifecycle report schema: %w", err))
+	} else if err := tasking.ValidateAggregateInputs(root, aggregate); err != nil {
+		problems = append(problems, fmt.Errorf("task lifecycle report inputs: %w", err))
 	} else {
 		expectedYAML, marshalErr := tasking.MarshalAggregateYAML(aggregate)
 		if marshalErr != nil {
@@ -508,7 +522,7 @@ func validateRegistry(r Registry) (map[string]Source, []error) {
 	return sources, problems
 }
 
-func validateTask(root, path string, task Task, skills map[string]Skill, sources map[string]Source, migration migrationIndex, runCommands bool) []error {
+func validateTask(root, path string, task Task, skills map[string]Skill, sources map[string]Source, migration migrationIndex) []error {
 	var problems []error
 	prefix := path
 	if task.SchemaVersion != 1 {
@@ -594,18 +608,6 @@ func validateTask(root, path string, task Task, skills map[string]Skill, sources
 			for _, required := range []string{"README.md", "provenance.yaml", "starter", "tests/public", "tests/grader", "solution/reference"} {
 				if _, err := os.Stat(filepath.Join(dir, filepath.FromSlash(required))); err != nil {
 					problems = append(problems, fmt.Errorf("%s: ready task is missing %s", prefix, required))
-				}
-			}
-			if runCommands {
-				results, err := isolation.RunLegacyCommandsInCopies(dir, task.ValidationCommands, 60*time.Second)
-				if err != nil {
-					problems = append(problems, fmt.Errorf("%s: prepare isolated validation commands: %w", prefix, err))
-				} else {
-					for _, result := range results {
-						if result.Err != nil {
-							problems = append(problems, fmt.Errorf("%s: validation command %q failed: %w\n%s", prefix, result.Command, result.Err, result.Output))
-						}
-					}
 				}
 			}
 		} else if lifecycleErr != nil {

@@ -6,6 +6,8 @@ import (
 	"runtime"
 	"strings"
 	"testing"
+
+	"go-practice-bank/internal/tasking"
 )
 
 func TestRepositoryPhase1(t *testing.T) {
@@ -41,6 +43,52 @@ func TestRepositoryPhase1(t *testing.T) {
 	}
 	if deprecated != 35 || len(result.Migration.Entries) != 99 || len(result.Migration.Additions) != 8 {
 		t.Fatalf("migration inventory = %d deprecated / %d entries / %d additions", deprecated, len(result.Migration.Entries), len(result.Migration.Additions))
+	}
+}
+
+func TestRepositoryValidationReusesCheckCollection(t *testing.T) {
+	root := repositoryRoot(t)
+	var aggregate tasking.AggregateReport
+	if err := decodeStrict(filepath.Join(root, "reports", "task-quality.yaml"), &aggregate); err != nil {
+		t.Fatal(err)
+	}
+	located, err := tasking.DiscoverTasks(root, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	byID := map[string]tasking.AggregateTask{}
+	for _, item := range aggregate.Tasks {
+		byID[item.ID] = item
+	}
+	toolchainDigest, err := tasking.ToolchainPolicyDigest(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	collection := tasking.CheckCollection{
+		SchemaVersion: 1, ContractVersion: tasking.CheckContractVersion,
+		ToolchainPolicyDigest: toolchainDigest,
+		Execution:             tasking.ExecutionMetrics{Sessions: 1, TaskChecks: len(located)},
+	}
+	for _, item := range located {
+		digest, err := tasking.TaskInputDigest(root, item)
+		if err != nil {
+			t.Fatal(err)
+		}
+		quality := byID[item.ID]
+		collection.Tasks = append(collection.Tasks, tasking.CheckedTask{
+			TaskID: item.ID, State: item.State, InputDigest: digest,
+			Report: tasking.QualityReport{
+				SchemaVersion: 1, TaskID: item.ID, State: item.State,
+				Passed: quality.TechnicalStatus == "pass", TechnicalStatus: quality.TechnicalStatus,
+				ReviewStatus: quality.ReviewStatus, PromotionEligible: quality.PromotionEligible,
+				Legacy: quality.Legacy, FailingGateIDs: quality.FailingGateIDs,
+				StarterStatus: quality.StarterStatus, ReferenceStatus: quality.ReferenceStatus,
+				RaceStatus: quality.RaceStatus, Gates: []tasking.Gate{}, Mutants: quality.Mutants,
+			},
+		})
+	}
+	if _, err := ValidateRoot(root, Options{AllowEmpty: true, Checks: &collection}); err != nil {
+		t.Fatalf("validation rejected reusable collection: %v", err)
 	}
 }
 

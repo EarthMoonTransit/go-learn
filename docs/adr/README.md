@@ -9,3 +9,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0003` — taxonomy v3, atomic skill contracts и v2→v3 migration (`accepted`)
 - `0004` — task lifecycle и первоначальная isolation model (`accepted`)
 - `0005` — checker-owned test assembly, minimal env и promotion hardening (`accepted`)
+- `0006` — single-pass task verification и reusable check collection (`accepted`)

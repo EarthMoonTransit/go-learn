@@ -18,9 +18,11 @@ type PromoteOptions struct {
 	Actor  string
 	Reason string
 	Date   string
+	runner executionRunner
+	hooks  promotionHooks
 }
 
-var promotionTestHooks struct {
+type promotionHooks struct {
 	afterLock   func()
 	beforeWrite func(string) error
 }
@@ -40,7 +42,21 @@ func allowedTransition(from, to State) bool {
 	}
 }
 
-func Promote(root string, options PromoteOptions) (LocatedTask, error) {
+func Promote(root string, options PromoteOptions) (located LocatedTask, err error) {
+	var session *CheckSession
+	if options.runner == nil {
+		session, err = NewCheckSession(root)
+	} else {
+		session, err = newCheckSessionWithRunner(root, options.runner)
+	}
+	if err != nil {
+		return LocatedTask{}, err
+	}
+	defer func() { err = closeWithPrimary(err, session.Close) }()
+	return promoteWithSession(root, options, session)
+}
+
+func promoteWithSession(root string, options PromoteOptions, session *CheckSession) (LocatedTask, error) {
 	if options.Actor == "" || options.Reason == "" {
 		return LocatedTask{}, errors.New("promotion requires actor and reason")
 	}
@@ -61,8 +77,8 @@ func Promote(root string, options PromoteOptions) (LocatedTask, error) {
 		return LocatedTask{}, err
 	}
 	defer unlock()
-	if promotionTestHooks.afterLock != nil {
-		promotionTestHooks.afterLock()
+	if options.hooks.afterLock != nil {
+		options.hooks.afterLock()
 	}
 	located, err := FindTask(root, options.ID)
 	if err != nil {
@@ -128,7 +144,7 @@ func Promote(root string, options PromoteOptions) (LocatedTask, error) {
 	if problems := validateLifecycle(data.Lifecycle); len(problems) != 0 {
 		return LocatedTask{}, fmt.Errorf("future lifecycle is invalid: %s", problems[0])
 	}
-	if err := validateFuturePromotion(root, located, options.To, updatedTask, updatedLifecycle); err != nil {
+	if err := validateFuturePromotion(session, located, options.To, updatedTask, updatedLifecycle); err != nil {
 		return LocatedTask{}, err
 	}
 
@@ -139,16 +155,16 @@ func Promote(root string, options PromoteOptions) (LocatedTask, error) {
 		_, err := safeio.AtomicWrite(located.Path, "lifecycle.yaml", originalLifecycle, 1<<20)
 		return err
 	}
-	if promotionTestHooks.beforeWrite != nil {
-		if err := promotionTestHooks.beforeWrite("task.yaml"); err != nil {
+	if options.hooks.beforeWrite != nil {
+		if err := options.hooks.beforeWrite("task.yaml"); err != nil {
 			return LocatedTask{}, err
 		}
 	}
 	if _, err := safeio.AtomicWrite(located.Path, "task.yaml", updatedTask, 1<<20); err != nil {
 		return LocatedTask{}, err
 	}
-	if promotionTestHooks.beforeWrite != nil {
-		if err := promotionTestHooks.beforeWrite("lifecycle.yaml"); err != nil {
+	if options.hooks.beforeWrite != nil {
+		if err := options.hooks.beforeWrite("lifecycle.yaml"); err != nil {
 			if rollbackErr := rollback(); rollbackErr != nil {
 				return LocatedTask{}, fmt.Errorf("injected promotion failure: %v; rollback failed: %v", err, rollbackErr)
 			}
@@ -205,7 +221,7 @@ func ensureRealDirectory(path string, mode os.FileMode) error {
 	return nil
 }
 
-func validateFuturePromotion(root string, source LocatedTask, target State, taskYAML, lifecycleYAML []byte) error {
+func validateFuturePromotion(session *CheckSession, source LocatedTask, target State, taskYAML, lifecycleYAML []byte) error {
 	staging, err := os.MkdirTemp("", "go-task-promotion-*")
 	if err != nil {
 		return err
@@ -221,7 +237,7 @@ func validateFuturePromotion(root string, source LocatedTask, target State, task
 	if _, err := safeio.AtomicWrite(packageCopy, "lifecycle.yaml", lifecycleYAML, 1<<20); err != nil {
 		return err
 	}
-	report, err := checkLocated(root, LocatedTask{ID: source.ID, State: target, Path: packageCopy})
+	report, err := session.checkLocated(LocatedTask{ID: source.ID, State: target, Path: packageCopy})
 	if err != nil {
 		return err
 	}

@@ -1,8 +1,9 @@
 # Task specification
 
 Статус документа: normative, ФАЗА 3A. Индексируемые данные определяет
-`schemas/task.schema.json`; lifecycle, review, provenance и quality report имеют
-отдельные versioned schemas. Совместимость schema v1 описана в ADR 0004.
+`schemas/task.schema.json`; lifecycle, review, provenance, quality report и
+полная check collection имеют отдельные versioned schemas. Совместимость
+schema v1 описана в ADR 0004.
 
 ## Единица поставки
 
@@ -53,7 +54,11 @@ reference проходит две повторные public+grader провер�
 проходит race. Подробности и trust boundary определены ADR 0005.
 
 `go.work`, symlinks, нерегулярные файлы и внешние module dependencies запрещены.
-Authored code выполняется только в disposable copy согласно ADR 0005.
+Authored code выполняется только в disposable copy согласно ADR 0005. Один
+`task-check -all` использует общую invocation session и compiler caches, но
+никогда не переиспользует workspace между вариантами. Результат фиксируется в
+validated `CheckCollection`, описанной ADR 0006; validator и report builder не
+повторяют execution при переданной collection.
 
 ## Поля `task.yaml`
 
@@ -87,8 +92,9 @@ commit, original-задача не может пройти promotion.
 ## Lifecycle и стабильность
 
 Состояния: `draft`, `in-review`, `ready`, `rejected`, `retired`. Разрешённые
-переходы определены ADR 0004, hardened promotion — ADR 0005. Изменение schema v1, enum или
-skill id требует отдельного ADR и миграционного плана.
+переходы определены ADR 0004, hardened promotion — ADR 0005, single-pass
+verification — ADR 0006. Изменение schema v1, enum или skill id требует
+отдельного ADR и миграционного плана.
 
 Три ready packages, существовавшие до ADR 0004, являются legacy v1 и могут не
 иметь новых authoring-файлов. В ФАЗЕ 3A они не мигрируются и не переписываются.

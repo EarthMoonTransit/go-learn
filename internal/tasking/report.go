@@ -12,19 +12,32 @@ import (
 )
 
 func BuildAggregateReport(root string) (AggregateReport, error) {
-	report := AggregateReport{SchemaVersion: 1}
+	checks, err := CheckAll(root, nil)
+	if err != nil {
+		return AggregateReport{}, err
+	}
+	return BuildAggregateReportFromChecks(root, checks)
+}
+
+// BuildAggregateReportFromChecks is a pure report-building pass over an
+// already verified, current collection. It never executes task code.
+func BuildAggregateReportFromChecks(root string, checks CheckCollection) (AggregateReport, error) {
+	if err := ValidateCheckCollection(root, checks, nil); err != nil {
+		return AggregateReport{}, err
+	}
+	report := AggregateReport{
+		SchemaVersion:         1,
+		SourceCheckContract:   checks.ContractVersion,
+		ToolchainPolicyDigest: checks.ToolchainPolicyDigest,
+	}
 	stateCounts := map[State]int{}
 	typeCounts := map[string]int{}
 	located, err := DiscoverTasks(root, nil)
 	if err != nil {
 		return AggregateReport{}, err
 	}
-	checks, err := CheckAll(root, nil)
-	if err != nil {
-		return AggregateReport{}, err
-	}
-	byID := map[string]QualityReport{}
-	for _, check := range checks.Reports {
+	byID := map[string]CheckedTask{}
+	for _, check := range checks.Tasks {
 		byID[check.TaskID] = check
 	}
 	for _, item := range located {
@@ -32,9 +45,10 @@ func BuildAggregateReport(root string) (AggregateReport, error) {
 		if err := decodeStrictFile(filepath.Join(item.Path, "task.yaml"), &task); err != nil {
 			return AggregateReport{}, fmt.Errorf("decode %s: %w", item.ID, err)
 		}
-		check := byID[item.ID]
+		checked := byID[item.ID]
+		check := checked.Report
 		report.Tasks = append(report.Tasks, AggregateTask{
-			ID: task.ID, State: item.State, TaskType: task.TaskType, Primary: task.Skills.Primary,
+			ID: task.ID, State: item.State, InputDigest: checked.InputDigest, TaskType: task.TaskType, Primary: task.Skills.Primary,
 			TechnicalStatus: check.TechnicalStatus, ReviewStatus: check.ReviewStatus,
 			PromotionEligible: check.PromotionEligible, FailingGateIDs: append([]string{}, check.FailingGateIDs...),
 			StarterStatus: check.StarterStatus, ReferenceStatus: check.ReferenceStatus, RaceStatus: check.RaceStatus,
@@ -71,10 +85,10 @@ func BuildAggregateReport(root string) (AggregateReport, error) {
 		}
 	}
 	policyGate := Gate{ID: "task-state-policy", Status: "pass", Details: []string{}}
-	for _, check := range checks.Reports {
-		if !check.Passed {
+	for _, checked := range checks.Tasks {
+		if !checked.Report.Passed {
 			policyGate.Status = "fail"
-			policyGate.Details = append(policyGate.Details, check.TaskID)
+			policyGate.Details = append(policyGate.Details, checked.TaskID)
 		}
 	}
 	sort.Strings(policyGate.Details)
@@ -88,6 +102,42 @@ func MarshalAggregateYAML(report AggregateReport) ([]byte, error) {
 
 func ValidateAggregateReport(root string, report AggregateReport) error {
 	return validateSchema(root, "task-aggregate-report.schema.json", report)
+}
+
+// ValidateAggregateInputs verifies committed report freshness without running
+// task code. Executable statuses still require CheckCollection evidence.
+func ValidateAggregateInputs(root string, report AggregateReport) error {
+	if report.SourceCheckContract != CheckContractVersion {
+		return fmt.Errorf("aggregate report uses stale check contract %q", report.SourceCheckContract)
+	}
+	toolchainDigest, err := ToolchainPolicyDigest(root)
+	if err != nil {
+		return err
+	}
+	if report.ToolchainPolicyDigest != toolchainDigest {
+		return fmt.Errorf("aggregate report uses a stale toolchain policy digest")
+	}
+	located, err := DiscoverTasks(root, nil)
+	if err != nil {
+		return err
+	}
+	if len(report.Tasks) != len(located) {
+		return fmt.Errorf("aggregate report contains %d tasks; repository has %d", len(report.Tasks), len(located))
+	}
+	for index, task := range located {
+		item := report.Tasks[index]
+		if item.ID != task.ID || item.State != task.State {
+			return fmt.Errorf("aggregate report task %d is %s/%s; require %s/%s", index, item.ID, item.State, task.ID, task.State)
+		}
+		digest, err := TaskInputDigest(root, task)
+		if err != nil {
+			return err
+		}
+		if item.InputDigest != digest {
+			return fmt.Errorf("aggregate report input digest is stale for %s", task.ID)
+		}
+	}
+	return nil
 }
 
 func CheckAggregateArtifacts(root, markdownPath, yamlPath string, report AggregateReport) error {
@@ -120,6 +170,7 @@ func MarshalAggregateMarkdown(report AggregateReport) []byte {
 	var output bytes.Buffer
 	output.WriteString("# Task quality report\n\n")
 	output.WriteString("Generated deterministically by `task-report`; it contains no timestamps.\n\n")
+	fmt.Fprintf(&output, "Source check contract: `%s`\n\nToolchain policy digest: `%s`\n\n", report.SourceCheckContract, report.ToolchainPolicyDigest)
 	output.WriteString("## Lifecycle\n\n")
 	output.WriteString("| State | Count |\n| --- | ---: |\n")
 	for _, item := range report.States {
@@ -143,14 +194,14 @@ func MarshalAggregateMarkdown(report AggregateReport) []byte {
 		output.WriteString("\n")
 	}
 	output.WriteString("\n## Packages\n\n")
-	output.WriteString("| ID | State | Technical | Review | Eligible | Starter | Reference | Race | Mutants | Compatibility |\n| --- | --- | --- | --- | ---: | --- | --- | --- | --- | --- |\n")
+	output.WriteString("| ID | State | Input digest | Technical | Review | Eligible | Starter | Reference | Race | Mutants | Compatibility |\n| --- | --- | --- | --- | --- | --- | ---: | --- | --- | --- | --- | --- |\n")
 	for _, task := range report.Tasks {
 		compatibility := "Phase 3A"
 		if task.Legacy {
 			compatibility = "legacy v1"
 		}
 		mutants := fmt.Sprintf("%d/%d", task.Mutants.Detected, task.Mutants.Total)
-		fmt.Fprintf(&output, "| `%s` | `%s` | `%s` | `%s` | %t | `%s` | `%s` | `%s` | %s | %s |\n", task.ID, task.State, task.TechnicalStatus, task.ReviewStatus, task.PromotionEligible, task.StarterStatus, task.ReferenceStatus, task.RaceStatus, mutants, compatibility)
+		fmt.Fprintf(&output, "| `%s` | `%s` | `%s` | `%s` | `%s` | %t | `%s` | `%s` | `%s` | %s | %s |\n", task.ID, task.State, task.InputDigest, task.TechnicalStatus, task.ReviewStatus, task.PromotionEligible, task.StarterStatus, task.ReferenceStatus, task.RaceStatus, mutants, compatibility)
 	}
 	return output.Bytes()
 }
