@@ -12,7 +12,7 @@ import (
 	"go-practice-bank/internal/tasking"
 )
 
-const cliUsage = `usage: go run ./cmd/learn [-root DIR] [-home DIR] <command> [arguments]
+const cliUsage = `usage: learn [-root DIR] [-home DIR] <command> [arguments]
 
 commands:
   list
@@ -26,6 +26,7 @@ commands:
   review
   solution --reveal
   next
+  roadmap
   progress
   feedback <text>
   reset-task [task-id] --yes
@@ -153,6 +154,15 @@ func RunCLI(config Config, arguments []string, stdout, stderr io.Writer) int {
 			return cliError(stderr, err)
 		}
 		writeSolution(stdout, files)
+	case "roadmap":
+		if err := noArguments(command, commandArguments); err != nil {
+			return cliError(stderr, err)
+		}
+		roadmap, err := service.Roadmap()
+		if err != nil {
+			return cliError(stderr, err)
+		}
+		writeRoadmap(stdout, roadmap)
 	case "next":
 		if err := noArguments(command, commandArguments); err != nil {
 			return cliError(stderr, err)
@@ -252,12 +262,23 @@ func writeSolution(output io.Writer, files []tasking.LearnerWorkspaceFile) {
 }
 
 func writeNext(output io.Writer, choice SchedulerChoice) {
+	if choice.RouteBlock != "" {
+		fmt.Fprintf(output, "Route: %s (%s)\n", choice.RouteBlock, choice.RouteRole)
+	}
 	fmt.Fprintf(output, "%s — %s\n", choice.Task.ID, choice.Task.Title)
 	fmt.Fprintf(output, "Activity: %s; difficulty: %s; primary skill: %s\n", choice.Task.Activity, choice.Task.Difficulty, choice.Task.PrimarySkill)
 	if len(choice.MissingPrerequisites) == 0 {
 		fmt.Fprintln(output, "Prerequisites: satisfied by recorded completions.")
 	} else {
 		fmt.Fprintf(output, "Prerequisites not yet encountered: %s\n", strings.Join(choice.MissingPrerequisites, ", "))
+	}
+	if len(choice.MissingPrerequisites) > 0 && choice.Preparation != "" {
+		fmt.Fprintf(output, "Preparation guide: %s\n", choice.Preparation)
+	}
+	if choice.Resume {
+		fmt.Fprintf(output, "Continue: learn resume %s\n", choice.Task.ID)
+	} else {
+		fmt.Fprintf(output, "Start: learn start %s\n", choice.Task.ID)
 	}
 	if choice.RecentTypeCount > 0 {
 		fmt.Fprintf(output, "Recent activity-type count: %d\n", choice.RecentTypeCount)

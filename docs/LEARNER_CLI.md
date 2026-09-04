@@ -4,6 +4,18 @@
 does not expose legacy task packages, authoring lifecycle states, or hidden
 verification material.
 
+## Sequential personal route
+
+The repository now ships curriculum/route.yaml. Use learn roadmap to see the
+current block, ready lessons, completed lessons and planned future content.
+Use learn next for the first unfinished route lesson and its start command.
+See [LEARNER_START.md](LEARNER_START.md) for the initial GoLand preparation.
+
+The preparation guide grants no completion or mastery. Existing completions
+remain recorded even when their task appears later in the route. Missing lessons
+stop automatic recommendations at the gap; explicit start/resume still work.
+Read-only route commands do not select a task or change session time.
+
 ## Quick start
 
 ```text
@@ -37,7 +49,8 @@ current directory. Learner state defaults to the OS user-config directory under
   prompts, not the reference solution.
 - `solution --reveal` is the separate, explicit solution-reveal action. Reveal
   is recorded but never marks completion.
-- `next` selects one unfinished task with the deterministic policy below.
+- `next` selects the first unfinished route lesson; repositories without a route use the fallback policy below.
+- `roadmap` shows the sequential course and local completion state.
 - `progress` prints attempts, hints, reveal/completion state, active duration,
   feedback count, and skill encounters.
 - `feedback <text>` stores up to 2,000 characters locally for the current task.
@@ -112,9 +125,9 @@ commands, remove only that lock file and retry. Keep `progress.json` and the
 workspaces; deleting either is unnecessary for lock recovery. Never remove the
 lock while another command is updating progress.
 
-## Deterministic `next`
+## Generic fallback without a route
 
-Completed primary and secondary skill encounters satisfy prerequisites. The
+When curriculum/route.yaml is absent, completed primary and secondary skill encounters satisfy prerequisites. The
 scheduler excludes completed tasks, then sorts by:
 
 1. all prerequisites encountered before missing prerequisites;

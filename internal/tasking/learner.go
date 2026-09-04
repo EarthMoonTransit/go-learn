@@ -414,7 +414,9 @@ func inspectLearnerSubmission(loaded learnerPackage, workspace string) (learnerS
 			allowedDirectories[directory] = true
 		}
 	}
-	allowedDirectories["subject"] = loaded.data.TaskV2.Submission.Kind != "workspace-patch"
+	if loaded.data.TaskV2.Submission.Kind != "workspace-patch" {
+		allowedDirectories["subject"] = true
+	}
 	found := map[string]bool{}
 	err = filepath.WalkDir(workspace, func(path string, entry fs.DirEntry, walkErr error) error {
 		if walkErr != nil {

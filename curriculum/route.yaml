@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "title": "Go Learn \u2014 personal foundation to production backend",
+  "preparation": "docs/LEARNER_START.md",
+  "preparation_skills": [
+    "toolchain.modules-workspaces",
+    "toolchain.build-run"
+  ],
+  "blocks": [
+    {
+      "id": "first-steps",
+      "title": "1. Variables, values, expressions and functions",
+      "steps": [
+        {
+          "task_id": "literal-bindings-001",
+          "role": "introduction",
+          "skills": [
+            "types.declarations-inference"
+          ]
+        },
+        {
+          "task_id": "zero-results-001",
+          "role": "introduction",
+          "skills": [
+            "types.zero-values"
+          ]
+        },
+        {
+          "task_id": "access-logic-001",
+          "role": "introduction",
+          "skills": [
+            "expressions.boolean-logic"
+          ]
+        },
+        {
+          "task_id": "division-results-001",
+          "role": "introduction",
+          "skills": [
+            "functions.signatures-results",
+            "expressions.arithmetic"
+          ]
+        },
+        {
+          "task_id": "exclusive-loop-001",
+          "role": "introduction",
+          "skills": [
+            "control-flow.for"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "values-and-collections",
+      "title": "2. Defined types, arrays, slices and maps",
+      "steps": [
+        {
+          "task_id": "named-block-001",
+          "role": "introduction",
+          "skills": [
+            "types.named-underlying",
+            "arrays.value-semantics"
+          ]
+        },
+        {
+          "task_id": "array-copy-001",
+          "role": "introduction",
+          "skills": [
+            "arrays.value-semantics"
+          ]
+        },
+        {
+          "task_id": "slice-window-001",
+          "role": "introduction",
+          "skills": [
+            "slices.header-model",
+            "slices.len-cap-slicing"
+          ]
+        },
+        {
+          "task_id": "append-value-001",
+          "role": "practice",
+          "skills": [
+            "slices.append-growth"
+          ]
+        },
+        {
+          "task_id": "map-presence-001",
+          "role": "introduction",
+          "skills": [
+            "maps.operations-comma-ok"
+          ]
+        },
+        {
+          "task_id": "map-take-001",
+          "role": "practice",
+          "skills": [
+            "maps.nil-delete-clear"
+          ]
+        },
+        {
+          "task_id": "detached-append-001",
+          "role": "transfer",
+          "skills": [
+            "slices.backing-array-aliasing",
+            "slices.append-growth"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text",
+      "title": "3. Strings and Unicode",
+      "steps": []
+    },
+    {
+      "id": "contracts",
+      "title": "4. Structs, pointers, methods, embedding, interfaces and errors",
+      "steps": []
+    },
+    {
+      "id": "libraries",
+      "title": "5. Packages, generics, I/O, encoding and time",
+      "steps": []
+    },
+    {
+      "id": "verification",
+      "title": "6. Testing, fuzzing and benchmarks",
+      "steps": []
+    },
+    {
+      "id": "concurrency",
+      "title": "7. Goroutines, channels, sync and context",
+      "steps": []
+    },
+    {
+      "id": "backend",
+      "title": "8. HTTP and PostgreSQL",
+      "steps": []
+    },
+    {
+      "id": "production",
+      "title": "9. Background work, operations and the final service",
+      "steps": []
+    }
+  ]
+}
