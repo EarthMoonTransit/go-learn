@@ -1,6 +1,6 @@
 # Phase 3A.1c race runner portability
 
-`remote_ci: pending`
+`remote_ci: success`
 
 ## Scope
 
@@ -108,4 +108,10 @@ report consumers не запускают task code повторно.
 | `catalog/reviews/exercism-go.yaml` | `05bf10d9bdbc282ca66c8b0c5bc9129deab1475be5a53bab3c303d51ec698f03` | same |
 | `catalog/seed-plans/exercism-foundation-pilot.yaml` | `0cbbf900b5da2ba75460bd0f2d54c832f64e1debeaa2f0daadfe2025c134a2c5` | same |
 
-До фактического post-push GitHub Actions run remote status остаётся `pending`.
+## Remote acceptance
+
+GitHub Actions run
+[`33874467745`](https://github.com/EarthMoonTransit/go-learn/actions/runs/33874467745)
+для commit `3889e68b2d6bead7f9f1db99c686dbe2af57f844` завершился успешно за
+1m39s. Linux/amd64 выполнил, а не пропустил, tagged integration race variant;
+production task-check и оба consumer step также прошли.
