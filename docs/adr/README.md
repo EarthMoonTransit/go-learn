@@ -13,3 +13,5 @@ ADR фиксируют изменения стабильных контракт�
 - `0007` — Task Contract v2 и declarative verification profiles (`accepted`)
 - `0008` — multi-source Provenance v2 и original content identity (`accepted`)
 - `0009` — learner work sessions across verification attempts (`accepted`)
+- `0010` — sequential personal learning route (`accepted`)
+- `0011` — editor API declarations for test submissions (`accepted`)
