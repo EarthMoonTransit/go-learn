@@ -6,6 +6,11 @@
 fixed/mutation/workspace verification profiles и локальный learner CLI.
 Массовая генерация и web UI отсутствуют.
 
+Конечная продуктовая цель, критерии успеха, текущий status snapshot и дорожная
+карта описаны в [`docs/PROJECT_VISION.md`](docs/PROJECT_VISION.md). Протокол
+независимого аудита и learner-code review с GPT-6 Astra находится в
+[`docs/ASTRA_EVALUATION.md`](docs/ASTRA_EVALUATION.md).
+
 ## Быстрые команды
 
 ```bash
