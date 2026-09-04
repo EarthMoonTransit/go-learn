@@ -1,9 +1,0 @@
-schema_version: 1
-state: draft
-updated_at: "2026-09-04"
-transitions:
-  - from: ""
-    to: draft
-    at: "2026-09-04"
-    actor: phase-3b-authoring
-    reason: initialize foundation pilot task for technical validation

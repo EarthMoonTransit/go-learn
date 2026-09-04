@@ -59,15 +59,14 @@ tasks:
         survived: []
       legacy: true
     - id: detached-append-001
-      state: draft
-      input_digest: 34185a5bd02994ca3a8aebf2e15c86874837dd3af87ba509ca8beb58e9d64e00
+      state: ready
+      input_digest: 92eadf85530879648f7368ec23871fee045d6fef1ddb897fdd101a5d1be2ddd6
       task_type: debug
       primary_skill: slices.backing-array-aliasing
       technical_status: pass
-      review_status: fail
+      review_status: pass
       promotion_eligible: true
-      failing_gate_ids:
-        - review-evidence
+      failing_gate_ids: []
       starter_status: pass
       reference_status: pass
       race_status: not-applicable
@@ -135,15 +134,14 @@ tasks:
         survived: []
       legacy: false
     - id: map-take-001
-      state: draft
-      input_digest: ef3670f2152eea9da80f2e23353b64c0ef5f3c666ca7931debec92d50bee7514
+      state: ready
+      input_digest: 4579c0556922eb92d723a9b2e1be09176b301323a6741325d7029c9bb20be26e
       task_type: implement
       primary_skill: maps.nil-delete-clear
       technical_status: pass
-      review_status: fail
+      review_status: pass
       promotion_eligible: true
-      failing_gate_ids:
-        - review-evidence
+      failing_gate_ids: []
       starter_status: pass
       reference_status: pass
       race_status: not-applicable
@@ -286,11 +284,11 @@ tasks:
       legacy: true
 states:
     - state: draft
-      count: 12
+      count: 10
     - state: in-review
       count: 0
     - state: ready
-      count: 3
+      count: 5
     - state: rejected
       count: 0
     - state: retired

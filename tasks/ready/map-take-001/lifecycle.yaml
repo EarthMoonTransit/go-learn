@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-09-04"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-09-04"
+      actor: phase-3b-authoring
+      reason: initialize foundation pilot task for technical validation
+    - from: draft
+      to: in-review
+      at: "2026-09-04"
+      actor: phase-3c-red-team
+      reason: five-role red-team confirmed behavior after prerequisite and delete-contract repair
+    - from: in-review
+      to: ready
+      at: "2026-09-04"
+      actor: phase-3c-red-team
+      reason: independent review complete; technical, mutation, pedagogy, and provenance gates pass

@@ -10,9 +10,9 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 
 | State | Count |
 | --- | ---: |
-| `draft` | 12 |
+| `draft` | 10 |
 | `in-review` | 0 |
-| `ready` | 3 |
+| `ready` | 5 |
 | `rejected` | 0 |
 | `retired` | 0 |
 
@@ -37,11 +37,11 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | `clamp-tests-001` | `draft` | `7b3858a948171d8c136f9f63a40fdd291acf3814619e02dcc588b07d3db1a5a3` | `pass` | `fail` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
 | `counter-receiver-001` | `draft` | `4af83ae2b949960fc16dd9d4d9756f5aa5c8a3ebb644e4aabca68a3e0effa584` | `pass` | `fail` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
 | `defined-types-001` | `ready` | `c08c4e3554e127e537523fb2c6e26120c86acd6f94fe1953ad5473355d63c2ea` | `pass` | `not-applicable` | false | `not-applicable` | `not-applicable` | `not-applicable` | 0/0 | legacy v1 |
-| `detached-append-001` | `draft` | `34185a5bd02994ca3a8aebf2e15c86874837dd3af87ba509ca8beb58e9d64e00` | `pass` | `fail` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
+| `detached-append-001` | `ready` | `92eadf85530879648f7368ec23871fee045d6fef1ddb897fdd101a5d1be2ddd6` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
 | `effective-rate-001` | `draft` | `35ec59c7ca9254e036f01fe31bc29e647aa833076f8cc371b222f024b34adf7c` | `pass` | `fail` | true | `pass` | `pass` | `not-applicable` | 5/5 | Phase 3A |
 | `error-chain-query-001` | `draft` | `a67022fb5ae65a2197cf32092878a6f704e1362edb1a30d351dbf290fd155127` | `pass` | `fail` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
 | `formatter-contract-001` | `draft` | `e0ae2d891143a270f07831691b8bee324dc0cf44b92c046c2f6a6b2b7130d1b1` | `pass` | `fail` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
-| `map-take-001` | `draft` | `ef3670f2152eea9da80f2e23353b64c0ef5f3c666ca7931debec92d50bee7514` | `pass` | `fail` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
+| `map-take-001` | `ready` | `4579c0556922eb92d723a9b2e1be09176b301323a6741325d7029c9bb20be26e` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
 | `resource-finalize-001` | `draft` | `eac64557cde5385fac041375f673b32593fb8ec67778b2c1560890a765548b6f` | `pass` | `fail` | true | `pass` | `pass` | `not-applicable` | 5/5 | Phase 3A |
 | `rune-offset-tests-001` | `draft` | `3503a5d6acaf1862f68e178a7d036b90fd7bd1de6e945e0f9a68ff4e16628575` | `pass` | `fail` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
 | `stream-normalize-001` | `draft` | `71e3f3881d4daeed00bf789417aeeff194b29ead1149ca1dbdead0f7eddd5a7d` | `pass` | `fail` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |

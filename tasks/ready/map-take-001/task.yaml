@@ -1,0 +1,43 @@
+schema_version: 2
+id: map-take-001
+title: Take a value from a map without zero-value ambiguity
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: maps.nil-delete-clear
+    secondary: []
+prerequisites:
+    - types.zero-values
+    - maps.operations-comma-ok
+new_concepts:
+    - maps.nil-delete-clear
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 25
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - always-present
+        - clear-all
+        - leave-entry
+        - zero-means-missing
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
