@@ -10,11 +10,15 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
+	"sort"
 	"strings"
 	"time"
 )
 
 const maxCopiedFileSize = 8 << 20
+
+var ErrCommandTimeout = errors.New("Go command timed out")
 
 // Environment owns a disposable directory and isolated Go caches.
 type Environment struct {
@@ -29,7 +33,7 @@ func NewEnvironment(prefix string) (*Environment, error) {
 	if err != nil {
 		return nil, fmt.Errorf("create isolated environment: %w", err)
 	}
-	for _, name := range []string{"cache", "modcache", "tmp", "workspaces"} {
+	for _, name := range []string{"cache", "home", "modcache", "tmp", "workspaces"} {
 		if err := os.Mkdir(filepath.Join(root, name), 0o700); err != nil {
 			_ = os.RemoveAll(root)
 			return nil, fmt.Errorf("prepare isolated environment: %w", err)
@@ -60,35 +64,43 @@ func (e *Environment) NewWorkspace(name string) (string, error) {
 }
 
 func (e *Environment) GoEnv() []string {
-	base := os.Environ()
-	overrides := map[string]string{
+	values := map[string]string{
+		"CGO_ENABLED": "0",
+		"GOENV":       "off",
 		"GOCACHE":     filepath.Join(e.Root, "cache"),
 		"GOMODCACHE":  filepath.Join(e.Root, "modcache"),
 		"GOFLAGS":     "-mod=readonly",
 		"GOPROXY":     "off",
+		"GOTELEMETRY": "off",
 		"GOTOOLCHAIN": "local",
 		"GOWORK":      "off",
+		"HOME":        filepath.Join(e.Root, "home"),
+		"PATH":        strings.Join([]string{filepath.Join(runtime.GOROOT(), "bin"), "/usr/bin", "/bin"}, string(filepath.ListSeparator)),
 		"TMPDIR":      filepath.Join(e.Root, "tmp"),
 	}
-	result := make([]string, 0, len(base)+len(overrides))
-	for _, entry := range base {
-		key, _, ok := strings.Cut(entry, "=")
-		if ok {
-			if _, replaced := overrides[key]; replaced {
-				continue
+	if runtime.GOOS == "windows" {
+		for _, key := range []string{"PATHEXT", "SYSTEMROOT", "WINDIR"} {
+			if value, ok := os.LookupEnv(key); ok {
+				values[key] = value
 			}
 		}
-		result = append(result, entry)
 	}
-	for _, key := range []string{"GOCACHE", "GOMODCACHE", "GOFLAGS", "GOPROXY", "GOTOOLCHAIN", "GOWORK", "TMPDIR"} {
-		result = append(result, key+"="+overrides[key])
+	keys := make([]string, 0, len(values))
+	for key := range values {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	result := make([]string, 0, len(keys))
+	for _, key := range keys {
+		result = append(result, key+"="+values[key])
 	}
 	return result
 }
 
-// Run executes a process in a disposable workspace. Callers must never pass a
-// source-checkout directory as dir.
-func (e *Environment) Run(dir string, timeout time.Duration, name string, args ...string) ([]byte, error) {
+// RunGo executes the Go binary from the active runtime in a disposable
+// workspace. It provides process and filesystem hygiene for trusted repository
+// inputs, not an operating-system security sandbox for hostile code.
+func (e *Environment) RunGo(dir string, timeout time.Duration, args ...string) ([]byte, error) {
 	canonicalRoot, err := filepath.EvalSymlinks(e.Root)
 	if err != nil {
 		return nil, fmt.Errorf("resolve isolated root: %w", err)
@@ -103,12 +115,16 @@ func (e *Environment) Run(dir string, timeout time.Duration, name string, args .
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
-	cmd := exec.CommandContext(ctx, name, args...)
+	executable := filepath.Join(runtime.GOROOT(), "bin", "go")
+	if runtime.GOOS == "windows" {
+		executable += ".exe"
+	}
+	cmd := exec.CommandContext(ctx, executable, args...)
 	cmd.Dir = canonicalDir
 	cmd.Env = e.GoEnv()
 	output, runErr := cmd.CombinedOutput()
 	if errors.Is(ctx.Err(), context.DeadlineExceeded) {
-		return output, fmt.Errorf("command timed out after %s", timeout)
+		return output, fmt.Errorf("%w after %s", ErrCommandTimeout, timeout)
 	}
 	return output, runErr
 }
@@ -206,32 +222,30 @@ func CopyFile(source, destination string) error {
 	return nil
 }
 
-// RunShellInCopy executes a legacy manifest command in a fresh copy of the task
-// package. The command can observe and mutate only that disposable copy.
-func RunShellInCopy(sourceDirectory, command string, timeout time.Duration) ([]byte, error) {
-	results, err := RunShellCommandsInCopies(sourceDirectory, []string{command}, timeout)
-	if err != nil {
-		return nil, err
-	}
-	return results[0].Output, results[0].Err
-}
-
 type CommandResult struct {
 	Command string
 	Output  []byte
 	Err     error
 }
 
-// RunShellCommandsInCopies shares only compiler caches between commands; each
-// command receives a new package copy so one check cannot affect another.
-func RunShellCommandsInCopies(sourceDirectory string, commands []string, timeout time.Duration) ([]CommandResult, error) {
+// RunLegacyCommandsInCopies accepts only the legacy go test/go vet manifest
+// grammar. Every command receives a new package copy; no shell is involved.
+func RunLegacyCommandsInCopies(sourceDirectory string, commands []string, timeout time.Duration) ([]CommandResult, error) {
+	parsed := make([]LegacyCommand, len(commands))
+	for index, command := range commands {
+		value, err := ParseLegacyCommand(command)
+		if err != nil {
+			return nil, fmt.Errorf("legacy command %q: %w", command, err)
+		}
+		parsed[index] = value
+	}
 	environment, err := NewEnvironment("go-task-legacy")
 	if err != nil {
 		return nil, err
 	}
 	defer environment.Close()
 	results := make([]CommandResult, 0, len(commands))
-	for _, command := range commands {
+	for index, command := range commands {
 		workspace, err := environment.NewWorkspace("task")
 		if err != nil {
 			return nil, err
@@ -239,7 +253,16 @@ func RunShellCommandsInCopies(sourceDirectory string, commands []string, timeout
 		if err := CopyTree(sourceDirectory, workspace); err != nil {
 			return nil, err
 		}
-		output, runErr := environment.Run(workspace, timeout, "sh", "-eu", "-c", command)
+		output, runErr := environment.RunGo(workspace, timeout, parsed[index].Args...)
+		if parsed[index].ExpectFailure {
+			if errors.Is(runErr, ErrCommandTimeout) {
+				// A timeout is an infrastructure failure, never an expected test failure.
+			} else if runErr == nil {
+				runErr = errors.New("command unexpectedly succeeded")
+			} else {
+				runErr = nil
+			}
+		}
 		results = append(results, CommandResult{Command: command, Output: output, Err: runErr})
 	}
 	return results, nil

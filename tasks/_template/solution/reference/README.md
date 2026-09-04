@@ -1,4 +1,4 @@
 # Reference solution
 
-Минимальная идиоматичная реализация и `*_test.go` binding к public/grader
-suites. Не включать в student export.
+Минимальная идиоматичная реализация с package `subject`. `*_test.go` запрещены;
+public/grader подключает checker. Не включать в student export.

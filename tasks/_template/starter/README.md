@@ -1,4 +1,4 @@
 # Starter boundary
 
-`*.go` — минимальная компилируемая learner-facing реализация. Tests сюда не
-помещаются; binding к starter находится в `tests/public` и `tests/grader`.
+`*.go` — минимальная компилируемая learner-facing реализация с package
+`subject`. `*_test.go` запрещены: варианты связывает checker.

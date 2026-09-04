@@ -21,6 +21,7 @@ import (
 
 	"go-practice-bank/internal/isolation"
 	"go-practice-bank/internal/sources"
+	"go-practice-bank/internal/toolchainpolicy"
 	"go-practice-bank/internal/triage"
 )
 
@@ -40,15 +41,38 @@ func Check(root, id string) (QualityReport, error) {
 	return checkLocated(root, located)
 }
 
+func CheckAll(root string, states []State) (CheckCollection, error) {
+	located, err := DiscoverTasks(root, states)
+	if err != nil {
+		return CheckCollection{}, err
+	}
+	collection := CheckCollection{SchemaVersion: 1, Reports: make([]QualityReport, 0, len(located))}
+	for _, task := range located {
+		report, err := checkLocated(root, task)
+		if err != nil {
+			return CheckCollection{}, fmt.Errorf("check %s: %w", task.ID, err)
+		}
+		collection.Reports = append(collection.Reports, report)
+	}
+	return collection, nil
+}
+
 func checkLocated(root string, located LocatedTask) (QualityReport, error) {
+	if _, err := os.Lstat(filepath.Join(located.Path, "lifecycle.yaml")); errors.Is(err, os.ErrNotExist) && located.State == StateReady {
+		return checkLegacy(root, located)
+	}
+	if located.State == StateRejected || located.State == StateRetired {
+		return checkInactive(root, located)
+	}
 	c := checker{report: QualityReport{
 		SchemaVersion: 1, TaskID: located.ID, State: located.State,
+		FailingGateIDs: []string{}, StarterStatus: "not-applicable", ReferenceStatus: "not-applicable", RaceStatus: "not-applicable",
 		Mutants: MutantSummary{Survived: []string{}},
 	}}
 	data, loadProblems := loadPackage(root, located)
 	c.gate("package-metadata", loadProblems)
 
-	contractProblems, layout := checkPackageContract(data)
+	contractProblems, layout := checkPackageContract(root, data)
 	c.gate("package-contract", contractProblems)
 
 	metadataProblems := checkMetadata(root, data)
@@ -89,13 +113,17 @@ func checkLocated(root string, located LocatedTask) (QualityReport, error) {
 	}
 	defer environment.Close()
 
-	starterPublic := runTaskPackages(environment, data.Located.Path, data.Task.ID, false, "./tests/public")
+	policy, err := toolchainpolicy.Load(root)
+	if err != nil {
+		return QualityReport{}, err
+	}
+	starterPublic := runTaskVariant(environment, data.Task.ID, policy.GoLanguageVersion, false, layout.Starter, layout.PublicTests)
 	c.gate("starter-public", expectFailure("starter with public tests", starterPublic))
-	starterFull := runTaskPackages(environment, data.Located.Path, data.Task.ID, false, "./tests/public", "./tests/grader")
+	starterFull := runTaskVariant(environment, data.Task.ID, policy.GoLanguageVersion, false, layout.Starter, appendCopy(layout.PublicTests, layout.GraderTests))
 	c.gate("starter-full", expectFailure("starter with full tests", starterFull))
 
-	referenceFirst := runTaskPackages(environment, data.Located.Path, data.Task.ID, false, "./solution/reference")
-	referenceSecond := runTaskPackages(environment, data.Located.Path, data.Task.ID, false, "./solution/reference")
+	referenceFirst := runTaskVariant(environment, data.Task.ID, policy.GoLanguageVersion, false, layout.Reference, appendCopy(layout.PublicTests, layout.GraderTests))
+	referenceSecond := runTaskVariant(environment, data.Task.ID, policy.GoLanguageVersion, false, layout.Reference, appendCopy(layout.PublicTests, layout.GraderTests))
 	var referenceProblems []string
 	if !referenceFirst.Compiled {
 		referenceProblems = append(referenceProblems, "reference does not compile with full tests")
@@ -114,7 +142,7 @@ func checkLocated(root string, located LocatedTask) (QualityReport, error) {
 	c.report.Mutants.Total = len(layout.Mutants)
 	var mutantProblems []string
 	for _, mutant := range layout.Mutants {
-		result := runTaskPackages(environment, data.Located.Path, data.Task.ID, false, "./solution/mutants/"+mutant.ID)
+		result := runTaskVariant(environment, data.Task.ID, policy.GoLanguageVersion, false, mutant.Files, layout.GraderTests)
 		if !result.Compiled {
 			mutantProblems = append(mutantProblems, fmt.Sprintf("mutant %s does not compile", mutant.ID))
 			continue
@@ -133,7 +161,7 @@ func checkLocated(root string, located LocatedTask) (QualityReport, error) {
 	c.gate("mutant-coverage", mutantProblems)
 
 	if isConcurrencyTask(data.Task) {
-		race := runTaskPackages(environment, data.Located.Path, data.Task.ID, true, "./solution/reference")
+		race := runTaskVariant(environment, data.Task.ID, policy.GoLanguageVersion, true, layout.Reference, appendCopy(layout.PublicTests, layout.GraderTests))
 		var raceProblems []string
 		if !race.Compiled || !race.Passed {
 			raceProblems = append(raceProblems, "reference fails go test -race with full tests")
@@ -172,12 +200,47 @@ func (c *checker) notApplicable(id, detail string) {
 }
 
 func (c *checker) finish() {
-	c.report.Passed = true
+	c.report.TechnicalStatus = "pass"
+	c.report.ReviewStatus = "not-applicable"
 	for _, gate := range c.report.Gates {
-		if gate.Status == "fail" {
-			c.report.Passed = false
-			break
+		if gate.ID == "review-evidence" {
+			c.report.ReviewStatus = gate.Status
+			continue
 		}
+		if gate.Status == "fail" {
+			c.report.TechnicalStatus = "fail"
+			c.report.FailingGateIDs = append(c.report.FailingGateIDs, gate.ID)
+		}
+		switch gate.ID {
+		case "starter-public", "starter-full":
+			if gate.Status == "fail" {
+				c.report.StarterStatus = "fail"
+			} else if c.report.StarterStatus != "fail" {
+				c.report.StarterStatus = gate.Status
+			}
+		case "reference-full":
+			c.report.ReferenceStatus = gate.Status
+		case "race":
+			c.report.RaceStatus = gate.Status
+		}
+	}
+	if c.report.ReviewStatus == "fail" {
+		c.report.FailingGateIDs = append(c.report.FailingGateIDs, "review-evidence")
+	}
+	c.report.FailingGateIDs = uniqueSorted(c.report.FailingGateIDs)
+	switch c.report.State {
+	case StateDraft:
+		c.report.PromotionEligible = c.report.TechnicalStatus == "pass"
+		c.report.Passed = c.report.TechnicalStatus == "pass"
+	case StateInReview:
+		c.report.PromotionEligible = c.report.TechnicalStatus == "pass" && c.report.ReviewStatus == "pass"
+		c.report.Passed = c.report.TechnicalStatus == "pass"
+	case StateReady:
+		c.report.PromotionEligible = c.report.TechnicalStatus == "pass" && c.report.ReviewStatus == "pass"
+		c.report.Passed = c.report.PromotionEligible
+	default:
+		c.report.PromotionEligible = false
+		c.report.Passed = c.report.TechnicalStatus == "pass"
 	}
 }
 
@@ -196,7 +259,7 @@ type mutantLayout struct {
 	Files []string
 }
 
-func checkPackageContract(data packageData) ([]string, packageLayout) {
+func checkPackageContract(root string, data packageData) ([]string, packageLayout) {
 	var problems []string
 	layout := packageLayout{TaskDir: data.Located.Path, GoMod: filepath.Join(data.Located.Path, "go.mod")}
 	for _, name := range []string{"TASK.md", "task.yaml", "lifecycle.yaml", "go.mod", "review/review.yaml", "review/notes.md", "hints/HINTS.md", "provenance.yaml"} {
@@ -213,12 +276,17 @@ func checkPackageContract(data packageData) ([]string, packageLayout) {
 	}
 	goMod, err := os.ReadFile(layout.GoMod)
 	if err == nil {
-		problems = append(problems, validateGoMod(data.Located.ID, string(goMod))...)
+		policy, policyErr := toolchainpolicy.Load(root)
+		if policyErr != nil {
+			problems = append(problems, "load toolchain policy: "+policyErr.Error())
+		} else {
+			problems = append(problems, toolchainpolicy.ValidateGoMod(goMod, policy.ModulePrefix+data.Located.ID, policy.GoLanguageVersion, policy.ForbidToolchainDirective)...)
+		}
 	}
 	layout.Starter, problems = collectGoDirectory(data.Located.Path, "starter", directoryImplementation, problems)
 	layout.PublicTests, problems = collectGoDirectory(data.Located.Path, "tests/public", directoryTestHarness, problems)
 	layout.GraderTests, problems = collectGoDirectory(data.Located.Path, "tests/grader", directoryTestHarness, problems)
-	layout.Reference, problems = collectGoDirectory(data.Located.Path, "solution/reference", directoryExecutableSolution, problems)
+	layout.Reference, problems = collectGoDirectory(data.Located.Path, "solution/reference", directoryImplementation, problems)
 
 	mutantRoot := filepath.Join(data.Located.Path, "solution", "mutants")
 	entries, err := os.ReadDir(mutantRoot)
@@ -230,7 +298,7 @@ func checkPackageContract(data packageData) ([]string, packageLayout) {
 				problems = append(problems, fmt.Sprintf("invalid mutant entry: %s", entry.Name()))
 				continue
 			}
-			files, next := collectGoDirectory(data.Located.Path, filepath.ToSlash(filepath.Join("solution/mutants", entry.Name())), directoryExecutableSolution, problems)
+			files, next := collectGoDirectory(data.Located.Path, filepath.ToSlash(filepath.Join("solution/mutants", entry.Name())), directoryImplementation, problems)
 			problems = next
 			layout.Mutants = append(layout.Mutants, mutantLayout{ID: entry.Name(), Files: files})
 		}
@@ -247,7 +315,6 @@ type directoryKind int
 const (
 	directoryImplementation directoryKind = iota
 	directoryTestHarness
-	directoryExecutableSolution
 )
 
 func collectGoDirectory(root, relative string, kind directoryKind, problems []string) ([]string, []string) {
@@ -274,6 +341,15 @@ func collectGoDirectory(root, relative string, kind directoryKind, problems []st
 			nonTests++
 		}
 		files = append(files, filepath.Join(directory, entry.Name()))
+		fileset := token.NewFileSet()
+		parsed, parseErr := parser.ParseFile(fileset, filepath.Join(directory, entry.Name()), nil, parser.PackageClauseOnly|parser.ImportsOnly)
+		if parseErr != nil {
+			problems = append(problems, fmt.Sprintf("cannot parse %s/%s: %v", relative, entry.Name(), parseErr))
+		} else if kind == directoryImplementation && parsed.Name.Name != "subject" {
+			problems = append(problems, fmt.Sprintf("implementation package in %s/%s must be subject", relative, entry.Name()))
+		} else if kind == directoryTestHarness && parsed.Name.Name != "subject_test" {
+			problems = append(problems, fmt.Sprintf("test package in %s/%s must be subject_test", relative, entry.Name()))
+		}
 	}
 	sort.Strings(files)
 	if len(files) == 0 {
@@ -283,50 +359,15 @@ func collectGoDirectory(root, relative string, kind directoryKind, problems []st
 		problems = append(problems, fmt.Sprintf("starter tests must live in tests/public, not %s", relative))
 	}
 	if kind == directoryTestHarness && tests == 0 {
-		problems = append(problems, fmt.Sprintf("%s must contain a *_test.go binding", relative))
+		problems = append(problems, fmt.Sprintf("%s must contain a *_test.go file", relative))
 	}
-	if kind == directoryExecutableSolution && (tests == 0 || nonTests == 0) {
-		problems = append(problems, fmt.Sprintf("%s must contain implementation and *_test.go binding files", relative))
+	if kind == directoryTestHarness && nonTests != 0 {
+		problems = append(problems, fmt.Sprintf("%s may contain only *_test.go files", relative))
+	}
+	if kind == directoryImplementation && nonTests == 0 {
+		problems = append(problems, fmt.Sprintf("%s must contain implementation files", relative))
 	}
 	return files, problems
-}
-
-func validateGoMod(id, content string) []string {
-	var problems []string
-	moduleSeen := false
-	goSeen := false
-	scanner := bufio.NewScanner(strings.NewReader(content))
-	for scanner.Scan() {
-		line := strings.TrimSpace(scanner.Text())
-		if line == "" || strings.HasPrefix(line, "//") {
-			continue
-		}
-		fields := strings.Fields(line)
-		if len(fields) == 0 {
-			continue
-		}
-		switch fields[0] {
-		case "module":
-			moduleSeen = len(fields) == 2 && fields[1] == "task.local/"+id
-			if !moduleSeen {
-				problems = append(problems, "go.mod module must be task.local/"+id)
-			}
-		case "go":
-			goSeen = len(fields) == 2 && fields[1] == "1.24"
-			if !goSeen {
-				problems = append(problems, "go.mod must declare go 1.24")
-			}
-		case "require", "replace", "exclude", "retract", "tool", "godebug":
-			problems = append(problems, fmt.Sprintf("go.mod directive %s is not allowed", fields[0]))
-		}
-	}
-	if !moduleSeen {
-		problems = append(problems, "go.mod is missing the required module directive")
-	}
-	if !goSeen {
-		problems = append(problems, "go.mod is missing the required go directive")
-	}
-	return uniqueSorted(problems)
 }
 
 func checkMetadata(root string, data packageData) []string {
@@ -733,17 +774,34 @@ type variantResult struct {
 	Canonical string
 }
 
-func runTaskPackages(environment *isolation.Environment, taskDirectory, taskID string, race bool, packages ...string) variantResult {
+func runTaskVariant(environment *isolation.Environment, taskID, goVersion string, race bool, implementation, tests []string) variantResult {
 	workspace, err := environment.NewWorkspace("variant")
 	if err != nil {
 		return variantResult{}
 	}
-	if err := isolation.CopyTree(taskDirectory, workspace); err != nil {
+	goMod := []byte("module task.local/" + taskID + "\n\ngo " + goVersion + "\n")
+	if err := os.WriteFile(filepath.Join(workspace, "go.mod"), goMod, 0o600); err != nil {
 		return variantResult{}
 	}
+	subject := filepath.Join(workspace, "subject")
+	if err := os.Mkdir(subject, 0o700); err != nil {
+		return variantResult{}
+	}
+	for index, path := range implementation {
+		name := fmt.Sprintf("impl_%03d_%s", index, filepath.Base(path))
+		if err := isolation.CopyFile(path, filepath.Join(subject, name)); err != nil {
+			return variantResult{}
+		}
+	}
+	for index, path := range tests {
+		name := fmt.Sprintf("check_%03d_%s", index, filepath.Base(path))
+		if err := isolation.CopyFile(path, filepath.Join(subject, name)); err != nil {
+			return variantResult{}
+		}
+	}
 	compileArgs := []string{"test", "-run", "^$", "-count=1"}
-	compileArgs = append(compileArgs, packages...)
-	compileOutput, compileErr := environment.Run(workspace, taskCommandTimeout, "go", compileArgs...)
+	compileArgs = append(compileArgs, "./subject")
+	compileOutput, compileErr := environment.RunGo(workspace, taskCommandTimeout, compileArgs...)
 	_ = compileOutput
 	if compileErr != nil {
 		return variantResult{}
@@ -752,9 +810,14 @@ func runTaskPackages(environment *isolation.Environment, taskDirectory, taskID s
 	if race {
 		args = append(args, "-race")
 	}
-	args = append(args, packages...)
-	output, runErr := environment.Run(workspace, taskCommandTimeout, "go", args...)
+	args = append(args, "./subject")
+	output, runErr := environment.RunGo(workspace, taskCommandTimeout, args...)
 	return variantResult{Compiled: true, Passed: runErr == nil, Canonical: canonicalTestEvents(output, taskID)}
+}
+
+func appendCopy(left, right []string) []string {
+	result := append([]string(nil), left...)
+	return append(result, right...)
 }
 
 func canonicalTestEvents(output []byte, taskID string) string {

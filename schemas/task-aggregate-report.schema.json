@@ -12,12 +12,30 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "state", "task_type", "primary_skill", "legacy"],
+        "required": ["id", "state", "task_type", "primary_skill", "technical_status", "review_status", "promotion_eligible", "failing_gate_ids", "starter_status", "reference_status", "race_status", "mutants", "legacy"],
         "properties": {
           "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-[0-9]{3}$"},
           "state": {"enum": ["draft", "in-review", "ready", "rejected", "retired"]},
           "task_type": {"enum": ["implement", "debug", "predict", "refactor", "test-writing", "performance"]},
           "primary_skill": {"type": "string", "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$"},
+          "technical_status": {"enum": ["pass", "fail", "not-applicable"]},
+          "review_status": {"enum": ["pass", "fail", "not-applicable"]},
+          "promotion_eligible": {"type": "boolean"},
+          "failing_gate_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "starter_status": {"enum": ["pass", "fail", "not-applicable"]},
+          "reference_status": {"enum": ["pass", "fail", "not-applicable"]},
+          "race_status": {"enum": ["pass", "fail", "not-applicable"]},
+          "mutants": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["required", "total", "detected", "survived"],
+            "properties": {
+              "required": {"type": "integer", "minimum": 0},
+              "total": {"type": "integer", "minimum": 0},
+              "detected": {"type": "integer", "minimum": 0},
+              "survived": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+            }
+          },
           "legacy": {"type": "boolean"}
         }
       }

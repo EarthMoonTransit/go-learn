@@ -1,5 +1,8 @@
 # ADR 0004: lifecycle и изолированная проверка task packages
 
+> Execution binding, environment и promotion semantics уточнены и частично
+> заменены ADR 0005. Lifecycle state machine из этого ADR остаётся действующей.
+
 - Статус: accepted
 - Дата: 2026-09-04
 - Решение: ФАЗА 3A
@@ -57,8 +60,7 @@ quality report. Каталог и `lifecycle.yaml` обязаны совпада
 └── ATTRIBUTION.md              # обязателен для адаптаций
 ```
 
-Public/grader каталоги содержат reusable suites и `*_test.go` bindings к
-`starter`. Reference и каждый mutant содержат свои bindings к обеим suites.
+Первоначальный контракт bindings заменён checker-owned assembly из ADR 0005.
 Ни один test не импортирует каталоги из source checkout. Не-Go fixtures и
 внешние зависимости в контракте 3A не разрешены; их поддержка потребует ADR.
 
@@ -67,7 +69,7 @@ Public/grader каталоги содержат reusable suites и `*_test.go` b
 Ни одна test-команда не запускается из source checkout. Инструмент отклоняет
 symlinks и нерегулярные файлы, копирует только разрешённые артефакты в новый
 temporary module и запускает Go там. Для legacy `validation_commands` целый
-task package копируется в temp перед каждой командой.
+task package копируется в temp перед каждой командой; shell больше не используется.
 
 Каждый запуск получает `GOWORK=off`, `GOPROXY=off`, `GOTOOLCHAIN=local`,
 `GOFLAGS=-mod=readonly` и отдельные `GOCACHE`, `GOMODCACHE`, `TMPDIR`.

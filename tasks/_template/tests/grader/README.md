@@ -1,4 +1,5 @@
 # Grader tests
 
-Внутренняя suite и `*_test.go` binding к starter. Проверяет edge cases и
-hardcoding. Не включать в student export.
+Только внутренние canonical `*_test.go` с package `subject_test`. Проверяют edge
+cases и hardcoding; checker подключает их к выбранной реализации. Не включать в
+student export.

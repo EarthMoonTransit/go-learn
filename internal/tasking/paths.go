@@ -87,6 +87,63 @@ func FindTask(root, id string) (LocatedTask, error) {
 	return matches[0], nil
 }
 
+// DiscoverTasks validates every lifecycle directory before applying the state
+// filter. This makes duplicate IDs and malformed entries repository-wide
+// failures instead of silently ignored inventory noise.
+func DiscoverTasks(root string, states []State) ([]LocatedTask, error) {
+	wanted := map[State]bool{}
+	for _, state := range states {
+		if _, ok := stateDirectories[state]; !ok {
+			return nil, fmt.Errorf("invalid lifecycle state %q", state)
+		}
+		wanted[state] = true
+	}
+	allStates := len(wanted) == 0
+	seen := map[string]State{}
+	var result []LocatedTask
+	for _, state := range orderedStates {
+		directory := filepath.Join(root, "tasks", stateDirectories[state])
+		entries, err := os.ReadDir(directory)
+		if errors.Is(err, os.ErrNotExist) {
+			continue
+		}
+		if err != nil {
+			return nil, err
+		}
+		for _, entry := range entries {
+			path := filepath.Join(directory, entry.Name())
+			if entry.Name() == "README.md" {
+				info, err := os.Lstat(path)
+				if err != nil || !info.Mode().IsRegular() {
+					return nil, fmt.Errorf("state README must be a regular file: %s", path)
+				}
+				continue
+			}
+			if !taskIDPattern.MatchString(entry.Name()) {
+				return nil, fmt.Errorf("unexpected entry in %s: %s", directory, entry.Name())
+			}
+			info, err := os.Lstat(path)
+			if err != nil || info.Mode()&os.ModeSymlink != 0 || !info.IsDir() {
+				return nil, fmt.Errorf("task path must be a real directory: %s", path)
+			}
+			if first, ok := seen[entry.Name()]; ok {
+				return nil, fmt.Errorf("duplicate task id %q in %s and %s", entry.Name(), first, state)
+			}
+			seen[entry.Name()] = state
+			if allStates || wanted[state] {
+				result = append(result, LocatedTask{ID: entry.Name(), State: state, Path: path})
+			}
+		}
+	}
+	sort.Slice(result, func(i, j int) bool {
+		if result[i].ID != result[j].ID {
+			return result[i].ID < result[j].ID
+		}
+		return result[i].State < result[j].State
+	})
+	return result, nil
+}
+
 func inspectTree(root string) error {
 	rootInfo, err := os.Lstat(root)
 	if err != nil {
@@ -124,34 +181,14 @@ func inspectTree(root string) error {
 }
 
 func listTaskIDs(root string) ([]string, error) {
-	seen := map[string]State{}
-	var result []string
-	for _, state := range orderedStates {
-		directory := filepath.Join(root, "tasks", stateDirectories[state])
-		entries, err := os.ReadDir(directory)
-		if errors.Is(err, os.ErrNotExist) {
-			continue
-		}
-		if err != nil {
-			return nil, err
-		}
-		for _, entry := range entries {
-			if !taskIDPattern.MatchString(entry.Name()) {
-				continue
-			}
-			path := filepath.Join(directory, entry.Name())
-			info, err := os.Lstat(path)
-			if err != nil || info.Mode()&os.ModeSymlink != 0 || !info.IsDir() {
-				return nil, fmt.Errorf("task path must be a real directory: %s", path)
-			}
-			if first, ok := seen[entry.Name()]; ok {
-				return nil, fmt.Errorf("duplicate task id %q in %s and %s", entry.Name(), first, state)
-			}
-			seen[entry.Name()] = state
-			result = append(result, entry.Name())
-		}
+	located, err := DiscoverTasks(root, nil)
+	if err != nil {
+		return nil, err
 	}
-	sort.Strings(result)
+	result := make([]string, 0, len(located))
+	for _, task := range located {
+		result = append(result, task.ID)
+	}
 	return result, nil
 }
 

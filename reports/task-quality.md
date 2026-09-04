@@ -22,12 +22,13 @@ Generated deterministically by `task-report`; it contains no timestamps.
 
 ## Aggregate gates
 
+- `task-state-policy`: **pass**
 - `task-type-diversity`: **not-applicable** — fewer than 10 lifecycle tasks
 
 ## Packages
 
-| ID | State | Type | Primary skill | Compatibility |
-| --- | --- | --- | --- | --- |
-| `defined-types-001` | `ready` | `refactor` | `types.named-underlying` | legacy v1 |
-| `variadic-sum-001` | `ready` | `implement` | `functions.variadic` | legacy v1 |
-| `zero-state-001` | `ready` | `debug` | `types.zero-values` | legacy v1 |
+| ID | State | Technical | Review | Eligible | Starter | Reference | Race | Mutants | Compatibility |
+| --- | --- | --- | --- | ---: | --- | --- | --- | --- | --- |
+| `defined-types-001` | `ready` | `pass` | `not-applicable` | false | `not-applicable` | `not-applicable` | `not-applicable` | 0/0 | legacy v1 |
+| `variadic-sum-001` | `ready` | `pass` | `not-applicable` | false | `not-applicable` | `not-applicable` | `not-applicable` | 0/0 | legacy v1 |
+| `zero-state-001` | `ready` | `pass` | `not-applicable` | false | `not-applicable` | `not-applicable` | `not-applicable` | 0/0 | legacy v1 |

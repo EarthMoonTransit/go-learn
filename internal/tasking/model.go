@@ -114,20 +114,41 @@ type MutantSummary struct {
 }
 
 type QualityReport struct {
-	SchemaVersion int           `yaml:"schema_version" json:"schema_version"`
-	TaskID        string        `yaml:"task_id" json:"task_id"`
-	State         State         `yaml:"state" json:"state"`
-	Passed        bool          `yaml:"passed" json:"passed"`
-	Gates         []Gate        `yaml:"gates" json:"gates"`
-	Mutants       MutantSummary `yaml:"mutants" json:"mutants"`
+	SchemaVersion     int           `yaml:"schema_version" json:"schema_version"`
+	TaskID            string        `yaml:"task_id" json:"task_id"`
+	State             State         `yaml:"state" json:"state"`
+	Passed            bool          `yaml:"passed" json:"passed"`
+	TechnicalStatus   string        `yaml:"technical_status" json:"technical_status"`
+	ReviewStatus      string        `yaml:"review_status" json:"review_status"`
+	PromotionEligible bool          `yaml:"promotion_eligible" json:"promotion_eligible"`
+	Legacy            bool          `yaml:"legacy" json:"legacy"`
+	FailingGateIDs    []string      `yaml:"failing_gate_ids" json:"failing_gate_ids"`
+	StarterStatus     string        `yaml:"starter_status" json:"starter_status"`
+	ReferenceStatus   string        `yaml:"reference_status" json:"reference_status"`
+	RaceStatus        string        `yaml:"race_status" json:"race_status"`
+	Gates             []Gate        `yaml:"gates" json:"gates"`
+	Mutants           MutantSummary `yaml:"mutants" json:"mutants"`
+}
+
+type CheckCollection struct {
+	SchemaVersion int             `yaml:"schema_version" json:"schema_version"`
+	Reports       []QualityReport `yaml:"reports" json:"reports"`
 }
 
 type AggregateTask struct {
-	ID       string `yaml:"id" json:"id"`
-	State    State  `yaml:"state" json:"state"`
-	TaskType string `yaml:"task_type" json:"task_type"`
-	Primary  string `yaml:"primary_skill" json:"primary_skill"`
-	Legacy   bool   `yaml:"legacy" json:"legacy"`
+	ID                string        `yaml:"id" json:"id"`
+	State             State         `yaml:"state" json:"state"`
+	TaskType          string        `yaml:"task_type" json:"task_type"`
+	Primary           string        `yaml:"primary_skill" json:"primary_skill"`
+	TechnicalStatus   string        `yaml:"technical_status" json:"technical_status"`
+	ReviewStatus      string        `yaml:"review_status" json:"review_status"`
+	PromotionEligible bool          `yaml:"promotion_eligible" json:"promotion_eligible"`
+	FailingGateIDs    []string      `yaml:"failing_gate_ids" json:"failing_gate_ids"`
+	StarterStatus     string        `yaml:"starter_status" json:"starter_status"`
+	ReferenceStatus   string        `yaml:"reference_status" json:"reference_status"`
+	RaceStatus        string        `yaml:"race_status" json:"race_status"`
+	Mutants           MutantSummary `yaml:"mutants" json:"mutants"`
+	Legacy            bool          `yaml:"legacy" json:"legacy"`
 }
 
 type StateCount struct {

@@ -2,7 +2,6 @@ package tasking
 
 import (
 	"bytes"
-	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -16,59 +15,33 @@ func BuildAggregateReport(root string) (AggregateReport, error) {
 	report := AggregateReport{SchemaVersion: 1}
 	stateCounts := map[State]int{}
 	typeCounts := map[string]int{}
-	seen := map[string]State{}
-	for _, state := range orderedStates {
-		directory := filepath.Join(root, "tasks", stateDirectories[state])
-		entries, err := os.ReadDir(directory)
-		if errors.Is(err, os.ErrNotExist) {
-			continue
+	located, err := DiscoverTasks(root, nil)
+	if err != nil {
+		return AggregateReport{}, err
+	}
+	checks, err := CheckAll(root, nil)
+	if err != nil {
+		return AggregateReport{}, err
+	}
+	byID := map[string]QualityReport{}
+	for _, check := range checks.Reports {
+		byID[check.TaskID] = check
+	}
+	for _, item := range located {
+		var task Task
+		if err := decodeStrictFile(filepath.Join(item.Path, "task.yaml"), &task); err != nil {
+			return AggregateReport{}, fmt.Errorf("decode %s: %w", item.ID, err)
 		}
-		if err != nil {
-			return AggregateReport{}, err
-		}
-		for _, entry := range entries {
-			if !taskIDPattern.MatchString(entry.Name()) {
-				continue
-			}
-			path := filepath.Join(directory, entry.Name())
-			info, err := os.Lstat(path)
-			if err != nil || info.Mode()&os.ModeSymlink != 0 || !info.IsDir() {
-				return AggregateReport{}, fmt.Errorf("task path must be a real directory: %s", path)
-			}
-			if first, exists := seen[entry.Name()]; exists {
-				return AggregateReport{}, fmt.Errorf("duplicate task id %q in %s and %s", entry.Name(), first, state)
-			}
-			seen[entry.Name()] = state
-			if err := inspectTree(path); err != nil {
-				return AggregateReport{}, fmt.Errorf("inspect %s: %w", entry.Name(), err)
-			}
-			var task Task
-			if err := decodeStrictFile(filepath.Join(path, "task.yaml"), &task); err != nil {
-				return AggregateReport{}, fmt.Errorf("decode %s: %w", entry.Name(), err)
-			}
-			if task.ID != entry.Name() {
-				return AggregateReport{}, fmt.Errorf("task id %q does not match directory %q", task.ID, entry.Name())
-			}
-			legacy := false
-			if _, err := os.Lstat(filepath.Join(path, "lifecycle.yaml")); errors.Is(err, os.ErrNotExist) && state == StateReady {
-				legacy = true
-			} else if err != nil {
-				return AggregateReport{}, fmt.Errorf("inspect lifecycle for %s: %w", entry.Name(), err)
-			} else {
-				var lifecycle Lifecycle
-				if err := decodeStrictFile(filepath.Join(path, "lifecycle.yaml"), &lifecycle); err != nil {
-					return AggregateReport{}, fmt.Errorf("decode lifecycle for %s: %w", entry.Name(), err)
-				}
-				if lifecycle.State != state || task.QualityStatus != qualityByState[state] {
-					return AggregateReport{}, fmt.Errorf("task %s lifecycle metadata does not match %s directory", entry.Name(), state)
-				}
-			}
-			report.Tasks = append(report.Tasks, AggregateTask{
-				ID: task.ID, State: state, TaskType: task.TaskType, Primary: task.Skills.Primary, Legacy: legacy,
-			})
-			stateCounts[state]++
-			typeCounts[task.TaskType]++
-		}
+		check := byID[item.ID]
+		report.Tasks = append(report.Tasks, AggregateTask{
+			ID: task.ID, State: item.State, TaskType: task.TaskType, Primary: task.Skills.Primary,
+			TechnicalStatus: check.TechnicalStatus, ReviewStatus: check.ReviewStatus,
+			PromotionEligible: check.PromotionEligible, FailingGateIDs: append([]string{}, check.FailingGateIDs...),
+			StarterStatus: check.StarterStatus, ReferenceStatus: check.ReferenceStatus, RaceStatus: check.RaceStatus,
+			Mutants: check.Mutants, Legacy: check.Legacy,
+		})
+		stateCounts[item.State]++
+		typeCounts[task.TaskType]++
 	}
 	sort.Slice(report.Tasks, func(i, j int) bool { return report.Tasks[i].ID < report.Tasks[j].ID })
 	for _, state := range orderedStates {
@@ -97,7 +70,15 @@ func BuildAggregateReport(root string) (AggregateReport, error) {
 			diversity.Details = []string{"at least 3 task types are required and no type may exceed 60% once 10 tasks exist"}
 		}
 	}
-	report.Gates = []Gate{diversity}
+	policyGate := Gate{ID: "task-state-policy", Status: "pass", Details: []string{}}
+	for _, check := range checks.Reports {
+		if !check.Passed {
+			policyGate.Status = "fail"
+			policyGate.Details = append(policyGate.Details, check.TaskID)
+		}
+	}
+	sort.Strings(policyGate.Details)
+	report.Gates = []Gate{policyGate, diversity}
 	return report, nil
 }
 
@@ -107,6 +88,32 @@ func MarshalAggregateYAML(report AggregateReport) ([]byte, error) {
 
 func ValidateAggregateReport(root string, report AggregateReport) error {
 	return validateSchema(root, "task-aggregate-report.schema.json", report)
+}
+
+func CheckAggregateArtifacts(root, markdownPath, yamlPath string, report AggregateReport) error {
+	yamlContent, err := MarshalAggregateYAML(report)
+	if err != nil {
+		return err
+	}
+	for _, artifact := range []struct {
+		path     string
+		expected []byte
+	}{
+		{markdownPath, MarshalAggregateMarkdown(report)},
+		{yamlPath, yamlContent},
+	} {
+		if err := cleanRelativePath(artifact.path); err != nil {
+			return err
+		}
+		actual, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(artifact.path)))
+		if err != nil {
+			return err
+		}
+		if !bytes.Equal(actual, artifact.expected) {
+			return fmt.Errorf("%s is stale", artifact.path)
+		}
+	}
+	return nil
 }
 
 func MarshalAggregateMarkdown(report AggregateReport) []byte {
@@ -136,13 +143,14 @@ func MarshalAggregateMarkdown(report AggregateReport) []byte {
 		output.WriteString("\n")
 	}
 	output.WriteString("\n## Packages\n\n")
-	output.WriteString("| ID | State | Type | Primary skill | Compatibility |\n| --- | --- | --- | --- | --- |\n")
+	output.WriteString("| ID | State | Technical | Review | Eligible | Starter | Reference | Race | Mutants | Compatibility |\n| --- | --- | --- | --- | ---: | --- | --- | --- | --- | --- |\n")
 	for _, task := range report.Tasks {
 		compatibility := "Phase 3A"
 		if task.Legacy {
 			compatibility = "legacy v1"
 		}
-		fmt.Fprintf(&output, "| `%s` | `%s` | `%s` | `%s` | %s |\n", task.ID, task.State, task.TaskType, task.Primary, compatibility)
+		mutants := fmt.Sprintf("%d/%d", task.Mutants.Detected, task.Mutants.Total)
+		fmt.Fprintf(&output, "| `%s` | `%s` | `%s` | `%s` | %t | `%s` | `%s` | `%s` | %s | %s |\n", task.ID, task.State, task.TechnicalStatus, task.ReviewStatus, task.PromotionEligible, task.StarterStatus, task.ReferenceStatus, task.RaceStatus, mutants, compatibility)
 	}
 	return output.Bytes()
 }

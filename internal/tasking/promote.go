@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 	"time"
 
+	"go-practice-bank/internal/isolation"
 	"go-practice-bank/internal/safeio"
 	"gopkg.in/yaml.v3"
 )
@@ -17,6 +18,11 @@ type PromoteOptions struct {
 	Actor  string
 	Reason string
 	Date   string
+}
+
+var promotionTestHooks struct {
+	afterLock   func()
+	beforeWrite func(string) error
 }
 
 func allowedTransition(from, to State) bool {
@@ -47,6 +53,17 @@ func Promote(root string, options PromoteOptions) (LocatedTask, error) {
 	if _, err := time.Parse("2006-01-02", options.Date); err != nil {
 		return LocatedTask{}, fmt.Errorf("invalid date: %w", err)
 	}
+	if !taskIDPattern.MatchString(options.ID) {
+		return LocatedTask{}, fmt.Errorf("invalid task id %q", options.ID)
+	}
+	unlock, err := acquirePromotionLock(root, options.ID)
+	if err != nil {
+		return LocatedTask{}, err
+	}
+	defer unlock()
+	if promotionTestHooks.afterLock != nil {
+		promotionTestHooks.afterLock()
+	}
 	located, err := FindTask(root, options.ID)
 	if err != nil {
 		return LocatedTask{}, err
@@ -59,27 +76,12 @@ func Promote(root string, options PromoteOptions) (LocatedTask, error) {
 	if len(loadProblems) != 0 {
 		return LocatedTask{}, fmt.Errorf("cannot promote package with invalid metadata: %s", loadProblems[0])
 	}
-	switch options.To {
-	case StateInReview:
-		report, err := checkLocated(root, located)
-		if err != nil {
-			return LocatedTask{}, err
-		}
-		if problems := failingGates(report, "review-evidence"); len(problems) != 0 {
-			return LocatedTask{}, fmt.Errorf("cannot enter review: failing gates: %v", problems)
-		}
-	case StateReady:
-		report, err := checkLocated(root, located)
-		if err != nil {
-			return LocatedTask{}, err
-		}
-		if !report.Passed {
-			return LocatedTask{}, fmt.Errorf("cannot enter ready: failing gates: %v", failingGates(report))
-		}
-	case StateRejected:
-		if data.Review.Decision != "reject" {
-			return LocatedTask{}, errors.New("rejection requires review decision reject")
-		}
+	lastDate := data.Lifecycle.Transitions[len(data.Lifecycle.Transitions)-1].At
+	if options.Date < lastDate {
+		return LocatedTask{}, fmt.Errorf("transition date %s predates last lifecycle event %s", options.Date, lastDate)
+	}
+	if options.To == StateRejected && data.Review.Decision != "reject" {
+		return LocatedTask{}, errors.New("rejection requires review decision reject")
 	}
 
 	destination, err := packagePath(root, options.To, options.ID)
@@ -91,7 +93,7 @@ func Promote(root string, options PromoteOptions) (LocatedTask, error) {
 	} else if !errors.Is(err, os.ErrNotExist) {
 		return LocatedTask{}, err
 	}
-	if err := os.MkdirAll(filepath.Dir(destination), 0o755); err != nil {
+	if err := ensureRealDirectory(filepath.Dir(destination), 0o755); err != nil {
 		return LocatedTask{}, err
 	}
 
@@ -117,22 +119,127 @@ func Promote(root string, options PromoteOptions) (LocatedTask, error) {
 	if err != nil {
 		return LocatedTask{}, err
 	}
-	rollback := func() {
-		_, _ = safeio.AtomicWrite(located.Path, "task.yaml", originalTask, 1<<20)
-		_, _ = safeio.AtomicWrite(located.Path, "lifecycle.yaml", originalLifecycle, 1<<20)
+	if err := validateSchema(root, "task.schema.json", data.Task); err != nil {
+		return LocatedTask{}, fmt.Errorf("future task metadata: %w", err)
+	}
+	if err := validateSchema(root, "task-lifecycle.schema.json", data.Lifecycle); err != nil {
+		return LocatedTask{}, fmt.Errorf("future lifecycle metadata: %w", err)
+	}
+	if problems := validateLifecycle(data.Lifecycle); len(problems) != 0 {
+		return LocatedTask{}, fmt.Errorf("future lifecycle is invalid: %s", problems[0])
+	}
+	if err := validateFuturePromotion(root, located, options.To, updatedTask, updatedLifecycle); err != nil {
+		return LocatedTask{}, err
+	}
+
+	rollback := func() error {
+		if _, err := safeio.AtomicWrite(located.Path, "task.yaml", originalTask, 1<<20); err != nil {
+			return err
+		}
+		_, err := safeio.AtomicWrite(located.Path, "lifecycle.yaml", originalLifecycle, 1<<20)
+		return err
+	}
+	if promotionTestHooks.beforeWrite != nil {
+		if err := promotionTestHooks.beforeWrite("task.yaml"); err != nil {
+			return LocatedTask{}, err
+		}
 	}
 	if _, err := safeio.AtomicWrite(located.Path, "task.yaml", updatedTask, 1<<20); err != nil {
 		return LocatedTask{}, err
 	}
+	if promotionTestHooks.beforeWrite != nil {
+		if err := promotionTestHooks.beforeWrite("lifecycle.yaml"); err != nil {
+			if rollbackErr := rollback(); rollbackErr != nil {
+				return LocatedTask{}, fmt.Errorf("injected promotion failure: %v; rollback failed: %v", err, rollbackErr)
+			}
+			return LocatedTask{}, err
+		}
+	}
 	if _, err := safeio.AtomicWrite(located.Path, "lifecycle.yaml", updatedLifecycle, 1<<20); err != nil {
-		rollback()
+		_ = rollback()
 		return LocatedTask{}, err
 	}
 	if err := os.Rename(located.Path, destination); err != nil {
-		rollback()
+		if rollbackErr := rollback(); rollbackErr != nil {
+			return LocatedTask{}, fmt.Errorf("atomic lifecycle rename: %v; rollback failed: %v", err, rollbackErr)
+		}
 		return LocatedTask{}, fmt.Errorf("atomic lifecycle rename: %w", err)
 	}
 	return LocatedTask{ID: options.ID, State: options.To, Path: destination}, nil
+}
+
+func acquirePromotionLock(root, id string) (func(), error) {
+	directory := filepath.Join(root, "tasks", ".locks")
+	if err := ensureRealDirectory(directory, 0o700); err != nil {
+		return nil, err
+	}
+	path := filepath.Join(directory, id+".lock")
+	file, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0o600)
+	if err != nil {
+		if errors.Is(err, os.ErrExist) {
+			return nil, fmt.Errorf("promotion for %s is already locked", id)
+		}
+		return nil, err
+	}
+	if err := file.Close(); err != nil {
+		_ = os.Remove(path)
+		return nil, err
+	}
+	return func() { _ = os.Remove(path) }, nil
+}
+
+func ensureRealDirectory(path string, mode os.FileMode) error {
+	info, err := os.Lstat(path)
+	if errors.Is(err, os.ErrNotExist) {
+		if err := os.Mkdir(path, mode); err != nil && !errors.Is(err, os.ErrExist) {
+			return err
+		}
+		info, err = os.Lstat(path)
+	}
+	if err != nil {
+		return err
+	}
+	if info.Mode()&os.ModeSymlink != 0 || !info.IsDir() {
+		return fmt.Errorf("promotion directory must be a real directory: %s", path)
+	}
+	return nil
+}
+
+func validateFuturePromotion(root string, source LocatedTask, target State, taskYAML, lifecycleYAML []byte) error {
+	staging, err := os.MkdirTemp("", "go-task-promotion-*")
+	if err != nil {
+		return err
+	}
+	defer os.RemoveAll(staging)
+	packageCopy := filepath.Join(staging, source.ID)
+	if err := isolation.CopyTree(source.Path, packageCopy); err != nil {
+		return err
+	}
+	if _, err := safeio.AtomicWrite(packageCopy, "task.yaml", taskYAML, 1<<20); err != nil {
+		return err
+	}
+	if _, err := safeio.AtomicWrite(packageCopy, "lifecycle.yaml", lifecycleYAML, 1<<20); err != nil {
+		return err
+	}
+	report, err := checkLocated(root, LocatedTask{ID: source.ID, State: target, Path: packageCopy})
+	if err != nil {
+		return err
+	}
+	switch target {
+	case StateReady:
+		if !report.Passed {
+			return fmt.Errorf("future ready package fails gates: %v", report.FailingGateIDs)
+		}
+	case StateDraft, StateInReview:
+		if report.TechnicalStatus != "pass" {
+			return fmt.Errorf("future %s package fails technical gates: %v", target, report.FailingGateIDs)
+		}
+	case StateRejected, StateRetired:
+		if report.TechnicalStatus != "pass" {
+			return fmt.Errorf("future %s package fails audit gates: %v", target, report.FailingGateIDs)
+		}
+	}
+	return nil
 }
 
 func failingGates(report QualityReport, ignored ...string) []string {

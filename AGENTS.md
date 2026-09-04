@@ -23,9 +23,10 @@
 6. Не менять `schemas/task.schema.json`, идентификаторы skills или смысл полей
    без отдельного зафиксированного решения (ADR/issue) и миграционного плана.
 7. Не помещать секретные grader tests и reference solutions в публичный export.
-8. Перед завершением batch запускать `go test ./...` и
-   `go run ./cmd/validate -root . -coverage -run-commands` (в ФАЗЕ 1 допустим
-   `-phase1`).
+8. Перед завершением tooling batch запускать `go test ./...`,
+   `go test -race ./...`, `go vet ./...`, validator, `task-check -all` и
+   `task-report -check`. Для release content batch validator использует
+   `-coverage`; для infrastructure допустим `-phase1`.
 9. Никогда не запускать authored task code или task tests непосредственно из
    source checkout. Использовать `task-check`; legacy validation commands также
    обязаны выполняться только в disposable copy.

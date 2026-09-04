@@ -4,16 +4,52 @@ tasks:
       state: ready
       task_type: refactor
       primary_skill: types.named-underlying
+      technical_status: pass
+      review_status: not-applicable
+      promotion_eligible: false
+      failing_gate_ids: []
+      starter_status: not-applicable
+      reference_status: not-applicable
+      race_status: not-applicable
+      mutants:
+        required: 0
+        total: 0
+        detected: 0
+        survived: []
       legacy: true
     - id: variadic-sum-001
       state: ready
       task_type: implement
       primary_skill: functions.variadic
+      technical_status: pass
+      review_status: not-applicable
+      promotion_eligible: false
+      failing_gate_ids: []
+      starter_status: not-applicable
+      reference_status: not-applicable
+      race_status: not-applicable
+      mutants:
+        required: 0
+        total: 0
+        detected: 0
+        survived: []
       legacy: true
     - id: zero-state-001
       state: ready
       task_type: debug
       primary_skill: types.zero-values
+      technical_status: pass
+      review_status: not-applicable
+      promotion_eligible: false
+      failing_gate_ids: []
+      starter_status: not-applicable
+      reference_status: not-applicable
+      race_status: not-applicable
+      mutants:
+        required: 0
+        total: 0
+        detected: 0
+        survived: []
       legacy: true
 states:
     - state: draft
@@ -34,6 +70,9 @@ task_types:
     - task_type: refactor
       count: 1
 gates:
+    - id: task-state-policy
+      status: pass
+      details: []
     - id: task-type-diversity
       status: not-applicable
       details:

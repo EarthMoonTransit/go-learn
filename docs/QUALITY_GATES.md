@@ -1,7 +1,8 @@
 # Quality gates
 
 Lifecycle использует состояния `draft`, `in-review`, `ready`, `rejected`,
-`retired`. Разрешённые переходы и отображение в schema v1 определены ADR 0004.
+`retired`. Разрешённые переходы определены ADR 0004, hardened semantics — ADR
+0005.
 `task-promote` запрещает прямой `draft → ready` и не перезаписывает target.
 
 ## Gate 1 — package, metadata и taxonomy
@@ -45,14 +46,16 @@ Lifecycle использует состояния `draft`, `in-review`, `ready`,
 - starter + public + grader компилируется, но full run падает;
 - reference + public + grader проходит два повторных запуска;
 - наблюдаемые test events повторных reference runs одинаковы;
-- каждый обязательный mutant компилируется и падает на full grader;
+- каждый обязательный mutant компилируется и обнаруживается grader;
 - public API starter/reference/mutants совпадает;
 - tests не используют uncontrolled clock, randomness, network, environment или
   external processes; `time.Sleep` запрещён;
 - concurrency reference дополнительно проходит `go test -race`.
 
-Все команды выполняются в disposable workspaces с `GOWORK=off`, `GOPROXY=off`,
-`GOTOOLCHAIN=local`, `GOFLAGS=-mod=readonly` и отдельными cache/temp paths.
+Варианты собираются checker-owned способом: implementations не содержат tests,
+а canonical public/grader tests нельзя заменить solution binding. Все команды
+выполняются в disposable workspaces с минимальным allowlisted environment,
+offline module resolution и отдельными home/cache/temp paths.
 
 ## Gate 5 — review и maintainability
 
@@ -67,7 +70,9 @@ Lifecycle использует состояния `draft`, `in-review`, `ready`,
 
 `task-check` выдаёт документ `schemas/task-quality-report.schema.json`. Каждый
 gate имеет `pass`, `fail` или `not-applicable`; mutant summary фиксирует
-`required`, `total`, `detected` и `survived`.
+`required`, `total`, `detected` и `survived`. Дополнительно фиксируются
+technical/review status, promotion eligibility, failing gate IDs, starter,
+reference, race и legacy compatibility.
 
 `task-report` детерминированно создаёт `reports/task-quality.yaml` и Markdown.
 После появления десяти lifecycle packages aggregate gate требует минимум три
@@ -80,8 +85,11 @@ Authoring infrastructure и неполные content batches:
 
 ```bash
 go test ./...
+go test -race ./...
 go vet ./...
 go run ./cmd/validate -root . -phase1 -run-commands
+go run ./cmd/task-check -root . -all
+go run ./cmd/task-report -root . -check
 ```
 
 Release coverage дополнительно использует `-coverage`. Ни `-phase1`, ни наличие

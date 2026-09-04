@@ -4,12 +4,20 @@
   "title": "Machine-readable task quality report",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "task_id", "state", "passed", "gates", "mutants"],
+  "required": ["schema_version", "task_id", "state", "passed", "technical_status", "review_status", "promotion_eligible", "legacy", "failing_gate_ids", "starter_status", "reference_status", "race_status", "gates", "mutants"],
   "properties": {
     "schema_version": {"const": 1},
     "task_id": {"type": "string"},
     "state": {"enum": ["draft", "in-review", "ready", "rejected", "retired"]},
     "passed": {"type": "boolean"},
+    "technical_status": {"enum": ["pass", "fail", "not-applicable"]},
+    "review_status": {"enum": ["pass", "fail", "not-applicable"]},
+    "promotion_eligible": {"type": "boolean"},
+    "legacy": {"type": "boolean"},
+    "failing_gate_ids": {"type": "array", "items": {"type": "string", "pattern": "^[a-z0-9-]+$"}, "uniqueItems": true},
+    "starter_status": {"enum": ["pass", "fail", "not-applicable"]},
+    "reference_status": {"enum": ["pass", "fail", "not-applicable"]},
+    "race_status": {"enum": ["pass", "fail", "not-applicable"]},
     "gates": {
       "type": "array",
       "items": {

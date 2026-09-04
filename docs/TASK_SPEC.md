@@ -19,10 +19,10 @@ Phase 3A package содержат не более двух skills.
 - `TASK.md` — техническое условие, API, требования и ограничения;
 - `go.mod` — отдельный stdlib-only module `task.local/<task-id>`;
 - `starter/` — минимальная компилируемая реализация учащегося;
-- `tests/public/` — видимая suite и `*_test.go` binding к starter;
-- `tests/grader/` — скрытая suite и `*_test.go` binding к starter;
-- `solution/reference/` — реализация и binding к public/grader suites;
-- `solution/mutants/<mutant-id>/` — различимые неверные реализации и bindings;
+- `tests/public/` — видимые canonical `*_test.go`;
+- `tests/grader/` — скрытые canonical `*_test.go`;
+- `solution/reference/` — reference implementation без test bindings;
+- `solution/mutants/<mutant-id>/` — различимые неверные реализации без bindings;
 - `review/review.yaml`, `review/notes.md` — reviewer decision и evidence;
 - `hints/HINTS.md` — прогрессивные подсказки без готового решения;
 - `provenance.yaml` — полная цепочка источников и редакторских решений;
@@ -42,15 +42,18 @@ story-free формулировка и отсутствие solution leakage п�
 
 ## Исполняемый контракт
 
-Implementation и bindings могут быть разными Go packages внутри одного модуля.
-Public/grader bindings импортируют starter. Reference и каждый mutant имеют
-собственный `*_test.go`, запускающий обе suites против выбранной реализации.
+Starter, reference и mutants содержат только implementation files с package
+`subject`; authored `*_test.go` в этих каталогах запрещены. Public и grader
+содержат только `*_test.go` с package `subject_test` и импортируют canonical
+`task.local/<task-id>/subject`. Checker, а не task-authored binding, собирает
+каждый вариант в новом temporary module и подключает одни и те же tests.
 Starter компилируется, но падает хотя бы на обязательной public и full проверке;
-reference проходит две повторные full проверки; каждый mutant компилируется и
-обнаруживается grader. Для concurrency reference дополнительно проходит race.
+reference проходит две повторные public+grader проверки; каждый mutant
+компилируется и обнаруживается grader. Для concurrency reference дополнительно
+проходит race. Подробности и trust boundary определены ADR 0005.
 
 `go.work`, symlinks, нерегулярные файлы и внешние module dependencies запрещены.
-Authored code выполняется только в disposable copy согласно ADR 0004.
+Authored code выполняется только в disposable copy согласно ADR 0005.
 
 ## Поля `task.yaml`
 
@@ -68,8 +71,9 @@ Authored code выполняется только в disposable copy согла�
 - `source`: registry id, repository, path, exact commit SHA и SPDX license.
 - `transformation_type`: `original`, `adapted`, `translated-adaptation`,
   `combined` или `metadata-only`.
-- `validation_commands`: детерминированные CI-команды legacy schema v1;
-  `task-check` дополнительно использует фиксированную матрицу ADR 0004.
+- `validation_commands`: поле совместимости schema v1. Для lifecycle packages
+  checker его не исполняет; матрицей владеет tooling. В legacy разрешён только
+  узкий parser `go test`/`go vet` из ADR 0005.
 - `quality_status`: совместимое отображение lifecycle: `draft → draft`,
   `in-review → review`, `ready → ready`, `rejected → quarantined`, `retired →
   retired`. `validated` остаётся enum schema v1, но не lifecycle state.
@@ -83,7 +87,7 @@ commit, original-задача не может пройти promotion.
 ## Lifecycle и стабильность
 
 Состояния: `draft`, `in-review`, `ready`, `rejected`, `retired`. Разрешённые
-переходы и atomic promotion определены ADR 0004. Изменение schema v1, enum или
+переходы определены ADR 0004, hardened promotion — ADR 0005. Изменение schema v1, enum или
 skill id требует отдельного ADR и миграционного плана.
 
 Три ready packages, существовавшие до ADR 0004, являются legacy v1 и могут не

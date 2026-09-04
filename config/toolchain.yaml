@@ -1,0 +1,12 @@
+schema_version: 1
+go_language_version: "1.27"
+ci_toolchain: 1.27.x
+module_prefix: task.local/
+forbid_toolchain_directive: true
+legacy_tasks:
+  - id: defined-types-001
+    go_language_version: "1.24"
+  - id: variadic-sum-001
+    go_language_version: "1.24"
+  - id: zero-state-001
+    go_language_version: "1.24"

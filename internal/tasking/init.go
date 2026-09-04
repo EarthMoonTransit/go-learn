@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"go-practice-bank/internal/sources"
+	"go-practice-bank/internal/toolchainpolicy"
 	"go-practice-bank/internal/triage"
 	"gopkg.in/yaml.v3"
 )
@@ -26,6 +27,10 @@ type InitOptions struct {
 }
 
 func Init(root string, options InitOptions) (LocatedTask, error) {
+	toolchain, err := toolchainpolicy.Load(root)
+	if err != nil {
+		return LocatedTask{}, err
+	}
 	if !slugPattern.MatchString(options.Slug) {
 		return LocatedTask{}, fmt.Errorf("invalid slug %q", options.Slug)
 	}
@@ -226,6 +231,7 @@ func Init(root string, options InitOptions) (LocatedTask, error) {
 	replacements := map[string]string{
 		"{{ID}}": id, "{{SOURCE_REPOSITORY}}": source.Repository,
 		"{{SOURCE_COMMIT}}": source.Commit, "{{SOURCE_LICENSE}}": source.License.Expression,
+		"{{GO_LANGUAGE_VERSION}}": toolchain.GoLanguageVersion,
 	}
 	textFiles := map[string]string{
 		"go.mod":          "go.mod.tmpl",

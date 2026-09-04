@@ -20,6 +20,7 @@ import (
 	"go-practice-bank/internal/isolation"
 	sourcepolicy "go-practice-bank/internal/sources"
 	"go-practice-bank/internal/tasking"
+	"go-practice-bank/internal/toolchainpolicy"
 	"go-practice-bank/internal/triage"
 	"gopkg.in/yaml.v3"
 )
@@ -55,6 +56,12 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 		{"catalog/reviews/exercism-go.yaml", "schemas/candidate-review.schema.json", "Exercism candidate reviews"},
 		{"catalog/clusters/exercism-go.yaml", "schemas/candidate-clusters.schema.json", "Exercism candidate clusters"},
 		{"catalog/seed-plans/exercism-foundation-pilot.yaml", "schemas/seed-plan.schema.json", "Exercism seed plan"},
+		{"config/toolchain.yaml", "schemas/toolchain-policy.schema.json", "toolchain policy"},
+	}
+	if policy, policyErr := toolchainpolicy.Load(root); policyErr != nil {
+		problems = append(problems, policyErr)
+	} else if policyErr := toolchainpolicy.ValidateRepository(root, policy); policyErr != nil {
+		problems = append(problems, policyErr)
 	}
 	for _, schemaName := range []string{
 		"task-lifecycle.schema.json", "task-review.schema.json", "task-provenance.schema.json", "task-quality-report.schema.json", "task-aggregate-report.schema.json",
@@ -582,22 +589,27 @@ func validateTask(root, path string, task Task, skills map[string]Skill, sources
 
 	if task.QualityStatus == "ready" {
 		dir := filepath.Dir(path)
-		for _, required := range []string{"README.md", "provenance.yaml", "starter", "tests/public", "tests/grader", "solution/reference"} {
-			if _, err := os.Stat(filepath.Join(dir, filepath.FromSlash(required))); err != nil {
-				problems = append(problems, fmt.Errorf("%s: ready task is missing %s", prefix, required))
+		_, lifecycleErr := os.Stat(filepath.Join(dir, "lifecycle.yaml"))
+		if errors.Is(lifecycleErr, os.ErrNotExist) {
+			for _, required := range []string{"README.md", "provenance.yaml", "starter", "tests/public", "tests/grader", "solution/reference"} {
+				if _, err := os.Stat(filepath.Join(dir, filepath.FromSlash(required))); err != nil {
+					problems = append(problems, fmt.Errorf("%s: ready task is missing %s", prefix, required))
+				}
 			}
-		}
-		if runCommands {
-			results, err := isolation.RunShellCommandsInCopies(dir, task.ValidationCommands, 60*time.Second)
-			if err != nil {
-				problems = append(problems, fmt.Errorf("%s: prepare isolated validation commands: %w", prefix, err))
-			} else {
-				for _, result := range results {
-					if result.Err != nil {
-						problems = append(problems, fmt.Errorf("%s: validation command %q failed: %w\n%s", prefix, result.Command, result.Err, result.Output))
+			if runCommands {
+				results, err := isolation.RunLegacyCommandsInCopies(dir, task.ValidationCommands, 60*time.Second)
+				if err != nil {
+					problems = append(problems, fmt.Errorf("%s: prepare isolated validation commands: %w", prefix, err))
+				} else {
+					for _, result := range results {
+						if result.Err != nil {
+							problems = append(problems, fmt.Errorf("%s: validation command %q failed: %w\n%s", prefix, result.Command, result.Err, result.Output))
+						}
 					}
 				}
 			}
+		} else if lifecycleErr != nil {
+			problems = append(problems, fmt.Errorf("%s: inspect lifecycle.yaml: %w", prefix, lifecycleErr))
 		}
 	}
 	_ = root

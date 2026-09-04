@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:go-practice-bank:toolchain-policy:v1",
+  "title": "Repository toolchain policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "go_language_version", "ci_toolchain", "module_prefix", "forbid_toolchain_directive", "legacy_tasks"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "go_language_version": {"const": "1.27"},
+    "ci_toolchain": {"const": "1.27.x"},
+    "module_prefix": {"const": "task.local/"},
+    "forbid_toolchain_directive": {"const": true},
+    "legacy_tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "go_language_version"],
+        "properties": {
+          "id": {"enum": ["defined-types-001", "variadic-sum-001", "zero-state-001"]},
+          "go_language_version": {"const": "1.24"}
+        }
+      },
+      "minItems": 3,
+      "maxItems": 3
+    }
+  }
+}
