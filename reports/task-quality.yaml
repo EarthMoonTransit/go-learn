@@ -2,6 +2,25 @@ schema_version: 1
 source_check_contract: task-check/v2
 toolchain_policy_digest: 51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51590385dc8e
 tasks:
+    - id: clamp-tests-001
+      state: draft
+      input_digest: 7b3858a948171d8c136f9f63a40fdd291acf3814619e02dcc588b07d3db1a5a3
+      task_type: test-writing
+      primary_skill: testing.table-driven
+      technical_status: pass
+      review_status: fail
+      promotion_eligible: true
+      failing_gate_ids:
+        - review-evidence
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
     - id: counter-receiver-001
       state: draft
       input_digest: 4af83ae2b949960fc16dd9d4d9756f5aa5c8a3ebb644e4aabca68a3e0effa584
@@ -77,6 +96,25 @@ tasks:
         detected: 5
         survived: []
       legacy: false
+    - id: error-chain-query-001
+      state: draft
+      input_digest: a67022fb5ae65a2197cf32092878a6f704e1362edb1a30d351dbf290fd155127
+      task_type: implement
+      primary_skill: errors.wrapping
+      technical_status: pass
+      review_status: fail
+      promotion_eligible: true
+      failing_gate_ids:
+        - review-evidence
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
     - id: formatter-contract-001
       state: draft
       input_digest: e0ae2d891143a270f07831691b8bee324dc0cf44b92c046c2f6a6b2b7130d1b1
@@ -101,6 +139,82 @@ tasks:
       input_digest: ef3670f2152eea9da80f2e23353b64c0ef5f3c666ca7931debec92d50bee7514
       task_type: implement
       primary_skill: maps.nil-delete-clear
+      technical_status: pass
+      review_status: fail
+      promotion_eligible: true
+      failing_gate_ids:
+        - review-evidence
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
+    - id: resource-finalize-001
+      state: draft
+      input_digest: eac64557cde5385fac041375f673b32593fb8ec67778b2c1560890a765548b6f
+      task_type: refactor
+      primary_skill: io.files-cleanup
+      technical_status: pass
+      review_status: fail
+      promotion_eligible: true
+      failing_gate_ids:
+        - review-evidence
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 5
+        total: 5
+        detected: 5
+        survived: []
+      legacy: false
+    - id: rune-offset-tests-001
+      state: draft
+      input_digest: 3503a5d6acaf1862f68e178a7d036b90fd7bd1de6e945e0f9a68ff4e16628575
+      task_type: test-writing
+      primary_skill: unicode.range-decoding
+      technical_status: pass
+      review_status: fail
+      promotion_eligible: true
+      failing_gate_ids:
+        - review-evidence
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
+    - id: stream-normalize-001
+      state: draft
+      input_digest: 71e3f3881d4daeed00bf789417aeeff194b29ead1149ca1dbdead0f7eddd5a7d
+      task_type: implement
+      primary_skill: io.reader-writer-contracts
+      technical_status: pass
+      review_status: fail
+      promotion_eligible: true
+      failing_gate_ids:
+        - review-evidence
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
+    - id: typed-nil-resource-001
+      state: draft
+      input_digest: 54281e38f9b7bc59cc00ff7f9e9bdfe740e3657c5e4ae952bea977a1f0e87363
+      task_type: debug
+      primary_skill: interfaces.typed-nil
       technical_status: pass
       review_status: fail
       promotion_eligible: true
@@ -172,7 +286,7 @@ tasks:
       legacy: true
 states:
     - state: draft
-      count: 6
+      count: 12
     - state: in-review
       count: 0
     - state: ready
@@ -183,16 +297,17 @@ states:
       count: 0
 task_types:
     - task_type: debug
-      count: 3
-    - task_type: implement
       count: 4
+    - task_type: implement
+      count: 6
     - task_type: refactor
+      count: 3
+    - task_type: test-writing
       count: 2
 gates:
     - id: task-state-policy
       status: pass
       details: []
     - id: task-type-diversity
-      status: not-applicable
-      details:
-        - fewer than 10 lifecycle tasks
+      status: pass
+      details: []

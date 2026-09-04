@@ -1,0 +1,26 @@
+schema_version: 2
+kind: adapted
+project:
+  identity: go-practice-bank
+  repository: https://github.com/EarthMoonTransit/go-learn
+  license: Apache-2.0
+  content_digest: 3bff391592876cebb018e03a464cb49b5f62609952e65373ae3e34effd46d0e7
+creation:
+  author: phase-3b-authoring
+  created_at: "2026-09-04"
+  summary: Independently authored task using only pinned concept metadata; no upstream statement, cases, tests, code, or solution were copied.
+sources:
+  - registry_id: exercism-go
+    repository: https://github.com/exercism/go
+    commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+    license: MIT
+    usage_mode: adapt
+    role: concept-seed
+    artifacts:
+      - path: exercises/practice/tournament/.meta/config.json
+        sha256: 3d52a832037de5e80d189906b688cdaf2d9132daa161fb4d9cb05f725bc0ff35
+        usage: concept-only
+attribution_file: ATTRIBUTION.md
+release:
+  binding: deferred-to-release-manifest
+  manifest: provenance/releases/stream-normalize-001.yaml
