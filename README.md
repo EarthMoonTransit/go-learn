@@ -6,6 +6,9 @@
 fixed/mutation/workspace verification profiles и локальный learner CLI.
 Массовая генерация и web UI отсутствуют.
 
+Актуальный личный маршрут, критерии готовности и ближайшие партии работ:
+[docs/ROADMAP.md](docs/ROADMAP.md).
+
 ## Быстрые команды
 
 ```bash
