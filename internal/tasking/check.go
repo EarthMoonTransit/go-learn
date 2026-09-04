@@ -61,9 +61,15 @@ func (s *CheckSession) checkLocated(located LocatedTask) (QualityReport, error) 
 	c.gate("review-evidence", reviewProblems)
 
 	apiProblems := checkPublicAPI(layout)
+	if data.ContractVersion == 2 {
+		apiProblems = checkPublicAPIV2(data, layout)
+	}
 	c.gate("public-api-stability", apiProblems)
 
 	determinismProblems := checkTestSources(layout)
+	if data.ContractVersion == 2 {
+		determinismProblems = checkTestSourcesV2(data, layout)
+	}
 	c.gate("deterministic-tests", determinismProblems)
 
 	c.gate("task-type-diversity", nil)
@@ -76,6 +82,11 @@ func (s *CheckSession) checkLocated(located LocatedTask) (QualityReport, error) 
 			c.gate(id, []string{"execution skipped because static gates failed"})
 		}
 		c.notApplicable("race", "execution skipped because static gates failed")
+		c.finish()
+		return c.validatedReport(root)
+	}
+	if data.ContractVersion == 2 {
+		s.executeV2(&c, data, layout)
 		c.finish()
 		return c.validatedReport(root)
 	}
@@ -220,13 +231,20 @@ func (c *checker) finish() {
 }
 
 type packageLayout struct {
-	TaskDir     string
-	GoMod       string
-	Starter     []string
-	PublicTests []string
-	GraderTests []string
-	Reference   []string
-	Mutants     []mutantLayout
+	TaskDir               string
+	GoMod                 string
+	Starter               []string
+	PublicTests           []string
+	GraderTests           []string
+	Reference             []string
+	Mutants               []mutantLayout
+	WorkspaceSkeleton     []mappedFile
+	WorkspaceStarter      []mappedFile
+	WorkspaceReference    []mappedFile
+	WorkspacePublic       []mappedFile
+	WorkspaceGrader       []mappedFile
+	WorkspaceMutants      []workspaceMutantLayout
+	VerificationReference []string
 }
 
 type mutantLayout struct {
@@ -234,7 +252,19 @@ type mutantLayout struct {
 	Files []string
 }
 
+type workspaceMutantLayout struct {
+	ID    string
+	Files []mappedFile
+}
+
 func checkPackageContract(root string, data packageData) ([]string, packageLayout) {
+	if data.ContractVersion == 2 {
+		return checkPackageContractV2(root, data)
+	}
+	return checkPackageContractV1(root, data)
+}
+
+func checkPackageContractV1(root string, data packageData) ([]string, packageLayout) {
 	var problems []string
 	layout := packageLayout{TaskDir: data.Located.Path, GoMod: filepath.Join(data.Located.Path, "go.mod")}
 	for _, name := range []string{"TASK.md", "task.yaml", "lifecycle.yaml", "go.mod", "review/review.yaml", "review/notes.md", "hints/HINTS.md", "provenance.yaml"} {
@@ -416,6 +446,9 @@ func checkMetadata(root string, data packageData) []string {
 	if len(data.Task.NewConcepts) > 2 {
 		problems = append(problems, "new_concepts must contain at most two skills for Phase 3A tasks")
 	}
+	if data.ContractVersion == 2 {
+		problems = append(problems, checkMetadataV2(data)...)
+	}
 	_, contracts, err := triage.LoadSkillContracts(root)
 	if err != nil {
 		return append(problems, "cannot load taxonomy: "+err.Error())
@@ -536,6 +569,13 @@ func checkPrompt(content []byte) []string {
 }
 
 func checkProvenance(root string, data packageData) []string {
+	if data.ProvenanceVersion == 2 {
+		return checkProvenanceV2(root, data)
+	}
+	return checkProvenanceV1(root, data)
+}
+
+func checkProvenanceV1(root string, data packageData) []string {
 	var problems []string
 	registry, err := sources.LoadRegistry(root)
 	if err != nil {
@@ -585,6 +625,117 @@ func checkProvenance(root string, data packageData) []string {
 		}
 	}
 	return uniqueSorted(problems)
+}
+
+func checkProvenanceV2(root string, data packageData) []string {
+	var problems []string
+	registry, err := sources.LoadRegistry(root)
+	if err != nil {
+		return []string{"cannot load source registry: " + err.Error()}
+	}
+	identity, err := loadProjectIdentity(root)
+	if err != nil {
+		return []string{err.Error()}
+	}
+	licensePolicy, err := loadOutboundLicensePolicy(root)
+	if err != nil {
+		return []string{err.Error()}
+	}
+	p := data.ProvenanceV2
+	if p.Project.Identity != identity.ID || p.Project.Repository != identity.Repository || p.Project.License != identity.License {
+		problems = append(problems, "provenance project must match config/project-identity.yaml")
+	}
+	if identity.License != licensePolicy.OriginalContentLicense {
+		problems = append(problems, "project identity license must match outbound original-content policy")
+	}
+	digest, digestErr := TaskContentDigest(data.Located.Path)
+	if digestErr != nil {
+		problems = append(problems, "compute task content digest: "+digestErr.Error())
+	} else if p.Project.ContentDigest != digest {
+		problems = append(problems, "provenance content_digest does not match authored task content; computed "+digest)
+	}
+	if strings.Contains(strings.ToLower(p.Creation.Summary), "todo") {
+		problems = append(problems, "provenance creation summary contains an unresolved TODO placeholder")
+	}
+	expectedManifest := filepath.ToSlash(filepath.Join(identity.ReleaseManifestDirectory, data.Task.ID+".yaml"))
+	if p.Release.Manifest != expectedManifest {
+		problems = append(problems, "release manifest path must bind the task id under the configured release directory")
+	}
+	if p.Kind == "original" && len(p.Sources) != 0 {
+		problems = append(problems, "original provenance must use internal project identity, not external source records")
+	}
+	compatible := make(map[string]bool, len(licensePolicy.CompatibleSourceLicense))
+	for _, expression := range licensePolicy.CompatibleSourceLicense {
+		compatible[expression] = true
+	}
+	seen := map[string]bool{}
+	for _, reference := range p.Sources {
+		if seen[reference.RegistryID] {
+			problems = append(problems, fmt.Sprintf("duplicate provenance source %q", reference.RegistryID))
+		}
+		seen[reference.RegistryID] = true
+		source, err := registry.Find(reference.RegistryID)
+		if err != nil {
+			problems = append(problems, err.Error())
+			continue
+		}
+		if reference.Repository != source.Repository || reference.Commit != source.Commit || reference.License != source.License.Expression || reference.UsageMode != source.UsageMode {
+			problems = append(problems, fmt.Sprintf("provenance source %q must exactly match the audited registry entry", reference.RegistryID))
+		}
+		if source.UsageMode == "blocked" {
+			problems = append(problems, fmt.Sprintf("blocked source %q cannot back a task", reference.RegistryID))
+		}
+		if source.UsageMode == "adapt" && !compatible[source.License.Expression] {
+			problems = append(problems, fmt.Sprintf("source %q license %q is not in the outbound compatibility allowlist", reference.RegistryID, source.License.Expression))
+		}
+		problems = append(problems, validateSourceRole(reference)...)
+		artifactPaths := map[string]bool{}
+		for _, artifact := range reference.Artifacts {
+			if artifactPaths[artifact.Path] {
+				problems = append(problems, fmt.Sprintf("source %q repeats artifact path %q", reference.RegistryID, artifact.Path))
+			}
+			artifactPaths[artifact.Path] = true
+			if err := cleanRelativePath(artifact.Path); err != nil {
+				problems = append(problems, fmt.Sprintf("source %q artifact path is unsafe", reference.RegistryID))
+			}
+			if artifact.SHA256 == strings.Repeat("0", 64) {
+				problems = append(problems, fmt.Sprintf("source %q artifact digest is still an authoring stub", reference.RegistryID))
+			}
+		}
+	}
+	if err := cleanRelativePath(p.AttributionFile); err != nil {
+		problems = append(problems, "attribution_file must be a safe relative path")
+	} else if info, err := os.Lstat(filepath.Join(data.Located.Path, filepath.FromSlash(p.AttributionFile))); err != nil || !info.Mode().IsRegular() {
+		problems = append(problems, "declared attribution_file is missing")
+	}
+	return uniqueSorted(problems)
+}
+
+func validateSourceRole(source ProvenanceSourceV2) []string {
+	var problems []string
+	roleAllowed := func(allowed ...string) bool { return contains(allowed, source.Role) }
+	usageAllowed := func(value string, allowed ...string) bool { return contains(allowed, value) }
+	switch source.UsageMode {
+	case "reference-only":
+		if !roleAllowed("factual-reference", "comparison-only") {
+			problems = append(problems, fmt.Sprintf("reference-only source %q cannot use role %q", source.RegistryID, source.Role))
+		}
+		for _, artifact := range source.Artifacts {
+			if !usageAllowed(artifact.Usage, "factual-reference", "comparison-only", "excluded") {
+				problems = append(problems, fmt.Sprintf("reference-only source %q cannot classify artifact as %q", source.RegistryID, artifact.Usage))
+			}
+		}
+	case "concepts-only":
+		if !roleAllowed("concept-seed", "factual-reference", "comparison-only") {
+			problems = append(problems, fmt.Sprintf("concepts-only source %q cannot use role %q", source.RegistryID, source.Role))
+		}
+		for _, artifact := range source.Artifacts {
+			if !usageAllowed(artifact.Usage, "concept-only", "factual-reference", "comparison-only", "excluded") {
+				problems = append(problems, fmt.Sprintf("concepts-only source %q cannot classify artifact as %q", source.RegistryID, artifact.Usage))
+			}
+		}
+	}
+	return problems
 }
 
 func checkReview(review Review) []string {

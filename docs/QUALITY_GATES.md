@@ -1,5 +1,12 @@
 # Quality gates
 
+Task Contract v2 выбирает проверяемую матрицу через конечный
+`verification.profile`; произвольные command strings запрещены. Для
+`mutation-tests` mutant coverage означает способность learner-authored tests
+отличить reference от каждой обязательной ошибки. Для `workspace-tests` перед
+запуском отдельно проверяются allowlisted skeleton и точное множество editable
+paths. Полные контракты описаны в `docs/TASK_CONTRACT_V2.md`.
+
 Lifecycle использует состояния `draft`, `in-review`, `ready`, `rejected`,
 `retired`. Разрешённые переходы определены ADR 0004, hardened semantics — ADR
 0005.

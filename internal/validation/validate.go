@@ -44,6 +44,10 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 	if err != nil {
 		problems = append(problems, err)
 	}
+	taskV2Schema, err := compileTaskSchema(filepath.Join(root, "schemas", "task-v2.schema.json"))
+	if err != nil {
+		problems = append(problems, err)
+	}
 	staticSchemas := []struct {
 		data, schema, label string
 	}{
@@ -55,6 +59,8 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 		{"catalog/clusters/exercism-go.yaml", "schemas/candidate-clusters.schema.json", "Exercism candidate clusters"},
 		{"catalog/seed-plans/exercism-foundation-pilot.yaml", "schemas/seed-plan.schema.json", "Exercism seed plan"},
 		{"config/toolchain.yaml", "schemas/toolchain-policy.schema.json", "toolchain policy"},
+		{"config/project-identity.yaml", "schemas/project-identity.schema.json", "project identity"},
+		{"config/outbound-license.yaml", "schemas/outbound-license-policy.schema.json", "outbound license policy"},
 	}
 	if policy, policyErr := toolchainpolicy.Load(root); policyErr != nil {
 		problems = append(problems, policyErr)
@@ -62,7 +68,7 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 		problems = append(problems, policyErr)
 	}
 	for _, schemaName := range []string{
-		"task-lifecycle.schema.json", "task-review.schema.json", "task-provenance.schema.json", "task-quality-report.schema.json", "task-check-collection.schema.json", "task-aggregate-report.schema.json",
+		"task-v2.schema.json", "task-lifecycle.schema.json", "task-review.schema.json", "task-provenance.schema.json", "task-provenance-v2.schema.json", "project-identity.schema.json", "outbound-license-policy.schema.json", "task-quality-report.schema.json", "task-check-collection.schema.json", "task-aggregate-report.schema.json",
 	} {
 		if _, schemaErr := compileYAMLSchema(filepath.Join(root, "schemas", schemaName)); schemaErr != nil {
 			problems = append(problems, schemaErr)
@@ -95,6 +101,7 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 	}
 	sources, registryProblems := validateRegistry(result.Registry)
 	problems = append(problems, registryProblems...)
+	problems = append(problems, validateOutboundLicenses(root, result.Registry)...)
 	if exercismSource, ok := sources["exercism-go"]; ok {
 		mapping, mapErr := curriculumdata.LoadConceptMap(root)
 		evidence, evidenceErr := curriculumdata.LoadEvidence(root)
@@ -139,14 +146,38 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 	sort.Strings(paths)
 	seenTaskIDs := map[string]string{}
 	for _, path := range paths {
-		if taskSchema != nil {
-			if err := validateTaskSchema(path, taskSchema); err != nil {
-				problems = append(problems, err)
-			}
+		version, versionErr := taskManifestVersion(path)
+		if versionErr != nil {
+			problems = append(problems, versionErr)
+			continue
 		}
 		var task Task
-		if err := decodeStrict(path, &task); err != nil {
-			problems = append(problems, err)
+		switch version {
+		case 1:
+			if taskSchema != nil {
+				if err := validateTaskSchema(path, taskSchema); err != nil {
+					problems = append(problems, err)
+				}
+			}
+			if err := decodeStrict(path, &task); err != nil {
+				problems = append(problems, err)
+				continue
+			}
+		case 2:
+			if taskV2Schema != nil {
+				if err := validateTaskSchema(path, taskV2Schema); err != nil {
+					problems = append(problems, err)
+				}
+			}
+			var taskV2 tasking.TaskV2
+			if err := decodeStrict(path, &taskV2); err != nil {
+				problems = append(problems, err)
+				continue
+			}
+			task = normalizeValidationTaskV2(taskV2)
+			problems = append(problems, validateTaskV2(path, taskV2, skills, migrationIndex)...)
+		default:
+			problems = append(problems, fmt.Errorf("%s: unsupported task schema_version %d", path, version))
 			continue
 		}
 		result.Tasks = append(result.Tasks, task)
@@ -155,7 +186,9 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 		} else {
 			seenTaskIDs[task.ID] = path
 		}
-		problems = append(problems, validateTask(root, path, task, skills, sources, migrationIndex)...)
+		if version == 1 {
+			problems = append(problems, validateTask(root, path, task, skills, sources, migrationIndex)...)
+		}
 		if task.QualityStatus == result.Curriculum.CoveragePolicy.CountedStatus {
 			result.ReadyTasks++
 		}
@@ -214,6 +247,34 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 	return result, errors.Join(problems...)
 }
 
+func validateOutboundLicenses(root string, registry Registry) []error {
+	var policy struct {
+		SchemaVersion           int      `yaml:"schema_version"`
+		OriginalContentLicense  string   `yaml:"original_content_license"`
+		ThirdPartyRule          string   `yaml:"third_party_rule"`
+		CompatibleSourceLicense []string `yaml:"compatible_source_licenses"`
+		NoticesFile             string   `yaml:"notices_file"`
+	}
+	if err := decodeStrict(filepath.Join(root, "config", "outbound-license.yaml"), &policy); err != nil {
+		return []error{err}
+	}
+	if policy.OriginalContentLicense != "Apache-2.0" {
+		return []error{errors.New("outbound policy must license original project content as Apache-2.0")}
+	}
+	licenseText, err := os.ReadFile(filepath.Join(root, "LICENSE"))
+	if err != nil || !bytes.Contains(licenseText, []byte("Apache License")) || !bytes.Contains(licenseText, []byte("Version 2.0")) {
+		return []error{errors.New("repository LICENSE must contain Apache License 2.0 terms")}
+	}
+	compatible := set(policy.CompatibleSourceLicense...)
+	var problems []error
+	for _, source := range registry.Sources {
+		if source.UsageMode == "adapt" && !compatible[source.License.Expression] {
+			problems = append(problems, fmt.Errorf("outbound policy does not declare compatibility for adapted source %q license %q", source.ID, source.License.Expression))
+		}
+	}
+	return problems
+}
+
 func decodeStrict(path string, dst any) error {
 	b, err := os.ReadFile(path)
 	if err != nil {
@@ -231,6 +292,67 @@ func decodeStrict(path string, dst any) error {
 		return fmt.Errorf("decode trailing YAML in %s: %w", path, err)
 	}
 	return nil
+}
+
+func taskManifestVersion(path string) (int, error) {
+	content, err := os.ReadFile(path)
+	if err != nil {
+		return 0, err
+	}
+	var header struct {
+		SchemaVersion int `yaml:"schema_version"`
+	}
+	if err := yaml.Unmarshal(content, &header); err != nil {
+		return 0, fmt.Errorf("decode %s schema_version: %w", path, err)
+	}
+	if header.SchemaVersion == 0 {
+		return 0, fmt.Errorf("%s: schema_version is required", path)
+	}
+	return header.SchemaVersion, nil
+}
+
+func normalizeValidationTaskV2(task tasking.TaskV2) Task {
+	taskType := map[string]string{
+		"implementation": "implement", "debugging": "debug", "refactoring": "refactor", "api-design": "implement",
+		"test-writing": "test-writing", "test-repair": "test-writing", "fuzz-test-writing": "test-writing",
+		"integration": "implement", "performance": "performance", "code-review-patch": "debug",
+	}[task.Activity]
+	return Task{
+		SchemaVersion: task.SchemaVersion, ID: task.ID, Title: task.Title, TaskType: taskType,
+		Skills:        TaskSkills{Primary: task.Skills.Primary, Secondary: task.Skills.Secondary},
+		Prerequisites: task.Prerequisites, NewConcepts: task.NewConcepts, Difficulty: task.Difficulty,
+		EstimatedTimeMinutes: TimeRange{Min: task.EstimatedTimeMinutes.Min, Max: task.EstimatedTimeMinutes.Max},
+		QualityStatus:        task.QualityStatus,
+	}
+}
+
+func validateTaskV2(path string, task tasking.TaskV2, skills map[string]Skill, migration migrationIndex) []error {
+	var problems []error
+	if filepath.Base(filepath.Dir(path)) != task.ID {
+		problems = append(problems, fmt.Errorf("%s: task id must match parent directory", path))
+	}
+	if task.EstimatedTimeMinutes.Min > task.EstimatedTimeMinutes.Max {
+		problems = append(problems, fmt.Errorf("%s: invalid estimated_time_minutes range", path))
+	}
+	manifest, err := os.ReadFile(path)
+	if err != nil {
+		return append(problems, err)
+	}
+	digest := digestBytes(manifest)
+	problems = append(problems, validateTaskSkill(path, task.ID, "skills.primary", task.Skills.Primary, digest, skills, migration)...)
+	for field, values := range map[string][]string{"skills.secondary": task.Skills.Secondary, "prerequisites": task.Prerequisites, "new_concepts": task.NewConcepts} {
+		for _, duplicate := range duplicates(values) {
+			problems = append(problems, fmt.Errorf("%s: duplicate %s skill %q", path, field, duplicate))
+		}
+		for _, id := range values {
+			problems = append(problems, validateTaskSkill(path, task.ID, field, id, digest, skills, migration)...)
+		}
+	}
+	assessed := append([]string{task.Skills.Primary}, task.Skills.Secondary...)
+	problems = append(problems, disjoint(path, "primary/secondary", []string{task.Skills.Primary}, task.Skills.Secondary)...)
+	problems = append(problems, disjoint(path, "assessed/prerequisite", assessed, task.Prerequisites)...)
+	problems = append(problems, disjoint(path, "new/prerequisite", task.NewConcepts, task.Prerequisites)...)
+	return problems
 }
 
 func compileTaskSchema(path string) (*jsonschema.Schema, error) {

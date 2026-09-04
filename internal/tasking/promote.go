@@ -122,12 +122,21 @@ func promoteWithSession(root string, options PromoteOptions, session *CheckSessi
 		return LocatedTask{}, err
 	}
 	data.Task.QualityStatus = qualityByState[options.To]
+	if data.ContractVersion == 2 {
+		data.TaskV2.QualityStatus = qualityByState[options.To]
+	}
 	data.Lifecycle.State = options.To
 	data.Lifecycle.UpdatedAt = options.Date
 	data.Lifecycle.Transitions = append(data.Lifecycle.Transitions, Transition{
 		From: located.State, To: options.To, At: options.Date, Actor: options.Actor, Reason: options.Reason,
 	})
-	updatedTask, err := yaml.Marshal(data.Task)
+	var futureTask any = data.Task
+	taskSchema := "task.schema.json"
+	if data.ContractVersion == 2 {
+		futureTask = data.TaskV2
+		taskSchema = "task-v2.schema.json"
+	}
+	updatedTask, err := yaml.Marshal(futureTask)
 	if err != nil {
 		return LocatedTask{}, err
 	}
@@ -135,7 +144,7 @@ func promoteWithSession(root string, options PromoteOptions, session *CheckSessi
 	if err != nil {
 		return LocatedTask{}, err
 	}
-	if err := validateSchema(root, "task.schema.json", data.Task); err != nil {
+	if err := validateSchema(root, taskSchema, futureTask); err != nil {
 		return LocatedTask{}, fmt.Errorf("future task metadata: %w", err)
 	}
 	if err := validateSchema(root, "task-lifecycle.schema.json", data.Lifecycle); err != nil {

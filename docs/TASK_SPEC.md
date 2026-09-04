@@ -1,9 +1,12 @@
 # Task specification
 
 Статус документа: normative, ФАЗА 3A. Индексируемые данные определяет
-`schemas/task.schema.json`; lifecycle, review, provenance, quality report и
+для legacy — `schemas/task.schema.json`, для новых пакетов —
+`schemas/task-v2.schema.json`; lifecycle, review, provenance, quality report и
 полная check collection имеют отдельные versioned schemas. Совместимость
-schema v1 описана в ADR 0004.
+schema v1 описана в ADR 0004. Новые activity/submission/verification contracts
+нормативно описаны в `docs/TASK_CONTRACT_V2.md` и ADR 0007; разделы ниже о
+единственном `subject` package относятся к task schema v1 и профилю fixed-tests.
 
 ## Единица поставки
 
@@ -15,7 +18,7 @@ Phase 3A package содержат не более двух skills.
 
 Обязательные артефакты:
 
-- `task.yaml` — индексируемые данные schema v1;
+- `task.yaml` — индексируемые данные schema v1 или v2;
 - `lifecycle.yaml` — текущее состояние и непрерывная история переходов;
 - `TASK.md` — техническое условие, API, требования и ограничения;
 - `go.mod` — отдельный stdlib-only module `task.local/<task-id>`;
@@ -62,7 +65,7 @@ validated `CheckCollection`, описанной ADR 0006; validator и report bu
 
 ## Поля `task.yaml`
 
-- `schema_version`: версия индексируемого контракта; сейчас `1`.
+- `schema_version`: `1` для legacy-compatible packages или `2` для новых задач.
 - `id`: стабильный kebab-case id с трёхзначным суффиксом; не переиспользуется.
 - `title`: короткое техническое название без сюжета.
 - `task_type`: `implement`, `debug`, `predict`, `refactor`, `test-writing` или

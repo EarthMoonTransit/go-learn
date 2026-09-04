@@ -1,0 +1,36 @@
+schema_version: 2
+kind: combined
+project:
+  identity: go-practice-bank
+  repository: https://github.com/EarthMoonTransit/go-learn
+  license: Apache-2.0
+  content_digest: 38ed68390828b00a48cf68c796268a0e8d9b2cff78ec66dce05c0a11c730f16a
+creation:
+  author: synthetic-fixture
+  created_at: "2026-09-04"
+  summary: Synthetic multi-source record with distinct, reviewed roles.
+sources:
+  - registry_id: exercism-go
+    repository: https://github.com/exercism/go
+    commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+    license: MIT
+    usage_mode: adapt
+    role: api-shape
+    artifacts:
+      - path: exercises/practice/hello-world/.meta/config.json
+        sha256: d779cecf7ae36ee1514cc1bb8b7f371e594f2e1112c9cc8e5de83acefb419af3
+        usage: structure-only
+  - registry_id: exercism-problem-specifications
+    repository: https://github.com/exercism/problem-specifications
+    commit: 25c2ae53b8d328790d45e626784434aaed3783c0
+    license: MIT
+    usage_mode: reference-only
+    role: comparison-only
+    artifacts:
+      - path: exercises/acronym/canonical-data.json
+        sha256: 009b8ae28b2224ea3fd4aac7aa3c4ba37c5a303221cf38df4cfb235afc4d3df6
+        usage: comparison-only
+attribution_file: ATTRIBUTION.md
+release:
+  binding: deferred-to-release-manifest
+  manifest: provenance/releases/synthetic-fixed-v2-001.yaml

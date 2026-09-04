@@ -1,0 +1,5 @@
+schema_version: 1
+id: go-practice-bank
+repository: https://github.com/EarthMoonTransit/go-learn
+license: Apache-2.0
+release_manifest_directory: provenance/releases

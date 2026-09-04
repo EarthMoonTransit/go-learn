@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:go-practice-bank:project-identity:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "repository", "license", "release_manifest_directory"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "id": {"const": "go-practice-bank"},
+    "repository": {"const": "https://github.com/EarthMoonTransit/go-learn"},
+    "license": {"const": "Apache-2.0"},
+    "release_manifest_directory": {"const": "provenance/releases"}
+  }
+}

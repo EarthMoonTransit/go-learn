@@ -1,0 +1,26 @@
+schema_version: 2
+kind: adapted
+project:
+  identity: go-practice-bank
+  repository: https://github.com/EarthMoonTransit/go-learn
+  license: Apache-2.0
+  content_digest: 38ed68390828b00a48cf68c796268a0e8d9b2cff78ec66dce05c0a11c730f16a
+creation:
+  author: synthetic-fixture
+  created_at: "2026-09-04"
+  summary: Deliberately invalid reference-only copying fixture.
+sources:
+  - registry_id: exercism-problem-specifications
+    repository: https://github.com/exercism/problem-specifications
+    commit: 25c2ae53b8d328790d45e626784434aaed3783c0
+    license: MIT
+    usage_mode: reference-only
+    role: adapted-code
+    artifacts:
+      - path: exercises/acronym/canonical-data.json
+        sha256: 009b8ae28b2224ea3fd4aac7aa3c4ba37c5a303221cf38df4cfb235afc4d3df6
+        usage: copied
+attribution_file: ATTRIBUTION.md
+release:
+  binding: deferred-to-release-manifest
+  manifest: provenance/releases/synthetic-fixed-v2-001.yaml

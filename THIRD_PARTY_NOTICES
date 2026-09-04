@@ -1,0 +1,12 @@
+Third-party notices
+===================
+
+This file identifies third-party material; it does not relicense that material.
+
+- gopkg.in/yaml.v3: license terms retained in vendor/gopkg.in/yaml.v3/LICENSE.
+- github.com/santhosh-tekuri/jsonschema/v5: license terms retained in
+  vendor/github.com/santhosh-tekuri/jsonschema/v5/LICENSE.
+
+Task-specific source attribution is recorded in each provenance.yaml and will be
+included here by the future public-export pipeline when an adapted task is
+released.

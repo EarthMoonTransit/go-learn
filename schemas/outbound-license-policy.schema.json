@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:go-practice-bank:outbound-license-policy:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "original_content_license", "third_party_rule", "compatible_source_licenses", "notices_file"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "original_content_license": {"const": "Apache-2.0"},
+    "third_party_rule": {"const": "retain-source-license"},
+    "compatible_source_licenses": {"type": "array", "uniqueItems": true, "items": {"enum": ["MIT", "BSD-2-Clause", "BSD-3-Clause", "Apache-2.0", "CC-BY-3.0", "CC-BY-4.0"]}},
+    "notices_file": {"const": "THIRD_PARTY_NOTICES"}
+  }
+}

@@ -43,8 +43,27 @@ type variantRequest struct {
 	TaskID         string
 	GoVersion      string
 	Race           bool
+	Vet            bool
+	TimeoutSeconds int
 	Implementation []string
 	Tests          []string
+}
+
+type mappedFile struct {
+	Source   string
+	Relative string
+}
+
+type workspaceRequest struct {
+	TaskID         string
+	GoVersion      string
+	Race           bool
+	Vet            bool
+	TimeoutSeconds int
+	Skeleton       []mappedFile
+	Overlay        []mappedFile
+	Tests          []mappedFile
+	Checks         []string
 }
 
 type variantResult struct {
@@ -58,6 +77,7 @@ type variantResult struct {
 
 type executionRunner interface {
 	RunVariant(variantRequest) variantResult
+	RunWorkspace(workspaceRequest) variantResult
 	RunLegacy(string, []string) ([]isolation.CommandResult, error)
 	Metrics() ExecutionMetrics
 	Close() error
@@ -114,20 +134,86 @@ func (r *realExecutionRunner) RunVariant(request variantRequest) variantResult {
 	}
 	mode := isolation.ExecutionModeNormal
 	args := []string{"test", "-json", "-count=1"}
+	if request.Vet {
+		args = []string{"vet"}
+	}
 	if request.Race {
 		mode = isolation.ExecutionModeRace
 		args = append(args, "-race")
 	}
 	args = append(args, "./subject")
 	r.metrics.ChildGoRuns++
-	output, runErr := r.environment.RunGo(workspace, taskCommandTimeout, isolation.RunGoOptions{Mode: mode}, args...)
+	output, runErr := r.environment.RunGo(workspace, variantTimeout(request.TimeoutSeconds), isolation.RunGoOptions{Mode: mode}, args...)
 	canonical, compiled := canonicalTestEvents(output, request.TaskID)
+	if request.Vet && runErr == nil {
+		compiled = true
+	}
 	result := variantResult{Compiled: compiled, Passed: runErr == nil, Canonical: canonical, FailureKind: variantFailureNone, FailurePhase: variantPhaseNone}
 	if runErr != nil {
 		result.FailureKind, result.FailurePhase = classifyVariantFailure(request.Race, compiled, output, runErr)
 		result.Diagnostic = sanitizeVariantDiagnostic(output, runErr, r.environment.Root, workspace, request.TaskID)
 	}
 	return result
+}
+
+func (r *realExecutionRunner) RunWorkspace(request workspaceRequest) variantResult {
+	if request.Race && !isolation.RaceDetectorSupported(runtime.GOOS, runtime.GOARCH) {
+		return variantResult{FailureKind: variantFailureRaceUnsupported, FailurePhase: variantPhaseInfrastructure,
+			Diagnostic: fmt.Sprintf("race detector is unsupported on %s/%s", runtime.GOOS, runtime.GOARCH)}
+	}
+	r.metrics.VariantRuns++
+	workspace, err := r.environment.NewWorkspace(request.TaskID)
+	if err != nil {
+		return assemblyFailure("create isolated workspace", err, r.environment.Root, "")
+	}
+	r.metrics.Workspaces++
+	goMod := []byte("module task.local/" + request.TaskID + "\n\ngo " + request.GoVersion + "\n")
+	if err := os.WriteFile(filepath.Join(workspace, "go.mod"), goMod, 0o600); err != nil {
+		return assemblyFailure("write isolated go.mod", err, r.environment.Root, workspace)
+	}
+	for _, group := range [][]mappedFile{request.Skeleton, request.Overlay, request.Tests} {
+		for _, file := range group {
+			if err := cleanRelativePath(file.Relative); err != nil {
+				return assemblyFailure("reject unsafe workspace path", err, r.environment.Root, workspace, file.Source)
+			}
+			destination := filepath.Join(workspace, filepath.FromSlash(file.Relative))
+			if err := os.MkdirAll(filepath.Dir(destination), 0o700); err != nil {
+				return assemblyFailure("create workspace package", err, r.environment.Root, workspace)
+			}
+			if err := isolation.CopyFile(file.Source, destination); err != nil {
+				return assemblyFailure("copy workspace file", err, r.environment.Root, workspace, file.Source)
+			}
+		}
+	}
+	mode := isolation.ExecutionModeNormal
+	args := []string{"test", "-json", "-count=1"}
+	if request.Vet {
+		args = []string{"vet"}
+	}
+	if request.Race {
+		mode = isolation.ExecutionModeRace
+		args = append(args, "-race")
+	}
+	args = append(args, request.Checks...)
+	r.metrics.ChildGoRuns++
+	output, runErr := r.environment.RunGo(workspace, variantTimeout(request.TimeoutSeconds), isolation.RunGoOptions{Mode: mode}, args...)
+	canonical, compiled := canonicalTestEvents(output, request.TaskID)
+	if request.Vet && runErr == nil {
+		compiled = true
+	}
+	result := variantResult{Compiled: compiled, Passed: runErr == nil, Canonical: canonical, FailureKind: variantFailureNone, FailurePhase: variantPhaseNone}
+	if runErr != nil {
+		result.FailureKind, result.FailurePhase = classifyVariantFailure(request.Race, compiled, output, runErr)
+		result.Diagnostic = sanitizeVariantDiagnostic(output, runErr, r.environment.Root, workspace, request.TaskID)
+	}
+	return result
+}
+
+func variantTimeout(seconds int) time.Duration {
+	if seconds <= 0 || seconds > int(taskCommandTimeout/time.Second) {
+		return taskCommandTimeout
+	}
+	return time.Duration(seconds) * time.Second
 }
 
 func (r *realExecutionRunner) RunLegacy(source string, commands []string) ([]isolation.CommandResult, error) {

@@ -7,7 +7,7 @@
   "required": ["schema_version", "source_check_contract", "toolchain_policy_digest", "tasks", "states", "task_types", "gates"],
   "properties": {
     "schema_version": {"const": 1},
-    "source_check_contract": {"const": "task-check/v1"},
+    "source_check_contract": {"const": "task-check/v2"},
     "toolchain_policy_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "tasks": {
       "type": "array",

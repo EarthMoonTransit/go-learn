@@ -1,0 +1,33 @@
+schema_version: 2
+id: synthetic-workspace-v2-001
+title: Repair behavior across an allowlisted Go workspace
+activity: integration
+submission:
+  kind: workspace-patch
+  editable_paths: [core/apply.go]
+  workspace_skeleton: [adapter/api.go]
+skills:
+  primary: packages.imports-exports-naming
+  secondary: []
+prerequisites:
+  - toolchain.modules-workspaces
+  - structs.field-visibility-tags
+new_concepts:
+  - packages.imports-exports-naming
+difficulty: basic
+estimated_time_minutes: {min: 15, max: 30}
+verification:
+  profile: workspace-tests
+  packages: [./adapter, ./core]
+  public_checks: [./adapter]
+  grader_checks: [./adapter]
+  reference_checks: [./adapter]
+  required_mutants: [constant-zero]
+  race_required: false
+  vet: true
+  limits:
+    command_timeout_seconds: 30
+    determinism_runs: 2
+    fuzz_seconds: 0
+    benchmark_runs: 1
+quality_status: draft

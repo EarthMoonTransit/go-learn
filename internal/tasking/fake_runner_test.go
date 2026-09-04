@@ -45,12 +45,42 @@ func (r *fakeExecutionRunner) RunVariant(request variantRequest) variantResult {
 		passed = strings.Contains(implementation, "return value") &&
 			!strings.Contains(implementation, "return value + 1") &&
 			!strings.Contains(implementation, "return 0")
+		if strings.Contains(tests, "Identity(0)") && strings.Contains(implementation, "return 0") {
+			passed = true
+		}
 	}
 	result := variantResult{Compiled: true, Passed: passed, Canonical: "run|task/subject|Test\npass|task/subject|Test", FailureKind: variantFailureNone, FailurePhase: variantPhaseNone}
 	if !passed {
 		result.FailureKind = variantFailureTest
 		result.FailurePhase = variantPhaseTest
 		result.Diagnostic = "synthetic test failure"
+	}
+	return result
+}
+
+func (r *fakeExecutionRunner) RunWorkspace(request workspaceRequest) variantResult {
+	if request.Race && r.raceUnsupported {
+		return variantResult{FailureKind: variantFailureRaceUnsupported, FailurePhase: variantPhaseInfrastructure, Diagnostic: "race detector is unsupported on synthetic/architecture"}
+	}
+	r.metrics.VariantRuns++
+	r.metrics.Workspaces++
+	r.metrics.ChildGoRuns++
+	r.workspaceIDs = append(r.workspaceIDs, request.TaskID+"-workspace")
+	r.cacheIDs = append(r.cacheIDs, "shared-session-cache")
+	var implementationPaths, testPaths []string
+	for _, file := range append(append([]mappedFile{}, request.Skeleton...), request.Overlay...) {
+		implementationPaths = append(implementationPaths, file.Source)
+	}
+	for _, file := range request.Tests {
+		testPaths = append(testPaths, file.Source)
+	}
+	implementation := readTestFiles(implementationPaths)
+	tests := readTestFiles(testPaths)
+	meaningful := strings.Contains(tests, "subject.Identity") || strings.Contains(tests, "adapter.Transform")
+	passed := request.Vet || !meaningful || strings.Contains(implementation, "return value") && !strings.Contains(implementation, "return value + 1") && !strings.Contains(implementation, "return 0")
+	result := variantResult{Compiled: true, Passed: passed, Canonical: "run|task/subject|Test\npass|task/subject|Test", FailureKind: variantFailureNone, FailurePhase: variantPhaseNone}
+	if !passed {
+		result.FailureKind, result.FailurePhase, result.Diagnostic = variantFailureTest, variantPhaseTest, "synthetic test failure"
 	}
 	return result
 }
