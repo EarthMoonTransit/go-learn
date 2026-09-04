@@ -176,7 +176,8 @@ func LearnerSolutionFiles(root, id string) ([]LearnerWorkspaceFile, error) {
 
 // LearnerSubmissionFiles validates the persistent workspace boundary and
 // returns only learner-owned Go files. It is used for safe review-context
-// export; hidden checker material is never part of the result.
+// export, including submissions with syntax or API errors. Hidden checker
+// material is never part of the result.
 func LearnerSubmissionFiles(root, id, workspace string) ([]LearnerWorkspaceFile, error) {
 	loaded, err := loadLearnerPackage(root, id)
 	if err != nil {
@@ -225,6 +226,16 @@ func VerifyLearnerWorkspace(root, id, workspace string, scope LearnerVerificatio
 	submission, err := inspectLearnerSubmission(loaded, workspace)
 	if err != nil {
 		return LearnerVerificationResult{}, err
+	}
+	if err := validateLearnerSubmission(loaded, submission); err != nil {
+		result := LearnerVerificationResult{
+			Scope: scope, SubmissionKind: loaded.info.SubmissionKind,
+			Summary: "submission does not satisfy the public code contract", FailureCategory: "submission",
+		}
+		if scope == LearnerPublicChecks {
+			result.Diagnostic = sanitizeVariantDiagnostic(nil, err, "", workspace, id)
+		}
+		return result, nil
 	}
 	runner, err := newRealExecutionRunner()
 	if err != nil {
@@ -491,34 +502,8 @@ func inspectLearnerSubmission(loaded learnerPackage, workspace string) (learnerS
 				result.tests = append(result.tests, path)
 			}
 		}
-		if loaded.data.TaskV2.Submission.Kind == "implementation" {
-			sort.Strings(result.implementation)
-			if len(result.implementation) == 0 {
-				return learnerSubmission{}, errors.New("implementation submission has no Go files")
-			}
-			starterAPI, err := apiFingerprint(loaded.layout.Starter)
-			if err != nil {
-				return learnerSubmission{}, err
-			}
-			learnerAPI, err := apiFingerprint(result.implementation)
-			if err != nil || learnerAPI != starterAPI {
-				return learnerSubmission{}, errors.New("learner submission changed the public API")
-			}
-		} else {
-			sort.Strings(result.tests)
-			if len(result.tests) == 0 {
-				return learnerSubmission{}, errors.New("test submission has no Go test files")
-			}
-			var problems []string
-			for _, path := range result.tests {
-				for _, problem := range inspectLearnerTestSource(path) {
-					problems = append(problems, filepath.Base(path)+": "+problem)
-				}
-			}
-			if problems = uniqueSorted(problems); len(problems) != 0 {
-				return learnerSubmission{}, errors.New(problems[0])
-			}
-		}
+		sort.Strings(result.implementation)
+		sort.Strings(result.tests)
 	case "workspace-patch":
 		for _, editable := range loaded.data.TaskV2.Submission.EditablePaths {
 			path := filepath.Join(workspace, filepath.FromSlash(editable))
@@ -527,16 +512,56 @@ func inspectLearnerSubmission(loaded learnerPackage, workspace string) (learnerS
 			}
 			result.workspace = append(result.workspace, mappedFile{Source: path, Relative: editable})
 		}
-		starterAPI, err := workspaceAPIFingerprint(loaded.layout.WorkspaceSkeleton, loaded.layout.WorkspaceStarter)
-		if err != nil {
-			return learnerSubmission{}, err
-		}
-		learnerAPI, err := workspaceAPIFingerprint(loaded.layout.WorkspaceSkeleton, result.workspace)
-		if err != nil || learnerAPI != starterAPI {
-			return learnerSubmission{}, errors.New("learner workspace changed the public API")
-		}
 	}
 	return result, nil
+}
+
+// Code correctness is separate from the filesystem boundary: a learner must
+// be able to export broken code, and an invalid submission is a failed attempt.
+func validateLearnerSubmission(loaded learnerPackage, submission learnerSubmission) error {
+	switch loaded.data.TaskV2.Submission.Kind {
+	case "implementation":
+		if len(submission.implementation) == 0 {
+			return errors.New("implementation submission has no Go files")
+		}
+		starterAPI, err := apiFingerprint(loaded.layout.Starter)
+		if err != nil {
+			return err
+		}
+		learnerAPI, err := apiFingerprint(submission.implementation)
+		if err != nil {
+			return fmt.Errorf("cannot parse learner code: %w", err)
+		}
+		if learnerAPI != starterAPI {
+			return errors.New("learner submission changed the public API")
+		}
+	case "tests":
+		if len(submission.tests) == 0 {
+			return errors.New("test submission has no Go test files")
+		}
+		var problems []string
+		for _, path := range submission.tests {
+			for _, problem := range inspectLearnerTestSource(path) {
+				problems = append(problems, filepath.Base(path)+": "+problem)
+			}
+		}
+		if problems = uniqueSorted(problems); len(problems) != 0 {
+			return errors.New(problems[0])
+		}
+	case "workspace-patch":
+		starterAPI, err := workspaceAPIFingerprint(loaded.layout.WorkspaceSkeleton, loaded.layout.WorkspaceStarter)
+		if err != nil {
+			return err
+		}
+		learnerAPI, err := workspaceAPIFingerprint(loaded.layout.WorkspaceSkeleton, submission.workspace)
+		if err != nil {
+			return fmt.Errorf("cannot parse learner code: %w", err)
+		}
+		if learnerAPI != starterAPI {
+			return errors.New("learner workspace changed the public API")
+		}
+	}
+	return nil
 }
 
 func verifyLearnerVariant(runner *realExecutionRunner, request variantRequest, loaded learnerPackage, scope LearnerVerificationScope) (LearnerVerificationResult, error) {

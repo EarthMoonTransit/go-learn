@@ -8,8 +8,8 @@ verification material.
 
 ```text
 go run ./cmd/learn list
-go run ./cmd/learn show detached-append-001
-go run ./cmd/learn start detached-append-001
+go run ./cmd/learn show map-take-001
+go run ./cmd/learn start map-take-001
 # edit the printed workspace path
 go run ./cmd/learn check
 go run ./cmd/learn complete
@@ -27,7 +27,9 @@ current directory. Learner state defaults to the OS user-config directory under
 - `start <task-id>` creates a private workspace and refuses to replace existing
   progress.
 - `resume <task-id>` selects and validates an existing workspace.
-- `check` runs only public verification and records one attempt.
+- `pause` records elapsed work and pauses the timer before a break.
+- `check` runs only public verification and records one attempt, including syntax
+  and public-API errors in learner code.
 - `complete` runs full verification in temporary storage. A passing result
   records completion and skill encounters.
 - `hint` reveals the next unused numbered hint.
@@ -43,8 +45,9 @@ current directory. Learner state defaults to the OS user-config directory under
   progress. Confirmation is mandatory.
 - `export-review-context` writes a private Markdown file under `exports/`.
 
-`check` and unsuccessful `complete` use exit code 1. Invalid usage or unsafe
-workspace state uses exit code 2.
+`check` and unsuccessful `complete` use exit code 1. Syntax and public-API
+errors are failed attempts with bounded public diagnostics. Invalid usage or
+unsafe workspace state uses exit code 2.
 
 ## Persistent workspace contract
 
@@ -91,9 +94,23 @@ execute submissions obtained from an untrusted party.
 `progress.json` is a private, atomically replaced local file. It stores task
 status, attempts, numbered hints used, solution reveal, completion, accumulated
 active-session seconds, skill encounters, public-check output, and feedback. An
-active session starts at `start`/`resume` and ends at `check`/`complete`, so the
-duration is an explicit-work-session approximation. No grader, reference,
-mutant, hidden expectation, telemetry identifier, or cloud state is stored.
+active session starts at `start`/`resume`, continues across checks and failed
+completion attempts, and ends at `pause`, successful completion, or selection
+of another task. Repeating `resume` for the active task preserves elapsed work.
+Verification time is excluded. A check while paused leaves the timer paused.
+`progress` includes elapsed time in the active session without closing it.
+
+Use `pause` before a break and `resume <task-id>` when returning. There is no
+automatic idle detection. Existing progress remains readable; old missing time
+is not reconstructed. See ADR 0009 for the compatibility contract. No grader,
+reference, mutant, hidden expectation, telemetry identifier, or cloud state is
+stored.
+
+If a process is interrupted while updating progress, a stale `.progress.lock`
+can remain. The next write prints its exact path. After stopping all `learn`
+commands, remove only that lock file and retry. Keep `progress.json` and the
+workspaces; deleting either is unnecessary for lock recovery. Never remove the
+lock while another command is updating progress.
 
 ## Deterministic `next`
 
@@ -117,4 +134,27 @@ check result, primary and secondary skill metadata, and only the hints already
 used. Dynamic Markdown fences prevent learner code from escaping its code
 block. The export omits grader tests, reference solutions, mutants, internal
 paths, and hidden expectations. It is suitable for deliberate manual pasting;
-the CLI itself performs no network request.
+the CLI itself performs no network request. Syntax and API errors do not block
+exporting learner-owned code; filesystem boundaries and fixed files are still
+validated.
+
+## First human trial
+
+Use `map-take-001` first, then `detached-append-001`. The scheduler is a generic
+policy; with an empty history it may recommend the second task first because it
+has fewer unrecorded prerequisites.
+
+For each task, run `show`, then `start` (or `resume` if already started), and edit
+only the printed workspace. Iterate with `check`; use `hint` when needed and
+`complete` when public checks pass. After completion run `review`, then:
+
+```text
+go run ./cmd/learn feedback "clarity=.../5; difficulty=.../5; actual=...m; public-feedback=.../5; learned=...; frustration=...; next=..."
+go run ./cmd/learn export-review-context
+```
+
+Measure active time independently during this first trial. Keep both exports and
+the feedback. Do not inspect grader tests or reveal a reference solution before
+your attempt. A task you cannot complete is still useful trial evidence: record
+where you stopped and export the current code. Automated smoke-test completions
+are not human feedback and do not count as calibration.

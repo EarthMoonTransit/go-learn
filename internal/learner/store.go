@@ -75,6 +75,66 @@ func preparePrivateSubdirectory(home, name string) (string, error) {
 	return resolved, nil
 }
 
+// Use directory handles through deletion: validating a pathname before
+// os.RemoveAll would allow a replaced parent to redirect the removal.
+func removeLearnerWorkspace(home, id string) error {
+	if !learnerTaskIDPattern.MatchString(id) {
+		return errors.New("invalid learner workspace id")
+	}
+	homeInfo, err := os.Lstat(home)
+	if err != nil {
+		return err
+	}
+	if homeInfo.Mode()&os.ModeSymlink != 0 || !homeInfo.IsDir() {
+		return errors.New("learner home must be a real directory")
+	}
+	root, err := os.OpenRoot(home)
+	if err != nil {
+		return err
+	}
+	defer root.Close()
+	openedHome, err := root.Stat(".")
+	if err != nil {
+		return err
+	}
+	if !os.SameFile(homeInfo, openedHome) {
+		return errors.New("learner home changed during reset")
+	}
+	parentInfo, err := root.Lstat("workspaces")
+	if errors.Is(err, os.ErrNotExist) {
+		return nil
+	}
+	if err != nil {
+		return err
+	}
+	if parentInfo.Mode()&os.ModeSymlink != 0 || !parentInfo.IsDir() {
+		return errors.New("learner workspaces directory must be a real directory")
+	}
+	workspaces, err := root.OpenRoot("workspaces")
+	if err != nil {
+		return err
+	}
+	defer workspaces.Close()
+	openedInfo, err := workspaces.Stat(".")
+	if err != nil {
+		return err
+	}
+	if !os.SameFile(parentInfo, openedInfo) {
+		return errors.New("learner workspaces directory changed during reset")
+	}
+	info, err := workspaces.Lstat(id)
+	if errors.Is(err, os.ErrNotExist) {
+		return nil
+	}
+	if err != nil {
+		return err
+	}
+	if info.Mode()&os.ModeSymlink != 0 || !info.IsDir() {
+		return errors.New("refusing to remove a non-directory learner workspace")
+	}
+	return workspaces.RemoveAll(id)
+}
+
 func loadProgress(home string) (Progress, error) {
 	path := filepath.Join(home, "progress.json")
 	info, err := os.Lstat(path)
@@ -164,7 +224,7 @@ func withProgressLock(home string, action func(*Progress) error) error {
 	lock, err := os.OpenFile(lockPath, os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0o600)
 	if err != nil {
 		if errors.Is(err, os.ErrExist) {
-			return errors.New("another learn command is updating local progress")
+			return fmt.Errorf("progress is locked; if no learn command is running, remove the stale lock at %s (see docs/LEARNER_CLI.md)", lockPath)
 		}
 		return err
 	}

@@ -19,6 +19,7 @@ commands:
   show <task-id>
   start <task-id>
   resume <task-id>
+  pause
   check
   complete
   hint
@@ -92,6 +93,14 @@ func RunCLI(config Config, arguments []string, stdout, stderr io.Writer) int {
 			return cliError(stderr, err)
 		}
 		fmt.Fprintf(stdout, "Resumed %s\nWorkspace: %s\n", id, workspace)
+	case "pause":
+		if err := noArguments(command, commandArguments); err != nil {
+			return cliError(stderr, err)
+		}
+		if err := service.Pause(); err != nil {
+			return cliError(stderr, err)
+		}
+		fmt.Fprintln(stdout, "Work session paused. Use resume <task-id> to continue.")
 	case "check":
 		if err := noArguments(command, commandArguments); err != nil {
 			return cliError(stderr, err)
