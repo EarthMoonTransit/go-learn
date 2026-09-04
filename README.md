@@ -1,11 +1,10 @@
 # Go Practice Bank
 
-Кураторский банк практических задач по Go. Репозиторий находится в ранней
-**ФАЗЕ 3A.2**. Taxonomy v3 и полный pedagogical triage Exercism зафиксированы;
-добавлены lifecycle, Task Contract v2, multi-source provenance и изолированные
-fixed/mutation/workspace verification profiles. В репозитории остаётся ранее
-созданный ручной batch из трёх ready-задач; ФАЗА 3A.2 не создаёт новых учебных задач. Массовая генерация и
-пользовательский интерфейс отсутствуют.
+Кураторский банк практических задач по Go. Репозиторий находится в
+**ФАЗЕ 3D**. Taxonomy v3 и полный pedagogical triage Exercism зафиксированы;
+добавлены lifecycle, Task Contract v2, multi-source provenance, изолированные
+fixed/mutation/workspace verification profiles и локальный learner CLI.
+Массовая генерация и web UI отсутствуют.
 
 ## Быстрые команды
 
@@ -14,6 +13,8 @@ go test ./...
 go test -race ./...
 go vet ./...
 go test -tags=taskintegration ./...
+go run ./cmd/learn list
+go run ./cmd/learn next
 go run ./cmd/source-sync -root . -source exercism-go
 go run ./cmd/harvest -root . -source exercism-go
 go run ./cmd/catalog-report -root . -source exercism-go
@@ -39,6 +40,7 @@ cmd/source-sync/          pinned cache synchronization
 cmd/harvest/              offline candidate extraction
 cmd/catalog-report/       deterministic import/taxonomy reports
 cmd/task-*/                authoring, isolation, promotion и quality reports
+cmd/learn/                 локальный learner workflow без hidden artifacts
 cmd/validate/             CLI-валидатор
 curriculum/skills.yaml    taxonomy атомарных навыков и mastery-критерии
 curriculum/migrations/    machine-readable migrations и immutable snapshots
@@ -47,6 +49,7 @@ curriculum/evidence/      reviewed candidate-to-skill evidence
 docs/                     нормативные документы проекта
 docs/adr/                 решения и предложения по эволюции taxonomy
 internal/isolation/       disposable Go workspaces без source-checkout execution
+internal/learner/         локальные workspace, progress и scheduler
 internal/tasking/         lifecycle, task gates, promotion и reports
 internal/validation/      модель и проверки каталога
 provenance/               правила хранения происхождения и attribution
@@ -69,16 +72,16 @@ tasks/                    drafts/review/ready/rejected/retired task packages
 
 ## Начать решать
 
-Каждая задача — отдельный Go module. Работайте с копией, чтобы не изменять
-canonical package в репозитории. Например:
+Learner CLI сам создаёт отдельный workspace и не изменяет canonical package:
 
 ```bash
-scratch="$(mktemp -d)"
-cp -R tasks/ready/variadic-sum-001 "$scratch/task"
-cd "$scratch/task"
-go test ./tests/public
+go run ./cmd/learn list
+go run ./cmd/learn show detached-append-001
+go run ./cmd/learn start detached-append-001
+# измените файлы в напечатанном workspace
+go run ./cmd/learn check
+go run ./cmd/learn complete
 ```
 
-Первый запуск public tests ожидаемо падает: исправляйте только файлы в
-`starter/`, затем повторяйте команду до зелёного результата. Не открывайте
-`tests/grader/` и `solution/`, если хотите решить задачу без подсказок.
+Полный список команд, правила локального progress и граница hidden material:
+[`docs/LEARNER_CLI.md`](docs/LEARNER_CLI.md).
