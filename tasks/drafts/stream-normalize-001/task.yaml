@@ -3,43 +3,48 @@ id: stream-normalize-001
 title: Integrate a streaming line transformer
 activity: integration
 submission:
-  kind: workspace-patch
-  editable_paths:
-    - transform/normalize.go
-  workspace_skeleton:
-    - pipeline/run.go
+    kind: workspace-patch
+    editable_paths:
+        - transform/normalize.go
+    workspace_skeleton:
+        - pipeline/run.go
 skills:
-  primary: io.reader-writer-contracts
-  secondary:
-    - io.scanning
+    primary: io.reader-writer-contracts
+    secondary:
+        - io.scanning
 prerequisites:
-  - interfaces.implicit-satisfaction
-  - errors.propagation-context
-  - slices.header-model
-  - strings.byte-rune-conversions
+    - interfaces.implicit-satisfaction
+    - errors.propagation-context
+    - slices.header-model
+    - strings.byte-rune-conversions
 new_concepts:
-  - io.reader-writer-contracts
-  - io.scanning
+    - io.reader-writer-contracts
+    - io.scanning
 difficulty: intermediate
 estimated_time_minutes:
-  min: 30
-  max: 50
+    min: 30
+    max: 50
 verification:
-  profile: workspace-tests
-  packages: [./pipeline, ./transform]
-  public_checks: [./pipeline]
-  grader_checks: [./pipeline]
-  reference_checks: [./pipeline]
-  required_mutants:
-    - ignore-scan-error
-    - ignore-write-error
-    - preserve-empty-lines
-    - read-all-on-error
-  race_required: false
-  vet: true
-  limits:
-    command_timeout_seconds: 30
-    determinism_runs: 2
-    fuzz_seconds: 0
-    benchmark_runs: 1
+    profile: workspace-tests
+    packages:
+        - ./pipeline
+        - ./transform
+    public_checks:
+        - ./pipeline
+    grader_checks:
+        - ./pipeline
+    reference_checks:
+        - ./pipeline
+    required_mutants:
+        - ignore-scan-error
+        - ignore-write-error
+        - preserve-empty-lines
+        - read-all-on-error
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
 quality_status: draft

@@ -1,0 +1,13 @@
+schema_version: 1
+reviewer: phase-3c-red-team
+reviewed_at: "2026-09-04"
+decision: reject
+story_free: true
+prompt_test_alignment: false
+public_api_stable: false
+provenance_verified: false
+license_verified: true
+reference_only_clean_room_verified: true
+solution_leakage_checked: false
+minimum_mutants: 4
+notes: Reject this seed. It turns a typed-nil interface lesson into a universal reflection-based nil predicate outside the declared taxonomy skill, while tests cover only a subset of the promised nil-capable dynamic kinds. The hint prescribes reflection and the resulting API encourages detection rather than prevention at the interface boundary. A replacement would require a new design and is explicitly out of scope for Phase 3C.

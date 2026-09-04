@@ -3,41 +3,45 @@ id: rune-offset-tests-001
 title: Repair tests for UTF-8 rune offsets
 activity: test-repair
 submission:
-  kind: tests
-  editable_paths: []
-  workspace_skeleton: []
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
 skills:
-  primary: unicode.range-decoding
-  secondary:
-    - testing.basics-diagnostics
+    primary: unicode.range-decoding
+    secondary:
+        - testing.basics-diagnostics
 prerequisites:
-  - unicode.rune-model
-  - unicode.utf8-encoding
-  - toolchain.build-run
-  - functions.signatures-results
+    - unicode.rune-model
+    - unicode.utf8-encoding
+    - toolchain.build-run
+    - functions.signatures-results
 new_concepts:
-  - unicode.range-decoding
-  - testing.basics-diagnostics
+    - unicode.range-decoding
+    - testing.basics-diagnostics
 difficulty: intermediate
 estimated_time_minutes:
-  min: 25
-  max: 40
+    min: 25
+    max: 40
 verification:
-  profile: mutation-tests
-  packages: [./subject]
-  public_checks: [./subject]
-  grader_checks: [./subject]
-  reference_checks: [./subject]
-  required_mutants:
-    - byte-every-position
-    - omit-terminal
-    - rune-ordinals
-    - stop-at-invalid
-  race_required: false
-  vet: true
-  limits:
-    command_timeout_seconds: 30
-    determinism_runs: 2
-    fuzz_seconds: 0
-    benchmark_runs: 1
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - byte-every-position
+        - omit-terminal
+        - rune-ordinals
+        - stop-at-invalid
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
 quality_status: draft

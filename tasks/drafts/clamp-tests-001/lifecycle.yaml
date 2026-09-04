@@ -2,8 +2,18 @@ schema_version: 1
 state: draft
 updated_at: "2026-09-04"
 transitions:
-  - from: ""
-    to: draft
-    at: "2026-09-04"
-    actor: phase-3b-authoring
-    reason: initialize foundation pilot task for technical validation
+    - from: ""
+      to: draft
+      at: "2026-09-04"
+      actor: phase-3b-authoring
+      reason: initialize foundation pilot task for technical validation
+    - from: draft
+      to: in-review
+      at: "2026-09-04"
+      actor: phase-3c-red-team
+      reason: independent red-team requires structural skill evidence before final decision
+    - from: in-review
+      to: draft
+      at: "2026-09-04"
+      actor: phase-3c-red-team
+      reason: primary table-driven skill lacks executable structural evidence

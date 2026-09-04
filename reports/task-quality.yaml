@@ -4,7 +4,7 @@ toolchain_policy_digest: 51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a515
 tasks:
     - id: clamp-tests-001
       state: draft
-      input_digest: 7b3858a948171d8c136f9f63a40fdd291acf3814619e02dcc588b07d3db1a5a3
+      input_digest: 3f7f29c5635d0a5581c33e08eaa0a296604c71855da8455acf13849ae3852277
       task_type: test-writing
       primary_skill: testing.table-driven
       technical_status: pass
@@ -23,7 +23,7 @@ tasks:
       legacy: false
     - id: counter-receiver-001
       state: draft
-      input_digest: 4af83ae2b949960fc16dd9d4d9756f5aa5c8a3ebb644e4aabca68a3e0effa584
+      input_digest: 7e46814fd59cc686a0bdd4d7dad718e79f30d039e51ea146af53dce9d4db8f04
       task_type: refactor
       primary_skill: methods.receiver-semantics
       technical_status: pass
@@ -78,7 +78,7 @@ tasks:
       legacy: false
     - id: effective-rate-001
       state: draft
-      input_digest: 35ec59c7ca9254e036f01fe31bc29e647aa833076f8cc371b222f024b34adf7c
+      input_digest: acb4dd90a9ca9321bb3f84e4be6738806c4af67f64b511e2b2b3f8c2002f87b4
       task_type: implement
       primary_skill: types.numeric-conversions
       technical_status: pass
@@ -97,7 +97,7 @@ tasks:
       legacy: false
     - id: error-chain-query-001
       state: draft
-      input_digest: a67022fb5ae65a2197cf32092878a6f704e1362edb1a30d351dbf290fd155127
+      input_digest: 17abcfb02a2d62a89bcc904a563f69a99c8a4103762989f0ef9cc0a625b1d03d
       task_type: implement
       primary_skill: errors.wrapping
       technical_status: pass
@@ -116,7 +116,7 @@ tasks:
       legacy: false
     - id: formatter-contract-001
       state: draft
-      input_digest: e0ae2d891143a270f07831691b8bee324dc0cf44b92c046c2f6a6b2b7130d1b1
+      input_digest: a84c2b7ac9c60653164aa69605a346e7656285f14faf5a04932e526123ebb401
       task_type: implement
       primary_skill: interfaces.implicit-satisfaction
       technical_status: pass
@@ -153,7 +153,7 @@ tasks:
       legacy: false
     - id: resource-finalize-001
       state: draft
-      input_digest: eac64557cde5385fac041375f673b32593fb8ec67778b2c1560890a765548b6f
+      input_digest: 4c4ca3c70afe266879ed5346879e5669f6dece91335f69682f99e7c9729605c5
       task_type: refactor
       primary_skill: io.files-cleanup
       technical_status: pass
@@ -172,7 +172,7 @@ tasks:
       legacy: false
     - id: rune-offset-tests-001
       state: draft
-      input_digest: 3503a5d6acaf1862f68e178a7d036b90fd7bd1de6e945e0f9a68ff4e16628575
+      input_digest: beb0a532940414f1e3e9346f1c96e85698b711592381e636a88aeec0ee3dc15d
       task_type: test-writing
       primary_skill: unicode.range-decoding
       technical_status: pass
@@ -191,7 +191,7 @@ tasks:
       legacy: false
     - id: stream-normalize-001
       state: draft
-      input_digest: 71e3f3881d4daeed00bf789417aeeff194b29ead1149ca1dbdead0f7eddd5a7d
+      input_digest: d829725c995bc5e200fb41b268c96c02df51cd4bda6a22778435191123eec267
       task_type: implement
       primary_skill: io.reader-writer-contracts
       technical_status: pass
@@ -209,27 +209,26 @@ tasks:
         survived: []
       legacy: false
     - id: typed-nil-resource-001
-      state: draft
-      input_digest: 54281e38f9b7bc59cc00ff7f9e9bdfe740e3657c5e4ae952bea977a1f0e87363
+      state: rejected
+      input_digest: 107bc09aeffede5853ab4fd8306a3ab185e559fda9ad5025daceeeeb1fc90985
       task_type: debug
       primary_skill: interfaces.typed-nil
       technical_status: pass
-      review_status: fail
-      promotion_eligible: true
-      failing_gate_ids:
-        - review-evidence
-      starter_status: pass
-      reference_status: pass
+      review_status: not-applicable
+      promotion_eligible: false
+      failing_gate_ids: []
+      starter_status: not-applicable
+      reference_status: not-applicable
       race_status: not-applicable
       mutants:
-        required: 4
-        total: 4
-        detected: 4
+        required: 0
+        total: 0
+        detected: 0
         survived: []
       legacy: false
     - id: utf8-prefix-001
       state: draft
-      input_digest: ec3413095ae741e274037c5f20c6c0cf78d3745ab393b49805815364de1af8b5
+      input_digest: 5aed6135299bc4b811ab292a5fad6581d922249e5cbc85263a619f78bf447e14
       task_type: debug
       primary_skill: unicode.range-decoding
       technical_status: pass
@@ -284,13 +283,13 @@ tasks:
       legacy: true
 states:
     - state: draft
-      count: 10
+      count: 9
     - state: in-review
       count: 0
     - state: ready
       count: 5
     - state: rejected
-      count: 0
+      count: 1
     - state: retired
       count: 0
 task_types:
