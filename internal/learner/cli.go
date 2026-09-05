@@ -1,12 +1,16 @@
 package learner
 
 import (
+	"context"
 	"errors"
 	"flag"
 	"fmt"
 	"io"
+	"os"
+	"os/signal"
 	"sort"
 	"strings"
+	"syscall"
 	"text/tabwriter"
 
 	"go-practice-bank/internal/tasking"
@@ -15,6 +19,7 @@ import (
 const cliUsage = `usage: learn [-root DIR] [-home DIR] <command> [arguments]
 
 commands:
+  ui [-port PORT]
   list
   show <task-id>
   start <task-id>
@@ -55,6 +60,21 @@ func RunCLI(config Config, arguments []string, stdout, stderr io.Writer) int {
 	}
 	command, commandArguments := arguments[0], arguments[1:]
 	switch command {
+	case "ui":
+		uiFlags := flag.NewFlagSet("learn ui", flag.ContinueOnError)
+		uiFlags.SetOutput(stderr)
+		port := uiFlags.Int("port", 0, "local UI port (0 selects an available port)")
+		if err := uiFlags.Parse(commandArguments); err != nil {
+			return 2
+		}
+		if err := noArguments("ui", uiFlags.Args()); err != nil {
+			return cliError(stderr, err)
+		}
+		ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+		defer stop()
+		if err := ServeUI(ctx, service, *port, stdout); err != nil {
+			return cliError(stderr, err)
+		}
 	case "list":
 		if err := noArguments(command, commandArguments); err != nil {
 			return cliError(stderr, err)

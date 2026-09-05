@@ -5,7 +5,9 @@
 добавлены lifecycle, Task Contract v2, multi-source provenance, изолированные
 fixed/mutation/workspace verification profiles и локальный learner CLI.
 Локальный UI включён в ближайшую поставку поверх общего learner engine;
-GoLand остаётся редактором. Пока UI не реализован. Ограниченный план:
+GoLand остаётся редактором. Запуск из checkout: `go run ./cmd/learn ui`.
+Инструкция и совместимость версий: [LEARNER_CLI.md](docs/LEARNER_CLI.md).
+Ограниченный план:
 [docs/LOCAL_UI_GOAL.md](docs/LOCAL_UI_GOAL.md). Массовая генерация не планируется.
 
 Актуальный личный маршрут, критерии готовности и ближайшие партии работ:

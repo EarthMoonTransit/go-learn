@@ -52,6 +52,7 @@ type PublicCheckRecord struct {
 
 type WorkspaceManifest struct {
 	SchemaVersion  int      `json:"schema_version"`
+	Generation     string   `json:"generation,omitempty"`
 	TaskID         string   `json:"task_id"`
 	ContentDigest  string   `json:"content_digest"`
 	SubmissionKind string   `json:"submission_kind"`
