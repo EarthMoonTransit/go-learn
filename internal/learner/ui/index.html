@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Go Learn</title><link rel="stylesheet" href="/app.css"><script src="/app.js" defer></script></head>
+<body>
+<header><a class="brand" href="/">Go Learn<span>Practice in GoLand</span></a><div class="header-actions"><span id="connection">Connecting…</span><button id="refresh">Refresh</button><button id="next" class="primary" disabled>Next lesson →</button></div></header>
+<div id="alert" role="alert" hidden></div>
+<div class="layout"><aside aria-label="Learning route"><div class="eyebrow">YOUR ROUTE</div><h2>One lesson at a time</h2><p id="counts">Loading your course…</p><nav id="route"></nav></aside>
+<main>
+<p id="next-message" class="card" role="status" hidden></p>
+<section id="welcome" class="card"><div class="eyebrow">LOCAL PRACTICE</div><h1>Your next step in Go</h1><p>Open the full address printed by <code>learn ui</code>. Your code stays in GoLand, and your progress stays on this computer.</p></section>
+<div id="lesson" hidden>
+<div class="lesson-heading"><div><div class="eyebrow" id="task-meta"></div><h1 id="title"></h1><p id="task-status"></p></div><span id="task-kind" class="tag"></span></div>
+<details class="preparation"><summary>Getting started in GoLand</summary><div id="preparation" class="markdown"></div></details>
+<div class="work-area"><section class="card statement"><div id="statement" class="markdown"></div></section>
+<section class="card workspace"><div class="eyebrow">YOUR WORKSPACE</div><h2>Edit in GoLand</h2><p id="workspace-guidance">Start this lesson to create its workspace.</p><label for="workspace-path">Workspace path</label><input id="workspace-path" readonly value="" placeholder="Start the lesson first"><div class="button-row"><button id="copy" disabled>Copy path</button><button data-action="open" disabled>Open in GoLand</button></div><p id="launcher-note" class="muted"></p><button data-action="start" class="primary full">Start lesson</button><button data-action="resume" class="primary full" hidden>Resume lesson</button><div class="checks"><button data-action="check" disabled>Check public tests</button><button data-action="complete" class="primary" disabled>Complete lesson</button></div><button data-action="pause" class="subtle full" disabled>Pause work session</button><p class="muted">Check runs public tests. Complete runs full verification and records a passing result. Pause before taking a break.</p></section></div>
+<section id="result" class="card" aria-live="polite" hidden><div class="eyebrow">VERIFICATION</div><h2 id="result-title"></h2><p id="result-summary"></p><pre id="diagnostic" hidden></pre></section>
+<section class="card"><div class="section-heading"><div><div class="eyebrow">WHEN YOU NEED A NUDGE</div><h2>Progressive hints</h2></div><button data-action="hint" disabled>Reveal next hint</button></div><div id="hints"></div></section>
+<section id="review-card" class="card" hidden><div class="eyebrow">AFTER COMPLETION</div><h2>Review prompts</h2><p class="muted">Questions about the skills in this lesson. This is not an automated review of your code.</p><div id="review" class="markdown"></div></section>
+</div><footer>Shared progress with <code>learn</code> · Local checks · No automatic idle detection</footer>
+</main></div>
+</body></html>

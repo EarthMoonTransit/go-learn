@@ -103,8 +103,9 @@ remains an explicit CLI action. The UI must not invent mastery or due counters.
 [LOCAL_UI_GOAL.md](LOCAL_UI_GOAL.md) records the bounded delivery and acceptance:
 documentation, IDE workspace compatibility, UI, independent acceptance, then
 exactly five strings/bytes tasks. At the recorded baseline this moves available
-v2 content from 17 to 22; reaching 60 is a later goal. UI delivery is planned,
-not yet claimed implemented by this documentation change.
+v2 content from 17 to 22; reaching 60 is a later goal. The local UI is implemented
+through the shared learner service; launch and compatibility instructions are in
+[LEARNER_CLI.md](LEARNER_CLI.md). The five-task content batch remains separate.
 
 Mastery/progress migration and dynamic spaced repetition belong to the next
 goal. This delivery excludes theory, entry diagnostics, cloud, an embedded

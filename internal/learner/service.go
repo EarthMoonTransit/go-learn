@@ -2,6 +2,8 @@ package learner
 
 import (
 	"bytes"
+	"crypto/rand"
+	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -27,9 +29,12 @@ type Config struct {
 }
 
 type Service struct {
-	root string
-	home string
-	now  func() time.Time
+	root         string
+	home         string
+	now          func() time.Time
+	verify       func(string, string, string, tasking.LearnerVerificationScope) (tasking.LearnerVerificationResult, error)
+	launch       func(string) error
+	ideAvailable bool
 }
 
 func New(config Config) (*Service, error) {
@@ -63,7 +68,8 @@ func New(config Config) (*Service, error) {
 	if now == nil {
 		now = time.Now
 	}
-	return &Service{root: root, home: home, now: now}, nil
+	launcher, _ := findGoLand()
+	return &Service{root: root, home: home, now: now, verify: tasking.VerifyLearnerWorkspace, launch: launchGoLand, ideAvailable: launcher != ""}, nil
 }
 
 func (s *Service) Home() string { return s.home }
@@ -81,7 +87,7 @@ func (s *Service) Show(id string) (tasking.LearnerTaskInfo, error) {
 	return tasking.LoadReadyLearnerTask(s.root, id)
 }
 
-func (s *Service) Start(id string) (string, error) {
+func (s *Service) start(id string) (string, error) {
 	info, err := tasking.LoadReadyLearnerTask(s.root, id)
 	if err != nil {
 		return "", err
@@ -116,8 +122,13 @@ func (s *Service) Start(id string) (string, error) {
 				_ = os.RemoveAll(staging)
 			}
 		}()
+		generation := make([]byte, 32)
+		if _, err := rand.Read(generation); err != nil {
+			return err
+		}
 		manifest := WorkspaceManifest{
 			SchemaVersion: 1, TaskID: id, ContentDigest: info.ContentDigest,
+			Generation:     hex.EncodeToString(generation),
 			SubmissionKind: info.SubmissionKind,
 		}
 		for _, file := range files {
@@ -168,7 +179,7 @@ func (s *Service) Start(id string) (string, error) {
 	return target, nil
 }
 
-func (s *Service) Resume(id string) (string, error) {
+func (s *Service) resume(id string) (string, error) {
 	info, err := tasking.LoadReadyLearnerTask(s.root, id)
 	if err != nil {
 		return "", err
@@ -195,7 +206,7 @@ func (s *Service) Resume(id string) (string, error) {
 	return workspace, err
 }
 
-func (s *Service) Pause() error {
+func (s *Service) pause() error {
 	now := s.timestamp()
 	return withProgressLock(s.home, func(progress *Progress) error {
 		if progress.CurrentTaskID == "" {
@@ -211,15 +222,15 @@ func (s *Service) Pause() error {
 	})
 }
 
-func (s *Service) Check() (tasking.LearnerVerificationResult, error) {
+func (s *Service) check() (tasking.LearnerVerificationResult, error) {
 	progress, _, info, workspace, err := s.currentTask()
 	if err != nil {
 		return tasking.LearnerVerificationResult{}, err
 	}
 	verificationStarted := s.timestamp()
-	result, err := tasking.VerifyLearnerWorkspace(s.root, info.ID, workspace, tasking.LearnerPublicChecks)
+	result, err := s.verify(s.root, info.ID, workspace, tasking.LearnerPublicChecks)
 	if err != nil {
-		return tasking.LearnerVerificationResult{}, err
+		return tasking.LearnerVerificationResult{}, errors.Join(err, s.excludeFailedVerificationTime(info.ID, verificationStarted))
 	}
 	now := s.timestamp()
 	err = withProgressLock(s.home, func(current *Progress) error {
@@ -238,7 +249,7 @@ func (s *Service) Check() (tasking.LearnerVerificationResult, error) {
 	return result, err
 }
 
-func (s *Service) Complete() (tasking.LearnerVerificationResult, error) {
+func (s *Service) complete() (tasking.LearnerVerificationResult, error) {
 	progress, task, info, workspace, err := s.currentTask()
 	if err != nil {
 		return tasking.LearnerVerificationResult{}, err
@@ -247,9 +258,9 @@ func (s *Service) Complete() (tasking.LearnerVerificationResult, error) {
 		return tasking.LearnerVerificationResult{}, errors.New("task is already completed")
 	}
 	verificationStarted := s.timestamp()
-	result, err := tasking.VerifyLearnerWorkspace(s.root, info.ID, workspace, tasking.LearnerFullChecks)
+	result, err := s.verify(s.root, info.ID, workspace, tasking.LearnerFullChecks)
 	if err != nil {
-		return tasking.LearnerVerificationResult{}, err
+		return tasking.LearnerVerificationResult{}, errors.Join(err, s.excludeFailedVerificationTime(info.ID, verificationStarted))
 	}
 	now := s.timestamp()
 	err = withProgressLock(s.home, func(current *Progress) error {
@@ -275,7 +286,22 @@ func (s *Service) Complete() (tasking.LearnerVerificationResult, error) {
 	return result, err
 }
 
-func (s *Service) Hint() (int, string, error) {
+// Infrastructure failures have no verification result to record, but the time
+// spent waiting on them still must not become learner work time (ADR 0009).
+func (s *Service) excludeFailedVerificationTime(id, started string) error {
+	ended := s.timestamp()
+	return withProgressLock(s.home, func(progress *Progress) error {
+		task, err := requireSameCurrent(progress, id)
+		if err != nil {
+			return err
+		}
+		finishVerificationSession(task, started, ended, !task.Completed)
+		task.LastInteractionAt = ended
+		return nil
+	})
+}
+
+func (s *Service) hint() (int, string, error) {
 	progress, task, info, _, err := s.currentTask()
 	if err != nil {
 		return 0, "", err
@@ -312,7 +338,7 @@ func (s *Service) Hint() (int, string, error) {
 	return next, hints[next-1], err
 }
 
-func (s *Service) Solution(reveal bool) ([]tasking.LearnerWorkspaceFile, error) {
+func (s *Service) solution(reveal bool) ([]tasking.LearnerWorkspaceFile, error) {
 	if !reveal {
 		return nil, errors.New("solution reveal requires the explicit --reveal flag")
 	}
@@ -346,6 +372,10 @@ func (s *Service) Review() (string, error) {
 	if !task.Completed {
 		return "", errors.New("review is available only after successful completion")
 	}
+	return s.reviewFor(task, info, workspace)
+}
+
+func (s *Service) reviewFor(task *TaskProgress, info tasking.LearnerTaskInfo, workspace string) (string, error) {
 	skills, err := loadSkillMetadata(s.root)
 	if err != nil {
 		return "", err
@@ -373,6 +403,10 @@ func (s *Service) Next() (SchedulerChoice, error) {
 	if err != nil {
 		return SchedulerChoice{}, err
 	}
+	return s.nextFor(tasks, progress)
+}
+
+func (s *Service) nextFor(tasks []tasking.LearnerTaskInfo, progress Progress) (SchedulerChoice, error) {
 	route, err := loadRoute(s.root)
 	if err != nil {
 		return SchedulerChoice{}, err
@@ -458,7 +492,7 @@ func (s *Service) Progress() (Progress, error) {
 	return progress, nil
 }
 
-func (s *Service) Feedback(text string) error {
+func (s *Service) feedback(text string) error {
 	text = strings.TrimSpace(text)
 	if text == "" || len([]rune(text)) > 2000 || strings.ContainsRune(text, 0) {
 		return errors.New("feedback must contain 1..2000 characters")
@@ -479,7 +513,7 @@ func (s *Service) Feedback(text string) error {
 	})
 }
 
-func (s *Service) ResetTask(id string, confirmed bool) error {
+func (s *Service) resetTask(id string, confirmed bool) error {
 	if !confirmed {
 		return errors.New("reset-task requires the explicit --yes flag")
 	}
@@ -507,7 +541,7 @@ func (s *Service) ResetTask(id string, confirmed bool) error {
 	})
 }
 
-func (s *Service) ExportReviewContext() (string, error) {
+func (s *Service) exportReviewContext() (string, error) {
 	_, task, info, workspace, err := s.currentTask()
 	if err != nil {
 		return "", err

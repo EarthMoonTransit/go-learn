@@ -132,11 +132,17 @@ is not reconstructed. See ADR 0009 for the compatibility contract. No grader,
 reference, mutant, hidden expectation, telemetry identifier, or cloud state is
 stored.
 
-If a process is interrupted while updating progress, a stale `.progress.lock`
-can remain. The next write prints its exact path. After stopping all `learn`
-commands, remove only that lock file and retry. Keep `progress.json` and the
-workspaces; deleting either is unnecessary for lock recovery. Never remove the
-lock while another command is updating progress.
+Mutating commands share a per-home `.operation.lock` with the UI, including
+the whole duration of verification. A conflicting command reports busy; retry
+after the active command finishes. The UI does not hold this lock while idle.
+Read-only commands and page views do not change selection or work-session time.
+
+If a process is forcibly interrupted, `.operation.lock` or `.progress.lock`
+can remain. Nothing removes an unknown lock automatically. First stop every
+UI/CLI process using this home and verify that no check is still running. Only
+then remove the named lock file and retry. Its PID is a clue, not proof of safe
+removal (PIDs can be reused). Keep `progress.json` and all workspaces. Never
+remove a lock while another process may own it.
 
 ## Generic fallback without a route
 
@@ -189,10 +195,48 @@ your attempt. A task you cannot complete is still useful trial evidence: record
 where you stopped and export the current code. Automated smoke-test completions
 are not human feedback and do not count as calibration.
 
-## Planned local UI delivery
+## Local UI
 
-The bounded goal in [LOCAL_UI_GOAL.md](LOCAL_UI_GOAL.md) adds `learn ui` above
-the shared learner service, with GoLand as editor. This command is planned, not
-implemented by this documentation batch. CLI commands remain supported; UI
-acceptance will publish the exact launch instructions. Mastery migration and
-dynamic repetition are outside this goal.
+From the repository checkout:
+
+```bash
+go run ./cmd/learn ui
+```
+
+With the existing checkout-based short launcher, use `learn ui`. If your `learn`
+is a separately installed binary, rebuild that binary from this version before
+using it; a local build that does not overwrite any launcher is:
+
+```bash
+go build -o .tmp/learn ./cmd/learn
+.tmp/learn ui
+```
+
+The foreground process prints its effective root, home and a URL. Open the full
+URL, including the session fragment. The browser removes the fragment from the
+address bar. Keep the process running; Ctrl+C closes the listener and waits for
+an active check to persist its actual result. Reopen the newly printed URL after
+restarting. Jobs and their display results are temporary; progress, completion
+and used hints persist. For a fixed local port use `learn ui -port 8080`.
+Global `-root`, `-home` and `GO_LEARN_HOME` follow the same rules as other commands.
+
+Select a lesson and click Start, then Open in GoLand or Copy path. Open the
+printed workspace as a project and edit the files named in the task. Check runs
+public tests; Complete runs full verification and records completion on success.
+The Review prompts appear after completion. Next lesson follows the route;
+unprepared content is labelled explicitly. Browsing another lesson does not
+resume it. Use Resume to switch the active workspace and Pause before breaks.
+
+Used hints are saved. Reference reveal remains the explicit CLI command
+`learn solution --reveal`; the UI has no solution endpoint. Review prompts are
+based on the task's skills, not an automated analysis of your code.
+
+Use matching UI and CLI versions with the same home. Progress remains v1 and
+existing workspaces remain readable without rewriting. Newly created workspace
+markers include a generation that older binaries cannot read. For rollback,
+keep the new CLI (you can stop using the UI), or retain the marker compatibility
+change. Do not reset workspaces as an update/rollback procedure. Details:
+[ADR 0013](adr/0013-local-ui-and-operation-coordination.md).
+
+The UI listens only on 127.0.0.1. Keep the session URL private. No accounts,
+hosting, mastery migration or dynamic repetition are included in this delivery.
