@@ -1,8 +1,10 @@
 # Bounded delivery: local UI and five strings/bytes lessons
 
-Status: documentation and IDE compatibility delivered; local UI implemented,
-with acceptance evidence recorded in its tooling batch. The five-task content
-batch remains pending. Baseline: master
+Status: documentation, IDE compatibility and local UI delivered. The separate
+five-task strings/bytes batch is prepared with independent review and lifecycle
+promotion; [content acceptance](../reports/strings-bytes-acceptance.md) records
+its checks. This document describes the delivered scope when merged after CI.
+Baseline: master
 `9d5e9305012a86417c0df8bfdceaa6e23725658c`, 17 learner-visible ready v2 tasks,
 three legacy ready packages, eight drafts and one rejected package.
 This inventory is repository evidence, not a fresh read of private learner data.

@@ -105,7 +105,9 @@ documentation, IDE workspace compatibility, UI, independent acceptance, then
 exactly five strings/bytes tasks. At the recorded baseline this moves available
 v2 content from 17 to 22; reaching 60 is a later goal. The local UI is implemented
 through the shared learner service; launch and compatibility instructions are in
-[LEARNER_CLI.md](LEARNER_CLI.md). The five-task content batch remains separate.
+[LEARNER_CLI.md](LEARNER_CLI.md). The separate five-task content batch adds
+strings/bytes implementation, debugging and independent byte-boundary tests;
+[acceptance evidence](../reports/strings-bytes-acceptance.md) records its scope.
 
 Mastery/progress migration and dynamic spaced repetition belong to the next
 goal. This delivery excludes theory, entry diagnostics, cloud, an embedded
@@ -123,10 +125,10 @@ and repairs an introduced defect. Automatic checks alone are not human mastery.
 
 | Measure | Verified state on 2026-09-05 |
 | --- | --- |
-| Learner-visible ready tasks | 17 (the opening twelve plus four new lessons and one repaired test-writing draft) |
-| Human-completed tasks | 1 (`map-take-001`: four attempts, one hint, no solution reveal) |
-| Confirmed mastered skills | 0; one assisted completion is not mastery |
-| Next product result | Minimal local UI, then five strings/bytes lessons (17 → 22); bounded delivery in LOCAL_UI_GOAL.md |
+| Learner-visible ready tasks | 22 (the previous 17 plus five strings/bytes lessons) |
+| Historical recorded human completions | 1 (`map-take-001`: four attempts, one hint, no solution reveal) |
+| Historical mastery assessment | 0; one assisted completion is not mastery; current private progress was not inspected |
+| Next product result | Local UI and the strings/bytes block are available; next prepare Unicode toward the 60-task working course after learner feedback |
 | Current gap | Human feedback on the opening block; mastery and spaced repetition remain scheduled for the working-course milestone |
 
 The stored session duration includes any time without an explicit pause and is

@@ -1,0 +1,46 @@
+schema_version: 2
+id: typed-line-001
+title: Format typed values without extra output
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: strings.formatting
+    secondary: []
+prerequisites:
+    - functions.signatures-results
+    - strings.immutable-bytes
+    - types.declarations-inference
+new_concepts:
+    - strings.formatting
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - quoted-label
+        - character-count
+        - extra-newline
+        - unsigned-magnitude
+        - numeric-boolean
+        - label-as-format
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

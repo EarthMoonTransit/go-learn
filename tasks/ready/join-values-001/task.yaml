@@ -1,0 +1,48 @@
+schema_version: 2
+id: join-values-001
+title: Build a delimited integer list
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: strings.building
+    secondary: []
+prerequisites:
+    - control-flow.range
+    - functions.signatures-results
+    - slices.header-model
+    - strings.formatting
+    - strings.immutable-bytes
+new_concepts:
+    - strings.building
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - trailing-comma
+        - spaces-instead-of-commas
+        - missing-empty-brackets
+        - prefix-discarded
+        - reverse-order
+        - destructive-digit-work
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

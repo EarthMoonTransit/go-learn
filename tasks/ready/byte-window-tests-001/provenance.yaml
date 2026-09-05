@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "7ef22cbfa86adbf4e701f50278ac85d07faeaecb26f938b729ad98dd1b96f97a"
+  },
+  "creation": {
+    "author": "strings-bytes-author",
+    "created_at": "2026-09-05",
+    "summary": "Original exercise with independently authored API, statement, scaffolding, tests, reference and defect models. No external task material was used."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/byte-window-tests-001.yaml"
+  }
+}
