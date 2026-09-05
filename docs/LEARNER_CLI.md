@@ -87,7 +87,11 @@ For implementation and test submissions, additional Go files are allowed only
 inside `subject/` and must preserve the declared submission shape and public
 API. Workspace-patch submissions may change exactly the declared editable
 paths. Symlinks, devices, undeclared directories, modified fixed files, and
-path escapes are rejected.
+path escapes are rejected. Root `.idea/` settings created by GoLand are allowed
+as private IDE metadata: they are inspected for symlinks/nonregular files but
+never submitted, executed, exported or rewritten. `.idea` must be a directory;
+other unknown directories remain forbidden. Task content cannot declare paths
+inside this reserved metadata directory. See ADR 0012.
 
 Public tests are assembled by `check` in temporary storage; they are not copied
 into the editable workspace. Grader tests, verification references, reference
