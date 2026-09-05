@@ -74,6 +74,24 @@ tasks:
         detected: 4
         survived: []
       legacy: false
+    - id: byte-window-tests-001
+      state: ready
+      input_digest: cb56fb71992ba01bd1fa4c4475f50be14aba88206243ecb626b1959ec651d781
+      task_type: test-writing
+      primary_skill: strings.immutable-bytes
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
+        survived: []
+      legacy: false
     - id: clamp-tests-001
       state: ready
       input_digest: 808fb55df8762ddf87884cbcc44bed1decbb552b58ec7772b7be1b31a1e09786
@@ -221,6 +239,24 @@ tasks:
         detected: 4
         survived: []
       legacy: false
+    - id: exact-prefix-001
+      state: ready
+      input_digest: a3359bed1419ea04b84da94f5f9551accceb3c2d07cfbe43b174f50a93b5baeb
+      task_type: debug
+      primary_skill: strings.standard-library
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
+        survived: []
+      legacy: false
     - id: exclusive-loop-001
       state: ready
       input_digest: 4c5af5fc8b5db6bdfbda29eb2859f0d4667da5b4d3940ed4caefb7f7568f9d78
@@ -256,6 +292,24 @@ tasks:
         required: 4
         total: 4
         detected: 4
+        survived: []
+      legacy: false
+    - id: join-values-001
+      state: ready
+      input_digest: 3efd7118c041b9829db73bc7f2d174f895bf73a51a2a1c02754274ea22450b2a
+      task_type: implement
+      primary_skill: strings.building
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
         survived: []
       legacy: false
     - id: literal-bindings-001
@@ -348,6 +402,24 @@ tasks:
         detected: 4
         survived: []
       legacy: false
+    - id: replace-byte-001
+      state: ready
+      input_digest: dca40081548b6668e4db0c3cf0867d23bf25671749ba6457d3a9e74faea9d0a8
+      task_type: implement
+      primary_skill: strings.immutable-bytes
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
+        survived: []
+      legacy: false
     - id: resource-finalize-001
       state: draft
       input_digest: 4c4ca3c70afe266879ed5346879e5669f6dece91335f69682f99e7c9729605c5
@@ -421,6 +493,24 @@ tasks:
         required: 4
         total: 4
         detected: 4
+        survived: []
+      legacy: false
+    - id: typed-line-001
+      state: ready
+      input_digest: e8f1902d7cb82f9a2b377b4bba5f5a45a2d554f04d1e0befe998ceb5ca03b78f
+      task_type: debug
+      primary_skill: strings.formatting
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
         survived: []
       legacy: false
     - id: typed-nil-resource-001
@@ -538,20 +628,20 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 20
+      count: 25
     - state: rejected
       count: 1
     - state: retired
       count: 0
 task_types:
     - task_type: debug
-      count: 10
+      count: 12
     - task_type: implement
-      count: 14
+      count: 16
     - task_type: refactor
       count: 3
     - task_type: test-writing
-      count: 2
+      count: 3
 gates:
     - id: task-state-policy
       status: pass

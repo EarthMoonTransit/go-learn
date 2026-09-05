@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-09-05"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-09-05"
+      actor: strings-bytes-author
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-09-05"
+      actor: strings-bytes-author
+      reason: Five-task strings and bytes batch prepared for independent review
+    - from: in-review
+      to: ready
+      at: "2026-09-05"
+      actor: strings-bytes-author
+      reason: Independent ui_goal_reviewer approved final contract provenance tests mutants and route; disposable technical checks passed

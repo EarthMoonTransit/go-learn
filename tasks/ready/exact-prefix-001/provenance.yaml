@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "kind": "adapted",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "ffd033c362ef946945868a0b717e91d9b6ffb134626aa9b7c0d6b8a44c34f3eb"
+  },
+  "creation": {
+    "author": "strings-bytes-author",
+    "created_at": "2026-09-05",
+    "summary": "The saved welcome-to-tech-palace seed selection supplied only the topic direction. Only pinned metadata and LICENSE were consulted. API, statement, cases, scaffolding, tests, reference and defect models were authored independently; no upstream statement, code, tests, solution or canonical cases were used."
+  },
+  "sources": [
+    {
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "usage_mode": "adapt",
+      "role": "concept-seed",
+      "artifacts": [
+        {
+          "path": "exercises/concept/welcome-to-tech-palace/.meta/config.json",
+          "sha256": "2a08597e928611074bb1849e662353c8bc430d2e4fdd8497797bbe07e55657f8",
+          "usage": "concept-only"
+        }
+      ]
+    }
+  ],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/exact-prefix-001.yaml"
+  }
+}

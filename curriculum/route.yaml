@@ -151,37 +151,78 @@
     },
     {
       "id": "text",
-      "title": "4. Strings and Unicode",
+      "title": "4. Strings and bytes",
+      "steps": [
+        {
+          "task_id": "replace-byte-001",
+          "role": "introduction",
+          "skills": [
+            "strings.immutable-bytes"
+          ]
+        },
+        {
+          "task_id": "exact-prefix-001",
+          "role": "introduction",
+          "skills": [
+            "strings.standard-library"
+          ]
+        },
+        {
+          "task_id": "typed-line-001",
+          "role": "introduction",
+          "skills": [
+            "strings.formatting"
+          ]
+        },
+        {
+          "task_id": "join-values-001",
+          "role": "introduction",
+          "skills": [
+            "strings.building"
+          ]
+        },
+        {
+          "task_id": "byte-window-tests-001",
+          "role": "practice",
+          "skills": [
+            "strings.immutable-bytes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unicode",
+      "title": "5. Unicode",
       "steps": []
     },
     {
       "id": "contracts",
-      "title": "5. Structs, pointers, methods, embedding, interfaces and errors",
+      "title": "6. Structs, pointers, methods, embedding, interfaces and errors",
       "steps": []
     },
     {
       "id": "libraries",
-      "title": "6. Packages, generics, I/O, encoding and time",
+      "title": "7. Packages, generics, I/O, encoding and time",
       "steps": []
     },
     {
       "id": "verification",
-      "title": "7. Testing, fuzzing and benchmarks",
+      "title": "8. Testing, fuzzing and benchmarks",
       "steps": []
     },
     {
       "id": "concurrency",
-      "title": "8. Goroutines, channels, sync and context",
+      "title": "9. Goroutines, channels, sync and context",
       "steps": []
     },
     {
       "id": "backend",
-      "title": "9. HTTP and PostgreSQL",
+      "title": "10. HTTP and PostgreSQL",
       "steps": []
     },
     {
       "id": "production",
-      "title": "10. Background work, operations and the final service",
+      "title": "11. Background work, operations and the final service",
       "steps": []
     }
   ]

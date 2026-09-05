@@ -1,0 +1,46 @@
+schema_version: 2
+id: byte-window-tests-001
+title: Test byte-window boundaries
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: strings.immutable-bytes
+    secondary: []
+prerequisites:
+    - expressions.comparison
+    - functions.signatures-results
+    - toolchain.build-run
+    - types.declarations-inference
+new_concepts: []
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - empty-window-rejected
+        - end-boundary-rejected
+        - negative-start-clamped
+        - reversed-bounds-swapped
+        - inclusive-end
+        - rune-window
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
