@@ -15,6 +15,10 @@ hints and reviews are in English. Milestones depend on completed learning blocks
 not calendar deadlines. A custom editor, public distribution and a thousand-task
 catalog are not prerequisites for completing the personal route.
 
+User scope update, 2026-09-05: a standalone theory companion is removed from the
+current plan, including its previously deferred final item. Existing task
+statements, hints, review prompts and operational preparation remain available.
+
 ## Milestones
 
 | Milestone | Learner-visible ready tasks | Acceptance |
@@ -85,6 +89,20 @@ Before backend, introduce a separate track and managed local HTTP/database
 verification. Each contract extension needs its own ADR and tooling batch;
 foundation checks remain reproducible and offline.
 
+## Optional local interface
+
+The long-term product vision includes a local UI above the existing learner
+engine, with a candidate checkpoint after a stable CLI and 60–100 ready tasks.
+This remains an optional extension rather than a requirement for finishing
+the personal learning route. GoLand remains the editor for that route; building
+a separate code editor is not required.
+
+The interface can show the current task, roadmap, task catalog, hints, review,
+skill progress and due repetitions, and provide check/complete controls using
+the existing engine. Scheduler, progress and verification logic stay shared
+with the CLI. Features such as confirmed mastery and due repetitions depend on
+their engine support; a UI must not imply they already exist.
+
 ## Final acceptance
 
 The service must demonstrate ordinary operation, invalid requests, transaction
@@ -135,20 +153,3 @@ After every accepted batch update this checkpoint: ready tasks, human-completed
 tasks, confirmed skills, next result and blockers. Planned, draft and legacy-only
 packages never count as available learner content. Human calibration gates later
 milestones; automated fixture completions cannot satisfy them.
-
-## Deferred final plan item: theory companion
-
-User decision, 2026-09-05: keep building the practical course now; schedule this
-item at the end of the plan. It does not block the next content batches.
-
-Add short English introductions before new topics, with separate worked
-examples and common mistakes. Link specific relevant sections of Go Tour or
-other approved sources, then connect reading to the corresponding exercises.
-After completion, explain the reasoning, edge cases and alternative approaches;
-link later repetition to the same topic. Worked examples must not disclose the
-pending exercise's solution, and source reuse follows the existing registry.
-
-Acceptance: the learner can see what to read before a block and where to find
-its post-completion explanation from the normal `learn` workflow. At present,
-the course has task statements, hints and a toolchain/workspace preparation
-guide; a systematic theory companion is not implemented.
