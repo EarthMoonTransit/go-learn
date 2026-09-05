@@ -89,19 +89,27 @@ Before backend, introduce a separate track and managed local HTTP/database
 verification. Each contract extension needs its own ADR and tooling batch;
 foundation checks remain reproducible and offline.
 
-## Optional local interface
+## Local interface: current bounded delivery
 
-The long-term product vision includes a local UI above the existing learner
-engine, with a candidate checkpoint after a stable CLI and 60–100 ready tasks.
-This remains an optional extension rather than a requirement for finishing
-the personal learning route. GoLand remains the editor for that route; building
-a separate code editor is not required.
+The current goal brings a minimal local UI forward, without waiting for 60–100
+ready tasks. GoLand remains the editor and the short CLI remains available.
+Both interfaces share the learner service, checker, home and progress rules.
 
-The interface can show the current task, roadmap, task catalog, hints, review,
-skill progress and due repetitions, and provide check/complete controls using
-the existing engine. Scheduler, progress and verification logic stay shared
-with the CLI. Features such as confirmed mastery and due repetitions depend on
-their engine support; a UI must not imply they already exist.
+The first cycle is route → next task → statement → start/resume workspace →
+open in GoLand or copy path → public check → full check and complete → review →
+next task. Review means the existing taxonomy-based prompts. Reference reveal
+remains an explicit CLI action. The UI must not invent mastery or due counters.
+
+[LOCAL_UI_GOAL.md](LOCAL_UI_GOAL.md) records the bounded delivery and acceptance:
+documentation, IDE workspace compatibility, UI, independent acceptance, then
+exactly five strings/bytes tasks. At the recorded baseline this moves available
+v2 content from 17 to 22; reaching 60 is a later goal. UI delivery is planned,
+not yet claimed implemented by this documentation change.
+
+Mastery/progress migration and dynamic spaced repetition belong to the next
+goal. This delivery excludes theory, entry diagnostics, cloud, an embedded
+editor and backend work. Existing historical human feedback remains distinct
+from automated acceptance and future learner calibration.
 
 ## Final acceptance
 
@@ -117,7 +125,7 @@ and repairs an introduced defect. Automatic checks alone are not human mastery.
 | Learner-visible ready tasks | 17 (the opening twelve plus four new lessons and one repaired test-writing draft) |
 | Human-completed tasks | 1 (`map-take-001`: four attempts, one hint, no solution reveal) |
 | Confirmed mastered skills | 0; one assisted completion is not mastery |
-| Next product result | Human trial of the prepared blocks; 43 more ready tasks reach the 60-task milestone |
+| Next product result | Minimal local UI, then five strings/bytes lessons (17 → 22); bounded delivery in LOCAL_UI_GOAL.md |
 | Current gap | Human feedback on the opening block; mastery and spaced repetition remain scheduled for the working-course milestone |
 
 The stored session duration includes any time without an explicit pause and is
@@ -141,6 +149,9 @@ claim table structure, diagnostic quality or testing mastery. The original
 twelve lessons retain their order and learner completion records.
 
 ## Next batches
+
+The immediate delivery follows LOCAL_UI_GOAL.md. The longer course policy below
+continues after that bounded goal; mastery migration is excluded from this run.
 
 Use the first five real opening-course solutions to adjust the next block.
 Continue toward 60 tasks in batches of 5–10: fill out the initial types,
