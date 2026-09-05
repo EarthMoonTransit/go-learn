@@ -4,7 +4,9 @@
 **ФАЗЕ 3D**. Taxonomy v3 и полный pedagogical triage Exercism зафиксированы;
 добавлены lifecycle, Task Contract v2, multi-source provenance, изолированные
 fixed/mutation/workspace verification profiles и локальный learner CLI.
-Массовая генерация и web UI отсутствуют.
+Локальный UI включён в ближайшую поставку поверх общего learner engine;
+GoLand остаётся редактором. Пока UI не реализован. Ограниченный план:
+[docs/LOCAL_UI_GOAL.md](docs/LOCAL_UI_GOAL.md). Массовая генерация не планируется.
 
 Актуальный личный маршрут, критерии готовности и ближайшие партии работ:
 [docs/ROADMAP.md](docs/ROADMAP.md).

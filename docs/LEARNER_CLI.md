@@ -8,7 +8,7 @@ implementation and are excluded from verification. Older workspaces without
 this file still work. Complex APIs retain the checker-only workflow described
 in ADR 0011 until their declaration support is added.
 
-`learn` is a local, text-only workflow for ready Task Contract v2 packages. It
+`learn` currently provides a local CLI workflow for ready Task Contract v2 packages. It
 does not expose legacy task packages, authoring lifecycle states, or hidden
 verification material.
 
@@ -28,8 +28,9 @@ Read-only route commands do not select a task or change session time.
 
 ```text
 go run ./cmd/learn list
-go run ./cmd/learn show map-take-001
-go run ./cmd/learn start map-take-001
+go run ./cmd/learn next
+go run ./cmd/learn show literal-bindings-001
+go run ./cmd/learn start literal-bindings-001
 # edit the printed workspace path
 go run ./cmd/learn check
 go run ./cmd/learn complete
@@ -159,9 +160,13 @@ the CLI itself performs no network request. Syntax and API errors do not block
 exporting learner-owned code; filesystem boundaries and fixed files are still
 validated.
 
-## First human trial
+## Historical first human trial
 
-Use `map-take-001` first, then `detached-append-001`. The scheduler is a generic
+This is the original two-task pilot, retained as historical evidence. New
+learners follow `next` and the sequential route described above. Automated
+UI acceptance uses a separate temporary home and does not require a human trial.
+
+Original pilot instructions: use `map-take-001` first, then `detached-append-001`. The scheduler is a generic
 policy; with an empty history it may recommend the second task first because it
 has fewer unrecorded prerequisites.
 
@@ -179,3 +184,11 @@ the feedback. Do not inspect grader tests or reveal a reference solution before
 your attempt. A task you cannot complete is still useful trial evidence: record
 where you stopped and export the current code. Automated smoke-test completions
 are not human feedback and do not count as calibration.
+
+## Planned local UI delivery
+
+The bounded goal in [LOCAL_UI_GOAL.md](LOCAL_UI_GOAL.md) adds `learn ui` above
+the shared learner service, with GoLand as editor. This command is planned, not
+implemented by this documentation batch. CLI commands remain supported; UI
+acceptance will publish the exact launch instructions. Mastery migration and
+dynamic repetition are outside this goal.
