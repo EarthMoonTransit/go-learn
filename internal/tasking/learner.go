@@ -408,6 +408,10 @@ func buildLearnerWorkspaceFiles(loaded learnerPackage) ([]LearnerWorkspaceFile, 
 	return result, nil
 }
 
+func isLearnerIDEMetadata(relative string) bool {
+	return relative == ".idea" || strings.HasPrefix(relative, ".idea/")
+}
+
 func inspectLearnerSubmission(loaded learnerPackage, workspace string) (learnerSubmission, error) {
 	info, err := os.Lstat(workspace)
 	if err != nil {
@@ -419,6 +423,9 @@ func inspectLearnerSubmission(loaded learnerPackage, workspace string) (learnerS
 	expected := map[string]LearnerWorkspaceFile{}
 	allowedDirectories := map[string]bool{".": true}
 	for _, file := range loaded.files {
+		if isLearnerIDEMetadata(file.Path) {
+			return learnerSubmission{}, errors.New("task content cannot use the reserved .idea metadata directory")
+		}
 		expected[file.Path] = file
 		for directory := filepath.ToSlash(filepath.Dir(file.Path)); directory != "."; directory = filepath.ToSlash(filepath.Dir(directory)) {
 			allowedDirectories[directory] = true
@@ -446,6 +453,17 @@ func inspectLearnerSubmission(loaded learnerPackage, workspace string) (learnerS
 		}
 		if fileInfo.Mode()&os.ModeSymlink != 0 {
 			return fmt.Errorf("symlink is not allowed in learner workspace: %s", relative)
+		}
+		// IDE settings remain private workspace metadata. Inspect the entire
+		// subtree (including links and file kinds), but never select its files.
+		if isLearnerIDEMetadata(relative) {
+			if relative == ".idea" && !fileInfo.IsDir() {
+				return errors.New("learner .idea metadata must be a directory")
+			}
+			if !fileInfo.IsDir() && !fileInfo.Mode().IsRegular() {
+				return fmt.Errorf("non-regular learner file is not allowed: %s", relative)
+			}
+			return nil
 		}
 		if entry.IsDir() {
 			if !allowedDirectories[relative] {

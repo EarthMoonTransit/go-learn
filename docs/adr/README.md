@@ -15,3 +15,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0009` — learner work sessions across verification attempts (`accepted`)
 - `0010` — sequential personal learning route (`accepted`)
 - `0011` — editor API declarations for test submissions (`accepted`)
+- `0012` — IDE metadata outside learner submissions (`accepted`)

@@ -46,6 +46,15 @@ func TestLearnerWorkflowSupportsEveryV2SubmissionKind(t *testing.T) {
 				t.Fatal(err)
 			}
 			assertLearnerWorkspaceSafe(t, workspace)
+			// GoLand metadata must stay outside every disposable checker and export.
+			ideContent := []byte("PRIVATE_IDE_METADATA: deliberately invalid Go")
+			idePath := filepath.Join(workspace, ".idea", "inspectionProfiles", "metadata.go")
+			if err := os.MkdirAll(filepath.Dir(idePath), 0700); err != nil {
+				t.Fatal(err)
+			}
+			if err := os.WriteFile(idePath, ideContent, 0600); err != nil {
+				t.Fatal(err)
+			}
 			if fixture.profile == "mutation" {
 				api, err := os.ReadFile(filepath.Join(workspace, "subject", "learn_api.go"))
 				if err != nil || !strings.Contains(string(api), "func Identity(") || !strings.Contains(string(api), "panic(") {
@@ -78,6 +87,10 @@ func TestLearnerWorkflowSupportsEveryV2SubmissionKind(t *testing.T) {
 				t.Fatal(err)
 			}
 			assertReviewContextSafe(t, contextPath)
+			exported, err := os.ReadFile(contextPath)
+			if err != nil || bytes.Contains(exported, []byte("PRIVATE_IDE_METADATA")) || bytes.Contains(exported, []byte(".idea/")) {
+				t.Fatalf("IDE metadata entered review export: %v", err)
+			}
 
 			reference, err := os.ReadFile(filepath.Join(taskDirectory, filepath.FromSlash(fixture.referencePath)))
 			if err != nil {
@@ -111,6 +124,10 @@ func TestLearnerWorkflowSupportsEveryV2SubmissionKind(t *testing.T) {
 			item := progress.Tasks[fixture.id]
 			if !item.Completed || item.Attempts != 3 || item.ActivitySeconds != 180 || len(item.SkillEncounters) == 0 || len(item.Feedback) != 1 {
 				t.Fatalf("incomplete learner progress: %+v", item)
+			}
+			ideAfter, err := os.ReadFile(idePath)
+			if err != nil || !bytes.Equal(ideAfter, ideContent) {
+				t.Fatalf("verification modified IDE metadata: %v", err)
 			}
 			after, err := tasking.TaskContentDigest(taskDirectory)
 			if err != nil || after != before {
