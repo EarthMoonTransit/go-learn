@@ -96,10 +96,10 @@ and repairs an introduced defect. Automatic checks alone are not human mastery.
 
 | Measure | Verified state on 2026-09-05 |
 | --- | --- |
-| Learner-visible ready tasks | 12 (ten reviewed beginner lessons plus the two initial tasks) |
+| Learner-visible ready tasks | 17 (the opening twelve plus four new lessons and one repaired test-writing draft) |
 | Human-completed tasks | 1 (`map-take-001`: four attempts, one hint, no solution reveal) |
 | Confirmed mastered skills | 0; one assisted completion is not mastery |
-| Next product result | Human trial of the opening blocks; 48 more ready tasks reach the 60-task milestone |
+| Next product result | Human trial of the prepared blocks; 43 more ready tasks reach the 60-task milestone |
 | Current gap | Human feedback on the opening block; mastery and spaced repetition remain scheduled for the working-course milestone |
 
 The stored session duration includes any time without an explicit pause and is
@@ -114,6 +114,13 @@ and review-context export are stored privately in learner home.
 3. Added `learn roadmap`, sequential selection and an English GoLand preparation
    guide. The opening set contains 12 available tasks. Automated acceptance is
    complete; the beginner usability criterion still needs real learner feedback.
+
+The next practical block adds numeric conversion, interval decisions, switch
+dispatch, range updates and learner-written interval tests. The repaired
+`clamp-tests-001` retains its Exercism concept-seed provenance and prior rejection
+history. Its revised contract assesses comparison verification; it does not
+claim table structure, diagnostic quality or testing mastery. The original
+twelve lessons retain their order and learner completion records.
 
 ## Next batches
 

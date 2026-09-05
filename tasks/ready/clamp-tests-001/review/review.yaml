@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "reviewer": "independent-content-review-reset-patch-review",
+  "reviewed_at": "2026-09-05",
+  "decision": "approve",
+  "story_free": true,
+  "prompt_test_alignment": true,
+  "public_api_stable": true,
+  "provenance_verified": true,
+  "license_verified": true,
+  "reference_only_clean_room_verified": true,
+  "solution_leakage_checked": true,
+  "minimum_mutants": 6,
+  "notes": "Independent read-only review approved final content, observable skill scope, provenance, prompt/test alignment and distinct defect models. All required mutants passed targeted disposable verification. Clamp repairs add independent exact-boundary/interior/singleton behavior models, remove unsupported table/diagnostic claims and preserve attribution/rejection history. The new route puts three tasks between comparison introduction and verification practice. Estimates remain uncalibrated."
+}

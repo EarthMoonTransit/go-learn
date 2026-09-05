@@ -1,0 +1,44 @@
+schema_version: 2
+id: encoded-width-001
+title: Repair exact switch case selection
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: control-flow.switch
+    secondary: []
+prerequisites:
+    - control-flow.if
+    - expressions.comparison
+    - functions.signatures-results
+new_concepts:
+    - control-flow.switch
+difficulty: introductory
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - unwanted-fallthrough
+        - grouped-widths
+        - unknown-success
+        - case-folding
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
