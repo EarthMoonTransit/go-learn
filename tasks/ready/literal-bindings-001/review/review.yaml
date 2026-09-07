@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "reviewer": "independent-content-review-reset-patch-review",
-  "reviewed_at": "2026-09-05",
+  "reviewer": "/root/ui_goal_reviewer",
+  "reviewed_at": "2026-09-08",
   "decision": "approve",
   "story_free": true,
   "prompt_test_alignment": true,
@@ -11,5 +11,5 @@
   "reference_only_clean_room_verified": true,
   "solution_leakage_checked": true,
   "minimum_mutants": 4,
-  "notes": "Independent read-only agent review approved correctness, prompt/test alignment, beginner prerequisites, distinct behavioral mutants, provenance and non-duplication. Each authored reference and all 4 required mutants passed disposable task-check acceptance. Human calibration remains pending."
+  "notes": "Independent read-only agent approved the public-only correction after learner-reported false public success. Public checks now assess all four existing type/value requirements with actionable diagnostics. Exact old/new content digests and unchanged learner workspace files/flags verified; all four wrong variants fail public checking and reference public/full passes through disposable verification. Original provenance and lifecycle retained; this review is not human mastery calibration."
 }
