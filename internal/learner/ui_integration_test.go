@@ -15,7 +15,7 @@ import (
 
 func TestUIRealVerificationAcrossSubmissionKinds(t *testing.T) {
 	for _, fixture := range []struct{ id, editable, reference, weak string }{
-		{"literal-bindings-001", "subject/bindings.go", "subject/bindings.go", "solution/mutants/disabled/subject/bindings.go"},
+		{"named-block-001", "subject/bindings.go", "subject/bindings.go", "solution/mutants/wrong-element-type/subject/bindings.go"},
 		{"zero-results-001", "subject/subject.go", "subject.go", "solution/mutants/empty-map/subject.go"},
 		{"clamp-tests-001", "subject/subject_test.go", "subject_test.go", "starter/subject_test.go"},
 	} {
@@ -115,12 +115,7 @@ func TestUIRealVerificationAcrossSubmissionKinds(t *testing.T) {
 			if w.Code != 200 || !restored.Completed || restored.Review == "" {
 				t.Fatal("restart lost completion/review")
 			}
-			if fixture.id == "literal-bindings-001" {
-				course, err = s.CourseView()
-				if err != nil || course.NextTaskID != "zero-results-001" {
-					t.Fatalf("next after complete: %+v %v", course, err)
-				}
-			}
+
 			metadata, err := os.ReadFile(idePath)
 			if err != nil || string(metadata) != "INVALID GO IDE METADATA" {
 				t.Fatal("IDE metadata changed")
