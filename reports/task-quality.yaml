@@ -314,7 +314,7 @@ tasks:
       legacy: false
     - id: literal-bindings-001
       state: ready
-      input_digest: 00e44d1098a4969fb6474a1b39292eff1bd4c2aa280ace26c90c5fb82afd86a7
+      input_digest: eff0308ce3593e20b7717686c286c362aea26914225522675b58cbcd96e84dc4
       task_type: implement
       primary_skill: types.declarations-inference
       technical_status: pass

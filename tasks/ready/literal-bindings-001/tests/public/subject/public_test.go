@@ -14,3 +14,13 @@ func TestNumericBindings(t *testing.T) {
 		t.Errorf("scale = %v (%T), want float64 1.25", scale, scale)
 	}
 }
+
+func TestTextAndBooleanBindings(t *testing.T) {
+	_, _, label, enabled := subject.Snapshot()
+	if v, ok := label.(string); !ok || v != "G" {
+		t.Errorf("label = %v (%T), want string G", label, label)
+	}
+	if v, ok := enabled.(bool); !ok || !v {
+		t.Errorf("enabled = %v (%T), want bool true", enabled, enabled)
+	}
+}
