@@ -17,3 +17,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0011` — editor API declarations for test submissions (`accepted`)
 - `0012` — IDE metadata outside learner submissions (`accepted`)
 - `0013` — local UI, shared operation coordination and workspace generations (`accepted`)
+- `0014` — exact public-check revision compatibility without learner reset (`accepted`)

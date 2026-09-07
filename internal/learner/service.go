@@ -618,7 +618,7 @@ func (s *Service) validateWorkspace(progress *TaskProgress, info tasking.Learner
 	if err := decoder.Decode(&manifest); err != nil {
 		return "", err
 	}
-	if manifest.SchemaVersion != 1 || manifest.TaskID != progress.TaskID || manifest.ContentDigest != info.ContentDigest || manifest.SubmissionKind != info.SubmissionKind {
+	if manifest.SchemaVersion != 1 || manifest.TaskID != progress.TaskID || !compatibleContentRevision(progress.TaskID, manifest.ContentDigest, info.ContentDigest) || manifest.SubmissionKind != info.SubmissionKind {
 		return "", errors.New("learner workspace is stale or belongs to another task; reset and start again")
 	}
 	return workspace, nil
