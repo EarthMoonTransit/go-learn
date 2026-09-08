@@ -41,3 +41,10 @@ func TestContractCase04(t *testing.T) {
 		t.Errorf("noncomparable got%v,%v", v, ok)
 	}
 }
+
+func TestMatchingString(t *testing.T) {
+	v, ok := subject.Find([]string{"a", "abc", "later"}, func(s string) bool { return len(s) > 1 })
+	if v != "abc" || !ok {
+		t.Errorf("string match got%q,%v wantabc,true", v, ok)
+	}
+}

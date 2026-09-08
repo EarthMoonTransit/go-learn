@@ -1,25 +1,21 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-08. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- Double returns value plus itself, preserving its type.
-- The private numeric constraint must admit int, int64 and float64 and named types with those underlying types.
-- Do not admit strings or other numeric kinds. Use a union of approximated underlying types.
-- Inputs are finite and doubling does not overflow. Both negative and zero values are valid.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Exactly the union of ~int, ~int64 and ~float64, including named underlying types | TestExactTypeSet semantic go/types comparison | exact-types-only, missing-int64, extra-string | numeric type set got … want … |
+| Double without changing type or truncating fractional/negative values | TestPublicCase01 and grader cases | identity, absolute-result, integer-narrowing | actual/expected doubled value |
+| Accept equivalent constraint embedding and permitted standard-library imports | Canonical reference uses embedded supported constraint and math; valid-embedded-stdlib fixture retained | Correct alternative acceptance, not a defect model | source import/type-check failures remain visible |
 
-- Case01: `type units int;type total int64;type ratio float64;if got:=subject.Double(units(-3));got!=units(-6){t.Errorf("named int got%d",got)};if got:=subject.Double(total(5));got!=total(10){t.Errorf("named int64 got%d",got)};if got:=subject.Double(ratio(.25));got!=ratio(.5){t.Errorf("named float got%g",got)}`
-- Case02: `if subject.Double(0)!=0||subject.Double[int64](-8)!=-16||subject.Double(1.25)!=2.5{t.Error("numeric doubling incorrect")}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `generics.approximation-unions`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `generics.approximation-unions`, `generics.constraints-type-sets`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- exact-types-only
-- missing-int64
-- identity
-- absolute-result
-- integer-narrowing
+Required defects reviewed: `exact-types-only`, `missing-int64`, `identity`, `absolute-result`, `integer-narrowing`, `extra-string`. The author-provided `.tmp/checks/named-numeric-constraint-001.yaml` records technical PASS, reference PASS and 6/6 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

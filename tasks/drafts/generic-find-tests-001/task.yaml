@@ -47,7 +47,9 @@
       "zero-on-success",
       "true-miss",
       "erase-input",
-      "double-predicate"
+      "double-predicate",
+      "strings-skipped",
+      "structs-skipped"
     ],
     "race_required": false,
     "vet": true,

@@ -1,25 +1,21 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-08. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- In values.go declare doubled before base. Initialize base with record("base",3) and doubled with record("double",base*2).
-- Add an init function calling record("ready",0) after variable initialization. Do not call record from Values.
-- Values returns base and doubled: 3 and 6. Supplied Trace must observe base, double, ready exactly once.
-- The supplied record helper returns its value unchanged. Calls to Values and Trace do not change initialization state.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Declare doubled before base with direct initializer dependency | TestDeclaredDependency plus TestPublicCase01 | no-dependency | declared dependency/order and init trace |
+| Base=3, doubled=6; init records ready after variable initialization | TestPublicCase01 | wrong-base, missing-init, reverse-values | values got … want3,6; init order |
+| Repeated Values/Trace accesses do not change initialization state | TestPublicCase02 | repeat-record | repeated access changed init trace; supplied Trace isolation assertion |
 
-- Case01: `a,b:=subject.Values();if a!=3||b!=6{t.Errorf("values got%d,%d want3,6",a,b)};if got:=subject.Trace();!slices.Equal(got,[]string{"base","double","ready"}){t.Errorf("init order got%v want[base double ready]",got)}`
-- Case02: `subject.Values();subject.Values();got:=subject.Trace();if !slices.Equal(got,[]string{"base","double","ready"}){t.Errorf("repeated access changed init trace%v",got)};got[0]="changed";if !slices.Equal(subject.Trace(),[]string{"base","double","ready"}){t.Error("trace accessor shares storage")}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `packages.initialization-order`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `packages.initialization-order`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- no-dependency
-- wrong-base
-- missing-init
-- repeat-record
-- reverse-values
+Required defects reviewed: `no-dependency`, `wrong-base`, `missing-init`, `repeat-record`, `reverse-values`. The author-provided `.tmp/checks/initialization-values-001.yaml` records technical PASS, reference PASS and 5/5 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

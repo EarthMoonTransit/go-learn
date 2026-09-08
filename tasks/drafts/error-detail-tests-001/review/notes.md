@@ -1,27 +1,23 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-08. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- Return the first *Detail found by errors.As and true, preserving pointer identity.
-- Search wrapped and joined errors in standard traversal order; respect custom As methods.
-- Return nil,false when no match exists, including a nil error. Matching a typed-nil *Detail returns nil,true.
-- Do not synthesize a new Detail from its fields or message. Error trees are finite.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+For this test-writing profile, the public run checks learner tests against the correct implementation; full verification challenges those tests with defects. The assertions below are the strong learner reference suite. The starter is intentionally insufficient.
 
-- Case01: `d:=&subject.Detail{Code:7,Message:"bad"};got,ok:=subject.FindDetail(d);if got!=d||!ok{t.Errorf("direct got%v,%v",got,ok)}`
-- Case02: `a:=&subject.Detail{Code:1,Message:"a"};b:=&subject.Detail{Code:2,Message:"b"};wrapped:=fmt.Errorf("outer: %w",a);for _,e:=range []error{wrapped,errors.Join(errors.New("other"),wrapped,b)}{got,ok:=subject.FindDetail(e);if got!=a||!ok{t.Errorf("first cause got%v,%v",got,ok)}}`
-- Case03: `for _,e:=range []error{nil,errors.New("bad")}{d,ok:=subject.FindDetail(e);if d!=nil||ok{t.Errorf("miss got%v,%v",d,ok)}};var typed *subject.Detail;d,ok:=subject.FindDetail(typed);if d!=nil||!ok{t.Errorf("typed nil got%v,%v",d,ok)}`
-- Case04: `want:=&subject.Detail{Code:9,Message:"custom"};got,ok:=subject.FindDetail(&projectedError{detail:want});if got!=want||!ok{t.Errorf("custom As got%v,%v",got,ok)}`
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Extract original pointer, not a reconstruction | TestContractCase01–02 | copy-detail, false-found | direct; first cause |
+| Wrapped/joined first-match traversal and custom As | TestContractCase02 and Case04 | direct-only, joined-order-reversed, custom-as-ignored | first cause; custom As |
+| No match/nil differs from typed-nil match | TestContractCase03 | fabricate-miss, nil-is-miss, false-found | miss; typed nil |
 
-Realistic required defect models:
+## Instructional and technical evidence
 
-- direct-only
-- copy-detail
-- false-found
-- nil-is-miss
-- fabricate-miss
+Primary skill: `errors.as`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `errors.as`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+Required defects reviewed: `direct-only`, `copy-detail`, `false-found`, `nil-is-miss`, `fabricate-miss`, `custom-as-ignored`, `joined-order-reversed`. The author-provided `.tmp/checks/error-detail-tests-001.yaml` records technical PASS, reference PASS and 7/7 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
+
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

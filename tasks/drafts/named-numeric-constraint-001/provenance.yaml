@@ -7,7 +7,7 @@
   },
   "kind": "original",
   "project": {
-    "content_digest": "c3653e74142b62dc80e52555d55326f871b8105ae1ba30440b3977bf8b267219",
+    "content_digest": "337892890d544eb1cc1cca6785c7c96f9f4f873868009ab30e736d5f6643170c",
     "identity": "go-practice-bank",
     "license": "Apache-2.0",
     "repository": "https://github.com/EarthMoonTransit/go-learn"

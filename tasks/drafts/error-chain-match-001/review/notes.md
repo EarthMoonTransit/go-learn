@@ -1,25 +1,20 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-08. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- Return the result of Go error identity matching: direct identity, wrapped causes and any cause of a joined error qualify.
-- Respect a source error implementing Is(error) bool. Equal message text alone does not establish identity.
-- Two nil errors match; exactly one nil does not. Preserve errors and do not unwrap only a single level.
-- Input error chains are finite and follow the standard error conventions.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Identity-based direct, wrapped and joined matching; nil cases | TestPublicCase01 | identity-only, text-equality, single-cause, nil-never | match got … want … |
+| Respect custom Is in the correct direction | TestPublicCase02 | reverse-match, identity-only | custom Is semantics lost |
 
-- Case01: `target:=errors.New("x");other:=errors.New("x");wrapped:=fmt.Errorf("outer: %w",fmt.Errorf("inner: %w",target));for _,c:=range []struct{err,target error;want bool}{{nil,nil,true},{target,nil,false},{nil,target,false},{target,target,true},{other,target,false},{wrapped,target,true},{errors.Join(other,wrapped),target,true},{errors.Join(other),target,false}}{if got:=subject.Matches(c.err,c.target);got!=c.want{t.Errorf("match %v/%v got%v want%v",c.err,c.target,got,c.want)}}`
-- Case02: `target:=errors.New("marker");err:=&semanticError{target:target};if !subject.Matches(err,target)||subject.Matches(err,errors.New("marker")){t.Error("custom Is semantics lost")}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `errors.is`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `errors.is`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- identity-only
-- text-equality
-- single-cause
-- nil-never
-- reverse-match
+Required defects reviewed: `identity-only`, `text-equality`, `single-cause`, `nil-never`, `reverse-match`. The author-provided `.tmp/checks/error-chain-match-001.yaml` records technical PASS, reference PASS and 5/5 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

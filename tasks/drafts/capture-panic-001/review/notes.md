@@ -1,25 +1,21 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-08. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- Call work exactly once in the current goroutine. For a normal return, preserve its exact error and return panicked=false.
-- For a panic carrying a string or int, recover at this boundary and return a non-nil error with text "panic: <value>" and panicked=true.
-- Callback panic values are limited to strings and ints; empty strings and zero are valid panic values.
-- Do not rerun work or leave background work. Separate calls are independent.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| One callback invocation and exact normal error preservation | TestPublicCase01 | work-twice, normal-error-lost | normal got … want …; calls |
+| Recover string/int panic with exact text and true flag, including empty/zero | TestPublicCase02 | no-recover, text-without-prefix, false-panic | panic got … want … |
+| Separate invocations remain independent | Repeated public calls and subsequent grader normal case | false-panic, normal-error-lost | panic/normal status |
 
-- Case01: `calls:=0;sentinel:=errors.New("work failed");for _,cause:=range []error{nil,sentinel}{err,p:=subject.Capture(func()error{calls++;return cause});if err!=cause||p{t.Errorf("normal got%v,%v want%v,false",err,p,cause)}};if calls!=2{t.Errorf("normal calls%d want2",calls)}`
-- Case02: `for _,v:=range []any{"broken","",7,0}{calls:=0;err,p:=subject.Capture(func()error{calls++;panic(v)});want:=fmt.Sprintf("panic: %v",v);if err==nil||err.Error()!=want||!p||calls!=1{t.Errorf("panic got%v,%v calls%d want%q,true,1",err,p,calls,want)}}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `errors.panic-recover-boundaries`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `errors.panic-recover-boundaries`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- no-recover
-- text-without-prefix
-- false-panic
-- normal-error-lost
-- work-twice
+Required defects reviewed: `no-recover`, `text-without-prefix`, `false-panic`, `normal-error-lost`, `work-twice`. The author-provided `.tmp/checks/capture-panic-001.yaml` records technical PASS, reference PASS and 5/5 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

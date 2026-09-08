@@ -1,28 +1,21 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-08. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Substantive adaptation from `learn-go-with-tests` at `4675d96ad50b815d3e9fdc2122ab3dbc14636252`. Reviewed the exact declared source files and checked every SHA256 against the pinned checkout: `generics/stack.go` (adapted), `LICENSE.md` (copied), `generics/generics_test.go` (adapted), `generics/assert.go` (factual-reference). Registry permits adaptation; complete MIT notice and modification boundary are retained. No reference-only content or generated canonical cases used.
 
-- NewStack returns an empty non-nil stack. The zero value of Stack also works; receivers are non-nil.
-- Push stores one value; Pop removes and returns the most recently pushed value with true.
-- An empty Pop returns the zero value of T and false without panicking. IsEmpty reflects the current count.
-- Support arbitrary types including slices, repeated empty pops and reuse after draining. Separate stack instances are independent.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Non-nil new stack, working zero value and accurate emptiness | TestPublicCase01–02 | nil-new, always-empty | nil new stack; populated empty |
+| LIFO push/pop, removal, repeated empty pops and reuse | TestPublicCase01 | fifo, peek-only, false-success, empty-true, replace-push | LIFO; empty; reuse failed |
+| Independent instances and arbitrary types including slices | TestPublicCase02–03 | replace-push, empty-true; explicit interleaved-instance assertions | first/second instance; slice element/zero |
 
-- Case01: `s:=subject.NewStack[int]();if s==nil{t.Fatal("nil new stack")};if !s.IsEmpty(){t.Error("new nonempty")};s.Push(123);s.Push(456);if s.IsEmpty(){t.Error("populated empty")};for _,want:=range []int{456,123}{got,ok:=s.Pop();if got!=want||!ok{t.Errorf("LIFO got%d,%v want%d,true",got,ok,want)}};for i:=0;i<2;i++{v,ok:=s.Pop();if v!=0||ok||!s.IsEmpty(){t.Errorf("empty got%d,%v",v,ok)}};s.Push(7);v,ok:=s.Pop();if v!=7||!ok{t.Error("reuse failed")}`
-- Case02: `var a,b subject.Stack[string];a.Push("a");b.Push("b");a.Push("");for _,want:=range []string{"","a"}{v,ok:=a.Pop();if v!=want||!ok{t.Errorf("first instance got%q,%v",v,ok)}};v,ok:=b.Pop();if v!="b"||!ok{t.Errorf("second instance got%q,%v",v,ok)}`
-- Case03: `s:=subject.NewStack[[]int]();if s==nil{t.Fatal("nil stack")};s.Push([]int{1,2});v,ok:=s.Pop();if !ok||!slices.Equal(v,[]int{1,2}){t.Errorf("slice element got%v,%v",v,ok)};v,ok=s.Pop();if v!=nil||ok{t.Errorf("slice zero got%v,%v",v,ok)}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `generics.reusable-data-structures`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `generics.reusable-data-structures`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- fifo
-- peek-only
-- false-success
-- empty-true
-- always-empty
-- replace-push
-- nil-new
+Required defects reviewed: `fifo`, `peek-only`, `false-success`, `empty-true`, `always-empty`, `replace-push`, `nil-new`. The author-provided `.tmp/checks/generic-stack-001.yaml` records technical PASS, reference PASS and 7/7 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: lgwt:generics/stack.go selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

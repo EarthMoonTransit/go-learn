@@ -100,3 +100,32 @@ func TestPublicCase04(t *testing.T) {
 		}
 	}
 }
+
+var originalLimit = subject.ErrLimit
+
+func TestPreservedLimitSentinel(t *testing.T) {
+	if originalLimit == nil {
+		t.Fatal("ErrLimit must be non-nil")
+	}
+	for _, limit := range []int64{-1, 0, 1, 9} {
+		var out bytes.Buffer
+		_, e := subject.CopyAtMost(&out, strings.NewReader("abc"), limit)
+		if subject.ErrLimit != originalLimit || (limit < 0 && e != originalLimit) {
+			t.Errorf("ErrLimit sentinel identity changed for limit %d", limit)
+		}
+	}
+}
+func TestSuccessfulCopyKeepsStreamsOpen(t *testing.T) {
+	for _, limit := range []int64{2, 10} {
+		r := &trackedReader{data: []byte("abc")}
+		w := &trackedWriter{}
+		n, e := subject.CopyAtMost(w, r, limit)
+		want := "abc"
+		if limit == 2 {
+			want = "ab"
+		}
+		if n != int64(len(want)) || e != nil || string(w.data) != want || r.closes != 0 || w.closes != 0 {
+			t.Errorf("successful copy got%d,%v,%q; closes got%d,%d want0,0", n, e, w.data, r.closes, w.closes)
+		}
+	}
+}

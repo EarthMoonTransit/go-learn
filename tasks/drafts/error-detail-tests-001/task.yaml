@@ -43,7 +43,9 @@
       "copy-detail",
       "false-found",
       "nil-is-miss",
-      "fabricate-miss"
+      "fabricate-miss",
+      "custom-as-ignored",
+      "joined-order-reversed"
     ],
     "race_required": false,
     "vet": true,

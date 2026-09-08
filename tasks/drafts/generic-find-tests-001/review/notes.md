@@ -1,29 +1,23 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-08. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Substantive adaptation from `learn-go-with-tests` at `4675d96ad50b815d3e9fdc2122ab3dbc14636252`. Reviewed the exact declared source files and checked every SHA256 against the pinned checkout: `arrays/v8/collection_fun.go` (adapted), `LICENSE.md` (copied). Registry permits adaptation; complete MIT notice and modification boundary are retained. No reference-only content or generated canonical cases used.
 
-- Return the first matching value and true, or the zero value of T and false when no value matches.
-- Call the non-nil predicate once per visited element in input order, stopping at the first match; never call it for empty input.
-- Preserve the input slice. The function works with any element type, including non-comparable structs containing slices.
-- Use inferred and explicit type arguments in tests; a matched zero value still has found=true.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+For this test-writing profile, the public run checks learner tests against the correct implementation; full verification challenges those tests with defects. The assertions below are the strong learner reference suite. The starter is intentionally insufficient.
 
-- Case01: `v,ok:=subject.Find([]int{1,2,4},func(x int)bool{return x%2==0});if v!=2||!ok{t.Errorf("first even got%d,%v",v,ok)}`
-- Case02: `visited:=[]int{};in:=[]int{3,0,5};v,ok:=subject.Find(in,func(x int)bool{visited=append(visited,x);return x==0});if v!=0||!ok||!slices.Equal(visited,[]int{3,0})||!slices.Equal(in,[]int{3,0,5}){t.Errorf("zero/visits/preservation got%d,%v %v %v",v,ok,visited,in)}`
-- Case03: `calls:=0;v,ok:=subject.Find[string](nil,func(x string)bool{calls++;return true});if v!=""||ok||calls!=0{t.Errorf("empty got%q,%v calls%d",v,ok,calls)};v,ok=subject.Find([]string{"a","b"},func(string)bool{return false});if v!=""||ok{t.Errorf("no match got%q,%v",v,ok)}`
-- Case04: `type row struct{Data []int};v,ok:=subject.Find([]row{{[]int{1}},{[]int{2,3}}},func(x row)bool{return len(x.Data)==2});if !ok||!slices.Equal(v.Data,[]int{2,3}){t.Errorf("noncomparable got%v,%v",v,ok)}`
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| First match, including matched zero; no match returns zero/false | TestContractCase01–03 | last-match, first-unchecked, false-success, zero-on-success, true-miss | first even / zero / no match |
+| Ordered, once-only predicate calls; empty input and preservation | TestContractCase02–03 | double-predicate, erase-input, first-unchecked | zero/visits/preservation; empty calls |
+| Any element type, including strings and non-comparable structs | TestContractCase04 and matching-string assertion | strings-skipped, structs-skipped | noncomparable / matching string |
 
-Realistic required defect models:
+## Instructional and technical evidence
 
-- last-match
-- first-unchecked
-- false-success
-- zero-on-success
-- true-miss
-- erase-input
-- double-predicate
+Primary skill: `generics.type-parameters-inference`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `generics.type-parameters-inference`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-Retained source behavior: lgwt:arrays/v8/collection_fun.go selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+Required defects reviewed: `last-match`, `first-unchecked`, `false-success`, `zero-on-success`, `true-miss`, `erase-input`, `double-predicate`, `strings-skipped`, `structs-skipped`. The author-provided `.tmp/checks/generic-find-tests-001.yaml` records technical PASS, reference PASS and 9/9 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
+
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

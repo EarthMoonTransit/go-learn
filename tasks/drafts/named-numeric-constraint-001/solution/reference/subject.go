@@ -1,5 +1,13 @@
 package subject
 
-type numeric interface{ ~int | ~int64 | ~float64 }
+import "math"
 
-func Double[T numeric](value T) T { return value + value }
+type supported interface{ ~int | ~int64 | ~float64 }
+type numeric interface{ supported }
+
+func Double[T numeric](value T) T {
+	if math.IsNaN(float64(value)) {
+		return value
+	}
+	return value + value
+}

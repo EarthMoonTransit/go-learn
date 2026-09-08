@@ -1,26 +1,23 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-08. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- Return an ordinary value copy of input: Label and Count are copied and Items retains the same slice view.
-- Changing copied scalar fields does not affect the caller. Changing an existing Items element is visible through both structs.
-- Preserve nil versus allocated-empty slices and the original slice length and capacity.
-- Do not deep-copy, normalize or alter the input. Do not compare a struct containing a slice with ==.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+For this test-writing profile, the public run checks learner tests against the correct implementation; full verification challenges those tests with defects. The assertions below are the strong learner reference suite. The starter is intentionally insufficient.
 
-- Case01: `input:=subject.Snapshot{Label:" x ",Count:7,Items:[]int{1,2}};got:=subject.CopySnapshot(input);if got.Label!=input.Label||got.Count!=7||!slices.Equal(got.Items,input.Items){t.Fatalf("copy got%+v",got)};got.Label="other";got.Count=9;if input.Label!=" x "||input.Count!=7{t.Error("scalar values changed")};got.Items[0]=8;if input.Items[0]!=8{t.Error("slice backing storage not shared")};input.Items[1]=6;if got.Items[1]!=6{t.Error("reverse sharing missing")}`
-- Case02: `for _,items:=range [][]int{nil,make([]int,0),make([]int,0,4),make([]int,2,5)}{got:=subject.CopySnapshot(subject.Snapshot{Items:items});if (got.Items==nil)!=(items==nil)||len(got.Items)!=len(items)||cap(got.Items)!=cap(items){t.Errorf("slice header got nil%v len%d cap%d want nil%v len%d cap%d",got.Items==nil,len(got.Items),cap(got.Items),items==nil,len(items),cap(items))}}`
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Ordinary scalar value copy and preserved input values | TestContractCase01 | clear-count, trim-label, destructive-items | copy; scalar values changed |
+| Shared slice backing storage in both directions | TestContractCase01 | deep-copy | slice backing storage not shared; reverse sharing missing |
+| Preserve nil/allocated-empty, length and capacity | TestContractCase02 | drop-capacity, nil-to-empty | slice header got nil/len/cap … want … |
 
-Realistic required defect models:
+## Instructional and technical evidence
 
-- deep-copy
-- clear-count
-- trim-label
-- drop-capacity
-- nil-to-empty
-- destructive-items
+Primary skill: `structs.copy-equality`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: none. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+Required defects reviewed: `deep-copy`, `clear-count`, `trim-label`, `drop-capacity`, `nil-to-empty`, `destructive-items`. The author-provided `.tmp/checks/struct-copy-tests-001.yaml` records technical PASS, reference PASS and 6/6 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
+
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

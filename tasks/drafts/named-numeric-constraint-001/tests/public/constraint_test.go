@@ -2,6 +2,7 @@ package subject_test
 
 import (
 	"go/ast"
+	"go/importer"
 	"go/parser"
 	"go/token"
 	"go/types"
@@ -24,7 +25,7 @@ func TestExactTypeSet(t *testing.T) {
 	for _, f := range source.Files {
 		files = append(files, f)
 	}
-	config := types.Config{}
+	config := types.Config{Importer: importer.ForCompiler(set, "source", nil)}
 	pkg, e := config.Check("subject", set, files, nil)
 	if e != nil {
 		t.Fatal(e)
@@ -34,23 +35,11 @@ func TestExactTypeSet(t *testing.T) {
 		t.Fatal("missing numeric constraint")
 	}
 	iface, ok := obj.Type().Underlying().(*types.Interface)
-	if !ok || iface.NumEmbeddeds() != 1 || iface.NumMethods() != 0 {
-		t.Fatal("numeric must be a three-term union")
+	if !ok {
+		t.Fatal("numeric must be an interface constraint")
 	}
-	union, ok := iface.EmbeddedType(0).(*types.Union)
-	if !ok || union.Len() != 3 {
-		t.Fatal("numeric must be a three-term union")
-	}
-	want := map[string]bool{"int": true, "int64": true, "float64": true}
-	for i := 0; i < union.Len(); i++ {
-		term := union.Term(i)
-		name := types.TypeString(types.Unalias(term.Type()), nil)
-		if !term.Tilde() || !want[name] {
-			t.Errorf("unexpected numeric term %s, require ~int | ~int64 | ~float64", term)
-		}
-		delete(want, name)
-	}
-	if len(want) != 0 {
-		t.Errorf("missing numeric terms %v", want)
+	expected := types.NewInterfaceType(nil, []types.Type{types.NewUnion([]*types.Term{types.NewTerm(true, types.Typ[types.Int]), types.NewTerm(true, types.Typ[types.Int64]), types.NewTerm(true, types.Typ[types.Float64])})}).Complete()
+	if !types.Identical(iface, expected) {
+		t.Errorf("numeric type set got %s, want ~int | ~int64 | ~float64", iface)
 	}
 }

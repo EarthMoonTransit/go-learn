@@ -43,7 +43,9 @@
       "swallow-error",
       "fresh-limit-error",
       "close-reader",
-      "close-writer"
+      "close-writer",
+      "reassign-sentinel",
+      "close-on-success"
     ],
     "race_required": false,
     "vet": true,
