@@ -78,3 +78,15 @@ Independent re-review approved this candidate allocation on 2026-09-08:
 all128 positions and the topology were replayed against taxonomy prerequisites;
 all100 unique selected artifact hashes matched the pinned local checkouts.
 This is source-plan acceptance only; ready/adaptation counts remain unchanged.
+
+## C02 release binding
+
+Ten positions now bind to real task IDs and explicit05.01–05.10 route numbers:
+three logs-logs-logs adaptations and seven original Unicode boundary exercises.
+Two planned original map-key/embedding reinforcement slots were reassigned to
+Unicode test-writing; those original reinforcements return in stage2, and the
+separate Ardan embedding introduction remains. Replaying all128 positions with
+actual primary/secondary prerequisites still succeeds, now with101 planned
+skills including the baseline. No source candidate was relabeled to meet quota.
+After C02 acceptance:32ready /3substantively adapted /24original /5concept-seed;
+118 additions remain, including81 selected adaptation candidates.

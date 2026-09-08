@@ -1,0 +1,46 @@
+schema_version: 2
+id: rune-marker-001
+title: Identify the first Unicode marker
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: unicode.rune-model
+    secondary: []
+prerequisites:
+    - control-flow.range
+    - control-flow.switch
+    - strings.immutable-bytes
+    - types.numeric-conversions
+new_concepts:
+    - unicode.rune-model
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - fixed-priority
+        - last-marker
+        - byte-loop
+        - empty-default
+        - wrong-weather
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

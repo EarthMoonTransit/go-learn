@@ -1,0 +1,43 @@
+schema_version: 2
+id: rune-limit-001
+title: Repair character-limit checks
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: unicode.rune-model
+    secondary: []
+prerequisites:
+    - strings.immutable-bytes
+    - types.numeric-conversions
+new_concepts: []
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - byte-count
+        - exclusive-limit
+        - negative-unlimited
+        - ignore-combining
+        - reversed-comparison
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

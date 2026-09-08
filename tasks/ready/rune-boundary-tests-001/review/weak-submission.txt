@@ -1,0 +1,3 @@
+package subject_test
+import("testing";"task.local/rune-boundary-tests-001/subject")
+func TestWeak(t *testing.T){if n,ok:=subject.RuneBoundary("é",1);n!=2||!ok {t.Fatal(n,ok)};if n,ok:=subject.RuneBoundary("x",-1);n!=0||ok {t.Fatal(n,ok)}}
