@@ -24,11 +24,13 @@ type Route struct {
 	Blocks            []RouteBlock `yaml:"blocks"`
 }
 type RouteBlock struct {
-	ID    string      `yaml:"id"`
-	Title string      `yaml:"title"`
-	Steps []RouteStep `yaml:"steps"`
+	Number int         `yaml:"number,omitempty"`
+	ID     string      `yaml:"id"`
+	Title  string      `yaml:"title"`
+	Steps  []RouteStep `yaml:"steps"`
 }
 type RouteStep struct {
+	Number int      `yaml:"number,omitempty"`
 	TaskID string   `yaml:"task_id"`
 	Role   string   `yaml:"role"`
 	Skills []string `yaml:"skills"`
@@ -92,8 +94,8 @@ func activeRouteSkills(root string) (map[string]SkillMetadata, error) {
 }
 
 func validateRoute(route Route, skills map[string]SkillMetadata) error {
-	if route.SchemaVersion != 1 || strings.TrimSpace(route.Title) == "" || len(route.Blocks) == 0 {
-		return errors.New("curriculum route requires version 1, a title and blocks")
+	if (route.SchemaVersion != 1 && route.SchemaVersion != 2) || strings.TrimSpace(route.Title) == "" || len(route.Blocks) == 0 {
+		return errors.New("curriculum route requires version 1 or 2, a title and blocks")
 	}
 	known := map[string]bool{}
 	for _, id := range route.PreparationSkills {
@@ -109,12 +111,30 @@ func validateRoute(route Route, skills map[string]SkillMetadata) error {
 		return errors.New("preparation skills require learner guidance")
 	}
 	ids, blocks := map[string]bool{}, map[string]bool{}
+	lastBlockNumber := 0
 	for _, block := range route.Blocks {
+		if route.SchemaVersion == 2 {
+			if block.Number <= lastBlockNumber || block.Number > 999 || !routeBlockIDPattern.MatchString(block.ID) {
+				return errors.New("route v2 requires safe block IDs and increasing explicit numbers in 1..999")
+			}
+			lastBlockNumber = block.Number
+		} else if block.Number != 0 {
+			return errors.New("explicit route numbers require version 2")
+		}
 		if block.ID == "" || strings.TrimSpace(block.Title) == "" || blocks[block.ID] {
 			return errors.New("route blocks require unique IDs and titles")
 		}
 		blocks[block.ID] = true
+		lastLessonNumber := 0
 		for _, step := range block.Steps {
+			if route.SchemaVersion == 2 {
+				if step.Number <= lastLessonNumber || step.Number > 999 {
+					return errors.New("route v2 requires increasing explicit lesson numbers in 1..999")
+				}
+				lastLessonNumber = step.Number
+			} else if step.Number != 0 {
+				return errors.New("explicit route numbers require version 2")
+			}
 			if !learnerTaskIDPattern.MatchString(step.TaskID) || ids[step.TaskID] {
 				return fmt.Errorf("invalid or repeated route task %s", step.TaskID)
 			}
@@ -239,7 +259,7 @@ func routeNext(route Route, tasks []tasking.LearnerTaskInfo, progress Progress) 
 			if !ok {
 				return SchedulerChoice{}, fmt.Errorf("next lesson is not ready: %s (%s); see learn roadmap", step.TaskID, block.Title)
 			}
-			choice := SchedulerChoice{Resume: progress.Tasks[task.ID] != nil, Task: task, RouteBlock: block.Title, RouteRole: step.Role, Preparation: route.Preparation}
+			choice := SchedulerChoice{Resume: progress.Tasks[task.ID] != nil, Task: task, RouteBlock: numberedBlockTitle(block), RouteRole: step.Role, Preparation: route.Preparation, LessonNumber: lessonNumber(block, step)}
 			for _, skill := range task.Prerequisites {
 				if !known[skill] {
 					choice.MissingPrerequisites = append(choice.MissingPrerequisites, skill)
@@ -285,7 +305,7 @@ func writeRoadmap(output io.Writer, roadmap Roadmap) {
 			state = "current"
 			currentShown = true
 		}
-		fmt.Fprintf(output, "\n%s [%s] — %d/%d completed\n", block.Title, state, done, len(block.Steps))
+		fmt.Fprintf(output, "\n%s [%s] — %d/%d completed\n", numberedBlockTitle(block), state, done, len(block.Steps))
 		if len(block.Steps) == 0 {
 			fmt.Fprintln(output, "  Content planned; no task completion is implied.")
 		}
@@ -301,7 +321,8 @@ func writeRoadmap(output io.Writer, roadmap Roadmap) {
 					status = "in progress"
 				}
 			}
-			fmt.Fprintf(output, "  %-12s %s (%s)\n", status, step.TaskID, step.Role)
+			title := roadmap.Tasks[step.TaskID].Title
+			fmt.Fprintf(output, "  %-12s %s %s (%s; id: %s)\n", status, lessonNumber(block, step), title, step.Role, step.TaskID)
 		}
 	}
 }

@@ -11,6 +11,7 @@ import (
 )
 
 type LessonView struct {
+	Number    string `json:"number"`
 	ID        string `json:"id"`
 	Title     string `json:"title"`
 	Role      string `json:"role"`
@@ -35,6 +36,7 @@ type CourseView struct {
 	Preparation   string      `json:"preparation"`
 }
 type TaskView struct {
+	Number               string                  `json:"number"`
 	Revision             string                  `json:"revision"`
 	Info                 tasking.LearnerTaskInfo `json:"info"`
 	Started              bool                    `json:"started"`
@@ -115,11 +117,11 @@ func (s *Service) CourseView() (CourseView, error) {
 	}
 	currentShown := false
 	for _, block := range route.Blocks {
-		b := BlockView{ID: block.ID, Title: block.Title, Status: "planned", Lessons: []LessonView{}}
+		b := BlockView{ID: block.ID, Title: numberedBlockTitle(block), Status: "planned", Lessons: []LessonView{}}
 		completed, prepared := 0, 0
 		for _, step := range block.Steps {
 			task, available := catalog[step.TaskID]
-			lesson := LessonView{ID: step.TaskID, Title: task.Title, Role: step.Role, Status: "planned", Available: available}
+			lesson := LessonView{ID: step.TaskID, Title: task.Title, Role: step.Role, Status: "planned", Available: available, Number: lessonNumber(block, step)}
 			if !available {
 				lesson.Title = step.TaskID
 			} else {
@@ -166,6 +168,10 @@ func (s *Service) TaskView(id string) (TaskView, error) {
 		return TaskView{}, err
 	}
 	view := TaskView{Info: info, Revision: revision, Current: progress.CurrentTaskID == id, UsedHints: []UsedHint{}}
+	view.Number, err = s.LessonNumber(id)
+	if err != nil {
+		return TaskView{}, err
+	}
 	hints, err := tasking.LearnerHints(s.root, id)
 	if err != nil {
 		return TaskView{}, err

@@ -1,6 +1,6 @@
 {
-  "schema_version": 1,
-  "title": "Go Learn \u2014 personal foundation to production backend",
+  "schema_version": 2,
+  "title": "Go Learn — Go foundation",
   "preparation": "docs/LEARNER_START.md",
   "preparation_skills": [
     "toolchain.modules-workspaces",
@@ -9,28 +9,31 @@
   "blocks": [
     {
       "id": "first-steps",
-      "title": "1. Variables, values, expressions and functions",
+      "title": "Variables, values, expressions and functions",
       "steps": [
         {
           "task_id": "literal-bindings-001",
           "role": "introduction",
           "skills": [
             "types.declarations-inference"
-          ]
+          ],
+          "number": 1
         },
         {
           "task_id": "zero-results-001",
           "role": "introduction",
           "skills": [
             "types.zero-values"
-          ]
+          ],
+          "number": 2
         },
         {
           "task_id": "access-logic-001",
           "role": "introduction",
           "skills": [
             "expressions.boolean-logic"
-          ]
+          ],
+          "number": 3
         },
         {
           "task_id": "division-results-001",
@@ -38,20 +41,23 @@
           "skills": [
             "functions.signatures-results",
             "expressions.arithmetic"
-          ]
+          ],
+          "number": 4
         },
         {
           "task_id": "exclusive-loop-001",
           "role": "introduction",
           "skills": [
             "control-flow.for"
-          ]
+          ],
+          "number": 5
         }
-      ]
+      ],
+      "number": 1
     },
     {
       "id": "values-and-collections",
-      "title": "2. Defined types, arrays, slices and maps",
+      "title": "Defined types, arrays, slices and maps",
       "steps": [
         {
           "task_id": "named-block-001",
@@ -59,14 +65,16 @@
           "skills": [
             "types.named-underlying",
             "arrays.value-semantics"
-          ]
+          ],
+          "number": 1
         },
         {
           "task_id": "array-copy-001",
           "role": "introduction",
           "skills": [
             "arrays.value-semantics"
-          ]
+          ],
+          "number": 2
         },
         {
           "task_id": "slice-window-001",
@@ -74,28 +82,32 @@
           "skills": [
             "slices.header-model",
             "slices.len-cap-slicing"
-          ]
+          ],
+          "number": 3
         },
         {
           "task_id": "append-value-001",
           "role": "practice",
           "skills": [
             "slices.append-growth"
-          ]
+          ],
+          "number": 4
         },
         {
           "task_id": "map-presence-001",
           "role": "introduction",
           "skills": [
             "maps.operations-comma-ok"
-          ]
+          ],
+          "number": 5
         },
         {
           "task_id": "map-take-001",
           "role": "practice",
           "skills": [
             "maps.nil-delete-clear"
-          ]
+          ],
+          "number": 6
         },
         {
           "task_id": "detached-append-001",
@@ -103,13 +115,15 @@
           "skills": [
             "slices.backing-array-aliasing",
             "slices.append-growth"
-          ]
+          ],
+          "number": 7
         }
-      ]
+      ],
+      "number": 2
     },
     {
       "id": "control-and-verification",
-      "title": "3. Control flow, numeric conversions and verification",
+      "title": "Control flow, numeric conversions and verification",
       "steps": [
         {
           "task_id": "bounded-value-001",
@@ -117,113 +131,120 @@
           "skills": [
             "control-flow.if",
             "expressions.comparison"
-          ]
+          ],
+          "number": 1
         },
         {
           "task_id": "wide-sum-001",
           "role": "introduction",
           "skills": [
             "types.numeric-conversions"
-          ]
+          ],
+          "number": 2
         },
         {
           "task_id": "encoded-width-001",
           "role": "introduction",
           "skills": [
             "control-flow.switch"
-          ]
+          ],
+          "number": 3
         },
         {
           "task_id": "range-offset-001",
           "role": "introduction",
           "skills": [
             "control-flow.range"
-          ]
+          ],
+          "number": 4
         },
         {
           "task_id": "clamp-tests-001",
           "role": "practice",
           "skills": [
             "expressions.comparison"
-          ]
+          ],
+          "number": 5
         }
-      ]
+      ],
+      "number": 3
     },
     {
       "id": "text",
-      "title": "4. Strings and bytes",
+      "title": "Strings and bytes",
       "steps": [
         {
           "task_id": "replace-byte-001",
           "role": "introduction",
           "skills": [
             "strings.immutable-bytes"
-          ]
+          ],
+          "number": 1
         },
         {
           "task_id": "exact-prefix-001",
           "role": "introduction",
           "skills": [
             "strings.standard-library"
-          ]
+          ],
+          "number": 2
         },
         {
           "task_id": "typed-line-001",
           "role": "introduction",
           "skills": [
             "strings.formatting"
-          ]
+          ],
+          "number": 3
         },
         {
           "task_id": "join-values-001",
           "role": "introduction",
           "skills": [
             "strings.building"
-          ]
+          ],
+          "number": 4
         },
         {
           "task_id": "byte-window-tests-001",
           "role": "practice",
           "skills": [
             "strings.immutable-bytes"
-          ]
+          ],
+          "number": 5
         }
-      ]
+      ],
+      "number": 4
     },
     {
       "id": "unicode",
-      "title": "5. Unicode",
-      "steps": []
+      "title": "Unicode",
+      "steps": [],
+      "number": 5
     },
     {
       "id": "contracts",
-      "title": "6. Structs, pointers, methods, embedding, interfaces and errors",
-      "steps": []
+      "title": "Structs, pointers, methods, embedding, interfaces and errors",
+      "steps": [],
+      "number": 6
     },
     {
       "id": "libraries",
-      "title": "7. Packages, generics, I/O, encoding and time",
-      "steps": []
+      "title": "Packages, generics, I/O, encoding and time",
+      "steps": [],
+      "number": 7
     },
     {
       "id": "verification",
-      "title": "8. Testing, fuzzing and benchmarks",
-      "steps": []
+      "title": "Testing, fuzzing and benchmarks",
+      "steps": [],
+      "number": 8
     },
     {
       "id": "concurrency",
-      "title": "9. Goroutines, channels, sync and context",
-      "steps": []
-    },
-    {
-      "id": "backend",
-      "title": "10. HTTP and PostgreSQL",
-      "steps": []
-    },
-    {
-      "id": "production",
-      "title": "11. Background work, operations and the final service",
-      "steps": []
+      "title": "Goroutines, channels, sync and context",
+      "steps": [],
+      "number": 9
     }
   ]
 }

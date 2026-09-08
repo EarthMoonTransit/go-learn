@@ -240,3 +240,12 @@ change. Do not reset workspaces as an update/rollback procedure. Details:
 
 The UI listens only on 127.0.0.1. Keep the session URL private. No accounts,
 hosting, mastery migration or dynamic repetition are included in this delivery.
+
+## Numbered foundation route
+
+Route v2 shows section and lesson numbers such as `01.01` in the UI and in
+`learn list`, `show`, `next` and `roadmap`. The number is navigation; commands
+still accept the stable task ID shown in details. Existing completion is keyed
+by that ID. Sections 01–09 form the active Go foundation; backend and production
+teaching are deferred. Workspace paths are unchanged until the separate organize
+migration is delivered. Restart an existing UI process to load the updated code.

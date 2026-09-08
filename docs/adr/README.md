@@ -18,3 +18,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0012` — IDE metadata outside learner submissions (`accepted`)
 - `0013` — local UI, shared operation coordination and workspace generations (`accepted`)
 - `0014` — exact public-check revision compatibility without learner reset (`accepted`)
+- `0015` — explicit foundation route numbering (`accepted`)
