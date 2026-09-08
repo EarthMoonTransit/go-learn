@@ -24,18 +24,23 @@ human mastery. Learner evidence must be reported separately.
 
 ## Current checkpoint
 
-Baseline: master `f41a602645718e276e8683d84c4f58f461476aa0`, 2026-09-08.
+Initial baseline: master `f41a602645718e276e8683d84c4f58f461476aa0`, 22 lessons.
+The checkpoint below is the C02 result, effective after its PR passes `validate`
+and is merged. Private learner state was not read or modified.
 
-| Measure | Verified baseline |
+| Measure | C02 checkpoint |
 | --- | --- |
-| Learner-visible ready lessons | 22; another 128 are required for milestone 1 |
-| Activities | 11 implementation, 9 debugging, 2 test-writing; some existing implementation scaffolds already contain logic |
-| Substantive source adaptations | Not yet accepted against the new 76-task criterion; existing concept-seed labels must not be counted as substantive reuse |
-| Other packages | Three legacy ready packages, eight drafts, one rejected; excluded from learner-visible 22 |
-| Human progress / mastery | Private progress not inspected; historical one assisted map-take completion is not current progress or mastery |
-| Delivered tooling | Sequential route, local UI, GoLand support, public-feedback regression for the opening lesson |
-| Next result | Numbered navigation and workspaces, reviewed source allocation, then content expansion toward 60, 100 and 150 |
-| Outstanding | Workspace migration, repetition/mastery, 128 new reviewed lessons and substantive adaptation evidence |
+| Learner-visible ready lessons | 32; another 118 are required for milestone 1 |
+| Substantive source adaptations | 3 accepted exercise adaptations; at least 73 more required for the 76-task criterion |
+| Original / concept-seed | 24 original, 5 concept-seed; seeds are excluded from substantive reuse |
+| Covered skills | 28 distinct assessed primary/secondary skills; this is course coverage, not learner mastery |
+| Activities | 16 implementation, 11 debugging, 5 test-writing; C02 adds 5/2/3 respectively |
+| Other packages | Three legacy ready packages, eight drafts, one rejected; excluded from learner-visible count |
+| Human completions / confirmed mastery | Unknown: private progress not inspected; automated fixtures are not human evidence |
+| Delivered tooling | Explicit UI/CLI numbers, recoverable numbered workspaces, progress v3 completion evidence and delayed reviews |
+| Source allocation | 128 additions mapped; 84 adaptation candidates and 44 original slots; C02 consumes 3 and 7 |
+| Next result | Ten further adapted exercises, then continue toward 60, 100 and 150 |
+| Obstacles | Remaining authoring/review work; unsupported later verification profiles require separate tooling first |
 
 60 and 100 are reporting checkpoints inside milestone 1, not mandatory stops.
 A successful batch authorizes continuation to the next within the accepted plan.
@@ -46,7 +51,7 @@ Keep the current foundation order, sections 01–09: first steps; values and
 collections; control and verification; strings/bytes; Unicode; structs, pointers,
 methods, embedding, interfaces and errors; packages, generics, I/O, encoding and
 time; deeper testing; concurrency and context. Backend/production placeholders
-leave the active route when numbered navigation is delivered.
+have been removed from the active route.
 
 Store section and lesson numbers explicitly in a versioned route. Display
 `01.01` alongside the English title in UI/CLI. Stable task IDs remain progress,
@@ -55,7 +60,7 @@ Existing assigned numbers must not be silently regenerated when content grows.
 
 Organize private workspaces by numbered section and lesson, for example
 `workspaces/01-first-steps/01-literal-bindings/`. Canonical task packages retain
-their lifecycle layout. A separate ADR/tooling batch adds versioned progress,
+their lifecycle layout. ADRs 0016–0017 provide versioned progress,
 backup, `learn organize --dry-run`, `learn organize` and interrupted-operation
 recovery. Read-only commands never migrate. Conflicts never overwrite solutions.
 
@@ -86,12 +91,13 @@ existing per-domain diversity. Existing content is repaired gradually, separatel
 
 | Batch | Result | Acceptance / status |
 | --- | --- | --- |
-| D02 | This active roadmap, aligned vision and execution ledger | Accepted user scope recorded; implementation evidence tracked below |
-| S01 | Source inventory and allocation for 128 additions | Exact registry/path/commit and semantic selection evidence; no planned item counted ready |
-| T03 | Explicit route numbering and UI/CLI navigation | Same labels across interfaces, stable IDs and existing sequence, visible planned material |
-| T04 | Numbered workspaces and migration | Backup/recovery, conflict and UI/CLI coordination tests; no lost learner data |
-| T05 | Repetition and independent mastery evidence | Separate ADR and versioned migration; preserve attempts/hints/completion/time |
-| C02–C14 minimum | 128 new lessons, Unicode first, then gaps and later subjects | At most ten new/substantially revised tasks per batch; public/full/reference/mutant checks and independent review |
+| D02 | This active roadmap, aligned vision and execution ledger | Delivered in PR26; exact-head validate passed |
+| S01 | Source inventory and allocation for 128 additions | Delivered in PR31; independent source/hash/dependency review and validate passed |
+| T03 | Explicit route numbering and UI/CLI navigation | Delivered in PR27; labels, stable IDs and sequence verified; validate passed |
+| T04 | Numbered workspaces and migration | Delivered in PR29; backup/recovery/conflict checks and validate passed |
+| T05 | Repetition and independent mastery evidence | Delivered in PR30; legacy/reset regressions and validate passed |
+| C02 | Ten Unicode lessons: three substantive adaptations and seven original boundary tasks | Independent review approved; weak learner-test suites are rejected; all required local/PR gates apply |
+| C03–C14 minimum | Remaining 118 lessons from the source allocation and gaps | At most ten new/substantially revised tasks per batch; public/full/reference/mutant checks and independent review |
 | K02 | Milestone-1 acceptance at 150 | All milestone conditions, adaptation count, route, components and progress evidence verified |
 
 Tooling needed for unsupported task profiles is delivered before that content.

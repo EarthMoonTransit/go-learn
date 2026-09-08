@@ -1,0 +1,43 @@
+schema_version: 2
+id: decode-prefix-001
+title: Distinguish malformed bytes from a replacement rune
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: unicode.invalid-utf8
+    secondary: []
+prerequisites:
+    - unicode.range-decoding
+new_concepts:
+    - unicode.invalid-utf8
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - replacement-invalid
+        - validate-whole-string
+        - decoded-width
+        - empty-is-replacement
+        - one-byte-width
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

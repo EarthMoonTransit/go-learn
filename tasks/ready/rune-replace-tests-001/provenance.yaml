@@ -1,0 +1,52 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the Replace operation and selected hand-authored checks from pinned logs-logs-logs; retain its observable contract, remove narrative, and add independent boundary checks and realistic defects. No canonical/generated cases or upstream solution used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "f52a0e4ce41ab2bdd51d3d27301f868026adc9c27748f9614303d0157cb02f61",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/rune-replace-tests-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/logs-logs-logs/.docs/instructions.md",
+          "sha256": "9ee0bb09df80c238a04b3cfee17853cd94f24bac9b02d6bfb63dc054020c8de8",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/logs-logs-logs/logs_logs_logs_test.go",
+          "sha256": "8b706720569c0a7009d2afb2a0bf0605f632fa2bedd07f57e5747f675a004e5d",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/logs-logs-logs/.meta/config.json",
+          "sha256": "09cada090c81b88da41d31f8dccc2c903372e86cc33843b893d25a163c100d59",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}

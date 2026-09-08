@@ -20,3 +20,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0014` — exact public-check revision compatibility without learner reset (`accepted`)
 - `0015` — explicit foundation route numbering (`accepted`)
 - `0016` — numbered workspaces, progress v2 and recoverable organization (`accepted`)
+- `0017` — completion evidence, durable assistance and delayed skill review (`accepted`)

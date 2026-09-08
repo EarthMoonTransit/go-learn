@@ -300,7 +300,88 @@
     {
       "id": "unicode",
       "title": "Unicode",
-      "steps": [],
+      "steps": [
+        {
+          "number": 1,
+          "task_id": "rune-marker-001",
+          "role": "introduction",
+          "skills": [
+            "unicode.rune-model"
+          ]
+        },
+        {
+          "number": 2,
+          "task_id": "encode-scalar-001",
+          "role": "introduction",
+          "skills": [
+            "unicode.utf8-encoding"
+          ]
+        },
+        {
+          "number": 3,
+          "task_id": "rune-offsets-001",
+          "role": "introduction",
+          "skills": [
+            "unicode.range-decoding"
+          ]
+        },
+        {
+          "number": 4,
+          "task_id": "decode-prefix-001",
+          "role": "introduction",
+          "skills": [
+            "unicode.invalid-utf8"
+          ]
+        },
+        {
+          "number": 5,
+          "task_id": "rune-replace-tests-001",
+          "role": "practice",
+          "skills": [
+            "unicode.rune-model"
+          ]
+        },
+        {
+          "number": 6,
+          "task_id": "rune-limit-001",
+          "role": "practice",
+          "skills": [
+            "unicode.rune-model"
+          ]
+        },
+        {
+          "number": 7,
+          "task_id": "rune-boundary-tests-001",
+          "role": "transfer",
+          "skills": [
+            "unicode.range-decoding"
+          ]
+        },
+        {
+          "number": 8,
+          "task_id": "repair-utf8-001",
+          "role": "practice",
+          "skills": [
+            "unicode.invalid-utf8"
+          ]
+        },
+        {
+          "number": 9,
+          "task_id": "utf8-validity-tests-001",
+          "role": "transfer",
+          "skills": [
+            "unicode.utf8-encoding"
+          ]
+        },
+        {
+          "number": 10,
+          "task_id": "edit-rune-copy-001",
+          "role": "introduction",
+          "skills": [
+            "strings.byte-rune-conversions"
+          ]
+        }
+      ],
       "number": 5
     },
     {
