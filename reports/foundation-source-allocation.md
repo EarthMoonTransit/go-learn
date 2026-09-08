@@ -126,3 +126,17 @@ originals and five concept-seeds. 88 additions remain, including 51 selected
 adaptation candidates, against 43 further substantive tasks required.
 All 128 allocation positions still resolve. Passing 60 is a reporting point;
 authoring continues. Learner mastery remains a separate evidence count.
+
+## C06 release binding
+
+Ten positions bind seven substantive Exercism adaptations and three Learn Go
+with Tests adaptations. The dictionary chapter's typed string errors are replaced
+with supplied errors.New sentinels for this first error introduction; operation
+semantics and presence-versus-empty cases are retained. Exact consulted paths,
+commits, hashes and license notices remain in each package.
+
+After acceptance: 72 route lessons / 43 substantive / 24 original / 5 concept-seed;
+41 assessed skills, 78 additions remaining, including 41 selected adaptations.
+At least 33 more substantive adaptations are required. Dependency closure still
+resolves all 128 positions from the original baseline. Real learner state remains
+uninspected.

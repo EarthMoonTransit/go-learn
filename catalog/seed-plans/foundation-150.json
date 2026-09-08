@@ -1605,9 +1605,13 @@
       "behavior_anchor": "Quantities: count two layer kinds and return both integer and floating quantities",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 35,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "types.declarations-inference"
+        "control-flow.range",
+        "slices.header-model",
+        "testing.basics-diagnostics",
+        "types.declarations-inference",
+        "types.numeric-conversions"
       ],
       "activity": "test-writing",
       "required_before_release": [
@@ -1618,7 +1622,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "two-quantity-tests-001",
+      "secondary": [],
+      "release_batch": "C06",
+      "route_number": "03.21"
     },
     {
       "primary": "types.constants",
@@ -1696,7 +1704,7 @@
       "behavior_anchor": "AddSecretIngredient: update the destination final element while preserving the source",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 37,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "slices.append-growth",
         "strings.immutable-bytes"
@@ -1710,7 +1718,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "copy-final-element-001",
+      "secondary": [],
+      "release_batch": "C06",
+      "route_number": "04.06"
     },
     {
       "primary": "structs.literals-zero",
@@ -1821,11 +1833,11 @@
       "behavior_anchor": "SumAllTails: accept variadic integer slices; sum each tail, including empty input and empty nested slices",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 40,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "control-flow.range",
         "functions.signatures-results",
-        "slices.len-cap-slicing",
-        "control-flow.range"
+        "slices.len-cap-slicing"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -1836,7 +1848,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "variadic-tail-sums-001",
+      "secondary": [],
+      "release_batch": "C06",
+      "route_number": "03.22"
     },
     {
       "primary": "strings.formatting",
@@ -2162,7 +2178,7 @@
       "behavior_anchor": "func NeedsLicense(kind string) bool {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 48,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "expressions.boolean-logic"
       ],
@@ -2175,7 +2191,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "kind-condition-001",
+      "secondary": [],
+      "release_batch": "C06",
+      "route_number": "03.23"
     },
     {
       "primary": "expressions.comparison",
@@ -2203,8 +2223,10 @@
       "behavior_anchor": "func ChooseVehicle(option1, option2 string) string {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 49,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "strings.immutable-bytes",
+        "testing.basics-diagnostics",
         "types.declarations-inference"
       ],
       "activity": "test-writing",
@@ -2216,7 +2238,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "lexical-choice-tests-001",
+      "secondary": [],
+      "release_batch": "C06",
+      "route_number": "04.07"
     },
     {
       "primary": "strings.standard-library",
@@ -2244,9 +2270,10 @@
       "behavior_anchor": "func WelcomeMessage(customer string) string {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 50,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "strings.immutable-bytes"
+        "strings.immutable-bytes",
+        "unicode.rune-model"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -2257,7 +2284,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "uppercase-label-001",
+      "secondary": [],
+      "release_batch": "C06",
+      "route_number": "05.11"
     },
     {
       "primary": "strings.building",
@@ -2285,10 +2316,10 @@
       "behavior_anchor": "func AddBorder(welcomeMsg string, numStarsPerLine int) string {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 51,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "strings.immutable-bytes",
-        "slices.header-model"
+        "slices.header-model",
+        "strings.immutable-bytes"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -2299,7 +2330,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "text-border-001",
+      "secondary": [],
+      "release_batch": "C06",
+      "route_number": "04.08"
     },
     {
       "primary": "generics.type-parameters-inference",
@@ -2680,9 +2715,11 @@
       "behavior_anchor": "Dictionary.Search: distinguish a present empty definition from an absent key with a stable sentinel",
       "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
       "slot": 61,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "functions.signatures-results"
+        "functions.signatures-results",
+        "maps.operations-comma-ok",
+        "methods.receiver-semantics"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -2693,7 +2730,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "sentinel-lookup-001",
+      "secondary": [],
+      "release_batch": "C06",
+      "route_number": "06.11"
     },
     {
       "primary": "errors.sentinels-creation",
@@ -2712,9 +2753,12 @@
       "behavior_anchor": "Add",
       "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
       "slot": 62,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "functions.signatures-results"
+        "functions.signatures-results",
+        "maps.operations-comma-ok",
+        "methods.receiver-semantics",
+        "testing.basics-diagnostics"
       ],
       "activity": "test-writing",
       "required_before_release": [
@@ -2725,7 +2769,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "dictionary-add-tests-001",
+      "secondary": [],
+      "release_batch": "C06",
+      "route_number": "06.12"
     },
     {
       "primary": "errors.typed",
@@ -2890,9 +2938,11 @@
       "behavior_anchor": "ScaleRecipe: return scaled quantities without mutating the input slice; independently owned output",
       "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
       "slot": 67,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "slices.append-growth"
+        "expressions.arithmetic",
+        "slices.append-growth",
+        "types.numeric-conversions"
       ],
       "activity": "debugging",
       "required_before_release": [
@@ -2903,7 +2953,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "independent-scaled-copy-001",
+      "secondary": [],
+      "release_batch": "C06",
+      "route_number": "03.24"
     },
     {
       "primary": "io.reader-writer-contracts",
@@ -4620,6 +4674,6 @@
     "unresolved_prerequisites": [],
     "method": "Topological selection using actual artifact prerequisites and explicit primary/secondary outcomes; existing baseline route outcomes precede additions.",
     "introduced_skills": 101,
-    "last_batch": "C05"
+    "last_batch": "C06"
   }
 }
