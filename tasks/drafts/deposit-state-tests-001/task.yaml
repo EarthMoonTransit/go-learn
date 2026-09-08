@@ -43,7 +43,8 @@
       "no-update",
       "subtract",
       "zero-reset",
-      "shared-total"
+      "shared-total",
+      "retained-receiver"
     ],
     "race_required": false,
     "vet": true,

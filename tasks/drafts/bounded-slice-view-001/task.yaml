@@ -42,7 +42,8 @@
       "detached",
       "ignore-start",
       "empty-tail-cap",
-      "mutate-input"
+      "mutate-input",
+      "prefix-cleared"
     ],
     "race_required": false,
     "vet": true,

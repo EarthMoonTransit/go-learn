@@ -8,7 +8,11 @@ import (
 
 func TestPublicCase01(t *testing.T) {
 	in := []int{1, 2, 3, 4}
+	before := slices.Clone(in)
 	v := subject.CappedView(in, 1, 3)
+	if !slices.Equal(in, before) {
+		t.Errorf("call changed input got%v want%v", in, before)
+	}
 	if !slices.Equal(v, []int{2, 3}) || len(v) != 2 || cap(v) != 2 {
 		t.Fatalf("view got%v len%d cap%d", v, len(v), cap(v))
 	}

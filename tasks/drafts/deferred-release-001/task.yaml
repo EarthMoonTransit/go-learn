@@ -13,6 +13,7 @@
     "secondary": []
   },
   "prerequisites": [
+    "functions.function-values",
     "functions.signatures-results"
   ],
   "new_concepts": [

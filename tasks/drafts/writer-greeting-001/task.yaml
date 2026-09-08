@@ -47,7 +47,9 @@
       "extra-newline",
       "trim-name",
       "retry-write",
-      "close-writer"
+      "close-writer",
+      "close-on-error",
+      "close-on-short"
     ],
     "race_required": false,
     "vet": true,
