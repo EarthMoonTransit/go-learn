@@ -46,12 +46,13 @@ func persistedBytes(t *testing.T, s *Service) []byte {
 func TestOperationLeaseCoordinatesServicesAndCLI(t *testing.T) {
 	first := uiTestService(t, "")
 	second := uiTestService(t, first.home)
-	if _, err := first.Start("literal-bindings-001"); err != nil {
+	workspacePath, err := first.Start("literal-bindings-001")
+	if err != nil {
 		t.Fatal(err)
 	}
 	entered, release := make(chan struct{}), make(chan struct{})
 	first.verify = func(_, id, workspace string, scope tasking.LearnerVerificationScope) (tasking.LearnerVerificationResult, error) {
-		if id != "literal-bindings-001" || workspace != filepath.Join(first.home, "workspaces", id) {
+		if id != "literal-bindings-001" || workspace != workspacePath {
 			t.Error("wrong captured workspace")
 		}
 		close(entered)

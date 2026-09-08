@@ -22,6 +22,10 @@ func TestUIRealVerificationAcrossSubmissionKinds(t *testing.T) {
 		t.Run(fixture.id, func(t *testing.T) {
 			s := uiTestService(t, "")
 			s.verify = tasking.VerifyLearnerWorkspace
+			// Exercise the existing UI flow after moving a legacy workspace.
+			if err := saveProgress(s.home, Progress{SchemaVersion: 1, Tasks: map[string]*TaskProgress{}}); err != nil {
+				t.Fatal(err)
+			}
 			u := testLocalUI(t, s)
 			serial := 0
 			run := func(action string) uiJob {
@@ -52,6 +56,17 @@ func TestUIRealVerificationAcrossSubmissionKinds(t *testing.T) {
 			if err := os.WriteFile(idePath, []byte("INVALID GO IDE METADATA"), 0600); err != nil {
 				t.Fatal(err)
 			}
+			oldWorkspace := workspace
+			plan, err := s.Organize(false)
+			if err != nil || len(plan.Moves) != 1 {
+				t.Fatalf("organize: %+v %v", plan, err)
+			}
+			view, err := s.TaskView(fixture.id)
+			if err != nil || view.WorkspaceUnavailable || view.Workspace == oldWorkspace {
+				t.Fatalf("organized view: %+v %v", view, err)
+			}
+			workspace = view.Workspace
+			idePath = filepath.Join(workspace, ".idea", "inspectionProfiles", "metadata.go")
 			// Intentionally invalid editable code reaches only the disposable runner.
 			if err := os.WriteFile(filepath.Join(workspace, fixture.editable), []byte("package subject\nthis is invalid Go\n"), 0600); err != nil {
 				t.Fatal(err)
@@ -101,7 +116,7 @@ func TestUIRealVerificationAcrossSubmissionKinds(t *testing.T) {
 			if job := run("complete"); !job.Result.Verification.Passed {
 				t.Fatalf("correct fixture full failed: %+v", job)
 			}
-			view, err := s.TaskView(fixture.id)
+			view, err = s.TaskView(fixture.id)
 			if err != nil || !view.Completed || view.Review == "" || len(view.UsedHints) != 1 || view.Attempts != 6 {
 				t.Fatalf("completed view: %+v %v", view, err)
 			}

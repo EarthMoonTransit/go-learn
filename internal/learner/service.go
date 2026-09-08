@@ -101,9 +101,17 @@ func (s *Service) start(id string) (string, error) {
 		return "", err
 	}
 	target := filepath.Join(workspaceRoot, id)
+	relative := filepath.ToSlash(filepath.Join("workspaces", id))
 	now := s.timestamp()
 	createdTarget := false
 	err = withProgressLock(s.home, func(progress *Progress) error {
+		if progress.SchemaVersion >= 2 {
+			relative, err = s.numberedWorkspaceRelative(id)
+			if err != nil {
+				return err
+			}
+			target = filepath.Join(s.home, filepath.FromSlash(relative))
+		}
 		if _, exists := progress.Tasks[id]; exists {
 			return fmt.Errorf("task %q already has progress; use resume or reset-task", id)
 		}
@@ -112,7 +120,10 @@ func (s *Service) start(id string) (string, error) {
 		} else if !errors.Is(err, os.ErrNotExist) {
 			return err
 		}
-		staging, err := os.MkdirTemp(workspaceRoot, "."+id+"-*")
+		if err := ensurePrivateDirectory(s.home, filepath.Dir(filepath.FromSlash(relative))); err != nil {
+			return err
+		}
+		staging, err := os.MkdirTemp(filepath.Dir(target), "."+id+"-*")
 		if err != nil {
 			return err
 		}
@@ -160,7 +171,7 @@ func (s *Service) start(id string) (string, error) {
 		createdTarget = true
 		pauseOtherSessions(progress, id, now)
 		progress.Tasks[id] = &TaskProgress{
-			TaskID: id, Status: "in-progress", Workspace: filepath.ToSlash(filepath.Join("workspaces", id)),
+			TaskID: id, Status: "in-progress", Workspace: relative,
 			Activity: info.Activity, PrimarySkill: info.PrimarySkill,
 			UsedHints: []int{}, SkillEncounters: []SkillEncounter{}, Feedback: []FeedbackEntry{},
 			StartedAt: now, LastInteractionAt: now, ActiveSessionStartedAt: now,
@@ -530,7 +541,11 @@ func (s *Service) resetTask(id string, confirmed bool) error {
 		if _, ok := progress.Tasks[id]; !ok {
 			return fmt.Errorf("task %q has no local progress", id)
 		}
-		if err := removeLearnerWorkspace(s.home, id); err != nil {
+		relative := progress.Tasks[id].Workspace
+		if err := s.checkWorkspaceRelative(id, relative); err != nil {
+			return err
+		}
+		if err := removeLearnerWorkspace(s.home, id, relative); err != nil {
 			return err
 		}
 		delete(progress.Tasks, id)
@@ -591,14 +606,16 @@ func (s *Service) currentTask() (Progress, *TaskProgress, tasking.LearnerTaskInf
 }
 
 func (s *Service) validateWorkspace(progress *TaskProgress, info tasking.LearnerTaskInfo) (string, error) {
-	if progress.Workspace != filepath.ToSlash(filepath.Join("workspaces", progress.TaskID)) {
-		return "", errors.New("progress contains an invalid workspace path")
+	if err := s.checkWorkspaceRelative(progress.TaskID, progress.Workspace); err != nil {
+		return "", err
 	}
 	workspace := filepath.Join(s.home, filepath.FromSlash(progress.Workspace))
-	workspaceRoot := filepath.Join(s.home, "workspaces")
-	relative, err := filepath.Rel(workspaceRoot, workspace)
-	if err != nil || relative != progress.TaskID {
-		return "", errors.New("learner workspace escapes the local workspace root")
+	handle, err := openPrivateDirectory(s.home, filepath.FromSlash(progress.Workspace))
+	if err != nil {
+		return "", err
+	}
+	if err = handle.Close(); err != nil {
+		return "", err
 	}
 	workspaceInfo, err := os.Lstat(workspace)
 	if err != nil || workspaceInfo.Mode()&os.ModeSymlink != 0 || !workspaceInfo.IsDir() {

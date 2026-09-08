@@ -2,7 +2,7 @@ package learner
 
 import "go-practice-bank/internal/tasking"
 
-const progressSchemaVersion = 1
+const progressSchemaVersion = 2
 
 type Progress struct {
 	SchemaVersion int                      `json:"schema_version"`
