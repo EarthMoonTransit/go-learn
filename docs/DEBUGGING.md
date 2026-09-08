@@ -54,3 +54,15 @@ reference, учёт попыток и переход к следующей за�
 runner/cache и разделение CI jobs делать отдельным tooling batch с замерами и
 проверкой сохранения изоляции. Не ускорять работу отключением race, integration,
 grader или process gate. Пока такой batch не принят, полный CI остаётся нужен.
+
+## CI integration suite budget
+
+Runs 34253711927 and 34254229744 both hit Go's default 10-minute package
+timeout during the growing learner integration suite. They were executing
+disposable verifier subprocesses, with no preceding assertion failure. Local
+acceptance completed. CI now gives the integration suite an explicit bounded
+20-minute package budget and caps the whole job at 35 minutes. Per-task command
+timeouts, isolation, required test cases and collection reuse are unchanged.
+This prevents an aggregate timeout from truncating otherwise bounded checks;
+it is not a runtime-speed improvement. Cache/session optimization remains
+a separate measured change.

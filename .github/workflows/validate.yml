@@ -15,6 +15,7 @@ jobs:
   partial-bank-contracts:
     name: validate
     runs-on: ubuntu-latest
+    timeout-minutes: 35
     env:
       GOFLAGS: -mod=vendor
       GOPROXY: "off"
@@ -36,7 +37,7 @@ jobs:
       - run: go test ./...
       - run: go test -race ./...
       - run: go vet ./...
-      - run: go test -tags taskintegration ./...
+      - run: go test -tags taskintegration -timeout 20m ./...
       - name: Build verification commands once
         shell: bash
         run: |
