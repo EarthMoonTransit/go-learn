@@ -42,3 +42,9 @@
     сливается только после успешного GitHub Actions check `validate`. Пока
     server-side branch protection недоступна, это обязательный process gate;
     локальный hook нельзя обходить через `--no-verify`.
+12. При создании и исправлении задач проверять public feedback по
+    `docs/QUALITY_GATES.md`: в review notes сопоставить базовые требования
+    условия с public assertions и ошибочными вариантами. Для исправленного
+    пробела сохранять автоматическую регрессию public-проверки с понятной
+    диагностикой; одного падения mutant на grader недостаточно. Короткий цикл
+    отладки описан в `docs/DEBUGGING.md`; обязательные acceptance gates сохраняются.
