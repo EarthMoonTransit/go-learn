@@ -1,5 +1,7 @@
 # Go Practice Bank
 
+
+Active roadmap: **150 ready Go lessons → complete Go foundation**. Backend and production lesson tracks are deferred. See [ROADMAP.md](docs/ROADMAP.md).
 Кураторский банк практических задач по Go. Репозиторий находится в
 **ФАЗЕ 3D**. Taxonomy v3 и полный pedagogical triage Exercism зафиксированы;
 добавлены lifecycle, Task Contract v2, multi-source provenance, изолированные

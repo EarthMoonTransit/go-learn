@@ -1,169 +1,134 @@
-# Go Learn: personal route from Go fundamentals to production backend
+# Go Learn: two milestones to complete Go fundamentals
 
-Status: accepted personal learning roadmap, 2026-09-05.
+Status: accepted implementation plan, 2026-09-08. This is the authoritative
+active roadmap. GoLand is the editor; the local UI and short `learn` commands
+share the learning cycle. Statements, hints and reviews remain English.
 
-## Finish line
+## Active finish line
 
-The learner independently builds and tests a backend service with HTTP,
-PostgreSQL, background work, cancellation, graceful shutdown, diagnostics,
-Docker and CI. The first completed route excludes Redis, gRPC and brokers;
-these belong to a later distributed-systems extension.
+Cover Go and its fundamental standard library through executable practice.
+Backend, HTTP/PostgreSQL application work, production services, Docker and CI
+as lesson topics are deferred. The repository's engineering CI remains required.
+Standalone theory, entry diagnostics, a custom editor and cloud distribution
+are outside this delivery.
 
-Learning starts sequentially from the fundamentals, without an entry diagnostic.
-GoLand is the editor; `learn` is the local command interface. Task statements,
-hints and reviews are in English. Milestones depend on completed learning blocks,
-not calendar deadlines. A custom editor, public distribution and a thousand-task
-catalog are not prerequisites for completing the personal route.
+| Milestone | Product result | Definition of Done |
+| --- | --- | --- |
+| 1. Working course: 150 ready lessons | Numbered sections/workspaces, systematic source adaptation, sequential practice, independent coding/testing and repetitions | 150 learner-visible lessons have prerequisites and route positions, executable checks and independent review. Repetitions and mastery evidence work separately from completion. Existing solutions and history survive migrations. At least 76 lessons substantively adapt permitted exercise material; concept-only seeds do not qualify. |
+| 2. Complete foundation: approximately 450 bank tasks | All 142 active skills, including concurrency, context, fuzzing and benchmarks, plus integrated components | Required `-coverage` passes, necessary verification profiles exist, and no required route segment is unprepared. Components assess combinations of skills. |
 
-User scope update, 2026-09-05: a standalone theory companion is removed from the
-current plan, including its previously deferred final item. Existing task
-statements, hints, review prompts and operational preparation remain available.
-
-## Milestones
-
-| Milestone | Learner-visible ready tasks | Acceptance |
-| --- | ---: | --- |
-| Sequential beginning | 12 | A beginner can follow the opening blocks without unexplained prerequisites, file/command discovery or hidden requirements. |
-| Working course | 60 | Types, expressions, flow, functions, collections and introductory tests; real learner evidence for implementation, debugging, test submissions and workspace patches. |
-| Deeper language practice | 150 | Structs, pointers, methods, interfaces, errors, Unicode, generics, packages and I/O; one finished tested component; spaced practice. |
-| Complete foundation | About 450 in the bank | All 142 active skills satisfy required coverage; independent learner practice confirms mastery. The core route is provisionally 250–350 tasks, with alternatives used for remediation. |
-| Backend | 12-task slice, then 60 | HTTP/JSON, errors, PostgreSQL/transactions, clients and repeatable integration tests against a real local database. |
-| Production project | Capability-based | Independently completed service passes normal-operation and failure scenarios. |
-
-The foundation estimate respects the existing 350–500 target and 409 primary /
-693 total encounter minima. Estimates are not permission to weaken quality or
-generate cosmetic variants. Backend coverage must be separated from foundation
-before backend tasks are introduced.
-
-## Learning sequence
-
-1. Toolchain and project structure; types; expressions; control flow; functions.
-2. Arrays; slices; maps; strings and Unicode.
-3. Structs; pointers; methods; embedding; interfaces; errors.
-4. Packages and generics; I/O; files; encoding; time.
-5. Deeper testing; fuzzing; benchmarks.
-6. Goroutines; channels; sync; context; lifetime management.
-7. HTTP; PostgreSQL; background work; operating the service.
-
-Testing starts early and becomes more demanding. Atomic skill prerequisites
-determine ordering within these broad blocks. Each skill follows introduction,
-practice, transfer and spaced repetition. First repetitions become due after
-three other tasks. Mastery requires two distinct independent practice/transfer
-successes without hints or solution reveal; assisted completion remains progress
-and leads to another independent check. Major blocks end with a component or an
-extension of the final service.
-
-## Delivery policy
-
-- Content batches contain 5–10 tasks, never more than 10 substantially changed
-  tasks. Tooling, taxonomy and adapters are separate batches.
-- Maintain at least one next learning block ready. After every five learner
-  completions, use feedback to adjust the next block. After three content
-  batches, review semantic duplicates, task-form balance and verification quality.
-- Repair existing advanced drafts when their prerequisites have been taught.
-- Introduce sources only for a demonstrated content gap, preserving exact
-  provenance and independent review. No reference-only material is copied.
-- Keep canonical tasks separate from learner workspaces. Authored code and
-  task tests execute only through disposable verification environments.
-- Every batch uses a feature branch and PR, merged only after `validate` passes.
-- Tooling acceptance runs fast tests, race, vet and integration; one full
-  CheckCollection is reused by validation and report checks. Partial banks use
-  `-phase1`; completion of foundation requires `-coverage`.
-
-## Engine changes, when needed
-
-Implemented for the opening course: a versioned route description and
-`learn roadmap` show the current block, completed tasks and planned material.
-`learn next` follows the route and explains missing preparation instead of
-silently jumping ahead. Existing task IDs and learner completion records remain
-intact. ADR 0010 records this change; later engine work follows below.
-
-Separate task completion from skill mastery and support repetitions. Any change
-to progress storage needs a version, backup and tested migration preserving
-attempts, hints, completion and session time. Coverage is not learner mastery.
-
-Add narrow toolchain/project checks in disposable workspaces for real module
-exercises. Before teaching fuzzing/benchmarks, implement their reserved profiles
-with bounded, stable evidence rather than absolute wall-clock thresholds.
-Before backend, introduce a separate track and managed local HTTP/database
-verification. Each contract extension needs its own ADR and tooling batch;
-foundation checks remain reproducible and offline.
-
-## Local interface: current bounded delivery
-
-The current goal brings a minimal local UI forward, without waiting for 60–100
-ready tasks. GoLand remains the editor and the short CLI remains available.
-Both interfaces share the learner service, checker, home and progress rules.
-
-The first cycle is route → next task → statement → start/resume workspace →
-open in GoLand or copy path → public check → full check and complete → review →
-next task. Review means the existing taxonomy-based prompts. Reference reveal
-remains an explicit CLI action. The UI must not invent mastery or due counters.
-
-[LOCAL_UI_GOAL.md](LOCAL_UI_GOAL.md) records the bounded delivery and acceptance:
-documentation, IDE workspace compatibility, UI, independent acceptance, then
-exactly five strings/bytes tasks. At the recorded baseline this moves available
-v2 content from 17 to 22; reaching 60 is a later goal. The local UI is implemented
-through the shared learner service; launch and compatibility instructions are in
-[LEARNER_CLI.md](LEARNER_CLI.md). The separate five-task content batch adds
-strings/bytes implementation, debugging and independent byte-boundary tests;
-[acceptance evidence](../reports/strings-bytes-acceptance.md) records its scope.
-
-Mastery/progress migration and dynamic spaced repetition belong to the next
-goal. This delivery excludes theory, entry diagnostics, cloud, an embedded
-editor and backend work. Existing historical human feedback remains distinct
-from automated acceptance and future learner calibration.
-
-## Final acceptance
-
-The service must demonstrate ordinary operation, invalid requests, transaction
-failure and rollback, database unavailability, cancellation, background-worker
-termination and restart with durable data. The learner explains design decisions
-and repairs an introduced defect. Automatic checks alone are not human mastery.
+The full bank estimate respects the existing 350–500 target and 409 primary /
+693 total encounter minima. The core learner route is provisionally 250–350
+lessons; alternatives support remediation. Product readiness does not establish
+human mastery. Learner evidence must be reported separately.
 
 ## Current checkpoint
 
-| Measure | Verified state on 2026-09-05 |
+Baseline: master `f41a602645718e276e8683d84c4f58f461476aa0`, 2026-09-08.
+
+| Measure | Verified baseline |
 | --- | --- |
-| Learner-visible ready tasks | 22 (the previous 17 plus five strings/bytes lessons) |
-| Historical recorded human completions | 1 (`map-take-001`: four attempts, one hint, no solution reveal) |
-| Historical mastery assessment | 0; one assisted completion is not mastery; current private progress was not inspected |
-| Next product result | Local UI and the strings/bytes block are available; next prepare Unicode toward the 60-task working course after learner feedback |
-| Current gap | Human feedback on the opening block; mastery and spaced repetition remain scheduled for the working-course milestone |
+| Learner-visible ready lessons | 22; another 128 are required for milestone 1 |
+| Activities | 11 implementation, 9 debugging, 2 test-writing; some existing implementation scaffolds already contain logic |
+| Substantive source adaptations | Not yet accepted against the new 76-task criterion; existing concept-seed labels must not be counted as substantive reuse |
+| Other packages | Three legacy ready packages, eight drafts, one rejected; excluded from learner-visible 22 |
+| Human progress / mastery | Private progress not inspected; historical one assisted map-take completion is not current progress or mastery |
+| Delivered tooling | Sequential route, local UI, GoLand support, public-feedback regression for the opening lesson |
+| Next result | Numbered navigation and workspaces, reviewed source allocation, then content expansion toward 60, 100 and 150 |
+| Outstanding | Workspace migration, repetition/mastery, 128 new reviewed lessons and substantive adaptation evidence |
 
-The stored session duration includes any time without an explicit pause and is
-not claimed as independently measured active learning time. The first feedback
-and review-context export are stored privately in learner home.
+60 and 100 are reporting checkpoints inside milestone 1, not mandatory stops.
+A successful batch authorizes continuation to the next within the accepted plan.
 
-## Opening work delivered
+## Course organization
 
-1. Recorded this roadmap and aligned the product vision with the personal finish line.
-2. Prepared two reviewed English content batches of five tasks, with explicit
-   prerequisites and positions in the learning route.
-3. Added `learn roadmap`, sequential selection and an English GoLand preparation
-   guide. The opening set contains 12 available tasks. Automated acceptance is
-   complete; the beginner usability criterion still needs real learner feedback.
+Keep the current foundation order, sections 01–09: first steps; values and
+collections; control and verification; strings/bytes; Unicode; structs, pointers,
+methods, embedding, interfaces and errors; packages, generics, I/O, encoding and
+time; deeper testing; concurrency and context. Backend/production placeholders
+leave the active route when numbered navigation is delivered.
 
-The next practical block adds numeric conversion, interval decisions, switch
-dispatch, range updates and learner-written interval tests. The repaired
-`clamp-tests-001` retains its Exercism concept-seed provenance and prior rejection
-history. Its revised contract assesses comparison verification; it does not
-claim table structure, diagnostic quality or testing mastery. The original
-twelve lessons retain their order and learner completion records.
+Store section and lesson numbers explicitly in a versioned route. Display
+`01.01` alongside the English title in UI/CLI. Stable task IDs remain progress,
+provenance and command keys; their numeric suffix is not a lesson number.
+Existing assigned numbers must not be silently regenerated when content grows.
 
-## Next batches
+Organize private workspaces by numbered section and lesson, for example
+`workspaces/01-first-steps/01-literal-bindings/`. Canonical task packages retain
+their lifecycle layout. A separate ADR/tooling batch adds versioned progress,
+backup, `learn organize --dry-run`, `learn organize` and interrupted-operation
+recovery. Read-only commands never migrate. Conflicts never overwrite solutions.
 
-The immediate delivery follows LOCAL_UI_GOAL.md. The longer course policy below
-continues after that bounded goal; mastery migration is excluded from this run.
+## Source-first content delivery
 
-Use the first five real opening-course solutions to adjust the next block.
-Continue toward 60 tasks in batches of 5–10: fill out the initial types,
-expressions, control flow, functions and collections, and introduce test-writing
-tasks. Add independent-skill evidence and repetition through a separate ADR and
-tooling batch, including a versioned, backed-up progress migration. Do not count
-an automated trial or the existing assisted completion as independent mastery.
+Inventory → skill-based selection → substantive adaptation → verification → route.
+Start with the saved 177 Exercism candidates and selected permitted Learn Go
+with Tests / Ardan Labs artifacts. Use first-party Go material for specific gaps.
+Inventory large sets; the ten-task limit applies to release/review batches.
+Before mass release, record all 128 planned additions with primary skill,
+prerequisites, candidate, exact source/path/commit or original-development reason.
 
-After every accepted batch update this checkpoint: ready tasks, human-completed
-tasks, confirmed skills, next result and blockers. Planned, draft and legacy-only
-packages never count as available learner content. Human calibration gates later
-milestones; automated fixture completions cannot satisfy them.
+At least 76 of the 150 ready lessons must substantively reuse permitted exercise
+material. A topic name, metadata-only mapping or concept-seed does not qualify.
+Adapt relevant behavior/code/checks to technical, story-free lessons while
+preserving all artifact provenance and notices. Do not copy reference-only
+material, including related generated cases. Source solutions remain private.
+Original work fills demonstrated gaps; never relabel it to meet the target.
+Expand permitted-source selection and report any real deficit.
+
+Implementation lessons start with signatures and minimal stubs, not a supplied
+algorithm. Test-writing requires independently authored checks. Progress toward
+multiple functions/files and complete components. Per ten new lessons, target
+five implementation, three test-writing and two debugging tasks; also enforce
+existing per-domain diversity. Existing content is repaired gradually, separately.
+
+## Execution ledger and batch policy
+
+| Batch | Result | Acceptance / status |
+| --- | --- | --- |
+| D02 | This active roadmap, aligned vision and execution ledger | Accepted user scope recorded; implementation evidence tracked below |
+| S01 | Source inventory and allocation for 128 additions | Exact registry/path/commit and semantic selection evidence; no planned item counted ready |
+| T03 | Explicit route numbering and UI/CLI navigation | Same labels across interfaces, stable IDs and existing sequence, visible planned material |
+| T04 | Numbered workspaces and migration | Backup/recovery, conflict and UI/CLI coordination tests; no lost learner data |
+| T05 | Repetition and independent mastery evidence | Separate ADR and versioned migration; preserve attempts/hints/completion/time |
+| C02–C14 minimum | 128 new lessons, Unicode first, then gaps and later subjects | At most ten new/substantially revised tasks per batch; public/full/reference/mutant checks and independent review |
+| K02 | Milestone-1 acceptance at 150 | All milestone conditions, adaptation count, route, components and progress evidence verified |
+
+Tooling needed for unsupported task profiles is delivered before that content.
+At least thirteen content batches are required; repairs may add batches. Each
+batch has its own codex branch and PR, merged after exact-head `validate` passes.
+Tooling and content are separate. No new approval is needed after each ten tasks.
+
+After five real learner completions use available feedback to adjust upcoming
+content. Its absence does not stop preparation or authorize fake calibration.
+After three content batches audit semantic duplicates, activity balance and tests.
+Maintain at least one prepared next learning block as the route expands.
+
+## Mastery and acceptance
+
+First repetitions become due after three other tasks. Confirm a skill only after
+two distinct independent practice/transfer successes without hints or solution
+reveal. Assisted completion remains progress and creates a need for independent
+follow-up. Automatic fixture completion is not learner evidence.
+
+Map each basic prompt requirement to public assertions, realistic wrong variants
+and useful diagnostics. Follow QUALITY_GATES.md and DEBUGGING.md. Execute authored
+content only in disposable verification environments. Tooling acceptance runs
+fast tests, race, vet, integration, then one full CheckCollection; validator and
+report-check reuse it. Partial banks use `-phase1`; foundation completion requires
+`-coverage`. Migrations cover interrupted/repeated runs, conflicts, UI/CLI overlap,
+solutions, completion, attempts, hints and time.
+
+After each accepted batch update one checkpoint: ready / substantively adapted /
+original and concept-seed / covered skills / human completions / confirmed mastery /
+next result / blockers. Do not substitute coverage for mastery or planned for ready.
+
+## Historical delivery and deferred continuation
+
+The opening 12 lessons, control/testing expansion, local UI and five strings/bytes
+lessons are delivered. LOCAL_UI_GOAL.md records that completed bounded iteration;
+it does not cap this 150-task run. Reports retain their historical evidence.
+
+After foundation, a separate accepted plan may restore HTTP/PostgreSQL, background
+services, production failure scenarios, Docker and CI lessons. Redis, gRPC and
+brokers remain a later extension. None is required to complete the active scope.
