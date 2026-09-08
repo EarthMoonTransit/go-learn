@@ -1,0 +1,51 @@
+schema_version: 2
+id: struct-record-tests-001
+title: Test construction of a pointer-backed record
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: structs.literals-zero
+    secondary: []
+prerequisites:
+    - maps.operations-comma-ok
+    - pointers.address-deref-nil
+    - testing.basics-diagnostics
+    - types.zero-values
+new_concepts: []
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - nil-result
+        - name-lost
+        - age-lost
+        - attributes-lost
+        - nil-normalized
+        - empty-normalized
+        - clear-input
+        - shared-record
+        - default-name
+        - default-zero-age
+        - clamped-negative-age
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

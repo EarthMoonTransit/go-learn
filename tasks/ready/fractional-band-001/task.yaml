@@ -1,0 +1,45 @@
+schema_version: 2
+id: fractional-band-001
+title: Repair classification before numeric narrowing
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: types.floating-point-semantics
+    secondary: []
+prerequisites:
+    - expressions.comparison
+    - types.numeric-conversions
+new_concepts:
+    - types.floating-point-semantics
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - narrow-input
+        - zero-negative
+        - middle-bound-inclusive
+        - upper-bound-inclusive
+        - truncate-rate
+        - absolute-input
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

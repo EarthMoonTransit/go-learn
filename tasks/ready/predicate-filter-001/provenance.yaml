@@ -1,0 +1,57 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected expenses operation and hand-authored check structure: preserve the observable rules, remove narrative, rename technical APIs, and add independently authored public/full boundaries, reference and defect models. No canonical/generated cases or upstream solution used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "915a8aa30ee320ba9df54ba18d398261052168dc94a22dce846b4e2e72573256",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/predicate-filter-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/expenses/.docs/instructions.md",
+          "sha256": "7d1917452bb8975e5f7e8a1b88fe9fe6696578cb8c81e3172acceb7dc760fbd6",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/expenses/expenses.go",
+          "sha256": "022dbf2b5b800e272aca903286daa68335dc436c316487332afd6f7da7ca6dbf",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/expenses/expenses_test.go",
+          "sha256": "69d907bab061fa5cd7d60a040dcf30cba2b71bcd297318e4178f8a9953195651",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/expenses/.meta/config.json",
+          "sha256": "dfb1c08db62e0346936840dbe04bd25f280e3aecba609a8a6c84aabf9ef7f35b",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}
