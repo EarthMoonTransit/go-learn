@@ -46,7 +46,8 @@
       "clear-on-error",
       "mutate-input",
       "fresh-error",
-      "shared-buffer"
+      "shared-buffer",
+      "merge-receiver"
     ],
     "race_required": false,
     "vet": true,

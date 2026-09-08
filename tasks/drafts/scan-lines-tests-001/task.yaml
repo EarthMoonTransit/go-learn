@@ -45,7 +45,9 @@
       "tiny-buffer",
       "unbounded-token",
       "close-reader",
-      "drop-last"
+      "drop-last",
+      "fresh-reader-error",
+      "drop-unterminated"
     ],
     "race_required": false,
     "vet": true,

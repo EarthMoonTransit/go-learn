@@ -1,35 +1,25 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- Collect lines using bufio.ScanLines semantics: remove newline and an optional preceding carriage return; include a final nonempty line without a newline.
-- Preserve spaces, Unicode and interior empty lines. Empty input returns no lines; nil and empty result slices are equivalent.
-- Return collected lines together with the scanner error, preserving a supplied reader error identity. Do not close src.
-- Accept lines up to 2048 bytes. Reject a 10000-byte unbroken token with a non-nil error; exact buffer capacity is unspecified.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+For this test-writing profile, the public run checks learner tests against the correct implementation; full verification challenges those tests with defects. The assertions below are the strong learner reference suite. The starter is intentionally insufficient.
 
-- Case01: `v,e:=subject.ScanLines(strings.NewReader("a
-b"));if e!=nil||!slices.Equal(v,[]string{"a","b"}){t.Errorf("final line got%q,%v",v,e)}`
-- Case02: `for _,c:=range []struct{text string;want []string}{{"",nil},{"
-",[]string{""}},{" a 
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Line endings, final unterminated line, spaces, Unicode and interior empties | TestContractCase01–02 | drop-unterminated, drop-last, trim-lines, skip-empty | final line; lines got/want |
+| Retain collected lines, original reader error and caller ownership | TestContractCase03 | ignore-error, fresh-reader-error, close-reader | reader error/success with lines/error/closes |
+| Accept 2048-byte lines and reject 10000-byte unbroken token | TestContractCase02 and Case04 | tiny-buffer, unbounded-token | lines; oversize token wantempty,error |
 
-λ
-",[]string{" a ","","λ"}},{strings.Repeat("x",2048),[]string{strings.Repeat("x",2048)}}}{v,e:=subject.ScanLines(strings.NewReader(c.text));if e!=nil||!slices.Equal(v,c.want){t.Errorf("lines got%q,%v want%q",v,e,c.want)}}`
-- Case03: `cause:=errors.New("read failed");r:=&lineReader{data:[]byte("ok
-"),err:cause};v,e:=subject.ScanLines(r);if !slices.Equal(v,[]string{"ok"})||e!=cause||r.closes!=0{t.Errorf("reader error got%q,%v closes%d",v,e,r.closes)};r=&lineReader{data:[]byte("ok"),err:io.EOF};v,e=subject.ScanLines(r);if e!=nil||!slices.Equal(v,[]string{"ok"})||r.closes!=0{t.Errorf("reader success got%q,%v closes%d",v,e,r.closes)}`
-- Case04: `v,e:=subject.ScanLines(strings.NewReader(strings.Repeat("x",10000)));if e==nil||len(v)!=0{t.Errorf("oversize token got%q,%v wantempty,error",v,e)}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `io.scanning`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `io.scanning`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- ignore-error
-- trim-lines
-- skip-empty
-- tiny-buffer
-- unbounded-token
-- close-reader
-- drop-last
+Required defects reviewed: `ignore-error`, `trim-lines`, `skip-empty`, `tiny-buffer`, `unbounded-token`, `close-reader`, `drop-last`, `fresh-reader-error`, `drop-unterminated`. The author-provided `.tmp/checks/scan-lines-tests-001.yaml` records technical PASS, reference PASS and 9/9 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.
+
+The saved `review/weak-final-line.txt` preserves the strong suite while changing otherwise accepted final lines to newline-terminated inputs. The author executed it only as a starter in a disposable task-check fixture; `.tmp/checks/scan-lines-weak.yaml` records reference PASS and the expected starter-full insufficiency gate. The final TeeReader defect preserves original scanner/reader errors and collected lines, isolating loss of an unterminated final line. Its necessity is independent of reader-error coverage. This is automated weakness evidence, not human calibration.

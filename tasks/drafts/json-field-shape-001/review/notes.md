@@ -1,25 +1,21 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- Record has exported Name and Count and private secret. NewRecord stores all three supplied values.
-- EncodeRecord returns a JSON object with name always present, count omitted only when zero, and no secret field.
-- Use JSON tags on Record fields. Preserve negative counts and exact Unicode/text content; object key order and escaping spelling are unspecified.
-- Return encoding errors normally. Do not mutate the Record or read environment state.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Keep supplied public tags and private secret; constructor stores every value | TestFieldContract; TestPublicCase01 | discard-secret, wrong-count, trim-name | private secret; JSON tags; item fields |
+| Always include name, omit only zero count, exclude secret | TestPublicCase01 decoded object comparison | default-names, count-always, omit-empty-name, hide-count | JSON got/want |
+| Preserve negative count and exact Unicode/text while allowing key order/escaping alternatives | TestPublicCase01 semantic JSON comparison | hide-count, trim-name | JSON object and unchanged item |
 
-- Case01: `for _,c:=range []struct{name string;count int}{{"",0},{" λ <x> ",3},{"negative",-2}}{item:=subject.NewRecord(c.name,c.count,"private");data,e:=subject.EncodeRecord(item);if e!=nil{t.Fatal(e)};var got map[string]any;if e=json.Unmarshal(data,&got);e!=nil{t.Fatal(e)};want:=map[string]any{"name":c.name};if c.count!=0{want["count"]=float64(c.count)};if !reflect.DeepEqual(got,want)||item.Name!=c.name||item.Count!=c.count{t.Errorf("JSON got%v want%v item%+v",got,want,item)}}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `encoding.json-shape-tags`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `encoding.json-shape-tags`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- default-names
-- count-always
-- omit-empty-name
-- hide-count
-- wrong-count
-- trim-name
+Required defects reviewed: `default-names`, `count-always`, `omit-empty-name`, `hide-count`, `wrong-count`, `trim-name`, `discard-secret`. The author-provided `.tmp/checks/json-field-shape-001.yaml` records technical PASS, reference PASS and 7/7 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

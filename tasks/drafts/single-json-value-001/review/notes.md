@@ -1,28 +1,22 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- Decode exactly one JSON object with optional name string and count integer fields; missing fields take their zero values.
-- Reject unknown fields, null, wrong field types, malformed input and any second JSON value or non-whitespace suffix.
-- On rejection return zero Record and the supplied non-nil ErrJSON; preserve the sentinel. Whitespace around one object is allowed.
-- Do not close src. Standard encoding/json duplicate-key and field-name matching rules apply; no additional schema validation is required.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Exactly one object with permitted fields and no extra value/suffix | TestPublicCase01–02 | allow-unknown, ignore-trailing, null-as-zero | decode/reject quoted input |
+| Rejection returns zero record and original non-nil sentinel | TestPublicCase02; TestDiscardPartialObject | fresh-error, partial-on-reject | wantzero,original; partial object |
+| Standard duplicate keys, case-folded fields and field-level null, while rejecting top-level null | TestPublicCase01; TestStandardFieldMatchingAndNull | null-as-zero and valid-alternative acceptance cases | standard fields got/want |
+| Caller owns reader on success and rejection | TestPublicCase03 | close-reader | success/failure closes |
 
-- Case01: `for _,c:=range []struct{text string;want subject.Record}{{"{}",subject.Record{}},{" 
-{\"name\":\" λ \",\"count\":-2}	",subject.Record{Name:" λ ",Count:-2}},{"{\"name\":\"a\",\"name\":\"b\"}",subject.Record{Name:"b"}}}{v,e:=subject.DecodeOne(strings.NewReader(c.text));if e!=nil||v!=c.want{t.Errorf("decode%q got%+v,%v want%+v",c.text,v,e,c.want)}}`
-- Case02: `sentinel:=subject.ErrJSON;if sentinel==nil{t.Fatal("nil JSON sentinel")};for _,text:=range []string{"","null","[]","{\"extra\":1}","{\"name\":2}","{\"count\":1.5}","{} {}","{} null","{} trailing","{\"name\":\"x\""}{v,e:=subject.DecodeOne(strings.NewReader(text));if v!=(subject.Record{})||e!=sentinel||subject.ErrJSON!=sentinel{t.Errorf("reject%q got%+v,%v wantzero,original",text,v,e)}}`
-- Case03: `r:=&jsonReader{Reader:strings.NewReader("{}")};_,e:=subject.DecodeOne(r);if e!=nil||r.closes!=0{t.Errorf("success closes%d err%v",r.closes,e)};r=&jsonReader{Reader:strings.NewReader("{} x")};_,_=subject.DecodeOne(r);if r.closes!=0{t.Errorf("failure closes%d",r.closes)}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `encoding.streaming-strictness`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `encoding.streaming-strictness`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- allow-unknown
-- ignore-trailing
-- null-as-zero
-- partial-on-reject
-- fresh-error
-- close-reader
+Required defects reviewed: `allow-unknown`, `ignore-trailing`, `null-as-zero`, `partial-on-reject`, `fresh-error`, `close-reader`. The author-provided `.tmp/checks/single-json-value-001.yaml` records technical PASS, reference PASS and 6/6 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

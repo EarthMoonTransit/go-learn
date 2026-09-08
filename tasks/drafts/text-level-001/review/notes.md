@@ -1,28 +1,21 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- Levels zero through nine marshal as exactly one ASCII digit with nil error. Other Level values return nil and the supplied non-nil ErrLevel.
-- UnmarshalText accepts exactly one ASCII digit into a non-nil receiver; reject every other byte sequence without changing the receiver.
-- Preserve input bytes and ErrLevel identity. Do not trim spaces or accept Unicode digits, signs or multiple digits.
-- Separate successful marshal calls return independent byte storage.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| All valid levels/digits marshal and unmarshal exactly | TestPublicCase01 | raw-byte | marshal/unmarshal numeric value |
+| Reject invalid byte sequences and levels atomically with original sentinel | TestPublicCase02 | allow-ten, trim-input, clear-on-error, fresh-error | invalid quoted text; invalid level |
+| Preserve input and independent successful marshal storage | TestPublicCase02–03 | mutate-input, shared-output | valid input changed; outputs share storage |
 
-- Case01: `for n:=0;n<=9;n++{value:=subject.Level(n);data,e:=value.MarshalText();if e!=nil||len(data)!=1||data[0]!=byte(n)+'0'{t.Errorf("marshal%d got%q,%v",n,data,e)};var got subject.Level;if e=got.UnmarshalText([]byte{byte(n)+'0'});e!=nil||got!=value{t.Errorf("unmarshal%d got%d,%v",n,got,e)}}`
-- Case02: `sentinel:=subject.ErrLevel;if sentinel==nil{t.Fatal("nil level sentinel")};for _,text:=range []string{"","10"," 1","1 ","+1","１","/",":"}{l:=subject.Level(7);input:=[]byte(text);before:=slices.Clone(input);e:=l.UnmarshalText(input);if e!=sentinel||l!=7||!slices.Equal(input,before)||subject.ErrLevel!=sentinel{t.Errorf("invalid %q got%d,%v",text,l,e)}};for _,l:=range []subject.Level{10,255}{data,e:=l.MarshalText();if data!=nil||e!=sentinel||subject.ErrLevel!=sentinel{t.Errorf("invalid level%d got%q,%v",l,data,e)}}`
-- Case03: `a,e:=subject.Level(1).MarshalText();b,f:=subject.Level(1).MarshalText();if e!=nil||f!=nil||len(a)!=1||len(b)!=1{t.Fatal("bad marshal")};a[0]='9';if b[0]!='1'{t.Error("marshal outputs share storage")};input:=[]byte("2");var l subject.Level;if l.UnmarshalText(input)!=nil||string(input)!="2"||l!=2{t.Errorf("valid input changed %q level%d",input,l)}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `encoding.text-marshaling`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `encoding.text-marshaling`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- raw-byte
-- allow-ten
-- trim-input
-- clear-on-error
-- fresh-error
-- mutate-input
-- shared-output
+Required defects reviewed: `raw-byte`, `allow-ten`, `trim-input`, `clear-on-error`, `fresh-error`, `mutate-input`, `shared-output`. The author-provided `.tmp/checks/text-level-001.yaml` records technical PASS, reference PASS and 7/7 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

@@ -41,8 +41,8 @@
       "no-flush",
       "ignore-flush-error",
       "trim-text",
-      "close-output",
-      "ignore-write-error"
+      "ignore-write-error",
+      "empty-skips-flush"
     ],
     "race_required": false,
     "vet": true,

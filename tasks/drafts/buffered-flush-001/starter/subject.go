@@ -1,7 +1,7 @@
 package subject
 
-import (
-	"io"
-)
+import "bufio"
 
-func WriteBuffered(dst io.Writer, text string) error { return nil }
+import ()
+
+func WriteBuffered(writer *bufio.Writer, text string) error { return nil }

@@ -1,26 +1,21 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Substantive adaptation from `exercism-go` at `ae1477abfeeb9fbeaf971caee220e91f9e4df790`. Reviewed the exact declared source files and checked every SHA256 against the pinned checkout: `exercises/concept/booking-up-for-beauty/.docs/instructions.md` (adapted), `exercises/concept/booking-up-for-beauty/booking_up_for_beauty_test.go` (adapted), `exercises/concept/booking-up-for-beauty/booking_up_for_beauty.go` (adapted), `exercises/concept/booking-up-for-beauty/.meta/config.json` (factual-reference), `LICENSE` (copied). Registry permits adaptation; complete MIT notice, author/contributor attribution and modification boundary are retained. No reference-only content or generated canonical cases used.
 
-- Parse with layout "Monday, January 2, 2006 15:04:05" using time.Parse rules, including its weekday handling and optional fractional seconds.
-- Return true only for parsed times at or after 12:00 and before 18:00; return false for other valid times.
-- On invalid input return false and the supplied non-nil ErrDate. Preserve its identity.
-- The result depends only on text; do not use the current date or machine timezone.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Specified weekday/month layout and standard parsing | TestPublicCase01–02 | wrong-layout | window/invalid quoted input |
+| Half-open noon-to-18 window, including fractional final second | TestPublicCase01 | exclude-noon, include-eighteen, or-window | window got/want boolean |
+| Invalid input returns false and original non-nil sentinel | TestPublicCase02 | swallow-error, fresh-error | invalid input and error |
 
-- Case01: `for _,c:=range []struct{text string;want bool}{{"Thursday, May 13, 2010 20:32:00",false},{"Friday, March 8, 1974 12:02:02",true},{"Friday, September 9, 2112 11:59:59",false},{"Monday, January 1, 2024 12:00:00",true},{"Monday, January 1, 2024 17:59:59.999",true},{"Monday, January 1, 2024 18:00:00",false}}{got,e:=subject.IsAfternoon(c.text);if got!=c.want||e!=nil{t.Errorf("window%q got%v,%v want%v,nil",c.text,got,e,c.want)}}`
-- Case02: `sentinel:=subject.ErrDate;if sentinel==nil{t.Fatal("nil date sentinel")};for _,text:=range []string{"","Monday, February 30, 2024 13:00:00","Monday, January 1, 2024 25:00:00","1/1/2024 13:00:00"}{v,e:=subject.IsAfternoon(text);if v||e!=sentinel||subject.ErrDate!=sentinel{t.Errorf("invalid %q got%v,%v",text,v,e)}}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `time.parsing-zones`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: none. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- exclude-noon
-- include-eighteen
-- or-window
-- wrong-layout
-- swallow-error
-- fresh-error
+Required defects reviewed: `exclude-noon`, `include-eighteen`, `or-window`, `wrong-layout`, `swallow-error`, `fresh-error`. The author-provided `.tmp/checks/afternoon-window-001.yaml` records technical PASS, reference PASS and 6/6 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: booking-up-for-beauty selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

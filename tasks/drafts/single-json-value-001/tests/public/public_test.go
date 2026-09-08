@@ -61,3 +61,15 @@ func TestDiscardPartialObject(t *testing.T) {
 }
 
 var originalSentinel = subject.ErrJSON
+
+func TestStandardFieldMatchingAndNull(t *testing.T) {
+	for _, c := range []struct {
+		text string
+		want subject.Record
+	}{{`{"NAME":"x","COUNT":2}`, subject.Record{Name: "x", Count: 2}}, {`{"name":null,"count":null}`, subject.Record{}}, {`{"name":"x","name":null,"count":3,"count":null}`, subject.Record{Name: "x", Count: 3}}} {
+		v, e := subject.DecodeOne(strings.NewReader(c.text))
+		if e != nil || v != c.want {
+			t.Errorf("standard fields %s got%+v,%v want%+v", c.text, v, e, c.want)
+		}
+	}
+}

@@ -2,12 +2,10 @@ package subject
 
 import (
 	"bufio"
-	"io"
 	"strings"
 )
 
-func WriteBuffered(dst io.Writer, text string) error {
-	writer := bufio.NewWriter(dst)
+func WriteBuffered(writer *bufio.Writer, text string) error {
 	if _, err := writer.WriteString(strings.TrimSpace(text)); err != nil {
 		return err
 	}

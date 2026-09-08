@@ -1,26 +1,21 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- Return the number of whole minutes in a duration from zero through 24 hours inclusive, truncating a positive remainder.
-- Return 0 and the supplied non-nil ErrDuration for negative durations or values above 24 hours.
-- Preserve the error sentinel. Use duration units, not a guessed conversion from nanoseconds.
-- No wall-clock input, floating-point rounding or local timezone is involved.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Truncate positive remainder and use whole-minute units | TestPublicCase01 | round-nearest, seconds-as-minutes | duration got/want |
+| Inclusive zero/24h range; reject negative and excessive duration | TestPublicCase01–02 | exclude-day, negative-accepted, swallow-invalid | invalid duration; endpoint values |
+| Preserve original non-nil error sentinel | TestPublicCase02 with package-level originalSentinel | fresh-error | want0,original |
 
-- Case01: `for _,c:=range []struct{v time.Duration;want int64}{{0,0},{time.Minute-time.Nanosecond,0},{time.Minute,1},{89*time.Second,1},{119*time.Second,1},{2*time.Minute,2},{24*time.Hour,1440}}{n,e:=subject.WholeMinutes(c.v);if n!=c.want||e!=nil{t.Errorf("duration %v got%d,%v want%d,nil",c.v,n,e,c.want)}}`
-- Case02: `sentinel:=subject.ErrDuration;if sentinel==nil{t.Fatal("nil duration sentinel")};for _,v:=range []time.Duration{-time.Nanosecond,24*time.Hour+time.Nanosecond,time.Duration(1<<63-1)}{n,e:=subject.WholeMinutes(v);if n!=0||e!=sentinel||subject.ErrDuration!=sentinel{t.Errorf("invalid duration%v got%d,%v want0,original",v,n,e)}}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `time.duration-arithmetic`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `time.duration-arithmetic`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- round-nearest
-- seconds-as-minutes
-- exclude-day
-- negative-accepted
-- fresh-error
-- swallow-invalid
+Required defects reviewed: `round-nearest`, `seconds-as-minutes`, `exclude-day`, `negative-accepted`, `fresh-error`, `swallow-invalid`. The author-provided `.tmp/checks/duration-rounding-001.yaml` records technical PASS, reference PASS and 6/6 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

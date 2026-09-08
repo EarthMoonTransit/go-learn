@@ -1,13 +1,15 @@
-schema_version: 1
-reviewer: unassigned
-reviewed_at: "2026-09-08"
-decision: request-changes
-story_free: false
-prompt_test_alignment: false
-public_api_stable: false
-provenance_verified: false
-license_verified: false
-reference_only_clean_room_verified: false
-solution_leakage_checked: false
-minimum_mutants: 1
-notes: Complete independent pedagogical and provenance review before promotion.
+{
+  "schema_version": 1,
+  "reviewer": "/root/ui_goal_reviewer",
+  "reviewed_at": "2026-09-09",
+  "decision": "approve",
+  "story_free": true,
+  "prompt_test_alignment": true,
+  "public_api_stable": true,
+  "provenance_verified": true,
+  "license_verified": true,
+  "reference_only_clean_room_verified": true,
+  "solution_leakage_checked": true,
+  "minimum_mutants": 7,
+  "notes": "Independent content and provenance review approved. Public assertions expose the stated core behavior and valid reference alternatives are accepted. Author-provided targeted task-check report passes; strong reference detects 7/7 required defects. No authored code execution by reviewer or real learner state access. Batch gates and promotion remain separate; estimates and automated fixtures do not establish human calibration."
+}

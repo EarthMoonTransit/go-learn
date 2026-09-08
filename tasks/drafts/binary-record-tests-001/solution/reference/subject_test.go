@@ -68,3 +68,12 @@ func TestContractCase04(t *testing.T) {
 }
 
 var originalSentinel = subject.ErrRecord
+
+func TestReplacesPopulatedReceiver(t *testing.T) {
+	r := subject.Record{Code: 65535, Count: 4294967295}
+	input := []byte{0, 1, 0, 0, 0, 2}
+	e := r.UnmarshalBinary(input)
+	if e != nil || r != (subject.Record{Code: 1, Count: 2}) {
+		t.Errorf("replacement got%+v,%v want{1 2},nil", r, e)
+	}
+}
