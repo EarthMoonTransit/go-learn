@@ -61,7 +61,7 @@ func TestOrganizePreservesFilesAndHistoryAndIsIdempotent(t *testing.T) {
 	if err = json.Unmarshal(before, &expected); err != nil {
 		t.Fatal(err)
 	}
-	expected.SchemaVersion = 2
+	upgradeLearningProgress(&expected, progressSchemaVersion)
 	for _, m := range plan.Moves {
 		expected.Tasks[m.TaskID].Workspace = m.To
 		afterDigest, e := workspaceTree(filepath.Join(s.home, m.To), "")
@@ -119,7 +119,7 @@ func TestNewWorkspacesUseExplicitRouteNumbers(t *testing.T) {
 		t.Fatal(path)
 	}
 	p, err := loadProgress(s.home)
-	if err != nil || p.SchemaVersion != 2 {
+	if err != nil || p.SchemaVersion != progressSchemaVersion {
 		t.Fatal(p, err)
 	}
 	if err := s.ResetTask("literal-bindings-001", true); err != nil {
@@ -175,7 +175,7 @@ func stageOrganizeRecovery(t *testing.T, s *Service) organizeJournal {
 	}
 	var after Progress
 	_ = json.Unmarshal(raw, &after)
-	after.SchemaVersion = 2
+	upgradeLearningProgress(&after, progressSchemaVersion)
 	for _, m := range plan.Moves {
 		_, err = workspaceTree(filepath.Join(s.home, m.From), filepath.Join(s.home, plan.Backup, m.From))
 		if err != nil {

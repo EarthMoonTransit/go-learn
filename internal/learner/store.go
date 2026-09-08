@@ -138,7 +138,7 @@ func loadProgress(home string) (Progress, error) {
 	} else if !errors.Is(err, io.EOF) {
 		return Progress{}, err
 	}
-	if (progress.SchemaVersion != 1 && progress.SchemaVersion != progressSchemaVersion) || progress.Tasks == nil {
+	if (progress.SchemaVersion < 1 || progress.SchemaVersion > progressSchemaVersion) || progress.Tasks == nil {
 		return Progress{}, errors.New("progress.json has an unsupported schema")
 	}
 	return progress, nil

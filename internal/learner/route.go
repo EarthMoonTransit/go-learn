@@ -247,6 +247,20 @@ func routeNext(route Route, tasks []tasking.LearnerTaskInfo, progress Progress) 
 		return SchedulerChoice{}, err
 	}
 	known := knownLearnerSkills(progress)
+	if current := progress.Tasks[progress.CurrentTaskID]; current != nil && !current.Completed {
+		for _, block := range route.Blocks {
+			for _, step := range block.Steps {
+				if step.TaskID == progress.CurrentTaskID {
+					if task, ok := catalog[step.TaskID]; ok {
+						return SchedulerChoice{Resume: true, Task: task, LessonNumber: lessonNumber(block, step), RouteBlock: numberedBlockTitle(block), RouteRole: step.Role, Preparation: route.Preparation}, nil
+					}
+				}
+			}
+		}
+	}
+	if choice, ok := dueReviewChoice(route, catalog, progress, known); ok {
+		return choice, nil
+	}
 	for _, block := range route.Blocks {
 		if len(block.Steps) == 0 {
 			return SchedulerChoice{}, fmt.Errorf("next block is planned: %s; no lessons are ready yet", block.Title)
@@ -286,7 +300,7 @@ func writeRoadmap(output io.Writer, roadmap Roadmap) {
 		}
 	}
 	fmt.Fprintf(output, "Ready lessons: %d/%d defined; completed: %d\n", available, total, completed)
-	fmt.Fprintln(output, "Skill mastery: not assessed by this view; a completion is not proof of mastery.")
+	writeLearning(output, roadmap.Progress)
 	if roadmap.Route.Preparation != "" {
 		fmt.Fprintf(output, "Preparation: %s\n", roadmap.Route.Preparation)
 	}

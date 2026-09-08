@@ -277,3 +277,18 @@ require attention before organization. Backups stay until explicitly removed.
 To roll back, stop learner processes, retain current copies, restore original
 progress.json and workspace trees from the printed backup, and reopen the old
 paths with compatible code. This is an offline recovery procedure, not reset-task.
+
+### Completion evidence and reviews (progress v3)
+
+A completion remains progress. A skill is confirmed after two different
+practice/transfer lessons completed without hints or a revealed solution.
+`learn progress`, `learn roadmap` and the UI display the separate counts.
+After three other completed lessons, `learn next` can choose a prepared delayed
+review. If there is no eligible review yet, continue along the route; the due
+count remains visible. An active current lesson takes precedence.
+
+Existing v1/v2 homes enable this history with `learn organize --dry-run`, then
+`learn organize`. The command saves the exact old progress first; already
+numbered v2 workspaces do not move. Historical completions remain progress and
+never become retroactive evidence of independent mastery. Read-only commands do
+not migrate. Resetting the same task does not create another independent result.

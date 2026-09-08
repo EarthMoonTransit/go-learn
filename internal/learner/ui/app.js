@@ -60,7 +60,8 @@ function markdown(target, text) {
 }
 function renderCourse() {
   const c = state.course; if (!c) return;
-  byId('counts').textContent = c.completed + ' completed · ' + c.ready + ' ready lessons';
+  byId('counts').textContent = c.completed + ' completed · ' + c.ready + ' ready lessons · ' + c.learning.mastered + ' skills confirmed · ' + c.learning.due + ' reviews due';
+  if (c.learning.upgrade_required) byId('counts').textContent += ' · Enable learning history: learn organize';
   byId('next').disabled = !c.next_task_id;
   byId('next-message').textContent = c.next_message;
   byId('next-message').hidden = !c.next_message;

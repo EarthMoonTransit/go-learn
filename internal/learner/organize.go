@@ -182,7 +182,7 @@ func (s *Service) readOrganizeJournal() (organizeJournal, bool, error) {
 	if err = d.Decode(&extra); err != io.EOF {
 		return j, false, errors.New("invalid organization journal trailer")
 	}
-	if j.Version != 1 || j.After.SchemaVersion != progressSchemaVersion || j.Before.Tasks == nil || j.After.Tasks == nil {
+	if j.Version != 1 || (j.After.SchemaVersion < 2 || j.After.SchemaVersion > progressSchemaVersion || j.After.SchemaVersion != j.Plan.ToVersion) || j.Before.Tasks == nil || j.After.Tasks == nil {
 		return j, false, errors.New("unsupported organization journal")
 	}
 	if !strings.HasPrefix(j.Plan.Backup, "backups/organize-") || filepath.ToSlash(filepath.Clean(j.Plan.Backup)) != j.Plan.Backup || len(strings.Split(j.Plan.Backup, "/")) != 2 {
@@ -194,7 +194,7 @@ func (s *Service) readOrganizeJournal() (organizeJournal, bool, error) {
 	}
 	var expected Progress
 	_ = json.Unmarshal(expectedRaw, &expected)
-	expected.SchemaVersion = progressSchemaVersion
+	upgradeLearningProgress(&expected, j.Plan.ToVersion)
 	seen := map[string]bool{}
 	for _, m := range j.Plan.Moves {
 		before, after := j.Before.Tasks[m.TaskID], j.After.Tasks[m.TaskID]
@@ -500,7 +500,7 @@ func (s *Service) prepareOrganization(before Progress, plan OrganizePlan) (organ
 	if e = json.Unmarshal(raw, &after); e != nil {
 		return organizeJournal{}, e
 	}
-	after.SchemaVersion = progressSchemaVersion
+	upgradeLearningProgress(&after, progressSchemaVersion)
 	for _, m := range plan.Moves {
 		after.Tasks[m.TaskID].Workspace = m.To
 	}

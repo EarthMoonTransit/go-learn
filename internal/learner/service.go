@@ -284,6 +284,9 @@ func (s *Service) complete() (tasking.LearnerVerificationResult, error) {
 		stored.LastInteractionAt = now
 		stored.LastCompletionSummary = result.Summary
 		if result.Passed && !stored.Completed {
+			if err := s.recordCompletion(current, stored, info, now); err != nil {
+				return err
+			}
 			stored.Completed = true
 			stored.Status = "completed"
 			stored.CompletedAt = now
@@ -342,6 +345,7 @@ func (s *Service) hint() (int, string, error) {
 			return err
 		}
 		stored.UsedHints = append(stored.UsedHints, next)
+		rememberAssistance(current, stored.TaskID)
 		sort.Ints(stored.UsedHints)
 		stored.LastInteractionAt = now
 		return nil
@@ -368,6 +372,7 @@ func (s *Service) solution(reveal bool) ([]tasking.LearnerWorkspaceFile, error) 
 			return err
 		}
 		stored.SolutionRevealed = true
+		rememberAssistance(current, stored.TaskID)
 		stored.SolutionRevealedAt = now
 		stored.LastInteractionAt = now
 		return nil
@@ -547,6 +552,12 @@ func (s *Service) resetTask(id string, confirmed bool) error {
 		}
 		if err := removeLearnerWorkspace(s.home, id, relative); err != nil {
 			return err
+		}
+		if progress.SchemaVersion >= 3 {
+			progress.Completions = completionHistory(*progress)
+			if task := progress.Tasks[id]; task != nil && (len(task.UsedHints) > 0 || task.SolutionRevealed) {
+				rememberAssistance(progress, id)
+			}
 		}
 		delete(progress.Tasks, id)
 		if progress.CurrentTaskID == id {
