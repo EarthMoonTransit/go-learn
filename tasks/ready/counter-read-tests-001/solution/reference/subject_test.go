@@ -1,0 +1,50 @@
+package subject_test
+
+import (
+	"task.local/counter-read-tests-001/subject"
+	"testing"
+)
+
+func TestContractCase01(t *testing.T) {
+	n := 2
+	if got := subject.CounterValue(&n); got != 2 {
+		t.Errorf("value got %d want 2", got)
+	}
+}
+
+func TestContractCase02(t *testing.T) {
+	if got := subject.CounterValue(nil); got != 0 {
+		t.Errorf("CounterValue: got %v, want %v", got, 0)
+	}
+}
+
+func TestContractCase03(t *testing.T) {
+	n := 0
+	if got := subject.CounterValue(&n); got != 0 {
+		t.Errorf("zero got %d want 0", got)
+	}
+}
+
+func TestContractCase04(t *testing.T) {
+	n := -7
+	if got := subject.CounterValue(&n); got != -7 {
+		t.Errorf("negative got %d want -7", got)
+	}
+}
+
+func TestContractCase05(t *testing.T) {
+	n := 3
+	subject.CounterValue(&n)
+	n = 8
+	if got := subject.CounterValue(&n); got != 8 {
+		t.Errorf("current value got %d want 8", got)
+	}
+}
+
+func TestContractCase06(t *testing.T) {
+	n := 5
+	subject.CounterValue(&n)
+	if n != 5 {
+		t.Errorf("input got %d want 5", n)
+	}
+}
