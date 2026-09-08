@@ -69,6 +69,43 @@ offline module resolution и отдельными home/cache/temp paths.
 
 ## Gate 5 — review и maintainability
 
+### Public feedback при создании и исправлении задач
+
+Для каждого базового наблюдаемого требования условия нужен public assertion
+и реалистичный ошибочный вариант, нарушающий это требование. В `review/notes.md`
+автор записывает соответствие: требование → public test → ошибочный вариант →
+ожидаемая диагностика. Reviewer проверяет это соответствие при создании или
+существенном изменении задачи. Формат task/review schemas не меняется; это
+проверяемое evidence в notes, а не новый автоматически вычисляемый gate.
+
+Public-проверка ошибочного варианта должна завершиться test failure и назвать
+ошибку понятным образом (для значений — actual/expected, при необходимости тип).
+Compile error, timeout и общий текст full verification не подтверждают это
+покрытие. Правильное решение должно проходить public и full проверки.
+Скрытые проверки могут расширять набор входов и граничных случаев для уже
+заявленного поведения; успешный public run не гарантирует полный зачёт.
+Для test-submission задач учитывается их mutation-tests профиль: не требуется
+публиковать скрытые mutants или превращать public suite в полный grader.
+
+Исправление обнаруженного public-success/full-failure пробела сопровождается
+сохранённым автоматическим тестом: ошибочный вариант отклоняется именно public
+проверкой с полезной диагностикой. Для `literal-bindings-001` это
+`TestRealOpeningLessonRunsThroughLearnerWorkspace` в `internal/learner`:
+
+| Требование | Public test | Ошибочный вариант | Диагностика |
+| --- | --- | --- | --- |
+| count: int 12 | TestNumericBindings | floating-count | actual float64; want int 12 |
+| scale: float64 1.25 | TestNumericBindings | integer-scale | actual int; want float64 1.25 |
+| label: string G | TestTextAndBooleanBindings | rune-label | actual int32; want string G |
+| enabled: bool true | TestTextAndBooleanBindings | disabled | actual false; want bool true |
+
+Удаление public assertions для label/enabled должно ломать эту регрессию, даже
+если full grader всё ещё обнаруживает все четыре ошибки. Исполнение — только
+через disposable verifier. Этот тест защищает конкретный урок; полноту
+сопоставления требований остальных задач по-прежнему проверяет reviewer.
+
+### Остальные требования
+
 - `review/review.yaml` содержит reviewer, date, decision и minimum mutants;
 - story, alignment, API, provenance, license, clean-room и leakage evidence
   подтверждены явно;

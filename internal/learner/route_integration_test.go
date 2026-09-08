@@ -5,6 +5,7 @@ package learner
 import (
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"go-practice-bank/internal/tasking"
@@ -40,6 +41,28 @@ func TestRealOpeningLessonRunsThroughLearnerWorkspace(t *testing.T) {
 	if err != nil || result.Passed {
 		t.Fatalf("starter=%+v err=%v", result, err)
 	}
+	// Each fixture violates one explicit binding requirement. Full-check mutant
+	// coverage alone cannot detect a public suite that silently omits a binding.
+	for _, fixture := range []struct{ mutant, diagnostic string }{
+		{"floating-count", "count = 12 (float64), want int 12"},
+		{"integer-scale", "scale = 1 (int), want float64 1.25"},
+		{"rune-label", "label = 71 (int32), want string G"},
+		{"disabled", "enabled = false (bool), want bool true"},
+	} {
+		t.Run(fixture.mutant, func(t *testing.T) {
+			content, err := os.ReadFile(filepath.Join(canonical, "solution", "mutants", fixture.mutant, "subject", "bindings.go"))
+			if err != nil {
+				t.Fatal(err)
+			}
+			if err := os.WriteFile(filepath.Join(workspace, "subject", "bindings.go"), content, 0600); err != nil {
+				t.Fatal(err)
+			}
+			result, err := service.Check()
+			if err != nil || result.Passed || !strings.Contains(result.Diagnostic, fixture.diagnostic) {
+				t.Fatalf("public check must explain the violated requirement: result=%+v err=%v", result, err)
+			}
+		})
+	}
 	// Read canonical reference as data; execution occurs only in the learner
 	// runner's disposable copy, never in the canonical source tree.
 	content, err := os.ReadFile(filepath.Join(canonical, "solution", "reference", "subject", "bindings.go"))
@@ -48,6 +71,10 @@ func TestRealOpeningLessonRunsThroughLearnerWorkspace(t *testing.T) {
 	}
 	if err := os.WriteFile(filepath.Join(workspace, "subject", "bindings.go"), content, 0600); err != nil {
 		t.Fatal(err)
+	}
+	result, err = service.Check()
+	if err != nil || !result.Passed {
+		t.Fatalf("reference public=%+v err=%v", result, err)
 	}
 	result, err = service.Complete()
 	if err != nil || !result.Passed {
@@ -58,7 +85,7 @@ func TestRealOpeningLessonRunsThroughLearnerWorkspace(t *testing.T) {
 		t.Fatalf("next=%+v err=%v", next, err)
 	}
 	progress, err := service.Progress()
-	if err != nil || !progress.Tasks[first.Task.ID].Completed || progress.Tasks[first.Task.ID].Attempts != 2 {
+	if err != nil || !progress.Tasks[first.Task.ID].Completed || progress.Tasks[first.Task.ID].Attempts != 7 {
 		t.Fatalf("progress=%+v err=%v", progress, err)
 	}
 	after, err := tasking.TaskContentDigest(canonical)
