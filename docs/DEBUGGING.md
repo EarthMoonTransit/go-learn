@@ -67,6 +67,17 @@ This prevents an aggregate timeout from truncating otherwise bounded checks;
 it is not a runtime-speed improvement. Cache/session optimization remains
 a separate measured change.
 
+## Cold race-fixture compilation
+
+Runs 34284014940 and 34284226173 detected the race-only mutant, but the new
+integration fixture's first public check exceeded its inherited 30-second command
+budget while compiling with `-race`. The later reference and race gates passed.
+That synthetic fixture now allows 60 seconds per command, including its ordinary
+behavior control. Real task limits and every defect/public-feedback assertion are
+unchanged. A timeout remains an infrastructure failure, never proof of detection.
+Re-run the focused fixture before the mandatory suite; reuse the existing full
+collection when only this test harness changes and bank inputs remain identical.
+
 ## Reviewed public-feedback matrix
 
 `TestReviewedDefectsHavePublicFeedback` exercises inclusive boolean OR, exact
