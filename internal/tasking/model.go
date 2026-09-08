@@ -217,7 +217,7 @@ type QualityReport struct {
 	Mutants           MutantSummary `yaml:"mutants" json:"mutants"`
 }
 
-const CheckContractVersion = "task-check/v2"
+const CheckContractVersion = "task-check/v3"
 
 type ExecutionMetrics struct {
 	Sessions       int `yaml:"sessions" json:"sessions"`

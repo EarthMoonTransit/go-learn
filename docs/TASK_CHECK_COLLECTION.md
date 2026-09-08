@@ -7,7 +7,7 @@
 go run ./cmd/task-check -root . -all -output .tmp/results/task-checks.yaml
 ```
 
-Формат фиксирует `schema_version: 1`, `contract_version: task-check/v2`, digest
+Формат фиксирует `schema_version: 1`, `contract_version: task-check/v3`, digest
 toolchain policy, упорядоченные task results и структурные execution metrics.
 Контракт задан `schemas/task-check-collection.schema.json`.
 
@@ -62,3 +62,5 @@ Collection не является криптографическим attestation.
 
 Файл collection остаётся временным CI artifact и не коммитится. Повторный
 `task-check` на неизменных inputs обязан дать те же байты.
+
+ADR 0019 makes race-required checks include all defect and public invocations. Regenerate older collections using the current checker; never relabel v2 results as v3. Reuse the resulting collection in validator and report-check.
