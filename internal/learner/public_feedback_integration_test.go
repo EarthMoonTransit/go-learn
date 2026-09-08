@@ -39,6 +39,10 @@ func TestReviewedDefectsHavePublicFeedback(t *testing.T) {
 		{"package-inventory-001", "reset-sold", []string{"SetOnHand changed unrelated state", "want (9,7)"}},
 		{"record-result-001", "trim-label", []string{"exact label:"}},
 		{"error-context-wrap-001", "formatter-instead-of-error", []string{"Error text:", "want read: error text with original cause"}},
+		{"bounded-copy-001", "reassign-sentinel", []string{"ErrLimit sentinel identity changed"}},
+		{"bounded-copy-001", "close-on-success", []string{"successful copy", "closes got1,1 want0,0"}},
+		{"buffered-flush-001", "empty-skips-flush", []string{"pending buffer", "want\"prefix|\",0"}},
+		{"single-json-value-001", "partial-on-reject", []string{"partial object", "wantzero,ErrJSON"}},
 	} {
 		t.Run(fixture.id, func(t *testing.T) {
 			canonical := filepath.Join(root, "tasks", "ready", fixture.id)
