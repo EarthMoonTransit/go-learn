@@ -860,6 +860,78 @@
           "skills": [
             "arrays.value-semantics"
           ]
+        },
+        {
+          "number": 32,
+          "task_id": "embedded-cache-tests-001",
+          "role": "introduction",
+          "skills": [
+            "embedding.method-promotion-ambiguity"
+          ]
+        },
+        {
+          "number": 33,
+          "task_id": "record-result-001",
+          "role": "transfer",
+          "skills": [
+            "functions.signatures-results"
+          ]
+        },
+        {
+          "number": 34,
+          "task_id": "receiver-speakers-001",
+          "role": "transfer",
+          "skills": [
+            "interfaces.implicit-satisfaction"
+          ]
+        },
+        {
+          "number": 35,
+          "task_id": "map-entry-tests-001",
+          "role": "practice",
+          "skills": [
+            "maps.iteration"
+          ]
+        },
+        {
+          "number": 36,
+          "task_id": "pointer-chain-001",
+          "role": "transfer",
+          "skills": [
+            "pointers.address-deref-nil"
+          ]
+        },
+        {
+          "number": 37,
+          "task_id": "slice-sequence-tests-001",
+          "role": "transfer",
+          "skills": [
+            "slices.len-cap-slicing"
+          ]
+        },
+        {
+          "number": 38,
+          "task_id": "typed-value-observations-001",
+          "role": "transfer",
+          "skills": [
+            "types.declarations-inference"
+          ]
+        },
+        {
+          "number": 39,
+          "task_id": "error-context-wrap-001",
+          "role": "introduction",
+          "skills": [
+            "errors.wrapping"
+          ]
+        },
+        {
+          "number": 40,
+          "task_id": "floating-categories-001",
+          "role": "transfer",
+          "skills": [
+            "types.floating-point-semantics"
+          ]
         }
       ],
       "number": 6
@@ -874,6 +946,15 @@
           "role": "introduction",
           "skills": [
             "io.reader-writer-contracts"
+          ]
+        },
+        {
+          "number": 2,
+          "task_id": "package-inventory-001",
+          "role": "introduction",
+          "skills": [
+            "packages.imports-exports-naming",
+            "structs.field-visibility-tags"
           ]
         }
       ],

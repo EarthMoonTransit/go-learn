@@ -1,0 +1,42 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected source operation and test structure, preserve observable behavior while removing narrative, and add independent boundaries, defects and technical APIs. Chapter code is private reference material; learner implementation starts with minimal stubs. No generated canonical cases used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "7a0e1d8d54bbe27b9cc8c13945b20729bea3a541c3ffcb803d7567947d2bc962",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/map-entry-tests-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "topics/go/language/maps/exercises/template1/template1.go",
+          "sha256": "d7148933b51eec6ac405f6481940b241488d0057adecb3aa65f0857feda8c3e3",
+          "usage": "adapted"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "fd62bda91923cb60d78846f3038f14cc312ff62b93915d88a4434b92c366fe54",
+          "usage": "copied"
+        }
+      ],
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "license": "Apache-2.0",
+      "registry_id": "ardanlabs-gotraining",
+      "repository": "https://github.com/ardanlabs/gotraining",
+      "role": "adapted-code",
+      "usage_mode": "adapt"
+    }
+  ]
+}

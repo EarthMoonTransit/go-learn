@@ -184,3 +184,17 @@ month and constant-kind exercises use the existing workspace-tests profile.
 The constant-kind canonical reference imports the standard library, guarding
 valid package-aware declaration inspection. Weak suites omitting declaration
 values or array ownership remain insufficient in disposable checks.
+
+## C10 release binding
+
+Eight substantive Ardan adaptations and two original gap exercises bring the
+conditional checkpoint to 112 lessons: 74 substantive, 33 original, five seeds,
+and 62 assessed skills. Ten selected adaptation slots remain against two further
+substantive tasks required. The 128-slot dependency replay remains valid.
+
+The package inventory is a two-package implementation, and the embedded cache
+preserves source method interaction while replacing sleep with controlled lookup.
+Source comment inconsistencies and extensions are recorded per task. Exact error
+wrapping uses a private Error/Unwrap implementation so custom fmt.Formatter output
+does not override the promised Error text. The C08–C10 independent audit records
+actual reuse, domain/activity balance and repaired public feedback.
