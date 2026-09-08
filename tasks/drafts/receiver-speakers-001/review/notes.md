@@ -1,20 +1,25 @@
-# Author review notes
+# Content review notes
 
-Independent content review pending. Estimates are uncalibrated.
+Independent content review approved by `/root/ui_goal_reviewer` on 2026-09-08. Estimates remain uncalibrated.
 
-Requirements:
+## Requirements
 
 - English.Speak returns "Hello World"; (*Chinese).Speak returns "你好世界".
 - SayHello calls Speak once on any supplied non-nil Speaker and returns its exact result.
 - BuiltinGreetings returns English then Chinese output by using values or pointers that satisfy Speaker.
 - Keep the declared receiver forms: English values and pointers qualify; Chinese requires a pointer. Calls are independent.
 
-Public/reference assertions (actual/expected diagnostics):
+## Requirement, assertion and defect mapping
 
-- Case01: `var a subject.Speaker=subject.English{};var b subject.Speaker=&subject.English{};var c subject.Speaker=&subject.Chinese{};for _,x:=range []struct{s subject.Speaker;want string}{{a,"Hello World"},{b,"Hello World"},{c,"你好世界"}}{if got:=x.s.Speak();got!=x.want{t.Errorf("speaker got%q want%q",got,x.want)}};if got:=subject.BuiltinGreetings();got!=([2]string{"Hello World","你好世界"}){t.Errorf("builtins got%v",got)}`
-- Case02: `s:=&customSpeaker{text:" exact "};if got:=subject.SayHello(s);got!=" exact "||s.calls!=1{t.Errorf("dispatch got%q calls%d",got,s.calls)};s.text="";if got:=subject.SayHello(s);got!=""||s.calls!=2{t.Errorf("current dispatch got%q calls%d",got,s.calls)}`
+| Requirement | Public/reference assertion | Required defect | Diagnostic |
+|---|---|---|---|
+| Declared value/pointer method forms and bilingual outputs | TestPublicCase01 assigns English value/pointer and Chinese pointer to Speaker | same-language | quoted speaker actual/expected |
+| Dispatch any Speaker exactly once using current exact result | TestPublicCase02 custom mutable speaker | known-only, double-call, trim-result | dispatch text and call count |
+| Builtin output order | TestPublicCase01 BuiltinGreetings | reverse-builtins | builtin array |
 
-Realistic required defect models:
+For implementation/debugging tasks these are public checks. For test-writing tasks these are strong learner reference assertions; the mutation profile checks reference compatibility and required defect detection without prescribing test layout.
+
+## Realistic required defect models
 
 - same-language
 - known-only
@@ -22,6 +27,12 @@ Realistic required defect models:
 - trim-result
 - reverse-builtins
 
-Retained source behavior: ardan:topics/go/language/interfaces/exercises/template1/template1.go selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+## Source boundary
 
-The source header says both receivers are values, while its detailed body requires a Chinese pointer receiver. This adaptation follows that detailed body and preserves the bilingual outputs and interface dispatch.
+Substantive adaptation of `ardanlabs-gotraining` at commit `4ae5a46bfc665909a7cb29e11c18775330c63401`, selected operation in `topics/go/language/interfaces/exercises/template1/template1.go`. Exact declared artifacts and SHA256 values were checked against the pinned local checkout; Apache-2.0 attribution and notice were verified. Source narrative/process output is replaced by a technical API and observable checks, with independent boundaries and defects. No reference-only or generated canonical material was reused. Private references and mutants remain excluded from learner payloads.
+
+## Independent review
+
+The detailed source Chinese pointer receiver is retained and its header discrepancy documented; caller-defined speakers test open interface dispatch.
+
+Reviewed current prompt, API/starter, public/reference assertions, grader or mutation layout, all 5 required defects, hints, route prerequisites and provenance. `.tmp/checks/receiver-speakers-001.yaml` reports technical pass and 5/5 required mutants detected. No authored code was executed by the reviewer; no real learner state was accessed. Full batch acceptance, lifecycle promotion, release binding and separate public-feedback regressions remain independent requirements. Automated fixtures are not human calibration or learner mastery.

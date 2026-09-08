@@ -48,7 +48,8 @@
       "error-cached",
       "partial-error-document",
       "empty-not-cached",
-      "shared-cache"
+      "shared-cache",
+      "fresh-error"
     ],
     "race_required": false,
     "vet": true,

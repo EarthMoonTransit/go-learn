@@ -28,3 +28,10 @@ func TestPublicCase02(t *testing.T) {
 		t.Errorf("later changed state a%v c%v err%v", a, c, e)
 	}
 }
+
+func TestExactPaddedLabel(t *testing.T) {
+	r, e := subject.NewRecord(" a ", 0)
+	if e != nil || r == nil || r.Label != " a " || r.Count != 0 {
+		t.Errorf("exact label: got %v,%v, want { a  0},nil", r, e)
+	}
+}

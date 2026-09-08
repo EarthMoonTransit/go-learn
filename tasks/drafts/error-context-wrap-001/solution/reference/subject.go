@@ -1,12 +1,15 @@
 package subject
 
-import (
-	"fmt"
-)
+type contextualError struct {
+	text  string
+	cause error
+}
 
+func (e *contextualError) Error() string { return e.text }
+func (e *contextualError) Unwrap() error { return e.cause }
 func Wrap(operation string, err error) error {
 	if err == nil {
 		return nil
 	}
-	return fmt.Errorf("%s: %w", operation, err)
+	return &contextualError{text: operation + ": " + err.Error(), cause: err}
 }

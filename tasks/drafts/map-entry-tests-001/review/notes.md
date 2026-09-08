@@ -1,21 +1,25 @@
-# Author review notes
+# Content review notes
 
-Independent content review pending. Estimates are uncalibrated.
+Independent content review approved by `/root/ui_goal_reviewer` on 2026-09-08. Estimates remain uncalibrated.
 
-Requirements:
+## Requirements
 
 - Return one Entry for every input key with its exact associated value. Output order is unspecified.
 - Do not omit zero, negative or empty-key entries; do not duplicate entries.
 - Preserve the input map. Changing the returned entries must not change input values.
 - Nil or empty maps return zero entries; keys may contain Unicode and spaces.
 
-Public/reference assertions (actual/expected diagnostics):
+## Requirement, assertion and defect mapping
 
-- Case01: `got:=subject.Entries(map[string]int{"a":1});if len(got)!=1||got[0]!=(subject.Entry{Key:"a",Value:1}){t.Errorf("single got%v",got)}`
-- Case02: `in:=map[string]int{"a":1,"":0,"λ":-2," x ":7,"last":9};before:=maps.Clone(in);got:=subject.Entries(in);if len(got)!=len(in){t.Fatalf("entries length got%d want%d",len(got),len(in))};seen:=map[string]bool{};for _,e:=range got{v,ok:=in[e.Key];if !ok||seen[e.Key]||v!=e.Value{t.Errorf("missing/duplicate/wrong entry%v",e)};seen[e.Key]=true};if !maps.Equal(in,before){t.Errorf("input changed %v",in)};got[0].Value=99;if !maps.Equal(in,before){t.Error("result shares mutable state")}`
-- Case03: `for _,in:=range []map[string]int{nil,{}}{if got:=subject.Entries(in);len(got)!=0{t.Errorf("empty got%v",got)}}`
+| Requirement | Public/reference assertion | Required defect | Diagnostic |
+|---|---|---|---|
+| One exact entry for every key, unordered and without duplicates | TestContractCase02 checks membership/seen keys and values | first-only, erase-values, duplicate-entry | length and missing/duplicate/wrong entry |
+| Include empty keys and signed/zero values; handle empty input | TestContractCase02/03 | positive-only, empty-key-ignored, empty-placeholder | entry membership/length and empty result |
+| Preserve input and avoid mutable aliasing | TestContractCase02 clones map and modifies output entry | destructive | input changed / result shares mutable state |
 
-Realistic required defect models:
+For implementation/debugging tasks these are public checks. For test-writing tasks these are strong learner reference assertions; the mutation profile checks reference compatibility and required defect detection without prescribing test layout.
+
+## Realistic required defect models
 
 - first-only
 - positive-only
@@ -25,4 +29,12 @@ Realistic required defect models:
 - duplicate-entry
 - empty-placeholder
 
-Retained source behavior: ardan:topics/go/language/maps/exercises/template1/template1.go selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+## Source boundary
+
+Substantive adaptation of `ardanlabs-gotraining` at commit `4ae5a46bfc665909a7cb29e11c18775330c63401`, selected operation in `topics/go/language/maps/exercises/template1/template1.go`. Exact declared artifacts and SHA256 values were checked against the pinned local checkout; Apache-2.0 attribution and notice were verified. Source narrative/process output is replaced by a technical API and observable checks, with independent boundaries and defects. No reference-only or generated canonical material was reused. Private references and mutants remain excluded from learner payloads.
+
+## Independent review
+
+Membership and uniqueness checks avoid depending on map iteration order while protecting complete entries and input preservation.
+
+Reviewed current prompt, API/starter, public/reference assertions, grader or mutation layout, all 7 required defects, hints, route prerequisites and provenance. `.tmp/checks/map-entry-tests-001.yaml` reports technical pass and 7/7 required mutants detected. No authored code was executed by the reviewer; no real learner state was accessed. Full batch acceptance, lifecycle promotion, release binding and separate public-feedback regressions remain independent requirements. Automated fixtures are not human calibration or learner mastery.

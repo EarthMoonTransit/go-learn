@@ -37,3 +37,12 @@ func TestPublicCase02(t *testing.T) {
 		t.Errorf("independent got%q", got)
 	}
 }
+
+func TestOnHandPreservesSold(t *testing.T) {
+	item := stock.New("part", 4)
+	item.SetSold(7)
+	item.SetOnHand(9)
+	if item.OnHand() != 9 || item.Sold() != 7 || item.Name != "part" || item.Weight != 4 {
+		t.Errorf("SetOnHand changed unrelated state: got counts (%d,%d), want (9,7); item %+v", item.OnHand(), item.Sold(), item)
+	}
+}

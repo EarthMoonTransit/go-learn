@@ -14,6 +14,7 @@
   },
   "prerequisites": [
     "errors.propagation-context",
+    "errors.typed",
     "strings.formatting"
   ],
   "new_concepts": [
@@ -43,7 +44,8 @@
       "no-context",
       "nil-wrapped",
       "trim-operation",
-      "flatten-chain"
+      "flatten-chain",
+      "formatter-instead-of-error"
     ],
     "race_required": false,
     "vet": true,

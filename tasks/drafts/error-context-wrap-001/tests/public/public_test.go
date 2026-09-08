@@ -1,5 +1,7 @@
 package subject_test
 
+import "fmt"
+
 import (
 	"errors"
 	"task.local/error-context-wrap-001/subject"
@@ -28,5 +30,17 @@ func TestPublicCase03(t *testing.T) {
 		if got := subject.Wrap(op, nil); got != nil {
 			t.Errorf("nil cause got%v", got)
 		}
+	}
+}
+
+type formattedCause struct{}
+
+func (*formattedCause) Error() string                 { return "error text" }
+func (*formattedCause) Format(s fmt.State, verb rune) { fmt.Fprint(s, "different formatter text") }
+func TestUsesErrorText(t *testing.T) {
+	cause := &formattedCause{}
+	got := subject.Wrap("read", cause)
+	if got == nil || got.Error() != "read: error text" || errors.Unwrap(got) != cause {
+		t.Errorf("Error text: got %v, want read: error text with original cause", got)
 	}
 }

@@ -1,20 +1,25 @@
-# Author review notes
+# Content review notes
 
-Independent content review pending. Estimates are uncalibrated.
+Independent content review approved by `/root/ui_goal_reviewer` on 2026-09-08. Estimates remain uncalibrated.
 
-Requirements:
+## Requirements
 
 - Create an integer initialized to 20 and a pointer variable referring to it.
 - Return the integer pointer and the address of that pointer variable; neither result is nil and the second dereferences to the first.
 - Mutating the integer through either path is shared; replacing the pointer variable must not change the original integer.
 - Calls allocate independent integer storage and pointer variables. Compare identities without numeric addresses.
 
-Public/reference assertions (actual/expected diagnostics):
+## Requirement, assertion and defect mapping
 
-- Case01: `p,pp:=subject.PointerChain();if p==nil||pp==nil||*pp!=p||*p!=20||**pp!=20{t.Fatalf("invalid chain p%v pp%v",p,pp)};**pp=7;if *p!=7{t.Error("dereference paths disagree")};other:=33;*pp=&other;if *p!=7||**pp!=33{t.Errorf("pointer replacement changed target got%d,%d",*p,**pp)}`
-- Case02: `a,ap:=subject.PointerChain();b,bp:=subject.PointerChain();if a==nil||b==nil||ap==nil||bp==nil{t.Fatal("nil chain")};*a=9;if *b!=20||*ap!=a||*bp!=b||ap==bp{t.Error("calls share pointer or value storage")}`
+| Requirement | Public/reference assertion | Required defect | Diagnostic |
+|---|---|---|---|
+| Return address of value20 and address of its pointer variable | TestPublicCase01 checks nil/identity/value | wrong-initial, nil-pointer-variable, parallel-values | invalid chain / dereference paths disagree |
+| Shared target via dereference; pointer replacement preserves original target | TestPublicCase01 writes through pp then replaces *pp | parallel-values | pointer replacement actual values |
+| Independent target and pointer-variable storage across calls | TestPublicCase02 | shared-target, shared-pointer-variable | calls share pointer or value storage |
 
-Realistic required defect models:
+For implementation/debugging tasks these are public checks. For test-writing tasks these are strong learner reference assertions; the mutation profile checks reference compatibility and required defect detection without prescribing test layout.
+
+## Realistic required defect models
 
 - wrong-initial
 - nil-pointer-variable
@@ -22,4 +27,12 @@ Realistic required defect models:
 - shared-target
 - shared-pointer-variable
 
-Retained source behavior: ardan:topics/go/language/pointers/exercises/template1/template1.go selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+## Source boundary
+
+Substantive adaptation of `ardanlabs-gotraining` at commit `4ae5a46bfc665909a7cb29e11c18775330c63401`, selected operation in `topics/go/language/pointers/exercises/template1/template1.go`. Exact declared artifacts and SHA256 values were checked against the pinned local checkout; Apache-2.0 attribution and notice were verified. Source narrative/process output is replaced by a technical API and observable checks, with independent boundaries and defects. No reference-only or generated canonical material was reused. Private references and mutants remain excluded from learner payloads.
+
+## Independent review
+
+Tests distinguish the integer address from the pointer-variable address and verify reassignment and independent call storage without numeric addresses.
+
+Reviewed current prompt, API/starter, public/reference assertions, grader or mutation layout, all 5 required defects, hints, route prerequisites and provenance. `.tmp/checks/pointer-chain-001.yaml` reports technical pass and 5/5 required mutants detected. No authored code was executed by the reviewer; no real learner state was accessed. Full batch acceptance, lifecycle promotion, release binding and separate public-feedback regressions remain independent requirements. Automated fixtures are not human calibration or learner mastery.

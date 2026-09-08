@@ -1,21 +1,25 @@
-# Author review notes
+# Content review notes
 
-Independent content review pending. Estimates are uncalibrated.
+Independent content review approved by `/root/ui_goal_reviewer` on 2026-09-08. Estimates remain uncalibrated.
 
-Requirements:
+## Requirements
 
 - NewCache uses the supplied non-nil Feed; Lookup is non-nil. Promoted Count returns the current Feed.Total.
 - First Fetch calls Feed.Lookup through Feed.Fetch, increments Feed.Calls, and caches a successful Document under the exact requested key.
 - Repeated successful keys return the cached document without another lookup. Different keys and cache instances are independent.
 - Errors return a zero Document and the original error; failures are not cached. Successful empty documents are valid.
 
-Public/reference assertions (actual/expected diagnostics):
+## Requirement, assertion and defect mapping
 
-- Case01: `f:=&subject.Feed{Total:42,Lookup:func(k string)(subject.Document,error){return subject.Document{Key:k,Title:"Title for "+k},nil}};c:=subject.NewCache(f);if c==nil{t.Fatal("nil cache")};d,e:=c.Fetch("a");if e!=nil||d!=(subject.Document{Key:"a",Title:"Title for a"})||f.Calls!=1{t.Errorf("fetch got%v,%v calls%d",d,e,f.Calls)}`
-- Case02: `f:=&subject.Feed{Total:42,Lookup:func(k string)(subject.Document,error){return subject.Document{Key:"different",Title:k},nil}};c:=subject.NewCache(f);if c==nil{t.Fatal("nil cache")};for _,k:=range []string{"a","a","A","A"}{d,e:=c.Fetch(k);if e!=nil||d.Title!=k||d.Key!="different"{t.Errorf("key%q got%v,%v",k,d,e)}};if f.Calls!=2{t.Errorf("lookup calls got%d want2",f.Calls)};if c.Count()!=42{t.Errorf("promoted count got%d want42",c.Count())};f.Total=9;if c.Count()!=9{t.Errorf("live count got%d want9",c.Count())};other:=subject.NewCache(f);_,_=other.Fetch("a");if f.Calls!=3{t.Errorf("independent cache calls%d want3",f.Calls)}`
-- Case03: `sentinel:=errors.New("missing");attempts:=0;f:=&subject.Feed{Lookup:func(string)(subject.Document,error){attempts++;if attempts<3{return subject.Document{Key:"ignored"},sentinel};return subject.Document{},nil}};c:=subject.NewCache(f);if c==nil{t.Fatal("nil cache")};for i:=0;i<2;i++{d,e:=c.Fetch("");if d!=(subject.Document{})||e!=sentinel{t.Errorf("failure got%v,%v wantzero,original",d,e)}};for i:=0;i<2;i++{d,e:=c.Fetch("");if d!=(subject.Document{})||e!=nil{t.Errorf("empty success got%v,%v",d,e)}};if attempts!=3||f.Calls!=3{t.Errorf("retry/empty cache attempts%d calls%d want3",attempts,f.Calls)}`
+| Requirement | Public/reference assertion | Required defect | Diagnostic |
+|---|---|---|---|
+| Promoted Count tracks supplied Feed.Total | TestContractCase02 changes Total after construction | fixed-count | promoted/live count actual/expected |
+| Cache successful documents by exact requested key; independent instances | TestContractCase02 uses different document key and repeated a/A across instances | uncached, cache-by-document-key, shared-cache | key/document mismatch and lookup call count |
+| Return zero document/original error and retry failures; cache empty success | TestContractCase03 transitions two errors to empty success | error-cached, partial-error-document, empty-not-cached, fresh-error | failure result/original identity and retry/empty call count |
 
-Realistic required defect models:
+For implementation/debugging tasks these are public checks. For test-writing tasks these are strong learner reference assertions; the mutation profile checks reference compatibility and required defect detection without prescribing test layout.
+
+## Realistic required defect models
 
 - uncached
 - cache-by-document-key
@@ -24,7 +28,16 @@ Realistic required defect models:
 - partial-error-document
 - empty-not-cached
 - shared-cache
+- fresh-error
 
-Retained source behavior: ardan:topics/go/language/embedding/exercises/template1/template1.go selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+## Source boundary
 
-The source Feed.Fetch/CachingFeed.Fetch cache and promoted Count form the retained component. Sleep is replaced by a controlled lookup and call count. Errors and empty-success retry boundaries are explicit extensions. This introduction assesses promotion and override, not ambiguity resolution.
+Substantive adaptation of `ardanlabs-gotraining` at commit `4ae5a46bfc665909a7cb29e11c18775330c63401`, selected operation in `topics/go/language/embedding/exercises/template1/template1.go`. Exact declared artifacts and SHA256 values were checked against the pinned local checkout; Apache-2.0 attribution and notice were verified. Source narrative/process output is replaced by a technical API and observable checks, with independent boundaries and defects. No reference-only or generated canonical material was reused. Private references and mutants remain excluded from learner payloads.
+
+## Independent review
+
+Promotion/override, exact-key caching and independent cache state are observable. The fresh-error defect independently enforces original error identity while preserving zero results and retries. This introduction does not claim ambiguity-resolution mastery.
+
+Reviewed current prompt, API/starter, public/reference assertions, grader or mutation layout, all 8 required defects, hints, route prerequisites and provenance. `.tmp/checks/embedded-cache-tests-001.yaml` reports technical pass and 8/8 required mutants detected. No authored code was executed by the reviewer; no real learner state was accessed. Full batch acceptance, lifecycle promotion, release binding and separate public-feedback regressions remain independent requirements. Automated fixtures are not human calibration or learner mastery.
+
+The saved `review/weak-error-identity.txt` removes only exact sentinel equality from the strong suite. Its author-provided `.tmp/checks/embedded-cache-weak.yaml` reports reference compatibility and the starter-full insufficiency gate passing through a disposable copy. The report's 8/8 detected summary concerns the strong reference, not this weak fixture.

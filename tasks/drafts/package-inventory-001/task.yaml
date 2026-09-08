@@ -53,7 +53,8 @@
       "reset-onhand",
       "swapped-accessors",
       "copy-only-setter",
-      "wrong-summary"
+      "wrong-summary",
+      "reset-sold"
     ],
     "race_required": false,
     "vet": true,
