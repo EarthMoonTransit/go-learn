@@ -90,3 +90,15 @@ actual primary/secondary prerequisites still succeeds, now with101 planned
 skills including the baseline. No source candidate was relabeled to meet quota.
 After C02 acceptance:32ready /3substantively adapted /24original /5concept-seed;
 118 additions remain, including81 selected adaptation candidates.
+
+
+## C03 release binding
+
+Slots 4–8 and 12–16 now bind ten ready substantive Exercism adaptations.
+Actual route numbers, prerequisites and activities replace planned estimates.
+All 128 allocation positions still resolve from the original 22-lesson baseline
+and preparation skills, covering 101 planned skills. After C03 acceptance:
+42 ready / 13 substantively adapted / 24 original / 5 concept-seed; 108 additions
+remain, including 71 selected substantive adaptation candidates. Basic test
+diagnostics and variadic calls now have explicit introductory route encounters.
+No private learner progress was inspected or inferred from automated checks.
