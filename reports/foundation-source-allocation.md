@@ -140,3 +140,16 @@ After acceptance: 72 route lessons / 43 substantive / 24 original / 5 concept-se
 At least 33 more substantive adaptations are required. Dependency closure still
 resolves all 128 positions from the original baseline. Real learner state remains
 uninspected.
+
+## C07 release binding
+
+Ten more positions bind six Exercism, three Learn Go with Tests and one Ardan
+Labs adaptation. MethodFunctions and AreaOf extend the selected source operations
+with observable method-expression and caller-defined interface work. These are
+substantive behavioral adaptations, not concept-only source claims.
+
+After acceptance: 82 ready / 53 substantive / 24 original / 5 concept-seed,
+49 assessed skills. 68 additions remain, including 31 selected adaptations;
+at least 23 more substantive adaptations are required. All 128 allocation slots
+still resolve from the original baseline, with 101 skills planned by milestone 1.
+This does not claim all 142 foundation skills or learner mastery.

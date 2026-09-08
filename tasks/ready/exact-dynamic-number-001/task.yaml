@@ -1,0 +1,46 @@
+schema_version: 2
+id: exact-dynamic-number-001
+title: Extract a number only from the exact dynamic type
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: interfaces.type-assertions
+    secondary: []
+prerequisites:
+    - errors.sentinels-creation
+    - interfaces.dynamic-type-value
+    - interfaces.small-contracts
+new_concepts:
+    - interfaces.type-assertions
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - all-implementers
+        - pointer-accepted
+        - trim-space
+        - absolute-value
+        - partial-error-result
+        - empty-nil-panic
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

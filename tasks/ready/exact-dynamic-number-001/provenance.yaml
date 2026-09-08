@@ -1,0 +1,57 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected source operation and test structure, preserve observable behavior while removing narrative, and add independent boundaries, defects and technical APIs. Chapter code is private reference material; learner implementation starts with minimal stubs. No generated canonical cases used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "cedbdeaca471d4e74e9826132fe239863c93645cafa8b0583d69b0c98a6676be",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/exact-dynamic-number-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/sorting-room/.docs/instructions.md",
+          "sha256": "8ac9b1eb7a4ccff953cd58353006ada47c759d92cc0fdda512fba1cc9728ecda",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/sorting-room/sorting_room_test.go",
+          "sha256": "53836e751a7080cadc798335b4660a9ab79a63d7d5370a31db4784eb34593e48",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/sorting-room/sorting_room.go",
+          "sha256": "fed49e34054c5570f3781b5bbafbfeefd90311b64b053cb0689d78d94c5f24b5",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/sorting-room/.meta/config.json",
+          "sha256": "f542fa1a90e33a87bc6a683dc08fcf5b0771fefab0715402e1ab3298aa1466c0",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}

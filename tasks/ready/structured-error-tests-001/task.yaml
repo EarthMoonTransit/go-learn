@@ -1,0 +1,51 @@
+schema_version: 2
+id: structured-error-tests-001
+title: Test structured validation errors and their pointer form
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: errors.typed
+    secondary: []
+prerequisites:
+    - errors.sentinels-creation
+    - interfaces.type-assertions
+    - methods.receiver-semantics
+    - strings.formatting
+    - structs.literals-zero
+    - testing.basics-diagnostics
+new_concepts:
+    - errors.typed
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - zero-valid
+        - negative-valid
+        - erased-count
+        - generic-error
+        - same-reason
+        - fixed-reason-text
+        - typed-nil-success
+        - reason-derived-from-count
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

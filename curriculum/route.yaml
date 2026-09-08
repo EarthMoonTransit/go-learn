@@ -627,6 +627,87 @@
           "skills": [
             "errors.sentinels-creation"
           ]
+        },
+        {
+          "number": 13,
+          "task_id": "value-average-001",
+          "role": "introduction",
+          "skills": [
+            "methods.method-sets"
+          ]
+        },
+        {
+          "number": 14,
+          "task_id": "shape-contract-tests-001",
+          "role": "introduction",
+          "skills": [
+            "interfaces.implicit-satisfaction"
+          ]
+        },
+        {
+          "number": 15,
+          "task_id": "greeter-dispatch-tests-001",
+          "role": "introduction",
+          "skills": [
+            "interfaces.small-contracts",
+            "interfaces.dynamic-type-value"
+          ]
+        },
+        {
+          "number": 16,
+          "task_id": "nested-stringers-001",
+          "role": "introduction",
+          "skills": [
+            "interfaces.stringer-contract"
+          ]
+        },
+        {
+          "number": 17,
+          "task_id": "exact-dynamic-number-001",
+          "role": "introduction",
+          "skills": [
+            "interfaces.type-assertions"
+          ]
+        },
+        {
+          "number": 18,
+          "task_id": "dynamic-description-001",
+          "role": "introduction",
+          "skills": [
+            "interfaces.type-switches"
+          ]
+        },
+        {
+          "number": 19,
+          "task_id": "structured-error-tests-001",
+          "role": "introduction",
+          "skills": [
+            "errors.typed"
+          ]
+        },
+        {
+          "number": 20,
+          "task_id": "category-total-001",
+          "role": "transfer",
+          "skills": [
+            "errors.sentinels-creation"
+          ]
+        },
+        {
+          "number": 21,
+          "task_id": "dictionary-update-001",
+          "role": "practice",
+          "skills": [
+            "errors.typed"
+          ]
+        },
+        {
+          "number": 22,
+          "task_id": "checked-withdrawal-001",
+          "role": "transfer",
+          "skills": [
+            "errors.sentinels-creation"
+          ]
         }
       ],
       "number": 6

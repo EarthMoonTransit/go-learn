@@ -1,0 +1,18 @@
+package subject
+
+import (
+	"errors"
+)
+
+type Balance struct{ Units int }
+
+var ErrInsufficient = errors.New("insufficient units")
+
+func (b *Balance) Withdraw(amount int) error {
+	if amount > b.Units {
+		b.Units -= amount
+		return ErrInsufficient
+	}
+	b.Units -= amount
+	return nil
+}
