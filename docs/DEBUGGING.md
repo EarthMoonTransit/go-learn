@@ -66,3 +66,22 @@ timeouts, isolation, required test cases and collection reuse are unchanged.
 This prevents an aggregate timeout from truncating otherwise bounded checks;
 it is not a runtime-speed improvement. Cache/session optimization remains
 a separate measured change.
+
+## Reviewed public-feedback matrix
+
+`TestReviewedDefectsHavePublicFeedback` exercises inclusive boolean OR, exact
+whitespace matching and exact map-key lookup using temporary learner homes.
+Each reviewed defect must fail `Check` with its input/actual/expected diagnostic;
+the reference must then pass the same public-only path. Hidden grader success
+cannot substitute for this regression. Canonical task digests remain unchanged.
+
+Run the bounded loop with:
+
+```bash
+go test -tags=taskintegration ./internal/learner -run '^TestReviewedDefectsHavePublicFeedback$' -count=1 -v
+```
+
+Add a matrix row when fixing a public-success/full-failure gap that would
+otherwise remain masked by hidden mutant coverage. Keep content edits and this
+tooling regression in separate reviewable batches; complete both before claiming
+the feedback regression is protected.

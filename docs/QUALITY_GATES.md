@@ -148,3 +148,9 @@ go run ./cmd/task-report -root . -check -checks .tmp/results/task-checks.yaml
 
 Release coverage дополнительно использует `-coverage`. Ни `-phase1`, ни наличие
 upstream tests не ослабляют gates уже существующих packages.
+
+The tooling matrix `TestReviewedDefectsHavePublicFeedback` additionally locks
+public-only failure and useful diagnostics for `boolean-policies-001`
+(`exclusive-or`), `token-values-001` (`trim-space`), and `column-occupancy-001`
+(`case-normalized`). These cases execute through `Service.Check` in temporary
+learner homes, with reference success and unchanged canonical content checked.
