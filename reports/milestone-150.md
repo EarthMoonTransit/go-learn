@@ -30,7 +30,12 @@ The isolated final smoke check reports `150/150 defined` through the CLI and
 new learner progress starts with zero completions, zero confirmed skills and no
 reviews due. CLI list, roadmap, next, progress and organize dry-run all succeed
 without creating files in a fresh learner home. Existing live learner state is
-not read or modified for this acceptance.
+not read or modified for this acceptance. The rendered Start action created
+`workspaces/01-first-steps/01-literal-bindings`; public Check reported all four
+incorrect bindings including false versus required true. A reference installed
+only in the temporary workspace passed UI Complete: one fixture completion,
+two attempts and zero confirmed skills. Next selected 01.02; CLI read the same
+progress and recommendation.
 
 Numbered workspace organization and progress v3 have separate migration,
 backup/recovery, conflict and repeated-run regressions. Stable task IDs preserve
