@@ -1,0 +1,44 @@
+schema_version: 2
+id: text-border-001
+title: Build two exact border lines around text
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: strings.building
+    secondary: []
+prerequisites:
+    - slices.header-model
+    - strings.immutable-bytes
+new_concepts: []
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - extra-newline
+        - missing-lower
+        - wrong-width
+        - trimmed-text
+        - zero-bypass
+        - empty-bypass
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
