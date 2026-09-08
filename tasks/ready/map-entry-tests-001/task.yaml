@@ -1,0 +1,47 @@
+schema_version: 2
+id: map-entry-tests-001
+title: Test unordered enumeration of complete map entries
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: maps.iteration
+    secondary: []
+prerequisites:
+    - control-flow.range
+    - maps.operations-comma-ok
+    - structs.literals-zero
+    - testing.basics-diagnostics
+new_concepts: []
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - first-only
+        - positive-only
+        - empty-key-ignored
+        - erase-values
+        - destructive
+        - duplicate-entry
+        - empty-placeholder
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
