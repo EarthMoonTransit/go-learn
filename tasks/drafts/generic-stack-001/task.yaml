@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "id": "generic-stack-001",
+  "title": "Implement a reusable generic LIFO stack",
+  "activity": "implementation",
+  "submission": {
+    "kind": "implementation",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "generics.reusable-data-structures",
+    "secondary": []
+  },
+  "prerequisites": [
+    "generics.constraints-type-sets",
+    "types.zero-values"
+  ],
+  "new_concepts": [
+    "generics.reusable-data-structures"
+  ],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "fixed-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "fifo",
+      "peek-only",
+      "false-success",
+      "empty-true",
+      "always-empty",
+      "replace-push",
+      "nil-new"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}

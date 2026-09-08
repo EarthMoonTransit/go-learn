@@ -932,6 +932,38 @@
           "skills": [
             "types.floating-point-semantics"
           ]
+        },
+        {
+          "number": 41,
+          "task_id": "error-chain-match-001",
+          "role": "introduction",
+          "skills": [
+            "errors.is"
+          ]
+        },
+        {
+          "number": 42,
+          "task_id": "error-detail-tests-001",
+          "role": "introduction",
+          "skills": [
+            "errors.as"
+          ]
+        },
+        {
+          "number": 43,
+          "task_id": "struct-copy-tests-001",
+          "role": "practice",
+          "skills": [
+            "structs.copy-equality"
+          ]
+        },
+        {
+          "number": 44,
+          "task_id": "capture-panic-001",
+          "role": "introduction",
+          "skills": [
+            "errors.panic-recover-boundaries"
+          ]
         }
       ],
       "number": 6
@@ -955,6 +987,55 @@
           "skills": [
             "packages.imports-exports-naming",
             "structs.field-visibility-tags"
+          ]
+        },
+        {
+          "number": 3,
+          "task_id": "generic-find-tests-001",
+          "role": "introduction",
+          "skills": [
+            "generics.type-parameters-inference"
+          ]
+        },
+        {
+          "number": 4,
+          "task_id": "generic-reduce-001",
+          "role": "practice",
+          "skills": [
+            "generics.type-parameters-inference"
+          ]
+        },
+        {
+          "number": 5,
+          "task_id": "named-numeric-constraint-001",
+          "role": "introduction",
+          "skills": [
+            "generics.approximation-unions",
+            "generics.constraints-type-sets"
+          ]
+        },
+        {
+          "number": 6,
+          "task_id": "generic-stack-001",
+          "role": "introduction",
+          "skills": [
+            "generics.reusable-data-structures"
+          ]
+        },
+        {
+          "number": 7,
+          "task_id": "initialization-values-001",
+          "role": "introduction",
+          "skills": [
+            "packages.initialization-order"
+          ]
+        },
+        {
+          "number": 8,
+          "task_id": "bounded-copy-001",
+          "role": "introduction",
+          "skills": [
+            "io.copy-limit-composition"
           ]
         }
       ],

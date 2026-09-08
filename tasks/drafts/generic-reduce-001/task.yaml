@@ -1,0 +1,58 @@
+{
+  "schema_version": 2,
+  "id": "generic-reduce-001",
+  "title": "Repair a generic ordered reduction across two types",
+  "activity": "debugging",
+  "submission": {
+    "kind": "implementation",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "generics.type-parameters-inference",
+    "secondary": []
+  },
+  "prerequisites": [
+    "functions.function-values",
+    "functions.signatures-results",
+    "types.named-underlying"
+  ],
+  "new_concepts": [],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "fixed-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "reset-each-step",
+      "zero-initial",
+      "skip-first",
+      "reverse-order",
+      "double-step",
+      "erase-input"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}

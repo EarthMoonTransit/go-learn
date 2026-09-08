@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "id": "error-chain-match-001",
+  "title": "Match an error through wrapped and joined causes",
+  "activity": "implementation",
+  "submission": {
+    "kind": "implementation",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "errors.is",
+    "secondary": []
+  },
+  "prerequisites": [
+    "errors.wrapping"
+  ],
+  "new_concepts": [
+    "errors.is"
+  ],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "fixed-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "identity-only",
+      "text-equality",
+      "single-cause",
+      "nil-never",
+      "reverse-match"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}
