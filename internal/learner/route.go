@@ -313,6 +313,12 @@ func writeRoadmap(output io.Writer, roadmap Roadmap) {
 			}
 		}
 		state := "planned"
+		for _, step := range block.Steps {
+			if _, available := roadmap.Tasks[step.TaskID]; available {
+				state = "ready"
+				break
+			}
+		}
 		if len(block.Steps) > 0 && done == len(block.Steps) {
 			state = "completed"
 		} else if !currentShown {
