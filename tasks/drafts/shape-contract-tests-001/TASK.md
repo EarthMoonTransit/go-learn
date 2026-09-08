@@ -11,6 +11,7 @@ type Shape interface{Area()float64}
 type Rectangle struct{Width,Height float64}
 type Circle struct{Radius float64}
 type Triangle struct{Base,Height float64}
+func AreaOf(s Shape) float64
 func (r Rectangle) Area() float64
 func (c Circle) Area() float64
 func (t Triangle) Area() float64
@@ -19,7 +20,7 @@ func (t Triangle) Area() float64
 ## Requirements
 
 - Rectangle area is Width times Height; Circle area is math.Pi times Radius squared; Triangle area is Base times Height divided by two.
-- Each value implements Shape without a declaration of implementation. Exercise heterogeneous Shape values in your tests.
+- AreaOf calls Area through Shape, including custom implementing types supplied by the caller; preserve their returned value.
 - Dimensions are finite from 0 through 1000; allow absolute error 0.000000001 and reject NaN.
 - Zero dimensions and fractional dimensions are valid; results do not depend on previous calls.
 

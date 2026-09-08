@@ -6,3 +6,5 @@ type Sample struct {
 }
 
 func (s Sample) Average() float64 { return 0 }
+
+func MethodFunctions() (func(Sample) float64, func(*Sample) float64) { return nil, nil }

@@ -8,7 +8,7 @@ import (
 
 func TestStartingCase01(t *testing.T) {
 	var shape subject.Shape = subject.Rectangle{Width: 12, Height: 6}
-	got := shape.Area()
+	got := subject.AreaOf(shape)
 	if math.IsNaN(got) || math.Abs(got-72) > 1e-9 {
 		t.Errorf("rectangle got %g want72", got)
 	}

@@ -47,7 +47,9 @@
       "no-box",
       "all-fancy-values",
       "nil-number",
-      "default-number"
+      "default-number",
+      "partial-error-result",
+      "wrong-interface-priority"
     ],
     "race_required": false,
     "vet": true,

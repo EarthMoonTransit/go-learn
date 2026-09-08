@@ -45,7 +45,8 @@
       "approximate-pi",
       "triangle-no-half",
       "fraction-truncated",
-      "zero-fallback"
+      "zero-fallback",
+      "custom-unsupported"
     ],
     "race_required": false,
     "vet": true,

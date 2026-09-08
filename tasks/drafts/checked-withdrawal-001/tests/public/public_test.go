@@ -6,6 +6,15 @@ import (
 )
 
 func TestPublicCase01(t *testing.T) {
+	original := subject.ErrInsufficient
+	if original == nil {
+		t.Fatal("nil sentinel")
+	}
+	defer func() {
+		if subject.ErrInsufficient != original {
+			t.Error("sentinel identity changed")
+		}
+	}()
 	b := subject.Balance{Units: 20}
 	alias := &b
 	for _, amount := range []int{10, 10, 0} {
@@ -18,6 +27,15 @@ func TestPublicCase01(t *testing.T) {
 }
 
 func TestPublicCase02(t *testing.T) {
+	original := subject.ErrInsufficient
+	if original == nil {
+		t.Fatal("nil sentinel")
+	}
+	defer func() {
+		if subject.ErrInsufficient != original {
+			t.Error("sentinel identity changed")
+		}
+	}()
 	b := subject.Balance{Units: 20}
 	sentinel := subject.ErrInsufficient
 	if sentinel == nil {
@@ -33,6 +51,15 @@ func TestPublicCase02(t *testing.T) {
 }
 
 func TestPublicCase03(t *testing.T) {
+	original := subject.ErrInsufficient
+	if original == nil {
+		t.Fatal("nil sentinel")
+	}
+	defer func() {
+		if subject.ErrInsufficient != original {
+			t.Error("sentinel identity changed")
+		}
+	}()
 	b := subject.Balance{}
 	sentinel := subject.ErrInsufficient
 	if e := b.Withdraw(1); e != sentinel || b.Units != 0 {

@@ -13,6 +13,7 @@
     "secondary": []
   },
   "prerequisites": [
+    "functions.function-values",
     "methods.receiver-semantics",
     "structs.literals-zero",
     "types.numeric-conversions"
@@ -44,7 +45,10 @@
       "reversed-ratio",
       "zero-one",
       "percentage",
-      "label-filter"
+      "label-filter",
+      "value-argument-ignored",
+      "pointer-argument-ignored",
+      "pointer-cached"
     ],
     "race_required": false,
     "vet": true,

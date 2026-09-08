@@ -1,6 +1,7 @@
 package subject_test
 
 import (
+	"maps"
 	"task.local/dictionary-update-001/subject"
 	"testing"
 )
@@ -15,12 +16,13 @@ func TestPublicCase01(t *testing.T) {
 
 func TestPublicCase02(t *testing.T) {
 	for _, d := range []subject.Dictionary{nil, {}, {"A": "keep"}} {
+		before := maps.Clone(d)
 		e := d.Update("a", "new")
 		typed, ok := e.(subject.DictionaryError)
 		if !ok || typed != subject.ErrAbsent || e.Error() != "cannot update absent key" {
 			t.Errorf("absent got %T,%v want DictionaryError ErrAbsent", e, e)
 		}
-		if len(d) > 0 && (len(d) != 1 || d["A"] != "keep") {
+		if !maps.Equal(d, before) {
 			t.Errorf("absent changed map %v", d)
 		}
 	}

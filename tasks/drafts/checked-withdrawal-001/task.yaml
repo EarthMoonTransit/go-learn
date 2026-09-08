@@ -42,7 +42,8 @@
       "fresh-error",
       "no-subtract",
       "add-instead",
-      "failure-nil"
+      "failure-nil",
+      "success-reassigned"
     ],
     "race_required": false,
     "vet": true,

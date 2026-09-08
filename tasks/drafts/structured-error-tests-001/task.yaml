@@ -49,7 +49,8 @@
       "generic-error",
       "same-reason",
       "fixed-reason-text",
-      "typed-nil-success"
+      "typed-nil-success",
+      "reason-derived-from-count"
     ],
     "race_required": false,
     "vet": true,

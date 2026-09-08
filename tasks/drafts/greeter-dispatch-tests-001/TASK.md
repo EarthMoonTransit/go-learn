@@ -16,7 +16,7 @@ func SayHello(name string, g Greeter) string
 - Return "I can speak " + g.LanguageName() + ": " + g.Greet(name).
 - The non-nil Greeter may hold any implementing concrete type and state; dispatch both methods through its current dynamic value.
 - Forward name exactly, including empty strings, Unicode and spaces. Preserve returned language and greeting text exactly.
-- Write local implementing types in your tests and include different types and differently configured values of one type.
+- Composition must work for arbitrary implementing types and configurations, rather than recognizing a fixed list of languages.
 
 ## Constraints
 

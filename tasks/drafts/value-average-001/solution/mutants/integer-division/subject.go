@@ -11,3 +11,7 @@ func (s Sample) Average() float64 {
 	}
 	return float64(s.Hits / s.Attempts)
 }
+
+func MethodFunctions() (func(Sample) float64, func(*Sample) float64) {
+	return Sample.Average, (*Sample).Average
+}

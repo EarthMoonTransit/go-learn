@@ -22,3 +22,5 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+The added MethodFunctions operation makes the learner select method expressions for value and pointer method sets. It is an independently authored extension to the source average operation.

@@ -44,7 +44,9 @@
       "fresh-error",
       "absolute-amount",
       "empty-category-rejected",
-      "mutate-input"
+      "mutate-input",
+      "all-categories-in-period",
+      "success-reassigned"
     ],
     "race_required": false,
     "vet": true,

@@ -45,7 +45,8 @@
       "generic-error",
       "ignore-value",
       "clear-others",
-      "empty-key-rejected"
+      "empty-key-rejected",
+      "clear-on-missing"
     ],
     "race_required": false,
     "vet": true,
