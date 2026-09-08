@@ -1,22 +1,26 @@
-# Author review notes
+# Content review notes
 
-Independent content review pending. Estimates are uncalibrated.
+Independent content review approved by `/root/ui_goal_reviewer` on 2026-09-08. Estimates remain uncalibrated.
 
-Requirements:
+## Requirements
 
 - Write exactly "Hello, " followed by name, preserving empty text, Unicode and spaces; append no newline.
 - Make one Write call on the supplied non-nil writer. Return its exact error if non-nil, even with a partial count.
 - If Write reports fewer bytes than requested with nil error, return io.ErrShortWrite; on a full successful write return nil.
 - Do not retry, close the writer or write elsewhere. Writer counts are between zero and the supplied byte length.
 
-Public/reference assertions (actual/expected diagnostics):
+## Requirement, assertion and defect mapping
 
-- Case01: `var b bytes.Buffer;e:=subject.WriteGreeting(&b,"Chris");if e!=nil||b.String()!="Hello, Chris"{t.Errorf("greeting got%q,%v",b.String(),e)}`
-- Case02: `for _,name:=range []string{""," λ "}{w:=&writerProbe{n:-1};e:=subject.WriteGreeting(w,name);if e!=nil||w.text!="Hello, "+name||w.calls!=1{t.Errorf("name%q got%q,%v calls%d",name,w.text,e,w.calls)}}`
-- Case03: `sentinel:=errors.New("write failed");w:=&writerProbe{n:2,err:sentinel};if e:=subject.WriteGreeting(w,"x");e!=sentinel||w.calls!=1{t.Errorf("failure got%v calls%d",e,w.calls)}`
-- Case04: `w:=&writerProbe{n:2};if e:=subject.WriteGreeting(w,"x");e!=io.ErrShortWrite||w.calls!=1{t.Errorf("short got%v calls%d",e,w.calls)}`
+| Requirement | Public/reference assertion | Required defect | Diagnostic |
+|---|---|---|---|
+| Exact greeting, empty/Unicode/spaces, no newline | TestPublicCase01/02 Buffer and custom writer | extra-newline, trim-name | quoted greeting/name and output |
+| One call and original write error, including partial count | TestPublicCase03 | ignore-error, fresh-error, retry-write | failure error and call count |
+| Short nil-error write returns io.ErrShortWrite | TestPublicCase04 and zero-count grader | ignore-short | short actual error and call count |
+| Caller retains ownership on success, error and short write | TestWriterRemainsOpen covers all three outcomes with Close probe | close-writer, close-on-error, close-on-short | closes got N want 0 with writer count/error |
 
-Realistic required defect models:
+For implementation/debugging tasks these are public assertions. For test-writing tasks these are strong learner reference assertions; the mutation profile checks reference compatibility and required defect detection, without requiring a particular test layout.
+
+## Realistic required defect models
 
 - ignore-error
 - ignore-short
@@ -24,5 +28,16 @@ Realistic required defect models:
 - extra-newline
 - trim-name
 - retry-write
+- close-writer
+- close-on-error
+- close-on-short
 
-Retained source behavior: lgwt:di/v2/di.go selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+## Source boundary
+
+Substantive adaptation of `learn-go-with-tests` at commit `4675d96ad50b815d3e9fdc2122ab3dbc14636252`, selected operation in `di/v2/di.go`. All declared consulted artifacts and SHA256 values were verified against the pinned local source. MIT notices and attribution were preserved; independently authored boundaries and defects extend the selected observable behavior. No generated canonical or reference-only material was reused. Private reference code and mutants are excluded from learner payloads.
+
+## Independent review
+
+The public Close probe now checks successful, failing and short writes with explicit close-count diagnostics; each outcome has a dedicated realistic defect.
+
+Reviewed current English requirements, API/starter, public or learner reference assertions, grader/mutation layout, all 9 required defects, hints, route prerequisites and provenance. The author-provided `.tmp/checks/writer-greeting-001.yaml` reports technical pass and 9/9 required mutants detected. No authored code was executed by the reviewer; no real learner state was accessed. Full batch gates, lifecycle promotion and the separate public-feedback tooling matrix remain separate. Automated fixtures do not establish learner mastery or human calibration.

@@ -1,25 +1,39 @@
-# Author review notes
+# Content review notes
 
-Independent content review pending. Estimates are uncalibrated.
+Independent content review approved by `/root/ui_goal_reviewer` on 2026-09-08. Estimates remain uncalibrated.
 
-Requirements:
+## Requirements
 
 - Return the elements in in[start:end] with length and capacity both end-start.
 - Existing view elements share input storage, so changing one changes the corresponding input element.
 - Appending an element to the returned view must allocate independent storage and preserve input elements outside the view.
 - Bounds satisfy 0 <= start <= end <= len(in). Empty ranges and nil input are valid; do not mutate input during the call.
 
-Public/reference assertions (actual/expected diagnostics):
+## Requirement, assertion and defect mapping
 
-- Case01: `in:=[]int{1,2,3,4};v:=subject.CappedView(in,1,3);if !slices.Equal(v,[]int{2,3})||len(v)!=2||cap(v)!=2{t.Fatalf("view got%v len%d cap%d",v,len(v),cap(v))};v[0]=9;if in[1]!=9{t.Errorf("view detached: %v",in)};v=append(v,8);if in[3]!=4{t.Errorf("append overwrote outside: %v",in)}`
-- Case02: `for _,bounds:=range [][2]int{{0,0},{2,2},{3,3}}{in:=[]int{1,2,3};v:=subject.CappedView(in,bounds[0],bounds[1]);if len(v)!=0||cap(v)!=0||!slices.Equal(in,[]int{1,2,3}){t.Errorf("empty %v len%d cap%d input%v",bounds,len(v),cap(v),in)}}`
+| Requirement | Public/reference assertion | Required defect | Diagnostic |
+|---|---|---|---|
+| Exact window length/capacity and sharing of existing elements | TestPublicCase01 changes a returned element after verifying values and bounds | two-index, detached, ignore-start | view length/capacity and detached input |
+| Preserve entire input during the call, including outside the view | TestPublicCase01 compares a complete snapshot before mutating the view | mutate-input, prefix-cleared | call changed input actual/expected |
+| Appending cannot overwrite outside the view; empty ranges have zero capacity | TestPublicCase01 append and Case02 start/middle/end empty windows; nil grader | two-index, empty-tail-cap | append overwrote outside / empty length/capacity |
 
-Realistic required defect models:
+For implementation/debugging tasks these are public assertions. For test-writing tasks these are strong learner reference assertions; the mutation profile checks reference compatibility and required defect detection, without requiring a particular test layout.
+
+## Realistic required defect models
 
 - two-index
 - detached
 - ignore-start
 - empty-tail-cap
 - mutate-input
+- prefix-cleared
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+## Source boundary
+
+Original task under ADR0008. Project identity matches `config/project-identity.yaml`; creation evidence and content digest are recorded, external sources are empty, and commit binding is deferred to the actual release manifest. No external code, tests or text are claimed or reused.
+
+## Independent review
+
+The complete input snapshot closes the outside-window mutation gap; shared element updates and isolated append capacity remain distinct requirements.
+
+Reviewed current English requirements, API/starter, public or learner reference assertions, grader/mutation layout, all 6 required defects, hints, route prerequisites and provenance. The author-provided `.tmp/checks/bounded-slice-view-001.yaml` reports technical pass and 6/6 required mutants detected. No authored code was executed by the reviewer; no real learner state was accessed. Full batch gates, lifecycle promotion and the separate public-feedback tooling matrix remain separate. Automated fixtures do not establish learner mastery or human calibration.

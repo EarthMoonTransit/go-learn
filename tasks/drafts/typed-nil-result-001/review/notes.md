@@ -1,26 +1,39 @@
-# Author review notes
+# Content review notes
 
-Independent content review pending. Estimates are uncalibrated.
+Independent content review approved by `/root/ui_goal_reviewer` on 2026-09-08. Estimates remain uncalibrated.
 
-Requirements:
+## Requirements
 
 - Return (0,false) for a nil Coder interface or an interface holding a nil *Result pointer; do not call its method.
 - For a non-nil *Result return its Code and true, including zero and negative codes.
 - For any other implementing type call CodeValue once and return its result with true. Such values have safe method receivers.
 - Preserve the pointed Result. An interface holding a typed nil pointer is not itself nil.
 
-Public/reference assertions (actual/expected diagnostics):
+## Requirement, assertion and defect mapping
 
-- Case01: `for _,v:=range []subject.Coder{nil,(*subject.Result)(nil)}{n,ok:=subject.ReadCode(v);if n!=0||ok{t.Errorf("nil %T got%d,%v",v,n,ok)}}`
-- Case02: `for _,code:=range []int{0,-3,9}{r:=&subject.Result{Code:code};n,ok:=subject.ReadCode(r);if n!=code||!ok||r.Code!=code{t.Errorf("result got%d,%v stored%d want%d,true",n,ok,r.Code,code)}}`
-- Case03: `c:=&otherCoder{code:4};n,ok:=subject.ReadCode(c);if n!=4||!ok||c.calls!=1{t.Errorf("other got%d,%v calls%d",n,ok,c.calls)}`
+| Requirement | Public/reference assertion | Required defect | Diagnostic |
+|---|---|---|---|
+| Nil interface and typed nil *Result return false without method calls | TestPublicCase01 | interface-nil-only | nil dynamic type and result; unsafe method call panics |
+| Non-nil *Result returns signed/zero Code and is preserved | TestPublicCase02 | all-result-invalid, zero-absent, mutate-result | returned code/bool and stored code |
+| Other implementers are called exactly once | TestPublicCase03 uses stateful otherCoder | other-rejected, double-call | returned code/bool and call count |
 
-Realistic required defect models:
+For implementation/debugging tasks these are public assertions. For test-writing tasks these are strong learner reference assertions; the mutation profile checks reference compatibility and required defect detection, without requiring a particular test layout.
+
+## Realistic required defect models
 
 - interface-nil-only
 - all-result-invalid
 - zero-absent
 - other-rejected
 - double-call
+- mutate-result
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+## Source boundary
+
+Original task under ADR0008. Project identity matches `config/project-identity.yaml`; creation evidence and content digest are recorded, external sources are empty, and commit binding is deferred to the actual release manifest. No external code, tests or text are claimed or reused.
+
+## Independent review
+
+Nil-interface and typed-nil handling are distinguished from zero-code absence, arbitrary implementation rejection and receiver mutation.
+
+Reviewed current English requirements, API/starter, public or learner reference assertions, grader/mutation layout, all 6 required defects, hints, route prerequisites and provenance. The author-provided `.tmp/checks/typed-nil-result-001.yaml` reports technical pass and 6/6 required mutants detected. No authored code was executed by the reviewer; no real learner state was accessed. Full batch gates, lifecycle promotion and the separate public-feedback tooling matrix remain separate. Automated fixtures do not establish learner mastery or human calibration.
