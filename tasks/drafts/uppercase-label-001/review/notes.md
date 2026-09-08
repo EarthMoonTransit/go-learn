@@ -29,3 +29,15 @@ Realistic required defect models:
 - empty-special
 
 Retained source behavior: welcome-to-tech-palace selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+
+
+## Requirements → public assertions → defects
+
+| Requirement | Case | Required defect |
+|---|---|---|
+| uppercase all letters | 01–04 | no-uppercase; lowercase |
+| Unicode conversion | 05 | ascii-only |
+| whitespace/punctuation | 03,06 | trimmed-input |
+| prefix/empty | 07 | prefix-missing; empty-special |
+
+For test-writing these are reference learner-submission cases; private mutants require learner assertions. Fixed-test public diagnostics identify actual/expected values. No forbidden aliasing or input outside the stated domain is graded.

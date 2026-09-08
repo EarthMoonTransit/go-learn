@@ -29,3 +29,16 @@ Realistic required defect models:
 - no-groups-one
 
 Retained source behavior: lgwt:arrays/v7/sum.go selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+
+
+## Requirements → public assertions → defects
+
+| Requirement | Case | Required defect |
+|---|---|---|
+| one result per group/order | 01–03 | skip-empty; skip-singleton; shared-total |
+| tail excludes only head | 01–02 | include-head |
+| negative values included | 05 | negative-ignored |
+| zero groups | 04 | no-groups-one |
+| input preserved | 06 | consume-input |
+
+For test-writing these are reference learner-submission cases; private mutants require learner assertions. Fixed-test public diagnostics identify actual/expected values. No forbidden aliasing or input outside the stated domain is graded.

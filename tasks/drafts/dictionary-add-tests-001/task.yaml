@@ -45,7 +45,9 @@
       "empty-key-rejected",
       "empty-value-ignored",
       "clear-others",
-      "success-error"
+      "success-error",
+      "sentinel-nullified",
+      "sentinel-reassigned"
     ],
     "race_required": false,
     "vet": true,

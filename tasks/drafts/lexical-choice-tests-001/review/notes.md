@@ -31,3 +31,17 @@ Realistic required defect models:
 - prefix-missing
 
 Retained source behavior: vehicle-purchase selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+
+
+## Requirements → public assertions → defects
+
+| Requirement | Case | Required defect |
+|---|---|---|
+| symmetric choice | 01–02 | first-only; largest |
+| complete strings | 03 | first-byte-only |
+| case-sensitive comparison | 04,08 | case-insensitive |
+| equal inputs | 05 | equal-empty |
+| empty input | 06 | empty-skipped |
+| whitespace/prefix | 07 | trimmed-output; prefix-missing |
+
+For test-writing these are reference learner-submission cases; private mutants require learner assertions. Fixed-test public diagnostics identify actual/expected values. No forbidden aliasing or input outside the stated domain is graded.

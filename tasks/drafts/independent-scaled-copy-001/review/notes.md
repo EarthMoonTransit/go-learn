@@ -28,3 +28,16 @@ Realistic required defect models:
 - empty-placeholder
 
 Retained source behavior: lasagna-master selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+
+
+## Requirements → public assertions → defects
+
+| Requirement | Case | Required defect |
+|---|---|---|
+| scaling/length/order | 01–02 | missing-base; integer-factor; reverse-output |
+| input preserved | 01,03 | in-place; zero-scale-alias |
+| independent zero/unchanged-scale storage | 03 | same-scale-alias; zero-scale-alias |
+| zero scale produces zero values | 03 | zero-scale-ignored |
+| nil input | 04 | empty-placeholder |
+
+For test-writing these are reference learner-submission cases; private mutants require learner assertions. Fixed-test public diagnostics identify actual/expected values. No forbidden aliasing or input outside the stated domain is graded.

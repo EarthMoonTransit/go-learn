@@ -11,7 +11,7 @@ func TestPublicCase01(t *testing.T) {
 	in := []float64{0.5, 250, 150, 3, 0.5}
 	want := []float64{1.5, 750, 450, 9, 1.5}
 	got := subject.ScaledCopy(in, 6)
-	if !slices.Equal(got, want) {
+	if !closeFloats(got, want) {
 		t.Errorf("scaled got %v want %v", got, want)
 	}
 	if !slices.Equal(in, []float64{0.5, 250, 150, 3, 0.5}) {
@@ -40,7 +40,7 @@ func TestPublicCase03(t *testing.T) {
 			t.Fatalf("length got %d want2", len(got))
 		}
 		want := []float64{4 * float64(units) / 2, 2 * float64(units) / 2}
-		if !slices.Equal(got, want) {
+		if !closeFloats(got, want) {
 			t.Errorf("units%d got %v want %v", units, got, want)
 		}
 		got[0] = 99
@@ -54,4 +54,16 @@ func TestPublicCase04(t *testing.T) {
 	if got := subject.ScaledCopy(nil, 100); len(got) != 0 {
 		t.Errorf("nil got %v want empty", got)
 	}
+}
+
+func closeFloats(got, want []float64) bool {
+	if len(got) != len(want) {
+		return false
+	}
+	for i := range want {
+		if math.IsNaN(got[i]) || math.Abs(got[i]-want[i]) > 1e-9 {
+			return false
+		}
+	}
+	return true
 }

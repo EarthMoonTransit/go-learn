@@ -46,7 +46,9 @@
       "value-erased",
       "empty-key-rejected",
       "destructive-search",
-      "case-normalized"
+      "case-normalized",
+      "sentinel-nullified",
+      "sentinel-reassigned"
     ],
     "race_required": false,
     "vet": true,

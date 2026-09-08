@@ -17,7 +17,7 @@ func (d Dictionary) Add(key, value string) error
 - For a missing key store the supplied value and return nil.
 - For a present key return the supplied ErrExists sentinel and preserve its previous value.
 - A present empty value is still an existing entry; empty keys and new empty values are valid.
-- Preserve unrelated entries. The dictionary is non-nil; a fresh error with matching text is not the supplied sentinel.
+- Preserve unrelated entries and ErrExists. The dictionary is non-nil; a fresh error with matching text is not the supplied sentinel.
 
 ## Constraints
 

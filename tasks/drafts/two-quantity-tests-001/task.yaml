@@ -45,7 +45,8 @@
       "integer-liquid",
       "case-normalized",
       "empty-default",
-      "input-consumed"
+      "input-consumed",
+      "liquid-once"
     ],
     "race_required": false,
     "vet": true,

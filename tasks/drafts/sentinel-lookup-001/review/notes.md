@@ -28,3 +28,16 @@ Realistic required defect models:
 - case-normalized
 
 Retained source behavior: lgwt:maps/v7/dictionary.go selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+
+
+## Requirements → public assertions → defects
+
+| Requirement | Case | Required defect |
+|---|---|---|
+| present exact value and nil | 01–02 | value-erased; empty-is-missing |
+| absent stable sentinel | 03–04 | fresh-error; missing-nil |
+| exact empty/case keys and preservation | 05 | empty-key-rejected; case-normalized; destructive-search |
+
+For test-writing these are reference learner-submission cases; private mutants require learner assertions. Fixed-test public diagnostics identify actual/expected values. No forbidden aliasing or input outside the stated domain is graded.
+
+Regression: reference/public tests capture the original non-nil sentinel before each call and assert it remains unchanged afterward. Required nullified/reassigned mutants cannot redefine the expected error by changing a package variable.

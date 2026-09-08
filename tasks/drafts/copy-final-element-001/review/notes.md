@@ -23,3 +23,14 @@ Realistic required defect models:
 - swap-last
 
 Retained source behavior: lasagna-master selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+
+
+## Requirements → public assertions → defects
+
+| Requirement | Case | Required defect |
+|---|---|---|
+| final source to final destination, lengths/order | 01 | append-instead; source-first; destination-first |
+| source preserved | 01 | swap-last |
+| shared destination update and empty value | 02 | copy-destination |
+
+For test-writing these are reference learner-submission cases; private mutants require learner assertions. Fixed-test public diagnostics identify actual/expected values. No forbidden aliasing or input outside the stated domain is graded.

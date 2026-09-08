@@ -17,7 +17,7 @@ func (d Dictionary) Search(key string) (string, error)
 - Return the exact stored value and nil for a present key, including a present empty value.
 - For an absent key return empty text and the supplied ErrMissing sentinel.
 - Nil and empty dictionaries have no keys; keys are exact strings and may be empty.
-- Preserve all dictionary entries. A newly created error with the same text does not equal the supplied sentinel.
+- Preserve all dictionary entries and ErrMissing. A newly created error with the same text does not equal the supplied sentinel.
 
 ## Constraints
 

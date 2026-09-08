@@ -28,3 +28,15 @@ Realistic required defect models:
 - input-consumed
 
 Retained source behavior: lasagna-master selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+
+
+## Requirements → public assertions → defects
+
+| Requirement | Case | Required defect |
+|---|---|---|
+| both independent repeated quantities | 01–03 | one-of-each; integer-liquid |
+| unknown/exact kinds | 02–03,05 | count-unknown; case-normalized |
+| empty zeros | 04 | empty-default |
+| preserve input | 06 | input-consumed |
+
+For test-writing these are reference learner-submission cases; private mutants require learner assertions. Fixed-test public diagnostics identify actual/expected values. No forbidden aliasing or input outside the stated domain is graded.

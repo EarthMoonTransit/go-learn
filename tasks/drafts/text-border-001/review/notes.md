@@ -27,3 +27,15 @@ Realistic required defect models:
 - empty-bypass
 
 Retained source behavior: welcome-to-tech-palace selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+
+
+## Requirements → public assertions → defects
+
+| Requirement | Case | Required defect |
+|---|---|---|
+| both lines/exact width | 01–02 | missing-lower; wrong-width |
+| exact inserted newlines | 01–02 | extra-newline |
+| zero width/empty text | 03–04 | zero-bypass; empty-bypass |
+| middle text preserved | 05 | trimmed-text |
+
+For test-writing these are reference learner-submission cases; private mutants require learner assertions. Fixed-test public diagnostics identify actual/expected values. No forbidden aliasing or input outside the stated domain is graded.
