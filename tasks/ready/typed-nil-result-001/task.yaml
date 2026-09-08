@@ -1,0 +1,47 @@
+schema_version: 2
+id: typed-nil-result-001
+title: Handle an interface containing a nil pointer
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: interfaces.typed-nil
+    secondary: []
+prerequisites:
+    - interfaces.dynamic-type-value
+    - interfaces.small-contracts
+    - interfaces.type-assertions
+    - pointers.address-deref-nil
+new_concepts:
+    - interfaces.typed-nil
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - interface-nil-only
+        - all-result-invalid
+        - zero-absent
+        - other-rejected
+        - double-call
+        - mutate-result
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

@@ -1971,10 +1971,11 @@
       "behavior_anchor": "DivideFood: call the two error-returning dependencies in order, stop at either error and propagate the same error",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 43,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "errors.sentinels-creation",
-        "interfaces.small-contracts"
+        "interfaces.small-contracts",
+        "types.numeric-conversions"
       ],
       "activity": "debugging",
       "required_before_release": [
@@ -1985,7 +1986,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "ordered-error-propagation-001",
+      "secondary": [],
+      "release_batch": "C08",
+      "route_number": "06.23"
     },
     {
       "primary": "types.iota-enumeration",
@@ -2901,11 +2906,12 @@
       "behavior_anchor": "Deposit",
       "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
       "slot": 65,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "types.named-underlying",
+        "functions.signatures-results",
         "pointers.mutation-sharing",
-        "functions.signatures-results"
+        "testing.basics-diagnostics",
+        "types.named-underlying"
       ],
       "activity": "test-writing",
       "required_before_release": [
@@ -2916,7 +2922,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "deposit-state-tests-001",
+      "secondary": [],
+      "release_batch": "C08",
+      "route_number": "06.27"
     },
     {
       "primary": "errors.sentinels-creation",
@@ -3023,11 +3033,12 @@
       "behavior_anchor": "Greet",
       "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
       "slot": 68,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "interfaces.implicit-satisfaction",
         "errors.propagation-context",
-        "slices.header-model"
+        "interfaces.implicit-satisfaction",
+        "slices.header-model",
+        "strings.byte-rune-conversions"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -3038,7 +3049,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "writer-greeting-001",
+      "secondary": [],
+      "release_batch": "C08",
+      "route_number": "07.01"
     },
     {
       "primary": "io.files-cleanup",
@@ -3740,11 +3755,12 @@
       "primary": "functions.defer",
       "origin": "original-planned",
       "planned_slug": "deferred-result",
-      "behavior_anchor": "Repair deferred mutation of a named result",
+      "behavior_anchor": "WithRelease: run release exactly once after normal completion or during propagation of the original panic",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 91,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "functions.function-values",
         "functions.signatures-results"
       ],
       "activity": "implementation",
@@ -3755,7 +3771,12 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "deferred-release-001",
+      "secondary": [],
+      "release_batch": "C08",
+      "route_number": "06.24",
+      "selection_review_note": "Replace the planned named-result arithmetic example with an observable defer lifecycle contract. Independent review approves this introduction; it does not establish LIFO order or deferred-argument evaluation mastery."
     },
     {
       "primary": "functions.closure-capture",
@@ -3764,9 +3785,10 @@
       "behavior_anchor": "Create independent closures with persistent local state",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 92,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "functions.function-values"
+        "functions.function-values",
+        "testing.basics-diagnostics"
       ],
       "activity": "test-writing",
       "required_before_release": [
@@ -3776,7 +3798,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "stateful-counter-tests-001",
+      "secondary": [],
+      "release_batch": "C08",
+      "route_number": "06.25"
     },
     {
       "primary": "functions.variadic",
@@ -3806,7 +3832,7 @@
       "behavior_anchor": "Construct a view whose append cannot overwrite the adjacent element",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 94,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "slices.len-cap-slicing"
       ],
@@ -3818,7 +3844,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "bounded-slice-view-001",
+      "secondary": [],
+      "release_batch": "C08",
+      "route_number": "04.09"
     },
     {
       "primary": "slices.copy-overlap",
@@ -3827,9 +3857,10 @@
       "behavior_anchor": "Shift overlapping storage with copy and preserve boundaries",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 95,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "slices.header-model"
+        "slices.header-model",
+        "testing.basics-diagnostics"
       ],
       "activity": "test-writing",
       "required_before_release": [
@@ -3839,7 +3870,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "overlapping-shift-tests-001",
+      "secondary": [],
+      "release_batch": "C08",
+      "route_number": "04.10"
     },
     {
       "primary": "slices.preallocation",
@@ -3848,7 +3883,7 @@
       "behavior_anchor": "Build a result with an explicit capacity and ownership contract",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 96,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "slices.append-growth"
       ],
@@ -3860,7 +3895,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "reserved-copy-001",
+      "secondary": [],
+      "release_batch": "C08",
+      "route_number": "04.11"
     },
     {
       "primary": "slices.subslice-retention",
@@ -3869,7 +3908,7 @@
       "behavior_anchor": "Return a detached slice instead of retaining a large backing array",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 97,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "slices.backing-array-aliasing",
         "slices.copy-overlap"
@@ -3882,7 +3921,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "detached-prefix-001",
+      "secondary": [],
+      "release_batch": "C08",
+      "route_number": "04.12"
     },
     {
       "primary": "unicode.range-decoding",
@@ -3966,9 +4009,11 @@
       "behavior_anchor": "Handle a nil pointer stored inside a non-nil interface",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 101,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "interfaces.dynamic-type-value",
+        "interfaces.small-contracts",
+        "interfaces.type-assertions",
         "pointers.address-deref-nil"
       ],
       "activity": "implementation",
@@ -3979,7 +4024,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "typed-nil-result-001",
+      "secondary": [],
+      "release_batch": "C08",
+      "route_number": "06.26"
     },
     {
       "primary": "interfaces.type-switches",
@@ -4666,7 +4715,6 @@
     55,
     60,
     63,
-    68,
     75,
     78,
     81,
@@ -4674,6 +4722,7 @@
     83,
     84,
     89,
+    68,
     90,
     91,
     69,
@@ -4723,6 +4772,6 @@
     "unresolved_prerequisites": [],
     "method": "Topological selection using actual artifact prerequisites and explicit primary/secondary outcomes; existing baseline route outcomes precede additions.",
     "introduced_skills": 101,
-    "last_batch": "C07"
+    "last_batch": "C08"
   }
 }

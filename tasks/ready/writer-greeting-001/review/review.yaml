@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/ui_goal_reviewer",
+  "reviewed_at": "2026-09-08",
+  "decision": "approve",
+  "story_free": true,
+  "prompt_test_alignment": true,
+  "public_api_stable": true,
+  "provenance_verified": true,
+  "license_verified": true,
+  "reference_only_clean_room_verified": true,
+  "solution_leakage_checked": true,
+  "minimum_mutants": 9,
+  "notes": "Independent content review approved. The public Close probe now checks successful, failing and short writes with explicit close-count diagnostics; each outcome has a dedicated realistic defect. Exact pinned permitted artifacts and MIT notices verified. Author-provided targeted report passes with 9/9 required mutants detected. No authored code executed by reviewer or learner state accessed. Full batch gates and separate public-feedback tooling remain separate; no human calibration is claimed."
+}
