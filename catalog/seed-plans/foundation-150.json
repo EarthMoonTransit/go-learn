@@ -32,8 +32,10 @@
       "behavior_anchor": "func Application(log string) string {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 1,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "control-flow.range",
+        "control-flow.switch",
         "strings.immutable-bytes",
         "types.numeric-conversions"
       ],
@@ -46,7 +48,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "rune-marker-001",
+      "secondary": [],
+      "release_batch": "C02",
+      "route_number": "05.01"
     },
     {
       "primary": "unicode.rune-model",
@@ -74,7 +80,7 @@
       "behavior_anchor": "Replace: replace every matching decoded rune; retain nonmatching runes in order",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 2,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "strings.immutable-bytes",
         "types.numeric-conversions"
@@ -88,7 +94,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "rune-replace-tests-001",
+      "secondary": [],
+      "release_batch": "C02",
+      "route_number": "05.05"
     },
     {
       "primary": "unicode.rune-model",
@@ -116,7 +126,7 @@
       "behavior_anchor": "WithinLimit: compare Unicode character count with limit, including empty input and multibyte runes",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 3,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "strings.immutable-bytes",
         "types.numeric-conversions"
@@ -130,7 +140,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "rune-limit-001",
+      "secondary": [],
+      "release_batch": "C02",
+      "route_number": "05.06"
     },
     {
       "primary": "expressions.boolean-logic",
@@ -3329,11 +3343,11 @@
       "behavior_anchor": "Encode one scalar and report its exact UTF-8 width",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 85,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "unicode.rune-model"
       ],
-      "activity": "test-writing",
+      "activity": "implementation",
       "required_before_release": [
         "semantic-duplication-review",
         "prompt-public-grader-alignment",
@@ -3341,7 +3355,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "encode-scalar-001",
+      "secondary": [],
+      "release_batch": "C02",
+      "route_number": "05.02"
     },
     {
       "primary": "unicode.invalid-utf8",
@@ -3350,7 +3368,7 @@
       "behavior_anchor": "Distinguish a malformed leading byte from an encoded replacement rune",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 86,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "unicode.range-decoding"
       ],
@@ -3362,7 +3380,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "decode-prefix-001",
+      "secondary": [],
+      "release_batch": "C02",
+      "route_number": "05.04"
     },
     {
       "primary": "unicode.range-decoding",
@@ -3371,8 +3393,10 @@
       "behavior_anchor": "Record byte offsets while decoding a mixed-width string",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 87,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "control-flow.range",
+        "slices.append-growth",
         "unicode.rune-model",
         "unicode.utf8-encoding"
       ],
@@ -3384,7 +3408,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "rune-offsets-001",
+      "secondary": [],
+      "release_batch": "C02",
+      "route_number": "05.03"
     },
     {
       "primary": "unicode.invalid-utf8",
@@ -3393,7 +3421,7 @@
       "behavior_anchor": "Replace each malformed decoding unit under an explicit policy",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 88,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "unicode.range-decoding"
       ],
@@ -3405,7 +3433,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "repair-utf8-001",
+      "secondary": [],
+      "release_batch": "C02",
+      "route_number": "05.08"
     },
     {
       "primary": "strings.byte-rune-conversions",
@@ -3414,13 +3446,15 @@
       "behavior_anchor": "Change a rune slice without changing its source string",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 89,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "strings.immutable-bytes",
         "slices.header-model",
+        "slices.len-cap-slicing",
+        "strings.immutable-bytes",
+        "unicode.range-decoding",
         "unicode.rune-model"
       ],
-      "activity": "test-writing",
+      "activity": "implementation",
       "required_before_release": [
         "semantic-duplication-review",
         "prompt-public-grader-alignment",
@@ -3428,7 +3462,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "edit-rune-copy-001",
+      "secondary": [],
+      "release_batch": "C02",
+      "route_number": "05.10"
     },
     {
       "primary": "types.floating-point-semantics",
@@ -3601,17 +3639,19 @@
       ]
     },
     {
-      "primary": "maps.key-comparability",
+      "primary": "unicode.range-decoding",
       "origin": "original-planned",
-      "planned_slug": "comparable-map-key",
-      "behavior_anchor": "Build a comparable composite key with explicit field semantics",
-      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "planned_slug": "rune-boundary-tests",
+      "behavior_anchor": "Map a rune position including end to its byte offset, and write independent boundary tests",
+      "original_reason": "Separate test-writing transfer after Unicode introduction. The previous original map-key/embedding reinforcement slot is deferred to stage2; embedding introduction remains allocated in slot75.",
       "slot": 98,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "types.named-underlying"
+        "control-flow.range",
+        "unicode.rune-model",
+        "unicode.utf8-encoding"
       ],
-      "activity": "implementation",
+      "activity": "test-writing",
       "required_before_release": [
         "semantic-duplication-review",
         "prompt-public-grader-alignment",
@@ -3619,7 +3659,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "rune-boundary-tests-001",
+      "secondary": [],
+      "release_batch": "C02",
+      "route_number": "05.07"
     },
     {
       "primary": "structs.copy-equality",
@@ -3644,15 +3688,18 @@
       ]
     },
     {
-      "primary": "embedding.method-promotion-ambiguity",
+      "primary": "unicode.utf8-encoding",
       "origin": "original-planned",
-      "planned_slug": "ambiguous-selector",
-      "behavior_anchor": "Resolve conflicting promoted methods explicitly",
-      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "planned_slug": "utf8-validity-tests",
+      "behavior_anchor": "Test UTF-8 validity across malformed decoder categories",
+      "original_reason": "Separate test-writing transfer after Unicode introduction. The previous original map-key/embedding reinforcement slot is deferred to stage2; embedding introduction remains allocated in slot75.",
       "slot": 100,
-      "status": "planned-not-authored",
-      "prerequisites": [],
-      "activity": "implementation",
+      "status": "ready",
+      "prerequisites": [
+        "unicode.invalid-utf8",
+        "unicode.rune-model"
+      ],
+      "activity": "test-writing",
       "required_before_release": [
         "semantic-duplication-review",
         "prompt-public-grader-alignment",
@@ -3660,7 +3707,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "utf8-validity-tests-001",
+      "secondary": [],
+      "release_batch": "C02",
+      "route_number": "05.09"
     },
     {
       "primary": "interfaces.typed-nil",
@@ -4299,6 +4350,8 @@
     87,
     86,
     88,
+    98,
+    100,
     4,
     5,
     6,
@@ -4384,9 +4437,7 @@
     95,
     96,
     97,
-    98,
     99,
-    100,
     101,
     102,
     103,
@@ -4424,6 +4475,8 @@
   "dependency_audit": {
     "baseline_route_lessons": 22,
     "unresolved_prerequisites": [],
-    "method": "Topological selection using actual artifact prerequisites and explicit primary/secondary outcomes; existing baseline route outcomes precede additions."
+    "method": "Topological selection using actual artifact prerequisites and explicit primary/secondary outcomes; existing baseline route outcomes precede additions.",
+    "introduced_skills": 101,
+    "last_batch": "C02"
   }
 }

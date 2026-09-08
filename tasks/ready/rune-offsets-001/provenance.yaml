@@ -1,0 +1,21 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Original Unicode boundary exercise with independently authored prompt, checks, implementation and defects; no external exercise artifacts used."
+  },
+  "kind": "original",
+  "project": {
+    "content_digest": "5c41f70224bdc58399dd57c605ce5732a97ee8305b69224f063c5bf8bc67f84f",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/rune-offsets-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": []
+}

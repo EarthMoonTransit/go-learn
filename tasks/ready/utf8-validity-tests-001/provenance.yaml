@@ -1,0 +1,21 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Original Unicode boundary exercise with independently authored prompt, checks, implementation and defects; no external exercise artifacts used."
+  },
+  "kind": "original",
+  "project": {
+    "content_digest": "d9ae2437004f20a074f89c683b99337cbd9d139e841e04fa6e481e45938d76fb",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/utf8-validity-tests-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": []
+}
