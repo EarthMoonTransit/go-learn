@@ -167,3 +167,5 @@ The public-feedback regression matrix must cover package-relative workspace
 patches as well as single-file tasks. Verify both setter directions, exact text
 preservation and the distinction between an error's Error text and custom
 formatting when those behaviors are promised by the task.
+
+The public-feedback matrix also protects bounded-copy sentinel identity and successful-stream ownership, flushing a caller-owned pending buffer with empty input, and discarding a partially decoded JSON object. Each row runs only learner `Check`, verifies a useful diagnostic and verifies the reference in the same disposable learner workspace.
