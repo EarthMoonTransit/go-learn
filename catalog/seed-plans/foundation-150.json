@@ -172,8 +172,9 @@
       "behavior_anchor": "CanFastAttack/CanSpy/CanSignalPrisoner/CanFreePrisoner: implement the four explicitly different boolean policies as one component",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 4,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "functions.signatures-results",
         "types.declarations-inference"
       ],
       "activity": "implementation",
@@ -185,7 +186,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "boolean-policies-001",
+      "secondary": [],
+      "release_batch": "C03",
+      "route_number": "01.06"
     },
     {
       "primary": "control-flow.for",
@@ -213,10 +218,11 @@
       "behavior_anchor": "func TotalBirdCount(birdsPerDay []int) int {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 5,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "expressions.boolean-logic",
         "functions.signatures-results",
+        "slices.header-model",
         "toolchain.build-run"
       ],
       "activity": "test-writing",
@@ -232,7 +238,10 @@
       "secondary": [
         "testing.basics-diagnostics"
       ],
-      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts.",
+      "task_id": "total-counts-tests-001",
+      "release_batch": "C03",
+      "route_number": "03.06"
     },
     {
       "primary": "slices.len-cap-slicing",
@@ -260,8 +269,10 @@
       "behavior_anchor": "func BirdsInWeek(birdsPerDay []int, week int) int {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 6,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "control-flow.for",
+        "expressions.arithmetic",
         "slices.header-model"
       ],
       "activity": "implementation",
@@ -273,7 +284,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "seven-value-window-001",
+      "secondary": [],
+      "release_batch": "C03",
+      "route_number": "02.08"
     },
     {
       "primary": "control-flow.range",
@@ -301,9 +316,11 @@
       "behavior_anchor": "func FixBirdCountLog(birdsPerDay []int) []int {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 7,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "control-flow.for"
+        "control-flow.for",
+        "expressions.arithmetic",
+        "slices.backing-array-aliasing"
       ],
       "activity": "debugging",
       "required_before_release": [
@@ -314,7 +331,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "alternate-correction-001",
+      "secondary": [],
+      "release_batch": "C03",
+      "route_number": "03.07"
     },
     {
       "primary": "control-flow.switch",
@@ -342,7 +363,7 @@
       "behavior_anchor": "func ParseCard(card string) int {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 8,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "control-flow.if",
         "expressions.comparison"
@@ -356,7 +377,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "token-values-001",
+      "secondary": [],
+      "release_batch": "C03",
+      "route_number": "03.08"
     },
     {
       "primary": "control-flow.if",
@@ -509,9 +534,10 @@
       "behavior_anchor": "RemoveItem: remove a valid index; retain the original slice for either invalid bound",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 12,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "slices.header-model"
+        "slices.header-model",
+        "testing.basics-diagnostics"
       ],
       "activity": "test-writing",
       "required_before_release": [
@@ -522,7 +548,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "remove-item-tests-001",
+      "secondary": [],
+      "release_batch": "C03",
+      "route_number": "03.09"
     },
     {
       "primary": "slices.len-cap-slicing",
@@ -550,7 +580,7 @@
       "behavior_anchor": "func GetItem(slice []int, index int) int {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 13,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "slices.header-model"
       ],
@@ -563,7 +593,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "guarded-item-001",
+      "secondary": [],
+      "release_batch": "C03",
+      "route_number": "02.09"
     },
     {
       "primary": "slices.backing-array-aliasing",
@@ -591,7 +625,7 @@
       "behavior_anchor": "SetItem: mutate an existing indexed element or append for either invalid bound; retained input view observes valid-index mutation",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 14,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "slices.append-growth"
       ],
@@ -604,7 +638,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "set-or-append-001",
+      "secondary": [],
+      "release_batch": "C03",
+      "route_number": "02.10"
     },
     {
       "primary": "functions.variadic",
@@ -632,9 +670,10 @@
       "behavior_anchor": "func PrependItems(slice []int, values ...int) []int {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 15,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "functions.signatures-results"
+        "functions.signatures-results",
+        "testing.basics-diagnostics"
       ],
       "activity": "test-writing",
       "required_before_release": [
@@ -645,7 +684,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "prepend-values-tests-001",
+      "secondary": [],
+      "release_batch": "C03",
+      "route_number": "03.10"
     },
     {
       "primary": "expressions.arithmetic",
@@ -673,9 +716,10 @@
       "behavior_anchor": "func CalculateWorkingCarsPerHour(productionRate int, successRate float64) float64 {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 16,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "types.declarations-inference"
+        "types.declarations-inference",
+        "types.numeric-conversions"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -686,7 +730,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "percentage-output-001",
+      "secondary": [],
+      "release_batch": "C03",
+      "route_number": "03.11"
     },
     {
       "primary": "types.numeric-conversions",
@@ -4477,6 +4525,6 @@
     "unresolved_prerequisites": [],
     "method": "Topological selection using actual artifact prerequisites and explicit primary/secondary outcomes; existing baseline route outcomes precede additions.",
     "introduced_skills": 101,
-    "last_batch": "C02"
+    "last_batch": "C03"
   }
 }

@@ -1,0 +1,52 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected cars-assemble operation and hand-authored check structure: preserve the observable rules, remove narrative, rename technical APIs, and add independently authored public/full boundaries, reference and defect models. No canonical/generated cases or upstream solution used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "a36def45e77da8e1152566d3ae1249f16415457288aea6ed3f9ca56e3c0706e2",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/percentage-output-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/cars-assemble/.docs/instructions.md",
+          "sha256": "bba383c0ea55eda0834b35173ec17edb4395eee5afa5c309bb8dbb4bec71baf2",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/cars-assemble/cars_assemble_test.go",
+          "sha256": "6389effe7b20ccd46d4e92cc2c8190edf41880292bf9160a8b1f3d8154659bf0",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/cars-assemble/.meta/config.json",
+          "sha256": "f26918431d75d89c1c2c0ec0d2b6e40b1492e608f50df89eeb7406f63eb8710a",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}
