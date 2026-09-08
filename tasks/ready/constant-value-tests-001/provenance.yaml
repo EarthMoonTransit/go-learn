@@ -1,0 +1,57 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected source operation and test structure, preserve observable behavior while removing narrative, and add independent boundaries, defects and technical APIs. Chapter code is private reference material; learner implementation starts with minimal stubs. No generated canonical cases used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "9332407116177bd969ea796cd1d5a1e398dc2db586eb828bdef3f4407fe2b1e2",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/constant-value-tests-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/savings-account/.docs/instructions.md",
+          "sha256": "99088bae00bef7cd03072bfeeed21eb880d47a6af2c04fcc9a80fa1c04dfdbcf",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/savings-account/savings_account_test.go",
+          "sha256": "40924dada9acec0e6225deefc61295ac9f1ffaabfb9fa7d5d8798d8d3d3178e6",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/savings-account/savings_account.go",
+          "sha256": "7288e79e786ddd69c466242c24756ebfda7d671e6e497daea60ececa804a8ed8",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/savings-account/.meta/config.json",
+          "sha256": "04c8f8b5253826387d7ba8ddf7404c84b9c018ca2d05fa9209c91d686c2cb8ec",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}

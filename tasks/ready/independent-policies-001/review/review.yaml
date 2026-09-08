@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/ui_goal_reviewer",
+  "reviewed_at": "2026-09-08",
+  "decision": "approve",
+  "story_free": true,
+  "prompt_test_alignment": true,
+  "public_api_stable": true,
+  "provenance_verified": true,
+  "license_verified": true,
+  "reference_only_clean_room_verified": true,
+  "solution_leakage_checked": true,
+  "minimum_mutants": 6,
+  "notes": "Independent content/provenance review approved. The two independent outcomes retain both source classification operations rather than reducing the task to only a threshold or allowlist. Exact pinned permitted artifacts and Apache-2.0 notice verified. Targeted author-provided report passes with 6/6 required defects detected. No authored execution by reviewer or real learner state access. Batch gates and promotion remain separate; fixtures do not establish human calibration."
+}

@@ -1,0 +1,9 @@
+package subject
+
+import (
+	"fmt"
+)
+
+type NumberBox interface{ Number() int }
+
+func DescribeNumberBox(box NumberBox) string { return fmt.Sprintf("box %.0f", float64(box.Number())) }
