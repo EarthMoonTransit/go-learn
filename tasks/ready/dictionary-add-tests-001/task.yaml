@@ -1,0 +1,49 @@
+schema_version: 2
+id: dictionary-add-tests-001
+title: Test insertion without replacing existing entries
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: errors.sentinels-creation
+    secondary: []
+prerequisites:
+    - functions.signatures-results
+    - maps.operations-comma-ok
+    - methods.receiver-semantics
+    - testing.basics-diagnostics
+new_concepts: []
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - overwrite
+        - fresh-error
+        - empty-is-absent
+        - empty-key-rejected
+        - empty-value-ignored
+        - clear-others
+        - success-error
+        - sentinel-nullified
+        - sentinel-reassigned
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

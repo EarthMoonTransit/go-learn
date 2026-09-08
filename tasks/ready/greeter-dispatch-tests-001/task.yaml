@@ -1,0 +1,48 @@
+schema_version: 2
+id: greeter-dispatch-tests-001
+title: Test composition through a two-method interface
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: interfaces.small-contracts
+    secondary:
+        - interfaces.dynamic-type-value
+prerequisites:
+    - interfaces.implicit-satisfaction
+    - testing.basics-diagnostics
+    - types.declarations-inference
+new_concepts:
+    - interfaces.small-contracts
+    - interfaces.dynamic-type-value
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - fixed-language
+        - fixed-greeting
+        - trim-name
+        - empty-name
+        - missing-separator
+        - trim-language
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
