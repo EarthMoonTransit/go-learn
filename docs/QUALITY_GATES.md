@@ -162,3 +162,8 @@ When testing the regression itself, remove only the relevant public assertion in
 a disposable repository copy, refresh that copy's digest, and require the outer
 regression to fail because the public verifier unexpectedly passed. A compile
 failure does not establish this property.
+
+The public-feedback regression matrix must cover package-relative workspace
+patches as well as single-file tasks. Verify both setter directions, exact text
+preservation and the distinction between an error's Error text and custom
+formatting when those behaviors are promised by the task.
