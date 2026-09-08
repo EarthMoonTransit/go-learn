@@ -1,0 +1,52 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected source operation and test structure, preserve observable behavior while removing narrative, and add independent boundaries, defects and technical APIs. Chapter code is private reference material; learner implementation starts with minimal stubs. No generated canonical cases used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "e9323948bf4dbe6d81c9a30d1e0949993c56eaca284f65e601d8bc992dc60a2a",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/generic-stack-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "generics/stack.go",
+          "sha256": "67b59ceea5bf9522306386c2895267b9a786818c5f231571aafbd55c54668cef",
+          "usage": "adapted"
+        },
+        {
+          "path": "LICENSE.md",
+          "sha256": "db4086c304e08604aa6d981050ba312a9ed6a5e8d927eb3a8b4bd56ed1d8697b",
+          "usage": "copied"
+        },
+        {
+          "path": "generics/generics_test.go",
+          "sha256": "7a64bc8e7c2d301aae258a64bd805d7995b83d383a6639c5c915e9ec2d29fda9",
+          "usage": "adapted"
+        },
+        {
+          "path": "generics/assert.go",
+          "sha256": "054da837601eac598b04c21418bbc892a14b5c0c2a3bc1ba7791a8dd09236d98",
+          "usage": "factual-reference"
+        }
+      ],
+      "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+      "license": "MIT",
+      "registry_id": "learn-go-with-tests",
+      "repository": "https://github.com/quii/learn-go-with-tests",
+      "role": "adapted-code",
+      "usage_mode": "adapt"
+    }
+  ]
+}

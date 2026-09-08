@@ -198,3 +198,18 @@ Source comment inconsistencies and extensions are recorded per task. Exact error
 wrapping uses a private Error/Unwrap implementation so custom fmt.Formatter output
 does not override the promised Error text. The C08–C10 independent audit records
 actual reuse, domain/activity balance and repaired public feedback.
+
+## C11 release binding
+
+Three substantive Learn Go with Tests components (Find, Reduce and Stack) and
+seven originals bring the conditional checkpoint to 122: 77 substantive,
+40 original, five concept seeds, and 71 assessed skills. The minimum 76-task
+substantive reuse requirement is met; 28 lessons still remain for the milestone.
+Seven selected adaptations and 21 original slots remain. The full dependency
+replay still resolves 128 positions and 101 planned skills.
+
+Generic constraints are checked by semantic type-set identity with a source
+importer, accepting equivalent embedded constraints and standard-library imports.
+Error traversal tests require custom As and joined first-match order. Bounded
+copy checks preserve sentinel identity, partial-error byte counts and caller
+ownership on successful positive writes. No human mastery is inferred.
