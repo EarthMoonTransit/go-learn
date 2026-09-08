@@ -113,3 +113,16 @@ aggregation remains the introduction to map iteration. Constants use the already
 supported workspace-tests profile. All 128 positions still resolve from the
 original baseline. After C04 acceptance: 52 ready / 23 substantive / 24 original /
 5 concept-seed, with 98 additions and 61 selected adaptations remaining.
+
+
+## C05 release binding and the 60-lesson checkpoint
+
+Ten positions now bind reviewed structs, pointers, methods, function values,
+closures and numeric-precision exercises. Exact consulted starter artifacts
+join the instructions, hand-authored tests, metadata and notices in provenance.
+The fixed narrow-rate helper uses the existing workspace-tests profile.
+After acceptance the route has 62 lessons: 33 substantive adaptations, 24
+originals and five concept-seeds. 88 additions remain, including 51 selected
+adaptation candidates, against 43 further substantive tasks required.
+All 128 allocation positions still resolve. Passing 60 is a reporting point;
+authoring continues. Learner mastery remains a separate evidence count.
