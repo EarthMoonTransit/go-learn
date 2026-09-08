@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/ui_goal_reviewer",
+  "reviewed_at": "2026-09-08",
+  "decision": "approve",
+  "story_free": true,
+  "prompt_test_alignment": true,
+  "public_api_stable": true,
+  "provenance_verified": true,
+  "license_verified": true,
+  "reference_only_clean_room_verified": true,
+  "solution_leakage_checked": true,
+  "minimum_mutants": 6,
+  "notes": "Independent content/provenance review approved. The reference preserves exact Error text and direct cause identity even for fmt.Formatter errors. Uniform helper method signatures keep the existing checker API contract stable; errors.typed is an explicit prerequisite. Original ADR0008 identity/creation/digest and empty external source list verified. Targeted author-provided report passes with 6/6 required defects detected. No authored execution by reviewer or learner state access. Full gates and separate public-feedback tooling remain pending independently; no human calibration inferred."
+}
