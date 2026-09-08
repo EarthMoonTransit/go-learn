@@ -1,0 +1,66 @@
+package subject_test
+
+import (
+	"errors"
+	"io"
+	"slices"
+	"strings"
+	"task.local/scan-lines-tests-001/subject"
+	"testing"
+)
+
+type lineReader struct {
+	data   []byte
+	err    error
+	closes int
+}
+
+func (r *lineReader) Read(p []byte) (int, error) {
+	n := copy(p, r.data)
+	r.data = r.data[n:]
+	if len(r.data) == 0 {
+		return n, r.err
+	}
+	return n, nil
+}
+func (r *lineReader) Close() error { r.closes++; return nil }
+
+func TestContractCase01(t *testing.T) {
+	v, e := subject.ScanLines(strings.NewReader("a\nb\n"))
+	if e != nil || !slices.Equal(v, []string{"a", "b"}) {
+		t.Errorf("final line got%q,%v", v, e)
+	}
+}
+
+func TestContractCase02(t *testing.T) {
+	for _, c := range []struct {
+		text string
+		want []string
+	}{{"", nil}, {"\n", []string{""}}, {" a \r\n\nλ\n", []string{" a ", "", "λ"}}, {strings.Repeat("x", 2048)+"\n", []string{strings.Repeat("x", 2048)}}} {
+		v, e := subject.ScanLines(strings.NewReader(c.text))
+		if e != nil || !slices.Equal(v, c.want) {
+			t.Errorf("lines got%q,%v want%q", v, e, c.want)
+		}
+	}
+}
+
+func TestContractCase03(t *testing.T) {
+	cause := errors.New("read failed")
+	r := &lineReader{data: []byte("ok\n"), err: cause}
+	v, e := subject.ScanLines(r)
+	if !slices.Equal(v, []string{"ok"}) || e != cause || r.closes != 0 {
+		t.Errorf("reader error got%q,%v closes%d", v, e, r.closes)
+	}
+	r = &lineReader{data: []byte("ok\n"), err: io.EOF}
+	v, e = subject.ScanLines(r)
+	if e != nil || !slices.Equal(v, []string{"ok"}) || r.closes != 0 {
+		t.Errorf("reader success got%q,%v closes%d", v, e, r.closes)
+	}
+}
+
+func TestContractCase04(t *testing.T) {
+	v, e := subject.ScanLines(strings.NewReader(strings.Repeat("x", 10000)))
+	if e == nil || len(v) != 0 {
+		t.Errorf("oversize token got%q,%v wantempty,error", v, e)
+	}
+}
