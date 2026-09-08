@@ -102,3 +102,14 @@ and preparation skills, covering 101 planned skills. After C03 acceptance:
 remain, including 71 selected substantive adaptation candidates. Basic test
 diagnostics and variadic calls now have explicit introductory route encounters.
 No private learner progress was inspected or inferred from automated checks.
+
+
+## C04 release binding
+
+Ten more positions bind executable source adaptations and stable route numbers.
+Actual primary outcomes correct two selection estimates: grouped cost assesses
+arithmetic, while a selected map column assesses range over its slice. Rank
+aggregation remains the introduction to map iteration. Constants use the already
+supported workspace-tests profile. All 128 positions still resolve from the
+original baseline. After C04 acceptance: 52 ready / 23 substantive / 24 original /
+5 concept-seed, with 98 additions and 61 selected adaptations remaining.

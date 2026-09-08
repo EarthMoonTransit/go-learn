@@ -762,8 +762,9 @@
       "behavior_anchor": "func CalculateWorkingCarsPerMinute(productionRate int, successRate float64) int {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 17,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "expressions.arithmetic",
         "types.declarations-inference"
       ],
       "activity": "debugging",
@@ -775,10 +776,14 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "whole-minute-output-001",
+      "secondary": [],
+      "release_batch": "C04",
+      "route_number": "03.12"
     },
     {
-      "primary": "control-flow.if",
+      "primary": "expressions.arithmetic",
       "origin": "adaptation-candidate",
       "source": {
         "registry_id": "exercism-go",
@@ -803,9 +808,9 @@
       "behavior_anchor": "func CalculateCost(carsCount int) uint {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 18,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "expressions.boolean-logic"
+        "types.declarations-inference"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -816,7 +821,12 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "grouped-unit-cost-001",
+      "secondary": [],
+      "release_batch": "C04",
+      "route_number": "03.13",
+      "selection_review_note": "Actual arithmetic behavior does not require an if statement; primary corrected to expressions.arithmetic."
     },
     {
       "primary": "structs.literals-zero",
@@ -907,7 +917,7 @@
       "selection_status": "behavior-selected-content-not-authored"
     },
     {
-      "primary": "maps.iteration",
+      "primary": "control-flow.range",
       "origin": "adaptation-candidate",
       "source": {
         "registry_id": "exercism-go",
@@ -932,10 +942,11 @@
       "behavior_anchor": "func CountInFile(cb Chessboard, file string) int {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 21,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "control-flow.for",
         "maps.operations-comma-ok",
-        "control-flow.range"
+        "slices.len-cap-slicing"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -946,7 +957,12 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "column-occupancy-001",
+      "secondary": [],
+      "release_batch": "C04",
+      "route_number": "03.14",
+      "selection_review_note": "Selecting one map column assesses slice range, not map iteration; primary corrected to control-flow.range."
     },
     {
       "primary": "maps.iteration",
@@ -974,11 +990,12 @@
       "behavior_anchor": "CountInRank: sum a fixed rank across map values which are slices",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 22,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "control-flow.range",
         "maps.operations-comma-ok",
-        "slices.len-cap-slicing"
+        "slices.len-cap-slicing",
+        "testing.basics-diagnostics"
       ],
       "activity": "test-writing",
       "required_before_release": [
@@ -989,7 +1006,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "rank-occupancy-tests-001",
+      "secondary": [],
+      "release_batch": "C04",
+      "route_number": "03.15"
     },
     {
       "primary": "control-flow.range",
@@ -1017,9 +1038,11 @@
       "behavior_anchor": "func CountAll(cb Chessboard) int {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 23,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "control-flow.for"
+        "control-flow.for",
+        "maps.operations-comma-ok",
+        "slices.len-cap-slicing"
       ],
       "activity": "debugging",
       "required_before_release": [
@@ -1030,7 +1053,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "nested-slot-count-001",
+      "secondary": [],
+      "release_batch": "C04",
+      "route_number": "03.16"
     },
     {
       "primary": "pointers.address-deref-nil",
@@ -1058,7 +1085,7 @@
       "behavior_anchor": "func NewVoteCounter(initialVotes int) *int {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 24,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "types.zero-values"
       ],
@@ -1071,7 +1098,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "allocated-counter-001",
+      "secondary": [],
+      "release_batch": "C04",
+      "route_number": "06.01"
     },
     {
       "primary": "pointers.address-deref-nil",
@@ -1099,8 +1130,9 @@
       "behavior_anchor": "VoteCount: safely dereference a counter, returning zero for a nil counter",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 25,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "testing.basics-diagnostics",
         "types.zero-values"
       ],
       "activity": "test-writing",
@@ -1112,7 +1144,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "counter-read-tests-001",
+      "secondary": [],
+      "release_batch": "C04",
+      "route_number": "06.02"
     },
     {
       "primary": "pointers.mutation-sharing",
@@ -1314,7 +1350,7 @@
       "behavior_anchor": "GetItem: return the stored quantity with presence flag, preserving absent versus present zero",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 30,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "types.zero-values"
       ],
@@ -1327,7 +1363,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "quantity-presence-001",
+      "secondary": [],
+      "release_batch": "C04",
+      "route_number": "02.11"
     },
     {
       "primary": "maps.nil-delete-clear",
@@ -1396,8 +1436,9 @@
       "behavior_anchor": "func AddItem(bill, units map[string]int, item, unit string) bool {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 32,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "testing.basics-diagnostics",
         "types.zero-values"
       ],
       "activity": "test-writing",
@@ -1409,7 +1450,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "unit-addition-tests-001",
+      "secondary": [],
+      "release_batch": "C04",
+      "route_number": "03.17"
     },
     {
       "primary": "types.floating-point-semantics",
@@ -1565,8 +1610,9 @@
       "behavior_anchor": "Declare OvenTime and implement RemainingOvenTime using the remaining-time contract",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 36,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "expressions.arithmetic",
         "types.numeric-conversions"
       ],
       "activity": "implementation",
@@ -1578,7 +1624,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "remaining-constant-001",
+      "secondary": [],
+      "release_batch": "C04",
+      "route_number": "03.18"
     },
     {
       "primary": "slices.backing-array-aliasing",
@@ -4525,6 +4575,6 @@
     "unresolved_prerequisites": [],
     "method": "Topological selection using actual artifact prerequisites and explicit primary/secondary outcomes; existing baseline route outcomes precede additions.",
     "introduced_skills": 101,
-    "last_batch": "C03"
+    "last_batch": "C04"
   }
 }
