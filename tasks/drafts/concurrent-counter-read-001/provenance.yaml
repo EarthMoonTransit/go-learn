@@ -1,0 +1,47 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-09",
+    "summary": "Substantively adapt the selected source operation and test structure, preserve observable behavior while removing narrative, and add independent boundaries, defects and technical APIs. Chapter code is private reference material; learner implementation starts with minimal stubs. No generated canonical cases used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "abff4eff554adc02cda1c3179cbd49291414e4e665f801c07d32844e3ad3f41a",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/concurrent-counter-read-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "sync/v2/sync.go",
+          "sha256": "bc7ebb511d79182ed142db6ac4113f652beae41e6d1526807aadb7bf72521a9d",
+          "usage": "adapted"
+        },
+        {
+          "path": "LICENSE.md",
+          "sha256": "db4086c304e08604aa6d981050ba312a9ed6a5e8d927eb3a8b4bd56ed1d8697b",
+          "usage": "copied"
+        },
+        {
+          "path": "sync/v2/sync_test.go",
+          "sha256": "db14d625791746c66cad5806a8ac48b7fabcf3ab0239f03fd2ad1b86c9169343",
+          "usage": "adapted"
+        }
+      ],
+      "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+      "license": "MIT",
+      "registry_id": "learn-go-with-tests",
+      "repository": "https://github.com/quii/learn-go-with-tests",
+      "role": "adapted-code",
+      "usage_mode": "adapt"
+    }
+  ]
+}

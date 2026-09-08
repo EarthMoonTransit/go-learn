@@ -1212,6 +1212,75 @@
             "goroutines.launch-lifecycle",
             "channels.operations-blocking"
           ]
+        },
+        {
+          "number": 2,
+          "task_id": "closed-receive-001",
+          "role": "introduction",
+          "skills": [
+            "channels.close-semantics",
+            "channels.operations-blocking"
+          ]
+        },
+        {
+          "number": 3,
+          "task_id": "owned-values-001",
+          "role": "introduction",
+          "skills": [
+            "channels.directional",
+            "goroutines.leak-prevention"
+          ]
+        },
+        {
+          "number": 4,
+          "task_id": "join-all-tests-001",
+          "role": "introduction",
+          "skills": [
+            "sync.waitgroup-lifecycle",
+            "goroutines.state-ownership"
+          ]
+        },
+        {
+          "number": 5,
+          "task_id": "mutex-counter-001",
+          "role": "introduction",
+          "skills": [
+            "sync.mutex-critical-sections",
+            "sync.mutex-ownership"
+          ]
+        },
+        {
+          "number": 6,
+          "task_id": "concurrent-counter-read-001",
+          "role": "introduction",
+          "skills": [
+            "sync.data-races-happens-before"
+          ]
+        },
+        {
+          "number": 7,
+          "task_id": "select-ready-case-001",
+          "role": "introduction",
+          "skills": [
+            "channels.select"
+          ]
+        },
+        {
+          "number": 8,
+          "task_id": "cancel-worker-001",
+          "role": "introduction",
+          "skills": [
+            "context.cancellation",
+            "context.derivation"
+          ]
+        },
+        {
+          "number": 9,
+          "task_id": "propagate-context-001",
+          "role": "introduction",
+          "skills": [
+            "context.propagation-api"
+          ]
         }
       ],
       "number": 9

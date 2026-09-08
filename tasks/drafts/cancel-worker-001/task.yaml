@@ -1,0 +1,62 @@
+{
+  "schema_version": 2,
+  "id": "cancel-worker-001",
+  "title": "Repair derived cancellation and worker shutdown",
+  "activity": "debugging",
+  "submission": {
+    "kind": "implementation",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "context.cancellation",
+    "secondary": [
+      "context.derivation"
+    ]
+  },
+  "prerequisites": [
+    "channels.select",
+    "functions.defer",
+    "goroutines.leak-prevention"
+  ],
+  "new_concepts": [
+    "context.cancellation",
+    "context.derivation"
+  ],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "fixed-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "detached-child",
+      "complete-early",
+      "return-parent",
+      "cancel-immediately",
+      "completion-value"
+    ],
+    "race_required": true,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}

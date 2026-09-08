@@ -1,0 +1,61 @@
+{
+  "schema_version": 2,
+  "id": "closed-receive-001",
+  "title": "Drain buffered values before observing channel closure",
+  "activity": "debugging",
+  "submission": {
+    "kind": "implementation",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "channels.close-semantics",
+    "secondary": [
+      "channels.operations-blocking"
+    ]
+  },
+  "prerequisites": [
+    "goroutines.launch-lifecycle",
+    "types.zero-values"
+  ],
+  "new_concepts": [
+    "channels.close-semantics",
+    "channels.operations-blocking"
+  ],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "fixed-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "zero-terminates",
+      "skip-negative",
+      "reverse-order",
+      "extra-closed-zero",
+      "drop-first"
+    ],
+    "race_required": true,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}
