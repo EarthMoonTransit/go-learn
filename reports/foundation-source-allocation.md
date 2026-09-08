@@ -184,3 +184,32 @@ month and constant-kind exercises use the existing workspace-tests profile.
 The constant-kind canonical reference imports the standard library, guarding
 valid package-aware declaration inspection. Weak suites omitting declaration
 values or array ownership remain insufficient in disposable checks.
+
+## C10 release binding
+
+Eight substantive Ardan adaptations and two original gap exercises bring the
+conditional checkpoint to 112 lessons: 74 substantive, 33 original, five seeds,
+and 62 assessed skills. Ten selected adaptation slots remain against two further
+substantive tasks required. The 128-slot dependency replay remains valid.
+
+The package inventory is a two-package implementation, and the embedded cache
+preserves source method interaction while replacing sleep with controlled lookup.
+Source comment inconsistencies and extensions are recorded per task. Exact error
+wrapping uses a private Error/Unwrap implementation so custom fmt.Formatter output
+does not override the promised Error text. The C08–C10 independent audit records
+actual reuse, domain/activity balance and repaired public feedback.
+
+## C11 release binding
+
+Three substantive Learn Go with Tests components (Find, Reduce and Stack) and
+seven originals bring the conditional checkpoint to 122: 77 substantive,
+40 original, five concept seeds, and 71 assessed skills. The minimum 76-task
+substantive reuse requirement is met; 28 lessons still remain for the milestone.
+Seven selected adaptations and 21 original slots remain. The full dependency
+replay still resolves 128 positions and 101 planned skills.
+
+Generic constraints are checked by semantic type-set identity with a source
+importer, accepting equivalent embedded constraints and standard-library imports.
+Error traversal tests require custom As and joined first-match order. Bounded
+copy checks preserve sentinel identity, partial-error byte counts and caller
+ownership on successful positive writes. No human mastery is inferred.

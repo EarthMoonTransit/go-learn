@@ -3,6 +3,7 @@
 package learner
 
 import (
+	"io/fs"
 	"os"
 	"path/filepath"
 	"strings"
@@ -35,6 +36,9 @@ func TestReviewedDefectsHavePublicFeedback(t *testing.T) {
 		{"bounded-slice-view-001", "prefix-cleared", []string{"call changed input"}},
 		{"writer-greeting-001", "close-on-error", []string{"closes got 1 want 0"}},
 		{"writer-greeting-001", "close-on-short", []string{"closes got 1 want 0"}},
+		{"package-inventory-001", "reset-sold", []string{"SetOnHand changed unrelated state", "want (9,7)"}},
+		{"record-result-001", "trim-label", []string{"exact label:"}},
+		{"error-context-wrap-001", "formatter-instead-of-error", []string{"Error text:", "want read: error text with original cause"}},
 	} {
 		t.Run(fixture.id, func(t *testing.T) {
 			canonical := filepath.Join(root, "tasks", "ready", fixture.id)
@@ -52,16 +56,39 @@ func TestReviewedDefectsHavePublicFeedback(t *testing.T) {
 			}
 			install := func(parts ...string) {
 				t.Helper()
-				content, err := os.ReadFile(filepath.Join(append([]string{canonical}, parts...)...))
+				source := filepath.Join(append([]string{canonical}, parts...)...)
+				err := filepath.WalkDir(source, func(path string, entry fs.DirEntry, walkErr error) error {
+					if walkErr != nil {
+						return walkErr
+					}
+					if entry.IsDir() {
+						return nil
+					}
+					rel, err := filepath.Rel(source, path)
+					if err != nil {
+						return err
+					}
+					// A fixed-tests payload is rooted at subject; workspace patches
+					// already carry package-relative paths for every editable file.
+					if !strings.ContainsRune(rel, filepath.Separator) {
+						rel = filepath.Join("subject", rel)
+					}
+					content, err := os.ReadFile(path)
+					if err != nil {
+						return err
+					}
+					target := filepath.Join(workspace, rel)
+					if err = os.MkdirAll(filepath.Dir(target), 0700); err != nil {
+						return err
+					}
+					return os.WriteFile(target, content, 0600)
+				})
 				if err != nil {
-					t.Fatal(err)
-				}
-				if err := os.WriteFile(filepath.Join(workspace, "subject", "subject.go"), content, 0600); err != nil {
 					t.Fatal(err)
 				}
 			}
 			// Read source as data. The verifier executes only its disposable copy.
-			install("solution", "mutants", fixture.mutant, "subject.go")
+			install("solution", "mutants", fixture.mutant)
 			result, err := service.Check()
 			if err != nil || result.Passed {
 				t.Fatalf("public defect check: result=%+v err=%v", result, err)
@@ -71,7 +98,7 @@ func TestReviewedDefectsHavePublicFeedback(t *testing.T) {
 					t.Errorf("public diagnostic %q does not contain %q", result.Diagnostic, want)
 				}
 			}
-			install("solution", "reference", "subject.go")
+			install("solution", "reference")
 			result, err = service.Check()
 			if err != nil || !result.Passed {
 				t.Fatalf("reference public check: result=%+v err=%v", result, err)

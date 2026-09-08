@@ -94,3 +94,16 @@ useful diagnostic checked through `Service.Check` in a temporary learner home.
 Saved tolerated-output review fixtures must pass both public Check and full
 Complete in that temporary home, protecting allowed numerical alternatives.
 No fixture completion is counted as real learner progress.
+
+C10 regressions cover two-package setters, exact padded labels and Error text
+when a cause implements fmt.Formatter. The test installer copies either a
+fixed-task file into subject or all package-relative files from a workspace patch.
+Each defect must fail public Check, then the canonical reference must pass. An
+omission experiment removing the three public assertions makes all three
+regressions fail because Check incorrectly passes.
+
+As the bank approaches 150, CI allows 30 minutes for the integration package
+tests and 50 minutes for the complete job. The preceding 104-package tooling
+run 34275377981 used 18m19s for integration alone, leaving little room within
+the previous 20-minute bound. Per-task execution limits are unchanged; no
+absolute learner performance criterion or weakened acceptance gate is added.

@@ -2396,9 +2396,11 @@
       "behavior_anchor": "Find",
       "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
       "slot": 52,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "functions.function-values",
         "functions.signatures-results",
+        "testing.basics-diagnostics",
         "types.named-underlying"
       ],
       "activity": "test-writing",
@@ -2410,7 +2412,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "generic-find-tests-001",
+      "secondary": [],
+      "release_batch": "C11",
+      "route_number": "07.03"
     },
     {
       "primary": "generics.type-parameters-inference",
@@ -2429,8 +2435,9 @@
       "behavior_anchor": "Reduce[A,B any]: accumulate values of A into a result of B using the supplied function",
       "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
       "slot": 53,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "functions.function-values",
         "functions.signatures-results",
         "types.named-underlying"
       ],
@@ -2443,7 +2450,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "generic-reduce-001",
+      "secondary": [],
+      "release_batch": "C11",
+      "route_number": "07.04"
     },
     {
       "primary": "generics.reusable-data-structures",
@@ -2462,11 +2473,9 @@
       "behavior_anchor": "Stack[T]: implement Push, Pop and IsEmpty together with LIFO order and typed zero on empty Pop",
       "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
       "slot": 54,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "generics.constraints-type-sets",
-        "methods.receiver-semantics",
-        "slices.append-growth",
         "types.zero-values"
       ],
       "activity": "implementation",
@@ -2478,7 +2487,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "generic-stack-001",
+      "secondary": [],
+      "release_batch": "C11",
+      "route_number": "07.06"
     },
     {
       "primary": "errors.typed",
@@ -3324,12 +3337,13 @@
       "behavior_anchor": "Embed the concrete retriever, promote Count and override Fetch with a cache; retain method interaction",
       "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
       "slot": 75,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "errors.sentinels-creation",
-        "interfaces.small-contracts",
+        "functions.function-values",
         "maps.operations-comma-ok",
-        "methods.receiver-semantics"
+        "methods.receiver-semantics",
+        "testing.basics-diagnostics"
       ],
       "activity": "test-writing",
       "required_before_release": [
@@ -3340,7 +3354,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "embedded-cache-tests-001",
+      "secondary": [],
+      "release_batch": "C10",
+      "route_number": "06.32"
     },
     {
       "primary": "packages.imports-exports-naming",
@@ -3359,8 +3377,10 @@
       "behavior_anchor": "Export a constructed struct with public Name/Weight and private onHand/sold fields accessed through methods from another package",
       "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
       "slot": 76,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "methods.receiver-semantics",
+        "strings.formatting",
         "structs.literals-zero",
         "toolchain.modules-workspaces"
       ],
@@ -3377,7 +3397,10 @@
       "secondary": [
         "structs.field-visibility-tags"
       ],
-      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts.",
+      "task_id": "package-inventory-001",
+      "release_batch": "C10",
+      "route_number": "07.02"
     },
     {
       "primary": "functions.signatures-results",
@@ -3396,9 +3419,9 @@
       "behavior_anchor": "Return a pointer to the populated two-field struct and an error from the template function",
       "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
       "slot": 77,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "errors.sentinels-creation",
+        "interfaces.typed-nil",
         "pointers.address-deref-nil",
         "structs.literals-zero",
         "types.declarations-inference"
@@ -3412,7 +3435,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "record-result-001",
+      "secondary": [],
+      "release_batch": "C10",
+      "route_number": "06.33"
     },
     {
       "primary": "interfaces.implicit-satisfaction",
@@ -3431,7 +3458,7 @@
       "behavior_anchor": "Implement a one-method interface for both a value-receiver and pointer-receiver type, then dispatch through sayHello; resolve the template comment inconsistency explicitly",
       "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
       "slot": 78,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "methods.method-sets"
       ],
@@ -3444,7 +3471,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "receiver-speakers-001",
+      "secondary": [],
+      "release_batch": "C10",
+      "route_number": "06.34"
     },
     {
       "primary": "maps.iteration",
@@ -3463,10 +3494,12 @@
       "behavior_anchor": "Populate five string-to-int entries and enumerate all key/value pairs; compare unordered results rather than unstable map order",
       "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
       "slot": 79,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "control-flow.range",
         "maps.operations-comma-ok",
-        "control-flow.range"
+        "structs.literals-zero",
+        "testing.basics-diagnostics"
       ],
       "activity": "test-writing",
       "required_before_release": [
@@ -3477,7 +3510,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "map-entry-tests-001",
+      "secondary": [],
+      "release_batch": "C10",
+      "route_number": "06.35"
     },
     {
       "primary": "methods.method-sets",
@@ -3536,7 +3573,7 @@
       "behavior_anchor": "Expose the relationship between an integer value, its address, a pointer variable and dereferencing; assert identities without fixed addresses",
       "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
       "slot": 81,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "types.zero-values"
       ],
@@ -3549,7 +3586,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "pointer-chain-001",
+      "secondary": [],
+      "release_batch": "C10",
+      "route_number": "06.36"
     },
     {
       "primary": "slices.len-cap-slicing",
@@ -3568,9 +3609,11 @@
       "behavior_anchor": "Build and index the specified slice and subslice, preserving the declared boundaries",
       "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
       "slot": 82,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "slices.header-model"
+        "slices.backing-array-aliasing",
+        "slices.header-model",
+        "testing.basics-diagnostics"
       ],
       "activity": "test-writing",
       "required_before_release": [
@@ -3581,7 +3624,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "slice-sequence-tests-001",
+      "secondary": [],
+      "release_batch": "C10",
+      "route_number": "06.37"
     },
     {
       "primary": "structs.literals-zero",
@@ -3632,9 +3679,12 @@
       "behavior_anchor": "Declare zero-valued and literal string/int/bool variables, then explicitly convert 3.14 to float32; retain typed observations",
       "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
       "slot": 84,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "toolchain.build-run"
+        "interfaces.dynamic-type-value",
+        "interfaces.type-assertions",
+        "toolchain.build-run",
+        "types.numeric-conversions"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -3645,7 +3695,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "typed-value-observations-001",
+      "secondary": [],
+      "release_batch": "C10",
+      "route_number": "06.38"
     },
     {
       "primary": "unicode.utf8-encoding",
@@ -3786,10 +3840,10 @@
       "behavior_anchor": "Classify finite, infinite and NaN inputs without equality mistakes",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 90,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "types.numeric-conversions",
-        "expressions.comparison"
+        "expressions.comparison",
+        "types.numeric-conversions"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -3799,7 +3853,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "floating-categories-001",
+      "secondary": [],
+      "release_batch": "C10",
+      "route_number": "06.40"
     },
     {
       "primary": "functions.defer",
@@ -4011,9 +4069,11 @@
       "behavior_anchor": "Separate copied scalar fields from shared referenced data",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 99,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "slices.backing-array-aliasing",
         "structs.literals-zero",
+        "testing.basics-diagnostics",
         "types.named-underlying"
       ],
       "activity": "test-writing",
@@ -4024,7 +4084,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "struct-copy-tests-001",
+      "secondary": [],
+      "release_batch": "C11",
+      "route_number": "06.43"
     },
     {
       "primary": "unicode.utf8-encoding",
@@ -4109,9 +4173,11 @@
       "behavior_anchor": "Add error context without losing the original error",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 103,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "errors.propagation-context"
+        "errors.propagation-context",
+        "errors.typed",
+        "strings.formatting"
       ],
       "activity": "debugging",
       "required_before_release": [
@@ -4121,7 +4187,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "error-context-wrap-001",
+      "secondary": [],
+      "release_batch": "C10",
+      "route_number": "06.39"
     },
     {
       "primary": "errors.is",
@@ -4130,7 +4200,7 @@
       "behavior_anchor": "Recognize a sentinel through an error chain",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 104,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "errors.wrapping"
       ],
@@ -4142,7 +4212,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "error-chain-match-001",
+      "secondary": [],
+      "release_batch": "C11",
+      "route_number": "06.41"
     },
     {
       "primary": "errors.as",
@@ -4151,7 +4225,7 @@
       "behavior_anchor": "Extract a typed error through wrapping",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 105,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "errors.typed",
         "errors.wrapping"
@@ -4164,7 +4238,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "error-detail-tests-001",
+      "secondary": [],
+      "release_batch": "C11",
+      "route_number": "06.42"
     },
     {
       "primary": "errors.panic-recover-boundaries",
@@ -4173,10 +4251,10 @@
       "behavior_anchor": "Recover at the documented boundary and preserve error reporting",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 106,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "functions.defer",
-        "errors.propagation-context"
+        "errors.propagation-context",
+        "functions.defer"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -4186,7 +4264,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "capture-panic-001",
+      "secondary": [],
+      "release_batch": "C11",
+      "route_number": "06.44"
     },
     {
       "primary": "generics.approximation-unions",
@@ -4195,7 +4277,7 @@
       "behavior_anchor": "Accept named numeric types through an approximation constraint",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 107,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "generics.type-parameters-inference",
         "interfaces.small-contracts"
@@ -4212,7 +4294,10 @@
       "secondary": [
         "generics.constraints-type-sets"
       ],
-      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts.",
+      "task_id": "named-numeric-constraint-001",
+      "release_batch": "C11",
+      "route_number": "07.05"
     },
     {
       "primary": "packages.initialization-order",
@@ -4221,7 +4306,7 @@
       "behavior_anchor": "Observe package initialization order without uncontrolled effects",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 108,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "packages.imports-exports-naming"
       ],
@@ -4233,7 +4318,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "initialization-values-001",
+      "secondary": [],
+      "release_batch": "C11",
+      "route_number": "07.07"
     },
     {
       "primary": "packages.test-package-boundaries",
@@ -4264,7 +4353,7 @@
       "behavior_anchor": "Copy at most the requested bytes and report partial writes",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 110,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "io.reader-writer-contracts"
       ],
@@ -4276,7 +4365,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "bounded-copy-001",
+      "secondary": [],
+      "release_batch": "C11",
+      "route_number": "07.08"
     },
     {
       "primary": "io.buffered",
@@ -4751,8 +4844,8 @@
     72,
     73,
     74,
+    75,
     76,
-    77,
     79,
     80,
     58,
@@ -4765,7 +4858,6 @@
     60,
     63,
     64,
-    75,
     78,
     81,
     82,
@@ -4784,6 +4876,7 @@
     97,
     99,
     101,
+    77,
     102,
     103,
     104,
@@ -4822,6 +4915,6 @@
     "unresolved_prerequisites": [],
     "method": "Topological selection using actual artifact prerequisites and explicit primary/secondary outcomes; existing baseline route outcomes precede additions.",
     "introduced_skills": 101,
-    "last_batch": "C09"
+    "last_batch": "C11"
   }
 }

@@ -1,0 +1,45 @@
+schema_version: 2
+id: initialization-values-001
+title: Initialize dependent package values before init
+activity: implementation
+submission:
+    kind: workspace-patch
+    editable_paths:
+        - subject/values.go
+    workspace_skeleton:
+        - subject/trace.go
+skills:
+    primary: packages.initialization-order
+    secondary: []
+prerequisites:
+    - packages.imports-exports-naming
+new_concepts:
+    - packages.initialization-order
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: workspace-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - no-dependency
+        - wrong-base
+        - missing-init
+        - repeat-record
+        - reverse-values
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
