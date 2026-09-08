@@ -363,7 +363,7 @@ func inspectLearnerTestSource(path string) []string {
 		}
 		imports[name] = value
 	}
-	callsAPI := false
+	referencesAPI := false
 	for _, declaration := range file.Decls {
 		function, ok := declaration.(*ast.FuncDecl)
 		if !ok || function.Body == nil {
@@ -384,24 +384,25 @@ func inspectLearnerTestSource(path string) []string {
 				}
 			}
 		}
-		ast.Inspect(function.Body, func(node ast.Node) bool {
-			call, ok := node.(*ast.CallExpr)
-			if !ok {
-				return true
-			}
-			selector, ok := call.Fun.(*ast.SelectorExpr)
-			if !ok {
-				return true
-			}
-			identifier, ok := selector.X.(*ast.Ident)
-			if ok && strings.HasPrefix(imports[identifier.Name], "task.local/") {
-				callsAPI = true
-			}
-			return true
-		})
 	}
-	if !callsAPI {
-		problems = append(problems, "learner tests must call the task public API")
+
+	ast.Inspect(file, func(node ast.Node) bool {
+		// A method call on a locally constructed task value has no package
+		// qualifier at the call site. Its type reference, field access, or
+		// method expression is valid API use as well as a free-function call.
+		// Actual behavioral sufficiency is enforced by required mutants.
+		selector, ok := node.(*ast.SelectorExpr)
+		if !ok {
+			return true
+		}
+		identifier, ok := selector.X.(*ast.Ident)
+		if ok && strings.HasPrefix(imports[identifier.Name], "task.local/") {
+			referencesAPI = true
+		}
+		return true
+	})
+	if !referencesAPI {
+		problems = append(problems, "learner tests must reference the task public API")
 	}
 	return uniqueSorted(problems)
 }

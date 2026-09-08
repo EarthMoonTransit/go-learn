@@ -82,3 +82,9 @@ checks.
 `fuzz-seed-tests` and `benchmark-contract` define bounded metadata only. They are
 not promotion-eligible until their runners and non-flaky evidence contracts are
 accepted in a later ADR.
+
+ADR 0018 clarifies the learner-test relevance screen: a task-package selector
+reference in a declaration or function counts as API usage, including constructing a
+task type followed by receiver-method calls or public-field assertions. Imports
+alone do not count. Passing this screen is not completion: reference success
+and every required mutant's detection remain mandatory.

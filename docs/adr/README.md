@@ -21,3 +21,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0015` — explicit foundation route numbering (`accepted`)
 - `0016` — numbered workspaces, progress v2 and recoverable organization (`accepted`)
 - `0017` — completion evidence, durable assistance and delayed skill review (`accepted`)
+- `0018` — learner test API references for methods and fields (`accepted`)
