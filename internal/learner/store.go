@@ -77,52 +77,27 @@ func preparePrivateSubdirectory(home, name string) (string, error) {
 
 // Use directory handles through deletion: validating a pathname before
 // os.RemoveAll would allow a replaced parent to redirect the removal.
-func removeLearnerWorkspace(home, id string) error {
+func removeLearnerWorkspace(home, id string, paths ...string) error {
 	if !learnerTaskIDPattern.MatchString(id) {
 		return errors.New("invalid learner workspace id")
 	}
-	homeInfo, err := os.Lstat(home)
-	if err != nil {
-		return err
+	relative := filepath.Join("workspaces", id)
+	if len(paths) > 0 {
+		relative = paths[0]
 	}
-	if homeInfo.Mode()&os.ModeSymlink != 0 || !homeInfo.IsDir() {
-		return errors.New("learner home must be a real directory")
+	if !safeWorkspaceRelative(relative) {
+		return errors.New("invalid learner workspace path")
 	}
-	root, err := os.OpenRoot(home)
-	if err != nil {
-		return err
-	}
-	defer root.Close()
-	openedHome, err := root.Stat(".")
-	if err != nil {
-		return err
-	}
-	if !os.SameFile(homeInfo, openedHome) {
-		return errors.New("learner home changed during reset")
-	}
-	parentInfo, err := root.Lstat("workspaces")
+	parent, err := openPrivateDirectory(home, filepath.Dir(relative))
 	if errors.Is(err, os.ErrNotExist) {
 		return nil
 	}
 	if err != nil {
 		return err
 	}
-	if parentInfo.Mode()&os.ModeSymlink != 0 || !parentInfo.IsDir() {
-		return errors.New("learner workspaces directory must be a real directory")
-	}
-	workspaces, err := root.OpenRoot("workspaces")
-	if err != nil {
-		return err
-	}
-	defer workspaces.Close()
-	openedInfo, err := workspaces.Stat(".")
-	if err != nil {
-		return err
-	}
-	if !os.SameFile(parentInfo, openedInfo) {
-		return errors.New("learner workspaces directory changed during reset")
-	}
-	info, err := workspaces.Lstat(id)
+	defer parent.Close()
+	leaf := filepath.Base(relative)
+	info, err := parent.Lstat(leaf)
 	if errors.Is(err, os.ErrNotExist) {
 		return nil
 	}
@@ -132,7 +107,7 @@ func removeLearnerWorkspace(home, id string) error {
 	if info.Mode()&os.ModeSymlink != 0 || !info.IsDir() {
 		return errors.New("refusing to remove a non-directory learner workspace")
 	}
-	return workspaces.RemoveAll(id)
+	return parent.RemoveAll(leaf)
 }
 
 func loadProgress(home string) (Progress, error) {
@@ -163,7 +138,7 @@ func loadProgress(home string) (Progress, error) {
 	} else if !errors.Is(err, io.EOF) {
 		return Progress{}, err
 	}
-	if progress.SchemaVersion != progressSchemaVersion || progress.Tasks == nil {
+	if (progress.SchemaVersion != 1 && progress.SchemaVersion != progressSchemaVersion) || progress.Tasks == nil {
 		return Progress{}, errors.New("progress.json has an unsupported schema")
 	}
 	return progress, nil

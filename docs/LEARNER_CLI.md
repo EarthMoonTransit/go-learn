@@ -247,5 +247,33 @@ Route v2 shows section and lesson numbers such as `01.01` in the UI and in
 `learn list`, `show`, `next` and `roadmap`. The number is navigation; commands
 still accept the stable task ID shown in details. Existing completion is keyed
 by that ID. Sections 01–09 form the active Go foundation; backend and production
-teaching are deferred. Workspace paths are unchanged until the separate organize
-migration is delivered. Restart an existing UI process to load the updated code.
+teaching are deferred. Numbered workspace migration is described below. Restart an existing UI process
+to load the updated code.
+
+## Organize existing workspaces
+
+Fresh learner homes use numbered folders such as
+`workspaces/01-first-steps/01-literal-bindings`. Existing progress v1 keeps its
+legacy paths until you explicitly run:
+
+```bash
+learn organize --dry-run
+learn organize
+```
+
+The first command only previews. The second backs up original progress and all
+moved workspace files, preserves learning history, and upgrades paths to progress
+v2. It prints the backup location. No reset is required. Reopen the new workspace
+path in GoLand; task IDs still work in commands.
+
+If interrupted, rerun organize to recover. A conflicting destination, altered
+workspace or backup is reported without overwriting files. While a migration
+journal exists, ordinary mutations refuse and point to organize. For stale locks,
+first confirm no learner process is running and follow the lock-recovery guidance
+above; locks are never stolen automatically. Read-only views do not recover or
+migrate data. Workspaces containing symlinks/special files or exceeding 128 MiB
+require attention before organization. Backups stay until explicitly removed.
+
+To roll back, stop learner processes, retain current copies, restore original
+progress.json and workspace trees from the printed backup, and reopen the old
+paths with compatible code. This is an offline recovery procedure, not reset-task.

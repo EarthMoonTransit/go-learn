@@ -64,15 +64,15 @@ func (s *Service) stateRevision(progress Progress) (string, error) {
 			return "", err
 		}
 		defer root.Close()
-		for id := range progress.Tasks {
+		for id, task := range progress.Tasks {
 			markers[id] = "unavailable"
-			if !learnerTaskIDPattern.MatchString(id) {
+			if task == nil || s.checkWorkspaceRelative(id, task.Workspace) != nil {
 				continue
 			}
-			dir := filepath.Join("workspaces", id)
+			dir := filepath.FromSlash(task.Workspace)
 			path := filepath.Join(dir, learnerWorkspaceMarker)
 			valid := true
-			for _, name := range []string{"workspaces", dir, path} {
+			for _, name := range pathAncestors(path) {
 				info, err := root.Lstat(name)
 				if err != nil || info.Mode()&os.ModeSymlink != 0 || (name != path && !info.IsDir()) || (name == path && (!info.Mode().IsRegular() || info.Size() > 64<<10)) {
 					valid = false
@@ -111,6 +111,11 @@ func withOperation[T any](s *Service, taskID, revision string, requireCurrent bo
 		return value, err
 	}
 	defer func() { err = errors.Join(err, release()) }()
+	if _, pendingErr := os.Lstat(filepath.Join(s.home, organizeJournalName)); pendingErr == nil {
+		return value, errors.New("workspace organization is unfinished; run learn organize to recover")
+	} else if !errors.Is(pendingErr, os.ErrNotExist) {
+		return value, pendingErr
+	}
 	if revision != "" || requireCurrent {
 		progress, loadErr := loadProgress(s.home)
 		if loadErr != nil {

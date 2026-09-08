@@ -19,3 +19,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0013` — local UI, shared operation coordination and workspace generations (`accepted`)
 - `0014` — exact public-check revision compatibility without learner reset (`accepted`)
 - `0015` — explicit foundation route numbering (`accepted`)
+- `0016` — numbered workspaces, progress v2 and recoverable organization (`accepted`)

@@ -32,6 +32,7 @@ commands:
   solution --reveal
   next
   roadmap
+  organize [--dry-run]
   progress
   feedback <text>
   reset-task [task-id] --yes
@@ -189,6 +190,32 @@ func RunCLI(config Config, arguments []string, stdout, stderr io.Writer) int {
 			return cliError(stderr, err)
 		}
 		writeSolution(stdout, files)
+	case "organize":
+		organizeFlags := flag.NewFlagSet("learn organize", flag.ContinueOnError)
+		organizeFlags.SetOutput(stderr)
+		dry := organizeFlags.Bool("dry-run", false, "preview organization without changing files")
+		if err := organizeFlags.Parse(commandArguments); err != nil {
+			return 2
+		}
+		if err := noArguments(command, organizeFlags.Args()); err != nil {
+			return cliError(stderr, err)
+		}
+		plan, err := service.Organize(*dry)
+		if err != nil {
+			return cliError(stderr, err)
+		}
+		fmt.Fprintf(stdout, "Workspace organization: progress v%d → v%d; %d moves\n", plan.FromVersion, plan.ToVersion, len(plan.Moves))
+		for _, move := range plan.Moves {
+			fmt.Fprintf(stdout, "%s: %s → %s\n", move.TaskID, move.From, move.To)
+		}
+		if plan.Backup != "" {
+			fmt.Fprintf(stdout, "Backup: %s\n", plan.Backup)
+		}
+		if *dry {
+			fmt.Fprintln(stdout, "Preview only; no files changed.")
+		} else {
+			fmt.Fprintln(stdout, "Organization complete. Open the new workspace path in GoLand.")
+		}
 	case "roadmap":
 		if err := noArguments(command, commandArguments); err != nil {
 			return cliError(stderr, err)
