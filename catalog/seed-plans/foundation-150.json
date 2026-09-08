@@ -1421,7 +1421,7 @@
       "behavior_anchor": "RemoveItem: reduce quantity by a unit, delete exactly at zero, reject missing/insufficient items without mutation",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 31,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "maps.operations-comma-ok"
       ],
@@ -1434,7 +1434,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "quantity-removal-001",
+      "secondary": [],
+      "release_batch": "C09",
+      "route_number": "03.25"
     },
     {
       "primary": "maps.operations-comma-ok",
@@ -1880,10 +1884,11 @@
       "behavior_anchor": "func Welcome(name string) string {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 41,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "strings.immutable-bytes",
-        "types.declarations-inference"
+        "types.declarations-inference",
+        "types.floating-point-semantics"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -1894,7 +1899,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "formatted-assignment-001",
+      "secondary": [],
+      "release_batch": "C09",
+      "route_number": "04.13"
     },
     {
       "primary": "types.constants",
@@ -1922,8 +1931,10 @@
       "behavior_anchor": "FixedInterestRate and DaysPerYear: declare and use both untyped fractional and typed integer constants",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 42,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "testing.basics-diagnostics",
+        "types.floating-point-semantics",
         "types.numeric-conversions"
       ],
       "activity": "test-writing",
@@ -1935,7 +1946,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "constant-value-tests-001",
+      "secondary": [],
+      "release_batch": "C09",
+      "route_number": "03.26"
     },
     {
       "primary": "errors.propagation-context",
@@ -2018,7 +2033,7 @@
       "behavior_anchor": "Declare Jan through Dec with iota values 1 through 12, then implement GetMonth; identity wrapper alone does not qualify",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 44,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "types.constants"
       ],
@@ -2031,7 +2046,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "month-enumeration-001",
+      "secondary": [],
+      "release_batch": "C09",
+      "route_number": "03.27"
     },
     {
       "primary": "interfaces.small-contracts",
@@ -2059,9 +2078,11 @@
       "behavior_anchor": "DescribeNumberBox: call Number through the declared interface and format the returned number",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 45,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "interfaces.implicit-satisfaction"
+        "interfaces.implicit-satisfaction",
+        "strings.formatting",
+        "testing.basics-diagnostics"
       ],
       "activity": "test-writing",
       "required_before_release": [
@@ -2072,7 +2093,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "number-box-tests-001",
+      "secondary": [],
+      "release_batch": "C09",
+      "route_number": "06.28"
     },
     {
       "primary": "interfaces.type-assertions",
@@ -2581,8 +2606,9 @@
       "behavior_anchor": "Perimeter: calculate from the two Rectangle fields; assess construction and independent field values",
       "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
       "slot": 57,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "types.floating-point-semantics",
         "types.zero-values"
       ],
       "activity": "debugging",
@@ -2594,7 +2620,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "rectangle-perimeter-001",
+      "secondary": [],
+      "release_batch": "C09",
+      "route_number": "06.29"
     },
     {
       "primary": "interfaces.implicit-satisfaction",
@@ -2874,8 +2904,9 @@
       "behavior_anchor": "Delete",
       "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
       "slot": 64,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "errors.typed",
         "maps.operations-comma-ok"
       ],
       "activity": "implementation",
@@ -2887,7 +2918,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "dictionary-delete-001",
+      "secondary": [],
+      "release_batch": "C09",
+      "route_number": "06.30"
     },
     {
       "primary": "methods.receiver-semantics",
@@ -3178,8 +3213,11 @@
       "behavior_anchor": "Assign a five-string array into a second array and enumerate each element value/address; test value independence without absolute pointer values",
       "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
       "slot": 72,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "control-flow.range",
+        "pointers.address-deref-nil",
+        "testing.basics-diagnostics",
         "types.named-underlying"
       ],
       "activity": "test-writing",
@@ -3191,7 +3229,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "array-copy-address-tests-001",
+      "secondary": [],
+      "release_batch": "C09",
+      "route_number": "06.31"
     },
     {
       "primary": "types.constants",
@@ -3210,7 +3252,7 @@
       "behavior_anchor": "Declare and convert typed/untyped integer, floating and combined constants from the template",
       "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
       "slot": 73,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "types.numeric-conversions"
       ],
@@ -3223,7 +3265,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "constant-kinds-001",
+      "secondary": [],
+      "release_batch": "C09",
+      "route_number": "03.28"
     },
     {
       "primary": "control-flow.if",
@@ -3242,7 +3288,7 @@
       "behavior_anchor": "Classify an identifier against an allowlist and independently classify its integer age/version against a threshold; retain both source policies",
       "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
       "slot": 74,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "expressions.boolean-logic"
       ],
@@ -3255,7 +3301,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "independent-policies-001",
+      "secondary": [],
+      "release_batch": "C09",
+      "route_number": "03.29"
     },
     {
       "primary": "embedding.method-promotion-ambiguity",
@@ -4695,7 +4745,6 @@
     57,
     61,
     62,
-    64,
     65,
     66,
     67,
@@ -4715,6 +4764,7 @@
     55,
     60,
     63,
+    64,
     75,
     78,
     81,
@@ -4772,6 +4822,6 @@
     "unresolved_prerequisites": [],
     "method": "Topological selection using actual artifact prerequisites and explicit primary/secondary outcomes; existing baseline route outcomes precede additions.",
     "introduced_skills": 101,
-    "last_batch": "C08"
+    "last_batch": "C09"
   }
 }

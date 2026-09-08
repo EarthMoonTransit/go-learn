@@ -168,3 +168,19 @@ replacing a planned named-result arithmetic exercise with observable lifecycle
 behavior. This introduction does not claim LIFO or argument-evaluation mastery.
 The writer extension preserves upstream greeting output while adding explicit
 error identity, short-write and ownership behavior.
+
+## C09 release binding
+
+Ten substantive adaptations (five Exercism, two Learn Go with Tests and three
+Ardan Labs) bring the accepted checkpoint to 102 lessons: 66 substantive,
+31 original and five concept-seed; 58 assessed skills. Eighteen selected
+adaptation slots remain, against ten further substantive tasks required.
+The original 128-slot dependency replay still resolves all planned skills.
+
+Slot 41 preserves the actual multiline assignment width/precision behavior,
+not merely a welcome string. Slot 42 tests supplied constant declarations and
+uses; it does not claim that the learner authors those declarations. The
+month and constant-kind exercises use the existing workspace-tests profile.
+The constant-kind canonical reference imports the standard library, guarding
+valid package-aware declaration inspection. Weak suites omitting declaration
+values or array ownership remain insufficient in disposable checks.
