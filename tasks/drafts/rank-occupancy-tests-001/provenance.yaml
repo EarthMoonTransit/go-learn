@@ -1,0 +1,52 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected chessboard operation and hand-authored check structure: preserve the observable rules, remove narrative, rename technical APIs, and add independently authored public/full boundaries, reference and defect models. No canonical/generated cases or upstream solution used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "e56ce250624bad6908c4505e9d9640c67e5e7ca41b6d11076dec5a117dc4bef8",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/rank-occupancy-tests-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/chessboard/.docs/instructions.md",
+          "sha256": "a0b175e8a38b3993b51db857c913a6d7056b9126837aebc7bb17c4bde54a6cd1",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/chessboard/chessboard_test.go",
+          "sha256": "bd87cb0416cabe881f5acb24fea559502353da0bd04da53a09db0c55cb204eb6",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/chessboard/.meta/config.json",
+          "sha256": "4002a8eb7718911ebbde97758f3182f662ebe391a2ba3c4799a5cf16b23b5d9e",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}

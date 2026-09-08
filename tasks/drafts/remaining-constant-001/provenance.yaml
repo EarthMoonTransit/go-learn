@@ -1,0 +1,52 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected lasagna operation and hand-authored check structure: preserve the observable rules, remove narrative, rename technical APIs, and add independently authored public/full boundaries, reference and defect models. No canonical/generated cases or upstream solution used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "7fb823df3e76b19e02d097ac6558af4ffcfeba1e074fcfce547087ef18d283c1",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/remaining-constant-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/lasagna/.docs/instructions.md",
+          "sha256": "ed9879cc9721d884add56b006f1f11adf8a2b62944959911a52b20e62dba85ba",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/lasagna/lasagna_test.go",
+          "sha256": "39cc01dffcec27430172a1bf235aa71e8fe4dd6659b8c47d149f2536f0427c13",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/lasagna/.meta/config.json",
+          "sha256": "2a74e9f7fa4249303df89187605281a82dba37957a2112f5ad391baad54a59d9",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+schema_version: 1
+state: draft
+updated_at: "2026-09-08"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-09-08"
+      actor: foundation-author
+      reason: initialized v2 authoring package

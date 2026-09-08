@@ -149,6 +149,14 @@
           "skills": [
             "slices.backing-array-aliasing"
           ]
+        },
+        {
+          "number": 11,
+          "task_id": "quantity-presence-001",
+          "role": "practice",
+          "skills": [
+            "maps.operations-comma-ok"
+          ]
         }
       ],
       "number": 2
@@ -245,6 +253,62 @@
           "role": "practice",
           "skills": [
             "expressions.arithmetic"
+          ]
+        },
+        {
+          "number": 12,
+          "task_id": "whole-minute-output-001",
+          "role": "practice",
+          "skills": [
+            "types.numeric-conversions"
+          ]
+        },
+        {
+          "number": 13,
+          "task_id": "grouped-unit-cost-001",
+          "role": "practice",
+          "skills": [
+            "expressions.arithmetic"
+          ]
+        },
+        {
+          "number": 14,
+          "task_id": "column-occupancy-001",
+          "role": "practice",
+          "skills": [
+            "control-flow.range"
+          ]
+        },
+        {
+          "number": 15,
+          "task_id": "rank-occupancy-tests-001",
+          "role": "introduction",
+          "skills": [
+            "maps.iteration"
+          ]
+        },
+        {
+          "number": 16,
+          "task_id": "nested-slot-count-001",
+          "role": "practice",
+          "skills": [
+            "control-flow.range"
+          ]
+        },
+        {
+          "number": 17,
+          "task_id": "unit-addition-tests-001",
+          "role": "practice",
+          "skills": [
+            "maps.operations-comma-ok"
+          ]
+        },
+        {
+          "number": 18,
+          "task_id": "remaining-constant-001",
+          "role": "introduction",
+          "skills": [
+            "types.constants"
           ]
         }
       ],
@@ -387,7 +451,24 @@
     {
       "id": "contracts",
       "title": "Structs, pointers, methods, embedding, interfaces and errors",
-      "steps": [],
+      "steps": [
+        {
+          "number": 1,
+          "task_id": "allocated-counter-001",
+          "role": "introduction",
+          "skills": [
+            "pointers.address-deref-nil"
+          ]
+        },
+        {
+          "number": 2,
+          "task_id": "counter-read-tests-001",
+          "role": "practice",
+          "skills": [
+            "pointers.address-deref-nil"
+          ]
+        }
+      ],
       "number": 6
     },
     {

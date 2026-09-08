@@ -1,0 +1,52 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected gross-store operation and hand-authored check structure: preserve the observable rules, remove narrative, rename technical APIs, and add independently authored public/full boundaries, reference and defect models. No canonical/generated cases or upstream solution used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "166d823d2685f2e99efda01f9ce060c8cd3b66aade303932ae3c878b16207168",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/unit-addition-tests-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/gross-store/.docs/instructions.md",
+          "sha256": "4ed6bbcdcaad6e1091c4b67364a0d14c180b38bea035be784ce3574d2720a001",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/gross-store/gross_store_test.go",
+          "sha256": "ee57d89ed1db41fa9147465596dfb079e102af439abf9ac30725771861a5569b",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/gross-store/.meta/config.json",
+          "sha256": "c6c37b8652475867b14518ed1981d6218d34bacd64a06b96c4b6925774efe249",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}
