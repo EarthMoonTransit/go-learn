@@ -153,3 +153,18 @@ After acceptance: 82 ready / 53 substantive / 24 original / 5 concept-seed,
 at least 23 more substantive adaptations are required. All 128 allocation slots
 still resolve from the original baseline, with 101 skills planned by milestone 1.
 This does not claim all 142 foundation skills or learner mastery.
+
+## C08 release binding
+
+Three substantive adaptations (Exercism ordered dependency errors; Learn Go with
+Tests deposit and writer output) plus seven original skill-gap exercises bring
+the route to 92 after acceptance: 56 substantive / 31 original / 5 concept-seed.
+There are 57 assessed skills, 58 additions remaining, and 28 selected adaptation
+slots remaining against 20 further substantive tasks required. The complete
+128-slot dependency order remains valid.
+
+Original slot 91 now verifies release on normal return and panic unwinding,
+replacing a planned named-result arithmetic exercise with observable lifecycle
+behavior. This introduction does not claim LIFO or argument-evaluation mastery.
+The writer extension preserves upstream greeting output while adding explicit
+error identity, short-write and ownership behavior.
