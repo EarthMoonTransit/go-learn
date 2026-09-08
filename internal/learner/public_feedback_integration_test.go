@@ -46,6 +46,10 @@ func TestReviewedDefectsHavePublicFeedback(t *testing.T) {
 		{"cleanup-order-001", "late-helper", []string{"Helper must precede acquire"}},
 		{"cleanup-order-001", "rewritten-close-error", []string{"Errorf must preserve format and original close error"}},
 		{"writer-double-001", "initial-snapshot", []string{"initial snapshot", "want empty/0"}},
+		{"owned-values-001", "retained-worker", []string{"deadlock"}},
+		{"select-ready-case-001", "closed-only-cancel", []string{"readable cancel", "want0,canceled"}},
+		{"mutex-counter-001", "no-lock", []string{"DATA RACE"}},
+		{"concurrent-counter-read-001", "unlocked-read", []string{"DATA RACE"}},
 	} {
 		t.Run(fixture.id, func(t *testing.T) {
 			canonical := filepath.Join(root, "tasks", "ready", fixture.id)
