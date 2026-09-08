@@ -154,3 +154,11 @@ public-only failure and useful diagnostics for `boolean-policies-001`
 (`exclusive-or`), `token-values-001` (`trim-space`), and `column-occupancy-001`
 (`case-normalized`). These cases execute through `Service.Check` in temporary
 learner homes, with reference success and unchanged canonical content checked.
+
+The expanded public-feedback integration matrix checks reviewed ownership and
+interface defects independently of hidden tests. Tolerance fixtures are valid
+alternatives, not mutants: public and full learner verification must accept them.
+When testing the regression itself, remove only the relevant public assertion in
+a disposable repository copy, refresh that copy's digest, and require the outer
+regression to fail because the public verifier unexpectedly passed. A compile
+failure does not establish this property.
