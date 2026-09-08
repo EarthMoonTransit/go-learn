@@ -1,0 +1,45 @@
+schema_version: 2
+id: nested-slot-count-001
+title: Repair counting across nested map values
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: control-flow.range
+    secondary: []
+prerequisites:
+    - control-flow.for
+    - maps.operations-comma-ok
+    - slices.len-cap-slicing
+new_concepts: []
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - columns-only
+        - occupied-only
+        - fixed-eight
+        - overwrite-total
+        - clear-map
+        - empty-one
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

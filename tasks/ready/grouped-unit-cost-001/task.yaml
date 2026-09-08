@@ -1,0 +1,42 @@
+schema_version: 2
+id: grouped-unit-cost-001
+title: Calculate grouped and individual unit cost
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: expressions.arithmetic
+    secondary: []
+prerequisites:
+    - types.declarations-inference
+new_concepts: []
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - individual-only
+        - round-groups-up
+        - remainder-free
+        - one-group-only
+        - zero-one-unit
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

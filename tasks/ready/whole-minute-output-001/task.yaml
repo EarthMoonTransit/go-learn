@@ -1,0 +1,43 @@
+schema_version: 2
+id: whole-minute-output-001
+title: Repair conversion of a fractional rate
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: types.numeric-conversions
+    secondary: []
+prerequisites:
+    - expressions.arithmetic
+    - types.declarations-inference
+new_concepts: []
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - hour-truncated-first
+        - round-up
+        - percent-truncated
+        - missing-minute
+        - zero-percent-full
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

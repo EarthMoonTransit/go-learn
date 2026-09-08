@@ -25,20 +25,20 @@ human mastery. Learner evidence must be reported separately.
 ## Current checkpoint
 
 Initial baseline: master `f41a602645718e276e8683d84c4f58f461476aa0`, 22 lessons.
-The checkpoint below is the C03 result, effective after its PR passes `validate`
+The checkpoint below is the C04 result, effective after its PR passes `validate`
 and is merged. Private learner state was not read or modified.
 
-| Measure | C03 checkpoint |
+| Measure | C04 checkpoint |
 | --- | --- |
-| Learner-visible ready lessons | 42; another 108 are required for milestone 1 |
-| Substantive source adaptations | 13 accepted exercise adaptations; at least 63 more required for the 76-task criterion |
+| Learner-visible ready lessons | 52; another 98 are required for milestone 1 |
+| Substantive source adaptations | 23 accepted exercise adaptations; at least 53 more required for the 76-task criterion |
 | Original / concept-seed | 24 original, 5 concept-seed; seeds are excluded from substantive reuse |
-| Covered skills | 30 distinct assessed primary/secondary skills; this is course coverage, not learner mastery |
-| Activities | 21 implementation, 13 debugging, 8 test-writing; C03 adds 5/2/3 respectively |
+| Covered skills | 33 distinct assessed primary/secondary skills; this is course coverage, not learner mastery |
+| Activities | 26 implementation, 15 debugging, 11 test-writing; C04 adds 5/2/3 respectively |
 | Other packages | Three legacy ready packages, eight drafts, one rejected; excluded from learner-visible count |
 | Human completions / confirmed mastery | Unknown: private progress not inspected; automated fixtures are not human evidence |
 | Delivered tooling | Explicit UI/CLI numbers, recoverable numbered workspaces, progress v3 completion evidence and delayed reviews |
-| Source allocation | 128 additions mapped; 84 adaptation candidates and 44 original slots; C02–C03 consume 13 and 7 |
+| Source allocation | 128 additions mapped; 84 adaptation candidates and 44 original slots; C02–C04 consume 23 and 7 |
 | Next result | Ten further adapted exercises, then continue toward 60, 100 and 150 |
 | Obstacles | Remaining authoring/review work; unsupported later verification profiles require separate tooling first |
 
@@ -98,7 +98,8 @@ existing per-domain diversity. Existing content is repaired gradually, separatel
 | T05 | Repetition and independent mastery evidence | Delivered in PR30; legacy/reset regressions and validate passed |
 | C02 | Ten Unicode lessons: three substantive adaptations and seven original boundary tasks | Delivered in PR32; independent review, local acceptance and exact-head validate passed |
 | C03 | Ten substantive Exercism adaptations: boolean policies, collections, testing and fractional arithmetic | Independent review approved; inclusive-OR and exact-whitespace public regressions added; full gates apply |
-| C04–C14 minimum | Remaining 108 lessons from the source allocation and gaps | At most ten new/substantially revised tasks per batch; public/full/reference/mutant checks and independent review |
+| C04 | Ten substantive adaptations: map traversal, pointer lifetime, constants and unit calculations | Independent review approved; per-pointer weak-suite regression and public exact-key diagnostics verified |
+| C05–C14 minimum | Remaining 98 lessons from the source allocation and gaps | At most ten new/substantially revised tasks per batch; public/full/reference/mutant checks and independent review |
 | K02 | Milestone-1 acceptance at 150 | All milestone conditions, adaptation count, route, components and progress evidence verified |
 
 Tooling needed for unsupported task profiles is delivered before that content.
