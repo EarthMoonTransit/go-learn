@@ -116,7 +116,7 @@ func TestUIRealVerificationAcrossSubmissionKinds(t *testing.T) {
 			if job := run("complete"); !job.Result.Verification.Passed {
 				t.Fatalf("correct fixture full failed: %+v", job)
 			}
-			view, err := s.TaskView(fixture.id)
+			view, err = s.TaskView(fixture.id)
 			if err != nil || !view.Completed || view.Review == "" || len(view.UsedHints) != 1 || view.Attempts != 6 {
 				t.Fatalf("completed view: %+v %v", view, err)
 			}
