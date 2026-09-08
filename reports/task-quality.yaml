@@ -20,6 +20,24 @@ tasks:
         detected: 4
         survived: []
       legacy: false
+    - id: allocated-counter-001
+      state: ready
+      input_digest: 955fc0cbec1f989effda7b4be131c264fb63f6e8e3d4e0c31bb9c88a333d0337
+      task_type: implement
+      primary_skill: pointers.address-deref-nil
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 5
+        total: 5
+        detected: 5
+        survived: []
+      legacy: false
     - id: alternate-correction-001
       state: ready
       input_digest: 5c8954e58b37e08b56cc25332ed401d68c974e1fd39f6226162b20e5c1fdf142
@@ -133,6 +151,42 @@ tasks:
       input_digest: 808fb55df8762ddf87884cbcc44bed1decbb552b58ec7772b7be1b31a1e09786
       task_type: test-writing
       primary_skill: expressions.comparison
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
+        survived: []
+      legacy: false
+    - id: column-occupancy-001
+      state: ready
+      input_digest: c1cf3c5852d3da6cbbe53e438b51f3d628ed473eaabb2e2d74d80447f0da9b9f
+      task_type: implement
+      primary_skill: control-flow.range
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 7
+        total: 7
+        detected: 7
+        survived: []
+      legacy: false
+    - id: counter-read-tests-001
+      state: ready
+      input_digest: 1fe04c3f971c236b14c7685cdca5467c100deac9b34200c31b73588f61153421
+      task_type: test-writing
+      primary_skill: pointers.address-deref-nil
       technical_status: pass
       review_status: pass
       promotion_eligible: true
@@ -384,6 +438,24 @@ tasks:
         detected: 4
         survived: []
       legacy: false
+    - id: grouped-unit-cost-001
+      state: ready
+      input_digest: 68bf72b475661590b87c5bd54af74776dcedeaa9a292416db709751e6355ba9e
+      task_type: implement
+      primary_skill: expressions.arithmetic
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 5
+        total: 5
+        detected: 5
+        survived: []
+      legacy: false
     - id: guarded-item-001
       state: ready
       input_digest: 8f56d9d6a05441d2269ff60ca5a047626aec26c8675082c593e28f62a8f1ec0c
@@ -492,6 +564,24 @@ tasks:
         detected: 4
         survived: []
       legacy: false
+    - id: nested-slot-count-001
+      state: ready
+      input_digest: 19a1c69ba690389975e10c947f6a84a0f01f737aaf193ecf556d67307dddb548
+      task_type: debug
+      primary_skill: control-flow.range
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
+        survived: []
+      legacy: false
     - id: percentage-output-001
       state: ready
       input_digest: a4519851c58c2c02d038a5a5fdd310bf73b27dc0b6b938f38707a8a8c3aa8bd2
@@ -528,6 +618,24 @@ tasks:
         detected: 6
         survived: []
       legacy: false
+    - id: quantity-presence-001
+      state: ready
+      input_digest: fc278a6780cd85934f24146e4c8ca96a0e54875477f8fca6fca77f4a53d97c3b
+      task_type: implement
+      primary_skill: maps.operations-comma-ok
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
+        survived: []
+      legacy: false
     - id: range-offset-001
       state: ready
       input_digest: 2106d091cd92eacd035ae44eaa34dc2714767b249dcc341b597f8809e85685c8
@@ -544,6 +652,42 @@ tasks:
         required: 4
         total: 4
         detected: 4
+        survived: []
+      legacy: false
+    - id: rank-occupancy-tests-001
+      state: ready
+      input_digest: af20194d7b5cea894cfcc50427b10e5811330b74e67a8612e465bc3fc1b34c4a
+      task_type: test-writing
+      primary_skill: maps.iteration
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 9
+        total: 9
+        detected: 9
+        survived: []
+      legacy: false
+    - id: remaining-constant-001
+      state: ready
+      input_digest: 6cba991b8762d3a4d056a8bd47fdefd2702ee56f083676c439b1b376d3dc1bc2
+      task_type: implement
+      primary_skill: types.constants
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 5
+        total: 5
+        detected: 5
         survived: []
       legacy: false
     - id: remove-item-tests-001
@@ -873,6 +1017,24 @@ tasks:
         detected: 0
         survived: []
       legacy: false
+    - id: unit-addition-tests-001
+      state: ready
+      input_digest: 021919f52f0371f783c154ec557ba0b9290c5ca9f3c0eeae7547bfddcb4a1ba8
+      task_type: test-writing
+      primary_skill: maps.operations-comma-ok
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 7
+        total: 7
+        detected: 7
+        survived: []
+      legacy: false
     - id: utf8-prefix-001
       state: draft
       input_digest: 5aed6135299bc4b811ab292a5fad6581d922249e5cbc85263a619f78bf447e14
@@ -928,6 +1090,24 @@ tasks:
         detected: 0
         survived: []
       legacy: true
+    - id: whole-minute-output-001
+      state: ready
+      input_digest: 9c6eb03ec167c74b6f2f536d6f4edfe9ad5be87a74a9e6df31f00715eedbecfb
+      task_type: debug
+      primary_skill: types.numeric-conversions
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 5
+        total: 5
+        detected: 5
+        survived: []
+      legacy: false
     - id: wide-sum-001
       state: ready
       input_digest: 9ee2fe93f5c9e10dfb0fd01bdddce3440945a264cc6ea894d7269d6a8becc197
@@ -988,20 +1168,20 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 45
+      count: 55
     - state: rejected
       count: 1
     - state: retired
       count: 0
 task_types:
     - task_type: debug
-      count: 16
+      count: 18
     - task_type: implement
-      count: 26
+      count: 31
     - task_type: refactor
       count: 3
     - task_type: test-writing
-      count: 9
+      count: 12
 gates:
     - id: task-state-policy
       status: pass
