@@ -1,0 +1,52 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected card-tricks operation and hand-authored check structure: preserve the observable rules, remove narrative, rename technical APIs, and add independently authored public/full boundaries, reference and defect models. No canonical/generated cases or upstream solution used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "334ffccf8a0b227463a7ef227e02709e0278961f074d32bef639cbcc4aa050f6",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/prepend-values-tests-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/card-tricks/.docs/instructions.md",
+          "sha256": "2e62815e9f52bb899e3f62378ef7f5c9a4756c97f02284f110005b583393fbf0",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/card-tricks/card_tricks_test.go",
+          "sha256": "cd0a96e9581112e1eb17b2b38d850edb4f3386edfb1ce0656344582888eec401",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/card-tricks/.meta/config.json",
+          "sha256": "36de25af5278bafa8add6eea7eebfe6a15a229e3f347351d11685d77e1a73dbb",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}

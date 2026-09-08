@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "id": "remove-item-tests-001",
+  "title": "Test slice removal and invalid indexes",
+  "activity": "test-writing",
+  "submission": {
+    "kind": "tests",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "slices.len-cap-slicing",
+    "secondary": []
+  },
+  "prerequisites": [
+    "slices.header-model",
+    "testing.basics-diagnostics"
+  ],
+  "new_concepts": [],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "mutation-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "first-unchanged",
+      "last-unchanged",
+      "negative-clamped",
+      "upper-clamped",
+      "empty-placeholder",
+      "remove-last-instead"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}

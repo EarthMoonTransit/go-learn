@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "title": "Go Learn — Go foundation",
+  "title": "Go Learn \u2014 Go foundation",
   "preparation": "docs/LEARNER_START.md",
   "preparation_skills": [
     "toolchain.modules-workspaces",
@@ -51,6 +51,14 @@
             "control-flow.for"
           ],
           "number": 5
+        },
+        {
+          "number": 6,
+          "task_id": "boolean-policies-001",
+          "role": "practice",
+          "skills": [
+            "expressions.boolean-logic"
+          ]
         }
       ],
       "number": 1
@@ -117,6 +125,30 @@
             "slices.append-growth"
           ],
           "number": 7
+        },
+        {
+          "number": 8,
+          "task_id": "seven-value-window-001",
+          "role": "practice",
+          "skills": [
+            "slices.len-cap-slicing"
+          ]
+        },
+        {
+          "number": 9,
+          "task_id": "guarded-item-001",
+          "role": "practice",
+          "skills": [
+            "slices.len-cap-slicing"
+          ]
+        },
+        {
+          "number": 10,
+          "task_id": "set-or-append-001",
+          "role": "practice",
+          "skills": [
+            "slices.backing-array-aliasing"
+          ]
         }
       ],
       "number": 2
@@ -165,6 +197,55 @@
             "expressions.comparison"
           ],
           "number": 5
+        },
+        {
+          "number": 6,
+          "task_id": "total-counts-tests-001",
+          "role": "introduction",
+          "skills": [
+            "control-flow.for",
+            "testing.basics-diagnostics"
+          ]
+        },
+        {
+          "number": 7,
+          "task_id": "alternate-correction-001",
+          "role": "practice",
+          "skills": [
+            "control-flow.range"
+          ]
+        },
+        {
+          "number": 8,
+          "task_id": "token-values-001",
+          "role": "practice",
+          "skills": [
+            "control-flow.switch"
+          ]
+        },
+        {
+          "number": 9,
+          "task_id": "remove-item-tests-001",
+          "role": "practice",
+          "skills": [
+            "slices.len-cap-slicing"
+          ]
+        },
+        {
+          "number": 10,
+          "task_id": "prepend-values-tests-001",
+          "role": "introduction",
+          "skills": [
+            "functions.variadic"
+          ]
+        },
+        {
+          "number": 11,
+          "task_id": "percentage-output-001",
+          "role": "practice",
+          "skills": [
+            "expressions.arithmetic"
+          ]
         }
       ],
       "number": 3
