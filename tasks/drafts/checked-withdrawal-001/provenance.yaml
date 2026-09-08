@@ -1,0 +1,47 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected source operation and test structure, preserve observable behavior while removing narrative, and add independent boundaries, defects and technical APIs. Chapter code is private reference material; learner implementation starts with minimal stubs. No generated canonical cases used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "d8490de23391f12c30791d6d83c57677e497b3a983fdca80afee0de2915c3a22",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/checked-withdrawal-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "pointers/v4/wallet.go",
+          "sha256": "67bfc1893c3262a8888cb6313cf697e24ea7a3c704521782660c640942dc0583",
+          "usage": "adapted"
+        },
+        {
+          "path": "pointers/v4/wallet_test.go",
+          "sha256": "6e787cc7ad337c75cf00c6e1ae8741eb3e7abbb84d0e913a7db1a294b8ccad01",
+          "usage": "adapted"
+        },
+        {
+          "path": "LICENSE.md",
+          "sha256": "db4086c304e08604aa6d981050ba312a9ed6a5e8d927eb3a8b4bd56ed1d8697b",
+          "usage": "copied"
+        }
+      ],
+      "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+      "license": "MIT",
+      "registry_id": "learn-go-with-tests",
+      "repository": "https://github.com/quii/learn-go-with-tests",
+      "role": "adapted-code",
+      "usage_mode": "adapt"
+    }
+  ]
+}

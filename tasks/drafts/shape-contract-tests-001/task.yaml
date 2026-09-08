@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "id": "shape-contract-tests-001",
+  "title": "Test three shapes through a shared area contract",
+  "activity": "test-writing",
+  "submission": {
+    "kind": "tests",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "interfaces.implicit-satisfaction",
+    "secondary": []
+  },
+  "prerequisites": [
+    "methods.method-sets",
+    "testing.basics-diagnostics",
+    "types.floating-point-semantics"
+  ],
+  "new_concepts": [
+    "interfaces.implicit-satisfaction"
+  ],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "mutation-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "rectangle-sum",
+      "circle-linear",
+      "approximate-pi",
+      "triangle-no-half",
+      "fraction-truncated",
+      "zero-fallback"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}

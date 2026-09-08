@@ -1,0 +1,38 @@
+package subject_test
+
+import (
+	"fmt"
+	"task.local/structured-error-tests-001/subject"
+	"testing"
+)
+
+func TestContractCase01(t *testing.T) {
+	if e := subject.ValidateCount(2); e != nil {
+		t.Errorf("positive got %v wantnil", e)
+	}
+}
+
+func TestContractCase02(t *testing.T) {
+	for _, n := range []int{-20, -1, 0} {
+		e := subject.ValidateCount(n)
+		typed, ok := e.(*subject.InvalidCountError)
+		if !ok || typed == nil {
+			t.Fatalf("count%d got %T,%v want nonnil *InvalidCountError", n, e, e)
+		}
+		reason := "negative count"
+		if n == 0 {
+			reason = "empty count"
+		}
+		want := fmt.Sprintf("%d items are invalid: %s", n, reason)
+		if typed.Count != n || typed.Reason != reason || e.Error() != want {
+			t.Errorf("count%d got %+v,%q want count%d,%q,%q", n, typed, e.Error(), n, reason, want)
+		}
+	}
+}
+
+func TestContractCase03(t *testing.T) {
+	e := &subject.InvalidCountError{Count: 7, Reason: "custom reason"}
+	if got := e.Error(); got != "7 items are invalid: custom reason" {
+		t.Errorf("custom Error got %q", got)
+	}
+}
