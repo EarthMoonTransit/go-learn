@@ -1,0 +1,52 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected source operation and test structure, preserve observable behavior while removing narrative, and add independent boundaries, defects and technical APIs. Chapter code is private reference material; learner implementation starts with minimal stubs. No generated canonical cases used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "7c81e3db9fd5f5c1eb28ae92091f269329b9dff3152bc2bd5b5389ad19e60b99",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/lexical-choice-tests-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/vehicle-purchase/.docs/instructions.md",
+          "sha256": "d29d2b641d7ff2aa9a5746db98be0108ee238a749eebb7ca1c1145c6dfc4db5f",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/vehicle-purchase/vehicle_purchase_test.go",
+          "sha256": "05be4fda4bb0ed5285a7d56c036ecb66b2df6e3916c635a17d5b1c9a87b4038a",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/vehicle-purchase/.meta/config.json",
+          "sha256": "7cfb9c3118aa878066c802258e107a4031f5eef3964f0eeb6bdd5c63d1684e4f",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}

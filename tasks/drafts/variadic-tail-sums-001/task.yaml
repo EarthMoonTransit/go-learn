@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "id": "variadic-tail-sums-001",
+  "title": "Sum the tail of each supplied slice",
+  "activity": "implementation",
+  "submission": {
+    "kind": "implementation",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "functions.variadic",
+    "secondary": []
+  },
+  "prerequisites": [
+    "control-flow.range",
+    "functions.signatures-results",
+    "slices.len-cap-slicing"
+  ],
+  "new_concepts": [],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "fixed-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "include-head",
+      "skip-empty",
+      "skip-singleton",
+      "shared-total",
+      "negative-ignored",
+      "consume-input",
+      "no-groups-one"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}

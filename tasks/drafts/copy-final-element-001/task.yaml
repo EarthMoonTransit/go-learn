@@ -1,0 +1,56 @@
+{
+  "schema_version": 2,
+  "id": "copy-final-element-001",
+  "title": "Repair an update through a slice parameter",
+  "activity": "debugging",
+  "submission": {
+    "kind": "implementation",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "slices.backing-array-aliasing",
+    "secondary": []
+  },
+  "prerequisites": [
+    "slices.append-growth",
+    "strings.immutable-bytes"
+  ],
+  "new_concepts": [],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "fixed-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "append-instead",
+      "source-first",
+      "destination-first",
+      "copy-destination",
+      "swap-last"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "id": "independent-scaled-copy-001",
+  "title": "Repair scaling without sharing input storage",
+  "activity": "debugging",
+  "submission": {
+    "kind": "implementation",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "slices.backing-array-aliasing",
+    "secondary": []
+  },
+  "prerequisites": [
+    "expressions.arithmetic",
+    "slices.append-growth",
+    "types.numeric-conversions"
+  ],
+  "new_concepts": [],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "fixed-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "in-place",
+      "integer-factor",
+      "missing-base",
+      "same-scale-alias",
+      "zero-scale-alias",
+      "reverse-output",
+      "empty-placeholder",
+      "zero-scale-ignored"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}

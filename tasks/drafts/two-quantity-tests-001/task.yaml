@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "id": "two-quantity-tests-001",
+  "title": "Test two independently accumulated results",
+  "activity": "test-writing",
+  "submission": {
+    "kind": "tests",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "functions.signatures-results",
+    "secondary": []
+  },
+  "prerequisites": [
+    "control-flow.range",
+    "slices.header-model",
+    "testing.basics-diagnostics",
+    "types.declarations-inference",
+    "types.numeric-conversions"
+  ],
+  "new_concepts": [],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "mutation-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "one-of-each",
+      "count-unknown",
+      "integer-liquid",
+      "case-normalized",
+      "empty-default",
+      "input-consumed"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}
