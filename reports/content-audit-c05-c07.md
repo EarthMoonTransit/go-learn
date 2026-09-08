@@ -18,7 +18,8 @@ widened multiplication expose different float64/float32 boundaries.
 Tail summation and final-element copying retain independent source operations.
 Dictionary Search, Add and Update distinguish absence, insertion without overwrite
 and replacement without insertion; they also practice sentinel and typed-error
-forms. These are explicit practice/transfer encounters, not repeated introductions.
+forms. Search introduces sentinel lookup; Add and Update provide subsequent
+practice/transfer encounters rather than repeating that introduction.
 
 MethodFunctions requires usable value/pointer method expressions. AreaOf accepts
 learner-defined shapes; Greeter composes arbitrary implementations. Nested
@@ -74,4 +75,9 @@ and I/O. Preserve the source quota and make diversity deficits visible instead
 of weakening requirements. No new real learner feedback was supplied during
 these batches; no calibration, completion or mastery is inferred from fixtures.
 
-Independent audit review is pending; task-level review is already approved.
+Independent audit review approved by `/root/ui_goal_reviewer` on 2026-09-08.
+Recomputed all 82 route lessons, activity/domain totals, 49 distinct assessed
+skills, source roles (53 substantive adaptations and five concept seeds), and
+the C05–C07 source/activity counts from canonical task metadata. Three legacy
+ready packages remain outside the route. Task-level reviews are separately
+approved; aggregate acceptance gates and future tooling remain separate.
