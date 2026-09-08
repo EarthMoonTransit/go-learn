@@ -25,21 +25,21 @@ human mastery. Learner evidence must be reported separately.
 ## Current checkpoint
 
 Initial baseline: master `f41a602645718e276e8683d84c4f58f461476aa0`, 22 lessons.
-The checkpoint below is the C11 result, effective after its PR passes `validate`
+The checkpoint below is the C12 result, effective after its PR passes `validate`
 and is merged. Private learner state was not read or modified.
 
-| Measure | C11 checkpoint |
+| Measure | C12 checkpoint |
 | --- | --- |
-| Learner-visible ready lessons | 122; another 28 are required for milestone 1 |
-| Substantive source adaptations | 77 accepted exercise adaptations; the minimum 76-task criterion is met |
-| Original / concept-seed | 40 original, 5 concept-seed; seeds are excluded from substantive reuse |
-| Covered skills | 71 distinct assessed primary/secondary skills; this is course coverage, not learner mastery |
-| Activities | 61 implementation, 29 debugging, 32 test-writing; C11 adds 5/2/3 respectively |
+| Learner-visible ready lessons | 132; another 18 are required for milestone 1 |
+| Substantive source adaptations | 80 accepted exercise adaptations; the minimum 76-task criterion is met |
+| Original / concept-seed | 47 original, 5 concept-seed; seeds are excluded from substantive reuse |
+| Covered skills | 79 distinct assessed primary/secondary skills; this is course coverage, not learner mastery |
+| Activities | 66 implementation, 31 debugging, 35 test-writing; C12 adds 5/2/3 respectively |
 | Other packages | Three legacy ready packages, eight drafts, one rejected; excluded from learner-visible count |
 | Human completions / confirmed mastery | Unknown: private progress not inspected; automated fixtures are not human evidence |
 | Delivered tooling | Explicit UI/CLI numbers, recoverable numbered workspaces, progress v3 completion evidence and delayed reviews |
-| Source allocation | 128 additions mapped; 84 adaptation candidates and 44 original slots; C02–C11 consume 77 and 23 |
-| Next result | Time, buffered I/O and encoding; continue toward 150 |
+| Source allocation | 128 additions mapped; 84 adaptation candidates and 44 original slots; C02–C12 consume 80 and 30 |
+| Next result | Filesystem and testing components, then concurrency and context; continue toward 150 |
 | Obstacles | Remaining authoring/review work; unsupported later verification profiles require separate tooling first |
 
 60 and 100 are reporting checkpoints inside milestone 1, not mandatory stops.
@@ -149,3 +149,7 @@ it does not cap this 150-task run. Reports retain their historical evidence.
 After foundation, a separate accepted plan may restore HTTP/PostgreSQL, background
 services, production failure scenarios, Docker and CI lessons. Redis, gRPC and
 brokers remain a later extension. None is required to complete the active scope.
+
+### C12 acceptance evidence
+
+Ten lessons add exact time parsing, caller-owned buffering, scanner error/line boundaries, JSON field contracts, binary decoding and text marshaling. Three pinned Exercism adaptations and seven originals are independently reviewed. Public checks cover pending-buffer flushing, top-level JSON null and partial-result rejection; mutation exercises require final-line handling and receiver replacement. The same full collection is reused by validator and report-check.

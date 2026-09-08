@@ -398,6 +398,14 @@
           "skills": [
             "control-flow.if"
           ]
+        },
+        {
+          "number": 30,
+          "task_id": "decision-table-tests-001",
+          "role": "transfer",
+          "skills": [
+            "control-flow.if"
+          ]
         }
       ],
       "number": 3
@@ -1036,6 +1044,78 @@
           "role": "introduction",
           "skills": [
             "io.copy-limit-composition"
+          ]
+        },
+        {
+          "number": 9,
+          "task_id": "duration-rounding-001",
+          "role": "introduction",
+          "skills": [
+            "time.duration-arithmetic"
+          ]
+        },
+        {
+          "number": 10,
+          "task_id": "parse-timestamp-001",
+          "role": "introduction",
+          "skills": [
+            "time.parsing-zones"
+          ]
+        },
+        {
+          "number": 11,
+          "task_id": "afternoon-window-001",
+          "role": "practice",
+          "skills": [
+            "time.parsing-zones"
+          ]
+        },
+        {
+          "number": 12,
+          "task_id": "buffered-flush-001",
+          "role": "introduction",
+          "skills": [
+            "io.buffered"
+          ]
+        },
+        {
+          "number": 13,
+          "task_id": "scan-lines-tests-001",
+          "role": "introduction",
+          "skills": [
+            "io.scanning"
+          ]
+        },
+        {
+          "number": 14,
+          "task_id": "json-field-shape-001",
+          "role": "introduction",
+          "skills": [
+            "encoding.json-shape-tags"
+          ]
+        },
+        {
+          "number": 15,
+          "task_id": "single-json-value-001",
+          "role": "introduction",
+          "skills": [
+            "encoding.streaming-strictness"
+          ]
+        },
+        {
+          "number": 16,
+          "task_id": "binary-record-tests-001",
+          "role": "introduction",
+          "skills": [
+            "encoding.binary-marshaling"
+          ]
+        },
+        {
+          "number": 17,
+          "task_id": "text-level-001",
+          "role": "introduction",
+          "skills": [
+            "encoding.text-marshaling"
           ]
         }
       ],

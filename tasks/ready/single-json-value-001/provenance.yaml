@@ -1,0 +1,21 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Original exercise for an explicit foundation skill gap or transfer boundary; no external artifacts used."
+  },
+  "kind": "original",
+  "project": {
+    "content_digest": "447f38047168e4cdeba5ae47ff071955922685d0f269d44f9382512a7e401925",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/single-json-value-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": []
+}

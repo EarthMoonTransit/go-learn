@@ -1,0 +1,48 @@
+schema_version: 2
+id: binary-record-tests-001
+title: Test fixed-width big-endian binary marshaling
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: encoding.binary-marshaling
+    secondary: []
+prerequisites:
+    - errors.propagation-context
+    - methods.method-sets
+    - slices.len-cap-slicing
+new_concepts:
+    - encoding.binary-marshaling
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - little-endian
+        - drop-high-count
+        - accept-trailing
+        - clear-on-error
+        - mutate-input
+        - fresh-error
+        - shared-buffer
+        - merge-receiver
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
