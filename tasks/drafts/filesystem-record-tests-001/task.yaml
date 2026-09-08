@@ -1,0 +1,64 @@
+{
+  "schema_version": 2,
+  "id": "filesystem-record-tests-001",
+  "title": "Test directory records and file cleanup on every path",
+  "activity": "test-writing",
+  "submission": {
+    "kind": "tests",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "io.files-cleanup",
+    "secondary": []
+  },
+  "prerequisites": [
+    "functions.defer",
+    "io.reader-writer-contracts",
+    "io.scanning",
+    "testing.basics-diagnostics"
+  ],
+  "new_concepts": [
+    "io.files-cleanup"
+  ],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "mutation-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "no-close",
+      "ignore-close-error",
+      "partial-results",
+      "reverse-files",
+      "ignore-reader-error",
+      "unsplit-tags",
+      "trim-body",
+      "fresh-open-error",
+      "close-before-read"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}

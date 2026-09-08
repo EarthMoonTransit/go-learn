@@ -4679,7 +4679,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "secondary": [
+        "goroutines.leak-prevention"
+      ],
+      "selection_review_note": "After the initial launch/channel operations lesson, assess directional channel ownership together with termination of the producer; ensures leak prevention before context."
     },
     {
       "primary": "sync.waitgroup-lifecycle",
