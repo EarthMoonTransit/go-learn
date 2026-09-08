@@ -10,15 +10,19 @@ import (
 )
 
 type cleanupScope struct {
-	helpers  int
-	cleanups []func()
-	errors   []string
+	helpers   int
+	cleanups  []func()
+	errors    []string
+	formats   []string
+	arguments [][]any
 }
 
 func (s *cleanupScope) Helper()          { s.helpers++ }
 func (s *cleanupScope) Cleanup(f func()) { s.cleanups = append(s.cleanups, f) }
 func (s *cleanupScope) Errorf(format string, args ...any) {
 	s.errors = append(s.errors, fmt.Sprintf(format, args...))
+	s.formats = append(s.formats, format)
+	s.arguments = append(s.arguments, append([]any(nil), args...))
 }
 func (s *cleanupScope) finish() {
 	for i := len(s.cleanups) - 1; i >= 0; i-- {
@@ -46,7 +50,13 @@ func TestPublicCase01(t *testing.T) {
 	s := &cleanupScope{}
 	r := &closeProbe{}
 	calls := 0
-	got, e := subject.AcquireForTest(s, func() (io.Closer, error) { calls++; return r, nil })
+	got, e := subject.AcquireForTest(s, func() (io.Closer, error) {
+		if s.helpers != 1 {
+			t.Error("Helper must precede acquire")
+		}
+		calls++
+		return r, nil
+	})
 	if got != r || e != nil || calls != 1 || s.helpers != 1 || len(s.cleanups) != 1 || r.calls != 0 {
 		t.Fatalf("setup got%v,%v calls%d helpers%d cleanup%d closes%d", got, e, calls, s.helpers, len(s.cleanups), r.calls)
 	}
@@ -61,7 +71,13 @@ func TestPublicCase02(t *testing.T) {
 	s := &cleanupScope{}
 	unused := &closeProbe{}
 	calls := 0
-	got, e := subject.AcquireForTest(s, func() (io.Closer, error) { calls++; return unused, cause })
+	got, e := subject.AcquireForTest(s, func() (io.Closer, error) {
+		if s.helpers != 1 {
+			t.Error("Helper must precede failed acquire")
+		}
+		calls++
+		return unused, cause
+	})
 	if got != nil || e != cause || calls != 1 || s.helpers != 1 || len(s.cleanups) != 0 || unused.calls != 0 {
 		t.Errorf("failed acquisition got%v,%v calls%d cleanups%d closes%d", got, e, calls, len(s.cleanups), unused.calls)
 	}
@@ -79,6 +95,9 @@ func TestPublicCase03(t *testing.T) {
 		}
 	}
 	s.finish()
+	if len(s.formats) != 1 || s.formats[0] != "cleanup: %v" || len(s.arguments[0]) != 1 || s.arguments[0][0] != cause {
+		t.Errorf("Errorf must preserve format and original close error: %v %v", s.formats, s.arguments)
+	}
 	if !slices.Equal(order, []string{"b", "a"}) || a.calls != 1 || b.calls != 1 || !slices.Equal(s.errors, []string{"cleanup: close failed"}) {
 		t.Errorf("order%v closes%d,%d errors%v", order, a.calls, b.calls, s.errors)
 	}

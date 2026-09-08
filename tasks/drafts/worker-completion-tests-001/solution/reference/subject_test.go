@@ -77,16 +77,27 @@ func TestWorker1(t *testing.T) {
 
 func TestWorker2(t *testing.T) {
 	synctest.Test(t, func(t *testing.T) {
-		a, b := 0, 0
-		first := subject.Start(func() { a++ })
-		second := subject.Start(func() { b++ })
-		if first == second {
-			t.Error("calls share completion channel")
+		release := make(chan struct{})
+		released := false
+		unblock := func() {
+			if !released {
+				close(release)
+				released = true
+			}
 		}
+		defer unblock()
+		a, b := 0, 0
+		first := subject.Start(func() { a++; <-release })
+		second := subject.Start(func() { b++; <-release })
+		synctest.Wait()
+		if a != 1 || b != 1 {
+			t.Errorf("overlapping callbacks %d,%d", a, b)
+		}
+		if first == second {
+			t.Error("active calls share completion channel")
+		}
+		unblock()
 		awaitClosed(t, first)
 		awaitClosed(t, second)
-		if a != 1 || b != 1 {
-			t.Errorf("independent calls%d,%d", a, b)
-		}
 	})
 }

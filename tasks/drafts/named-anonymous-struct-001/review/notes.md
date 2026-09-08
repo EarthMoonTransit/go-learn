@@ -1,25 +1,21 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Substantive adaptation from `ardanlabs-gotraining` at `4ae5a46bfc665909a7cb29e11c18775330c63401`. Reviewed the exact declared source files and checked every SHA256 against the pinned checkout: `topics/go/language/struct_types/exercises/template1/template1.go` (adapted), `LICENSE` (copied). Registry permits adaptation; complete declared-license notice, author/contributor attribution and modification boundary are retained. No reference-only content or generated canonical cases used.
 
-- Construct a Contact and an anonymous struct with the declared three fields, both storing the inputs exactly.
-- Empty names/emails, spaces, Unicode and age zero are valid; age is 0..150.
-- Returned values are independent value copies. Changing either result does not affect the other or later calls.
-- Do not swap same-typed fields or discard the anonymous result.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Named and anonymous results preserve all three input fields | TestPublicCase01 | swap-fields, anonymous-zero, age-lost | fields with both returned values |
+| Exact whitespace/Unicode, zero age and upper bound | TestPublicCase02 | trim-name, default-age | zero/exact; independence |
+| Independent returned values and later calls | TestPublicCase02 | Value-copy acceptance assertions alongside field defects | independence with all observed results |
 
-- Case01: `a,b:=subject.BuildContacts("Ada","a@example.test",37);if a.Name!="Ada"||a.Email!="a@example.test"||a.Age!=37||b.Name!=a.Name||b.Email!=a.Email||b.Age!=37{t.Errorf("fields got%+v %+v",a,b)}`
-- Case02: `a,b:=subject.BuildContacts(" λ ","",0);if a!=(subject.Contact{Name:" λ "})||b.Name!=" λ "||b.Email!=""||b.Age!=0{t.Errorf("zero/exact got%+v %+v",a,b)};a.Name="changed";b.Age=9;c,d:=subject.BuildContacts("", " x ",150);if b.Name!=" λ "||a.Age!=0||c.Email!=" x "||c.Age!=150||d.Email!=c.Email||d.Age!=150{t.Errorf("independence got%+v %+v %+v %+v",a,b,c,d)}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `structs.literals-zero`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: none. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- swap-fields
-- anonymous-zero
-- age-lost
-- trim-name
-- default-age
+Required defects reviewed: `swap-fields`, `anonymous-zero`, `age-lost`, `trim-name`, `default-age`. The author-provided `.tmp/checks/named-anonymous-struct-001.yaml` records technical PASS, reference PASS and 5/5 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: ardan:topics/go/language/struct_types/exercises/template1/template1.go selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

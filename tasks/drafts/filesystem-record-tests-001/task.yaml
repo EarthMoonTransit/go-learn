@@ -49,7 +49,9 @@
       "unsplit-tags",
       "trim-body",
       "fresh-open-error",
-      "close-before-read"
+      "close-before-read",
+      "accept-malformed-separator",
+      "fresh-format-error"
     ],
     "race_required": false,
     "vet": true,

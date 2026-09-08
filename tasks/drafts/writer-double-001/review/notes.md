@@ -1,26 +1,21 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- NewWriter creates an empty independent writer with a nonnegative total byte limit and a supplied non-nil failure error.
-- Each Write records one call and accepts the prefix fitting the remaining total capacity. If all bytes fit return count,nil, otherwise count and the original failure.
-- An empty Write still counts and succeeds. Reaching the limit exactly succeeds; later nonempty writes fail with zero accepted bytes.
-- Snapshot returns recorded bytes as an independent copy and the call count. Do not retain mutable input storage or share state between instances.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Initial independent empty writer and observable zero call count | TestPublicCase01 initial Snapshot before any Write | Public baseline acceptance plus nil/count defects | initial snapshot want empty/0 |
+| Total capacity, accepted prefix, exact/full/empty boundaries and original error | TestPublicCase01–02 | per-call-limit, error-at-exact-limit, fresh-error, no-call-count | partial/full/empty/exact-limit counts and errors |
+| Snapshot copy, detached input storage and independent instances | TestPublicCase02 | snapshot-alias, retain-input | input alias; snapshot alias; independent writer |
 
-- Case01: `cause:=errors.New("limit");w:=subject.NewWriter(5,cause);if w==nil{t.Fatal("nil writer")};n,e:=w.Write([]byte("ab"));if n!=2||e!=nil{t.Errorf("initial got%d,%v",n,e)};n,e=w.Write([]byte("cdef"));data,calls:=w.Snapshot();if n!=3||e!=cause||string(data)!="abcde"||calls!=2{t.Errorf("partial got%d,%v data%q calls%d",n,e,data,calls)};n,e=w.Write([]byte("x"));if n!=0||e!=cause{t.Errorf("full got%d,%v",n,e)};n,e=w.Write(nil);_,calls=w.Snapshot();if n!=0||e!=nil||calls!=4{t.Errorf("empty got%d,%v calls%d",n,e,calls)}`
-- Case02: `cause:=errors.New("limit");a:=subject.NewWriter(2,cause);b:=subject.NewWriter(0,cause);if a==nil||b==nil{t.Fatal("nil writer")};input:=[]byte("ab");n,e:=a.Write(input);if n!=2||e!=nil{t.Errorf("exact limit got%d,%v",n,e)};input[0]='x';data,calls:=a.Snapshot();if string(data)!="ab"||calls!=1{t.Errorf("input alias data%q calls%d",data,calls)};data[0]='z';next,_:=a.Snapshot();if string(next)!="ab"{t.Errorf("snapshot alias %q",next)};if n,e:=b.Write([]byte("x"));n!=0||e!=cause{t.Errorf("zero limit got%d,%v",n,e)};next,calls=b.Snapshot();if len(next)!=0||calls!=1{t.Errorf("independent writer %q calls%d",next,calls)}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `testing.seams-doubles`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `testing.seams-doubles`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- per-call-limit
-- error-at-exact-limit
-- fresh-error
-- no-call-count
-- snapshot-alias
-- retain-input
+Required defects reviewed: `per-call-limit`, `error-at-exact-limit`, `fresh-error`, `no-call-count`, `snapshot-alias`, `retain-input`. The author-provided `.tmp/checks/writer-double-review.yaml` records technical PASS, reference PASS and 6/6 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

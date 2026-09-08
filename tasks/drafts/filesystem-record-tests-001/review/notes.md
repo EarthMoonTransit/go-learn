@@ -1,31 +1,24 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Substantive adaptation from `learn-go-with-tests` at `4675d96ad50b815d3e9fdc2122ab3dbc14636252`. Reviewed the exact declared source files and checked every SHA256 against the pinned checkout: `reading-files/blogposts.go` (adapted), `LICENSE.md` (copied), `reading-files/post.go` (adapted), `reading-files/blogposts_test.go` (adapted). Registry permits adaptation; complete declared-license notice, author/contributor attribution and modification boundary are retained. No reference-only content or generated canonical cases used.
 
-- Read root files in lexical name order, skipping directories. Each starts with Title: , Description: , Tags: headers and a fourth line ---.
-- Strip those exact prefixes, split nonempty tags on comma-space, and join remaining ScanLines body lines with newline. Preserve other spaces; empty tags/body are allowed. Lines are at most 2048 bytes.
-- Close every successfully opened file exactly once before returning. Read/format errors take precedence over close errors; otherwise return the original close error.
-- Any directory/open/read/format/close failure returns nil records and the original error; malformed headers use the supplied non-nil ErrFormat. Preserve that sentinel. Empty directories return no records.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+For this test-writing profile, the public run checks learner tests against the correct implementation; full verification challenges those tests with defects. The assertions below are the strong learner reference suite. The starter is intentionally insufficient.
 
-- Case01: `base:=fstest.MapFS{"a.md":{Data:[]byte("Title: Post 1\nDescription: Description 1\nTags: tdd, go\n---\nHello\nWorld")},"b.md":{Data:[]byte("Title: B\nDescription: D\nTags: rust, borrow-checker\n---\nB\nL\nM")},"sub/file":{Data:[]byte("ignored")}};fsys:=&trackedFS{base:base};got,e:=subject.ReadRecords(fsys);want:=[]subject.Post{{Title:"Post 1",Description:"Description 1",Tags:[]string{"tdd","go"},Body:"Hello\nWorld"},{Title:"B",Description:"D",Tags:[]string{"rust","borrow-checker"},Body:"B\nL\nM"}};if e!=nil||!reflect.DeepEqual(got,want)||!slices.Equal(fsys.opened,[]string{"a.md","b.md"})||!slices.Equal(fsys.closed,fsys.opened){t.Errorf("records got%+v,%v opens%v closes%v",got,e,fsys.opened,fsys.closed)}`
-- Case02: `fsys:=&trackedFS{base:fstest.MapFS{"x":{Data:[]byte("Title:  x \nDescription: \nTags: \n---\n a \n\nλ\n")}}};got,e:=subject.ReadRecords(fsys);if e!=nil||len(got)!=1||got[0].Title!=" x "||got[0].Description!=""||len(got[0].Tags)!=0||got[0].Body!=" a \n\nλ"||len(fsys.closed)!=1{t.Errorf("exact fields got%+v,%v closes%v",got,e,fsys.closed)};got,e=subject.ReadRecords(&trackedFS{base:fstest.MapFS{}});if e!=nil||len(got)!=0{t.Errorf("empty directory got%v,%v",got,e)}`
-- Case03: `cause:=errors.New("filesystem failed");valid:=[]byte("Title: T\nDescription: D\nTags: go\n---\nbody");for _,kind:=range []string{"directory","open","read","close"}{fsys:=&trackedFS{base:fstest.MapFS{"a":{Data:valid},"b":{Data:valid}},failName:"b"};switch kind{case "directory":fsys.dirErr=cause;case "open":fsys.openErr=cause;case "read":fsys.readErr=cause;case "close":fsys.closeErr=cause};got,e:=subject.ReadRecords(fsys);if got!=nil||e!=cause||!slices.Equal(fsys.closed,fsys.opened){t.Errorf("%s got%v,%v opens%v closes%v",kind,got,e,fsys.opened,fsys.closed)}}`
-- Case04: `sentinel:=subject.ErrFormat;if sentinel==nil{t.Fatal("nil format sentinel")};for _,body:=range []string{"Title: T\nDescription: D\nTags: go\nwrong","Title:T\nDescription: D\nTags: go\n---","Title: T\nDescription:D\nTags: go\n---","Title: T\nDescription: D\nTags:go\n---","Title: T"}{fsys:=&trackedFS{base:fstest.MapFS{"x":{Data:[]byte(body)}},failName:"x",closeErr:errors.New("close failed")};got,e:=subject.ReadRecords(fsys);if got!=nil||e!=sentinel||subject.ErrFormat!=sentinel||!slices.Equal(fsys.closed,[]string{"x"}){t.Errorf("malformed got%v,%v closes%v",got,e,fsys.closed)}};readErr:=errors.New("read first");fsys:=&trackedFS{base:fstest.MapFS{"x":{Data:[]byte("partial")}},failName:"x",readErr:readErr,closeErr:errors.New("close second")};got,e:=subject.ReadRecords(fsys);if got!=nil||e!=readErr||!slices.Equal(fsys.closed,[]string{"x"}){t.Errorf("error priority got%v,%v closes%v",got,e,fsys.closed)}`
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Lexically ordered root records, directories skipped, exact headers/tags/body | TestContractCase01–02 | reverse-files, unsplit-tags, trim-body | records/exact fields with opens/closes |
+| Every opened file closed exactly once before return, allowing any closure order | TestContractCase01–04 compare closure multisets | no-close, close-before-read | opens/closes including duplicate counts |
+| Directory/open/read/close errors preserve identity and discard partial collection | TestContractCase03 | ignore-close-error, partial-results, ignore-reader-error, fresh-open-error | named failure path with returned records/error |
+| Malformed headers use original non-nil ErrFormat; read/format error wins over close error | TestContractCase04 and package-level originalFormatError | accept-malformed-separator, fresh-format-error | malformed; error priority |
 
-Realistic required defect models:
+## Instructional and technical evidence
 
-- no-close
-- ignore-close-error
-- partial-results
-- reverse-files
-- ignore-reader-error
-- unsplit-tags
-- trim-body
-- fresh-open-error
-- close-before-read
+Primary skill: `io.files-cleanup`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `io.files-cleanup`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-Retained source behavior: lgwt:reading-files/blogposts.go selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+Required defects reviewed: `no-close`, `ignore-close-error`, `partial-results`, `reverse-files`, `ignore-reader-error`, `unsplit-tags`, `trim-body`, `fresh-open-error`, `close-before-read`, `accept-malformed-separator`, `fresh-format-error`. The author-provided `.tmp/checks/filesystem-record-tests-review.yaml` records technical PASS, reference PASS and 11/11 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
+
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

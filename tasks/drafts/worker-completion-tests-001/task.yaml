@@ -49,7 +49,9 @@
       "close-before-work",
       "skip-work",
       "double-work",
-      "nil-channel"
+      "nil-channel",
+      "shared-active-completion",
+      "send-before-close"
     ],
     "race_required": true,
     "vet": true,

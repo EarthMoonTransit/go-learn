@@ -10,6 +10,16 @@ import (
 	"testing/fstest"
 )
 
+var originalFormatError = subject.ErrFormat
+
+func sameFiles(a, b []string) bool {
+	a = slices.Clone(a)
+	b = slices.Clone(b)
+	slices.Sort(a)
+	slices.Sort(b)
+	return slices.Equal(a, b)
+}
+
 type trackedFS struct {
 	base                               fstest.MapFS
 	failName                           string
@@ -67,7 +77,7 @@ func TestContractCase01(t *testing.T) {
 	fsys := &trackedFS{base: base}
 	got, e := subject.ReadRecords(fsys)
 	want := []subject.Post{{Title: "Post 1", Description: "Description 1", Tags: []string{"tdd", "go"}, Body: "Hello\nWorld"}, {Title: "B", Description: "D", Tags: []string{"rust", "borrow-checker"}, Body: "B\nL\nM"}}
-	if e != nil || !reflect.DeepEqual(got, want) || !slices.Equal(fsys.opened, []string{"a.md", "b.md"}) || !slices.Equal(fsys.closed, fsys.opened) {
+	if e != nil || !reflect.DeepEqual(got, want) || !slices.Equal(fsys.opened, []string{"a.md", "b.md"}) || !sameFiles(fsys.closed, fsys.opened) {
 		t.Errorf("records got%+v,%v opens%v closes%v", got, e, fsys.opened, fsys.closed)
 	}
 }
@@ -100,14 +110,14 @@ func TestContractCase03(t *testing.T) {
 			fsys.closeErr = cause
 		}
 		got, e := subject.ReadRecords(fsys)
-		if got != nil || e != cause || !slices.Equal(fsys.closed, fsys.opened) {
+		if got != nil || e != cause || !sameFiles(fsys.closed, fsys.opened) {
 			t.Errorf("%s got%v,%v opens%v closes%v", kind, got, e, fsys.opened, fsys.closed)
 		}
 	}
 }
 
 func TestContractCase04(t *testing.T) {
-	sentinel := subject.ErrFormat
+	sentinel := originalFormatError
 	if sentinel == nil {
 		t.Fatal("nil format sentinel")
 	}

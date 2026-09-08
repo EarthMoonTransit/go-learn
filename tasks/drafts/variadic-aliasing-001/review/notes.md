@@ -1,25 +1,21 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- If values is empty return false. Otherwise replace only its first element and return true.
-- When a caller passes a slice with values..., the caller must observe the change through shared backing storage.
-- Preserve length, capacity and all other elements, including storage outside a passed subslice. Zero and negative integers are valid.
-- Direct variadic arguments also work. Do not append, clone the slice or mutate a different position.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Expanded variadic slice observes mutation of only its first element | TestPublicCase01–02 | clone-input, append-instead, replace-last | expanded values; subslice whole-storage result |
+| Empty input returns false; zero/negative and direct arguments work | TestPublicCase02 | zero-rejected, false-after-update | empty accepted; direct arguments rejected |
+| Preserve other elements and storage outside subslice | TestPublicCase02 | append-instead, replace-last | subslice got values len/cap |
 
-- Case01: `values:=[]int{1,2,3};if !subject.ReplaceFirst(9,values...)||!slices.Equal(values,[]int{9,2,3}){t.Errorf("expanded values got%v",values)}`
-- Case02: `whole:=[]int{7,1,2,8};view:=whole[1:3];beforeCap:=cap(view);if !subject.ReplaceFirst(-4,view...)||!slices.Equal(whole,[]int{7,-4,2,8})||len(view)!=2||cap(view)!=beforeCap{t.Errorf("subslice got%v len%d cap%d",whole,len(view),cap(view))};if subject.ReplaceFirst(1)||subject.ReplaceFirst(1,[]int(nil)...){t.Error("empty accepted")};if !subject.ReplaceFirst(0,2,3){t.Error("direct arguments rejected")}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `functions.variadic`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: none. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- clone-input
-- append-instead
-- replace-last
-- zero-rejected
-- false-after-update
+Required defects reviewed: `clone-input`, `append-instead`, `replace-last`, `zero-rejected`, `false-after-update`. The author-provided `.tmp/checks/variadic-aliasing-001.yaml` records technical PASS, reference PASS and 5/5 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

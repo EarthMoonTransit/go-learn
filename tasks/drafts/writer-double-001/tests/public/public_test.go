@@ -12,6 +12,10 @@ func TestPublicCase01(t *testing.T) {
 	if w == nil {
 		t.Fatal("nil writer")
 	}
+	initial, initialCalls := w.Snapshot()
+	if len(initial) != 0 || initialCalls != 0 {
+		t.Errorf("initial snapshot %q calls%d want empty/0", initial, initialCalls)
+	}
 	n, e := w.Write([]byte("ab"))
 	if n != 2 || e != nil {
 		t.Errorf("initial got%d,%v", n, e)

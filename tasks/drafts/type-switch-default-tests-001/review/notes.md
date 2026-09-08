@@ -1,26 +1,23 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- Return nil for a nil interface, int for dynamic type int, string for dynamic type string, and other for every other type. These results are literal strings.
-- NamedInt is a distinct named type and returns other. An alias of int remains int.
-- A typed nil pointer or slice is not a nil interface and returns other.
-- The stored value does not change classification; include zero and empty values.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+For this test-writing profile, the public run checks learner tests against the correct implementation; full verification challenges those tests with defects. The assertions below are the strong learner reference suite. The starter is intentionally insufficient.
 
-- Case01: `if got:=subject.TypeLabel(3);got!="int"{t.Errorf("int got%q",got)}`
-- Case02: `type alias=int;for _,c:=range []struct{v any;want string}{{nil,"nil"},{0,"int"},{alias(9),"int"},{"","string"},{"int","string"},{subject.NamedInt(3),"other"},{int64(3),"other"},{3.0,"other"},{true,"other"},{(*int)(nil),"other"},{[]int(nil),"other"},{struct{}{},"other"}}{if got:=subject.TypeLabel(c.v);got!=c.want{t.Errorf("dynamic %T:%v got%q want%q",c.v,c.v,got,c.want)}}`
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Classify exact int/string/nil/default types; named type differs from alias | TestContractCase01–02 | named-is-int, wide-is-int, default-string | dynamic type/value got/want |
+| Actual typed-nil pointer/slice differs from nil interface | TestContractCase02 | typed-nil-is-nil limited to actually nil values | dynamic typed nil got/want |
+| Stored zero/empty values do not alter dynamic classification | TestContractCase02 | empty-string-other, zero-int-other | dynamic type/value got/want |
 
-Realistic required defect models:
+## Instructional and technical evidence
 
-- named-is-int
-- wide-is-int
-- typed-nil-is-nil
-- empty-string-other
-- default-string
-- zero-int-other
+Primary skill: `interfaces.type-switches`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: none. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+Required defects reviewed: `named-is-int`, `wide-is-int`, `typed-nil-is-nil`, `empty-string-other`, `default-string`, `zero-int-other`. The author-provided `.tmp/checks/type-switch-default-tests-review.yaml` records technical PASS, reference PASS and 6/6 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
+
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

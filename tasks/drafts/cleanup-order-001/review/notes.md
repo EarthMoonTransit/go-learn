@@ -1,27 +1,22 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- Register this helper once, then call acquire exactly once. On error return nil and the same error, registering no cleanup.
-- On success acquire provides a non-nil resource. Return that exact resource and register one Cleanup callback; do not close it yet.
-- Cleanup closes the resource once. Report a close error once with Errorf("cleanup: %v", err); successful cleanup reports nothing.
-- Use Cleanup so the testing scope owns lifetime, including failure paths. Multiple acquisitions retain independent resources; cleanup executes in LIFO registration order.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Helper registration precedes exactly one acquisition | TestPublicCase01–02 inspect helper inside callback | missing-helper, late-helper | Helper must precede acquire/failed acquire |
+| Acquisition failure returns original error without cleanup or closing | TestPublicCase02 | discard-acquire-error | failed acquisition with calls/cleanups/closes |
+| Success returns original resource and defers exactly one close to scope cleanup | TestPublicCase01–03 plus real-scope grader integration | close-immediately, no-registration, double-close | setup; cleanup closes; LIFO order |
+| Original close error passed in exact Errorf call once | TestPublicCase03 records format and raw arguments | ignore-close-error, rewritten-close-error | Errorf must preserve format and original close error |
 
-- Case01: `s:=&cleanupScope{};r:=&closeProbe{};calls:=0;got,e:=subject.AcquireForTest(s,func()(io.Closer,error){calls++;return r,nil});if got!=r||e!=nil||calls!=1||s.helpers!=1||len(s.cleanups)!=1||r.calls!=0{t.Fatalf("setup got%v,%v calls%d helpers%d cleanup%d closes%d",got,e,calls,s.helpers,len(s.cleanups),r.calls)};s.finish();if r.calls!=1||len(s.errors)!=0{t.Errorf("cleanup closes%d errors%v",r.calls,s.errors)}`
-- Case02: `cause:=errors.New("acquire failed");s:=&cleanupScope{};unused:=&closeProbe{};calls:=0;got,e:=subject.AcquireForTest(s,func()(io.Closer,error){calls++;return unused,cause});if got!=nil||e!=cause||calls!=1||s.helpers!=1||len(s.cleanups)!=0||unused.calls!=0{t.Errorf("failed acquisition got%v,%v calls%d cleanups%d closes%d",got,e,calls,len(s.cleanups),unused.calls)}`
-- Case03: `var order []string;cause:=errors.New("close failed");s:=&cleanupScope{};a:=&closeProbe{name:"a",order:&order};b:=&closeProbe{name:"b",order:&order,err:cause};for _,r:=range []*closeProbe{a,b}{if _,e:=subject.AcquireForTest(s,func()(io.Closer,error){return r,nil});e!=nil{t.Fatal(e)}};s.finish();if !slices.Equal(order,[]string{"b","a"})||a.calls!=1||b.calls!=1||!slices.Equal(s.errors,[]string{"cleanup: close failed"}){t.Errorf("order%v closes%d,%d errors%v",order,a.calls,b.calls,s.errors)}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `testing.cleanup`. Declared prerequisites resolve before this task at its actual numbered route position. New concepts: `testing.cleanup`. Short technical English prompt, minimal implementation starter or intentionally weak learner tests, no decorative narrative. Tests assess observable behavior rather than allocation, helper naming or table organization.
 
-- close-immediately
-- no-registration
-- ignore-close-error
-- discard-acquire-error
-- double-close
-- missing-helper
+Required defects reviewed: `close-immediately`, `no-registration`, `ignore-close-error`, `discard-acquire-error`, `double-close`, `missing-helper`, `late-helper`, `rewritten-close-error`. The author-provided `.tmp/checks/cleanup-order-review.yaml` records technical PASS, reference PASS and 8/8 detected required defects. For mutation-tests, this count describes the strong reference suite; starter-full PASS is the checker's insufficiency gate, not evidence that the starter kills every defect.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

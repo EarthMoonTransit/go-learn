@@ -45,7 +45,9 @@
       "ignore-close-error",
       "discard-acquire-error",
       "double-close",
-      "missing-helper"
+      "missing-helper",
+      "late-helper",
+      "rewritten-close-error"
     ],
     "race_required": false,
     "vet": true,
