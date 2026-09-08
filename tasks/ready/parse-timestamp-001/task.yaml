@@ -1,0 +1,45 @@
+schema_version: 2
+id: parse-timestamp-001
+title: Parse a fixed timestamp layout in UTC
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: time.parsing-zones
+    secondary: []
+prerequisites:
+    - errors.propagation-context
+    - time.duration-arithmetic
+new_concepts:
+    - time.parsing-zones
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - day-month
+        - discard-time
+        - discard-fraction
+        - swallow-error
+        - fresh-error
+        - fixed-zone
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-09-09"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-09-08"
+      actor: foundation-author
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-09-09"
+      actor: foundation-author
+      reason: Independent C12 review approved; targeted checks and weak final-line fixture passed
+    - from: in-review
+      to: ready
+      at: "2026-09-09"
+      actor: foundation-author
+      reason: Independent C12 review approved; targeted checks and weak final-line fixture passed

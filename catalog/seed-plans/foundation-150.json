@@ -409,9 +409,10 @@
       "behavior_anchor": "func FirstTurn(card1, card2, dealerCard string) string {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 9,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "expressions.boolean-logic"
+        "expressions.boolean-logic",
+        "testing.basics-diagnostics"
       ],
       "activity": "test-writing",
       "required_before_release": [
@@ -422,7 +423,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "decision-table-tests-001",
+      "secondary": [],
+      "release_batch": "C12",
+      "route_number": "03.30"
     },
     {
       "primary": "time.parsing-zones",
@@ -450,10 +455,10 @@
       "behavior_anchor": "func Schedule(date string) time.Time {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 10,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "time.duration-arithmetic",
-        "errors.propagation-context"
+        "errors.propagation-context",
+        "time.duration-arithmetic"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -464,7 +469,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "parse-timestamp-001",
+      "secondary": [],
+      "release_batch": "C12",
+      "route_number": "07.10"
     },
     {
       "primary": "time.parsing-zones",
@@ -492,7 +501,7 @@
       "behavior_anchor": "IsAfternoonAppointment: parse a fixed timestamp and classify its hour; no wall-clock access",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 11,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "errors.propagation-context",
         "time.duration-arithmetic"
@@ -506,7 +515,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "afternoon-window-001",
+      "secondary": [],
+      "release_batch": "C12",
+      "route_number": "07.11"
     },
     {
       "primary": "slices.len-cap-slicing",
@@ -4378,7 +4391,7 @@
       "behavior_anchor": "Flush buffered output explicitly and preserve flush errors",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 111,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "io.reader-writer-contracts"
       ],
@@ -4390,7 +4403,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "buffered-flush-001",
+      "secondary": [],
+      "release_batch": "C12",
+      "route_number": "07.12"
     },
     {
       "primary": "io.scanning",
@@ -4399,7 +4416,7 @@
       "behavior_anchor": "Handle a final token without a newline and scanner errors",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 112,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "io.reader-writer-contracts",
         "strings.byte-rune-conversions"
@@ -4412,7 +4429,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "scan-lines-tests-001",
+      "secondary": [],
+      "release_batch": "C12",
+      "route_number": "07.13"
     },
     {
       "primary": "encoding.json-shape-tags",
@@ -4421,10 +4442,10 @@
       "behavior_anchor": "Control JSON field names and omission with tags",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 113,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "structs.field-visibility-tags",
-        "io.reader-writer-contracts"
+        "io.reader-writer-contracts",
+        "structs.field-visibility-tags"
       ],
       "activity": "debugging",
       "required_before_release": [
@@ -4434,7 +4455,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "json-field-shape-001",
+      "secondary": [],
+      "release_batch": "C12",
+      "route_number": "07.14"
     },
     {
       "primary": "encoding.streaming-strictness",
@@ -4443,7 +4468,7 @@
       "behavior_anchor": "Reject unknown fields and trailing JSON values",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 114,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "encoding.json-shape-tags"
       ],
@@ -4455,7 +4480,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "single-json-value-001",
+      "secondary": [],
+      "release_batch": "C12",
+      "route_number": "07.15"
     },
     {
       "primary": "encoding.binary-marshaling",
@@ -4464,10 +4493,10 @@
       "behavior_anchor": "Encode and decode a fixed-endian bounded record",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 115,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "methods.method-sets",
         "errors.propagation-context",
+        "methods.method-sets",
         "slices.len-cap-slicing"
       ],
       "activity": "test-writing",
@@ -4478,7 +4507,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "binary-record-tests-001",
+      "secondary": [],
+      "release_batch": "C12",
+      "route_number": "07.16"
     },
     {
       "primary": "encoding.text-marshaling",
@@ -4487,10 +4520,10 @@
       "behavior_anchor": "Validate and round-trip a text representation",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 116,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "methods.method-sets",
-        "errors.propagation-context"
+        "errors.propagation-context",
+        "methods.method-sets"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -4500,7 +4533,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "text-level-001",
+      "secondary": [],
+      "release_batch": "C12",
+      "route_number": "07.17"
     },
     {
       "primary": "time.duration-arithmetic",
@@ -4509,7 +4546,7 @@
       "behavior_anchor": "Compute bounded duration arithmetic with explicit rounding",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 117,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "types.constants"
       ],
@@ -4521,7 +4558,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "duration-rounding-001",
+      "secondary": [],
+      "release_batch": "C12",
+      "route_number": "07.09"
     },
     {
       "primary": "testing.helpers",
@@ -4915,6 +4956,6 @@
     "unresolved_prerequisites": [],
     "method": "Topological selection using actual artifact prerequisites and explicit primary/secondary outcomes; existing baseline route outcomes precede additions.",
     "introduced_skills": 101,
-    "last_batch": "C11"
+    "last_batch": "C12"
   }
 }
