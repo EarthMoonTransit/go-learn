@@ -1,0 +1,52 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected source operation and test structure, preserve observable behavior while removing narrative, and add independent boundaries, defects and technical APIs. Chapter code is private reference material; learner implementation starts with minimal stubs. No generated canonical cases used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "d838ddf75359f08868555435cc5ebb024f9dc879c592c5e3d1f215df91822622",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/two-quantity-tests-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/lasagna-master/.docs/instructions.md",
+          "sha256": "16cdb86d9ce633cf761ed8140c7ea146e93ca210842abc22fae09fafc55d940f",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/lasagna-master/lasagna_master_test.go",
+          "sha256": "859244d7da30ab66b8899b2e92919a35cb735012da7522ecc4de3a87539315ff",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/lasagna-master/.meta/config.json",
+          "sha256": "546910fe7187ba3553dd94839600fca4c2fbea76278e43f90ce28084a99da478",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}

@@ -326,6 +326,38 @@
           "skills": [
             "types.numeric-conversions"
           ]
+        },
+        {
+          "number": 21,
+          "task_id": "two-quantity-tests-001",
+          "role": "practice",
+          "skills": [
+            "functions.signatures-results"
+          ]
+        },
+        {
+          "number": 22,
+          "task_id": "variadic-tail-sums-001",
+          "role": "practice",
+          "skills": [
+            "functions.variadic"
+          ]
+        },
+        {
+          "number": 23,
+          "task_id": "kind-condition-001",
+          "role": "practice",
+          "skills": [
+            "control-flow.if"
+          ]
+        },
+        {
+          "number": 24,
+          "task_id": "independent-scaled-copy-001",
+          "role": "practice",
+          "skills": [
+            "slices.backing-array-aliasing"
+          ]
         }
       ],
       "number": 3
@@ -373,6 +405,30 @@
             "strings.immutable-bytes"
           ],
           "number": 5
+        },
+        {
+          "number": 6,
+          "task_id": "copy-final-element-001",
+          "role": "practice",
+          "skills": [
+            "slices.backing-array-aliasing"
+          ]
+        },
+        {
+          "number": 7,
+          "task_id": "lexical-choice-tests-001",
+          "role": "practice",
+          "skills": [
+            "expressions.comparison"
+          ]
+        },
+        {
+          "number": 8,
+          "task_id": "text-border-001",
+          "role": "practice",
+          "skills": [
+            "strings.building"
+          ]
         }
       ],
       "number": 4
@@ -460,6 +516,14 @@
           "skills": [
             "strings.byte-rune-conversions"
           ]
+        },
+        {
+          "number": 11,
+          "task_id": "uppercase-label-001",
+          "role": "practice",
+          "skills": [
+            "strings.standard-library"
+          ]
         }
       ],
       "number": 5
@@ -546,6 +610,22 @@
           "role": "practice",
           "skills": [
             "functions.closure-capture"
+          ]
+        },
+        {
+          "number": 11,
+          "task_id": "sentinel-lookup-001",
+          "role": "introduction",
+          "skills": [
+            "errors.sentinels-creation"
+          ]
+        },
+        {
+          "number": 12,
+          "task_id": "dictionary-add-tests-001",
+          "role": "practice",
+          "skills": [
+            "errors.sentinels-creation"
           ]
         }
       ],

@@ -1,0 +1,52 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected source operation and test structure, preserve observable behavior while removing narrative, and add independent boundaries, defects and technical APIs. Chapter code is private reference material; learner implementation starts with minimal stubs. No generated canonical cases used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "bebea179179aac6953163e24615559104f065be623bb4ded5059776411719ea7",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/uppercase-label-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/welcome-to-tech-palace/.docs/instructions.md",
+          "sha256": "d1924769405fde89b9a4c08d9eb21e22946a35f0794143666a71a6437b5e7aed",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/welcome-to-tech-palace/welcome_to_tech_palace_test.go",
+          "sha256": "d8f706c84c870cedf52904ede073b2dc67c0d9b8d312152f05055901c20d4b88",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/welcome-to-tech-palace/.meta/config.json",
+          "sha256": "2a08597e928611074bb1849e662353c8bc430d2e4fdd8497797bbe07e55657f8",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}
