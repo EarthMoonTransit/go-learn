@@ -169,3 +169,5 @@ preservation and the distinction between an error's Error text and custom
 formatting when those behaviors are promised by the task.
 
 The public-feedback matrix also protects bounded-copy sentinel identity and successful-stream ownership, flushing a caller-owned pending buffer with empty input, and discarding a partially decoded JSON object. Each row runs only learner `Check`, verifies a useful diagnostic and verifies the reference in the same disposable learner workspace.
+
+Testing-component public regressions cover Helper-before-acquire, preservation of the exact close-error argument to Errorf, and the initial empty writer Snapshot. The Snapshot fixture is a narrow tooling-owned modification of the reference installed only in a disposable learner workspace, preserving the accepted content package.
