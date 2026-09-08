@@ -234,6 +234,9 @@ func RunCLI(config Config, arguments []string, stdout, stderr io.Writer) int {
 			return cliError(stderr, err)
 		}
 		writeNext(stdout, choice)
+		if choice.ReviewSkill != "" {
+			fmt.Fprintf(stdout, "Delayed review: %s\n", choice.ReviewSkill)
+		}
 	case "progress":
 		if err := noArguments(command, commandArguments); err != nil {
 			return cliError(stderr, err)
@@ -243,6 +246,7 @@ func RunCLI(config Config, arguments []string, stdout, stderr io.Writer) int {
 			return cliError(stderr, err)
 		}
 		writeProgress(stdout, progress)
+		writeLearning(stdout, progress)
 	case "feedback":
 		if len(commandArguments) == 0 {
 			return cliError(stderr, errors.New("feedback requires text"))

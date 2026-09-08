@@ -2,10 +2,12 @@ package learner
 
 import "go-practice-bank/internal/tasking"
 
-const progressSchemaVersion = 2
+const progressSchemaVersion = 3
 
 type Progress struct {
 	SchemaVersion int                      `json:"schema_version"`
+	Assistance    map[string]bool          `json:"assistance,omitempty"`
+	Completions   []CompletionEvidence     `json:"completions,omitempty"`
 	CurrentTaskID string                   `json:"current_task_id,omitempty"`
 	Tasks         map[string]*TaskProgress `json:"tasks"`
 }
@@ -71,6 +73,7 @@ type SkillMetadata struct {
 }
 
 type SchedulerChoice struct {
+	ReviewSkill          string
 	LessonNumber         string
 	Resume               bool
 	RouteBlock           string

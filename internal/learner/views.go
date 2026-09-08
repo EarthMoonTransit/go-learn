@@ -25,15 +25,16 @@ type BlockView struct {
 	Lessons []LessonView `json:"lessons"`
 }
 type CourseView struct {
-	Revision      string      `json:"revision"`
-	CurrentTaskID string      `json:"current_task_id"`
-	NextTaskID    string      `json:"next_task_id"`
-	NextMessage   string      `json:"next_message"`
-	Blocks        []BlockView `json:"blocks"`
-	Ready         int         `json:"ready"`
-	Completed     int         `json:"completed"`
-	IDEAvailable  bool        `json:"ide_available"`
-	Preparation   string      `json:"preparation"`
+	Learning      LearningView `json:"learning"`
+	Revision      string       `json:"revision"`
+	CurrentTaskID string       `json:"current_task_id"`
+	NextTaskID    string       `json:"next_task_id"`
+	NextMessage   string       `json:"next_message"`
+	Blocks        []BlockView  `json:"blocks"`
+	Ready         int          `json:"ready"`
+	Completed     int          `json:"completed"`
+	IDEAvailable  bool         `json:"ide_available"`
+	Preparation   string       `json:"preparation"`
 }
 type TaskView struct {
 	Number               string                  `json:"number"`
@@ -61,6 +62,7 @@ func (s *Service) CourseView() (CourseView, error) {
 		return CourseView{}, err
 	}
 	view := CourseView{Revision: revision, CurrentTaskID: progress.CurrentTaskID, Blocks: []BlockView{}, Ready: len(tasks)}
+	view.Learning = learningView(progress)
 	view.IDEAvailable = s.ideAvailable
 	catalog := map[string]tasking.LearnerTaskInfo{}
 	for _, task := range tasks {
@@ -112,6 +114,9 @@ func (s *Service) CourseView() (CourseView, error) {
 	choice, err := s.nextFor(tasks, progress)
 	if err == nil {
 		view.NextTaskID = choice.Task.ID
+		if choice.ReviewSkill != "" {
+			view.NextMessage = "Delayed review: " + choice.ReviewSkill
+		}
 	} else {
 		view.NextMessage = "The next lesson is not prepared yet. See the planned blocks below."
 	}
