@@ -1,0 +1,58 @@
+{
+  "schema_version": 2,
+  "id": "deposit-state-tests-001",
+  "title": "Test deposits through a shared pointer receiver",
+  "activity": "test-writing",
+  "submission": {
+    "kind": "tests",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "methods.receiver-semantics",
+    "secondary": []
+  },
+  "prerequisites": [
+    "functions.signatures-results",
+    "pointers.mutation-sharing",
+    "testing.basics-diagnostics",
+    "types.named-underlying"
+  ],
+  "new_concepts": [],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "mutation-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "replace-balance",
+      "no-update",
+      "subtract",
+      "zero-reset",
+      "shared-total"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}

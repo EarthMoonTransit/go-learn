@@ -1,0 +1,18 @@
+package subject
+
+import (
+	"errors"
+	"io"
+)
+
+func WriteGreeting(w io.Writer, name string) error {
+	text := []byte("Hello, " + name)
+	n, e := w.Write(text)
+	if e != nil {
+		return errors.New(e.Error())
+	}
+	if n != len(text) {
+		return io.ErrShortWrite
+	}
+	return nil
+}
