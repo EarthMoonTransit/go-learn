@@ -3172,7 +3172,7 @@
       "behavior_anchor": "Inc",
       "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
       "slot": 70,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "functions.defer",
         "goroutines.state-ownership"
@@ -3190,7 +3190,10 @@
       "secondary": [
         "sync.mutex-ownership"
       ],
-      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts.",
+      "task_id": "mutex-counter-001",
+      "release_batch": "C14",
+      "route_number": "09.05"
     },
     {
       "primary": "sync.data-races-happens-before",
@@ -3209,11 +3212,10 @@
       "behavior_anchor": "Repair Counter.Value to support reads concurrent with Inc; retain source counter structure, extend and test the formerly post-Wait-only read contract",
       "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
       "slot": 71,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "goroutines.launch-lifecycle",
-        "pointers.mutation-sharing",
-        "sync.mutex-critical-sections"
+        "pointers.mutation-sharing"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -3224,7 +3226,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "concurrent-counter-read-001",
+      "secondary": [],
+      "release_batch": "C14",
+      "route_number": "09.06"
     },
     {
       "primary": "arrays.value-semantics",
@@ -4727,7 +4733,7 @@
       "behavior_anchor": "Distinguish buffered values from a closed empty channel",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 123,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "goroutines.launch-lifecycle",
         "types.zero-values"
@@ -4744,7 +4750,10 @@
       "secondary": [
         "channels.operations-blocking"
       ],
-      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts.",
+      "task_id": "closed-receive-001",
+      "release_batch": "C14",
+      "route_number": "09.02"
     },
     {
       "primary": "channels.directional",
@@ -4753,9 +4762,11 @@
       "behavior_anchor": "Expose receive-only channels and keep closing with the sender",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 124,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "channels.operations-blocking"
+        "channels.close-semantics",
+        "channels.operations-blocking",
+        "goroutines.launch-lifecycle"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -4769,7 +4780,10 @@
       "secondary": [
         "goroutines.leak-prevention"
       ],
-      "selection_review_note": "After the initial launch/channel operations lesson, assess directional channel ownership together with termination of the producer; ensures leak prevention before context."
+      "selection_review_note": "After the initial launch/channel operations lesson, assess directional channel ownership together with termination of the producer; ensures leak prevention before context.",
+      "task_id": "owned-values-001",
+      "release_batch": "C14",
+      "route_number": "09.03"
     },
     {
       "primary": "sync.waitgroup-lifecycle",
@@ -4778,8 +4792,9 @@
       "behavior_anchor": "Wait for all workers with correct Add/Done ordering",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 125,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
+        "channels.operations-blocking",
         "goroutines.launch-lifecycle",
         "pointers.mutation-sharing"
       ],
@@ -4795,7 +4810,10 @@
       "secondary": [
         "goroutines.state-ownership"
       ],
-      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts.",
+      "task_id": "join-all-tests-001",
+      "release_batch": "C14",
+      "route_number": "09.04"
     },
     {
       "primary": "channels.select",
@@ -4804,7 +4822,7 @@
       "behavior_anchor": "Select between ready receive and cancellation cases with controlled channel inputs",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 126,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "channels.operations-blocking",
         "control-flow.switch"
@@ -4817,7 +4835,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "select-ready-case-001",
+      "secondary": [],
+      "release_batch": "C14",
+      "route_number": "09.07"
     },
     {
       "primary": "context.cancellation",
@@ -4826,7 +4848,7 @@
       "behavior_anchor": "Make a worker exit when its context is canceled",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 127,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "channels.select",
         "functions.defer",
@@ -4844,7 +4866,10 @@
       "secondary": [
         "context.derivation"
       ],
-      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts.",
+      "task_id": "cancel-worker-001",
+      "release_batch": "C14",
+      "route_number": "09.08"
     },
     {
       "primary": "context.propagation-api",
@@ -4853,7 +4878,7 @@
       "behavior_anchor": "Pass cancellation through a composed local operation",
       "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
       "slot": 128,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "context.cancellation",
         "packages.imports-exports-naming"
@@ -4866,7 +4891,11 @@
         "prerequisite-route-placement",
         "profile-support",
         "independent-review"
-      ]
+      ],
+      "task_id": "propagate-context-001",
+      "secondary": [],
+      "release_batch": "C14",
+      "route_number": "09.09"
     }
   ],
   "selection_review": "Independent read-only source audit 2026-09-08; corrected mappings and replaced weak wrapper/shape splits. Per-task content review remains mandatory.",
@@ -4991,11 +5020,11 @@
     120,
     121,
     122,
+    71,
     123,
     124,
     125,
     70,
-    71,
     126,
     127,
     128
@@ -5005,6 +5034,6 @@
     "unresolved_prerequisites": [],
     "method": "Topological selection using actual artifact prerequisites and explicit primary/secondary outcomes; existing baseline route outcomes precede additions.",
     "introduced_skills": 101,
-    "last_batch": "C13"
+    "last_batch": "C14"
   }
 }

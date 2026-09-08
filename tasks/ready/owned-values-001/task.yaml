@@ -1,0 +1,48 @@
+schema_version: 2
+id: owned-values-001
+title: Return a finite receive-only stream without a blocked producer
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: channels.directional
+    secondary:
+        - goroutines.leak-prevention
+prerequisites:
+    - channels.close-semantics
+    - channels.operations-blocking
+    - goroutines.launch-lifecycle
+new_concepts:
+    - channels.directional
+    - goroutines.leak-prevention
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - no-close
+        - skip-zero
+        - reverse-values
+        - mutate-input
+        - nil-empty
+        - retained-worker
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

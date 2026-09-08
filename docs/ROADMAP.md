@@ -25,22 +25,22 @@ human mastery. Learner evidence must be reported separately.
 ## Current checkpoint
 
 Initial baseline: master `f41a602645718e276e8683d84c4f58f461476aa0`, 22 lessons.
-The checkpoint below is the C13 result, effective after its PR passes `validate`
+The checkpoint below is the C14 result, effective after its PR passes `validate`
 and is merged. Private learner state was not read or modified.
 
-| Measure | C13 checkpoint |
+| Measure | C14 checkpoint |
 | --- | --- |
-| Learner-visible ready lessons | 142; another 8 are required for milestone 1 |
-| Substantive source adaptations | 82 accepted exercise adaptations; the minimum 76-task criterion is met |
-| Original / concept-seed | 55 original, 5 concept-seed; seeds are excluded from substantive reuse |
-| Covered skills | 87 distinct assessed primary/secondary skills; this is course coverage, not learner mastery |
-| Activities | 70 implementation, 33 debugging, 39 test-writing; C13 adds 4/2/4 respectively |
+| Learner-visible ready lessons | 150/150 for milestone 1 |
+| Substantive source adaptations | 84 accepted exercise adaptations; the minimum 76-task criterion is met |
+| Original / concept-seed | 61 original, 5 concept-seed; seeds are excluded from substantive reuse |
+| Covered skills | 99 of 142 distinct assessed primary/secondary skills; this is course coverage, not learner mastery |
+| Activities | 75 implementation, 35 debugging, 40 test-writing; C14 adds 5/2/1 respectively |
 | Other packages | Three legacy ready packages, eight drafts, one rejected; excluded from learner-visible count |
 | Human completions / confirmed mastery | Unknown: private progress not inspected; automated fixtures are not human evidence |
 | Delivered tooling | Explicit UI/CLI numbers, recoverable numbered workspaces, progress v3 completion evidence and delayed reviews |
-| Source allocation | 128 additions mapped; 84 adaptation candidates and 44 original slots; C02–C13 consume 82 and 38 |
-| Next result | Final eight concurrency/context lessons, after race-aware checker acceptance; then milestone 150 |
-| Obstacles | Remaining authoring/review work; unsupported later verification profiles require separate tooling first |
+| Source allocation | 128 additions mapped; 84 adaptation candidates and 44 original slots; all 128 additions delivered as 84 substantive adaptations and 44 originals |
+| Next result | Milestone 2: close remaining skills and encounter-depth gaps toward the full foundation bank |
+| Obstacles | No remaining content gap in the 150-lesson route; fuzzing/benchmark profiles and full -coverage remain milestone-2 work |
 
 60 and 100 are reporting checkpoints inside milestone 1, not mandatory stops.
 A successful batch authorizes continuation to the next within the accepted plan.
@@ -108,7 +108,10 @@ existing per-domain diversity. Existing content is repaired gradually, separatel
 | C09 | Ten substantive adaptations for constants, arrays, maps and formatting | Independent review approved; declaration and ownership weak fixtures remain insufficient |
 | C10 | Eight Ardan adaptations and two originals: embedding, packages, pointers and precise error wrapping | Independent review approved; three-batch audit and weak error-identity fixture passed |
 | C11 | Three LGWT generic components and seven original type/error/I/O exercises | Independent review approved; semantic constraint and ownership alternatives verified |
-| C12–C14 minimum | Remaining 28 lessons from the source allocation and gaps | At most ten new/substantially revised tasks per batch; public/full/reference/mutant checks and independent review |
+| C12 | Ten time/buffering/encoding lessons: three adaptations, seven originals | Independent review and local acceptance passed; PR46 validate gate |
+| T10–T12 | Public I/O/testing feedback and race-aware verification | Separate tooling batches; ADR0019 and collection v3, full gates |
+| C13 | Ten filesystem/testing components: two adaptations, eight originals | Independent review and C11–C13 aggregate audit approved |
+| C14 | Eight concurrency/context lessons: two adaptations, six originals | Independent review approved; public/full/race verification and final route acceptance |
 | K02 | Milestone-1 acceptance at 150 | All milestone conditions, adaptation count, route, components and progress evidence verified |
 
 Tooling needed for unsupported task profiles is delivered before that content.
