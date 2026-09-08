@@ -25,21 +25,21 @@ human mastery. Learner evidence must be reported separately.
 ## Current checkpoint
 
 Initial baseline: master `f41a602645718e276e8683d84c4f58f461476aa0`, 22 lessons.
-The checkpoint below is the C06 result, effective after its PR passes `validate`
+The checkpoint below is the C07 result, effective after its PR passes `validate`
 and is merged. Private learner state was not read or modified.
 
-| Measure | C06 checkpoint |
+| Measure | C07 checkpoint |
 | --- | --- |
-| Learner-visible ready lessons | 72; another 78 are required for milestone 1 |
-| Substantive source adaptations | 43 accepted exercise adaptations; at least 33 more required for the 76-task criterion |
+| Learner-visible ready lessons | 82; another 68 are required for milestone 1 |
+| Substantive source adaptations | 53 accepted exercise adaptations; at least 23 more required for the 76-task criterion |
 | Original / concept-seed | 24 original, 5 concept-seed; seeds are excluded from substantive reuse |
-| Covered skills | 41 distinct assessed primary/secondary skills; this is course coverage, not learner mastery |
-| Activities | 36 implementation, 19 debugging, 17 test-writing; C06 adds 5/2/3 respectively |
+| Covered skills | 49 distinct assessed primary/secondary skills; this is course coverage, not learner mastery |
+| Activities | 41 implementation, 21 debugging, 20 test-writing; C07 adds 5/2/3 respectively |
 | Other packages | Three legacy ready packages, eight drafts, one rejected; excluded from learner-visible count |
 | Human completions / confirmed mastery | Unknown: private progress not inspected; automated fixtures are not human evidence |
 | Delivered tooling | Explicit UI/CLI numbers, recoverable numbered workspaces, progress v3 completion evidence and delayed reviews |
-| Source allocation | 128 additions mapped; 84 adaptation candidates and 44 original slots; C02–C06 consume 43 and 7 |
-| Next result | Interfaces and structured errors; continue through 100 toward 150 |
+| Source allocation | 128 additions mapped; 84 adaptation candidates and 44 original slots; C02–C07 consume 53 and 7 |
+| Next result | Resource release, slice ownership and writer contracts; continue through 100 toward 150 |
 | Obstacles | Remaining authoring/review work; unsupported later verification profiles require separate tooling first |
 
 60 and 100 are reporting checkpoints inside milestone 1, not mandatory stops.
@@ -103,7 +103,8 @@ existing per-domain diversity. Existing content is repaired gradually, separatel
 | T06 | Public-only feedback regression matrix | Independently reviewed; omission experiments prove all three regressions detect removed assertions; separate PR acceptance required |
 | C06 | Ten substantive adaptations: slice contracts, variadic tails, exact text and dictionary sentinel errors | Independent review approved; isolated public tolerance and weak-suite fixtures passed |
 | T07 | Learner tests may reference receiver methods and fields | ADR0018; separate tooling PR37 with full gates |
-| C07–C14 minimum | Remaining 78 lessons from the source allocation and gaps | At most ten new/substantially revised tasks per batch; public/full/reference/mutant checks and independent review |
+| C07 | Ten substantive adaptations: method expressions, open interface dispatch, nested formatting and error contracts | Independent review and weak/tolerance fixtures passed; three-batch audit recorded |
+| C08–C14 minimum | Remaining 68 lessons from the source allocation and gaps | At most ten new/substantially revised tasks per batch; public/full/reference/mutant checks and independent review |
 | K02 | Milestone-1 acceptance at 150 | All milestone conditions, adaptation count, route, components and progress evidence verified |
 
 Tooling needed for unsupported task profiles is delivered before that content.

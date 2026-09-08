@@ -1,0 +1,50 @@
+schema_version: 2
+id: dynamic-description-001
+title: Repair description dispatch by dynamic type
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: interfaces.type-switches
+    secondary: []
+prerequisites:
+    - control-flow.switch
+    - errors.sentinels-creation
+    - interfaces.dynamic-type-value
+    - interfaces.type-assertions
+    - strings.formatting
+new_concepts:
+    - interfaces.type-switches
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - int-unsupported
+        - float-integer
+        - no-box
+        - all-fancy-values
+        - nil-number
+        - default-number
+        - partial-error-result
+        - wrong-interface-priority
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
