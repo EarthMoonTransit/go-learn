@@ -85,3 +85,12 @@ Add a matrix row when fixing a public-success/full-failure gap that would
 otherwise remain masked by hidden mutant coverage. Keep content edits and this
 tooling regression in separate reviewable batches; complete both before claiming
 the feedback regression is protected.
+
+The ownership/interface feedback matrix also covers cleared dictionaries,
+overflow and overlapping interface cases, category filtering, sentinel identity,
+zero-reserve aliases, capped-view input preservation and writer closure on errors
+or short writes. Each repaired public requirement has a concrete defect and a
+useful diagnostic checked through `Service.Check` in a temporary learner home.
+Saved tolerated-output review fixtures must pass both public Check and full
+Complete in that temporary home, protecting allowed numerical alternatives.
+No fixture completion is counted as real learner progress.
