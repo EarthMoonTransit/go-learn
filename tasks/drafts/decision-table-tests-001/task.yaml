@@ -1,0 +1,58 @@
+{
+  "schema_version": 2,
+  "id": "decision-table-tests-001",
+  "title": "Test ordered decisions over weighted tokens",
+  "activity": "test-writing",
+  "submission": {
+    "kind": "tests",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "control-flow.if",
+    "secondary": []
+  },
+  "prerequisites": [
+    "expressions.boolean-logic",
+    "testing.basics-diagnostics"
+  ],
+  "new_concepts": [],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "mutation-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "pair-after-range",
+      "win-against-ten",
+      "stand-at-sixteen",
+      "exclude-twelve",
+      "visible-seven-low",
+      "normalize-token",
+      "unknown-is-ten"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}

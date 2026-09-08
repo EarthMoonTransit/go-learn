@@ -1,0 +1,57 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected source operation and test structure, preserve observable behavior while removing narrative, and add independent boundaries, defects and technical APIs. Chapter code is private reference material; learner implementation starts with minimal stubs. No generated canonical cases used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "99c6e82f63fee032114e1fe40ea2f3efdaca2f677a9c4deebe313da568a02e44",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/parse-timestamp-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/booking-up-for-beauty/.docs/instructions.md",
+          "sha256": "f5b306ec73540d66bfb86851c627748287c4389009a3aaafcc8533cb5993adab",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/booking-up-for-beauty/booking_up_for_beauty_test.go",
+          "sha256": "74343c6647fc9d7ead6d017fb07bc9ff1f279b0604c0663faaffa2341880d61d",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/booking-up-for-beauty/booking_up_for_beauty.go",
+          "sha256": "98a67f6fbbc3fcc1c1cdbf05805a83e0767ec9cf78795be42e7197c50fe1f036",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/booking-up-for-beauty/.meta/config.json",
+          "sha256": "459ad807aae8e3f8c69a9116623e2f4da9fc51c8902b8dd3c4d70a39f1a76e07",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}
