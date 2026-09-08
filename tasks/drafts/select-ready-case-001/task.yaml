@@ -43,7 +43,8 @@
       "ignore-cancel",
       "wrong-default",
       "absolute-value",
-      "closed-as-value"
+      "closed-as-value",
+      "closed-only-cancel"
     ],
     "race_required": true,
     "vet": true,

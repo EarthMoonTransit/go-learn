@@ -1,26 +1,19 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Substantive adaptation of the permitted Learn Go with Tests `sync/v2/sync.go` and `sync/v2/sync_test.go`, pinned at `4675d96ad50b815d3e9fdc2122ab3dbc14636252`. Both exact source hashes and `LICENSE.md` hash verified against the local pinned checkout; MIT notice including literal copyright placeholders retained. The counter operations and three-increment/1000-worker test substance are retained. Concurrent reads explicitly extend the source after-Wait read semantics. No reference-only or generated canonical material reused.
 
-- Complete Inc. A new or zero-value Counter starts at zero; each call adds exactly one, including simultaneous calls on the same Counter.
-- Use the Counter-owned mutex to protect its shared value. Do not copy the Counter after first use. Different counters retain independent state.
-- The provided Value is called only after all concurrent increments have completed in this lesson; leave its behavior unchanged.
-- Public checks include the source three-increment and 1000-worker scenarios. Check and Complete run the race detector; a numerically correct result with a data race is incorrect.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| New and zero-value counters; exactly one increment | TestPublicCase01/03; grader later increments | initial-one, reset-increment, double-increment | new counter zero; three increments; independent counts |
+| One owned critical section, concurrent updates | TestPublicCase02 runs 1000 workers then Wait; required race profile | no-lock, unlock-before-update | incorrect count or DATA RACE |
+| Read only after increments finish in this lesson | Public and grader order Value after synchronization | Correct reference retains supplied Value behavior | reference and race checks pass |
 
-- Case01: `c:=subject.NewCounter();if c==nil||c.Value()!=0{t.Fatal("new counter must start at zero")};c.Inc();c.Inc();c.Inc();if c.Value()!=3{t.Errorf("three increments got%d want3",c.Value())}`
-- Case02: `c:=subject.NewCounter();var wg sync.WaitGroup;wg.Add(1000);for range 1000{go func(){defer wg.Done();c.Inc()}()};wg.Wait();if c.Value()!=1000{t.Errorf("concurrent increments got%d want1000",c.Value())}`
-- Case03: `var a,b subject.Counter;a.Inc();b.Inc();b.Inc();if a.Value()!=1||b.Value()!=2{t.Errorf("independent zero counters got%d,%d",a.Value(),b.Value())}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `sync.mutex-critical-sections`. Prerequisites resolve at the actual numbered route position. Short technical English prompt; minimal implementation stub or explicit debugging defect. The two counter lessons distinguish a shared read-modify-write critical section from overlapping reader/writer synchronization; no extra scheduling order or absolute-time requirement is imposed.
 
-- no-lock
-- unlock-before-update
-- reset-increment
-- double-increment
-- initial-one
-
-Retained source behavior: lgwt:sync/v2/sync.go selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+Required defects: `no-lock`, `unlock-before-update`, `reset-increment`, `double-increment`, `initial-one`. Author-provided `.tmp/checks/mutex-counter.yaml` records technical PASS, reference PASS, race PASS and 5/5 required defects detected. No authored code or task tests were run from the checkout by this reviewer; no real learner state was accessed. Full collection, ordered gates, PR validation and lifecycle movement remain separate. Automated fixtures do not establish human calibration or learner mastery.

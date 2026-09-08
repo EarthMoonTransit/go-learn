@@ -1,25 +1,20 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- Input is non-nil, buffered and already closed. Return all queued values in send order, then stop at closed-and-empty.
-- Zero and negative values are ordinary data. Closed empty input returns an empty result; nil or allocated empty slices are both valid.
-- Do not close the caller-owned input or invent an extra zero after its buffer is drained. Repeated calls on the drained channel return empty.
-- The public fixtures fully prepare channels before calling the function; no scheduling or timing assumptions are needed.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Drain all queued values in send order, including zero and negatives | TestPublicCase01 and grader order probe | zero-terminates, skip-negative, reverse-order, drop-first | drain got / send order changed |
+| Closed empty or already drained input gives any empty slice | TestPublicCase01 repeated drain; Case02 closed unbuffered and buffered queued zero | extra-closed-zero; empty representation acceptance | already drained / closed empty / queued zero |
 
-- Case01: `c:=make(chan int,4);for _,v:=range []int{3,0,-2,7}{c<-v};close(c);if got:=subject.CollectClosed(c);!slices.Equal(got,[]int{3,0,-2,7}){t.Errorf("drain got%v want[3 0 -2 7]",got)};if got:=subject.CollectClosed(c);len(got)!=0{t.Errorf("already drained got%v",got)}`
-- Case02: `c:=make(chan int);close(c);if got:=subject.CollectClosed(c);len(got)!=0{t.Errorf("closed empty got%v",got)};one:=make(chan int,1);one<-0;close(one);if got:=subject.CollectClosed(one);!slices.Equal(got,[]int{0}){t.Errorf("queued zero got%v",got)}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `channels.close-semantics`. Declared prerequisites resolve at the actual numbered route position; the final concurrency order was independently checked against preceding outcomes. New concepts: `channels.close-semantics`, `channels.operations-blocking`. Short technical English prompt; minimal implementation stub or explicit debugging defect, or intentionally weak learner tests. No decorative narrative. Buffered/unbuffered closed input and non-nil callback preconditions are explicit where applicable. Select checks accept either ready branch, and synctest synchronization avoids wall-clock scheduling assumptions.
 
-- zero-terminates
-- skip-negative
-- reverse-order
-- extra-closed-zero
-- drop-first
+Required defects reviewed: `zero-terminates`, `skip-negative`, `reverse-order`, `extra-closed-zero`, `drop-first`. Author-provided `.tmp/checks/closed-receive-review.yaml` records technical PASS, reference PASS, race PASS and 5/5 detected required defects. For mutation-tests the count describes the strong learner reference suite; starter-full PASS denotes the checker's insufficiency gate, not that the starter kills all defects.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

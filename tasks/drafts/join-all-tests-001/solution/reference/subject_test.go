@@ -35,19 +35,23 @@ func TestContractCase01(t *testing.T) {
 
 func TestContractCase02(t *testing.T) {
 	synctest.Test(t, func(t *testing.T) {
-		release := make(chan struct{})
-		released := false
-		unblock := func() {
-			if !released {
-				close(release)
-				released = true
+		gates := []chan struct{}{make(chan struct{}), make(chan struct{}), make(chan struct{})}
+		released := make([]bool, 3)
+		release := func(i int) {
+			if !released[i] {
+				close(gates[i])
+				released[i] = true
 			}
 		}
-		defer unblock()
+		defer func() {
+			for i := range gates {
+				release(i)
+			}
+		}()
 		counts := make([]int, 3)
 		work := make([]func(), 3)
 		for i := range work {
-			work[i] = func() { counts[i]++; <-release }
+			work[i] = func() { counts[i]++; <-gates[i] }
 		}
 		returned := make(chan (<-chan struct{}), 1)
 		go func() { returned <- subject.JoinAll(work) }()
@@ -69,7 +73,21 @@ func TestContractCase02(t *testing.T) {
 			t.Error("completion before workers returned")
 		default:
 		}
-		unblock()
+		release(0)
+		synctest.Wait()
+		select {
+		case <-done:
+			t.Error("completion after only first worker returned")
+		default:
+		}
+		release(2)
+		synctest.Wait()
+		select {
+		case <-done:
+			t.Error("completion before final worker returned")
+		default:
+		}
+		release(1)
 		awaitJoined(t, done)
 		if !slices.Equal(counts, []int{1, 1, 1}) {
 			t.Errorf("callback counts%v want[1 1 1]", counts)

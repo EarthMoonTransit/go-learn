@@ -47,7 +47,8 @@
       "skip-zero",
       "reverse-values",
       "mutate-input",
-      "nil-empty"
+      "nil-empty",
+      "retained-worker"
     ],
     "race_required": true,
     "vet": true,

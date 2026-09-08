@@ -1,25 +1,22 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. No invented source commit; release binding remains deferred.
 
-- Return a non-nil receive-only channel containing a snapshot of values in order, followed by closure. All values and closure are available when this function returns.
-- The function owns the sending side and closes it. Use sufficient buffering so no receiver or background producer is needed to complete creation.
-- Preserve input storage and keep separate calls independent. Changes to the input after return must not affect queued values.
-- Empty input returns an already closed channel. Do not leave a goroutine waiting for a receiver; an unused result must not retain a worker.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| All snapshot values and closure immediately available | TestPublicCase01 nonblocking receives | no-close, skip-zero, reverse-values | stream value ready / closure ready / queued got |
+| Preserve caller storage and independent calls | TestPublicCase01 snapshot before/after caller mutation; Case02 independent channels | mutate-input; independence acceptance probes | input changed / streams share channel or values |
+| Non-nil closed empty stream | TestPublicCase02 nil and empty input | nil-empty | nil empty stream / empty stream not closed |
+| An unused result retains no worker | TestUnusedStreamRetainsNoWorker uses synctest.Test and Wait; grader reinforces unused output | retained-worker: output otherwise fully correct | named public synctest test reports deadlocked remaining goroutine |
 
-- Case01: `input:=[]int{1,0,-2};c:=subject.OwnedValues(input);if c==nil{t.Fatal("nil stream")};if !slices.Equal(input,[]int{1,0,-2}){t.Error("input changed")};input[0]=9;for _,want:=range []int{1,0,-2}{select{case got,ok:=<-c:if !ok||got!=want{t.Errorf("queued got%d,%v want%d,true",got,ok,want)};default:t.Fatal("stream value must be ready at return")}};select{case _,ok:=<-c:if ok{t.Error("stream not closed after values")};default:t.Error("closure must be ready at return")}`
-- Case02: `for _,v:=range [][]int{nil,{}}{c:=subject.OwnedValues(v);if c==nil{t.Fatal("nil empty stream")};select{case _,ok:=<-c:if ok{t.Error("empty stream sent value")};default:t.Error("empty stream not closed")}};a:=subject.OwnedValues([]int{3});b:=subject.OwnedValues([]int{4});if a==b{t.Error("streams share channel")};if <-a!=3||<-b!=4{t.Error("streams share values")}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `channels.directional`. Declared prerequisites resolve at the actual numbered route position; the final concurrency order was independently checked against preceding outcomes. New concepts: `channels.directional`, `goroutines.leak-prevention`. Short technical English prompt; minimal implementation stub or explicit debugging defect, or intentionally weak learner tests. No decorative narrative. Buffered/unbuffered closed input and non-nil callback preconditions are explicit where applicable. Select checks accept either ready branch, and synctest synchronization avoids wall-clock scheduling assumptions.
 
-- no-close
-- skip-zero
-- reverse-values
-- mutate-input
-- nil-empty
+Required defects reviewed: `no-close`, `skip-zero`, `reverse-values`, `mutate-input`, `nil-empty`, `retained-worker`. Author-provided `.tmp/checks/owned-values-review.yaml` records technical PASS, reference PASS, race PASS and 6/6 detected required defects. For mutation-tests the count describes the strong learner reference suite; starter-full PASS denotes the checker's insufficiency gate, not that the starter kills all defects.
 
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+No authored code or task tests were run from the checkout by this reviewer. No real learner home was accessed. Full collection, ordered acceptance gates, reports, PR validation and lifecycle movement remain the author's separate responsibilities. Automated fixtures and estimates do not establish human calibration or learner mastery.

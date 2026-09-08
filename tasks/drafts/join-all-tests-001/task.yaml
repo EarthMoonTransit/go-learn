@@ -48,7 +48,8 @@
       "double-work",
       "serial-work",
       "nil-empty",
-      "completion-value"
+      "completion-value",
+      "wait-first-only"
     ],
     "race_required": true,
     "vet": true,

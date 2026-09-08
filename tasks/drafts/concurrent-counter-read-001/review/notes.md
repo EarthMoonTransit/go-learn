@@ -1,26 +1,19 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Substantive adaptation of the permitted Learn Go with Tests `sync/v2/sync.go` and `sync/v2/sync_test.go`, pinned at `4675d96ad50b815d3e9fdc2122ab3dbc14636252`. Both exact source hashes and `LICENSE.md` hash verified against the local pinned checkout; MIT notice including literal copyright placeholders retained. The counter operations and three-increment/1000-worker test substance are retained. Concurrent reads explicitly extend the source after-Wait read semantics. No reference-only or generated canonical material reused.
 
-- Complete Value so it reads the current counter safely while other goroutines call Inc. Inc is supplied and already locks the Counter mutex.
-- Use the same synchronization for reads and writes. Value must not mutate the count; it returns a value observed during that call.
-- A new/zero counter reads zero. Repeated reads after all increments return the exact count; separate counters remain independent.
-- The original source reads only after Wait. This extension explicitly permits overlapping reads and writes; race-free execution is required in public and full checks.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Stable exact reads without mutation | TestPublicCase01/02 and grader sequential fresh reads | zero-read, read-increments, read-clears | stable read / final count / fresh read |
+| Readers synchronize with the supplied writer | TestPublicCase02 overlaps 1000 reads and increments under required race profile | unlocked-read, unlock-before-read | DATA RACE |
+| Independent new/zero counters | TestPublicCase01/03 | Reference acceptance probes | counter state is shared / zero read |
 
-- Case01: `var c subject.Counter;if c.Value()!=0{t.Error("zero read")};c.Inc();c.Inc();c.Inc();if c.Value()!=3||c.Value()!=3{t.Error("stable read after three increments")}`
-- Case02: `c:=subject.NewCounter();var wg sync.WaitGroup;wg.Add(2);go func(){defer wg.Done();for range 1000{c.Inc()}}();go func(){defer wg.Done();for range 1000{if v:=c.Value();v<0||v>1000{t.Errorf("concurrent read %d outside0..1000",v)}}}();wg.Wait();if c.Value()!=1000||c.Value()!=1000{t.Error("final count must be stable1000")}`
-- Case03: `a,b:=subject.NewCounter(),subject.NewCounter();a.Inc();if a.Value()!=1||b.Value()!=0{t.Error("counter state is shared")}`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `sync.data-races-happens-before`. Prerequisites resolve at the actual numbered route position. Short technical English prompt; minimal implementation stub or explicit debugging defect. The two counter lessons distinguish a shared read-modify-write critical section from overlapping reader/writer synchronization; no extra scheduling order or absolute-time requirement is imposed.
 
-- unlocked-read
-- unlock-before-read
-- zero-read
-- read-increments
-- read-clears
-
-Retained source behavior: lgwt:sync/v2/sync.go selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+Required defects: `unlocked-read`, `unlock-before-read`, `zero-read`, `read-increments`, `read-clears`. Author-provided `.tmp/checks/concurrent-counter-read.yaml` records technical PASS, reference PASS, race PASS and 5/5 required defects detected. No authored code or task tests were run from the checkout by this reviewer; no real learner state was accessed. Full collection, ordered gates, PR validation and lifecycle movement remain separate. Automated fixtures do not establish human calibration or learner mastery.

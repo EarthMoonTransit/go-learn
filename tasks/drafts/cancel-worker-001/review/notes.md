@@ -1,26 +1,20 @@
-# Author review notes
+# Independent content review
 
-Independent content review pending. Estimates are uncalibrated.
+Reviewed by `/root/ui_goal_reviewer` on 2026-09-09. Content approved for normal lifecycle promotion after required batch acceptance.
 
-Requirements:
+Original task: ADR 0008 project identity, creation record, content digest and empty external sources verified. Release commit binding remains deferred; no external provenance invented.
 
-- Derive a cancelable child from the non-nil parent. Return that child, its CancelFunc and a non-nil worker completion channel.
-- The worker waits for child cancellation, then closes completion without sending values. Explicit child cancellation and parent cancellation must both finish it.
-- Canceling the child must not cancel its parent. Repeated calls to cancel are safe; an already canceled parent produces a canceled child and a finishing worker.
-- Preserve context values and parent cancellation cause behavior through standard context.WithCancel derivation. Tests control cancellation and use synctest; no real sleep is required.
+## Requirement and feedback mapping
 
-Public/reference assertions (actual/expected diagnostics):
+| Stated requirement | Public/reference assertion | Required defect or acceptance probe | Useful diagnostic |
+|---|---|---|---|
+| Derived child, explicit cancellation, idempotent cancel | TestPublicCase01; completion receive ok check | return-parent, cancel-immediately, completion-value | child cancellation / canceled early / sent value |
+| Worker closes only after cancellation and finishes afterward | TestPublicCase01/02/03 controlled synctest waits | complete-early, detached-child | completed before cancel / did not finish |
+| Parent values, cause, already-canceled propagation | TestPublicCase02/03 | detached-child | parent value lost / cause / already canceled |
+| Child scope and inherited deadline | TestSiblingLifetimesAndDeadline controlled child cancellation | Reference acceptance probes | deadline lost / cancellation escaped scope |
 
-- Case01: `synctest.Test(t,func(t *testing.T){parent,parentCancel:=context.WithCancel(context.Background());defer parentCancel();child,cancel,done:=subject.StartCancelable(parent);if child==nil||cancel==nil||done==nil{t.Fatal("nil child/cancel/completion")};defer cancel();synctest.Wait();if child.Err()!=nil{t.Error("child canceled early")};select{case <-done:t.Error("worker completed before cancel");default:};cancel();cancel();awaitCanceled(t,done);if child.Err()!=context.Canceled||parent.Err()!=nil{t.Errorf("child cancellation child%v parent%v",child.Err(),parent.Err())}})`
-- Case02: `synctest.Test(t,func(t *testing.T){type key struct{};parent,parentCancel:=context.WithCancelCause(context.WithValue(context.Background(),key{},"value"));cause:=errors.New("parent stopped");defer parentCancel(cause);child,cancel,done:=subject.StartCancelable(parent);if child==nil||cancel==nil||done==nil{t.Fatal("nil result")};defer cancel();if child.Value(key{})!="value"{t.Error("parent value lost")};parentCancel(cause);awaitCanceled(t,done);if child.Err()!=context.Canceled||context.Cause(child)!=cause{t.Errorf("parent cancel child%v cause%v",child.Err(),context.Cause(child))}})`
-- Case03: `synctest.Test(t,func(t *testing.T){parent,stop:=context.WithCancel(context.Background());stop();child,cancel,done:=subject.StartCancelable(parent);if child==nil||cancel==nil||done==nil{t.Fatal("nil result")};defer cancel();awaitCanceled(t,done);if child.Err()!=context.Canceled{t.Error("already canceled parent ignored")}})`
+## Instructional and technical evidence
 
-Realistic required defect models:
+Primary skill: `context.cancellation`. Declared prerequisites resolve before this numbered route position. Short technical English prompt; minimal implementation stub or explicit debugging defect. Context ownership, cancellation and operation composition are distinct observable outcomes.
 
-- detached-child
-- complete-early
-- return-parent
-- cancel-immediately
-- completion-value
-
-Retained source behavior: None selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+Required defects: `detached-child`, `complete-early`, `return-parent`, `cancel-immediately`, `completion-value`. Author-provided `.tmp/checks/cancel-worker.yaml` records technical PASS, reference PASS, race PASS and 5/5 required defects detected. No authored code or task tests were run from the checkout by this reviewer; no real learner state was accessed. Full collection, ordered gates, PR validation and lifecycle movement remain separate. Automated fixtures do not establish human calibration or learner mastery.

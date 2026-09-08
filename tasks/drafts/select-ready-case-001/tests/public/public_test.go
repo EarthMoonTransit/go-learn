@@ -52,3 +52,14 @@ func TestPublicCase03(t *testing.T) {
 		t.Error("selected input not consumed")
 	}
 }
+
+func TestReadableCancellation(t *testing.T) {
+	stop := make(chan struct{}, 1)
+	stop <- struct{}{}
+	if n, s := subject.TryReceive(nil, stop); n != 0 || s != "canceled" {
+		t.Errorf("readable cancel got%d,%s want0,canceled", n, s)
+	}
+	if len(stop) != 0 {
+		t.Error("cancel value not received")
+	}
+}

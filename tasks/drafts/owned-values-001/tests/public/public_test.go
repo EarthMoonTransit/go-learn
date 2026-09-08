@@ -4,6 +4,7 @@ import (
 	"slices"
 	"task.local/owned-values-001/subject"
 	"testing"
+	"testing/synctest"
 )
 
 func TestPublicCase01(t *testing.T) {
@@ -59,4 +60,8 @@ func TestPublicCase02(t *testing.T) {
 	if <-a != 3 || <-b != 4 {
 		t.Error("streams share values")
 	}
+}
+
+func TestUnusedStreamRetainsNoWorker(t *testing.T) {
+	synctest.Test(t, func(t *testing.T) { _ = subject.OwnedValues([]int{1, 2, 3}); synctest.Wait() })
 }
