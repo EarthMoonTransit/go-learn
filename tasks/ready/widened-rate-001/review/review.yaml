@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/ui_goal_reviewer",
+  "reviewed_at": "2026-09-08",
+  "decision": "approve",
+  "story_free": true,
+  "prompt_test_alignment": true,
+  "public_api_stable": true,
+  "provenance_verified": true,
+  "license_verified": true,
+  "reference_only_clean_room_verified": true,
+  "solution_leakage_checked": true,
+  "minimum_mutants": 6,
+  "notes": "Independent content review approved the English prompt, API, requirement/assertion/defect mapping, primary skill and route prerequisites. Pinned permitted source instructions, consulted starters, hand-authored tests, metadata and MIT notices were verified against the local checkout. The existing workspace-tests profile preserves the supplied BandRate implementation. Public checks distinguish widening its actual rounded float32 value from decimal reconstruction, retain fractional float64 input, and verify sign and percentage scaling with stated tolerance and NaN rejection. Author-provided targeted reports pass. No authored code was executed by the reviewer; learner data was not accessed. Estimates are uncalibrated, and full batch gates remain separate."
+}

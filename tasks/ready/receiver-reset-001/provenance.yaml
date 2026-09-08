@@ -1,0 +1,57 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected census operation and hand-authored check structure: preserve the observable rules, remove narrative, rename technical APIs, and add independently authored public/full boundaries, reference and defect models. No canonical/generated cases or upstream solution used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "831e106f4f8cd11a5cde83bf30cd74959eaa50c340801b6889067b9c3032f48a",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/receiver-reset-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/census/.docs/instructions.md",
+          "sha256": "ed1c8e061336a69e480d0da88dfbda321acd61bf28d34dbdb5f92251f0835589",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/census/census.go",
+          "sha256": "04b2b192ea22d61ebda38448203556fb3b22dbafe466835d6da5ddc725e32538",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/census/census_test.go",
+          "sha256": "895bc067bdb9a9087ed031d6c2cf3cd5532be6a707042c15f045d746f59a66c0",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/census/.meta/config.json",
+          "sha256": "98f4eb76fd8214e8ec7b5e58b0d45d165a87bfd36b7d1e6877aa7ee48c4b5264",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-08",
+    "summary": "Substantively adapt the selected need-for-speed operation and hand-authored check structure: preserve the observable rules, remove narrative, rename technical APIs, and add independently authored public/full boundaries, reference and defect models. No canonical/generated cases or upstream solution used."
+  },
+  "kind": "adapted",
+  "project": {
+    "content_digest": "38340ceab966dbe38dbdb417eed8da5c1b72cafbaf662943e7fd1dcb7e155683",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/struct-transition-tests-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": [
+    {
+      "artifacts": [
+        {
+          "path": "exercises/concept/need-for-speed/.docs/instructions.md",
+          "sha256": "f8801201f7d81869c949627d7a4f368b39045822aaca9faac0e3f5f2a16efc2b",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/need-for-speed/need_for_speed.go",
+          "sha256": "bfd8a4d3c499d90c8dc6567560b2d9f115069b878bb9525799792dffcb84ef4f",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/need-for-speed/need_for_speed_test.go",
+          "sha256": "06aba0bfd457572564d56a856d7a619225e9cb21723f88c9ce61907f3d684a25",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/concept/need-for-speed/.meta/config.json",
+          "sha256": "07216d26ca9de7480551b8d4696a5ebed41b2aac4e1d7a74a18a34edb81c3b81",
+          "usage": "factual-reference"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+          "usage": "copied"
+        }
+      ],
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "license": "MIT",
+      "registry_id": "exercism-go",
+      "repository": "https://github.com/exercism/go",
+      "role": "adapted-test-structure",
+      "usage_mode": "adapt"
+    }
+  ]
+}

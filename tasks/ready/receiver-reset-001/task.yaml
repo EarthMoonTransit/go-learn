@@ -1,0 +1,47 @@
+schema_version: 2
+id: receiver-reset-001
+title: Reset a record through its pointer receiver
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: methods.receiver-semantics
+    secondary: []
+prerequisites:
+    - functions.signatures-results
+    - maps.operations-comma-ok
+    - pointers.mutation-sharing
+    - structs.literals-zero
+    - types.named-underlying
+new_concepts:
+    - methods.receiver-semantics
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - rebind-receiver
+        - name-retained
+        - age-retained
+        - empty-map
+        - destroy-old-map
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

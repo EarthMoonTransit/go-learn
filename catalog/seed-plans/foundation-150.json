@@ -854,10 +854,11 @@
       "behavior_anchor": "NewResident: construct a pointer to a struct containing the supplied name, age and address map",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 19,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "maps.operations-comma-ok",
         "pointers.address-deref-nil",
+        "testing.basics-diagnostics",
         "types.zero-values"
       ],
       "activity": "test-writing",
@@ -869,7 +870,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "struct-record-tests-001",
+      "secondary": [],
+      "release_batch": "C05",
+      "route_number": "06.06"
     },
     {
       "primary": "methods.receiver-semantics",
@@ -897,7 +902,7 @@
       "behavior_anchor": "(*Resident).Delete: clear fields through a pointer receiver, visible to aliases",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 20,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "functions.signatures-results",
         "maps.operations-comma-ok",
@@ -914,7 +919,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "receiver-reset-001",
+      "secondary": [],
+      "release_batch": "C05",
+      "route_number": "06.07"
     },
     {
       "primary": "control-flow.range",
@@ -1176,7 +1185,7 @@
       "behavior_anchor": "func IncrementVoteCount(counter *int, increment int) {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 26,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "pointers.address-deref-nil",
         "structs.copy-equality"
@@ -1190,7 +1199,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "shared-counter-update-001",
+      "secondary": [],
+      "release_batch": "C05",
+      "route_number": "06.05"
     },
     {
       "primary": "functions.function-values",
@@ -1218,7 +1231,7 @@
       "behavior_anchor": "func Filter(in []Record, predicate func(Record) bool) []Record {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 27,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "control-flow.range",
         "functions.signatures-results",
@@ -1234,7 +1247,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "predicate-filter-001",
+      "secondary": [],
+      "release_batch": "C05",
+      "route_number": "06.08"
     },
     {
       "primary": "functions.closure-capture",
@@ -1262,7 +1279,7 @@
       "behavior_anchor": "func ByDaysPeriod(p DaysPeriod) func(Record) bool {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 28,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "control-flow.range",
         "functions.function-values",
@@ -1278,7 +1295,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "period-predicate-001",
+      "secondary": [],
+      "release_batch": "C05",
+      "route_number": "06.09"
     },
     {
       "primary": "functions.closure-capture",
@@ -1306,12 +1327,13 @@
       "behavior_anchor": "func ByCategory(c string) func(Record) bool {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 29,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "control-flow.range",
         "functions.function-values",
         "slices.len-cap-slicing",
-        "structs.literals-zero"
+        "structs.literals-zero",
+        "testing.basics-diagnostics"
       ],
       "activity": "test-writing",
       "required_before_release": [
@@ -1322,7 +1344,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "category-closure-tests-001",
+      "secondary": [],
+      "release_batch": "C05",
+      "route_number": "06.10"
     },
     {
       "primary": "maps.operations-comma-ok",
@@ -1482,10 +1508,10 @@
       "behavior_anchor": "func InterestRate(balance float64) float32 {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 33,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "types.numeric-conversions",
-        "expressions.comparison"
+        "expressions.comparison",
+        "types.numeric-conversions"
       ],
       "activity": "debugging",
       "required_before_release": [
@@ -1496,7 +1522,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "fractional-band-001",
+      "secondary": [],
+      "release_batch": "C05",
+      "route_number": "03.19"
     },
     {
       "primary": "types.numeric-conversions",
@@ -1524,9 +1554,11 @@
       "behavior_anchor": "func Interest(balance float64) float64 {",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 34,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
-        "types.declarations-inference"
+        "expressions.arithmetic",
+        "types.declarations-inference",
+        "types.floating-point-semantics"
       ],
       "activity": "implementation",
       "required_before_release": [
@@ -1537,7 +1569,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "widened-rate-001",
+      "secondary": [],
+      "release_batch": "C05",
+      "route_number": "03.20"
     },
     {
       "primary": "functions.signatures-results",
@@ -1702,7 +1738,7 @@
       "behavior_anchor": "NewCar and NewTrack: construct both values with supplied fields and specified initial battery/distance",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 38,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "types.zero-values"
       ],
@@ -1715,7 +1751,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "initial-structs-001",
+      "secondary": [],
+      "release_batch": "C05",
+      "route_number": "06.03"
     },
     {
       "primary": "structs.copy-equality",
@@ -1743,9 +1783,10 @@
       "behavior_anchor": "Drive: return an updated value without changing the supplied car; insufficient battery leaves it unchanged",
       "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
       "slot": 39,
-      "status": "planned-not-authored",
+      "status": "ready",
       "prerequisites": [
         "structs.literals-zero",
+        "testing.basics-diagnostics",
         "types.named-underlying"
       ],
       "activity": "test-writing",
@@ -1757,7 +1798,11 @@
         "profile-support",
         "independent-review"
       ],
-      "selection_status": "behavior-selected-content-not-authored"
+      "selection_status": "behavior-selected-content-not-authored",
+      "task_id": "struct-transition-tests-001",
+      "secondary": [],
+      "release_batch": "C05",
+      "route_number": "06.04"
     },
     {
       "primary": "functions.variadic",
@@ -4575,6 +4620,6 @@
     "unresolved_prerequisites": [],
     "method": "Topological selection using actual artifact prerequisites and explicit primary/secondary outcomes; existing baseline route outcomes precede additions.",
     "introduced_skills": 101,
-    "last_batch": "C04"
+    "last_batch": "C05"
   }
 }

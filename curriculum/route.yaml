@@ -310,6 +310,22 @@
           "skills": [
             "types.constants"
           ]
+        },
+        {
+          "number": 19,
+          "task_id": "fractional-band-001",
+          "role": "introduction",
+          "skills": [
+            "types.floating-point-semantics"
+          ]
+        },
+        {
+          "number": 20,
+          "task_id": "widened-rate-001",
+          "role": "practice",
+          "skills": [
+            "types.numeric-conversions"
+          ]
         }
       ],
       "number": 3
@@ -466,6 +482,70 @@
           "role": "practice",
           "skills": [
             "pointers.address-deref-nil"
+          ]
+        },
+        {
+          "number": 3,
+          "task_id": "initial-structs-001",
+          "role": "introduction",
+          "skills": [
+            "structs.literals-zero"
+          ]
+        },
+        {
+          "number": 4,
+          "task_id": "struct-transition-tests-001",
+          "role": "introduction",
+          "skills": [
+            "structs.copy-equality"
+          ]
+        },
+        {
+          "number": 5,
+          "task_id": "shared-counter-update-001",
+          "role": "introduction",
+          "skills": [
+            "pointers.mutation-sharing"
+          ]
+        },
+        {
+          "number": 6,
+          "task_id": "struct-record-tests-001",
+          "role": "practice",
+          "skills": [
+            "structs.literals-zero"
+          ]
+        },
+        {
+          "number": 7,
+          "task_id": "receiver-reset-001",
+          "role": "introduction",
+          "skills": [
+            "methods.receiver-semantics"
+          ]
+        },
+        {
+          "number": 8,
+          "task_id": "predicate-filter-001",
+          "role": "introduction",
+          "skills": [
+            "functions.function-values"
+          ]
+        },
+        {
+          "number": 9,
+          "task_id": "period-predicate-001",
+          "role": "introduction",
+          "skills": [
+            "functions.closure-capture"
+          ]
+        },
+        {
+          "number": 10,
+          "task_id": "category-closure-tests-001",
+          "role": "practice",
+          "skills": [
+            "functions.closure-capture"
           ]
         }
       ],
