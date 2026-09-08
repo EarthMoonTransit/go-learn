@@ -1,0 +1,51 @@
+schema_version: 2
+id: worker-completion-tests-001
+title: Test asynchronous start and explicit completion
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: goroutines.launch-lifecycle
+    secondary:
+        - channels.operations-blocking
+prerequisites:
+    - functions.defer
+    - functions.function-values
+    - testing.basics-diagnostics
+    - types.zero-values
+new_concepts:
+    - goroutines.launch-lifecycle
+    - channels.operations-blocking
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - inline-work
+        - never-close
+        - close-before-work
+        - skip-work
+        - double-work
+        - nil-channel
+        - shared-active-completion
+        - send-before-close
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
