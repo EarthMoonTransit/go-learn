@@ -78,7 +78,7 @@ function renderCourse() {
     for (const lesson of block.lessons) {
       const button = element('button', undefined, 'lesson-link' + (lesson.id === state.selected ? ' selected' : ''));
       button.disabled = !lesson.available; button.title = lesson.id + ' · ' + lesson.status;
-      button.append(element('span', lesson.status === 'completed' ? '✓' : (lesson.id === c.next_task_id ? '→' : '·'), 'lesson-marker'), element('span', lesson.title));
+      button.append(element('span', lesson.status === 'completed' ? '✓' : (lesson.id === c.next_task_id ? '→' : '·'), 'lesson-marker'), element('span', (lesson.number ? lesson.number + ' — ' : '') + lesson.title));
       button.addEventListener('click', () => selectTask(lesson.id).catch(error => alertMessage(error.message)));
       details.append(button);
     }
@@ -102,7 +102,7 @@ function actionsEnabled() {
 function renderTask() {
   const t = state.task; if (!t) return;
   byId('welcome').hidden = true; byId('lesson').hidden = false;
-  byId('title').textContent = t.info.Title;
+  byId('title').textContent = (t.number ? t.number + ' — ' : '') + t.info.Title;
   byId('task-meta').textContent = t.info.ID + ' · ' + t.info.EstimatedTimeMinutes.min + '–' + t.info.EstimatedTimeMinutes.max + ' min';
   byId('task-kind').textContent = t.info.Activity;
   byId('task-status').textContent = (t.completed ? 'Completed' : t.started ? 'In progress' : 'Ready to start') + ' · ' + t.attempts + ' attempts' + (t.started && !t.completed ? (t.session_active ? ' · Work session active' : ' · Work session paused') : '');

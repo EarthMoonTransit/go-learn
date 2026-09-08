@@ -71,6 +71,7 @@ type SkillMetadata struct {
 }
 
 type SchedulerChoice struct {
+	LessonNumber         string
 	Resume               bool
 	RouteBlock           string
 	RouteRole            string

@@ -83,7 +83,15 @@ func RunCLI(config Config, arguments []string, stdout, stderr io.Writer) int {
 		if err != nil {
 			return cliError(stderr, err)
 		}
-		writeTaskList(stdout, tasks, progress)
+		route, err := loadRoute(service.root)
+		if err != nil {
+			return cliError(stderr, err)
+		}
+		if route != nil && route.SchemaVersion == 2 {
+			writeNumberedTaskList(stdout, *route, tasks, progress)
+		} else {
+			writeTaskList(stdout, tasks, progress)
+		}
 	case "show":
 		id, err := oneArgument(command, commandArguments)
 		if err != nil {
@@ -92,6 +100,13 @@ func RunCLI(config Config, arguments []string, stdout, stderr io.Writer) int {
 		info, err := service.Show(id)
 		if err != nil {
 			return cliError(stderr, err)
+		}
+		number, err := service.LessonNumber(id)
+		if err != nil {
+			return cliError(stderr, err)
+		}
+		if number != "" {
+			fmt.Fprintf(stdout, "Lesson: %s\n", number)
 		}
 		writeTask(stdout, info)
 	case "start":
@@ -285,7 +300,11 @@ func writeNext(output io.Writer, choice SchedulerChoice) {
 	if choice.RouteBlock != "" {
 		fmt.Fprintf(output, "Route: %s (%s)\n", choice.RouteBlock, choice.RouteRole)
 	}
-	fmt.Fprintf(output, "%s — %s\n", choice.Task.ID, choice.Task.Title)
+	if choice.LessonNumber != "" {
+		fmt.Fprintf(output, "%s — %s\nID: %s\n", choice.LessonNumber, choice.Task.Title, choice.Task.ID)
+	} else {
+		fmt.Fprintf(output, "%s — %s\n", choice.Task.ID, choice.Task.Title)
+	}
 	fmt.Fprintf(output, "Activity: %s; difficulty: %s; primary skill: %s\n", choice.Task.Activity, choice.Task.Difficulty, choice.Task.PrimarySkill)
 	if len(choice.MissingPrerequisites) == 0 {
 		fmt.Fprintln(output, "Prerequisites: satisfied by recorded completions.")
