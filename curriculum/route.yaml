@@ -429,6 +429,38 @@
           "skills": [
             "strings.building"
           ]
+        },
+        {
+          "number": 9,
+          "task_id": "bounded-slice-view-001",
+          "role": "introduction",
+          "skills": [
+            "slices.full-slice-expressions"
+          ]
+        },
+        {
+          "number": 10,
+          "task_id": "overlapping-shift-tests-001",
+          "role": "introduction",
+          "skills": [
+            "slices.copy-overlap"
+          ]
+        },
+        {
+          "number": 11,
+          "task_id": "reserved-copy-001",
+          "role": "introduction",
+          "skills": [
+            "slices.preallocation"
+          ]
+        },
+        {
+          "number": 12,
+          "task_id": "detached-prefix-001",
+          "role": "introduction",
+          "skills": [
+            "slices.subslice-retention"
+          ]
         }
       ],
       "number": 4
@@ -708,6 +740,46 @@
           "skills": [
             "errors.sentinels-creation"
           ]
+        },
+        {
+          "number": 23,
+          "task_id": "ordered-error-propagation-001",
+          "role": "introduction",
+          "skills": [
+            "errors.propagation-context"
+          ]
+        },
+        {
+          "number": 24,
+          "task_id": "deferred-release-001",
+          "role": "introduction",
+          "skills": [
+            "functions.defer"
+          ]
+        },
+        {
+          "number": 25,
+          "task_id": "stateful-counter-tests-001",
+          "role": "transfer",
+          "skills": [
+            "functions.closure-capture"
+          ]
+        },
+        {
+          "number": 26,
+          "task_id": "typed-nil-result-001",
+          "role": "introduction",
+          "skills": [
+            "interfaces.typed-nil"
+          ]
+        },
+        {
+          "number": 27,
+          "task_id": "deposit-state-tests-001",
+          "role": "transfer",
+          "skills": [
+            "methods.receiver-semantics"
+          ]
         }
       ],
       "number": 6
@@ -715,7 +787,16 @@
     {
       "id": "libraries",
       "title": "Packages, generics, I/O, encoding and time",
-      "steps": [],
+      "steps": [
+        {
+          "number": 1,
+          "task_id": "writer-greeting-001",
+          "role": "introduction",
+          "skills": [
+            "io.reader-writer-contracts"
+          ]
+        }
+      ],
       "number": 7
     },
     {

@@ -1,0 +1,3 @@
+package subject_test
+import("testing";"task.local/deposit-state-tests-001/subject")
+func TestOneReceiver(t *testing.T){b:=subject.Balance{Units:20};alias:=&b;for _,n:=range []int{3,0,7}{before:=b.Units;b.Deposit(n);if b.Units!=before+n||alias.Units!=before+n{t.Errorf("deposit%d got%d want%d",n,b.Units,before+n)}}}
