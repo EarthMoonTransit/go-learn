@@ -1,0 +1,61 @@
+{
+  "schema_version": 2,
+  "id": "month-enumeration-001",
+  "title": "Declare a consecutive month enumeration",
+  "activity": "implementation",
+  "submission": {
+    "kind": "workspace-patch",
+    "editable_paths": [
+      "subject/months.go"
+    ],
+    "workspace_skeleton": [
+      "subject/api.go"
+    ]
+  },
+  "skills": {
+    "primary": "types.iota-enumeration",
+    "secondary": []
+  },
+  "prerequisites": [
+    "types.constants"
+  ],
+  "new_concepts": [
+    "types.iota-enumeration"
+  ],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "workspace-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "zero-start",
+      "gap-start",
+      "return-zero",
+      "shift-return",
+      "manual-enumeration"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}

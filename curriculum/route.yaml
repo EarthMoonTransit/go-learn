@@ -358,6 +358,46 @@
           "skills": [
             "slices.backing-array-aliasing"
           ]
+        },
+        {
+          "number": 25,
+          "task_id": "quantity-removal-001",
+          "role": "practice",
+          "skills": [
+            "maps.nil-delete-clear"
+          ]
+        },
+        {
+          "number": 26,
+          "task_id": "constant-value-tests-001",
+          "role": "practice",
+          "skills": [
+            "types.constants"
+          ]
+        },
+        {
+          "number": 27,
+          "task_id": "month-enumeration-001",
+          "role": "introduction",
+          "skills": [
+            "types.iota-enumeration"
+          ]
+        },
+        {
+          "number": 28,
+          "task_id": "constant-kinds-001",
+          "role": "practice",
+          "skills": [
+            "types.constants"
+          ]
+        },
+        {
+          "number": 29,
+          "task_id": "independent-policies-001",
+          "role": "transfer",
+          "skills": [
+            "control-flow.if"
+          ]
         }
       ],
       "number": 3
@@ -460,6 +500,14 @@
           "role": "introduction",
           "skills": [
             "slices.subslice-retention"
+          ]
+        },
+        {
+          "number": 13,
+          "task_id": "formatted-assignment-001",
+          "role": "transfer",
+          "skills": [
+            "strings.formatting"
           ]
         }
       ],
@@ -779,6 +827,38 @@
           "role": "transfer",
           "skills": [
             "methods.receiver-semantics"
+          ]
+        },
+        {
+          "number": 28,
+          "task_id": "number-box-tests-001",
+          "role": "transfer",
+          "skills": [
+            "interfaces.small-contracts"
+          ]
+        },
+        {
+          "number": 29,
+          "task_id": "rectangle-perimeter-001",
+          "role": "practice",
+          "skills": [
+            "structs.literals-zero"
+          ]
+        },
+        {
+          "number": 30,
+          "task_id": "dictionary-delete-001",
+          "role": "transfer",
+          "skills": [
+            "maps.nil-delete-clear"
+          ]
+        },
+        {
+          "number": 31,
+          "task_id": "array-copy-address-tests-001",
+          "role": "transfer",
+          "skills": [
+            "arrays.value-semantics"
           ]
         }
       ],

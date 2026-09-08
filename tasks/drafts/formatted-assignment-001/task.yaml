@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "id": "formatted-assignment-001",
+  "title": "Format a multiline record with width and precision",
+  "activity": "implementation",
+  "submission": {
+    "kind": "implementation",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "strings.formatting",
+    "secondary": []
+  },
+  "prerequisites": [
+    "strings.immutable-bytes",
+    "types.declarations-inference",
+    "types.floating-point-semantics"
+  ],
+  "new_concepts": [],
+  "difficulty": "basic",
+  "estimated_time_minutes": {
+    "min": 15,
+    "max": 30
+  },
+  "verification": {
+    "profile": "fixed-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "no-padding",
+      "precision-zero",
+      "truncate-distance",
+      "trim-name",
+      "final-newline",
+      "missing-peer",
+      "trim-direction"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}
