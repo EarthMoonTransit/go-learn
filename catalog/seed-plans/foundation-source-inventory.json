@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "registry_id": "exercism-go",
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "candidate_count": 177,
+      "catalog": "catalog/candidates/exercism-go.jsonl"
+    },
+    {
+      "registry_id": "learn-go-with-tests",
+      "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+      "selection_mode": "explicit-file-allowlist"
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "selection_mode": "explicit-file-allowlist"
+    }
+  ],
+  "excluded": [
+    "exercism-problem-specifications: reference-only; no canonical/generated case copying",
+    "HTTP/server/application parts of selected TDD chapters",
+    "Ardan vendor, visual assets, external Playground answers"
+  ],
+  "execution": "No upstream code or tests executed."
+}
