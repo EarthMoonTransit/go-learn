@@ -1,8 +1,8 @@
-# Author review notes
+# Content review notes
 
-Independent content review pending. Estimates are uncalibrated.
+Independent content review approved by `/root/ui_goal_reviewer` on 2026-09-08. Estimates remain uncalibrated.
 
-Requirements:
+## Requirements
 
 - Temperature units format as "°C" or "°F"; speed units as "km/h" or "mph". Only declared units are supplied.
 - Temperature and Speed format their integer followed by one space and the formatted unit.
@@ -10,13 +10,17 @@ Requirements:
 - String and fmt.Sprint produce identical results, preserving text, zero and negative integers.
 - Implement all five value methods without recursive receiver formatting.
 
-Public/reference assertions (actual/expected diagnostics):
+## Requirement, assertion and defect mapping
 
-- Case01: `for _,c:=range []struct{s fmt.Stringer;want string}{{subject.Celsius,"°C"},{subject.Fahrenheit,"°F"},{subject.KmPerHour,"km/h"},{subject.MilesPerHour,"mph"},{subject.Temperature{Degree:21,Unit:subject.Celsius},"21 °C"},{subject.Temperature{Degree:-17,Unit:subject.Fahrenheit},"-17 °F"},{subject.Speed{Magnitude:18,Unit:subject.KmPerHour},"18 km/h"},{subject.Speed{Magnitude:0,Unit:subject.MilesPerHour},"0 mph"}}{if got:=c.s.String();got!=c.want{t.Errorf("String got %q want %q",got,c.want)};if got:=fmt.Sprint(c.s);got!=c.want{t.Errorf("Sprint got %q want %q",got,c.want)}}`
-- Case02: `r:=subject.Reading{Location:"Athens",Temperature:subject.Temperature{Degree:21,Unit:subject.Celsius},Direction:"N",Speed:subject.Speed{Magnitude:16,Unit:subject.KmPerHour},Humidity:63};want:="Athens: 21 °C, Wind N at 16 km/h, 63% Humidity";if got:=r.String();got!=want{t.Errorf("reading got %q want %q",got,want)};if got:=fmt.Sprint(r);got!=want{t.Errorf("formatted got %q want %q",got,want)}`
-- Case03: `r:=subject.Reading{Location:" x ",Temperature:subject.Temperature{Degree:0,Unit:subject.Fahrenheit},Direction:"",Speed:subject.Speed{Magnitude:-2,Unit:subject.MilesPerHour},Humidity:0};want:=" x : 0 °F, Wind  at -2 mph, 0% Humidity";if got:=fmt.Sprint(r);got!=want{t.Errorf("boundary got %q want %q",got,want)}`
+| Requirement | Public/reference assertion | Required defect | Diagnostic |
+|---|---|---|---|
+| Unit labels and exact spacing | TestPublicCase01 direct String and fmt.Sprint | celsius-always, speed-unit-always, no-unit-space | quoted String/Sprint actual and expected |
+| Signed and zero magnitudes | TestPublicCase01/03 | absolute-temperature | quoted numeric text and unit |
+| Compose exact nested Reading text, preserving fields | TestPublicCase02/03 direct and formatted output | no-humidity-percent, direction-erased, trim-location | quoted reading/boundary actual and expected |
 
-Realistic required defect models:
+For implementation/debugging tasks these are public checks. For test-writing tasks these are the strong learner reference suite; the mutation profile checks reference compatibility and detection of required defects, without imposing table layout or helper organization.
+
+## Realistic required defect models
 
 - celsius-always
 - speed-unit-always
@@ -26,4 +30,12 @@ Realistic required defect models:
 - direction-erased
 - trim-location
 
-Retained source behavior: meteorology selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+## Source boundary
+
+Substantive adaptation of `exercism-go` at commit `ae1477abfeeb9fbeaf971caee220e91f9e4df790`, operation in `exercises/concept/meteorology/.docs/instructions.md`. Exact consulted artifact paths and SHA256 values are recorded in `provenance.yaml` and were checked against the pinned local source. The upstream MIT notice and attribution were verified. Observable source behavior is retained with technical APIs, independent boundaries and defect models; no reference-only or generated canonical material was used. Private reference implementations and mutants are excluded from learner payloads.
+
+## Independent review
+
+Five concrete Stringer behaviors and nested composition are independently checked through direct calls and fmt formatting.
+
+Reviewed current English requirements, API/starter, public or learner reference assertions, grader/mutation layout, all 7 required defect implementations, hints, provenance and route prerequisites. The author-provided `.tmp/checks/nested-stringers-001.yaml` reports technical pass and 7/7 detected required mutants. Review was read-only for task content: no authored code was executed by the reviewer and no real learner state was accessed. Full batch gates, lifecycle promotion and release binding remain separate. Automated fixtures are not human calibration or evidence of learner mastery.

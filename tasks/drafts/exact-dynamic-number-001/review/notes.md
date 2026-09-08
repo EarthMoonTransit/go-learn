@@ -1,20 +1,25 @@
-# Author review notes
+# Content review notes
 
-Independent content review pending. Estimates are uncalibrated.
+Independent content review approved by `/root/ui_goal_reviewer` on 2026-09-08. Estimates remain uncalibrated.
 
-Requirements:
+## Requirements
 
 - Only a dynamic FancyNumber value is accepted; convert its Text with strconv.Atoi and return the integer.
 - Return zero for invalid or overflowing integers, nil interfaces, pointers to FancyNumber and all other implementing types.
 - Do not trim whitespace or parse fractional text. Leading signs and leading zeroes follow strconv.Atoi.
 - Do not call Value on unsupported types; dynamic type identity determines eligibility.
 
-Public/reference assertions (actual/expected diagnostics):
+## Requirement, assertion and defect mapping
 
-- Case01: `for _,c:=range []struct{text string;want int}{{"11",11},{"0",0},{"-12",-12},{"+007",7},{"two",0},{" 10",0},{"1.5",0},{"999999999999999999999999999999999999",0}}{if got:=subject.Extract(subject.FancyNumber{Text:c.text});got!=c.want{t.Errorf("Extract %q got %d want %d",c.text,got,c.want)}}`
-- Case02: `for _,v:=range []subject.FancyNumberBox{nil,&subject.FancyNumber{Text:"4"},alternateNumber{},(*subject.FancyNumber)(nil)}{if got:=subject.Extract(v);got!=0{t.Errorf("unsupported %T got %d want0",v,got)}}`
+| Requirement | Public/reference assertion | Required defect | Diagnostic |
+|---|---|---|---|
+| Accept exact FancyNumber and preserve signed integers | TestPublicCase01 | absolute-value | Extract quoted input, actual integer, expected integer |
+| Return zero on invalid syntax and overflow | TestPublicCase01 includes spaces, fraction and overflowing decimal | trim-space, partial-error-result | Extract input and integer mismatch |
+| Reject nil, pointers and other implementers without calling Value | TestPublicCase02 includes typed nil pointer and panic-on-call alternate | all-implementers, pointer-accepted, empty-nil-panic | unsupported dynamic type and result; forbidden call panic |
 
-Realistic required defect models:
+For implementation/debugging tasks these are public checks. For test-writing tasks these are the strong learner reference suite; the mutation profile checks reference compatibility and detection of required defects, without imposing table layout or helper organization.
+
+## Realistic required defect models
 
 - all-implementers
 - pointer-accepted
@@ -23,4 +28,12 @@ Realistic required defect models:
 - partial-error-result
 - empty-nil-panic
 
-Retained source behavior: sorting-room selected operation; original narrative removed, public example values or test structure retained, new edge cases and defect models authored independently. All execution uses disposable task-check. Automated fixtures are not learner calibration.
+## Source boundary
+
+Substantive adaptation of `exercism-go` at commit `ae1477abfeeb9fbeaf971caee220e91f9e4df790`, operation in `exercises/concept/sorting-room/.docs/instructions.md`. Exact consulted artifact paths and SHA256 values are recorded in `provenance.yaml` and were checked against the pinned local source. The upstream MIT notice and attribution were verified. Observable source behavior is retained with technical APIs, independent boundaries and defect models; no reference-only or generated canonical material was used. Private reference implementations and mutants are excluded from learner payloads.
+
+## Independent review
+
+Exact concrete assertion is distinguished from calling every implementer, pointer acceptance and overflow partial values.
+
+Reviewed current English requirements, API/starter, public or learner reference assertions, grader/mutation layout, all 6 required defect implementations, hints, provenance and route prerequisites. The author-provided `.tmp/checks/exact-dynamic-number-001.yaml` reports technical pass and 6/6 detected required mutants. Review was read-only for task content: no authored code was executed by the reviewer and no real learner state was accessed. Full batch gates, lifecycle promotion and release binding remain separate. Automated fixtures are not human calibration or evidence of learner mastery.
