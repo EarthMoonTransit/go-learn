@@ -1,0 +1,4429 @@
+{
+  "schema_version": 1,
+  "status": "candidate-allocation-not-release-approval",
+  "baseline_ready": 22,
+  "target_ready": 150,
+  "minimum_substantive_adaptations": 76,
+  "source_inventory": "foundation-source-inventory.json",
+  "entries": [
+    {
+      "primary": "unicode.rune-model",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/logs-logs-logs",
+        "path": "exercises/concept/logs-logs-logs",
+        "artifacts": [
+          {
+            "path": "exercises/concept/logs-logs-logs/logs_logs_logs.go",
+            "sha256": "9743b1730e5612ee447a9412fe11eae556019e0a7fbeb7ded448128996dde502"
+          },
+          {
+            "path": "exercises/concept/logs-logs-logs/logs_logs_logs_test.go",
+            "sha256": "8b706720569c0a7009d2afb2a0bf0605f632fa2bedd07f57e5747f675a004e5d"
+          },
+          {
+            "path": "exercises/concept/logs-logs-logs/.docs/instructions.md",
+            "sha256": "9ee0bb09df80c238a04b3cfee17853cd94f24bac9b02d6bfb63dc054020c8de8"
+          }
+        ]
+      },
+      "behavior_anchor": "func Application(log string) string {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 1,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "strings.immutable-bytes",
+        "types.numeric-conversions"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "unicode.rune-model",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/logs-logs-logs",
+        "path": "exercises/concept/logs-logs-logs",
+        "artifacts": [
+          {
+            "path": "exercises/concept/logs-logs-logs/logs_logs_logs.go",
+            "sha256": "9743b1730e5612ee447a9412fe11eae556019e0a7fbeb7ded448128996dde502"
+          },
+          {
+            "path": "exercises/concept/logs-logs-logs/logs_logs_logs_test.go",
+            "sha256": "8b706720569c0a7009d2afb2a0bf0605f632fa2bedd07f57e5747f675a004e5d"
+          },
+          {
+            "path": "exercises/concept/logs-logs-logs/.docs/instructions.md",
+            "sha256": "9ee0bb09df80c238a04b3cfee17853cd94f24bac9b02d6bfb63dc054020c8de8"
+          }
+        ]
+      },
+      "behavior_anchor": "Replace: replace every matching decoded rune; retain nonmatching runes in order",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 2,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "strings.immutable-bytes",
+        "types.numeric-conversions"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "unicode.rune-model",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/logs-logs-logs",
+        "path": "exercises/concept/logs-logs-logs",
+        "artifacts": [
+          {
+            "path": "exercises/concept/logs-logs-logs/logs_logs_logs.go",
+            "sha256": "9743b1730e5612ee447a9412fe11eae556019e0a7fbeb7ded448128996dde502"
+          },
+          {
+            "path": "exercises/concept/logs-logs-logs/logs_logs_logs_test.go",
+            "sha256": "8b706720569c0a7009d2afb2a0bf0605f632fa2bedd07f57e5747f675a004e5d"
+          },
+          {
+            "path": "exercises/concept/logs-logs-logs/.docs/instructions.md",
+            "sha256": "9ee0bb09df80c238a04b3cfee17853cd94f24bac9b02d6bfb63dc054020c8de8"
+          }
+        ]
+      },
+      "behavior_anchor": "WithinLimit: compare Unicode character count with limit, including empty input and multibyte runes",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 3,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "strings.immutable-bytes",
+        "types.numeric-conversions"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "expressions.boolean-logic",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/annalyns-infiltration",
+        "path": "exercises/concept/annalyns-infiltration",
+        "artifacts": [
+          {
+            "path": "exercises/concept/annalyns-infiltration/annalyns_infiltration.go",
+            "sha256": "c9d7aa824028ded6d2d11002d045bfb53e872964b8d5d49cbc321baedbe3921f"
+          },
+          {
+            "path": "exercises/concept/annalyns-infiltration/annalyns_infiltration_test.go",
+            "sha256": "72d35f7aa0cd5db740dacc0fdbde3132d9c0fafbb5b19dc4339042a432baab47"
+          },
+          {
+            "path": "exercises/concept/annalyns-infiltration/.docs/instructions.md",
+            "sha256": "6d3f16770cd92cebd29df8efb0355ea9bef735634feefd3def0b02d5c5bdc244"
+          }
+        ]
+      },
+      "behavior_anchor": "CanFastAttack/CanSpy/CanSignalPrisoner/CanFreePrisoner: implement the four explicitly different boolean policies as one component",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 4,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.declarations-inference"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "control-flow.for",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/bird-watcher",
+        "path": "exercises/concept/bird-watcher",
+        "artifacts": [
+          {
+            "path": "exercises/concept/bird-watcher/bird_watcher.go",
+            "sha256": "4eb4fda729b2a3db9343b3ba6093c03ff1b62607e7d87d184840acb2eca5c437"
+          },
+          {
+            "path": "exercises/concept/bird-watcher/bird_watcher_test.go",
+            "sha256": "b5d79acfef3b61c0110ad9eeda6e8326310fd04a54f3e8003cc2890baadbb314"
+          },
+          {
+            "path": "exercises/concept/bird-watcher/.docs/instructions.md",
+            "sha256": "27a1a6964326b77c463c4ddc606bdcc3fd93e25a2b75877ae68c0e4245f2d761"
+          }
+        ]
+      },
+      "behavior_anchor": "func TotalBirdCount(birdsPerDay []int) int {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 5,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "expressions.boolean-logic",
+        "functions.signatures-results",
+        "toolchain.build-run"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored",
+      "secondary": [
+        "testing.basics-diagnostics"
+      ],
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+    },
+    {
+      "primary": "slices.len-cap-slicing",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/bird-watcher",
+        "path": "exercises/concept/bird-watcher",
+        "artifacts": [
+          {
+            "path": "exercises/concept/bird-watcher/bird_watcher.go",
+            "sha256": "4eb4fda729b2a3db9343b3ba6093c03ff1b62607e7d87d184840acb2eca5c437"
+          },
+          {
+            "path": "exercises/concept/bird-watcher/bird_watcher_test.go",
+            "sha256": "b5d79acfef3b61c0110ad9eeda6e8326310fd04a54f3e8003cc2890baadbb314"
+          },
+          {
+            "path": "exercises/concept/bird-watcher/.docs/instructions.md",
+            "sha256": "27a1a6964326b77c463c4ddc606bdcc3fd93e25a2b75877ae68c0e4245f2d761"
+          }
+        ]
+      },
+      "behavior_anchor": "func BirdsInWeek(birdsPerDay []int, week int) int {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 6,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "slices.header-model"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "control-flow.range",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/bird-watcher",
+        "path": "exercises/concept/bird-watcher",
+        "artifacts": [
+          {
+            "path": "exercises/concept/bird-watcher/bird_watcher.go",
+            "sha256": "4eb4fda729b2a3db9343b3ba6093c03ff1b62607e7d87d184840acb2eca5c437"
+          },
+          {
+            "path": "exercises/concept/bird-watcher/bird_watcher_test.go",
+            "sha256": "b5d79acfef3b61c0110ad9eeda6e8326310fd04a54f3e8003cc2890baadbb314"
+          },
+          {
+            "path": "exercises/concept/bird-watcher/.docs/instructions.md",
+            "sha256": "27a1a6964326b77c463c4ddc606bdcc3fd93e25a2b75877ae68c0e4245f2d761"
+          }
+        ]
+      },
+      "behavior_anchor": "func FixBirdCountLog(birdsPerDay []int) []int {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 7,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "control-flow.for"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "control-flow.switch",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/blackjack",
+        "path": "exercises/concept/blackjack",
+        "artifacts": [
+          {
+            "path": "exercises/concept/blackjack/blackjack.go",
+            "sha256": "3fd90a634d0fb7e75b331832f0d1acead34cecf0a01bec4580f207ae99f0bff3"
+          },
+          {
+            "path": "exercises/concept/blackjack/blackjack_test.go",
+            "sha256": "8f240e4839339e810be2040535a2c65046bd5f52294312238f1d70dbeab221b0"
+          },
+          {
+            "path": "exercises/concept/blackjack/.docs/instructions.md",
+            "sha256": "f581b02a00af9366b24eaf7aaff27c99050415e7e91efe1d686bdc97a6c034f4"
+          }
+        ]
+      },
+      "behavior_anchor": "func ParseCard(card string) int {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 8,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "control-flow.if",
+        "expressions.comparison"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "control-flow.if",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/blackjack",
+        "path": "exercises/concept/blackjack",
+        "artifacts": [
+          {
+            "path": "exercises/concept/blackjack/blackjack.go",
+            "sha256": "3fd90a634d0fb7e75b331832f0d1acead34cecf0a01bec4580f207ae99f0bff3"
+          },
+          {
+            "path": "exercises/concept/blackjack/blackjack_test.go",
+            "sha256": "8f240e4839339e810be2040535a2c65046bd5f52294312238f1d70dbeab221b0"
+          },
+          {
+            "path": "exercises/concept/blackjack/.docs/instructions.md",
+            "sha256": "f581b02a00af9366b24eaf7aaff27c99050415e7e91efe1d686bdc97a6c034f4"
+          }
+        ]
+      },
+      "behavior_anchor": "func FirstTurn(card1, card2, dealerCard string) string {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 9,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "expressions.boolean-logic"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "time.parsing-zones",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/booking-up-for-beauty",
+        "path": "exercises/concept/booking-up-for-beauty",
+        "artifacts": [
+          {
+            "path": "exercises/concept/booking-up-for-beauty/booking_up_for_beauty.go",
+            "sha256": "98a67f6fbbc3fcc1c1cdbf05805a83e0767ec9cf78795be42e7197c50fe1f036"
+          },
+          {
+            "path": "exercises/concept/booking-up-for-beauty/booking_up_for_beauty_test.go",
+            "sha256": "74343c6647fc9d7ead6d017fb07bc9ff1f279b0604c0663faaffa2341880d61d"
+          },
+          {
+            "path": "exercises/concept/booking-up-for-beauty/.docs/instructions.md",
+            "sha256": "f5b306ec73540d66bfb86851c627748287c4389009a3aaafcc8533cb5993adab"
+          }
+        ]
+      },
+      "behavior_anchor": "func Schedule(date string) time.Time {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 10,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "time.duration-arithmetic",
+        "errors.propagation-context"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "time.parsing-zones",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/booking-up-for-beauty",
+        "path": "exercises/concept/booking-up-for-beauty",
+        "artifacts": [
+          {
+            "path": "exercises/concept/booking-up-for-beauty/booking_up_for_beauty.go",
+            "sha256": "98a67f6fbbc3fcc1c1cdbf05805a83e0767ec9cf78795be42e7197c50fe1f036"
+          },
+          {
+            "path": "exercises/concept/booking-up-for-beauty/booking_up_for_beauty_test.go",
+            "sha256": "74343c6647fc9d7ead6d017fb07bc9ff1f279b0604c0663faaffa2341880d61d"
+          },
+          {
+            "path": "exercises/concept/booking-up-for-beauty/.docs/instructions.md",
+            "sha256": "f5b306ec73540d66bfb86851c627748287c4389009a3aaafcc8533cb5993adab"
+          }
+        ]
+      },
+      "behavior_anchor": "IsAfternoonAppointment: parse a fixed timestamp and classify its hour; no wall-clock access",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 11,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "errors.propagation-context",
+        "time.duration-arithmetic"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "slices.len-cap-slicing",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/card-tricks",
+        "path": "exercises/concept/card-tricks",
+        "artifacts": [
+          {
+            "path": "exercises/concept/card-tricks/card_tricks.go",
+            "sha256": "7df7db67dabdd5359241ea406a8eded0b19e4d7b25f357d723eb4536182e90c2"
+          },
+          {
+            "path": "exercises/concept/card-tricks/card_tricks_test.go",
+            "sha256": "cd0a96e9581112e1eb17b2b38d850edb4f3386edfb1ce0656344582888eec401"
+          },
+          {
+            "path": "exercises/concept/card-tricks/.docs/instructions.md",
+            "sha256": "2e62815e9f52bb899e3f62378ef7f5c9a4756c97f02284f110005b583393fbf0"
+          }
+        ]
+      },
+      "behavior_anchor": "RemoveItem: remove a valid index; retain the original slice for either invalid bound",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 12,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "slices.header-model"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "slices.len-cap-slicing",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/card-tricks",
+        "path": "exercises/concept/card-tricks",
+        "artifacts": [
+          {
+            "path": "exercises/concept/card-tricks/card_tricks.go",
+            "sha256": "7df7db67dabdd5359241ea406a8eded0b19e4d7b25f357d723eb4536182e90c2"
+          },
+          {
+            "path": "exercises/concept/card-tricks/card_tricks_test.go",
+            "sha256": "cd0a96e9581112e1eb17b2b38d850edb4f3386edfb1ce0656344582888eec401"
+          },
+          {
+            "path": "exercises/concept/card-tricks/.docs/instructions.md",
+            "sha256": "2e62815e9f52bb899e3f62378ef7f5c9a4756c97f02284f110005b583393fbf0"
+          }
+        ]
+      },
+      "behavior_anchor": "func GetItem(slice []int, index int) int {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 13,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "slices.header-model"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "slices.backing-array-aliasing",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/card-tricks",
+        "path": "exercises/concept/card-tricks",
+        "artifacts": [
+          {
+            "path": "exercises/concept/card-tricks/card_tricks.go",
+            "sha256": "7df7db67dabdd5359241ea406a8eded0b19e4d7b25f357d723eb4536182e90c2"
+          },
+          {
+            "path": "exercises/concept/card-tricks/card_tricks_test.go",
+            "sha256": "cd0a96e9581112e1eb17b2b38d850edb4f3386edfb1ce0656344582888eec401"
+          },
+          {
+            "path": "exercises/concept/card-tricks/.docs/instructions.md",
+            "sha256": "2e62815e9f52bb899e3f62378ef7f5c9a4756c97f02284f110005b583393fbf0"
+          }
+        ]
+      },
+      "behavior_anchor": "SetItem: mutate an existing indexed element or append for either invalid bound; retained input view observes valid-index mutation",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 14,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "slices.append-growth"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "functions.variadic",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/card-tricks",
+        "path": "exercises/concept/card-tricks",
+        "artifacts": [
+          {
+            "path": "exercises/concept/card-tricks/card_tricks.go",
+            "sha256": "7df7db67dabdd5359241ea406a8eded0b19e4d7b25f357d723eb4536182e90c2"
+          },
+          {
+            "path": "exercises/concept/card-tricks/card_tricks_test.go",
+            "sha256": "cd0a96e9581112e1eb17b2b38d850edb4f3386edfb1ce0656344582888eec401"
+          },
+          {
+            "path": "exercises/concept/card-tricks/.docs/instructions.md",
+            "sha256": "2e62815e9f52bb899e3f62378ef7f5c9a4756c97f02284f110005b583393fbf0"
+          }
+        ]
+      },
+      "behavior_anchor": "func PrependItems(slice []int, values ...int) []int {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 15,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.signatures-results"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "expressions.arithmetic",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/cars-assemble",
+        "path": "exercises/concept/cars-assemble",
+        "artifacts": [
+          {
+            "path": "exercises/concept/cars-assemble/cars_assemble.go",
+            "sha256": "1566ca2bffd11a9405789f34f9bcb44437057d3e806b2f56cf9b165d5cc8df74"
+          },
+          {
+            "path": "exercises/concept/cars-assemble/cars_assemble_test.go",
+            "sha256": "6389effe7b20ccd46d4e92cc2c8190edf41880292bf9160a8b1f3d8154659bf0"
+          },
+          {
+            "path": "exercises/concept/cars-assemble/.docs/instructions.md",
+            "sha256": "bba383c0ea55eda0834b35173ec17edb4395eee5afa5c309bb8dbb4bec71baf2"
+          }
+        ]
+      },
+      "behavior_anchor": "func CalculateWorkingCarsPerHour(productionRate int, successRate float64) float64 {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 16,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.declarations-inference"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "types.numeric-conversions",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/cars-assemble",
+        "path": "exercises/concept/cars-assemble",
+        "artifacts": [
+          {
+            "path": "exercises/concept/cars-assemble/cars_assemble.go",
+            "sha256": "1566ca2bffd11a9405789f34f9bcb44437057d3e806b2f56cf9b165d5cc8df74"
+          },
+          {
+            "path": "exercises/concept/cars-assemble/cars_assemble_test.go",
+            "sha256": "6389effe7b20ccd46d4e92cc2c8190edf41880292bf9160a8b1f3d8154659bf0"
+          },
+          {
+            "path": "exercises/concept/cars-assemble/.docs/instructions.md",
+            "sha256": "bba383c0ea55eda0834b35173ec17edb4395eee5afa5c309bb8dbb4bec71baf2"
+          }
+        ]
+      },
+      "behavior_anchor": "func CalculateWorkingCarsPerMinute(productionRate int, successRate float64) int {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 17,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.declarations-inference"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "control-flow.if",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/cars-assemble",
+        "path": "exercises/concept/cars-assemble",
+        "artifacts": [
+          {
+            "path": "exercises/concept/cars-assemble/cars_assemble.go",
+            "sha256": "1566ca2bffd11a9405789f34f9bcb44437057d3e806b2f56cf9b165d5cc8df74"
+          },
+          {
+            "path": "exercises/concept/cars-assemble/cars_assemble_test.go",
+            "sha256": "6389effe7b20ccd46d4e92cc2c8190edf41880292bf9160a8b1f3d8154659bf0"
+          },
+          {
+            "path": "exercises/concept/cars-assemble/.docs/instructions.md",
+            "sha256": "bba383c0ea55eda0834b35173ec17edb4395eee5afa5c309bb8dbb4bec71baf2"
+          }
+        ]
+      },
+      "behavior_anchor": "func CalculateCost(carsCount int) uint {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 18,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "expressions.boolean-logic"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "structs.literals-zero",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/census",
+        "path": "exercises/concept/census",
+        "artifacts": [
+          {
+            "path": "exercises/concept/census/census.go",
+            "sha256": "04b2b192ea22d61ebda38448203556fb3b22dbafe466835d6da5ddc725e32538"
+          },
+          {
+            "path": "exercises/concept/census/census_test.go",
+            "sha256": "895bc067bdb9a9087ed031d6c2cf3cd5532be6a707042c15f045d746f59a66c0"
+          },
+          {
+            "path": "exercises/concept/census/.docs/instructions.md",
+            "sha256": "ed1c8e061336a69e480d0da88dfbda321acd61bf28d34dbdb5f92251f0835589"
+          }
+        ]
+      },
+      "behavior_anchor": "NewResident: construct a pointer to a struct containing the supplied name, age and address map",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 19,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "maps.operations-comma-ok",
+        "pointers.address-deref-nil",
+        "types.zero-values"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "methods.receiver-semantics",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/census",
+        "path": "exercises/concept/census",
+        "artifacts": [
+          {
+            "path": "exercises/concept/census/census.go",
+            "sha256": "04b2b192ea22d61ebda38448203556fb3b22dbafe466835d6da5ddc725e32538"
+          },
+          {
+            "path": "exercises/concept/census/census_test.go",
+            "sha256": "895bc067bdb9a9087ed031d6c2cf3cd5532be6a707042c15f045d746f59a66c0"
+          },
+          {
+            "path": "exercises/concept/census/.docs/instructions.md",
+            "sha256": "ed1c8e061336a69e480d0da88dfbda321acd61bf28d34dbdb5f92251f0835589"
+          }
+        ]
+      },
+      "behavior_anchor": "(*Resident).Delete: clear fields through a pointer receiver, visible to aliases",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 20,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.signatures-results",
+        "maps.operations-comma-ok",
+        "pointers.mutation-sharing",
+        "structs.literals-zero",
+        "types.named-underlying"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "maps.iteration",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/chessboard",
+        "path": "exercises/concept/chessboard",
+        "artifacts": [
+          {
+            "path": "exercises/concept/chessboard/chessboard.go",
+            "sha256": "9b1ec7fc0af1c9c12f6b20165583ddba11d52d1efcad627dd8024a10f28d5c04"
+          },
+          {
+            "path": "exercises/concept/chessboard/chessboard_test.go",
+            "sha256": "bd87cb0416cabe881f5acb24fea559502353da0bd04da53a09db0c55cb204eb6"
+          },
+          {
+            "path": "exercises/concept/chessboard/.docs/instructions.md",
+            "sha256": "a0b175e8a38b3993b51db857c913a6d7056b9126837aebc7bb17c4bde54a6cd1"
+          }
+        ]
+      },
+      "behavior_anchor": "func CountInFile(cb Chessboard, file string) int {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 21,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "maps.operations-comma-ok",
+        "control-flow.range"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "maps.iteration",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/chessboard",
+        "path": "exercises/concept/chessboard",
+        "artifacts": [
+          {
+            "path": "exercises/concept/chessboard/chessboard.go",
+            "sha256": "9b1ec7fc0af1c9c12f6b20165583ddba11d52d1efcad627dd8024a10f28d5c04"
+          },
+          {
+            "path": "exercises/concept/chessboard/chessboard_test.go",
+            "sha256": "bd87cb0416cabe881f5acb24fea559502353da0bd04da53a09db0c55cb204eb6"
+          },
+          {
+            "path": "exercises/concept/chessboard/.docs/instructions.md",
+            "sha256": "a0b175e8a38b3993b51db857c913a6d7056b9126837aebc7bb17c4bde54a6cd1"
+          }
+        ]
+      },
+      "behavior_anchor": "CountInRank: sum a fixed rank across map values which are slices",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 22,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "control-flow.range",
+        "maps.operations-comma-ok",
+        "slices.len-cap-slicing"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "control-flow.range",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/chessboard",
+        "path": "exercises/concept/chessboard",
+        "artifacts": [
+          {
+            "path": "exercises/concept/chessboard/chessboard.go",
+            "sha256": "9b1ec7fc0af1c9c12f6b20165583ddba11d52d1efcad627dd8024a10f28d5c04"
+          },
+          {
+            "path": "exercises/concept/chessboard/chessboard_test.go",
+            "sha256": "bd87cb0416cabe881f5acb24fea559502353da0bd04da53a09db0c55cb204eb6"
+          },
+          {
+            "path": "exercises/concept/chessboard/.docs/instructions.md",
+            "sha256": "a0b175e8a38b3993b51db857c913a6d7056b9126837aebc7bb17c4bde54a6cd1"
+          }
+        ]
+      },
+      "behavior_anchor": "func CountAll(cb Chessboard) int {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 23,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "control-flow.for"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "pointers.address-deref-nil",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/election-day",
+        "path": "exercises/concept/election-day",
+        "artifacts": [
+          {
+            "path": "exercises/concept/election-day/election_day.go",
+            "sha256": "9436282826cd6e2b9294f0daf322a0ce35bb52c427e71eeb4228546bc78ecee6"
+          },
+          {
+            "path": "exercises/concept/election-day/election_day_test.go",
+            "sha256": "f90072635cbd80225285dd242e009d3492cfa358c13419e7076bdd8b1b5d418c"
+          },
+          {
+            "path": "exercises/concept/election-day/.docs/instructions.md",
+            "sha256": "dd0edeccca1fd776641e337cc92eba7560c73c82c0a0a9da044ed93feaf9dce6"
+          }
+        ]
+      },
+      "behavior_anchor": "func NewVoteCounter(initialVotes int) *int {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 24,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.zero-values"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "pointers.address-deref-nil",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/election-day",
+        "path": "exercises/concept/election-day",
+        "artifacts": [
+          {
+            "path": "exercises/concept/election-day/election_day.go",
+            "sha256": "9436282826cd6e2b9294f0daf322a0ce35bb52c427e71eeb4228546bc78ecee6"
+          },
+          {
+            "path": "exercises/concept/election-day/election_day_test.go",
+            "sha256": "f90072635cbd80225285dd242e009d3492cfa358c13419e7076bdd8b1b5d418c"
+          },
+          {
+            "path": "exercises/concept/election-day/.docs/instructions.md",
+            "sha256": "dd0edeccca1fd776641e337cc92eba7560c73c82c0a0a9da044ed93feaf9dce6"
+          }
+        ]
+      },
+      "behavior_anchor": "VoteCount: safely dereference a counter, returning zero for a nil counter",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 25,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.zero-values"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "pointers.mutation-sharing",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/election-day",
+        "path": "exercises/concept/election-day",
+        "artifacts": [
+          {
+            "path": "exercises/concept/election-day/election_day.go",
+            "sha256": "9436282826cd6e2b9294f0daf322a0ce35bb52c427e71eeb4228546bc78ecee6"
+          },
+          {
+            "path": "exercises/concept/election-day/election_day_test.go",
+            "sha256": "f90072635cbd80225285dd242e009d3492cfa358c13419e7076bdd8b1b5d418c"
+          },
+          {
+            "path": "exercises/concept/election-day/.docs/instructions.md",
+            "sha256": "dd0edeccca1fd776641e337cc92eba7560c73c82c0a0a9da044ed93feaf9dce6"
+          }
+        ]
+      },
+      "behavior_anchor": "func IncrementVoteCount(counter *int, increment int) {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 26,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "pointers.address-deref-nil",
+        "structs.copy-equality"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "functions.function-values",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/expenses",
+        "path": "exercises/concept/expenses",
+        "artifacts": [
+          {
+            "path": "exercises/concept/expenses/expenses.go",
+            "sha256": "022dbf2b5b800e272aca903286daa68335dc436c316487332afd6f7da7ca6dbf"
+          },
+          {
+            "path": "exercises/concept/expenses/expenses_test.go",
+            "sha256": "69d907bab061fa5cd7d60a040dcf30cba2b71bcd297318e4178f8a9953195651"
+          },
+          {
+            "path": "exercises/concept/expenses/.docs/instructions.md",
+            "sha256": "7d1917452bb8975e5f7e8a1b88fe9fe6696578cb8c81e3172acceb7dc760fbd6"
+          }
+        ]
+      },
+      "behavior_anchor": "func Filter(in []Record, predicate func(Record) bool) []Record {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 27,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "control-flow.range",
+        "functions.signatures-results",
+        "slices.len-cap-slicing",
+        "structs.literals-zero"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "functions.closure-capture",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/expenses",
+        "path": "exercises/concept/expenses",
+        "artifacts": [
+          {
+            "path": "exercises/concept/expenses/expenses.go",
+            "sha256": "022dbf2b5b800e272aca903286daa68335dc436c316487332afd6f7da7ca6dbf"
+          },
+          {
+            "path": "exercises/concept/expenses/expenses_test.go",
+            "sha256": "69d907bab061fa5cd7d60a040dcf30cba2b71bcd297318e4178f8a9953195651"
+          },
+          {
+            "path": "exercises/concept/expenses/.docs/instructions.md",
+            "sha256": "7d1917452bb8975e5f7e8a1b88fe9fe6696578cb8c81e3172acceb7dc760fbd6"
+          }
+        ]
+      },
+      "behavior_anchor": "func ByDaysPeriod(p DaysPeriod) func(Record) bool {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 28,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "control-flow.range",
+        "functions.function-values",
+        "slices.len-cap-slicing",
+        "structs.literals-zero"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "functions.closure-capture",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/expenses",
+        "path": "exercises/concept/expenses",
+        "artifacts": [
+          {
+            "path": "exercises/concept/expenses/expenses.go",
+            "sha256": "022dbf2b5b800e272aca903286daa68335dc436c316487332afd6f7da7ca6dbf"
+          },
+          {
+            "path": "exercises/concept/expenses/expenses_test.go",
+            "sha256": "69d907bab061fa5cd7d60a040dcf30cba2b71bcd297318e4178f8a9953195651"
+          },
+          {
+            "path": "exercises/concept/expenses/.docs/instructions.md",
+            "sha256": "7d1917452bb8975e5f7e8a1b88fe9fe6696578cb8c81e3172acceb7dc760fbd6"
+          }
+        ]
+      },
+      "behavior_anchor": "func ByCategory(c string) func(Record) bool {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 29,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "control-flow.range",
+        "functions.function-values",
+        "slices.len-cap-slicing",
+        "structs.literals-zero"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "maps.operations-comma-ok",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/gross-store",
+        "path": "exercises/concept/gross-store",
+        "artifacts": [
+          {
+            "path": "exercises/concept/gross-store/gross_store.go",
+            "sha256": "89eb0753eef5531a65a4549e2ae4967d5b43e835016f812b5cf97989a10b75ab"
+          },
+          {
+            "path": "exercises/concept/gross-store/gross_store_test.go",
+            "sha256": "ee57d89ed1db41fa9147465596dfb079e102af439abf9ac30725771861a5569b"
+          },
+          {
+            "path": "exercises/concept/gross-store/.docs/instructions.md",
+            "sha256": "4ed6bbcdcaad6e1091c4b67364a0d14c180b38bea035be784ce3574d2720a001"
+          }
+        ]
+      },
+      "behavior_anchor": "GetItem: return the stored quantity with presence flag, preserving absent versus present zero",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 30,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.zero-values"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "maps.nil-delete-clear",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/gross-store",
+        "path": "exercises/concept/gross-store",
+        "artifacts": [
+          {
+            "path": "exercises/concept/gross-store/gross_store.go",
+            "sha256": "89eb0753eef5531a65a4549e2ae4967d5b43e835016f812b5cf97989a10b75ab"
+          },
+          {
+            "path": "exercises/concept/gross-store/gross_store_test.go",
+            "sha256": "ee57d89ed1db41fa9147465596dfb079e102af439abf9ac30725771861a5569b"
+          },
+          {
+            "path": "exercises/concept/gross-store/.docs/instructions.md",
+            "sha256": "4ed6bbcdcaad6e1091c4b67364a0d14c180b38bea035be784ce3574d2720a001"
+          }
+        ]
+      },
+      "behavior_anchor": "RemoveItem: reduce quantity by a unit, delete exactly at zero, reject missing/insufficient items without mutation",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 31,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "maps.operations-comma-ok"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "maps.operations-comma-ok",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/gross-store",
+        "path": "exercises/concept/gross-store",
+        "artifacts": [
+          {
+            "path": "exercises/concept/gross-store/gross_store.go",
+            "sha256": "89eb0753eef5531a65a4549e2ae4967d5b43e835016f812b5cf97989a10b75ab"
+          },
+          {
+            "path": "exercises/concept/gross-store/gross_store_test.go",
+            "sha256": "ee57d89ed1db41fa9147465596dfb079e102af439abf9ac30725771861a5569b"
+          },
+          {
+            "path": "exercises/concept/gross-store/.docs/instructions.md",
+            "sha256": "4ed6bbcdcaad6e1091c4b67364a0d14c180b38bea035be784ce3574d2720a001"
+          }
+        ]
+      },
+      "behavior_anchor": "func AddItem(bill, units map[string]int, item, unit string) bool {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 32,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.zero-values"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "types.floating-point-semantics",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/interest-is-interesting",
+        "path": "exercises/concept/interest-is-interesting",
+        "artifacts": [
+          {
+            "path": "exercises/concept/interest-is-interesting/interest_is_interesting.go",
+            "sha256": "1bc22d60c947e930ba4fff38c67f3342360a51426fcea6971f8b6ab772938da4"
+          },
+          {
+            "path": "exercises/concept/interest-is-interesting/interest_is_interesting_test.go",
+            "sha256": "4fff5e840eec1efea9ab593326c60a4249a38be4796311420a489937bb3accb8"
+          },
+          {
+            "path": "exercises/concept/interest-is-interesting/.docs/instructions.md",
+            "sha256": "7071155ee43153e3e485eebeb5d80851fbed6597e3415d932e5b08653276f34b"
+          }
+        ]
+      },
+      "behavior_anchor": "func InterestRate(balance float64) float32 {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 33,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.numeric-conversions",
+        "expressions.comparison"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "types.numeric-conversions",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/interest-is-interesting",
+        "path": "exercises/concept/interest-is-interesting",
+        "artifacts": [
+          {
+            "path": "exercises/concept/interest-is-interesting/interest_is_interesting.go",
+            "sha256": "1bc22d60c947e930ba4fff38c67f3342360a51426fcea6971f8b6ab772938da4"
+          },
+          {
+            "path": "exercises/concept/interest-is-interesting/interest_is_interesting_test.go",
+            "sha256": "4fff5e840eec1efea9ab593326c60a4249a38be4796311420a489937bb3accb8"
+          },
+          {
+            "path": "exercises/concept/interest-is-interesting/.docs/instructions.md",
+            "sha256": "7071155ee43153e3e485eebeb5d80851fbed6597e3415d932e5b08653276f34b"
+          }
+        ]
+      },
+      "behavior_anchor": "func Interest(balance float64) float64 {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 34,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.declarations-inference"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "functions.signatures-results",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/lasagna-master",
+        "path": "exercises/concept/lasagna-master",
+        "artifacts": [
+          {
+            "path": "exercises/concept/lasagna-master/lasagna_master.go",
+            "sha256": "e17b4fef63dd0d5318fe7510929ee70fefe15fdd0a37ef60bb82ccb7f7dd3fa5"
+          },
+          {
+            "path": "exercises/concept/lasagna-master/lasagna_master_test.go",
+            "sha256": "859244d7da30ab66b8899b2e92919a35cb735012da7522ecc4de3a87539315ff"
+          },
+          {
+            "path": "exercises/concept/lasagna-master/.docs/instructions.md",
+            "sha256": "16cdb86d9ce633cf761ed8140c7ea146e93ca210842abc22fae09fafc55d940f"
+          },
+          {
+            "path": "exercises/concept/lasagna-master/.meta/config.json",
+            "sha256": "546910fe7187ba3553dd94839600fca4c2fbea76278e43f90ce28084a99da478"
+          }
+        ]
+      },
+      "behavior_anchor": "Quantities: count two layer kinds and return both integer and floating quantities",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 35,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.declarations-inference"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "types.constants",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/lasagna",
+        "path": "exercises/concept/lasagna",
+        "artifacts": [
+          {
+            "path": "exercises/concept/lasagna/lasagna.go",
+            "sha256": "e29427f6a5722a7e9d95f71584365d8bda7810c30510b19622a37b8fc3387b5d"
+          },
+          {
+            "path": "exercises/concept/lasagna/lasagna_test.go",
+            "sha256": "39cc01dffcec27430172a1bf235aa71e8fe4dd6659b8c47d149f2536f0427c13"
+          },
+          {
+            "path": "exercises/concept/lasagna/.docs/instructions.md",
+            "sha256": "ed9879cc9721d884add56b006f1f11adf8a2b62944959911a52b20e62dba85ba"
+          }
+        ]
+      },
+      "behavior_anchor": "Declare OvenTime and implement RemainingOvenTime using the remaining-time contract",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 36,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.numeric-conversions"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "slices.backing-array-aliasing",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/lasagna-master",
+        "path": "exercises/concept/lasagna-master",
+        "artifacts": [
+          {
+            "path": "exercises/concept/lasagna-master/lasagna_master.go",
+            "sha256": "e17b4fef63dd0d5318fe7510929ee70fefe15fdd0a37ef60bb82ccb7f7dd3fa5"
+          },
+          {
+            "path": "exercises/concept/lasagna-master/lasagna_master_test.go",
+            "sha256": "859244d7da30ab66b8899b2e92919a35cb735012da7522ecc4de3a87539315ff"
+          },
+          {
+            "path": "exercises/concept/lasagna-master/.docs/instructions.md",
+            "sha256": "16cdb86d9ce633cf761ed8140c7ea146e93ca210842abc22fae09fafc55d940f"
+          },
+          {
+            "path": "exercises/concept/lasagna-master/.meta/config.json",
+            "sha256": "546910fe7187ba3553dd94839600fca4c2fbea76278e43f90ce28084a99da478"
+          }
+        ]
+      },
+      "behavior_anchor": "AddSecretIngredient: update the destination final element while preserving the source",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 37,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "slices.append-growth",
+        "strings.immutable-bytes"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "structs.literals-zero",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/need-for-speed",
+        "path": "exercises/concept/need-for-speed",
+        "artifacts": [
+          {
+            "path": "exercises/concept/need-for-speed/need_for_speed.go",
+            "sha256": "bfd8a4d3c499d90c8dc6567560b2d9f115069b878bb9525799792dffcb84ef4f"
+          },
+          {
+            "path": "exercises/concept/need-for-speed/need_for_speed_test.go",
+            "sha256": "06aba0bfd457572564d56a856d7a619225e9cb21723f88c9ce61907f3d684a25"
+          },
+          {
+            "path": "exercises/concept/need-for-speed/.docs/instructions.md",
+            "sha256": "f8801201f7d81869c949627d7a4f368b39045822aaca9faac0e3f5f2a16efc2b"
+          }
+        ]
+      },
+      "behavior_anchor": "NewCar and NewTrack: construct both values with supplied fields and specified initial battery/distance",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 38,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.zero-values"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "structs.copy-equality",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/need-for-speed",
+        "path": "exercises/concept/need-for-speed",
+        "artifacts": [
+          {
+            "path": "exercises/concept/need-for-speed/need_for_speed.go",
+            "sha256": "bfd8a4d3c499d90c8dc6567560b2d9f115069b878bb9525799792dffcb84ef4f"
+          },
+          {
+            "path": "exercises/concept/need-for-speed/need_for_speed_test.go",
+            "sha256": "06aba0bfd457572564d56a856d7a619225e9cb21723f88c9ce61907f3d684a25"
+          },
+          {
+            "path": "exercises/concept/need-for-speed/.docs/instructions.md",
+            "sha256": "f8801201f7d81869c949627d7a4f368b39045822aaca9faac0e3f5f2a16efc2b"
+          }
+        ]
+      },
+      "behavior_anchor": "Drive: return an updated value without changing the supplied car; insufficient battery leaves it unchanged",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 39,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "structs.literals-zero",
+        "types.named-underlying"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "functions.variadic",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "arrays/v7/sum.go",
+        "artifacts": [
+          {
+            "path": "arrays/v7/sum.go",
+            "sha256": "03de8eb184f4ae83cda3ec42338140c12159fd8f5522672095a867f07a62d402"
+          }
+        ]
+      },
+      "behavior_anchor": "SumAllTails: accept variadic integer slices; sum each tail, including empty input and empty nested slices",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 40,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.signatures-results",
+        "slices.len-cap-slicing",
+        "control-flow.range"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "strings.formatting",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/party-robot",
+        "path": "exercises/concept/party-robot",
+        "artifacts": [
+          {
+            "path": "exercises/concept/party-robot/party_robot.go",
+            "sha256": "85385bfbc12a1aa302d0f1eedf68220db99095095cbe5d393e21e9ee63841d34"
+          },
+          {
+            "path": "exercises/concept/party-robot/party_robot_test.go",
+            "sha256": "b6d45a3102189af1eecba4d4f1a5554b859f495f5d9927f002279d3f577d2b8e"
+          },
+          {
+            "path": "exercises/concept/party-robot/.docs/instructions.md",
+            "sha256": "68bfe0ee782091117e9b4203b1bf9bd44c125809cf4d0a73e871c43732d3fa44"
+          }
+        ]
+      },
+      "behavior_anchor": "func Welcome(name string) string {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 41,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "strings.immutable-bytes",
+        "types.declarations-inference"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "types.constants",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/savings-account",
+        "path": "exercises/concept/savings-account",
+        "artifacts": [
+          {
+            "path": "exercises/concept/savings-account/savings_account.go",
+            "sha256": "7288e79e786ddd69c466242c24756ebfda7d671e6e497daea60ececa804a8ed8"
+          },
+          {
+            "path": "exercises/concept/savings-account/savings_account_test.go",
+            "sha256": "40924dada9acec0e6225deefc61295ac9f1ffaabfb9fa7d5d8798d8d3d3178e6"
+          },
+          {
+            "path": "exercises/concept/savings-account/.docs/instructions.md",
+            "sha256": "99088bae00bef7cd03072bfeeed21eb880d47a6af2c04fcc9a80fa1c04dfdbcf"
+          }
+        ]
+      },
+      "behavior_anchor": "FixedInterestRate and DaysPerYear: declare and use both untyped fractional and typed integer constants",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 42,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.numeric-conversions"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "errors.propagation-context",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/the-farm",
+        "path": "exercises/concept/the-farm",
+        "artifacts": [
+          {
+            "path": "exercises/concept/the-farm/the_farm.go",
+            "sha256": "d927b7d95e88e8daee06e46dc5dacb9925ee406be38b58b70ec1931f1a1cc5ae"
+          },
+          {
+            "path": "exercises/concept/the-farm/types.go",
+            "sha256": "85410e8c90f2fb0f315a46432c81bc6393a9524db9a26c4108010c173cc090e9"
+          },
+          {
+            "path": "exercises/concept/the-farm/the_farm_test.go",
+            "sha256": "eebcd96dd603633e24fbb553d4d5c3385889b994f4f12aa0fda5e6c974f15735"
+          },
+          {
+            "path": "exercises/concept/the-farm/.docs/instructions.md",
+            "sha256": "ae04554a1b323ecd56d157cd98ea292b96c27499228e2b569234be4977e16b09"
+          },
+          {
+            "path": "exercises/concept/the-farm/.meta/config.json",
+            "sha256": "70787c6b08240b7e14433b264d407613d9a985711eeb87a598f7dba3d7ce99b6"
+          }
+        ]
+      },
+      "behavior_anchor": "DivideFood: call the two error-returning dependencies in order, stop at either error and propagate the same error",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 43,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "errors.sentinels-creation",
+        "interfaces.small-contracts"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "types.iota-enumeration",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/savings-account",
+        "path": "exercises/concept/savings-account",
+        "artifacts": [
+          {
+            "path": "exercises/concept/savings-account/savings_account.go",
+            "sha256": "7288e79e786ddd69c466242c24756ebfda7d671e6e497daea60ececa804a8ed8"
+          },
+          {
+            "path": "exercises/concept/savings-account/savings_account_test.go",
+            "sha256": "40924dada9acec0e6225deefc61295ac9f1ffaabfb9fa7d5d8798d8d3d3178e6"
+          },
+          {
+            "path": "exercises/concept/savings-account/.docs/instructions.md",
+            "sha256": "99088bae00bef7cd03072bfeeed21eb880d47a6af2c04fcc9a80fa1c04dfdbcf"
+          }
+        ]
+      },
+      "behavior_anchor": "Declare Jan through Dec with iota values 1 through 12, then implement GetMonth; identity wrapper alone does not qualify",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 44,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.constants"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "interfaces.small-contracts",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/sorting-room",
+        "path": "exercises/concept/sorting-room",
+        "artifacts": [
+          {
+            "path": "exercises/concept/sorting-room/sorting_room.go",
+            "sha256": "fed49e34054c5570f3781b5bbafbfeefd90311b64b053cb0689d78d94c5f24b5"
+          },
+          {
+            "path": "exercises/concept/sorting-room/sorting_room_test.go",
+            "sha256": "53836e751a7080cadc798335b4660a9ab79a63d7d5370a31db4784eb34593e48"
+          },
+          {
+            "path": "exercises/concept/sorting-room/.docs/instructions.md",
+            "sha256": "8ac9b1eb7a4ccff953cd58353006ada47c759d92cc0fdda512fba1cc9728ecda"
+          }
+        ]
+      },
+      "behavior_anchor": "DescribeNumberBox: call Number through the declared interface and format the returned number",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 45,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "interfaces.implicit-satisfaction"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "interfaces.type-assertions",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/sorting-room",
+        "path": "exercises/concept/sorting-room",
+        "artifacts": [
+          {
+            "path": "exercises/concept/sorting-room/sorting_room.go",
+            "sha256": "fed49e34054c5570f3781b5bbafbfeefd90311b64b053cb0689d78d94c5f24b5"
+          },
+          {
+            "path": "exercises/concept/sorting-room/sorting_room_test.go",
+            "sha256": "53836e751a7080cadc798335b4660a9ab79a63d7d5370a31db4784eb34593e48"
+          },
+          {
+            "path": "exercises/concept/sorting-room/.docs/instructions.md",
+            "sha256": "8ac9b1eb7a4ccff953cd58353006ada47c759d92cc0fdda512fba1cc9728ecda"
+          }
+        ]
+      },
+      "behavior_anchor": "ExtractFancyNumber: accept the specific FancyNumber dynamic type and reject alternatives",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 46,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "interfaces.dynamic-type-value"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "interfaces.type-switches",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/sorting-room",
+        "path": "exercises/concept/sorting-room",
+        "artifacts": [
+          {
+            "path": "exercises/concept/sorting-room/sorting_room.go",
+            "sha256": "fed49e34054c5570f3781b5bbafbfeefd90311b64b053cb0689d78d94c5f24b5"
+          },
+          {
+            "path": "exercises/concept/sorting-room/sorting_room_test.go",
+            "sha256": "53836e751a7080cadc798335b4660a9ab79a63d7d5370a31db4784eb34593e48"
+          },
+          {
+            "path": "exercises/concept/sorting-room/.docs/instructions.md",
+            "sha256": "8ac9b1eb7a4ccff953cd58353006ada47c759d92cc0fdda512fba1cc9728ecda"
+          }
+        ]
+      },
+      "behavior_anchor": "DescribeAnything: dispatch int, float64, NumberBox, FancyNumberBox and default cases",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 47,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "control-flow.switch",
+        "interfaces.dynamic-type-value"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "control-flow.if",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/vehicle-purchase",
+        "path": "exercises/concept/vehicle-purchase",
+        "artifacts": [
+          {
+            "path": "exercises/concept/vehicle-purchase/vehicle_purchase.go",
+            "sha256": "34e4a10c96081159166652b69ca50265cb02e0389fe5f96ebebcd1d3388c6774"
+          },
+          {
+            "path": "exercises/concept/vehicle-purchase/vehicle_purchase_test.go",
+            "sha256": "05be4fda4bb0ed5285a7d56c036ecb66b2df6e3916c635a17d5b1c9a87b4038a"
+          },
+          {
+            "path": "exercises/concept/vehicle-purchase/.docs/instructions.md",
+            "sha256": "d29d2b641d7ff2aa9a5746db98be0108ee238a749eebb7ca1c1145c6dfc4db5f"
+          }
+        ]
+      },
+      "behavior_anchor": "func NeedsLicense(kind string) bool {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 48,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "expressions.boolean-logic"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "expressions.comparison",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/vehicle-purchase",
+        "path": "exercises/concept/vehicle-purchase",
+        "artifacts": [
+          {
+            "path": "exercises/concept/vehicle-purchase/vehicle_purchase.go",
+            "sha256": "34e4a10c96081159166652b69ca50265cb02e0389fe5f96ebebcd1d3388c6774"
+          },
+          {
+            "path": "exercises/concept/vehicle-purchase/vehicle_purchase_test.go",
+            "sha256": "05be4fda4bb0ed5285a7d56c036ecb66b2df6e3916c635a17d5b1c9a87b4038a"
+          },
+          {
+            "path": "exercises/concept/vehicle-purchase/.docs/instructions.md",
+            "sha256": "d29d2b641d7ff2aa9a5746db98be0108ee238a749eebb7ca1c1145c6dfc4db5f"
+          }
+        ]
+      },
+      "behavior_anchor": "func ChooseVehicle(option1, option2 string) string {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 49,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.declarations-inference"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "strings.standard-library",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/welcome-to-tech-palace",
+        "path": "exercises/concept/welcome-to-tech-palace",
+        "artifacts": [
+          {
+            "path": "exercises/concept/welcome-to-tech-palace/welcome_to_tech_palace.go",
+            "sha256": "616d6855c08cdc53e97e336bce5efa16eb7da79455ec680842967edbb703692f"
+          },
+          {
+            "path": "exercises/concept/welcome-to-tech-palace/welcome_to_tech_palace_test.go",
+            "sha256": "d8f706c84c870cedf52904ede073b2dc67c0d9b8d312152f05055901c20d4b88"
+          },
+          {
+            "path": "exercises/concept/welcome-to-tech-palace/.docs/instructions.md",
+            "sha256": "d1924769405fde89b9a4c08d9eb21e22946a35f0794143666a71a6437b5e7aed"
+          }
+        ]
+      },
+      "behavior_anchor": "func WelcomeMessage(customer string) string {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 50,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "strings.immutable-bytes"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "strings.building",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/welcome-to-tech-palace",
+        "path": "exercises/concept/welcome-to-tech-palace",
+        "artifacts": [
+          {
+            "path": "exercises/concept/welcome-to-tech-palace/welcome_to_tech_palace.go",
+            "sha256": "616d6855c08cdc53e97e336bce5efa16eb7da79455ec680842967edbb703692f"
+          },
+          {
+            "path": "exercises/concept/welcome-to-tech-palace/welcome_to_tech_palace_test.go",
+            "sha256": "d8f706c84c870cedf52904ede073b2dc67c0d9b8d312152f05055901c20d4b88"
+          },
+          {
+            "path": "exercises/concept/welcome-to-tech-palace/.docs/instructions.md",
+            "sha256": "d1924769405fde89b9a4c08d9eb21e22946a35f0794143666a71a6437b5e7aed"
+          }
+        ]
+      },
+      "behavior_anchor": "func AddBorder(welcomeMsg string, numStarsPerLine int) string {",
+      "adaptation_boundary": "Retain the selected function behavior and selected hand-authored examples, remove story, author technical prompt and independent graders. Review full artifact lineage before reuse; minimal stub reuse alone does not qualify.",
+      "slot": 51,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "strings.immutable-bytes",
+        "slices.header-model"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "generics.type-parameters-inference",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "arrays/v8/collection_fun.go",
+        "artifacts": [
+          {
+            "path": "arrays/v8/collection_fun.go",
+            "sha256": "c80ed4a121cab59fc74109b687ee188de121c82f3724b57f409088d23c810d3a"
+          }
+        ]
+      },
+      "behavior_anchor": "Find",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 52,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.signatures-results",
+        "types.named-underlying"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "generics.type-parameters-inference",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "arrays/v8/collection_fun.go",
+        "artifacts": [
+          {
+            "path": "arrays/v8/collection_fun.go",
+            "sha256": "c80ed4a121cab59fc74109b687ee188de121c82f3724b57f409088d23c810d3a"
+          }
+        ]
+      },
+      "behavior_anchor": "Reduce[A,B any]: accumulate values of A into a result of B using the supplied function",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 53,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.signatures-results",
+        "types.named-underlying"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "generics.reusable-data-structures",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "generics/stack.go",
+        "artifacts": [
+          {
+            "path": "generics/stack.go",
+            "sha256": "67b59ceea5bf9522306386c2895267b9a786818c5f231571aafbd55c54668cef"
+          }
+        ]
+      },
+      "behavior_anchor": "Stack[T]: implement Push, Pop and IsEmpty together with LIFO order and typed zero on empty Pop",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 54,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "generics.constraints-type-sets",
+        "methods.receiver-semantics",
+        "slices.append-growth",
+        "types.zero-values"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "errors.typed",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/the-farm",
+        "path": "exercises/concept/the-farm",
+        "artifacts": [
+          {
+            "path": "exercises/concept/the-farm/the_farm.go",
+            "sha256": "d927b7d95e88e8daee06e46dc5dacb9925ee406be38b58b70ec1931f1a1cc5ae"
+          },
+          {
+            "path": "exercises/concept/the-farm/types.go",
+            "sha256": "85410e8c90f2fb0f315a46432c81bc6393a9524db9a26c4108010c173cc090e9"
+          },
+          {
+            "path": "exercises/concept/the-farm/the_farm_test.go",
+            "sha256": "eebcd96dd603633e24fbb553d4d5c3385889b994f4f12aa0fda5e6c974f15735"
+          },
+          {
+            "path": "exercises/concept/the-farm/.docs/instructions.md",
+            "sha256": "ae04554a1b323ecd56d157cd98ea292b96c27499228e2b569234be4977e16b09"
+          },
+          {
+            "path": "exercises/concept/the-farm/.meta/config.json",
+            "sha256": "70787c6b08240b7e14433b264d407613d9a985711eeb87a598f7dba3d7ce99b6"
+          }
+        ]
+      },
+      "behavior_anchor": "ValidateNumberOfCows with InvalidCowsError: distinguish zero/negative counts and expose typed detail",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 55,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "errors.sentinels-creation",
+        "methods.receiver-semantics",
+        "structs.literals-zero"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "errors.sentinels-creation",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/expenses",
+        "path": "exercises/concept/expenses",
+        "artifacts": [
+          {
+            "path": "exercises/concept/expenses/expenses.go",
+            "sha256": "022dbf2b5b800e272aca903286daa68335dc436c316487332afd6f7da7ca6dbf"
+          },
+          {
+            "path": "exercises/concept/expenses/expenses_test.go",
+            "sha256": "69d907bab061fa5cd7d60a040dcf30cba2b71bcd297318e4178f8a9953195651"
+          },
+          {
+            "path": "exercises/concept/expenses/.docs/instructions.md",
+            "sha256": "7d1917452bb8975e5f7e8a1b88fe9fe6696578cb8c81e3172acceb7dc760fbd6"
+          },
+          {
+            "path": "exercises/concept/expenses/.meta/config.json",
+            "sha256": "dfb1c08db62e0346936840dbe04bd25f280e3aecba609a8a6c84aabf9ef7f35b"
+          }
+        ]
+      },
+      "behavior_anchor": "CategoryExpenses: distinguish unknown category from a known category with no entries in the requested period",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 56,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.function-values",
+        "functions.signatures-results",
+        "slices.len-cap-slicing",
+        "structs.literals-zero"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "structs.literals-zero",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "structs/v8/shapes.go",
+        "artifacts": [
+          {
+            "path": "structs/v8/shapes.go",
+            "sha256": "3c22ad07626e74b0d0a9f2aee5f59cc2dc9e2781cef6736059057e1c8e37f1df"
+          }
+        ]
+      },
+      "behavior_anchor": "Perimeter: calculate from the two Rectangle fields; assess construction and independent field values",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 57,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.zero-values"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "interfaces.implicit-satisfaction",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "structs/v8/shapes.go",
+        "artifacts": [
+          {
+            "path": "structs/v8/shapes.go",
+            "sha256": "3c22ad07626e74b0d0a9f2aee5f59cc2dc9e2781cef6736059057e1c8e37f1df"
+          }
+        ]
+      },
+      "behavior_anchor": "Shape.Area component: implement Rectangle, Circle and Triangle behind the same interface; one heterogeneous contract task",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 58,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "methods.method-sets"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "interfaces.small-contracts",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/airport-robot",
+        "path": "exercises/concept/airport-robot",
+        "artifacts": [
+          {
+            "path": "exercises/concept/airport-robot/airport_robot.go",
+            "sha256": "70d0985bafb089e4077f76cb61f6c46a6a85add1c962c049b396ab2473bcf15f"
+          },
+          {
+            "path": "exercises/concept/airport-robot/airport_robot_test.go",
+            "sha256": "176d8a35c2f0f9dc2627e75906f5ad0d06b8ec1c9e2c16d1bc3b62f82be66105"
+          },
+          {
+            "path": "exercises/concept/airport-robot/.docs/instructions.md",
+            "sha256": "df05bb5e3d46dea3ee631c1c46cf738e9ae0c9cd664926fa9dacb61f1a54ef28"
+          },
+          {
+            "path": "exercises/concept/airport-robot/.meta/config.json",
+            "sha256": "7268a45f4d7920ed81c8d34f74f4233c24801778915b13fa31cc406d0fef4b58"
+          }
+        ]
+      },
+      "behavior_anchor": "Greeter and SayHello: compose the LanguageName and Greet results through a two-method interface",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 59,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "interfaces.implicit-satisfaction",
+        "types.declarations-inference"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored",
+      "secondary": [
+        "interfaces.dynamic-type-value"
+      ],
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+    },
+    {
+      "primary": "interfaces.stringer-contract",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/meteorology",
+        "path": "exercises/concept/meteorology",
+        "artifacts": [
+          {
+            "path": "exercises/concept/meteorology/meteorology.go",
+            "sha256": "61685cc4d79f4b235243d25342a3b76df3b244af224347d77f0cd865b860546f"
+          },
+          {
+            "path": "exercises/concept/meteorology/meteorology_test.go",
+            "sha256": "ab9ca9b8760af18fb2059ab9aea3d518dcbe21563e64dcf6aa29af57acfdd352"
+          },
+          {
+            "path": "exercises/concept/meteorology/.docs/instructions.md",
+            "sha256": "7eace0fd9e79f0a2859610820c3edc9841f60ee1415264225b1b4389dc248ca5"
+          },
+          {
+            "path": "exercises/concept/meteorology/.meta/config.json",
+            "sha256": "d888f080020a148500c9b991e68feffbdea0e2517f14a089e0cc032eb6faf616"
+          }
+        ]
+      },
+      "behavior_anchor": "Temperature, Speed and MeteorologyData String methods: compose nested formatted values as one component",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 60,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "interfaces.small-contracts",
+        "methods.receiver-semantics",
+        "strings.formatting",
+        "structs.literals-zero"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "errors.sentinels-creation",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "maps/v7/dictionary.go",
+        "artifacts": [
+          {
+            "path": "maps/v7/dictionary.go",
+            "sha256": "e17675c9982b2ff1317c6c59ba538c9ce2be9b549cda37f547969fe02616c40a"
+          }
+        ]
+      },
+      "behavior_anchor": "Dictionary.Search: distinguish a present empty definition from an absent key with a stable sentinel",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 61,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.signatures-results"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "errors.sentinels-creation",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "maps/v7/dictionary.go",
+        "artifacts": [
+          {
+            "path": "maps/v7/dictionary.go",
+            "sha256": "e17675c9982b2ff1317c6c59ba538c9ce2be9b549cda37f547969fe02616c40a"
+          }
+        ]
+      },
+      "behavior_anchor": "Add",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 62,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.signatures-results"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "errors.typed",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "maps/v7/dictionary.go",
+        "artifacts": [
+          {
+            "path": "maps/v7/dictionary.go",
+            "sha256": "e17675c9982b2ff1317c6c59ba538c9ce2be9b549cda37f547969fe02616c40a"
+          }
+        ]
+      },
+      "behavior_anchor": "Update",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 63,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "errors.sentinels-creation",
+        "structs.literals-zero",
+        "methods.receiver-semantics"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "maps.nil-delete-clear",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "maps/v7/dictionary.go",
+        "artifacts": [
+          {
+            "path": "maps/v7/dictionary.go",
+            "sha256": "e17675c9982b2ff1317c6c59ba538c9ce2be9b549cda37f547969fe02616c40a"
+          }
+        ]
+      },
+      "behavior_anchor": "Delete",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 64,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "maps.operations-comma-ok"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "methods.receiver-semantics",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "pointers/v4/wallet.go",
+        "artifacts": [
+          {
+            "path": "pointers/v4/wallet.go",
+            "sha256": "67bfc1893c3262a8888cb6313cf697e24ea7a3c704521782660c640942dc0583"
+          }
+        ]
+      },
+      "behavior_anchor": "Deposit",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 65,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.named-underlying",
+        "pointers.mutation-sharing",
+        "functions.signatures-results"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "errors.sentinels-creation",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "pointers/v4/wallet.go",
+        "artifacts": [
+          {
+            "path": "pointers/v4/wallet.go",
+            "sha256": "67bfc1893c3262a8888cb6313cf697e24ea7a3c704521782660c640942dc0583"
+          }
+        ]
+      },
+      "behavior_anchor": "Wallet.Withdraw: return insufficient-funds sentinel and leave the balance unchanged on failure",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 66,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.signatures-results",
+        "methods.receiver-semantics"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "slices.backing-array-aliasing",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "candidate_id": "concept/lasagna-master",
+        "path": "exercises/concept/lasagna-master",
+        "artifacts": [
+          {
+            "path": "exercises/concept/lasagna-master/lasagna_master.go",
+            "sha256": "e17b4fef63dd0d5318fe7510929ee70fefe15fdd0a37ef60bb82ccb7f7dd3fa5"
+          },
+          {
+            "path": "exercises/concept/lasagna-master/lasagna_master_test.go",
+            "sha256": "859244d7da30ab66b8899b2e92919a35cb735012da7522ecc4de3a87539315ff"
+          },
+          {
+            "path": "exercises/concept/lasagna-master/.docs/instructions.md",
+            "sha256": "16cdb86d9ce633cf761ed8140c7ea146e93ca210842abc22fae09fafc55d940f"
+          },
+          {
+            "path": "exercises/concept/lasagna-master/.meta/config.json",
+            "sha256": "546910fe7187ba3553dd94839600fca4c2fbea76278e43f90ce28084a99da478"
+          }
+        ]
+      },
+      "behavior_anchor": "ScaleRecipe: return scaled quantities without mutating the input slice; independently owned output",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 67,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "slices.append-growth"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "io.reader-writer-contracts",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "di/v2/di.go",
+        "artifacts": [
+          {
+            "path": "di/v2/di.go",
+            "sha256": "419d9039c1888c3e7fea9f5bb45dcd281ed488156dab312d859c902cc4bf9e67"
+          }
+        ]
+      },
+      "behavior_anchor": "Greet",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 68,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "interfaces.implicit-satisfaction",
+        "errors.propagation-context",
+        "slices.header-model"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "io.files-cleanup",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "reading-files/blogposts.go",
+        "artifacts": [
+          {
+            "path": "reading-files/blogposts.go",
+            "sha256": "7fde732d80789870e4fe0e3c33dfc338fe86900168045c4db9cd3cb767c14320"
+          }
+        ]
+      },
+      "behavior_anchor": "NewPostsFromFS: read selected directory files and parse metadata, preserving errors and closing opened files; select and audit parser helper before authoring",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 69,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "errors.propagation-context",
+        "functions.defer",
+        "io.reader-writer-contracts",
+        "strings.standard-library"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "sync.mutex-critical-sections",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "sync/v2/sync.go",
+        "artifacts": [
+          {
+            "path": "sync/v2/sync.go",
+            "sha256": "bc7ebb511d79182ed142db6ac4113f652beae41e6d1526807aadb7bf72521a9d"
+          }
+        ]
+      },
+      "behavior_anchor": "Inc",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 70,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.defer",
+        "goroutines.state-ownership"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored",
+      "secondary": [
+        "sync.mutex-ownership"
+      ],
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+    },
+    {
+      "primary": "sync.data-races-happens-before",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "learn-go-with-tests",
+        "commit": "4675d96ad50b815d3e9fdc2122ab3dbc14636252",
+        "path": "sync/v2/sync.go",
+        "artifacts": [
+          {
+            "path": "sync/v2/sync.go",
+            "sha256": "bc7ebb511d79182ed142db6ac4113f652beae41e6d1526807aadb7bf72521a9d"
+          }
+        ]
+      },
+      "behavior_anchor": "Repair Counter.Value to support reads concurrent with Inc; retain source counter structure, extend and test the formerly post-Wait-only read contract",
+      "adaptation_boundary": "Extract only the named foundation component; omit application/server code and narrative. Preserve selected behavioral implementation structure, author independent public/full checks and mutants. Audit related chapter/tests before copying any additional artifact.",
+      "slot": 71,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "goroutines.launch-lifecycle",
+        "pointers.mutation-sharing",
+        "sync.mutex-critical-sections"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "arrays.value-semantics",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "path": "topics/go/language/arrays/exercises/template1/template1.go",
+        "artifacts": [
+          {
+            "path": "topics/go/language/arrays/exercises/template1/template1.go",
+            "sha256": "1b8a1846030a956b9e77ebcdef73126e4d9b410361b41d9c4e0dd6f289787e3c"
+          }
+        ]
+      },
+      "behavior_anchor": "Assign a five-string array into a second array and enumerate each element value/address; test value independence without absolute pointer values",
+      "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
+      "slot": 72,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.named-underlying"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "types.constants",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "path": "topics/go/language/constants/exercises/template1/template1.go",
+        "artifacts": [
+          {
+            "path": "topics/go/language/constants/exercises/template1/template1.go",
+            "sha256": "206761d729b2e93862c2102b97fd028ba0b6f30291f9d027ba27d9da5b833f46"
+          }
+        ]
+      },
+      "behavior_anchor": "Declare and convert typed/untyped integer, floating and combined constants from the template",
+      "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
+      "slot": 73,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.numeric-conversions"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "control-flow.if",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "path": "topics/go/language/control_flow/exercises/template1/template1.go",
+        "artifacts": [
+          {
+            "path": "topics/go/language/control_flow/exercises/template1/template1.go",
+            "sha256": "e211d011ecd7bd6224e11ff058efd19d69066c94fa3af87633316c4e891c868b"
+          }
+        ]
+      },
+      "behavior_anchor": "Classify an identifier against an allowlist and independently classify its integer age/version against a threshold; retain both source policies",
+      "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
+      "slot": 74,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "expressions.boolean-logic"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "embedding.method-promotion-ambiguity",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "path": "topics/go/language/embedding/exercises/template1/template1.go",
+        "artifacts": [
+          {
+            "path": "topics/go/language/embedding/exercises/template1/template1.go",
+            "sha256": "246de178e97686f61d17c2c902eb9dd784539dbc5ca677bb1a9142cfe35c50c8"
+          }
+        ]
+      },
+      "behavior_anchor": "Embed the concrete retriever, promote Count and override Fetch with a cache; retain method interaction",
+      "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
+      "slot": 75,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "errors.sentinels-creation",
+        "interfaces.small-contracts",
+        "maps.operations-comma-ok",
+        "methods.receiver-semantics"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "packages.imports-exports-naming",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "path": "topics/go/language/exporting/exercises/template1/template1.go",
+        "artifacts": [
+          {
+            "path": "topics/go/language/exporting/exercises/template1/template1.go",
+            "sha256": "e381456249b75099edd1a38315a02bfb218797539937ff749aeda947842ff193"
+          }
+        ]
+      },
+      "behavior_anchor": "Export a constructed struct with public Name/Weight and private onHand/sold fields accessed through methods from another package",
+      "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
+      "slot": 76,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "structs.literals-zero",
+        "toolchain.modules-workspaces"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored",
+      "secondary": [
+        "structs.field-visibility-tags"
+      ],
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+    },
+    {
+      "primary": "functions.signatures-results",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "path": "topics/go/language/functions/exercises/template1/template1.go",
+        "artifacts": [
+          {
+            "path": "topics/go/language/functions/exercises/template1/template1.go",
+            "sha256": "e2989b719af158d088f20a706d93e971bb29b5a711fc07b0defb64116743f5d6"
+          }
+        ]
+      },
+      "behavior_anchor": "Return a pointer to the populated two-field struct and an error from the template function",
+      "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
+      "slot": 77,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "errors.sentinels-creation",
+        "pointers.address-deref-nil",
+        "structs.literals-zero",
+        "types.declarations-inference"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "interfaces.implicit-satisfaction",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "path": "topics/go/language/interfaces/exercises/template1/template1.go",
+        "artifacts": [
+          {
+            "path": "topics/go/language/interfaces/exercises/template1/template1.go",
+            "sha256": "58056c44b1156050962739c38b07af5b79695111a2d66dd796165d44e4a4950d"
+          }
+        ]
+      },
+      "behavior_anchor": "Implement a one-method interface for both a value-receiver and pointer-receiver type, then dispatch through sayHello; resolve the template comment inconsistency explicitly",
+      "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
+      "slot": 78,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "methods.method-sets"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "maps.iteration",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "path": "topics/go/language/maps/exercises/template1/template1.go",
+        "artifacts": [
+          {
+            "path": "topics/go/language/maps/exercises/template1/template1.go",
+            "sha256": "d7148933b51eec6ac405f6481940b241488d0057adecb3aa65f0857feda8c3e3"
+          }
+        ]
+      },
+      "behavior_anchor": "Populate five string-to-int entries and enumerate all key/value pairs; compare unordered results rather than unstable map order",
+      "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
+      "slot": 79,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "maps.operations-comma-ok",
+        "control-flow.range"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "methods.receiver-semantics",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "path": "topics/go/language/methods/exercises/template1/template1.go",
+        "artifacts": [
+          {
+            "path": "topics/go/language/methods/exercises/template1/template1.go",
+            "sha256": "f684170672b8c049d9311e65c7851afd35f83bff489570bc88e8174c0aa28235"
+          }
+        ]
+      },
+      "behavior_anchor": "Compute average through the declared value receiver using the template slice type",
+      "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
+      "slot": 80,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.signatures-results",
+        "pointers.mutation-sharing",
+        "types.named-underlying"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored",
+      "secondary": [
+        "methods.method-sets"
+      ],
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+    },
+    {
+      "primary": "pointers.address-deref-nil",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "path": "topics/go/language/pointers/exercises/template1/template1.go",
+        "artifacts": [
+          {
+            "path": "topics/go/language/pointers/exercises/template1/template1.go",
+            "sha256": "574fc3b6f150357f974f80a01d46f52f6f4eac9394dc929fadb9ba771524c919"
+          }
+        ]
+      },
+      "behavior_anchor": "Expose the relationship between an integer value, its address, a pointer variable and dereferencing; assert identities without fixed addresses",
+      "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
+      "slot": 81,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.zero-values"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "slices.len-cap-slicing",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "path": "topics/go/language/slices/exercises/template1/template1.go",
+        "artifacts": [
+          {
+            "path": "topics/go/language/slices/exercises/template1/template1.go",
+            "sha256": "5a4ca1311e6a650e1b4e017d1e5e7ea7ef5973e0b58317af93d362e1402f33bc"
+          }
+        ]
+      },
+      "behavior_anchor": "Build and index the specified slice and subslice, preserving the declared boundaries",
+      "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
+      "slot": 82,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "slices.header-model"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "structs.literals-zero",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "path": "topics/go/language/struct_types/exercises/template1/template1.go",
+        "artifacts": [
+          {
+            "path": "topics/go/language/struct_types/exercises/template1/template1.go",
+            "sha256": "01c2753617ed90a030740fbe2beab725b33c6538dac196d01fd99b45f1a9dd8c"
+          }
+        ]
+      },
+      "behavior_anchor": "Construct named and anonymous structs with the template fields and specified values",
+      "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
+      "slot": 83,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.zero-values"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "types.declarations-inference",
+      "origin": "adaptation-candidate",
+      "source": {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "path": "topics/go/language/variables/exercises/template1/template1.go",
+        "artifacts": [
+          {
+            "path": "topics/go/language/variables/exercises/template1/template1.go",
+            "sha256": "572ff0d17b5c0e433b8785d3c191491c9fed39025fec2eb9205cbb94be5d506b"
+          }
+        ]
+      },
+      "behavior_anchor": "Declare zero-valued and literal string/int/bool variables, then explicitly convert 3.14 to float32; retain typed observations",
+      "adaptation_boundary": "Review the pinned template requirements and paired exercise, retain a substantive exercise operation, and replace console demonstration with a technical API and independent tests. Preserve Apache notices. Do not count merely selecting the topic.",
+      "slot": 84,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "toolchain.build-run"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "selection_status": "behavior-selected-content-not-authored"
+    },
+    {
+      "primary": "unicode.utf8-encoding",
+      "origin": "original-planned",
+      "planned_slug": "encode-rune-width",
+      "behavior_anchor": "Encode one scalar and report its exact UTF-8 width",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 85,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "unicode.rune-model"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "unicode.invalid-utf8",
+      "origin": "original-planned",
+      "planned_slug": "invalid-prefix-width",
+      "behavior_anchor": "Distinguish a malformed leading byte from an encoded replacement rune",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 86,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "unicode.range-decoding"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "unicode.range-decoding",
+      "origin": "original-planned",
+      "planned_slug": "rune-byte-offsets",
+      "behavior_anchor": "Record byte offsets while decoding a mixed-width string",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 87,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "unicode.rune-model",
+        "unicode.utf8-encoding"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "unicode.invalid-utf8",
+      "origin": "original-planned",
+      "planned_slug": "repair-byte-sequence",
+      "behavior_anchor": "Replace each malformed decoding unit under an explicit policy",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 88,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "unicode.range-decoding"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "strings.byte-rune-conversions",
+      "origin": "original-planned",
+      "planned_slug": "rune-copy-boundary",
+      "behavior_anchor": "Change a rune slice without changing its source string",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 89,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "strings.immutable-bytes",
+        "slices.header-model",
+        "unicode.rune-model"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "types.floating-point-semantics",
+      "origin": "original-planned",
+      "planned_slug": "float-special-values",
+      "behavior_anchor": "Classify finite, infinite and NaN inputs without equality mistakes",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 90,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.numeric-conversions",
+        "expressions.comparison"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "functions.defer",
+      "origin": "original-planned",
+      "planned_slug": "deferred-result",
+      "behavior_anchor": "Repair deferred mutation of a named result",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 91,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.signatures-results"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "functions.closure-capture",
+      "origin": "original-planned",
+      "planned_slug": "independent-counters",
+      "behavior_anchor": "Create independent closures with persistent local state",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 92,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.function-values"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "functions.variadic",
+      "origin": "original-planned",
+      "planned_slug": "variadic-aliasing",
+      "behavior_anchor": "Specify whether a variadic slice mutation aliases its caller",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 93,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.signatures-results"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "slices.full-slice-expressions",
+      "origin": "original-planned",
+      "planned_slug": "bounded-capacity-view",
+      "behavior_anchor": "Construct a view whose append cannot overwrite the adjacent element",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 94,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "slices.len-cap-slicing"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "slices.copy-overlap",
+      "origin": "original-planned",
+      "planned_slug": "overlapping-shift",
+      "behavior_anchor": "Shift overlapping storage with copy and preserve boundaries",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 95,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "slices.header-model"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "slices.preallocation",
+      "origin": "original-planned",
+      "planned_slug": "bounded-builder",
+      "behavior_anchor": "Build a result with an explicit capacity and ownership contract",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 96,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "slices.append-growth"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "slices.subslice-retention",
+      "origin": "original-planned",
+      "planned_slug": "detached-small-result",
+      "behavior_anchor": "Return a detached slice instead of retaining a large backing array",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 97,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "slices.backing-array-aliasing",
+        "slices.copy-overlap"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "maps.key-comparability",
+      "origin": "original-planned",
+      "planned_slug": "comparable-map-key",
+      "behavior_anchor": "Build a comparable composite key with explicit field semantics",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 98,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.named-underlying"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "structs.copy-equality",
+      "origin": "original-planned",
+      "planned_slug": "nested-value-copy",
+      "behavior_anchor": "Separate copied scalar fields from shared referenced data",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 99,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "structs.literals-zero",
+        "types.named-underlying"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "embedding.method-promotion-ambiguity",
+      "origin": "original-planned",
+      "planned_slug": "ambiguous-selector",
+      "behavior_anchor": "Resolve conflicting promoted methods explicitly",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 100,
+      "status": "planned-not-authored",
+      "prerequisites": [],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "interfaces.typed-nil",
+      "origin": "original-planned",
+      "planned_slug": "typed-nil-result",
+      "behavior_anchor": "Handle a nil pointer stored inside a non-nil interface",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 101,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "interfaces.dynamic-type-value",
+        "pointers.address-deref-nil"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "interfaces.type-switches",
+      "origin": "original-planned",
+      "planned_slug": "type-switch-default",
+      "behavior_anchor": "Dispatch dynamic values including nil and an unknown type",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 102,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "interfaces.dynamic-type-value",
+        "control-flow.switch"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "errors.wrapping",
+      "origin": "original-planned",
+      "planned_slug": "wrapped-context",
+      "behavior_anchor": "Add error context without losing the original error",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 103,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "errors.propagation-context"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "errors.is",
+      "origin": "original-planned",
+      "planned_slug": "sentinel-chain",
+      "behavior_anchor": "Recognize a sentinel through an error chain",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 104,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "errors.wrapping"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "errors.as",
+      "origin": "original-planned",
+      "planned_slug": "typed-error-chain",
+      "behavior_anchor": "Extract a typed error through wrapping",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 105,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "errors.typed",
+        "errors.wrapping"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "errors.panic-recover-boundaries",
+      "origin": "original-planned",
+      "planned_slug": "recover-boundary",
+      "behavior_anchor": "Recover at the documented boundary and preserve error reporting",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 106,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.defer",
+        "errors.propagation-context"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "generics.approximation-unions",
+      "origin": "original-planned",
+      "planned_slug": "named-numeric-constraint",
+      "behavior_anchor": "Accept named numeric types through an approximation constraint",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 107,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "generics.type-parameters-inference",
+        "interfaces.small-contracts"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "secondary": [
+        "generics.constraints-type-sets"
+      ],
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+    },
+    {
+      "primary": "packages.initialization-order",
+      "origin": "original-planned",
+      "planned_slug": "initialization-values",
+      "behavior_anchor": "Observe package initialization order without uncontrolled effects",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 108,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "packages.imports-exports-naming"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "packages.test-package-boundaries",
+      "origin": "original-planned",
+      "planned_slug": "external-package-tests",
+      "behavior_anchor": "Test exported behavior from an external test package",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 109,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "packages.imports-exports-naming",
+        "testing.basics-diagnostics"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "io.copy-limit-composition",
+      "origin": "original-planned",
+      "planned_slug": "bounded-copy",
+      "behavior_anchor": "Copy at most the requested bytes and report partial writes",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 110,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "io.reader-writer-contracts"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "io.buffered",
+      "origin": "original-planned",
+      "planned_slug": "buffered-flush",
+      "behavior_anchor": "Flush buffered output explicitly and preserve flush errors",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 111,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "io.reader-writer-contracts"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "io.scanning",
+      "origin": "original-planned",
+      "planned_slug": "scan-final-token",
+      "behavior_anchor": "Handle a final token without a newline and scanner errors",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 112,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "io.reader-writer-contracts",
+        "strings.byte-rune-conversions"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "encoding.json-shape-tags",
+      "origin": "original-planned",
+      "planned_slug": "json-field-shape",
+      "behavior_anchor": "Control JSON field names and omission with tags",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 113,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "structs.field-visibility-tags",
+        "io.reader-writer-contracts"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "encoding.streaming-strictness",
+      "origin": "original-planned",
+      "planned_slug": "single-json-value",
+      "behavior_anchor": "Reject unknown fields and trailing JSON values",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 114,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "encoding.json-shape-tags"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "encoding.binary-marshaling",
+      "origin": "original-planned",
+      "planned_slug": "binary-record",
+      "behavior_anchor": "Encode and decode a fixed-endian bounded record",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 115,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "methods.method-sets",
+        "errors.propagation-context",
+        "slices.len-cap-slicing"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "encoding.text-marshaling",
+      "origin": "original-planned",
+      "planned_slug": "text-value",
+      "behavior_anchor": "Validate and round-trip a text representation",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 116,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "methods.method-sets",
+        "errors.propagation-context"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "time.duration-arithmetic",
+      "origin": "original-planned",
+      "planned_slug": "duration-rounding",
+      "behavior_anchor": "Compute bounded duration arithmetic with explicit rounding",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 117,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "types.constants"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "testing.helpers",
+      "origin": "original-planned",
+      "planned_slug": "diagnostic-helper",
+      "behavior_anchor": "Write a helper that attributes failures to its caller",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 118,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "testing.basics-diagnostics"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "testing.subtests",
+      "origin": "original-planned",
+      "planned_slug": "named-cases",
+      "behavior_anchor": "Write independently named cases with meaningful diagnostics",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 119,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "testing.basics-diagnostics"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "testing.cleanup",
+      "origin": "original-planned",
+      "planned_slug": "cleanup-order",
+      "behavior_anchor": "Register cleanup that runs on success and failure",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 120,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "testing.helpers",
+        "functions.defer"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "testing.seams-doubles",
+      "origin": "original-planned",
+      "planned_slug": "writer-double",
+      "behavior_anchor": "Test partial-write/error paths through a controlled fake",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 121,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "testing.basics-diagnostics",
+        "interfaces.small-contracts"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "goroutines.launch-lifecycle",
+      "origin": "original-planned",
+      "planned_slug": "joined-worker",
+      "behavior_anchor": "Start and join a worker without retaining background work",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 122,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "functions.function-values"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "secondary": [
+        "goroutines.leak-prevention"
+      ],
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+    },
+    {
+      "primary": "channels.close-semantics",
+      "origin": "original-planned",
+      "planned_slug": "closed-receive",
+      "behavior_anchor": "Distinguish buffered values from a closed empty channel",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 123,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "goroutines.launch-lifecycle",
+        "types.zero-values"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "secondary": [
+        "channels.operations-blocking"
+      ],
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+    },
+    {
+      "primary": "channels.directional",
+      "origin": "original-planned",
+      "planned_slug": "owned-close",
+      "behavior_anchor": "Expose receive-only channels and keep closing with the sender",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 124,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "channels.operations-blocking"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "sync.waitgroup-lifecycle",
+      "origin": "original-planned",
+      "planned_slug": "join-many",
+      "behavior_anchor": "Wait for all workers with correct Add/Done ordering",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 125,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "goroutines.launch-lifecycle",
+        "pointers.mutation-sharing"
+      ],
+      "activity": "test-writing",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "secondary": [
+        "goroutines.state-ownership"
+      ],
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+    },
+    {
+      "primary": "channels.select",
+      "origin": "original-planned",
+      "planned_slug": "select-ready-case",
+      "behavior_anchor": "Select between ready receive and cancellation cases with controlled channel inputs",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 126,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "channels.operations-blocking",
+        "control-flow.switch"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    },
+    {
+      "primary": "context.cancellation",
+      "origin": "original-planned",
+      "planned_slug": "cancel-worker",
+      "behavior_anchor": "Make a worker exit when its context is canceled",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 127,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "channels.select",
+        "functions.defer",
+        "goroutines.leak-prevention"
+      ],
+      "activity": "debugging",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ],
+      "secondary": [
+        "context.derivation"
+      ],
+      "instructional_boundary": "Explicitly teach and assess the secondary outcome in this component; no more than two new concepts."
+    },
+    {
+      "primary": "context.propagation-api",
+      "origin": "original-planned",
+      "planned_slug": "propagate-context",
+      "behavior_anchor": "Pass cancellation through a composed local operation",
+      "original_reason": "Isolate a language-specific failure/transfer boundary not established by the selected source operation; no external artifact reuse is claimed.",
+      "slot": 128,
+      "status": "planned-not-authored",
+      "prerequisites": [
+        "context.cancellation",
+        "packages.imports-exports-naming"
+      ],
+      "activity": "implementation",
+      "required_before_release": [
+        "semantic-duplication-review",
+        "prompt-public-grader-alignment",
+        "artifact-lineage-and-notices",
+        "prerequisite-route-placement",
+        "profile-support",
+        "independent-review"
+      ]
+    }
+  ],
+  "selection_review": "Independent read-only source audit 2026-09-08; corrected mappings and replaced weak wrapper/shape splits. Per-task content review remains mandatory.",
+  "dependency_validated_release_order": [
+    1,
+    2,
+    3,
+    85,
+    87,
+    86,
+    88,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    21,
+    22,
+    23,
+    24,
+    19,
+    25,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    26,
+    20,
+    40,
+    41,
+    42,
+    44,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    56,
+    55,
+    57,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    72,
+    73,
+    74,
+    76,
+    77,
+    79,
+    80,
+    58,
+    45,
+    43,
+    59,
+    46,
+    47,
+    60,
+    68,
+    75,
+    78,
+    81,
+    82,
+    83,
+    84,
+    89,
+    90,
+    91,
+    69,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    54,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    10,
+    11,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    70,
+    71,
+    126,
+    127,
+    128
+  ],
+  "dependency_audit": {
+    "baseline_route_lessons": 22,
+    "unresolved_prerequisites": [],
+    "method": "Topological selection using actual artifact prerequisites and explicit primary/secondary outcomes; existing baseline route outcomes precede additions."
+  }
+}
