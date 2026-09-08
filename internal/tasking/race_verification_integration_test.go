@@ -27,6 +27,9 @@ func Identity(value int) int {
 `
 
 func TestRaceOnlyDefectIsDetectedAndHasPublicFeedback(t *testing.T) {
+	// A disposable session compiles a cold race-enabled standard library on CI.
+	// Keep that infrastructure cost separate from the fixture's behavior checks.
+	const commandTimeoutSeconds = 60
 	root := fixtureRepository(t)
 	id := "synthetic-fixed-v2-001"
 	source := filepath.Join(repositoryRoot(t), "internal/testdata/tasking/v2/fixed", id)
@@ -46,6 +49,7 @@ func TestRaceOnlyDefectIsDetectedAndHasPublicFeedback(t *testing.T) {
 		t.Fatal(err)
 	}
 	task.Verification.RaceRequired = true
+	task.Verification.Limits.CommandTimeoutSeconds = commandTimeoutSeconds
 	content, err := yaml.Marshal(task)
 	if err != nil {
 		t.Fatal(err)
@@ -77,7 +81,7 @@ func TestRaceOnlyDefectIsDetectedAndHasPublicFeedback(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	ordinary := variantRequest{TaskID: id, GoVersion: learnerGoVersion(loaded), TimeoutSeconds: 30, Implementation: []string{mutant}, Tests: appendCopy(loaded.layout.PublicTests, loaded.layout.GraderTests)}
+	ordinary := variantRequest{TaskID: id, GoVersion: learnerGoVersion(loaded), TimeoutSeconds: commandTimeoutSeconds, Implementation: []string{mutant}, Tests: appendCopy(loaded.layout.PublicTests, loaded.layout.GraderTests)}
 	if result := session.runner.RunVariant(ordinary); !result.Passed {
 		t.Fatalf("race-only defect must preserve ordinary behavior: %+v", result)
 	}
