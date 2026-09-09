@@ -43,6 +43,9 @@ func TestReviewedDefectsHavePublicFeedback(t *testing.T) {
 		{"bounded-copy-001", "close-on-success", []string{"successful copy", "closes got1,1 want0,0"}},
 		{"buffered-flush-001", "empty-skips-flush", []string{"pending buffer", "want\"prefix|\",0"}},
 		{"single-json-value-001", "partial-on-reject", []string{"partial object", "wantzero,ErrJSON"}},
+		{"cleanup-order-001", "late-helper", []string{"Helper must precede acquire"}},
+		{"cleanup-order-001", "rewritten-close-error", []string{"Errorf must preserve format and original close error"}},
+		{"writer-double-001", "initial-snapshot", []string{"initial snapshot", "want empty/0"}},
 	} {
 		t.Run(fixture.id, func(t *testing.T) {
 			canonical := filepath.Join(root, "tasks", "ready", fixture.id)
@@ -92,7 +95,26 @@ func TestReviewedDefectsHavePublicFeedback(t *testing.T) {
 				}
 			}
 			// Read source as data. The verifier executes only its disposable copy.
-			install("solution", "mutants", fixture.mutant)
+			if fixture.id == "writer-double-001" && fixture.mutant == "initial-snapshot" {
+				// A tooling-owned defect isolates the newly public baseline
+				// without changing or republishing the accepted content package.
+				install("solution", "reference")
+				path := filepath.Join(workspace, "subject", "subject.go")
+				content, err := os.ReadFile(path)
+				if err != nil {
+					t.Fatal(err)
+				}
+				old := "func (w *RecordingWriter) Snapshot() ([]byte, int) {"
+				if strings.Count(string(content), old) != 1 {
+					t.Fatal("snapshot regression fixture no longer matches reference API")
+				}
+				changed := strings.Replace(string(content), old, old+` if w.calls == 0 { return []byte("unexpected"), 1 };`, 1)
+				if err := os.WriteFile(path, []byte(changed), 0600); err != nil {
+					t.Fatal(err)
+				}
+			} else {
+				install("solution", "mutants", fixture.mutant)
+			}
 			result, err := service.Check()
 			if err != nil || result.Passed {
 				t.Fatalf("public defect check: result=%+v err=%v", result, err)
