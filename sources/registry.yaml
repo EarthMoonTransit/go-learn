@@ -165,7 +165,7 @@ sources:
       - Preserve the MIT notice verbatim for copied or substantially adapted material.
       - Preserve chapter path, version directory, and commit.
     evidence:
-      - https://github.com/quii/learn-go-with-tests/commit/4675d96ad50b815d3e9fdc2122ab3dbc14636252
+      - https://github.com/quii/learn-go-with-tests/commit/4675d96ad50b815d3e9fdc2122ab3dbc14636252/LICENSE.md
       - https://github.com/quii/learn-go-with-tests/blob/4675d96ad50b815d3e9fdc2122ab3dbc14636252/LICENSE.md
       - https://github.com/quii/learn-go-with-tests/blob/4675d96ad50b815d3e9fdc2122ab3dbc14636252/SUMMARY.md
     risks:
@@ -273,3 +273,109 @@ sources:
     risks:
       - NC/ShareAlike obligations may conflict with commercial use or the future outbound license.
       - Asset-level third-party rights require separate review.
+
+  # Metadata intake reviewed 2026-09-10. The historical audited_at above is unchanged.
+  # These registrations permit reference indexing, not copying or task authoring.
+  # See catalog/intake/2026-09-10/README.md for the explicit upgrade gate.
+  - id: shad-go
+    repository: https://github.com/slon/shad-go
+    default_branch: main
+    commit: 6718601587ec77cfaa632bbd29a8ca0716fe81ec
+    license:
+      expression: MIT
+      evidence_path: LICENSE
+      notes: Root MIT notice verified; selected files may have additional upstream lineage.
+    usage_mode: reference-only
+    adapter: manual-intake-reference-v1
+    scope: Metadata paths, counts and topic-gap review only; no statements, code, tests, fixtures or solutions copied. A bounded file audit and explicit policy change are required before adaptation.
+    attribution:
+      - Preserve Fedor Korotkiy MIT notice and additional upstream notices if adaptation is later approved.
+    evidence:
+      - https://github.com/slon/shad-go/blob/6718601587ec77cfaa632bbd29a8ca0716fe81ec/LICENSE
+      - https://github.com/slon/shad-go/blob/6718601587ec77cfaa632bbd29a8ca0716fe81ec/.manytask.yml
+      - https://api.github.com/repos/slon/shad-go/git/trees/6718601587ec77cfaa632bbd29a8ca0716fe81ec
+    risks:
+      - Full artifact-level license overrides and third-party lineage are not yet cleared.
+      - Tour and Forth may overlap existing sources; ParseDuration lineage requires review.
+      - Tests use external dependencies, timing and performance assumptions; no ready status follows from inventory.
+
+  - id: golings
+    repository: https://github.com/mauricioabreu/golings
+    default_branch: main
+    commit: 65fb8ce827c716e54650e88a3ccc7c52308ab59b
+    license:
+      expression: Apache-2.0
+      evidence_path: LICENSE
+      notes: Root Apache-2.0 verified; selected file notices and original contribution lineage need bounded review.
+    usage_mode: reference-only
+    adapter: manual-intake-reference-v1
+    scope: Metadata paths, modes and topic-gap review only; no statements, code, tests or hints copied. Explicit policy change is required before adaptation.
+    attribution:
+      - Preserve Apache-2.0 and applicable notices and mark modifications if later approved.
+    evidence:
+      - https://github.com/mauricioabreu/golings/blob/65fb8ce827c716e54650e88a3ccc7c52308ab59b/LICENSE
+      - https://github.com/mauricioabreu/golings/blob/65fb8ce827c716e54650e88a3ccc7c52308ab59b/info.toml
+    risks:
+      - Compile-mode exercises are not automatically compatible with the compiled-starter contract.
+      - Tiny syntax repairs may duplicate existing tasks; hints and runner are not learner content for this project.
+
+  - id: birsi-go-training
+    repository: https://github.com/birsi/go-training
+    default_branch: main
+    commit: 3ae230e734644d637118f2a6818166922d5197c5
+    license:
+      expression: MIT
+      evidence_path: LICENSE
+      notes: Root MIT notice verified; file-level review and Go Learn compatibility remain pending.
+    usage_mode: reference-only
+    adapter: manual-intake-reference-v1
+    scope: Metadata paths, package counts and topic-gap review only; no statements, code, tests or solutions copied. Explicit policy change is required before adaptation.
+    attribution:
+      - Preserve Michael Birsak MIT notice and any applicable upstream notices if later approved.
+    evidence:
+      - https://github.com/birsi/go-training/blob/3ae230e734644d637118f2a6818166922d5197c5/LICENSE
+      - https://api.github.com/repos/birsi/go-training/git/trees/71550ee206f3cd93afeac30b24fb0c5eb2f5fb5d?recursive=1
+      - https://github.com/birsi/go-training/blob/3ae230e734644d637118f2a6818166922d5197c5/go.mod
+    risks:
+      - Twelve packages contain multiple operations; mirrored solutions are not additional exercises.
+      - Upstream tests are not the Go Learn public/full/mutation verification contract.
+
+  - id: go-koans
+    repository: https://github.com/cdarwin/go-koans
+    default_branch: master
+    commit: 7f0b28e4f551f2120d55eec3a03b4f472ec38044
+    license:
+      expression: MIT
+      evidence_path: LICENSE
+      notes: Current root notice verified; historical authorship and chosen artifact lineage need review before reuse.
+    usage_mode: reference-only
+    adapter: manual-intake-reference-v1
+    scope: Thematic file names and topic-gap review only; no code, assertions, comments or solutions copied. Explicit policy change is required before adaptation.
+    attribution:
+      - Preserve MIT notice and original authorship evidence for selected artifacts if later approved.
+    evidence:
+      - https://github.com/cdarwin/go-koans/blob/7f0b28e4f551f2120d55eec3a03b4f472ec38044/LICENSE
+      - https://api.github.com/repos/cdarwin/go-koans/git/trees/7f0b28e4f551f2120d55eec3a03b4f472ec38044
+    risks:
+      - Twenty thematic files are not twenty independently graded Go Learn tasks.
+      - Legacy capacity-growth expectations must not become language guarantees.
+
+  - id: loong-go-concurrency-exercises
+    repository: https://github.com/loong/go-concurrency-exercises
+    default_branch: main
+    commit: 39c1ab9b02c0cc21bd66ea1e31335c4bf4dd6708
+    license:
+      expression: WTFPL
+      evidence_path: README.md
+      notes: README states WTFPL version 2; outbound compatibility is not approved by this intake.
+    usage_mode: reference-only
+    adapter: manual-intake-reference-v1
+    scope: Metadata paths, challenge counts and topic-gap review only; no code, tests, statements or solutions copied. A separate license-policy decision is required before adaptation.
+    attribution:
+      - Retain Long Hoang authorship and the actual license wording if a later policy decision permits reuse.
+    evidence:
+      - https://github.com/loong/go-concurrency-exercises/blob/39c1ab9b02c0cc21bd66ea1e31335c4bf4dd6708/README.md
+      - https://github.com/loong/go-concurrency-exercises/blob/39c1ab9b02c0cc21bd66ea1e31335c4bf4dd6708/exercises.json
+    risks:
+      - WTFPL is outside the currently approved outbound allowlist; do not silently broaden it.
+      - Real-time thresholds, mock services and shutdown exercises need separate scope and determinism review.
