@@ -1,0 +1,19 @@
+{
+  "format":"go-learn-source-intake/v1",
+  "status":"inventory-only-not-accepted-candidates",
+  "source_id":"loong-go-concurrency-exercises",
+  "commit":"39c1ab9b02c0cc21bd66ea1e31335c4bf4dd6708",
+  "unit":"workshop-challenge",
+  "count":6,
+  "count_method":"Count exercises[] in exercises.json once, not beginner/advanced variants or solution stages.",
+  "count_evidence":{"path":"exercises.json","git_blob_sha1":"d3d0491dcc2a1b2b4f8e343cd4978ff4f942ccb0"},
+  "assessment_note":"Reserve source, not newly discovered in this round. WTFPL outbound compatibility and per-artifact adaptation remain unapproved. No source code or statements copied.",
+  "units":[
+    {"upstream_id":"0-limit-crawler","source_path":"0-limit-crawler","starter_path":"0-limit-crawler/main.go","statement_path":"0-limit-crawler/README.md","screening":"deferred-review"},
+    {"upstream_id":"1-producer-consumer","source_path":"1-producer-consumer","starter_path":"1-producer-consumer/main.go","statement_path":"1-producer-consumer/README.md","screening":"reserve-review"},
+    {"upstream_id":"2-race-in-cache","source_path":"2-race-in-cache","starter_path":"2-race-in-cache/main.go","statement_path":"2-race-in-cache/README.md","screening":"reserve-review"},
+    {"upstream_id":"3-limit-service-time","source_path":"3-limit-service-time","starter_path":"3-limit-service-time/main.go","statement_path":"3-limit-service-time/README.md","screening":"reserve-review"},
+    {"upstream_id":"4-graceful-sigint","source_path":"4-graceful-sigint","starter_path":"4-graceful-sigint/main.go","statement_path":"4-graceful-sigint/README.md","screening":"deferred-review"},
+    {"upstream_id":"5-session-cleaner","source_path":"5-session-cleaner","starter_path":"5-session-cleaner/main.go","statement_path":"5-session-cleaner/README.md","screening":"deferred-review"}
+  ]
+}
