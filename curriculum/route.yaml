@@ -972,6 +972,30 @@
           "skills": [
             "errors.panic-recover-boundaries"
           ]
+        },
+        {
+          "number": 45,
+          "task_id": "named-anonymous-struct-001",
+          "role": "transfer",
+          "skills": [
+            "structs.literals-zero"
+          ]
+        },
+        {
+          "number": 46,
+          "task_id": "variadic-aliasing-001",
+          "role": "transfer",
+          "skills": [
+            "functions.variadic"
+          ]
+        },
+        {
+          "number": 47,
+          "task_id": "type-switch-default-tests-001",
+          "role": "practice",
+          "skills": [
+            "interfaces.type-switches"
+          ]
         }
       ],
       "number": 6
@@ -1117,6 +1141,22 @@
           "skills": [
             "encoding.text-marshaling"
           ]
+        },
+        {
+          "number": 18,
+          "task_id": "filesystem-record-tests-001",
+          "role": "introduction",
+          "skills": [
+            "io.files-cleanup"
+          ]
+        },
+        {
+          "number": 19,
+          "task_id": "external-window-tests-001",
+          "role": "introduction",
+          "skills": [
+            "packages.test-package-boundaries"
+          ]
         }
       ],
       "number": 7
@@ -1124,13 +1164,56 @@
     {
       "id": "verification",
       "title": "Testing, fuzzing and benchmarks",
-      "steps": [],
+      "steps": [
+        {
+          "number": 1,
+          "task_id": "diagnostic-helper-001",
+          "role": "introduction",
+          "skills": [
+            "testing.helpers"
+          ]
+        },
+        {
+          "number": 2,
+          "task_id": "named-cases-001",
+          "role": "introduction",
+          "skills": [
+            "testing.subtests"
+          ]
+        },
+        {
+          "number": 3,
+          "task_id": "cleanup-order-001",
+          "role": "introduction",
+          "skills": [
+            "testing.cleanup"
+          ]
+        },
+        {
+          "number": 4,
+          "task_id": "writer-double-001",
+          "role": "introduction",
+          "skills": [
+            "testing.seams-doubles"
+          ]
+        }
+      ],
       "number": 8
     },
     {
       "id": "concurrency",
       "title": "Goroutines, channels, sync and context",
-      "steps": [],
+      "steps": [
+        {
+          "number": 1,
+          "task_id": "worker-completion-tests-001",
+          "role": "introduction",
+          "skills": [
+            "goroutines.launch-lifecycle",
+            "channels.operations-blocking"
+          ]
+        }
+      ],
       "number": 9
     }
   ]

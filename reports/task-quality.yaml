@@ -344,6 +344,24 @@ tasks:
         detected: 6
         survived: []
       legacy: false
+    - id: cleanup-order-001
+      state: ready
+      input_digest: 1530e92d90f10f312018d4a1d5a4ea32f9ba464136d096bc82da38a8f4ce1144
+      task_type: implement
+      primary_skill: testing.cleanup
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 8
+        total: 8
+        detected: 8
+        survived: []
+      legacy: false
     - id: column-occupancy-001
       state: ready
       input_digest: 5facd08afe168aa8e12a17ab550c0a8cea60006d111af9559d5f0680a6401804
@@ -566,6 +584,24 @@ tasks:
       input_digest: f0b842099e2d75678b3033d0745415a2b84130494a5f341bdd410959294db6f8
       task_type: debug
       primary_skill: slices.subslice-retention
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 5
+        total: 5
+        detected: 5
+        survived: []
+      legacy: false
+    - id: diagnostic-helper-001
+      state: ready
+      input_digest: 48cd19064d974bd7bb13ccb50e3f87eb8a113524f18c086b319a6f349c508678
+      task_type: implement
+      primary_skill: testing.helpers
       technical_status: pass
       review_status: pass
       promotion_eligible: true
@@ -903,6 +939,42 @@ tasks:
         required: 4
         total: 4
         detected: 4
+        survived: []
+      legacy: false
+    - id: external-window-tests-001
+      state: ready
+      input_digest: 04ad7347aaf6970cf85951879d5d0d55d1f5b5d8b9ae9c5be5f2972d9872b75d
+      task_type: test-writing
+      primary_skill: packages.test-package-boundaries
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 5
+        total: 5
+        detected: 5
+        survived: []
+      legacy: false
+    - id: filesystem-record-tests-001
+      state: ready
+      input_digest: 6a1992ce4734ee19827ca78e8f642869e9927f6dd21c551f42207aaecd43c76c
+      task_type: test-writing
+      primary_skill: io.files-cleanup
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 11
+        total: 11
+        detected: 11
         survived: []
       legacy: false
     - id: floating-categories-001
@@ -1320,6 +1392,24 @@ tasks:
         detected: 5
         survived: []
       legacy: false
+    - id: named-anonymous-struct-001
+      state: ready
+      input_digest: adc4b89bb70fe2d8305994093a4d9643a9e106d5a3f6a5a02e538915cb2d2ce0
+      task_type: debug
+      primary_skill: structs.literals-zero
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 5
+        total: 5
+        detected: 5
+        survived: []
+      legacy: false
     - id: named-block-001
       state: ready
       input_digest: 145e84df66d3de4ae4e033ebe2fe5a89a56d9888c5e726dfd0b095be3f314100
@@ -1336,6 +1426,24 @@ tasks:
         required: 4
         total: 4
         detected: 4
+        survived: []
+      legacy: false
+    - id: named-cases-001
+      state: ready
+      input_digest: 6494d2cc8e8ee1d074b58fdb321799d4f7770d0dab4a5074eb01369836f380dc
+      task_type: implement
+      primary_skill: testing.subtests
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 5
+        total: 5
+        detected: 5
         survived: []
       legacy: false
     - id: named-numeric-constraint-001
@@ -2295,6 +2403,24 @@ tasks:
         detected: 7
         survived: []
       legacy: false
+    - id: type-switch-default-tests-001
+      state: ready
+      input_digest: 20ddc459ee57ec2394726af35052409eb9ad9eacd1fe02ca6609d9b391ce9ee4
+      task_type: test-writing
+      primary_skill: interfaces.type-switches
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
+        survived: []
+      legacy: false
     - id: typed-line-001
       state: ready
       input_digest: 34335c79d1ac0b6434b11c8369b1c2c439f7e53db81dd3021bfcfb2c6ff37140
@@ -2458,6 +2584,24 @@ tasks:
         detected: 8
         survived: []
       legacy: false
+    - id: variadic-aliasing-001
+      state: ready
+      input_digest: 396c41a4d183097260ff2a77d2d31876602364569571898c4368a99e43dea2f8
+      task_type: debug
+      primary_skill: functions.variadic
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 5
+        total: 5
+        detected: 5
+        survived: []
+      legacy: false
     - id: variadic-sum-001
       state: ready
       input_digest: 49b75d72cd4e9a6e3bf48ca1eb079d6dda1354fac4a003eca0e50a4fc5573dd6
@@ -2548,6 +2692,42 @@ tasks:
         detected: 6
         survived: []
       legacy: false
+    - id: worker-completion-tests-001
+      state: ready
+      input_digest: 90c3512c326073a95a5e53a6961c5ae35b74b1ccfe9e49ae67dbf1ca6e1dde8a
+      task_type: test-writing
+      primary_skill: goroutines.launch-lifecycle
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 8
+        total: 8
+        detected: 8
+        survived: []
+      legacy: false
+    - id: writer-double-001
+      state: ready
+      input_digest: 5959044e32c75578ec0a205cd3cecf6091d0020af86c177b4390203f14ccd902
+      task_type: implement
+      primary_skill: testing.seams-doubles
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
+        survived: []
+      legacy: false
     - id: writer-greeting-001
       state: ready
       input_digest: 82f3d6ae92605310592ee6fa262510cb9de8a21a74257b46ed4c28f771b10535
@@ -2608,20 +2788,20 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 135
+      count: 145
     - state: rejected
       count: 1
     - state: retired
       count: 0
 task_types:
     - task_type: debug
-      count: 34
+      count: 36
     - task_type: implement
-      count: 71
+      count: 75
     - task_type: refactor
       count: 3
     - task_type: test-writing
-      count: 36
+      count: 40
 gates:
     - id: task-state-policy
       status: pass

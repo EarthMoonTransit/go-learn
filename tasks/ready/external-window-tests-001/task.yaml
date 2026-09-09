@@ -1,0 +1,44 @@
+schema_version: 2
+id: external-window-tests-001
+title: Test a private representation through exported operations
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: packages.test-package-boundaries
+    secondary: []
+prerequisites:
+    - packages.imports-exports-naming
+    - testing.basics-diagnostics
+new_concepts:
+    - packages.test-package-boundaries
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - include-upper
+        - exclude-lower
+        - wrong-lower
+        - empty-is-point
+        - swapped-bounds
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
