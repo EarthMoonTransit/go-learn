@@ -64,3 +64,11 @@ boundary changes in this diff. Full collection and ordered gates remain separate
 Only this review report was written during the milestone audit. No content,
 tooling, lifecycle package or learner state was modified. Automated fixtures,
 source counts and skill encounters are not human calibration or mastery evidence.
+
+### Resolved CLI-label observation
+
+The final tooling change `01de0c0` aligns future prepared CLI block labels with
+CourseView while retaining completed/current overrides. Independent read-only
+review approved the six-line change; focused route/view tests passed (12.280s)
+and a fresh-home CLI smoke displayed one current plus eight ready sections,
+150/150 lessons and no filesystem writes. The observation above is resolved.
