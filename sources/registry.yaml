@@ -165,7 +165,7 @@ sources:
       - Preserve the MIT notice verbatim for copied or substantially adapted material.
       - Preserve chapter path, version directory, and commit.
     evidence:
-      - https://github.com/quii/learn-go-with-tests/commit/4675d96ad50b815d3e9fdc2122ab3dbc14636252/LICENSE.md
+      - https://github.com/quii/learn-go-with-tests/commit/4675d96ad50b815d3e9fdc2122ab3dbc14636252
       - https://github.com/quii/learn-go-with-tests/blob/4675d96ad50b815d3e9fdc2122ab3dbc14636252/LICENSE.md
       - https://github.com/quii/learn-go-with-tests/blob/4675d96ad50b815d3e9fdc2122ab3dbc14636252/SUMMARY.md
     risks:
