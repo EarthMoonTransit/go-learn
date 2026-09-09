@@ -18,7 +18,7 @@ func (s *CheckSession) executeV2(c *checker, data packageData, layout packageLay
 
 func (s *CheckSession) executeV2Fixed(c *checker, data packageData, layout packageLayout) {
 	plan := data.TaskV2.Verification
-	base := variantRequest{TaskID: data.Task.ID, GoVersion: s.policy.GoLanguageVersion, TimeoutSeconds: plan.Limits.CommandTimeoutSeconds}
+	base := variantRequest{TaskID: data.Task.ID, GoVersion: s.policy.GoLanguageVersion, TimeoutSeconds: plan.Limits.CommandTimeoutSeconds, Race: plan.RaceRequired}
 	request := func(implementation, tests []string) variantRequest {
 		value := base
 		value.Implementation, value.Tests = implementation, tests
@@ -47,7 +47,7 @@ func (s *CheckSession) executeV2Fixed(c *checker, data packageData, layout packa
 
 func (s *CheckSession) executeV2Mutation(c *checker, data packageData, layout packageLayout) {
 	plan := data.TaskV2.Verification
-	base := variantRequest{TaskID: data.Task.ID, GoVersion: s.policy.GoLanguageVersion, TimeoutSeconds: plan.Limits.CommandTimeoutSeconds}
+	base := variantRequest{TaskID: data.Task.ID, GoVersion: s.policy.GoLanguageVersion, TimeoutSeconds: plan.Limits.CommandTimeoutSeconds, Race: plan.RaceRequired}
 	request := func(implementation, tests []string) variantRequest {
 		value := base
 		value.Implementation, value.Tests = implementation, tests
@@ -97,7 +97,7 @@ func (s *CheckSession) executeV2Mutation(c *checker, data packageData, layout pa
 
 func (s *CheckSession) executeV2Workspace(c *checker, data packageData, layout packageLayout) {
 	plan := data.TaskV2.Verification
-	base := workspaceRequest{TaskID: data.Task.ID, GoVersion: s.policy.GoLanguageVersion, TimeoutSeconds: plan.Limits.CommandTimeoutSeconds, Skeleton: layout.WorkspaceSkeleton}
+	base := workspaceRequest{TaskID: data.Task.ID, GoVersion: s.policy.GoLanguageVersion, TimeoutSeconds: plan.Limits.CommandTimeoutSeconds, Race: plan.RaceRequired, Skeleton: layout.WorkspaceSkeleton}
 	request := func(overlay, tests []mappedFile, checks []string) workspaceRequest {
 		value := base
 		value.Overlay, value.Tests, value.Checks = overlay, tests, checks

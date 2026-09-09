@@ -22,3 +22,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0016` — numbered workspaces, progress v2 and recoverable organization (`accepted`)
 - `0017` — completion evidence, durable assistance and delayed skill review (`accepted`)
 - `0018` — learner test API references for methods and fields (`accepted`)
+- `0019` — race-aware public and mutant verification, collection v3 (`accepted`)

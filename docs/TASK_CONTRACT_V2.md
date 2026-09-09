@@ -88,3 +88,7 @@ reference in a declaration or function counts as API usage, including constructi
 task type followed by receiver-method calls or public-field assertions. Imports
 alone do not count. Passing this screen is not completion: reference success
 and every required mutant's detection remain mandatory.
+
+## Race-required verification
+
+ADR 0019 applies `-race` to every test invocation for v2 tasks with `race_required: true`, including public Check and defect models. A compiled race-test failure is a detected behavior defect. Timeouts, compile errors and unsupported race infrastructure never count as detection. Collections now use `task-check/v3`; regenerate older collections instead of relabeling them. Task and progress schemas remain unchanged.

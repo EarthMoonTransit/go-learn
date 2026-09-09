@@ -26,7 +26,7 @@ func checkPackageContractV2(root string, data packageData) ([]string, packageLay
 	case "workspace-tests":
 		return checkWorkspaceLayout(root, data)
 	case "fuzz-seed-tests", "benchmark-contract":
-		return []string{"verification profile " + profile + " is reserved but not executable in task-check/v2"}, packageLayout{TaskDir: data.Located.Path}
+		return []string{"verification profile " + profile + " is reserved but not executable in task-check/v3"}, packageLayout{TaskDir: data.Located.Path}
 	default:
 		return []string{"unknown verification profile"}, packageLayout{TaskDir: data.Located.Path}
 	}

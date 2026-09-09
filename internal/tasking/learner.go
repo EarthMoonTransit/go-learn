@@ -244,7 +244,7 @@ func VerifyLearnerWorkspace(root, id, workspace string, scope LearnerVerificatio
 	defer runner.Close()
 
 	plan := loaded.data.TaskV2.Verification
-	base := variantRequest{TaskID: id, GoVersion: learnerGoVersion(loaded), TimeoutSeconds: plan.Limits.CommandTimeoutSeconds}
+	base := variantRequest{TaskID: id, GoVersion: learnerGoVersion(loaded), TimeoutSeconds: plan.Limits.CommandTimeoutSeconds, Race: plan.RaceRequired}
 	switch loaded.data.TaskV2.Submission.Kind {
 	case "implementation":
 		tests := loaded.layout.PublicTests
@@ -263,7 +263,7 @@ func VerifyLearnerWorkspace(root, id, workspace string, scope LearnerVerificatio
 		return verifyLearnerMutation(runner, request, loaded, submission.tests), nil
 	case "workspace-patch":
 		request := workspaceRequest{
-			TaskID: id, GoVersion: learnerGoVersion(loaded), TimeoutSeconds: plan.Limits.CommandTimeoutSeconds,
+			TaskID: id, GoVersion: learnerGoVersion(loaded), TimeoutSeconds: plan.Limits.CommandTimeoutSeconds, Race: plan.RaceRequired,
 			Skeleton: loaded.layout.WorkspaceSkeleton, Overlay: submission.workspace,
 		}
 		if scope == LearnerPublicChecks {
@@ -668,7 +668,7 @@ func learnerVariantAuxiliary(runner *realExecutionRunner, request variantRequest
 	plan := loaded.data.TaskV2.Verification
 	if plan.Vet {
 		vet := request
-		vet.Vet = true
+		vet.Vet, vet.Race = true, false
 		if result := runner.RunVariant(vet); !result.Passed {
 			value := learnerAuxiliaryFailure("vet", loaded.info.SubmissionKind)
 			return &value
@@ -689,7 +689,7 @@ func learnerWorkspaceAuxiliary(runner *realExecutionRunner, request workspaceReq
 	plan := loaded.data.TaskV2.Verification
 	if plan.Vet {
 		vet := request
-		vet.Vet = true
+		vet.Vet, vet.Race = true, false
 		if result := runner.RunWorkspace(vet); !result.Passed {
 			value := learnerAuxiliaryFailure("vet", loaded.info.SubmissionKind)
 			return &value
