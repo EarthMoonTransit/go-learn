@@ -292,3 +292,11 @@ Existing v1/v2 homes enable this history with `learn organize --dry-run`, then
 numbered v2 workspaces do not move. Historical completions remain progress and
 never become retroactive evidence of independent mastery. Read-only commands do
 not migrate. Resetting the same task does not create another independent result.
+
+## Planned read-only Theory extension (P1)
+
+ADR 0020 specifies `learn topics` and `learn theory <topic-id>`, exposed through
+the existing service and UI. These commands are not delivered by this documentation
+batch. Topic reading will preserve current task, solutions, attempts, completion,
+assistance, hints and clocks; route v2 and progress v3 need no migration.
+The [active plan](plans/foundation-next.md) tracks tooling and page delivery separately.
