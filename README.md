@@ -2,15 +2,17 @@
 
 
 Active roadmap: **150 ready Go lessons → complete Go foundation**. Backend and production lesson tracks are deferred. See [ROADMAP.md](docs/ROADMAP.md).
-Кураторский банк практических задач по Go. Репозиторий находится в
-**ФАЗЕ 3D**. Taxonomy v3 и полный pedagogical triage Exercism зафиксированы;
-добавлены lifecycle, Task Contract v2, multi-source provenance, изолированные
-fixed/mutation/workspace verification profiles и локальный learner CLI.
-Локальный UI включён в ближайшую поставку поверх общего learner engine;
-GoLand остаётся редактором. Запуск из checkout: `go run ./cmd/learn ui`.
-Инструкция и совместимость версий: [LEARNER_CLI.md](docs/LEARNER_CLI.md).
-Ограниченный план:
-[docs/LOCAL_UI_GOAL.md](docs/LOCAL_UI_GOAL.md). Массовая генерация не планируется.
+Кураторский банк практических задач по Go: **150 последовательных уроков** в
+разделах 01–09, включая самостоятельное написание кода, тестов и debugging.
+84 урока содержательно адаптируют разрешённые материалы Exercism, Learn Go with
+Tests и Ardan Labs; происхождение и notices сохранены.
+
+Локальный UI и короткие команды `learn` используют общий learner engine.
+**Решения пишутся в GoLand**, в рабочей папке выбранного урока. UI показывает
+маршрут, проверки, подсказки и отдельный прогресс освоения навыков.
+Запуск из checkout: `go run ./cmd/learn ui` (или `learn ui` с настроенным launcher).
+Инструкция: [LEARNER_CLI.md](docs/LEARNER_CLI.md). Историческая поставка UI:
+[LOCAL_UI_GOAL.md](docs/LOCAL_UI_GOAL.md).
 
 Актуальный личный маршрут, критерии готовности и ближайшие партии работ:
 [docs/ROADMAP.md](docs/ROADMAP.md).
