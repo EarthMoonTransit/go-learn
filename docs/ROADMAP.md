@@ -1,7 +1,7 @@
 # Go Learn: two milestones to complete Go fundamentals
 
-Status: accepted implementation plan, 2026-09-08. This is the authoritative
-active roadmap. GoLand is the editor; the local UI and short `learn` commands
+Status: historical milestone ledger with current delivery policy, 2026-09-10.
+The authoritative active implementation plan is [foundation-next](plans/foundation-next.md). GoLand is the editor; the local UI and short `learn` commands
 share the learning cycle. Statements, hints and reviews remain English.
 
 ## Active finish line
@@ -9,8 +9,9 @@ share the learning cycle. Statements, hints and reviews remain English.
 Cover Go and its fundamental standard library through executable practice.
 Backend, HTTP/PostgreSQL application work, production services, Docker and CI
 as lesson topics are deferred. The repository's engineering CI remains required.
-Standalone theory, entry diagnostics, a custom editor and cloud distribution
-are outside this delivery.
+Short local English theory pages are included in the first wave, using the existing
+learner service and UI. Entry diagnostics, a custom editor and cloud distribution
+remain outside this delivery. Read-only topics preserve the current route and state.
 
 | Milestone | Product result | Definition of Done |
 | --- | --- | --- |
@@ -67,11 +68,14 @@ recovery. Read-only commands never migrate. Conflicts never overwrite solutions.
 ## Source-first content delivery
 
 Inventory → skill-based selection → substantive adaptation → verification → route.
-Start with the saved 177 Exercism candidates and selected permitted Learn Go
-with Tests / Ardan Labs artifacts. Use first-party Go material for specific gaps.
+Start with the saved 177 Exercism candidates and permitted Ardan artifacts;
+review the pinned SHAD, Golings, Birsi and Go Koans queue before authoring.
+The 16 historical Learn Go with Tests adaptations remain valid; no new bindings
+or theory are selected from that source (ADR 0021). Use first-party Go material for specific gaps.
 Inventory large sets; the ten-task limit applies to release/review batches.
-Before mass release, record all 128 planned additions with primary skill,
-prerequisites, candidate, exact source/path/commit or original-development reason.
+The historical 128-addition allocation is complete and remains unchanged.
+New allocations record primary skill, prerequisites, exact permitted source
+artifacts and deduplication review, or an evidenced original-development reason.
 
 At least 76 of the 150 ready lessons must substantively reuse permitted exercise
 material. A topic name, metadata-only mapping or concept-seed does not qualify.
@@ -86,6 +90,16 @@ algorithm. Test-writing requires independently authored checks. Progress toward
 multiple functions/files and complete components. Per ten new lessons, target
 five implementation, three test-writing and two debugging tasks; also enforce
 existing per-domain diversity. Existing content is repaired gradually, separately.
+
+## First wave after milestone 150
+
+P0/D03 aligns policy and ADRs; P1/T14 provides read-only Theory tooling;
+P2/C15 provides six theory pages (zero tasks); P3/S02 reviews source artifacts;
+P4T/T15 and P4C/C16 repair bounded-slice public feedback separately;
+P5/C17 adds at most six reviewed tasks; P6/K03 reports results and next allocation.
+These are preparation batches for the incomplete foundation, not a public release.
+ADR 0022 defines acceptance without reducing any existing package gate.
+Milestone-150 counts below remain historical, not new learner evidence.
 
 ## Execution ledger and batch policy
 

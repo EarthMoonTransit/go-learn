@@ -23,3 +23,7 @@ ADR фиксируют изменения стабильных контракт�
 - `0017` — completion evidence, durable assistance and delayed skill review (`accepted`)
 - `0018` — learner test API references for methods and fields (`accepted`)
 - `0019` — race-aware public and mutant verification, collection v3 (`accepted`)
+
+- `0020` — read-only local Theory metadata and navigation (`accepted`)
+- `0021` — algorithmic facet and historical LGWT selection freeze (`accepted`)
+- `0022` — incomplete-bank preparation versus release acceptance (`accepted`)
