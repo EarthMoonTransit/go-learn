@@ -21,6 +21,8 @@ const cliUsage = `usage: learn [-root DIR] [-home DIR] <command> [arguments]
 commands:
   ui [-port PORT]
   list
+  topics
+  theory <topic-id>
   show <task-id>
   start <task-id>
   resume <task-id>
@@ -92,6 +94,36 @@ func RunCLI(config Config, arguments []string, stdout, stderr io.Writer) int {
 			writeNumberedTaskList(stdout, *route, tasks, progress)
 		} else {
 			writeTaskList(stdout, tasks, progress)
+		}
+	case "topics":
+		if err := noArguments(command, commandArguments); err != nil {
+			return cliError(stderr, err)
+		}
+		topics, err := service.Topics()
+		if err != nil {
+			return cliError(stderr, err)
+		}
+		for _, topic := range topics {
+			fmt.Fprintf(stdout, "%s — %s [%s]\n", topic.ID, topic.Title, topic.Status)
+		}
+	case "theory":
+		id, err := oneArgument(command, commandArguments)
+		if err != nil {
+			return cliError(stderr, err)
+		}
+		view, err := service.TheoryView(id)
+		if err != nil {
+			return cliError(stderr, err)
+		}
+		fmt.Fprintf(stdout, "%s [%s]\n\n%s\n", view.Topic.Title, view.Topic.Status, view.Markdown)
+		if len(view.Topic.Prerequisites) > 0 {
+			fmt.Fprintf(stdout, "Prerequisite topics: %s\n", strings.Join(view.Topic.Prerequisites, ", "))
+		}
+		for _, task := range view.Lessons {
+			fmt.Fprintf(stdout, "Practice: %s %s — learn show %s\n", task.Number, task.Title, task.ID)
+		}
+		for _, link := range view.Topic.OfficialLinks {
+			fmt.Fprintf(stdout, "Read more: %s — %s\n", link.Description, link.URL)
 		}
 	case "show":
 		id, err := oneArgument(command, commandArguments)

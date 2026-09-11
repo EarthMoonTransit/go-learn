@@ -204,6 +204,32 @@ func (u *localUI) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 				Stopping bool       `json:"stopping"`
 			}{course, job, stopping})
 			return
+		case "/api/topics":
+			if r.URL.RawQuery != "" {
+				uiError(w, 400, "Unexpected query.")
+				return
+			}
+			topics, err := u.service.Topics()
+			if err != nil {
+				uiError(w, 500, safeUIError(err))
+				return
+			}
+			writeUIJSON(w, 200, topics)
+			return
+		case "/api/theory":
+			query := r.URL.Query()
+			id := query.Get("id")
+			if len(query) != 1 || len(query["id"]) != 1 || !topicIDPattern.MatchString(id) {
+				uiError(w, 400, "Invalid topic ID.")
+				return
+			}
+			view, err := u.service.TheoryView(id)
+			if err != nil {
+				uiError(w, 404, "Theory unavailable. Use learn theory for details.")
+				return
+			}
+			writeUIJSON(w, 200, view)
+			return
 		case "/api/task":
 			query := r.URL.Query()
 			id := query.Get("id")
