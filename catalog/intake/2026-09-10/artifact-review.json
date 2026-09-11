@@ -726,9 +726,14 @@
       "source_id": "go-koans",
       "source_commit": "7f0b28e4f551f2120d55eec3a03b4f472ec38044",
       "upstream_id": "about_anonymous_functions",
-      "source_path": "about_anonymous_functions",
+      "source_path": "about_anonymous_functions.go",
       "review_status": "deferred-remediation",
-      "files": [],
+      "files": [
+        {
+          "path": "about_anonymous_functions.go",
+          "sha256": "4d1287d29c5b08306a5a27f2d7a5470e8c7830cce39da1988e4a92686d704e32"
+        }
+      ],
       "license_evidence": {
         "path": "LICENSE",
         "sha256": "e5dddf7c2f6e04189c14527fd5ae18ca88c9c86f8dcf7d660c21b16f240a3d3a"
@@ -740,9 +745,14 @@
       "source_id": "go-koans",
       "source_commit": "7f0b28e4f551f2120d55eec3a03b4f472ec38044",
       "upstream_id": "about_defer",
-      "source_path": "about_defer",
+      "source_path": "about_defer.go",
       "review_status": "deferred-remediation",
-      "files": [],
+      "files": [
+        {
+          "path": "about_defer.go",
+          "sha256": "75bb7e0fa7a7ae9be2ab20754846597fb9be970b4d656f532c69f05ce1a6bffa"
+        }
+      ],
       "license_evidence": {
         "path": "LICENSE",
         "sha256": "e5dddf7c2f6e04189c14527fd5ae18ca88c9c86f8dcf7d660c21b16f240a3d3a"
@@ -754,9 +764,14 @@
       "source_id": "go-koans",
       "source_commit": "7f0b28e4f551f2120d55eec3a03b4f472ec38044",
       "upstream_id": "about_interfaces",
-      "source_path": "about_interfaces",
+      "source_path": "about_interfaces.go",
       "review_status": "deferred-remediation",
-      "files": [],
+      "files": [
+        {
+          "path": "about_interfaces.go",
+          "sha256": "15bdf90fa1e94fd91da8820de0fa119b7f670f2e2649c6b50a5782ff092e0ff8"
+        }
+      ],
       "license_evidence": {
         "path": "LICENSE",
         "sha256": "e5dddf7c2f6e04189c14527fd5ae18ca88c9c86f8dcf7d660c21b16f240a3d3a"
@@ -768,9 +783,14 @@
       "source_id": "go-koans",
       "source_commit": "7f0b28e4f551f2120d55eec3a03b4f472ec38044",
       "upstream_id": "about_pointers",
-      "source_path": "about_pointers",
+      "source_path": "about_pointers.go",
       "review_status": "deferred-remediation",
-      "files": [],
+      "files": [
+        {
+          "path": "about_pointers.go",
+          "sha256": "baf7ab5ae66ccd94adf43818fc1ba08bebfc8616b85ea64c692b186b0eb76455"
+        }
+      ],
       "license_evidence": {
         "path": "LICENSE",
         "sha256": "e5dddf7c2f6e04189c14527fd5ae18ca88c9c86f8dcf7d660c21b16f240a3d3a"
@@ -782,9 +802,14 @@
       "source_id": "go-koans",
       "source_commit": "7f0b28e4f551f2120d55eec3a03b4f472ec38044",
       "upstream_id": "about_slices",
-      "source_path": "about_slices",
+      "source_path": "about_slices.go",
       "review_status": "deferred-remediation",
-      "files": [],
+      "files": [
+        {
+          "path": "about_slices.go",
+          "sha256": "575278e88f88adfb554d636bd16f9d52aa5db7347f83625f79b7fd227ee6230d"
+        }
+      ],
       "license_evidence": {
         "path": "LICENSE",
         "sha256": "e5dddf7c2f6e04189c14527fd5ae18ca88c9c86f8dcf7d660c21b16f240a3d3a"
