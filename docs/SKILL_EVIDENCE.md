@@ -39,3 +39,11 @@ The frozen upstream inventory lives in
 `curriculum/mappings/exercism-go-concepts.yaml`. A label-based accepted record is
 valid only when that label has a one-to-one `mapped` entry. `ambiguous`,
 `taxonomy-gap`, and `scope-deferred` labels cannot silently choose a skill.
+
+## Theory and reconsidered candidates
+
+Read-only topics and their task links provide navigation, never assessed skill
+encounters or learner evidence. Reconsidering an algorithmic rejection records
+the old decision, new pedagogical disposition and remaining lineage gate; it
+does not automatically accept the candidate or permit reference-only artifacts.
+See the [active plan](plans/foundation-next.md) and ADRs 0020–0021.

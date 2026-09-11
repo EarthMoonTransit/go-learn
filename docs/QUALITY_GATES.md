@@ -134,7 +134,8 @@ task types и не более 60% одного типа. Curriculum policy ос�
 
 ## Repository acceptance
 
-Authoring infrastructure и неполные content batches:
+Authoring infrastructure и промежуточные preparation content batches неполного
+банка (точная граница с release зафиксирована ADR 0022):
 
 ```bash
 go test ./...
@@ -146,7 +147,9 @@ go run ./cmd/validate -root . -phase1 -checks .tmp/results/task-checks.yaml
 go run ./cmd/task-report -root . -check -checks .tmp/results/task-checks.yaml
 ```
 
-Release coverage дополнительно использует `-coverage`. Ни `-phase1`, ни наличие
+Public release/export и итоговый foundation acceptance дополнительно используют
+`-coverage`. Промежуточный ready package не объявляет весь банк выпущенным;
+P2/P4C/P5 первой волны являются preparation batches. Ни `-phase1`, ни наличие
 upstream tests не ослабляют gates уже существующих packages.
 
 The tooling matrix `TestReviewedDefectsHavePublicFeedback` additionally locks
