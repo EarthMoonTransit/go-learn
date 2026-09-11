@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/review_intake",
+  "reviewed_at": "2026-09-11",
+  "decision": "request-changes",
+  "story_free": true,
+  "prompt_test_alignment": true,
+  "public_api_stable": true,
+  "provenance_verified": true,
+  "license_verified": true,
+  "reference_only_clean_room_verified": true,
+  "solution_leakage_checked": true,
+  "minimum_mutants": 14,
+  "notes": "Independent review verified all five source hashes, MIT notice, substantive LRU behavior and distinction. Ready blocked: provisional primary interfaces.implicit-satisfaction is not assessed because the compiling starter already provides every method; all defects preserve satisfaction. Do not replace it with another unassessed label. Public zero-key/negative-value regression added after review. Technical checks cannot establish assessed coverage. Retain draft; no route or mastery claim."
+}

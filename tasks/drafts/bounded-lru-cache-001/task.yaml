@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "id": "bounded-lru-cache-001",
+  "title": "Implement a bounded LRU cache",
+  "activity": "implementation",
+  "submission": {
+    "kind": "implementation",
+    "editable_paths": [],
+    "workspace_skeleton": []
+  },
+  "skills": {
+    "primary": "interfaces.implicit-satisfaction",
+    "secondary": []
+  },
+  "prerequisites": [
+    "methods.method-sets",
+    "maps.operations-comma-ok",
+    "functions.function-values"
+  ],
+  "new_concepts": [],
+  "difficulty": "intermediate",
+  "estimated_time_minutes": {
+    "min": 35,
+    "max": 60
+  },
+  "verification": {
+    "profile": "fixed-tests",
+    "packages": [
+      "./subject"
+    ],
+    "public_checks": [
+      "./subject"
+    ],
+    "grader_checks": [
+      "./subject"
+    ],
+    "reference_checks": [
+      "./subject"
+    ],
+    "required_mutants": [
+      "zero-capacity",
+      "stored-zero-missing",
+      "missing-value",
+      "get-no-refresh",
+      "update-no-refresh",
+      "evict-newest",
+      "range-reversed",
+      "range-ignores-stop",
+      "clear-noop",
+      "shared-instance",
+      "miss-removes-oldest",
+      "update-duplicates",
+      "zero-key-rejected",
+      "negative-value-clamped"
+    ],
+    "race_required": false,
+    "vet": true,
+    "limits": {
+      "command_timeout_seconds": 30,
+      "determinism_runs": 2,
+      "fuzz_seconds": 0,
+      "benchmark_runs": 1
+    }
+  },
+  "quality_status": "draft"
+}
