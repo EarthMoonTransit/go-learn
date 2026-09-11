@@ -35,7 +35,7 @@
       "existing_draft_task_id": "bounded-lru-cache-001",
       "source_review_commit": "3e28648c53c94e71ff285bff3461ee5bad39c3e3",
       "draft_pr": "https://github.com/EarthMoonTransit/go-learn/pull/61",
-      "draft_commit": "8ea26ebe9f3494b7ab1d5fbed5b2807a69153200",
+      "draft_commit": "75df9ec6d745ea669a21803e62194878e94345f4",
       "merge_dependencies": [
         "PR54 source inventory",
         "PR60 bounded source review",

@@ -18,13 +18,26 @@ after exact-head validate succeeded. Master then became 369bf2f.
 | P3 / S02 | Artifact hashes, five initial bounded unit reviews, five Koans files, all 46 reconsiderations; narrow LRU selection | [60](https://github.com/EarthMoonTransit/go-learn/pull/60) | Approved 3e28648 after artifact/history and nil-wording corrections | Draft depends on intake |
 | P4T / T15 | Nil public regression and exact content compatibility, ADR0023 | [57](https://github.com/EarthMoonTransit/go-learn/pull/57) | Approved be5d299 | Awaiting CI |
 | P4C / C16 | Public nil len/cap assertion, seventh mutant, provenance and review mapping | [59](https://github.com/EarthMoonTransit/go-learn/pull/59) | Approved 5a656c2 with generated report | Draft depends on P4T |
-| P5 / C17 | One executable LRU draft, 14 defects; no promotion | [61](https://github.com/EarthMoonTransit/go-learn/pull/61) | 8ea26eb approved for preserving draft; assessment request-changes retained | Draft depends on P3/P2; ready blocked by assessment |
-| P6 / K03 | This checkpoint and prepared next allocation | This PR | Pending report review | Partial wave, not foundation acceptance |
+| P5 / C17 | One executable LRU draft, 14 defects; no promotion | [61](https://github.com/EarthMoonTransit/go-learn/pull/61) | 75df9ec approved for preserving draft and generated report; assessment request-changes retained | Draft depends on P3/P2; ready blocked by assessment |
+| P6 / K03 | This checkpoint and prepared next allocation | [62](https://github.com/EarthMoonTransit/go-learn/pull/62) | Approved checkpoint 624f0c9; final evidence update reviewed separately | Partial wave, not foundation acceptance |
 
 Each PR's generated-report-only follow-up retains the reviewed behavior; its exact
 head and collection evidence must be checked before merge. Draft dependency PRs
 must be retargeted to master after their prerequisites land to trigger validate.
 PR60 includes PR54 while intake remains unmerged; do not merge around that gate.
+
+## Changed file groups
+
+| Batch | Principal files |
+| --- | --- |
+| P0 | docs/{ROADMAP,PROJECT_VISION,CURRICULUM_RULES,SKILL_EVIDENCE,LEARNER_CLI,QUALITY_GATES}.md; docs/adr/0020–0022; reports/foundation-wave-baseline.md |
+| P1 | internal/learner/{theory.go,theory_test.go,cli.go,ui.go,ui/app.js,ui/app.test.cjs,ui/index.html}; internal/validation/validate.go; schemas/topic.schema.json; ADR0020 and CLI documentation; reports/theory-tooling.md |
+| P2 | curriculum/topics.yaml; theory/en/{workspace,first-tests,slice-views,slice-ownership,interface-contracts,cancellation}.md; reports/theory-pages.md |
+| Intake/P3 | catalog/intake/2026-09-10; sources/registry.yaml; reports/task-quality.{md,yaml}; reports/foundation-source-review.md |
+| P4T | internal/learner/{content_revisions.go,content_revisions_test.go,nil_feedback_integration_test.go}; ADR0023/index; reports/bounded-view-nil-tooling.md |
+| P4C | tasks/ready/bounded-slice-view-001/{tests/public,solution/mutants/nil-spare-cap,task.yaml,provenance.yaml,review}; reports/task-quality.{md,yaml}; reports/bounded-view-nil-content.md |
+| P5 | tasks/drafts/bounded-lru-cache-001 (TASK, starter, public/grader, reference, 14 mutants, provenance/attribution, hints, lifecycle/review); reports/foundation-first-content.md; generated task-quality reports |
+| P6 | reports/foundation-wave-1.md; catalog/seed-plans/foundation-wave-next.json |
 
 ## Verified learner loop
 
@@ -34,8 +47,12 @@ created a private numbered workspace, sent it through the existing GoLand
 launcher, ran public Check on the starter and showed useful type/value diagnostics,
 then returned to Theory. Comparing progress.json immediately before/after return
 showed identical bytes. No hints, completion or skill evidence came from reading.
+All ten worktrees preserve the same 150 (section, task ID, number) tuples and
+byte-identical taxonomy. Route SHA-256:
+a1ae9dfd067f8f8f4847acd50741a83bc86b6a8aeebd2f31205552593a53b7e9.
 The one browser attempt and all automated completions are fixtures, not the user's
-achievements. The temporary UI session was separate from the normal learner home and stopped after the smoke test.
+achievements. The temporary UI session was separate from the normal learner home and stopped
+after the smoke test.
 
 Six page examples passed in disposable Go 1.27 modules with module networking off.
 Official reading URLs were checked; pages themselves load locally without remote
@@ -55,13 +72,14 @@ the persistent regression. Non-nil empty zero-capacity results remain valid.
 - Intake counts remain 62 SHAD schedule units, 43 Golings entries, 12 Birsi packages,
   20 Koans thematic files and 6 Loong challenges; 143 mixed records are not 143 tasks.
 - Source review joins 24 queued units plus 5 Koans files; unreviewed units remain
-  needs-artifact-review. LRU is the single admitted source behavior and now an executable draft, not ready.
+  needs-artifact-review. LRU is the single admitted source behavior and now an executable
+  draft, not ready.
 - Human completion, mastery, timing calibration and retention evidence: unknown.
 
 ## Local acceptance evidence
 
 Ordered fast tests, race, vet and taskintegration passed for the planning baseline,
-intake, P1, P2, P3 and P4T. P4C and P5 are finishing their own ordered acceptance.
+intake, P1, P2, P3, P4T, P4C and P5. Each completed with exit status zero.
 P1's final null-list validation change additionally passed focused normal/race Go
 tests and the Node renderer checks; bank inputs remained identical. Validator
 uses -phase1 under ADR0022 and task-report -check uses the same saved collection.
@@ -73,6 +91,7 @@ No final -coverage or public release is claimed.
 | PR54 intake registry | 4f4fe2f95e5de155b9257fe74cc00c338c12d609bade7371472ddbaa83ad853b | Intake validator/report |
 | P3 narrow source permission | 3174a727df33867d8292263659299441a8b8daeac0f67d1024b2e6ac7a85fe15 | P3 validator/report |
 | P4C nil amendment | 936372b8a0719ceb7447682e5255f8bb0b441eecb88438f8c969a3772398cf47 | P4C validator/report |
+| P5 LRU draft plus P3 registry | b10f63b663597e0ace3236961323fe7aab97733bb53448251ef0b2a77b77c6c2 | P5 validator/report passed; 163 packages, draft review remains fail |
 
 Local evidence is under /tmp/go-learn-{wave,intake,p1,p2,p3,p4t,p4c,p5}/.tmp/results
 in isolated worktrees. Collections and logs are local check artifacts, not learner
@@ -101,7 +120,9 @@ already supplies the complete interface. Pointer receivers are also supplied,
 so receiver semantics is not a justified substitute. A public zero-key and
 negative-value gap was fixed; all 14 defects then failed a public-only isolated
 probe with useful diagnostics, and the reference passed. No promotion or route
-entry was made. This is a specific assessment blocker, separate from CI billing.
+entry was made. The generated draft row retains review_status: fail; its
+promotion_eligible field does not authorize ready or override independent review.
+This is a specific assessment blocker, separate from CI billing.
 
 catalog/seed-plans/foundation-wave-next.json prepares a maximum one-task follow-up
 on that existing draft, with no new task quota. It requires an independently
