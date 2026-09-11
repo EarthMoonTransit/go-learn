@@ -143,6 +143,10 @@ func TestTheoryReadOnlyCLIAndHTTP(t *testing.T) {
 func TestTheoryRejectsUnsafeInputs(t *testing.T) {
 	s := theoryFixture(t)
 	for _, test := range []struct{ name, metadata, page string }{
+		{"missing topics", "schema_version: 1\n", "safe"},
+		{"null topics", "schema_version: 1\ntopics: null\n", "safe"},
+		{"missing prerequisites", strings.Replace(syntheticTopics, "    prerequisites: []\n", "", 1), "safe"},
+		{"null prerequisites", strings.Replace(syntheticTopics, "prerequisites: []", "prerequisites: null", 1), "safe"},
 		{"unknown field", syntheticTopics + "unexpected: true\n", "safe"},
 		{"version", strings.Replace(syntheticTopics, "version: 1", "version: 2", 1), "safe"},
 		{"task", strings.Replace(syntheticTopics, "literal-bindings-001", "unknown-001", 1), "safe"},

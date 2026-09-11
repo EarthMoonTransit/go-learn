@@ -132,7 +132,7 @@ func (s *Service) Topics() ([]Topic, error) {
 	if err := decoder.Decode(&extra); err != io.EOF {
 		return nil, errors.New("topics require exactly one YAML document")
 	}
-	if doc.SchemaVersion != 1 || len(doc.Topics) > 200 {
+	if doc.SchemaVersion != 1 || doc.Topics == nil || len(doc.Topics) > 200 {
 		return nil, errors.New("unsupported topic version or count")
 	}
 	if len(doc.Topics) == 0 {
@@ -156,6 +156,9 @@ func (s *Service) Topics() ([]Topic, error) {
 	paths := map[string]bool{}
 	for i := range doc.Topics {
 		t := &doc.Topics[i]
+		if t.Prerequisites == nil {
+			return nil, errors.New("topic prerequisites must be an explicit list")
+		}
 		if !topicIDPattern.MatchString(t.ID) || strings.TrimSpace(t.Title) == "" || len(t.Title) > 160 || !sections[t.SectionID] {
 			return nil, fmt.Errorf("invalid topic identity or section: %s", t.ID)
 		}
