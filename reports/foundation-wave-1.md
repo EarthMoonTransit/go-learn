@@ -6,6 +6,20 @@ Work was isolated in codex branches/worktrees; no private learner history was re
 PR53 (fd9d536) and P0 PR55 (5643bee) were independently approved and merged only
 after exact-head validate succeeded. Master then became 369bf2f.
 
+## Latest user decision — retain Theory, stop its expansion
+
+On 2026-09-11 the user stopped further Theory development. Preserve the P1
+implementation and six P2 pages already prepared and visible in the local preview.
+Do not add theory pages or features, and do not make a new page a prerequisite
+for another exercise. The 6/47 figure below is an inventory ratio, not a remaining
+theory-writing target. The next focus is settling the existing PRs and reviewing
+executable exercises. Source, assessment and CI gates remain in force.
+
+The user's main checkout was subsequently switched, at the user's request, to
+codex/foundation-theory-local-preview at daef63a so the existing launcher shows
+the prepared Theory feature. The original clean-master statement above records
+the first-wave starting state, not the current local branch.
+
 ## What exists
 
 | Batch | Result | PR | Independent review | Status |

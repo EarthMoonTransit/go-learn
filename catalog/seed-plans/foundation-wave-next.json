@@ -75,5 +75,16 @@
   ],
   "learner_evidence": "unknown; no private learner history inspected",
   "maximum_substantially_changed_tasks": 1,
-  "next_batch_scope": "One bounded assessment follow-up for the existing LRU draft. No new task quota; broader source candidates remain deferred."
+  "next_batch_scope": "First settle the existing reviewed PRs after exact-head validate. Then one bounded assessment follow-up for the existing LRU draft; no new task quota and no Theory expansion.",
+  "theory_policy": {
+    "decision_date": "2026-09-11",
+    "status": "frozen-at-existing-scope",
+    "retain": [
+      "P1 read-only Theory tooling (PR56)",
+      "P2 six local pages (PR58)"
+    ],
+    "expand_pages": false,
+    "expand_features": false,
+    "new_page_required_for_new_exercise": false
+  }
 }
