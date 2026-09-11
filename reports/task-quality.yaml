@@ -182,6 +182,25 @@ tasks:
         detected: 8
         survived: []
       legacy: false
+    - id: bounded-lru-cache-001
+      state: draft
+      input_digest: f8aa211df26e946963815f6c8a62b0ce58b333730259b7e79561a555f517fb1b
+      task_type: implement
+      primary_skill: interfaces.implicit-satisfaction
+      technical_status: pass
+      review_status: fail
+      promotion_eligible: true
+      failing_gate_ids:
+        - review-evidence
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 14
+        total: 14
+        detected: 14
+        survived: []
+      legacy: false
     - id: bounded-slice-view-001
       state: ready
       input_digest: f75840e53ad248369d3ae6fbd9e6a2e31caf035b665fc7ace2d55b3fcc26debb
@@ -2928,7 +2947,7 @@ tasks:
       legacy: true
 states:
     - state: draft
-      count: 8
+      count: 9
     - state: in-review
       count: 0
     - state: ready
@@ -2941,7 +2960,7 @@ task_types:
     - task_type: debug
       count: 38
     - task_type: implement
-      count: 80
+      count: 81
     - task_type: refactor
       count: 3
     - task_type: test-writing
