@@ -35,3 +35,10 @@ func TestPublicCase02(t *testing.T) {
 		}
 	}
 }
+
+func TestPublicNilView(t *testing.T) {
+	got := subject.CappedView(nil, 0, 0)
+	if len(got) != 0 || cap(got) != 0 {
+		t.Errorf("CappedView(nil, 0, 0): len=%d cap=%d; want len=0 cap=0", len(got), cap(got))
+	}
+}
