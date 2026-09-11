@@ -20,7 +20,7 @@ an append-only reconsideration record; native historical reviews stay unchanged.
 | W2 structs2 | Rejected for this wave | A compile-only embedding hole adds little beyond existing executable embedding practice. |
 | W3 binary-search | Deferred | Generated canonical cases and external statement lineage are not admitted; algorithmic policy is no longer the rejection. |
 | W4 pangram | Deferred | Same canonical-data boundary; completeness differs from uniqueness, but that does not confer copying permission. |
-| W5 nil/empty | No new task | Birsi collections does not require distinct nil representation; existing bounded-slice-view already promises it and P4 repairs public feedback. |
+| W5 nil/empty | No new task | Birsi collections does not require distinct nil representation; existing bounded-slice-view promises zero length/capacity for nil input, and P4 repairs that public feedback without requiring nil representation. |
 | W6 lrucache | Accepted for adaptation, subject to this PR's review/gates | A bounded container with cross-operation recency/eviction, ordered traversal and clear is distinct from existing map updates and stacks. |
 
 Only SHAD's four lrucache files enter a narrow adapt allowlist. MIT notice must
