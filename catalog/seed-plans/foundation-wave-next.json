@@ -1,0 +1,79 @@
+{
+  "format": "go-learn-advisory-allocation/v1",
+  "date": "2026-09-11",
+  "plan": "docs/plans/foundation-next.md",
+  "status": "prepared-assessment-follow-up",
+  "maximum_new_tasks": 0,
+  "new_ready_tasks": 0,
+  "slots": [
+    {
+      "slot": "W6",
+      "id_collision_checked_at": "2026-09-11",
+      "source_id": "shad-go",
+      "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "source_path": "lrucache",
+      "artifact_review_pr": "https://github.com/EarthMoonTransit/go-learn/pull/60",
+      "artifact_review_record": "catalog/intake/2026-09-10/artifact-review.json",
+      "activity": "implementation",
+      "role": "intended transfer, not assessed evidence",
+      "profile": "fixed-tests",
+      "assessment_review": "Independent review rejects the provisional interfaces.implicit-satisfaction primary: starter and all 14 defects already satisfy the interface. Pointer receivers are also supplied, so receiver-semantics is not an honest replacement. Resolve this specific assessment mismatch before changing the draft or promoting it; do not change taxonomy or activity silently.",
+      "prerequisites": [
+        "maps.operations-comma-ok",
+        "methods.method-sets",
+        "functions.function-values"
+      ],
+      "route_policy": "Preserve all 150 existing addresses. Draft has no route entry. Revisit placement only after accepted assessment and prerequisite proof.",
+      "before_authoring": [
+        "Inspect the saved draft, exact independent review and 14 public defect diagnostics",
+        "Prepare a bounded assessment decision: retain implementation only if an existing primary skill can be observably tested without cosmetic relabeling; otherwise record the proposed activity/profile or taxonomy change explicitly for separate review",
+        "Any task contract or taxonomy change requires its own ADR and migration plan before a content amendment",
+        "Keep the source interface/recency/eviction/Range/Clear boundary and all pinned MIT attribution",
+        "Recheck existing task ID and prerequisite mapping; at most one substantially changed task",
+        "Require independent assessment approval and normal task-promote lifecycle before any ready claim"
+      ],
+      "existing_draft_task_id": "bounded-lru-cache-001",
+      "source_review_commit": "3e28648c53c94e71ff285bff3461ee5bad39c3e3",
+      "draft_pr": "https://github.com/EarthMoonTransit/go-learn/pull/61",
+      "draft_commit": "8ea26ebe9f3494b7ab1d5fbed5b2807a69153200",
+      "merge_dependencies": [
+        "PR54 source inventory",
+        "PR60 bounded source review",
+        "PR58 interface Theory page",
+        "PR61 preserved draft"
+      ],
+      "rejected_primary_skill": "interfaces.implicit-satisfaction"
+    }
+  ],
+  "deferred": [
+    {
+      "slot": "W1",
+      "reason": "Exact Go ParseDuration lineage and notices unresolved."
+    },
+    {
+      "slot": "W2",
+      "reason": "Compile-only embedding hole has insufficient distinct value."
+    },
+    {
+      "slot": "W3",
+      "reason": "No permitted independent binary-search exercise contract admitted; canonical data remains restricted."
+    },
+    {
+      "slot": "W4",
+      "reason": "Pangram completeness is distinct, but canonical lineage is not admitted."
+    },
+    {
+      "slot": "W5",
+      "reason": "Birsi supplies no nil-representation contract. P4 repairs nil-input len/cap feedback; it does not add a representation requirement. A distinct original is deferred, not inferred from this defect."
+    }
+  ],
+  "later_wave": [
+    "shad-go:externalsort",
+    "shad-go:treeiter",
+    "shad-go:dupcall",
+    "birsi-go-training:11_channels"
+  ],
+  "learner_evidence": "unknown; no private learner history inspected",
+  "maximum_substantially_changed_tasks": 1,
+  "next_batch_scope": "One bounded assessment follow-up for the existing LRU draft. No new task quota; broader source candidates remain deferred."
+}
