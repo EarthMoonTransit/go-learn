@@ -184,7 +184,7 @@ tasks:
       legacy: false
     - id: bounded-slice-view-001
       state: ready
-      input_digest: 2e5a517c907685883134ede2e25b97b827b49c1e36eedbe1b630bfeff4a6c294
+      input_digest: fc1e5192041ffeaddce9aced13b99d5625004ee306834c1374e605baf3608a4f
       task_type: implement
       primary_skill: slices.full-slice-expressions
       technical_status: pass
@@ -195,9 +195,9 @@ tasks:
       reference_status: pass
       race_status: not-applicable
       mutants:
-        required: 6
-        total: 6
-        detected: 6
+        required: 7
+        total: 7
+        detected: 7
         survived: []
       legacy: false
     - id: bounded-value-001

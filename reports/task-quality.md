@@ -44,7 +44,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | `binary-record-tests-001` | `ready` | `d49066857c9e4736f219f19007024b4c306f14bb5d06df173118e614272e505b` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 8/8 | Phase 3A |
 | `boolean-policies-001` | `ready` | `73badaf7719740ec9815436f32c546f9f5e1c7f8089b964c26f26c2957a3f926` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 8/8 | Phase 3A |
 | `bounded-copy-001` | `ready` | `5804e5915445ade7e27a7cc77f131fc3894e5ec97733235bcaa300daa739babe` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 8/8 | Phase 3A |
-| `bounded-slice-view-001` | `ready` | `2e5a517c907685883134ede2e25b97b827b49c1e36eedbe1b630bfeff4a6c294` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
+| `bounded-slice-view-001` | `ready` | `fc1e5192041ffeaddce9aced13b99d5625004ee306834c1374e605baf3608a4f` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 7/7 | Phase 3A |
 | `bounded-value-001` | `ready` | `f76152316453f466d5d22103d75a66453c2d1e8a51787700e4f0015e424dc46b` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
 | `buffered-flush-001` | `ready` | `96cbef54ad6a57e874babf497af4f7806241d156d489bc39f7554781bd7913a9` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 5/5 | Phase 3A |
 | `byte-window-tests-001` | `ready` | `68f9d25c93109b1f0bf2f182a12204a6fcebc75c2b6133eff9e60e77e271580a` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
