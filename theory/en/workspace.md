@@ -13,7 +13,7 @@ package is the input to verification; it is not your working directory.
 A Go file belongs to a package. A module's go.mod defines its module path and
 language version. Keep the workspace's supplied go.mod. GoLand should use the
 project's Go 1.27 toolchain. Imports name packages, not arbitrary source files.
-Here is a separate example of a package-level value and a runnable example test:
+Here is a separate example of a local constant and a runnable example test:
 
 ```go
 package example

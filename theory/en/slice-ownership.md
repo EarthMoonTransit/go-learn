@@ -6,7 +6,7 @@ does not create fresh elements, and passing a slice to a function does not hand
 over exclusive access to its backing array.
 
 Append returns the resulting slice value; retain that result. If capacity is
-sufficient, append can reuse the existing array. When it is insufficient, append
+sufficient, append reuses the existing array. When it is insufficient, append
 allocates a different array and copies existing elements. The language does not
 promise a universal capacity-growth multiplier.
 
