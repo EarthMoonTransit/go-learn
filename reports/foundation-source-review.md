@@ -36,7 +36,7 @@ checks, a reference and realistic defects. Prerequisites: maps, methods, interfa
 and callbacks. Keep the package outside required sequence if existing route
 placement cannot prove preparation; never renumber old lessons.
 
-Externasort, treeiter, dupcall and subsequent concurrency components stay in the
+Externalsort, treeiter, dupcall and subsequent concurrency components stay in the
 next wave. Recover tabletest provenance or select another permitted contract
 before adding that slot. No original is authored to evade a restricted source.
 

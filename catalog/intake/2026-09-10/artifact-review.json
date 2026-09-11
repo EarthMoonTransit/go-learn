@@ -101,7 +101,7 @@
         "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
       },
       "lineage": "Four package files reviewed; root MIT, no nested notice/override or attributed external code in this package. Module uses the historical gitlab.com/slon/shad-go path; this is retained as repository-lineage context. Allow only this package at this commit. Preserve MIT notice; author new deterministic public/full checks and implementation. Exclude testify, random workload, GC setting and benchmark.",
-      "behavior_and_dedup": "Bounded mutable container: Set/Get update recency, eviction, ordered Range early stop, Clear and capacity zero. Separate from generic-stack-001, ordered-key-values-001 and dictionary-update-001: cross-operation recency invariant is new.",
+      "behavior_and_dedup": "Bounded mutable container: Set/Get update recency, eviction, ordered Range early stop, Clear and capacity zero. Separate from generic-stack-001 and dictionary-update-001: cross-operation recency invariant is new.",
       "prerequisites": "maps lookup/update, receiver state, interfaces, callbacks; intermediate transfer, after related existing lessons.",
       "adaptation_decision": "Public zero capacity, empty/missing key, update does not duplicate, Get refresh, eviction order, early stop and Clear. Required wrong variants must compile and produce useful diagnostics."
     },
@@ -562,7 +562,7 @@
         "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
       },
       "lineage": "Read exact main.go and root Apache-2.0. Keep reference-only; no files admitted.",
-      "behavior_and_dedup": "Compile-only missing embedded field; no independent state/aliasing contract. Existing embedded-counter-001 already gives executable promotion behavior.",
+      "behavior_and_dedup": "Compile-only missing embedded field; no independent state/aliasing contract. Existing embedded-cache-tests-001 already gives executable promotion behavior.",
       "prerequisites": "structs, embedding and selectors.",
       "adaptation_decision": "W2 rejected: adding unrelated ownership requirements would invent most of the exercise. No source-representation filler."
     },
