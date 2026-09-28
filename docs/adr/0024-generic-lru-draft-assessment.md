@@ -1,6 +1,7 @@
 # ADR 0024: Assess the LRU draft as a reusable generic container
 
-- Status: proposed, pending independent review
+- Status: accepted for authoring; merge remains subject to exact-head validate
+- Independent decision review: `/root/review_plan`, approved `ee008b401f26f0f9f0746da5182a87213e399953` on 2026-09-28; content still requires separate review
 - Date: 2026-09-28
 - Scope: the existing bounded-lru-cache-001 draft in PR61
 
