@@ -40,9 +40,19 @@ claimed as learner evidence. The old draft remains in Git at 75df9ec.
 
 ## Remaining gates and scope
 
-Final repository acceptance uses one saved collection, shared by validator and
-report-check; ordered fast/race/vet/integration gates are recorded below when
-complete. Preparation follows ADR0022 (-phase1), not final foundation release
+Final repository acceptance passed on 2026-09-28. The one full collection
+passed for 163 packages and generated the reports before the ordered suite, as
+required by DEBUGGING for content changes. Fast (42.08s), race (265.55s), vet
+(1.05s), and integration with the accepted 30-minute budget (324.19s) all exited
+zero. Validator -phase1 and task-report -check then both passed using that same
+collection; no task code was rerun to generate or check reports.
+
+Collection SHA-256:
+e2f2ec448d13fb4ab9dd3780037f8f872e3f64e3789dbb40006f1a662b77cce2.
+Generated report delta 325d6b2 was independently approved: only LRU changed,
+with 154 ready, 8 draft and 1 rejected package; all other 162 rows are unchanged.
+Evidence is in the managed foundation-lru worktree under .tmp/results
+(task-checks.yaml, acceptance.json and individual gate logs). Preparation follows ADR0022 (-phase1), not final foundation release
 or public export (-coverage). Source PR54/PR60 and decision PR62 must land before
 this dependent content PR. GitHub's billing failure cannot be bypassed by local
 results. Theory expansion is frozen and no new theory page is a dependency.
