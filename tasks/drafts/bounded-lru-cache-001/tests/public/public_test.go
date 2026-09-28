@@ -8,12 +8,12 @@ import (
 
 type pair struct{ key, value int }
 
-func snapshot(c subject.Cache) []pair {
+func snapshot(c *subject.Cache[int, int]) []pair {
 	out := []pair{}
 	c.Range(func(k, v int) bool { out = append(out, pair{k, v}); return true })
 	return out
 }
-func wantEntries(t *testing.T, c subject.Cache, want ...pair) {
+func wantEntries(t *testing.T, c *subject.Cache[int, int], want ...pair) {
 	t.Helper()
 	if want == nil {
 		want = []pair{}
@@ -22,15 +22,15 @@ func wantEntries(t *testing.T, c subject.Cache, want ...pair) {
 		t.Fatalf("Range oldest-to-newest = %v; want %v", got, want)
 	}
 }
-func wantGet(t *testing.T, c subject.Cache, k, v int, ok bool) {
+func wantGet(t *testing.T, c *subject.Cache[int, int], k, v int, ok bool) {
 	t.Helper()
 	if got, found := c.Get(k); got != v || found != ok {
 		t.Fatalf("Get(%d) = (%d,%t); want (%d,%t)", k, got, found, v, ok)
 	}
 }
-func newCache(t *testing.T, capacity int) subject.Cache {
+func newCache(t *testing.T, capacity int) *subject.Cache[int, int] {
 	t.Helper()
-	c := subject.New(capacity)
+	c := subject.New[int, int](capacity)
 	if c == nil {
 		t.Fatal("New returned nil; want usable Cache")
 	}

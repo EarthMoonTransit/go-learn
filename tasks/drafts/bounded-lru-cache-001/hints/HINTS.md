@@ -1,5 +1,6 @@
 # Hints
 
-1. Separate key presence, stored value and recency. A stored zero is still present.
-2. Write out a short operation trace and the expected oldest-to-newest keys after every step.
-3. Check an existing-key update separately from insertion into a full cache. Choose a representation that makes both behaviors explicit.
+1. Separate presence from the stored value: a zero value can be present.
+2. Check how your representation behaves before any constructor has run.
+3. Trace an update followed by a lookup, a miss, and an insertion at capacity.
+4. Values need not be comparable. Keep key equality separate from value storage.

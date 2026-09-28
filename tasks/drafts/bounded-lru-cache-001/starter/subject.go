@@ -1,16 +1,10 @@
 package subject
 
-type Cache interface {
-	Get(key int) (int, bool)
-	Set(key, value int)
-	Range(f func(key, value int) bool)
-	Clear()
-}
+type Cache[K comparable, V any] struct{ state *state[K, V] }
+type state[K comparable, V any] struct{}
 
-type cache struct{}
-
-func New(capacity int) Cache                       { return &cache{} }
-func (c *cache) Get(key int) (int, bool)           { return 0, false }
-func (c *cache) Set(key, value int)                {}
-func (c *cache) Range(f func(key, value int) bool) {}
-func (c *cache) Clear()                            {}
+func New[K comparable, V any](capacity int) *Cache[K, V] { return nil }
+func (c *Cache[K, V]) Get(key K) (V, bool)               { var zero V; return zero, false }
+func (c *Cache[K, V]) Set(key K, value V)                {}
+func (c *Cache[K, V]) Range(f func(K, V) bool)           {}
+func (c *Cache[K, V]) Clear()                            {}

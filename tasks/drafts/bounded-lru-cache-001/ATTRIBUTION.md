@@ -8,9 +8,11 @@ artifact review. Repository: https://github.com/slon/shad-go.
 The source module identifies `gitlab.com/slon/shad-go`; this historical identity
 is retained without treating unrelated GitLab content as an additional source.
 
-The integer interface and observable cross-operation contracts are adapted.
+The source integer cache's observable cross-operation contracts are adapted.
+The generic K/V API and usable zero Cache are local changes (ADR0024); the
+source did not supply a generic implementation.
 The statement, deterministic test data, defect implementations, hints and linear
-slice reference were authored for Go Learn. A missing lookup's zero value,
+slice reference were authored for Go Learn. A missing lookup's typed zero value,
 nonnegative capacities, sequential calls and non-mutating callbacks are explicit
 local boundaries. No complexity threshold is imposed. No source dependencies,
 random workloads, GC settings, benchmarks, Wikipedia text or canonical Exercism

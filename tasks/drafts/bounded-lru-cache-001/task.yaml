@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "id": "bounded-lru-cache-001",
-  "title": "Implement a bounded LRU cache",
+  "title": "Implement a generic bounded LRU cache",
   "activity": "implementation",
   "submission": {
     "kind": "implementation",
@@ -9,13 +9,14 @@
     "workspace_skeleton": []
   },
   "skills": {
-    "primary": "interfaces.implicit-satisfaction",
+    "primary": "generics.reusable-data-structures",
     "secondary": []
   },
   "prerequisites": [
-    "methods.method-sets",
-    "maps.operations-comma-ok",
-    "functions.function-values"
+    "generics.constraints-type-sets",
+    "types.zero-values",
+    "functions.function-values",
+    "methods.receiver-semantics"
   ],
   "new_concepts": [],
   "difficulty": "intermediate",
@@ -51,7 +52,13 @@
       "miss-removes-oldest",
       "update-duplicates",
       "zero-key-rejected",
-      "negative-value-clamped"
+      "named-key-rejected",
+      "pointer-key-content",
+      "noncomparable-value-rejected",
+      "nil-value-rejected",
+      "zero-value-cache",
+      "value-deep-copy",
+      "clear-loses-capacity"
     ],
     "race_required": false,
     "vet": true,

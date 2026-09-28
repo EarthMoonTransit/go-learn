@@ -1,64 +1,62 @@
-# P5 / C17 content review — request changes: assessment
+# P5 / C17 generic LRU content review
 
-One substantive adaptation with an algorithmic facet; intended role transfer.
-Independent review by `/root/review_intake` found a ready blocker: provisional
-`interfaces.implicit-satisfaction` is not assessed because the compiling starter
-already supplies every method. Mutants preserve satisfaction. Do not count this
-label as coverage. `methods.receiver-semantics` is not a justified replacement:
-pointer receivers are already supplied. No secondary map coverage is claimed
-because a slice implementation is valid. The package remains draft, with no
-promotion until a separately reviewed assessment decision resolves this mismatch.
-Estimated 35–60 minutes is uncalibrated. The task stays outside the mandatory
-150-step route; no old ID, number, progress, hint or timing data changes. The
-interface-contracts Theory page is prepared separately in P2/PR58, whose merge
-is a release dependency, not duplicated in this content batch.
+One substantive SHAD adaptation with an algorithmic facet; intended transfer
+role. ADR0024 (PR62) replaces the rejected integer draft's unassessed interface
+primary with existing `generics.reusable-data-structures`. No schema, skill ID,
+profile or mandatory route changes. The previous draft is preserved at 75df9ec;
+it was never ready/routed. The generic decision and empty private-state scaffold
+were independently accepted for authoring, not automatically for promotion.
+
+The learner implements zero-state behavior, typed misses/presence, unrestricted
+values, key identity and cross-operation invariants. Tests use nonempty slices
+and structs containing slices, named/composite keys, and distinct pointer keys
+with equal contents. Compile-time `V comparable` is an invalid API; it is not
+counted among compiling behavioral mutants. No secondary map coverage is claimed:
+a linear implementation is valid. This is distinct from generic-stack's LIFO
+contract and dictionary/embedded-cache exercises: keyed bounded storage, recency,
+eviction and ordered stoppable traversal interact across multiple K/V types.
+Estimated 35–60 minutes remains uncalibrated. No learner evidence is claimed.
 
 ## Public requirement mapping
 
-| Requirement | Public assertion | Defect | Diagnostic |
+| Requirement | Public tests | Defects | Useful diagnostic |
 | --- | --- | --- | --- |
-| Independent empty usable instances | TestPublicEmptyZeroAndIndependent | shared-instance | Range actual/expected per instance |
-| Arbitrary integers, including key zero and negative values | TestPublicZeroKeyAndNegativeValue | zero-key-rejected, negative-value-clamped | entries/Get actual and expected signed values |
-| Store/update; zero capacity | TestPublicEmptyZeroAndIndependent, TestPublicUpdateRefreshWithoutEviction | zero-capacity, update-duplicates | Get or ordered entries actual/expected |
-| Presence including zero, missing pair | TestPublicEmptyZeroAndIndependent | stored-zero-missing, missing-value | Get(key) actual pair; expected pair |
-| Successful Get refresh | TestPublicGetRefreshAndEviction | get-no-refresh | ordered entries actual/expected |
-| Set refresh without extra eviction | TestPublicUpdateRefreshWithoutEviction | update-no-refresh, update-duplicates | ordered entries actual/expected |
-| Miss does not mutate | TestPublicMissDoesNotChangeOrder | miss-removes-oldest | ordered entries actual/expected |
-| Least-recent eviction | TestPublicGetRefreshAndEviction | evict-newest | missing Get or ordered entries actual/expected |
-| Range order and early stop; unchanged state | TestPublicRangeStopAndNoMutation | range-reversed, range-ignores-stop | callback entries/count actual/expected |
-| Clear, repeat and reuse capacity | TestPublicClearAndReuse | clear-noop | ordered entries actual/expected |
+| New independent/empty; usable zero Cache | EmptyZeroAndIndependent, ZeroCache, AssignmentAndIndependentGenericInstances | shared-instance, zero-value-cache | Range length/entries or Get actual/expected |
+| Set assigns any V; zero capacity | GenericSlicesAndRecency, NamedCompositeKeysAndStructValues, EmptyZeroAndIndependent, AssignmentAndIndependentGenericInstances | noncomparable-value-rejected, named-key-rejected, zero-capacity, value-deep-copy | Get/Range values actual/expected |
+| Stored zero/nil present; typed zero on miss | TypedMissesAndStoredNil, EmptyZeroAndIndependent, GenericSlicesAndRecency | stored-zero-missing, nil-value-rejected, missing-value | Get actual pair versus expected value/presence |
+| Successful Get and Set refresh; misses inert | GetRefreshAndEviction, UpdateRefreshWithoutEviction, MissDoesNotChangeOrder, GenericSlicesAndRecency | get-no-refresh, update-no-refresh, miss-removes-oldest | ordered entries or missing lookup actual/expected |
+| Oldest eviction; updates retain other entries | GetRefreshAndEviction, UpdateRefreshWithoutEviction, GenericSlicesAndRecency | evict-newest, update-duplicates | Get pair or Range length/entries actual/expected |
+| Range once, oldest-first, early stop, no changes | RangeStopAndNoMutation, GenericSlicesAndRecency | range-reversed, range-ignores-stop | callback count/entries actual/expected |
+| Clear repeatable, empty, capacity reusable | ClearAndReuse, GenericSlicesAndRecency, ZeroCache | clear-noop, clear-loses-capacity | post-Clear Get/Range actual/expected |
+| Key equality, including zero/composite/pointer keys | ZeroKeyAndNegativeValue, NamedCompositeKeysAndStructValues, PointerKeyIdentity | zero-key-rejected, named-key-rejected, pointer-key-content | Get pair or Range keys actual/expected |
 
-The public assertions map every listed defect to an ordinary contract requirement.
-Full reference/mutant runs do not by themselves prove public-only detection. The full
-suite adds deterministic mixed traces with an independent map/logical-counter
-oracle; no random seed, sleep, benchmark threshold or implementation-shape test.
-The linear reference deliberately demonstrates that no O(1) implementation is
-required. Grader uses shared public test helpers in the disposable combined
-package. No learner solutions or real learner history are inspected.
+Names in the table have `TestPublic` prefix. Reference must pass both public and
+full suites; every listed mutant must compile and fail public-only with a useful
+diagnostic, independently of hidden coverage. The full suite adds deterministic
+integer and composite-key/slice-value traces using an independent logical access
+counter/map oracle. No randomness, sleeps, network, machine timing or private
+state assertions. Assignment tests check retained slice aliasing and exact pointer
+value identity without requiring deep copies. Cache independence does not imply
+copying objects referenced by values.
 
-## Provenance and distinction
+## Provenance
 
-P3/PR60 admitted exactly four SHAD artifacts and root MIT notice preservation;
-all exact hashes are in provenance.yaml and independently verifiable in the
-pinned source-sync checkout. No upstream source code was executed. The content
-adapts the interface and behavioral scenarios substantively; it is not original.
-Recency across Get/Set, eviction, ordered callback traversal and reusable Clear
-are distinct from dictionary-update, generic-stack and embedded-cache practice.
-No other source is included via transitive inference. Source PR54/PR60 and P2
-must pass exact-head validate and merge before this dependent content PR merges.
+PR60 admits SHAD commit 6718601587ec77cfaa632bbd29a8ca0716fe81ec and only
+lrucache/{README.md,cache.go,lru.go,cache_test.go}, plus MIT notice preservation.
+All five hashes were rechecked on 2026-09-28 against the pinned checkout and
+match provenance.yaml. No upstream code was executed. The integer source's
+recency, eviction, Range and Clear behavior is substantively adapted; the generic
+API, usable zero Cache, explicit bounds and deterministic tests are local changes.
+This is an adaptation, not original. Historical GitLab identity and copyright
+notice remain in ATTRIBUTION.md. No reference-only or canonical Exercism material
+was used. Source PR54/PR60 and decision PR62 must land with their gates before
+this dependent content PR merges. Existing Theory needs no further development.
 
-## Review outcome
+## Review and execution evidence
 
-Source provenance, license, behavior and reference were independently accepted;
-assessment was not. The public zero-key and negative-value gap was repaired with
-explicit assertions and two realistic mutants. No lifecycle movement is requested.
-The full technical collection records draft status and request-changes review;
-its technical PASS does not authorize ready, release or assessed coverage.
-
-Targeted `task-check` passes reference/public/full and detects 14/14 defects.
-A temporary tooling overlay (no canonical task execution) used the existing
-checker-owned RunVariant isolation runner with only tests/public. All 14 defects
-compiled and failed with expected/actual diagnostics, and the reference passed;
-canonical digest remained 251bae4444704eebe062afe05499d98771820645954faafe1f16d00b42fc8be6.
-The local log is .tmp/results/lru-public.log. This probe does not supply missing
-assessment evidence or bypass the request-changes decision.
+The old request-changes decision remains until independent generic-package review.
+Targeted checker and public-only probe execute authored code solely through the
+checker-owned disposable runner. The probe uses a temporary Go test overlay in
+internal/tasking; no production tooling file or canonical task execution is added.
+Logs and final content digest are recorded after the final review/gates. Fixture
+runs are technical evidence, not learner completions or mastery.

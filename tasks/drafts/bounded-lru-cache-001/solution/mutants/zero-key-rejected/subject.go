@@ -1,62 +1,72 @@
 package subject
 
-type Cache interface {
-	Get(key int) (int, bool)
-	Set(key, value int)
-	Range(f func(key, value int) bool)
-	Clear()
+type Cache[K comparable, V any] struct{ state *state[K, V] }
+type entry[K comparable, V any] struct {
+	key   K
+	value V
 }
-
-type entry struct{ key, value int }
-type cache struct {
+type state[K comparable, V any] struct {
 	capacity int
-	entries  []entry
+	entries  []entry[K, V]
 }
 
-func New(capacity int) Cache { return &cache{capacity: capacity} }
-
-func (c *cache) index(key int) int {
-	for i, e := range c.entries {
+func New[K comparable, V any](capacity int) *Cache[K, V] {
+	return &Cache[K, V]{state: &state[K, V]{capacity: capacity}}
+}
+func (c *Cache[K, V]) index(key K) int {
+	if c.state == nil {
+		return -1
+	}
+	for i, e := range c.state.entries {
 		if e.key == key {
 			return i
 		}
 	}
 	return -1
 }
-func (c *cache) remove(i int) {
-	c.entries = append(c.entries[:i], c.entries[i+1:]...)
+func (c *Cache[K, V]) remove(i int) {
+	c.state.entries = append(c.state.entries[:i], c.state.entries[i+1:]...)
 }
-func (c *cache) Get(key int) (int, bool) {
+func (c *Cache[K, V]) Get(key K) (V, bool) {
+	var zero V
 	i := c.index(key)
 	if i < 0 {
-		return 0, false
+		return zero, false
 	}
-	e := c.entries[i]
+	e := c.state.entries[i]
 	c.remove(i)
-	c.entries = append(c.entries, e)
+	c.state.entries = append(c.state.entries, e)
 	return e.value, true
 }
-func (c *cache) Set(key, value int) {
-	if key == 0 {
+func (c *Cache[K, V]) Set(key K, value V) {
+	if c.state == nil || c.state.capacity == 0 {
 		return
 	}
-	if c.capacity == 0 {
+	var zero K
+	if key == zero {
 		return
 	}
 	i := c.index(key)
 	if i >= 0 {
 		c.remove(i)
 	}
-	c.entries = append(c.entries, entry{key, value})
-	if len(c.entries) > c.capacity {
+	c.state.entries = append(c.state.entries, entry[K, V]{key, value})
+	if len(c.state.entries) > c.state.capacity {
 		c.remove(0)
 	}
 }
-func (c *cache) Range(f func(key, value int) bool) {
-	for _, e := range c.entries {
+func (c *Cache[K, V]) Range(f func(K, V) bool) {
+	if c.state == nil {
+		return
+	}
+	for _, e := range c.state.entries {
 		if !f(e.key, e.value) {
 			return
 		}
 	}
 }
-func (c *cache) Clear() { c.entries = nil }
+func (c *Cache[K, V]) Clear() {
+	if c.state != nil {
+		c.state.entries = nil
+	}
+}
