@@ -54,9 +54,15 @@ this dependent content PR merges. Existing Theory needs no further development.
 
 ## Review and execution evidence
 
-The old request-changes decision remains until independent generic-package review.
+Independent review by `/root/review_intake` approved exact
+8557cb332c619e0f970f4f85ca7f5fee083fe27c on 2026-09-28 with no blocking findings.
+This supersedes the previous integer-draft assessment rejection.
 Targeted checker and public-only probe execute authored code solely through the
 checker-owned disposable runner. The probe uses a temporary Go test overlay in
 internal/tasking; no production tooling file or canonical task execution is added.
-Logs and final content digest are recorded after the final review/gates. Fixture
+Targeted technical checks pass with 20/20 mutants; the public-only reference
+passes and all 20 mutants compile and fail useful public assertions. Logs:
+.tmp/results/lru-generic-target.yaml and lru-public.log. Content digest:
+f57610fc17ba67e99e5efc2a0923d199899d6855c16d9b7b4fdb7ee01e9cf9aa.
+Normal draft → in-review → ready promotion is required before the final collection. Fixture
 runs are technical evidence, not learner completions or mastery.

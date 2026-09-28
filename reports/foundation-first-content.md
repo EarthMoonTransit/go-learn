@@ -1,42 +1,54 @@
-# P5 / C17 — one executable LRU draft; no ready promotion
+# P5 / C17 — one generic LRU adaptation
 
-The six-slot maximum produced one authored substantive adaptation:
-`tasks/drafts/bounded-lru-cache-001`. SHAD's four pinned lrucache artifacts
-supply the interface and cross-operation behavior; provenance records exact
-hashes, complete MIT notice and the local deterministic adaptation boundary.
-No originals or canonical Exercism cases were introduced.
+The six-slot maximum produced one substantive adaptation:
+`bounded-lru-cache-001`, primary `generics.reusable-data-structures`, activity
+implementation, fixed-tests profile. No originals were added. SHAD commit
+6718601587ec77cfaa632bbd29a8ca0716fe81ec supplies the integer cache's recency,
+eviction, ordered stoppable traversal and reusable Clear behavior; exact four
+artifact hashes and the root MIT notice are retained. The generic K/V API,
+usable zero Cache and deterministic tests are local changes under ADR0024 (PR62).
 
-Public tests cover independent/empty/zero-capacity instances, arbitrary signed
-integers, lookup presence, Get/Set recency, least-recent eviction, ordered early
-termination and Clear/reuse. An independent logical-clock/map oracle extends
-mixed traces. A linear slice reference is deliberately valid; no complexity,
-allocation, machine timing or random discovery threshold is imposed.
+## Assessment and review
 
-Targeted task-check passes reference and detects 14/14 compiling defects. A
-public-only probe through the existing isolation runner also rejects all 14 with
-useful diagnostics and accepts the reference. Tests never ran in the canonical
-task directory. Exact content digest is in provenance.yaml. Full repository
-acceptance uses one saved collection and remains a separate PR gate.
+The prior integer draft was rejected because its supplied interface methods did
+not assess the declared primary. ADR0024 and its scaffold were independently
+accepted before authoring. `/root/review_intake` then approved the substantive
+content at 8557cb332c619e0f970f4f85ca7f5fee083fe27c on 2026-09-28, with no blocking
+findings. Generic behavior is observed using nonempty slices and structs with
+slice fields, named/composite/pointer keys, zero/nil presence, typed zero misses,
+zero Cache, reference assignment semantics and independent cache instances.
 
-## Independent review outcome
+Public tests also cover the complete source-derived operation contract. The full
+suite adds integer and generic deterministic traces using an independent logical
+access-counter oracle. A linear reference is valid: no performance threshold,
+sleep, random discovery or implementation-shape assertion is required. The source
+hashes, complete MIT notice and distinction from existing exercises were rechecked.
 
-`/root/review_intake` verified all five source hashes and MIT notice, reviewed the
-contract/reference/dedup and requested changes on instructional assessment.
-The provisional primary interfaces.implicit-satisfaction is not actually tested:
-the compiling starter supplies every interface method, and the defects preserve
-satisfaction. Replacing the label with receiver semantics is also unsupported by
-this scaffold. A found public zero-key/negative-value gap was corrected with two
-explicit mutants and public assertions. The assessment issue remains recorded in
-review/review.yaml as request-changes.
+Targeted task-check passes; all 20 required mutants compile and are detected.
+A separate public-only probe through the checker-owned disposable runner accepts
+the reference and rejects all 20 with useful actual/expected diagnostics. The
+canonical content digest remained
+f57610fc17ba67e99e5efc2a0923d199899d6855c16d9b7b4fdb7ee01e9cf9aa.
+No authored code was executed in the canonical task directory. An initial
+vet-only probe was discarded; reported public evidence comes from normal tests.
 
-The task therefore remains draft. It contributes no ready count, assessed skill
-coverage, route address or learner evidence. Source permission does not guarantee
-that an exercise fits the current assessment contract. P6 should prepare a bounded
-assessment decision before promotion, not silently change taxonomy or manufacture
-an unrelated task to fill the quota. No learner solutions or progress were read.
+The accepted package uses normal task-promote transitions draft → in-review →
+ready. The 150 route IDs/numbers and all existing ready packages are unchanged.
+The new package has no mandatory route entry until placement is reviewed
+separately. No private learner history, fixture completion or timing estimate is
+claimed as learner evidence. The old draft remains in Git at 75df9ec.
+
+## Remaining gates and scope
+
+Final repository acceptance uses one saved collection, shared by validator and
+report-check; ordered fast/race/vet/integration gates are recorded below when
+complete. Preparation follows ADR0022 (-phase1), not final foundation release
+or public export (-coverage). Source PR54/PR60 and decision PR62 must land before
+this dependent content PR. GitHub's billing failure cannot be bypassed by local
+results. Theory expansion is frozen and no new theory page is a dependency.
 
 W1 exact ParseDuration lineage is unresolved; W2 adds little distinct practice;
 W3/W4 canonical lineage remains restricted; W5 supplies no distinct nil
-representation contract. Externalsort, treeiter, dupcall and subsequent concurrency
-components remain outside this content batch. P3/PR60 and P2/PR58 remain merge
-prerequisites; GitHub's billing failure cannot be bypassed by local evidence.
+representation contract. Externalsort, treeiter, dupcall and later concurrency
+components remain outside this batch. One admitted exercise is sufficient; six
+was a maximum, not a quota.

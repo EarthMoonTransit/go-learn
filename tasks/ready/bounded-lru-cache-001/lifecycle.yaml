@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-09-28"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-09-11"
+      actor: foundation-author
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-09-28"
+      actor: foundation-author
+      reason: Generic assessment accepted in ADR0024; exact content independently approved at8557cb3
+    - from: in-review
+      to: ready
+      at: "2026-09-28"
+      actor: /root/review_intake
+      reason: Independent generic content approval8557cb3; public/full reference and20 compiling mutants verified; no route addition
