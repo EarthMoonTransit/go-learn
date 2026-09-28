@@ -183,22 +183,21 @@ tasks:
         survived: []
       legacy: false
     - id: bounded-lru-cache-001
-      state: draft
-      input_digest: f8aa211df26e946963815f6c8a62b0ce58b333730259b7e79561a555f517fb1b
+      state: ready
+      input_digest: 04c644538ea0931ddba1be47fb79daca7fbe5e1283a33c07be1387a2ec3716e2
       task_type: implement
-      primary_skill: interfaces.implicit-satisfaction
+      primary_skill: generics.reusable-data-structures
       technical_status: pass
-      review_status: fail
+      review_status: pass
       promotion_eligible: true
-      failing_gate_ids:
-        - review-evidence
+      failing_gate_ids: []
       starter_status: pass
       reference_status: pass
       race_status: not-applicable
       mutants:
-        required: 14
-        total: 14
-        detected: 14
+        required: 20
+        total: 20
+        detected: 20
         survived: []
       legacy: false
     - id: bounded-slice-view-001
@@ -2947,11 +2946,11 @@ tasks:
       legacy: true
 states:
     - state: draft
-      count: 9
+      count: 8
     - state: in-review
       count: 0
     - state: ready
-      count: 153
+      count: 154
     - state: rejected
       count: 1
     - state: retired
