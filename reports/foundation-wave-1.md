@@ -1,6 +1,6 @@
 # First-wave checkpoint — implementation prepared, merge blocked by GitHub Actions
 
-Date: 2026-09-11. Active plan: docs/plans/foundation-next.md.
+Updated: 2026-09-28 (historical first-wave evidence: 2026-09-11). Active plan: docs/plans/foundation-next.md.
 Original checkout: clean master at 5f925a757f4bba63396d3b4b755776da75e68cec.
 Work was isolated in codex branches/worktrees; no private learner history was read.
 PR53 (fd9d536) and P0 PR55 (5643bee) were independently approved and merged only
@@ -32,8 +32,8 @@ the first-wave starting state, not the current local branch.
 | P3 / S02 | Artifact hashes, five initial bounded unit reviews, five Koans files, all 46 reconsiderations; narrow LRU selection | [60](https://github.com/EarthMoonTransit/go-learn/pull/60) | Approved 3e28648 after artifact/history and nil-wording corrections | Draft depends on intake |
 | P4T / T15 | Nil public regression and exact content compatibility, ADR0023 | [57](https://github.com/EarthMoonTransit/go-learn/pull/57) | Approved be5d299 | Awaiting CI |
 | P4C / C16 | Public nil len/cap assertion, seventh mutant, provenance and review mapping | [59](https://github.com/EarthMoonTransit/go-learn/pull/59) | Approved 5a656c2 with generated report | Draft depends on P4T |
-| P5 / C17 | One executable LRU draft, 14 defects; no promotion | [61](https://github.com/EarthMoonTransit/go-learn/pull/61) | 75df9ec approved for preserving draft and generated report; assessment request-changes retained | Draft depends on P3/P2; ready blocked by assessment |
-| P6 / K03 | This checkpoint and prepared next allocation | [62](https://github.com/EarthMoonTransit/go-learn/pull/62) | Approved checkpoint 624f0c9; final evidence update reviewed separately | Partial wave, not foundation acceptance |
+| P5 / C17 | One generic LRU adaptation, 20 defects | [61](https://github.com/EarthMoonTransit/go-learn/pull/61) | Approved 8557cb3; normal lifecycle at 74e149e | Depends on P3 and ADR0024 in P6 |
+| P6 / K03 | Checkpoint, Theory freeze, ADR0024 and next allocation | [62](https://github.com/EarthMoonTransit/go-learn/pull/62) | ADR0024 authoring decision approved ee008b4; final checkpoint separately reviewed | Awaiting CI; not foundation release acceptance |
 
 Each PR's generated-report-only follow-up retains the reviewed behavior; its exact
 head and collection evidence must be checked before merge. Draft dependency PRs
@@ -50,8 +50,8 @@ PR60 includes PR54 while intake remains unmerged; do not merge around that gate.
 | Intake/P3 | catalog/intake/2026-09-10; sources/registry.yaml; reports/task-quality.{md,yaml}; reports/foundation-source-review.md |
 | P4T | internal/learner/{content_revisions.go,content_revisions_test.go,nil_feedback_integration_test.go}; ADR0023/index; reports/bounded-view-nil-tooling.md |
 | P4C | tasks/ready/bounded-slice-view-001/{tests/public,solution/mutants/nil-spare-cap,task.yaml,provenance.yaml,review}; reports/task-quality.{md,yaml}; reports/bounded-view-nil-content.md |
-| P5 | tasks/drafts/bounded-lru-cache-001 (TASK, starter, public/grader, reference, 14 mutants, provenance/attribution, hints, lifecycle/review); reports/foundation-first-content.md; generated task-quality reports |
-| P6 | reports/foundation-wave-1.md; catalog/seed-plans/foundation-wave-next.json |
+| P5 | tasks/ready/bounded-lru-cache-001 (TASK, starter, public/grader, reference, 20 mutants, provenance/attribution, hints, lifecycle/review); reports/foundation-first-content.md; generated task-quality reports |
+| P6 | reports/foundation-wave-1.md; catalog/seed-plans/foundation-wave-next.json; docs/adr/0024 and index; existing Theory freeze in vision/roadmap/plan |
 
 ## Verified learner loop
 
@@ -61,7 +61,7 @@ created a private numbered workspace, sent it through the existing GoLand
 launcher, ran public Check on the starter and showed useful type/value diagnostics,
 then returned to Theory. Comparing progress.json immediately before/after return
 showed identical bytes. No hints, completion or skill evidence came from reading.
-All ten worktrees preserve the same 150 (section, task ID, number) tuples and
+At first-wave verification, all ten worktrees preserved the same 150 (section, task ID, number) tuples and
 byte-identical taxonomy. Route SHA-256:
 a1ae9dfd067f8f8f4847acd50741a83bc86b6a8aeebd2f31205552593a53b7e9.
 The one browser attempt and all automated completions are fixtures, not the user's
@@ -79,15 +79,15 @@ the persistent regression. Non-nil empty zero-capacity results remain valid.
 
 - Routed tasks remain 150: 84 substantive adaptations, 61 originals, 5 concept seeds.
 - Historical 84 adaptations: 55 tasks from 24 Exercism source exercises, 13 Ardan and 16 LGWT.
-- Total lifecycle ready remains 153, including 3 legacy packages outside the route.
-- New ready tasks: 0. New originals: 0. Authored substantive adaptations: 1 draft, 0 ready.
+- Master has 153 lifecycle ready packages. P5 now prepares 154, including the new LRU outside the route.
+- New ready tasks in the content branch: 1 SHAD adaptation from 1 source exercise. New originals: 0; none merged yet.
 - P2 supplies 6 of 47 planned topic explanations; theory does not add task coverage.
 - Assessed coverage remains 99 of 142 skills; phase1 is preparation, not full coverage.
 - Intake counts remain 62 SHAD schedule units, 43 Golings entries, 12 Birsi packages,
   20 Koans thematic files and 6 Loong challenges; 143 mixed records are not 143 tasks.
 - Source review joins 24 queued units plus 5 Koans files; unreviewed units remain
-  needs-artifact-review. LRU is the single admitted source behavior and now an executable
-  draft, not ready.
+  needs-artifact-review. LRU is the single admitted source exercise, now approved and promoted in its
+  content branch; it is not merged, released or routed.
 - Human completion, mastery, timing calibration and retention evidence: unknown.
 
 ## Local acceptance evidence
@@ -107,14 +107,19 @@ No final -coverage or public release is claimed.
 | P4C nil amendment | 936372b8a0719ceb7447682e5255f8bb0b441eecb88438f8c969a3772398cf47 | P4C validator/report |
 | P5 LRU draft plus P3 registry | b10f63b663597e0ace3236961323fe7aab97733bb53448251ef0b2a77b77c6c2 | P5 validator/report passed; 163 packages, draft review remains fail |
 
-Local evidence is under /tmp/go-learn-{wave,intake,p1,p2,p3,p4t,p4c,p5}/.tmp/results
-in isolated worktrees. Collections and logs are local check artifacts, not learner
-history. P6 changes only this report/allocation; it validates against the baseline
-collection rather than rerunning unchanged task code.
+The September 11 worktrees and local collections were under /tmp/go-learn-*;
+the OS has since removed those temporary directories. The hashes above record
+historical verified runs; the underlying local files are no longer available.
+Do not claim they are currently reusable. Git commits and remote PRs are intact.
+Work resumed in managed worktrees foundation-settle and foundation-lru under
+/Users/egor/.codex/worktrees. New generic-content evidence is saved in
+foundation-lru/go-learn/.tmp/results. No learner history is used.
 
 ## Exact external blocker and continuation
 
-GitHub Actions run 34632696791 for P1 head 3c338b9 failed without starting steps.
+GitHub Actions run 34632696791 for P1 head 3c338b9 was rerun on September 28
+(attempt 2) and again failed without starting steps. New P6 run 36476056635 at
+35932af failed for the same reason, independently confirming the blocker.
 The check annotation says recent account payments failed or the spending limit
 needs increasing. The user was asked to restore Billing & plans. This is not a
 Go test failure, and local success cannot replace the required GitHub validate.
@@ -127,22 +132,20 @@ CheckCollections for unchanged inputs. After registry/content merges, reconcile
 combined generated reports from a single collection for the resulting inputs;
 never declare stale independent reports current on a different combined tree.
 
-P5 preserved bounded-lru-cache-001 as a draft in PR61 with public/full tests,
-reference and 14 realistic defects. Independent review verified the source but
-found that the provisional primary skill is not assessed: the compiling starter
-already supplies the complete interface. Pointer receivers are also supplied,
-so receiver semantics is not a justified substitute. A public zero-key and
-negative-value gap was fixed; all 14 defects then failed a public-only isolated
-probe with useful diagnostics, and the reference passed. No promotion or route
-entry was made. The generated draft row retains review_status: fail; its
-promotion_eligible field does not authorize ready or override independent review.
-This is a specific assessment blocker, separate from CI billing.
+The integer LRU draft's assessment rejection was resolved at the decision level
+by ADR0024, independently approved at ee008b4 on September 28. The source
+behavior remains SHAD LRU; the local generic API assesses the existing
+`generics.reusable-data-structures` skill, with usable zero Cache, typed misses,
+noncomparable values and named/composite/pointer keys. No taxonomy/profile or
+learner migration is introduced. The previous rejected draft remains in Git.
+Twenty compiling defects were detected by full tests and by a separate public-only
+disposable probe at 8557cb3. Independent content review approved 8557cb3; normal task-promote moved the
+package through in-review to ready at 74e149e. Final repository acceptance is
+recorded separately below. No new theory dependency
+is attached to this exercise.
 
-catalog/seed-plans/foundation-wave-next.json prepares a maximum one-task follow-up
-on that existing draft, with no new task quota. It requires an independently
-reviewed observable assessment mapping; any activity/profile or taxonomy change
-must be explicit and use its applicable ADR/migration gate. It does not authorize
-cosmetic relabeling, a scheduler, progress reset or a broad content expansion.
+The next allocation is bounded to settlement/placement of this one adaptation.
+No new task quota, scheduler, progress reset or Theory expansion is authorized.
 Tabletest awaits exact Go lineage; structs2 offers too little distinct practice;
 binary-search/pangram canonical data stay restricted. Nil-representation work is
 not inferred from the separate nil-input len/cap repair. Externalsort, treeiter,

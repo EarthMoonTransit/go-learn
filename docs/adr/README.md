@@ -28,4 +28,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0021` — algorithmic facet and historical LGWT selection freeze (`accepted`)
 - `0022` — incomplete-bank preparation versus release acceptance (`accepted`)
 
-- `0024` — generic LRU draft assessment and draft-only API revision (`proposed`)
+- `0024` — generic LRU draft assessment and draft-only API revision (`accepted for authoring`)

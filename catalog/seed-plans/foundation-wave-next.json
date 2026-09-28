@@ -1,48 +1,51 @@
 {
   "format": "go-learn-advisory-allocation/v1",
-  "date": "2026-09-11",
+  "date": "2026-09-28",
   "plan": "docs/plans/foundation-next.md",
-  "status": "prepared-assessment-follow-up",
+  "status": "prepared-settlement-and-placement",
   "maximum_new_tasks": 0,
-  "new_ready_tasks": 0,
+  "new_ready_tasks": 1,
   "slots": [
     {
       "slot": "W6",
-      "id_collision_checked_at": "2026-09-11",
+      "id_collision_checked_at": "2026-09-28",
       "source_id": "shad-go",
       "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
       "source_path": "lrucache",
       "artifact_review_pr": "https://github.com/EarthMoonTransit/go-learn/pull/60",
       "artifact_review_record": "catalog/intake/2026-09-10/artifact-review.json",
       "activity": "implementation",
-      "role": "intended transfer, not assessed evidence",
+      "role": "intended transfer; technical fixture evidence only",
       "profile": "fixed-tests",
-      "assessment_review": "Independent review rejects the provisional interfaces.implicit-satisfaction primary: starter and all 14 defects already satisfy the interface. Pointer receivers are also supplied, so receiver-semantics is not an honest replacement. Resolve this specific assessment mismatch before changing the draft or promoting it; do not change taxonomy or activity silently.",
+      "assessment_review": "ADR0024 independently approved for authoring at ee008b4. Generic content approved at 8557cb332c619e0f970f4f85ca7f5fee083fe27c: primary generics.reusable-data-structures observed through usable zero Cache, typed misses/presence, unrestricted values and generic LRU traces. 20/20 compiling defects detected publicly and in full checks.",
       "prerequisites": [
-        "maps.operations-comma-ok",
-        "methods.method-sets",
-        "functions.function-values"
+        "generics.constraints-type-sets",
+        "types.zero-values",
+        "functions.function-values",
+        "methods.receiver-semantics"
       ],
-      "route_policy": "Preserve all 150 existing addresses. Draft has no route entry. Revisit placement only after accepted assessment and prerequisite proof.",
-      "before_authoring": [
-        "Inspect the saved draft, exact independent review and 14 public defect diagnostics",
-        "Prepare a bounded assessment decision: retain implementation only if an existing primary skill can be observably tested without cosmetic relabeling; otherwise record the proposed activity/profile or taxonomy change explicitly for separate review",
-        "Any task contract or taxonomy change requires its own ADR and migration plan before a content amendment",
-        "Keep the source interface/recency/eviction/Range/Clear boundary and all pinned MIT attribution",
-        "Recheck existing task ID and prerequisite mapping; at most one substantially changed task",
-        "Require independent assessment approval and normal task-promote lifecycle before any ready claim"
-      ],
-      "existing_draft_task_id": "bounded-lru-cache-001",
+      "route_policy": "Preserve all 150 existing addresses. Ready package is outside the mandatory route. Next batch reviews optional placement only after prerequisite proof; any route change is separate from this content batch.",
       "source_review_commit": "3e28648c53c94e71ff285bff3461ee5bad39c3e3",
-      "draft_pr": "https://github.com/EarthMoonTransit/go-learn/pull/61",
-      "draft_commit": "75df9ec6d745ea669a21803e62194878e94345f4",
       "merge_dependencies": [
         "PR54 source inventory",
         "PR60 bounded source review",
-        "PR58 interface Theory page",
-        "PR61 preserved draft"
+        "PR62 ADR0024 decision",
+        "PR61 approved generic adaptation"
       ],
-      "rejected_primary_skill": "interfaces.implicit-satisfaction"
+      "rejected_primary_skill": "interfaces.implicit-satisfaction",
+      "primary_skill": "generics.reusable-data-structures",
+      "before_placement": [
+        "Merge source PR54/PR60, decision PR62 and content PR61 only after independent review and green exact-head validate",
+        "Verify completion of local final acceptance and unchanged ready content digest",
+        "Map current generic constraints/zero-value/function-values/receiver prerequisites to actual earlier tasks; do not infer mastery from Theory reading",
+        "Prepare optional placement without renumbering existing 150 addresses; if progress or route migration is required, obtain a separate explicit ADR/migration review",
+        "Keep all deferred-source restrictions and Theory freeze; do not add an exercise to meet a quota"
+      ],
+      "task_id": "bounded-lru-cache-001",
+      "previous_draft_commit": "75df9ec6d745ea669a21803e62194878e94345f4",
+      "content_pr": "https://github.com/EarthMoonTransit/go-learn/pull/61",
+      "content_commit": "74e149eb713ce619addcde83bf1e40fc7af07bb4",
+      "state": "ready-in-content-branch-awaiting-repository-and-CI-gates"
     }
   ],
   "deferred": [
@@ -75,7 +78,7 @@
   ],
   "learner_evidence": "unknown; no private learner history inspected",
   "maximum_substantially_changed_tasks": 1,
-  "next_batch_scope": "First settle the existing reviewed PRs after exact-head validate. Then one bounded assessment follow-up for the existing LRU draft; no new task quota and no Theory expansion.",
+  "next_batch_scope": "First settle existing reviewed PRs after exact-head validate. Then review optional placement and prerequisite proof for the one admitted generic LRU; separate any route migration decision before route changes. No new task quota and no Theory expansion.",
   "theory_policy": {
     "decision_date": "2026-09-11",
     "status": "frozen-at-existing-scope",
