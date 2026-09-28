@@ -24,4 +24,4 @@ func (c *Cache[K,V]) Clear()
 
 ## Constraints
 - Sequential calls; capacity≥0; keys equal themselves without panicking.
-Non-nil callbacks never call cache methods. No nil receivers. Do not copy used Cache. No complexity bound.
+Non-nil callbacks never call cache methods. Non-nil receivers. Do not copy used Cache. No complexity bound.
