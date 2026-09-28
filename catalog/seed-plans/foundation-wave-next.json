@@ -45,7 +45,8 @@
       "previous_draft_commit": "75df9ec6d745ea669a21803e62194878e94345f4",
       "content_pr": "https://github.com/EarthMoonTransit/go-learn/pull/61",
       "content_commit": "74e149eb713ce619addcde83bf1e40fc7af07bb4",
-      "state": "ready-in-content-branch-awaiting-repository-and-CI-gates"
+      "state": "ready-in-content-branch-local-acceptance-passed-awaiting-CI-and-merge",
+      "repository_acceptance": "Passed ordered fast/race/vet/integration; one full163-package collection e2f2ec448d13fb4ab9dd3780037f8f872e3f64e3789dbb40006f1a662b77cce2 reused by phase1 validator and report-check. No final coverage or release claim."
     }
   ],
   "deferred": [

@@ -90,7 +90,7 @@ the persistent regression. Non-nil empty zero-capacity results remain valid.
   content branch; it is not merged, released or routed.
 - Human completion, mastery, timing calibration and retention evidence: unknown.
 
-## Local acceptance evidence
+## Historical local acceptance — September 11
 
 Ordered fast tests, race, vet and taskintegration passed for the planning baseline,
 intake, P1, P2, P3, P4T, P4C and P5. Each completed with exit status zero.
@@ -114,6 +114,27 @@ Do not claim they are currently reusable. Git commits and remote PRs are intact.
 Work resumed in managed worktrees foundation-settle and foundation-lru under
 /Users/egor/.codex/worktrees. New generic-content evidence is saved in
 foundation-lru/go-learn/.tmp/results. No learner history is used.
+
+## Fresh local acceptance — September 28
+
+The baseline full collection was rebuilt once because its old local file was lost.
+It reproduces SHA-256
+8bb9d8e0187a1adc77f1ad4b30470e81d70a8e67f7a876aa6a619e0a53924213
+exactly; validator -phase1 and report-check both pass using that same file
+(162 packages). P6 is a documentation batch; bank inputs remain unchanged.
+
+P5's final ready package has content digest
+f57610fc17ba67e99e5efc2a0923d199899d6855c16d9b7b4fdb7ee01e9cf9aa.
+Independent content review approved 8557cb3 and lifecycle delta 74e149e.
+One full collection passes for 163 packages (154 ready, 8 drafts, 1 rejected):
+e2f2ec448d13fb4ab9dd3780037f8f872e3f64e3789dbb40006f1a662b77cce2.
+Generated reports were committed at 325d6b2. Ordered fast/race/vet/integration all passed (42.08s / 265.55s / 1.05s /
+324.19s), followed by successful validator -phase1 and report-check using the
+same collection. Generated report delta 325d6b2 was independently approved;
+all other 162 package rows are unchanged. No authored code was rerun for reports.
+
+The current main checkout remains clean on the existing Theory preview. Its
+route hash above is unchanged; this work did not read or rewrite learner history.
 
 ## Exact external blocker and continuation
 
@@ -140,8 +161,7 @@ noncomparable values and named/composite/pointer keys. No taxonomy/profile or
 learner migration is introduced. The previous rejected draft remains in Git.
 Twenty compiling defects were detected by full tests and by a separate public-only
 disposable probe at 8557cb3. Independent content review approved 8557cb3; normal task-promote moved the
-package through in-review to ready at 74e149e. Final repository acceptance is
-recorded separately below. No new theory dependency
+package through in-review to ready at 74e149e. Final repository acceptance passed, as recorded in the fresh evidence section. No new theory dependency
 is attached to this exercise.
 
 The next allocation is bounded to settlement/placement of this one adaptation.
