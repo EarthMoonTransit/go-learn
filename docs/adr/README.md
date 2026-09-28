@@ -27,3 +27,5 @@ ADR фиксируют изменения стабильных контракт�
 - `0020` — read-only local Theory metadata and navigation (`accepted`)
 - `0021` — algorithmic facet and historical LGWT selection freeze (`accepted`)
 - `0022` — incomplete-bank preparation versus release acceptance (`accepted`)
+
+- `0024` — generic LRU draft assessment and draft-only API revision (`proposed`)
