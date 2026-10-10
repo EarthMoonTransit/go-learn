@@ -16,6 +16,7 @@ import (
 	"github.com/santhosh-tekuri/jsonschema/v5"
 	"go-practice-bank/internal/catalog"
 	curriculumdata "go-practice-bank/internal/curriculum"
+	"go-practice-bank/internal/learner"
 	sourcepolicy "go-practice-bank/internal/sources"
 	"go-practice-bank/internal/tasking"
 	"go-practice-bank/internal/toolchainpolicy"
@@ -39,6 +40,9 @@ var usageValues = set("adapt", "reference-only", "concepts-only", "blocked")
 func ValidateRoot(root string, opts Options) (Result, error) {
 	var result Result
 	var problems []error
+	if err := learner.ValidateTheory(root); err != nil {
+		problems = append(problems, fmt.Errorf("theory: %w", err))
+	}
 
 	taskSchema, err := compileTaskSchema(filepath.Join(root, "schemas", "task.schema.json"))
 	if err != nil {
@@ -62,13 +66,16 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 		{"config/project-identity.yaml", "schemas/project-identity.schema.json", "project identity"},
 		{"config/outbound-license.yaml", "schemas/outbound-license-policy.schema.json", "outbound license policy"},
 	}
+	if _, err := os.Lstat(filepath.Join(root, "curriculum/topics.yaml")); err == nil {
+		staticSchemas = append(staticSchemas, struct{ data, schema, label string }{"curriculum/topics.yaml", "schemas/topic.schema.json", "theory topics"})
+	}
 	if policy, policyErr := toolchainpolicy.Load(root); policyErr != nil {
 		problems = append(problems, policyErr)
 	} else if policyErr := toolchainpolicy.ValidateRepository(root, policy); policyErr != nil {
 		problems = append(problems, policyErr)
 	}
 	for _, schemaName := range []string{
-		"task-v2.schema.json", "task-lifecycle.schema.json", "task-review.schema.json", "task-provenance.schema.json", "task-provenance-v2.schema.json", "project-identity.schema.json", "outbound-license-policy.schema.json", "task-quality-report.schema.json", "task-check-collection.schema.json", "task-aggregate-report.schema.json",
+		"topic.schema.json", "task-v2.schema.json", "task-lifecycle.schema.json", "task-review.schema.json", "task-provenance.schema.json", "task-provenance-v2.schema.json", "project-identity.schema.json", "outbound-license-policy.schema.json", "task-quality-report.schema.json", "task-check-collection.schema.json", "task-aggregate-report.schema.json",
 	} {
 		if _, schemaErr := compileYAMLSchema(filepath.Join(root, "schemas", schemaName)); schemaErr != nil {
 			problems = append(problems, schemaErr)

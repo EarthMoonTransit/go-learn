@@ -293,10 +293,13 @@ numbered v2 workspaces do not move. Historical completions remain progress and
 never become retroactive evidence of independent mastery. Read-only commands do
 not migrate. Resetting the same task does not create another independent result.
 
-## Planned read-only Theory extension (P1)
+## Read-only Theory
 
-ADR 0020 specifies `learn topics` and `learn theory <topic-id>`, exposed through
-the existing service and UI. These commands are not delivered by this documentation
-batch. Topic reading will preserve current task, solutions, attempts, completion,
-assistance, hints and clocks; route v2 and progress v3 need no migration.
-The [active plan](plans/foundation-next.md) tracks tooling and page delivery separately.
+Use `learn topics` to list local explanations and `learn theory <topic-id>` to
+read one, its prerequisites, existing exercise links and official further reading.
+The UI provides the same topics by section and Theory buttons beside related
+tasks. Return to an explanation after Check through the same button.
+
+Reading does not select a task, consume a hint or alter progress or session time.
+Missing pages show planned; existing tasks remain available. Pages load offline;
+external reading is optional. See ADR 0020 for the metadata contract.
