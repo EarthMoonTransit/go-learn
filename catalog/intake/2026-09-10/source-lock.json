@@ -1,0 +1,15 @@
+{
+  "format": "go-learn-source-intake/v1",
+  "status": "metadata-only",
+  "audit_date": "2026-09-10",
+  "repository_baseline": "5f925a757f4bba63396d3b4b755776da75e68cec",
+  "object_id_note": "Git SHA-1 blob/tree identifiers are not file SHA-256 values. Native harvest must calculate SHA-256 from exact bytes; never insert these Git OIDs into file_hashes[].sha256.",
+  "new_ready_tasks": 0,
+  "sources": [
+    {"source_id":"shad-go","repository":"https://github.com/slon/shad-go","commit":"6718601587ec77cfaa632bbd29a8ca0716fe81ec","default_branch":"main","registry_usage_mode":"reference-only","license_expression":"MIT","license_evidence_path":"LICENSE","license_evidence_git_blob_sha1":"4009ee95a6a858019852623a7b1c7d37bf7ab899","adaptation_approved":false},
+    {"source_id":"golings","repository":"https://github.com/mauricioabreu/golings","commit":"65fb8ce827c716e54650e88a3ccc7c52308ab59b","default_branch":"main","registry_usage_mode":"reference-only","license_expression":"Apache-2.0","license_evidence_path":"LICENSE","license_evidence_git_blob_sha1":"261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64","adaptation_approved":false},
+    {"source_id":"birsi-go-training","repository":"https://github.com/birsi/go-training","commit":"3ae230e734644d637118f2a6818166922d5197c5","default_branch":"main","registry_usage_mode":"reference-only","license_expression":"MIT","license_evidence_path":"LICENSE","license_evidence_git_blob_sha1":"b289838ebf911f31c4ed5bd535eb7978990e4a55","adaptation_approved":false},
+    {"source_id":"go-koans","repository":"https://github.com/cdarwin/go-koans","commit":"7f0b28e4f551f2120d55eec3a03b4f472ec38044","default_branch":"master","registry_usage_mode":"reference-only","license_expression":"MIT","license_evidence_path":"LICENSE","license_evidence_git_blob_sha1":"b4b35234acf98b0fbcec38fea30eaed9fb0a67c4","adaptation_approved":false},
+    {"source_id":"loong-go-concurrency-exercises","repository":"https://github.com/loong/go-concurrency-exercises","commit":"39c1ab9b02c0cc21bd66ea1e31335c4bf4dd6708","default_branch":"main","registry_usage_mode":"reference-only","license_expression":"WTFPL","license_evidence_path":"README.md","license_evidence_git_blob_sha1":"48534caa8a01d9674438029140b872f382a0c033","adaptation_approved":false}
+  ]
+}

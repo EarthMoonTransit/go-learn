@@ -1,0 +1,33 @@
+{
+  "format":"go-learn-source-intake/v1",
+  "status":"inventory-only-not-accepted-candidates",
+  "source_id":"go-koans",
+  "commit":"7f0b28e4f551f2120d55eec3a03b4f472ec38044",
+  "unit":"thematic-go-file-not-individual-exercise",
+  "count":20,
+  "count_method":"Count root about_*.go files; exclude setup_koans_test.go, README, LICENSE and scripts. Assertions and blanks have not been counted as independent exercises.",
+  "count_evidence_url":"https://api.github.com/repos/cdarwin/go-koans/git/trees/7f0b28e4f551f2120d55eec3a03b4f472ec38044",
+  "assessment_note":"Only file inventory. Legacy runtime assumptions, assertion quality and file-level lineage remain unreviewed for adaptation.",
+  "units":[
+    {"upstream_id":"about_allocation","source_path":"about_allocation.go","git_blob_sha1":"678557175bd34fbaba729f3706b15c2c01dc7acb"},
+    {"upstream_id":"about_anonymous_functions","source_path":"about_anonymous_functions.go","git_blob_sha1":"4ef5aedcfab7d689719ffaecfdcd03eb133a3bd8"},
+    {"upstream_id":"about_arrays","source_path":"about_arrays.go","git_blob_sha1":"8f440f062bcac3cdbd7d096dd394942d00b1de41"},
+    {"upstream_id":"about_basics","source_path":"about_basics.go","git_blob_sha1":"1bae17370b5455a21f8fb3faadcb42825609c68c"},
+    {"upstream_id":"about_channels","source_path":"about_channels.go","git_blob_sha1":"00561b2ded370f97debdf7aedd9da9dc8eb388aa"},
+    {"upstream_id":"about_common_interfaces","source_path":"about_common_interfaces.go","git_blob_sha1":"d987e96fe675befb1beae8806d901ae730e4acb1"},
+    {"upstream_id":"about_concurrency","source_path":"about_concurrency.go","git_blob_sha1":"2921e6b5c8800b42bfe4a54917f78864194b29e6"},
+    {"upstream_id":"about_control_flow","source_path":"about_control_flow.go","git_blob_sha1":"34cca53addacabe2103dbf5e448888a942cc3c09"},
+    {"upstream_id":"about_defer","source_path":"about_defer.go","git_blob_sha1":"b551ad538919bad631830a3effee441885c297d1"},
+    {"upstream_id":"about_enumeration","source_path":"about_enumeration.go","git_blob_sha1":"b474bd23a8388303cb4c071db5da00c4a1b08a15"},
+    {"upstream_id":"about_files","source_path":"about_files.go","git_blob_sha1":"cecb028d953cf2e442583ec63aadd49d2454e04f"},
+    {"upstream_id":"about_interfaces","source_path":"about_interfaces.go","git_blob_sha1":"1f34929df2e6eb2ea0bfffcb857d84d442620062"},
+    {"upstream_id":"about_maps","source_path":"about_maps.go","git_blob_sha1":"32abc1d008d4da248cf141ce20783db6c243a75c"},
+    {"upstream_id":"about_panics","source_path":"about_panics.go","git_blob_sha1":"0b7748546a2ffed968ea77a772e5640dc85f87fe"},
+    {"upstream_id":"about_pointers","source_path":"about_pointers.go","git_blob_sha1":"140e4a3285ac148882d2e2d70d73dc1a65db76d0"},
+    {"upstream_id":"about_slices","source_path":"about_slices.go","git_blob_sha1":"317d8475427c228157c5f7c0a784d8983496555a"},
+    {"upstream_id":"about_strings","source_path":"about_strings.go","git_blob_sha1":"41b07f5612eb75371a552bfdb7aaaff6774180b7"},
+    {"upstream_id":"about_structs","source_path":"about_structs.go","git_blob_sha1":"95ec486f71400ee42968dad52eed59497d68c711"},
+    {"upstream_id":"about_types","source_path":"about_types.go","git_blob_sha1":"4d2849a979dad91771db373edb81aba87a1913fd"},
+    {"upstream_id":"about_variadic_functions","source_path":"about_variadic_functions.go","git_blob_sha1":"4720457ad22911172d747e5679b0999ac88514ce"}
+  ]
+}

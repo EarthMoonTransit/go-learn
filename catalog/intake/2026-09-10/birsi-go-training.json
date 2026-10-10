@@ -1,0 +1,27 @@
+{
+  "format":"go-learn-source-intake/v1",
+  "status":"inventory-only-not-accepted-candidates",
+  "source_id":"birsi-go-training",
+  "commit":"3ae230e734644d637118f2a6818166922d5197c5",
+  "unit":"learner-exercise-package",
+  "count":12,
+  "count_method":"Count learner directories under exercises/stage1..stage3 with a starter and test file; do not count mirrored solutions or TODOs separately.",
+  "exercise_tree_git_sha1":"71550ee206f3cd93afeac30b24fb0c5eb2f5fb5d",
+  "solutions_tree_git_sha1":"dea3fdaf9233c89dbb0f3477b2d3651905c641c5",
+  "count_evidence_url":"https://api.github.com/repos/birsi/go-training/git/trees/71550ee206f3cd93afeac30b24fb0c5eb2f5fb5d?recursive=1",
+  "assessment_note":"Directory/test presence is verified, not test correctness or Go 1.27 compatibility. Reference directories follow the declared mirrored layout and need artifact verification before use.",
+  "units":[
+    {"upstream_id":"01_basics","source_path":"exercises/stage1/01_basics","git_tree_sha1":"22e250229bd0bbcf863baffe99066dd8b2122312","starter_path":"exercises/stage1/01_basics/basics.go","public_test_path":"exercises/stage1/01_basics/basics_test.go","reference_directory":"solutions/stage1/01_basics"},
+    {"upstream_id":"02_functions","source_path":"exercises/stage1/02_functions","git_tree_sha1":"f640c7445d3b8aec3a0433572ae8ad9f596174b5","starter_path":"exercises/stage1/02_functions/functions.go","public_test_path":"exercises/stage1/02_functions/functions_test.go","reference_directory":"solutions/stage1/02_functions"},
+    {"upstream_id":"03_collections","source_path":"exercises/stage1/03_collections","git_tree_sha1":"2d46cd526484d95607aab892034334752802deed","starter_path":"exercises/stage1/03_collections/collections.go","public_test_path":"exercises/stage1/03_collections/collections_test.go","reference_directory":"solutions/stage1/03_collections"},
+    {"upstream_id":"04_pointers","source_path":"exercises/stage1/04_pointers","git_tree_sha1":"1f1159479bf608046ae66ff537d09d09b3a69c70","starter_path":"exercises/stage1/04_pointers/pointers.go","public_test_path":"exercises/stage1/04_pointers/pointers_test.go","reference_directory":"solutions/stage1/04_pointers"},
+    {"upstream_id":"05_structs","source_path":"exercises/stage2/05_structs","git_tree_sha1":"4d8086e38c85a55d07a8be69c198aee6289e77de","starter_path":"exercises/stage2/05_structs/structs.go","public_test_path":"exercises/stage2/05_structs/structs_test.go","reference_directory":"solutions/stage2/05_structs"},
+    {"upstream_id":"06_methods","source_path":"exercises/stage2/06_methods","git_tree_sha1":"00c4f26d956fe9cf7df20fecea9e74bd9bf961f2","starter_path":"exercises/stage2/06_methods/methods.go","public_test_path":"exercises/stage2/06_methods/methods_test.go","reference_directory":"solutions/stage2/06_methods"},
+    {"upstream_id":"07_interfaces","source_path":"exercises/stage2/07_interfaces","git_tree_sha1":"119317a9522c5ab62454c5211120802253d34415","starter_path":"exercises/stage2/07_interfaces/interfaces.go","public_test_path":"exercises/stage2/07_interfaces/interfaces_test.go","reference_directory":"solutions/stage2/07_interfaces"},
+    {"upstream_id":"08_errors","source_path":"exercises/stage2/08_errors","git_tree_sha1":"e92a4fcd5c1843d2fff4d624fefd7f19393be029","starter_path":"exercises/stage2/08_errors/errors.go","public_test_path":"exercises/stage2/08_errors/errors_test.go","reference_directory":"solutions/stage2/08_errors"},
+    {"upstream_id":"09_generics","source_path":"exercises/stage3/09_generics","git_tree_sha1":"f81dd96cbcc7b5e24e6aa05b6273be993ef32feb","starter_path":"exercises/stage3/09_generics/generics.go","public_test_path":"exercises/stage3/09_generics/generics_test.go","reference_directory":"solutions/stage3/09_generics"},
+    {"upstream_id":"10_goroutines","source_path":"exercises/stage3/10_goroutines","git_tree_sha1":"66e234f06270951ab3aa7a3fc16f59fcb8284d6f","starter_path":"exercises/stage3/10_goroutines/goroutines.go","public_test_path":"exercises/stage3/10_goroutines/goroutines_test.go","reference_directory":"solutions/stage3/10_goroutines"},
+    {"upstream_id":"11_channels","source_path":"exercises/stage3/11_channels","git_tree_sha1":"457876edc041486efc6327f9d5f9131d79d928b1","starter_path":"exercises/stage3/11_channels/channels.go","public_test_path":"exercises/stage3/11_channels/channels_test.go","reference_directory":"solutions/stage3/11_channels"},
+    {"upstream_id":"12_json","source_path":"exercises/stage3/12_json","git_tree_sha1":"d0463455bdeff6a44bbb2eb22beabf8b797afc58","starter_path":"exercises/stage3/12_json/json.go","public_test_path":"exercises/stage3/12_json/json_test.go","reference_directory":"solutions/stage3/12_json"}
+  ]
+}
