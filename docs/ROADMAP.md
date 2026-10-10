@@ -1,6 +1,6 @@
 # Go Learn: two milestones to complete Go fundamentals
 
-Status: historical milestone ledger with current delivery policy, 2026-09-10.
+Status: historical milestone ledger with current delivery policy, 2026-09-11.
 The authoritative active implementation plan is [foundation-next](plans/foundation-next.md). GoLand is the editor; the local UI and short `learn` commands
 share the learning cycle. Statements, hints and reviews remain English.
 
@@ -12,6 +12,11 @@ as lesson topics are deferred. The repository's engineering CI remains required.
 Short local English theory pages are included in the first wave, using the existing
 learner service and UI. Entry diagnostics, a custom editor and cloud distribution
 remain outside this delivery. Read-only topics preserve the current route and state.
+User decision 2026-09-11 freezes Theory at the prepared P1 tooling and six P2
+pages. Keep them; do not add pages or Theory features in subsequent batches.
+The 47-topic map is a practice map, not a remaining theory-writing target.
+New exercises do not require new theory pages; next work prioritizes settling
+existing PRs and reviewed executable practice.
 
 | Milestone | Product result | Definition of Done |
 | --- | --- | --- |

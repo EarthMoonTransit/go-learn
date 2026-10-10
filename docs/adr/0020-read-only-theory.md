@@ -9,11 +9,13 @@
 Use the existing learner Service, CLI and local HTTP UI. Add optional
 `curriculum/topics.yaml`, version 1, with a `topics` list. Each topic has a stable
 `id`, existing route `section_id`, English `title`, relative `path` under
-`theory/`, prerequisite topic IDs, existing `skills`, 1–3 ready v2 `task_ids`,
+`theory/`, prerequisite topic IDs, 1–3 ready v2 `task_ids`,
 `go_version`, `reviewed_at` (ISO date), and 1–3 `official_links` containing
 `url` and `description`. YAML unknown fields, duplicate IDs/links, missing
 references and prerequisite cycles are errors. An absent file or empty list is
-valid. This is an additive theory contract; task schemas and skill IDs do not change.
+valid. Task skill metadata remains in task manifests, not duplicated in topics.
+Missing individual pages are planned; invalid existing files are rejected.
+This is an additive theory contract; task schemas and skill IDs do not change.
 
 `learn topics` and `learn theory <topic-id>` read the same views as authenticated
 GET API endpoints. Topic task links show existing lesson numbers and navigate to
