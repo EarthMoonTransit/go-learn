@@ -24,7 +24,7 @@ and no complexity or performance requirement.
 | `types.zero-values` | 01.02 `zero-results-001` | Scalar zero results publicly checked; nil slice/map results additionally covered by full tests. Generic typed absence is exercised again by 07.06. |
 | `methods.receiver-semantics` | 06.07 `receiver-reset-001` | Public tests check pointer-alias-visible mutation, repeatable clearing and preservation of the old map. |
 | `functions.function-values` | 06.08 `predicate-filter-001` | Public tests check callback invocation, input order and empty-input behavior. |
-| `generics.constraints-type-sets` | 07.05 `named-numeric-constraint-001` | Public tests check the exact type set and preservation of named numeric types. LRU's supplied API already declares `K comparable, V any`. |
+| `generics.constraints-type-sets` | 07.05 `named-numeric-constraint-001` | The public exact-type-set check admits named underlying types; public runtime cases check built-in numeric doubling. LRU's supplied API already declares `K comparable, V any`. |
 | Prior introduction to the primary skill | 07.06 `generic-stack-001` | Public tests check zero-valued generic storage, typed misses, noncomparable values and independent instances. |
 
 These are available checked exercises, not claims about the user's completions
