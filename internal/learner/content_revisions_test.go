@@ -113,6 +113,10 @@ func TestPublicCheckRevisionIsExactAndDirectional(t *testing.T) {
 		name, id, stored, current string
 		want                      bool
 	}{
+		{"bounded nil update", "bounded-slice-view-001", boundedBeforeNilCheck, boundedWithNilCheck, true},
+		{"bounded rollback", "bounded-slice-view-001", boundedWithNilCheck, boundedBeforeNilCheck, false},
+		{"bounded unknown", "bounded-slice-view-001", "unknown", boundedWithNilCheck, false},
+		{"bounded other task", "literal-bindings-001", boundedBeforeNilCheck, boundedWithNilCheck, false},
 		{"old current", "literal-bindings-001", bindingsBeforePublicChecks, bindingsBeforePublicChecks, true},
 		{"new current", "literal-bindings-001", bindingsWithPublicChecks, bindingsWithPublicChecks, true},
 		{"approved update", "literal-bindings-001", bindingsBeforePublicChecks, bindingsWithPublicChecks, true},

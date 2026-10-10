@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "topics": [
+    {
+      "id": "workspace",
+      "section_id": "first-steps",
+      "title": "Work in a private Go workspace",
+      "path": "theory/en/workspace.md",
+      "prerequisites": [],
+      "task_ids": [
+        "literal-bindings-001"
+      ],
+      "go_version": "1.27",
+      "reviewed_at": "2026-09-11",
+      "official_links": [
+        {
+          "url": "https://go.dev/doc/tutorial/create-module",
+          "description": "Module and package basics; external tutorial is optional."
+        }
+      ]
+    },
+    {
+      "id": "first-tests",
+      "section_id": "control-and-verification",
+      "title": "Write a test that can explain a failure",
+      "path": "theory/en/first-tests.md",
+      "prerequisites": [
+        "workspace"
+      ],
+      "task_ids": [
+        "clamp-tests-001"
+      ],
+      "go_version": "1.27",
+      "reviewed_at": "2026-09-11",
+      "official_links": [
+        {
+          "url": "https://pkg.go.dev/testing#T",
+          "description": "Test functions and failure reporting; package page follows current Go."
+        }
+      ]
+    },
+    {
+      "id": "slice-views",
+      "section_id": "values-and-collections",
+      "title": "Slice bounds and shared views",
+      "path": "theory/en/slice-views.md",
+      "prerequisites": [
+        "workspace"
+      ],
+      "task_ids": [
+        "slice-window-001",
+        "bounded-slice-view-001"
+      ],
+      "go_version": "1.27",
+      "reviewed_at": "2026-09-11",
+      "official_links": [
+        {
+          "url": "https://go.dev/ref/spec#Slice_expressions",
+          "description": "Simple and full slice bounds and capacity."
+        }
+      ]
+    },
+    {
+      "id": "slice-ownership",
+      "section_id": "text",
+      "title": "Append, copy and ownership",
+      "path": "theory/en/slice-ownership.md",
+      "prerequisites": [
+        "slice-views"
+      ],
+      "task_ids": [
+        "reserved-copy-001",
+        "overlapping-shift-tests-001"
+      ],
+      "go_version": "1.27",
+      "reviewed_at": "2026-09-11",
+      "official_links": [
+        {
+          "url": "https://go.dev/ref/spec#Appending_and_copying_slices",
+          "description": "Append allocation and copy overlap/count."
+        }
+      ]
+    },
+    {
+      "id": "interface-contracts",
+      "section_id": "contracts",
+      "title": "Program against an interface contract",
+      "path": "theory/en/interface-contracts.md",
+      "prerequisites": [
+        "workspace",
+        "first-tests"
+      ],
+      "task_ids": [
+        "shape-contract-tests-001"
+      ],
+      "go_version": "1.27",
+      "reviewed_at": "2026-09-11",
+      "official_links": [
+        {
+          "url": "https://go.dev/ref/spec#Interface_types",
+          "description": "Implicit satisfaction and type sets."
+        },
+        {
+          "url": "https://go.dev/ref/spec#Method_sets",
+          "description": "Pointer and value method sets."
+        }
+      ]
+    },
+    {
+      "id": "cancellation",
+      "section_id": "concurrency",
+      "title": "Cancellation and operation lifetime",
+      "path": "theory/en/cancellation.md",
+      "prerequisites": [
+        "workspace",
+        "first-tests",
+        "interface-contracts"
+      ],
+      "task_ids": [
+        "cancel-worker-001"
+      ],
+      "go_version": "1.27",
+      "reviewed_at": "2026-09-11",
+      "official_links": [
+        {
+          "url": "https://pkg.go.dev/context#WithCancel",
+          "description": "Cancellation signaling and resource release; package page follows current Go."
+        },
+        {
+          "url": "https://go.dev/ref/mem",
+          "description": "Synchronization and happens-before guarantees."
+        }
+      ]
+    }
+  ]
+}
