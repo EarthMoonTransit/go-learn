@@ -1,0 +1,94 @@
+{
+  "format": "go-learn-advisory-allocation/v1",
+  "date": "2026-09-28",
+  "plan": "docs/plans/foundation-next.md",
+  "status": "prepared-settlement-and-placement",
+  "maximum_new_tasks": 0,
+  "new_ready_tasks": 1,
+  "slots": [
+    {
+      "slot": "W6",
+      "id_collision_checked_at": "2026-09-28",
+      "source_id": "shad-go",
+      "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "source_path": "lrucache",
+      "artifact_review_pr": "https://github.com/EarthMoonTransit/go-learn/pull/60",
+      "artifact_review_record": "catalog/intake/2026-09-10/artifact-review.json",
+      "activity": "implementation",
+      "role": "intended transfer; technical fixture evidence only",
+      "profile": "fixed-tests",
+      "assessment_review": "ADR0024 independently approved for authoring at ee008b4. Generic content approved at 8557cb332c619e0f970f4f85ca7f5fee083fe27c: primary generics.reusable-data-structures observed through usable zero Cache, typed misses/presence, unrestricted values and generic LRU traces. 20/20 compiling defects detected publicly and in full checks.",
+      "prerequisites": [
+        "generics.constraints-type-sets",
+        "types.zero-values",
+        "functions.function-values",
+        "methods.receiver-semantics"
+      ],
+      "route_policy": "Preserve all 150 existing addresses. Ready package is outside the mandatory route. Next batch reviews optional placement only after prerequisite proof; any route change is separate from this content batch.",
+      "source_review_commit": "3e28648c53c94e71ff285bff3461ee5bad39c3e3",
+      "merge_dependencies": [
+        "PR54 source inventory",
+        "PR60 bounded source review",
+        "PR62 ADR0024 decision",
+        "PR61 approved generic adaptation"
+      ],
+      "rejected_primary_skill": "interfaces.implicit-satisfaction",
+      "primary_skill": "generics.reusable-data-structures",
+      "before_placement": [
+        "Merge source PR54/PR60, decision PR62 and content PR61 only after independent review and green exact-head validate",
+        "Verify completion of local final acceptance and unchanged ready content digest",
+        "Map current generic constraints/zero-value/function-values/receiver prerequisites to actual earlier tasks; do not infer mastery from Theory reading",
+        "Prepare optional placement without renumbering existing 150 addresses; if progress or route migration is required, obtain a separate explicit ADR/migration review",
+        "Keep all deferred-source restrictions and Theory freeze; do not add an exercise to meet a quota"
+      ],
+      "task_id": "bounded-lru-cache-001",
+      "previous_draft_commit": "75df9ec6d745ea669a21803e62194878e94345f4",
+      "content_pr": "https://github.com/EarthMoonTransit/go-learn/pull/61",
+      "content_commit": "74e149eb713ce619addcde83bf1e40fc7af07bb4",
+      "state": "ready-in-content-branch-local-acceptance-passed-awaiting-CI-and-merge",
+      "repository_acceptance": "Passed ordered fast/race/vet/integration; one full163-package collection e2f2ec448d13fb4ab9dd3780037f8f872e3f64e3789dbb40006f1a662b77cce2 reused by phase1 validator and report-check. No final coverage or release claim."
+    }
+  ],
+  "deferred": [
+    {
+      "slot": "W1",
+      "reason": "Exact Go ParseDuration lineage and notices unresolved."
+    },
+    {
+      "slot": "W2",
+      "reason": "Compile-only embedding hole has insufficient distinct value."
+    },
+    {
+      "slot": "W3",
+      "reason": "No permitted independent binary-search exercise contract admitted; canonical data remains restricted."
+    },
+    {
+      "slot": "W4",
+      "reason": "Pangram completeness is distinct, but canonical lineage is not admitted."
+    },
+    {
+      "slot": "W5",
+      "reason": "Birsi supplies no nil-representation contract. P4 repairs nil-input len/cap feedback; it does not add a representation requirement. A distinct original is deferred, not inferred from this defect."
+    }
+  ],
+  "later_wave": [
+    "shad-go:externalsort",
+    "shad-go:treeiter",
+    "shad-go:dupcall",
+    "birsi-go-training:11_channels"
+  ],
+  "learner_evidence": "unknown; no private learner history inspected",
+  "maximum_substantially_changed_tasks": 1,
+  "next_batch_scope": "First settle existing reviewed PRs after exact-head validate. Then review optional placement and prerequisite proof for the one admitted generic LRU; separate any route migration decision before route changes. No new task quota and no Theory expansion.",
+  "theory_policy": {
+    "decision_date": "2026-09-11",
+    "status": "frozen-at-existing-scope",
+    "retain": [
+      "P1 read-only Theory tooling (PR56)",
+      "P2 six local pages (PR58)"
+    ],
+    "expand_pages": false,
+    "expand_features": false,
+    "new_page_required_for_new_exercise": false
+  }
+}
