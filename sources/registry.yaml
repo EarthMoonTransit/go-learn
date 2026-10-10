@@ -285,9 +285,9 @@ sources:
       expression: MIT
       evidence_path: LICENSE
       notes: Root MIT notice verified; selected files may have additional upstream lineage.
-    usage_mode: reference-only
+    usage_mode: adapt
     adapter: manual-intake-reference-v1
-    scope: Metadata paths, counts and topic-gap review only; no statements, code, tests, fixtures or solutions copied. A bounded file audit and explicit policy change are required before adaptation.
+    scope: Only lrucache/README.md, lrucache/cache.go, lrucache/lru.go and lrucache/cache_test.go at the pinned commit, per catalog/intake/2026-09-10/artifact-review.json. All other paths remain reference-only; exclude dependencies, random workloads, GC tuning and benchmarks.
     attribution:
       - Preserve Fedor Korotkiy MIT notice and additional upstream notices if adaptation is later approved.
     evidence:

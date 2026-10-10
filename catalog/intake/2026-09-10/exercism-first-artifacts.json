@@ -1,0 +1,53 @@
+{
+  "format": "go-learn-advisory-artifact-review/v1",
+  "records": [
+    {
+      "source_id": "exercism-go",
+      "source_commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "source_path": "exercises/practice/binary-search",
+      "files": [
+        {
+          "path": "exercises/practice/binary-search/.meta/config.json",
+          "sha256": "0afb0f7253e393f7c50a3adcc9034dcc2b7a601c58fcc6399e8edbd90c3e1fe9"
+        },
+        {
+          "path": "exercises/practice/binary-search/.meta/gen.go",
+          "sha256": "9bbc1d67e98da39815556d856ce5eb17c96b58022b8d6746ec233be1f2a87603"
+        },
+        {
+          "path": "exercises/practice/binary-search/cases_test.go",
+          "sha256": "6a59c64fb8e6f0884b106c929009c11bdb8511c12a07d2cd4209b445be4503ae"
+        }
+      ],
+      "companion_source_id": "exercism-problem-specifications",
+      "companion_commit": "25c2ae53b8d328790d45e626784434aaed3783c0",
+      "companion_path": "exercises/binary-search",
+      "decision": "deferred-permitted-contract",
+      "reason": "Track tests consume generated canonical cases; metadata cites Wikipedia. No bounded independently sourced exercise contract admitted here. Algorithmic nature is allowed; no canonical text/cases or close paraphrase imported, no original substitution."
+    },
+    {
+      "source_id": "exercism-go",
+      "source_commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "source_path": "exercises/practice/pangram",
+      "files": [
+        {
+          "path": "exercises/practice/pangram/.meta/config.json",
+          "sha256": "fdf0d28deafea02fde87c848a1692e40091cd010224fa1fda9bcb5b55941b9b2"
+        },
+        {
+          "path": "exercises/practice/pangram/.meta/gen.go",
+          "sha256": "939fa67aa08eb6a41740afde40cc524906c4c06029bc17d074a6e97790d76c74"
+        },
+        {
+          "path": "exercises/practice/pangram/cases_test.go",
+          "sha256": "5793715b4e32b02cc236603331da7ad599037f383fef05628333cab808c9ef0f"
+        }
+      ],
+      "companion_source_id": "exercism-problem-specifications",
+      "companion_commit": "25c2ae53b8d328790d45e626784434aaed3783c0",
+      "companion_path": "exercises/pangram",
+      "decision": "deferred-permitted-contract",
+      "reason": "Track tests consume generated canonical cases; metadata cites Wikipedia. No bounded independently sourced exercise contract admitted here. Algorithmic nature is allowed; no canonical text/cases or close paraphrase imported, no original substitution."
+    }
+  ]
+}

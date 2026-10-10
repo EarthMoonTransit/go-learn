@@ -1,0 +1,821 @@
+{
+  "format": "go-learn-advisory-artifact-review/v1",
+  "reviewed_at": "2026-09-11",
+  "reviewer": "foundation-wave-author",
+  "source_manifest_process": "existing source-sync; exact detached heads verified; no upstream execution",
+  "coverage_eligible": false,
+  "new_ready_tasks": 0,
+  "records": [
+    {
+      "source_id": "shad-go",
+      "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "upstream_id": "utf8",
+      "source_path": "utf8",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "utf8/README.md",
+          "sha256": "30b0979a6b864bd9c9f068d1f900e90b56644d9ca8988e770ef7e48fc06e6d94"
+        },
+        {
+          "path": "utf8/reverse/README.md",
+          "sha256": "7a72926dd464ce1129aad344768754f5a842a3649ed9543e9a0cebb28f274476"
+        },
+        {
+          "path": "utf8/reverse/reverse.go",
+          "sha256": "1773148975a86af51cffb2463727b85d57995cbeb26a459fbd25544bdd83a32f"
+        },
+        {
+          "path": "utf8/reverse/reverse_test.go",
+          "sha256": "cda0826056d3e498db28a74d646630eaa568e6971526d22ecee8ecf78d2300b5"
+        },
+        {
+          "path": "utf8/spacecollapse/README.md",
+          "sha256": "bb0b1ada5772bbb90a6538bc0940a64c33e765646c0ef16df532eb0a82d2e905"
+        },
+        {
+          "path": "utf8/spacecollapse/collapse.go",
+          "sha256": "cafa87a8d18a9d53c58288b0a3aa56ab55710e51753dc81c5dc1fd2cec1cc85f"
+        },
+        {
+          "path": "utf8/spacecollapse/collapse_test.go",
+          "sha256": "028a7b87599149181a5db072529815f6966217b4462d7852e9107ff850acff99"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
+      }
+    },
+    {
+      "source_id": "shad-go",
+      "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "upstream_id": "varfmt",
+      "source_path": "varfmt",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "varfmt/README.md",
+          "sha256": "c30016bb761537736483a6a11b90a32aceeda86641a99758d554b53daeeff0b7"
+        },
+        {
+          "path": "varfmt/fmt.go",
+          "sha256": "dfa32bf0daaff04fa4fc2025f8c5b9509eb0c04e36ebcbcc16f196d4326b6813"
+        },
+        {
+          "path": "varfmt/fmt_test.go",
+          "sha256": "633f2e8a57e736be66680ad6db049074575109d7c6077aa9132ac69a22e2acb7"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
+      }
+    },
+    {
+      "source_id": "shad-go",
+      "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "upstream_id": "lrucache",
+      "source_path": "lrucache",
+      "review_status": "accepted-for-adaptation",
+      "files": [
+        {
+          "path": "lrucache/README.md",
+          "sha256": "3f52fd660b558bc184af614d1af9ebf1579b8ebe65c82d455eed09dbb4db407a"
+        },
+        {
+          "path": "lrucache/cache.go",
+          "sha256": "30a23d02ca01801d7747ec304e05d1425d5935e453e836a769b5c372883f894b"
+        },
+        {
+          "path": "lrucache/cache_test.go",
+          "sha256": "4310244811eadf678ca3d575a511276548c0e6bc747ba05dd1f40b131e4126f3"
+        },
+        {
+          "path": "lrucache/lru.go",
+          "sha256": "f45cb225cdce9a8bfea8e87c8224ab02e75d6a0c27ccc48af04bb10c4ab82608"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
+      },
+      "lineage": "Four package files reviewed; root MIT, no nested notice/override or attributed external code in this package. Module uses the historical gitlab.com/slon/shad-go path; this is retained as repository-lineage context. Allow only this package at this commit. Preserve MIT notice; author new deterministic public/full checks and implementation. Exclude testify, random workload, GC setting and benchmark.",
+      "behavior_and_dedup": "Bounded mutable container: Set/Get update recency, eviction, ordered Range early stop, Clear and capacity zero. Separate from generic-stack-001 and dictionary-update-001: cross-operation recency invariant is new.",
+      "prerequisites": "maps lookup/update, receiver state, interfaces, callbacks; intermediate transfer, after related existing lessons.",
+      "adaptation_decision": "Public zero capacity, empty/missing key, update does not duplicate, Get refresh, eviction order, early stop and Clear. Required wrong variants must compile and produce useful diagnostics."
+    },
+    {
+      "source_id": "shad-go",
+      "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "upstream_id": "externalsort",
+      "source_path": "externalsort",
+      "review_status": "deferred-next-wave",
+      "files": [
+        {
+          "path": "externalsort/README.md",
+          "sha256": "688a8a15cd9761d45451a119b27fb0fbbd289f50d04a5653edb20661b81fccc4"
+        },
+        {
+          "path": "externalsort/io.go",
+          "sha256": "8e12de97e6021ecda4e8608ed1175745b4ffd424f959d4478bfe745d038805b6"
+        },
+        {
+          "path": "externalsort/io_test.go",
+          "sha256": "c255483d5a8b0ab403d84418af700272c58986336a6c3c9f4b1229b9377c9648"
+        },
+        {
+          "path": "externalsort/sort.go",
+          "sha256": "fd1cef161d81de679471fd57df83f4ac5ec522d80ef428d6271f1a98f1ff3909"
+        },
+        {
+          "path": "externalsort/sort_test.go",
+          "sha256": "889cac228d7f4341f27ecd0bccd2d7616fb2daa1ef5dc76da2f67d5eef0e4658"
+        },
+        {
+          "path": "externalsort/testdata/.gitattributes",
+          "sha256": "54da72ffe7b7a9529b193ff0de762c16c29616be3c582b4ed940400e6d2a8ded"
+        },
+        {
+          "path": "externalsort/testdata/sort/1/in1.txt",
+          "sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+        },
+        {
+          "path": "externalsort/testdata/sort/1/out.txt",
+          "sha256": "edeaaff3f1774ad2888673770c6d64097e391bc362d7d6fb34982ddf0efd18cb"
+        },
+        {
+          "path": "externalsort/testdata/sort/2/in1.txt",
+          "sha256": "edeaaff3f1774ad2888673770c6d64097e391bc362d7d6fb34982ddf0efd18cb"
+        },
+        {
+          "path": "externalsort/testdata/sort/2/out.txt",
+          "sha256": "edeaaff3f1774ad2888673770c6d64097e391bc362d7d6fb34982ddf0efd18cb"
+        },
+        {
+          "path": "externalsort/testdata/sort/3/in1.txt",
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "path": "externalsort/testdata/sort/3/in2.txt",
+          "sha256": "3a146bbd8507fe79a1c260aba824775ccf6c0841a9234338ad8e92d0bc009394"
+        },
+        {
+          "path": "externalsort/testdata/sort/3/in3.txt",
+          "sha256": "f4264fa5a25ba11ef2d19da54dcfb3274407eb15c775cb355dd88722fe4aa5bc"
+        },
+        {
+          "path": "externalsort/testdata/sort/3/out.txt",
+          "sha256": "43a7576159afdebca4d2f2231b791144a84fd74c24b927c8532c7fbe22800d7b"
+        },
+        {
+          "path": "externalsort/testdata/sort/4/in1.txt",
+          "sha256": "6a3cf5192354f71615ac51034b3e97c20eda99643fcaf5bbe6d41ad59bd12167"
+        },
+        {
+          "path": "externalsort/testdata/sort/4/in2.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "externalsort/testdata/sort/4/in3.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "externalsort/testdata/sort/4/out.txt",
+          "sha256": "6a3cf5192354f71615ac51034b3e97c20eda99643fcaf5bbe6d41ad59bd12167"
+        },
+        {
+          "path": "externalsort/testdata/sort/5/in1.txt",
+          "sha256": "edeaaff3f1774ad2888673770c6d64097e391bc362d7d6fb34982ddf0efd18cb"
+        },
+        {
+          "path": "externalsort/testdata/sort/5/in2.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "externalsort/testdata/sort/5/in3.txt",
+          "sha256": "edeaaff3f1774ad2888673770c6d64097e391bc362d7d6fb34982ddf0efd18cb"
+        },
+        {
+          "path": "externalsort/testdata/sort/5/out.txt",
+          "sha256": "efbaea14f77d3395edd863ea7f247511362a2574db213338ae5c3a6027ff1341"
+        },
+        {
+          "path": "externalsort/testdata/sort/6/in1.txt",
+          "sha256": "bbe56d7c2d0f1f7271eb6f829800598a0a1c5a54f09cb49c47607e0698af7d6f"
+        },
+        {
+          "path": "externalsort/testdata/sort/6/in2.txt",
+          "sha256": "ebbdce70043562f4a68d2dca7e64bca56680b3cac00cf33933cf068e5e12306e"
+        },
+        {
+          "path": "externalsort/testdata/sort/6/in3.txt",
+          "sha256": "ab49cf57e51263300df55f7fdf19bf12e8ee57f23ef7ddd4ef458fbf32c41c48"
+        },
+        {
+          "path": "externalsort/testdata/sort/6/out.txt",
+          "sha256": "ead554c2321adfde2dad928d6e826eeffbe4f4dc7a07289950fcec381e8b7d01"
+        },
+        {
+          "path": "externalsort/testdata/sort/7/in1.txt",
+          "sha256": "8ae09d6d2c93138f57121c46f2ea41af4014774f13e0460add7e0d7dd8a71ed3"
+        },
+        {
+          "path": "externalsort/testdata/sort/7/in10.txt",
+          "sha256": "6cb6843e0c71874bc431be0cae4f18c679bb3e099f5ee6461c5a9ab5cc2f78ea"
+        },
+        {
+          "path": "externalsort/testdata/sort/7/in2.txt",
+          "sha256": "74a2d116e272eff077bed4638696ac6042575aa0291f2eb037242ecb6abf9ed7"
+        },
+        {
+          "path": "externalsort/testdata/sort/7/in3.txt",
+          "sha256": "2d28e97caa13fbc3be89e67942c268b42315b8b19e5665ccd51a07953b44aa97"
+        },
+        {
+          "path": "externalsort/testdata/sort/7/in4.txt",
+          "sha256": "4c8f8fa41fc2132374f4f24616b71a752ac4b55b55a8da3ea47f1adb249bacdf"
+        },
+        {
+          "path": "externalsort/testdata/sort/7/in5.txt",
+          "sha256": "6134d1c7f80d248123bf928ac96c5dce75afd3db9bee0b74c11e0f1876140ba8"
+        },
+        {
+          "path": "externalsort/testdata/sort/7/in6.txt",
+          "sha256": "d691ca74ab55ed52b9974bb88c0c54034230a7690a01f0c897f55f050f1f80a8"
+        },
+        {
+          "path": "externalsort/testdata/sort/7/in7.txt",
+          "sha256": "61a3746d683842f2da1b39e66a372e7662695184722cc9aeef2645f1c1aa9de6"
+        },
+        {
+          "path": "externalsort/testdata/sort/7/in8.txt",
+          "sha256": "05bc6e055db296c9b04b636e392534b037c0acb91b5aef4ff6ef213b4dfab33f"
+        },
+        {
+          "path": "externalsort/testdata/sort/7/in9.txt",
+          "sha256": "25c511a93d27483f5988e4cca2b552d1ebcee80cf948b0521a8478818dbab9e6"
+        },
+        {
+          "path": "externalsort/testdata/sort/7/out.txt",
+          "sha256": "ce7efd6f6ac1b9ec4bd1e55d32323f62f967e70386654e3c46bfd346353c0988"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
+      },
+      "lineage": "Read all six package Go/Markdown files. Root MIT; test dependencies and fixture corpus not admitted for copying. Full corpus lineage remains pending.",
+      "behavior_and_dedup": "Line/EOF handling plus multiway merge and owned filesystem composition; distinct but larger than first wave.",
+      "prerequisites": "io errors, callbacks, heap or equivalent merge, resource ownership.",
+      "adaptation_decision": "Before later authoring settle partial read+EOF, long lines, write errors and mutation of input files; no first-wave task."
+    },
+    {
+      "source_id": "shad-go",
+      "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "upstream_id": "tabletest",
+      "source_path": "tabletest",
+      "review_status": "deferred-lineage",
+      "files": [
+        {
+          "path": "tabletest/README.md",
+          "sha256": "c22b7345ddc4f83ba326f844ad893e6affe6f4b14e58f01798e7b722788d9675"
+        },
+        {
+          "path": "tabletest/coverage_test.go",
+          "sha256": "21bd7167b6458a5ea0459472959767c69c563d37e446bc7936d3251e2b52f4b6"
+        },
+        {
+          "path": "tabletest/parse_duration.go",
+          "sha256": "a1fb99ea76d9201d5d3b785ff52521c85e72a020251eed1281cf647ccefa280b"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
+      },
+      "lineage": "parse_duration.go substantially resembles historical standard-library time code, with no embedded Go copyright/header or precise originating Go commit in the package. Root MIT alone is insufficient to resolve that chain. No code or text admitted.",
+      "behavior_and_dedup": "Duration parsing tests could exercise useful grammar/overflow partitions beyond time parse formatting tasks.",
+      "prerequisites": "time.Duration, signs, decimal grammar, overflow and mutation-tests.",
+      "adaptation_decision": "Defer W1 until exact Go lineage and notices are recovered; never replace this with a close paraphrase labelled original."
+    },
+    {
+      "source_id": "shad-go",
+      "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "upstream_id": "tparallel",
+      "source_path": "tparallel",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "tparallel/README.md",
+          "sha256": "f286d1845dd8d3f1d00d938e94b717dd938897d761e7a836425f9f2586b33089"
+        },
+        {
+          "path": "tparallel/tparallel.go",
+          "sha256": "2e5f33236750a253f42c8511e5fba9ddfd9a8532becf07b4172a6553d453f88e"
+        },
+        {
+          "path": "tparallel/tparallel_test.go",
+          "sha256": "433143baf90dcc2a523d0c831be1ddc0f5f008734cf08701ecd38df777643dfc"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
+      }
+    },
+    {
+      "source_id": "shad-go",
+      "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "upstream_id": "genericsum",
+      "source_path": "genericsum",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "genericsum/README.md",
+          "sha256": "ab73273054130748ed075cf3786b432d5fe3b1424f0bcc9b933bbfb42ff61e5a"
+        },
+        {
+          "path": "genericsum/genericsum.go",
+          "sha256": "8dba352a1e8cea8de6af07794e591daded9df990c201030381c5689a1ce07d3d"
+        },
+        {
+          "path": "genericsum/genericsum_test.go",
+          "sha256": "46d09e6248f6628d4486edb22ef6aadcfa5bb403d7413c18bb7295b38c2e9c4d"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
+      }
+    },
+    {
+      "source_id": "shad-go",
+      "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "upstream_id": "treeiter",
+      "source_path": "treeiter",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "treeiter/README.md",
+          "sha256": "aa5f6332e671a420f574b98ccf740f9239e2c7806cf42f99f92aa54d59965aea"
+        },
+        {
+          "path": "treeiter/treeiter.go",
+          "sha256": "cbd8577c2f659e2e9bb3ce2a74f89a0f5a01415449caffe4ba2b5180d56049b9"
+        },
+        {
+          "path": "treeiter/treeiter_example_test.go",
+          "sha256": "109cde338f98ff8286275e694d1e00a6a5f689606c2e630f05511d7df99c42c2"
+        },
+        {
+          "path": "treeiter/treeiter_test.go",
+          "sha256": "eb3d177ded74285dcd8bc342a17ce8d2eb40c5a6be6a430b837b5e8af59f9756"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
+      }
+    },
+    {
+      "source_id": "shad-go",
+      "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "upstream_id": "dupcall",
+      "source_path": "dupcall",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "dupcall/README.md",
+          "sha256": "73c46cca972ec144b60f816699f0914d2ba432992f4b6e99d8071a1def196baa"
+        },
+        {
+          "path": "dupcall/dupcall.go",
+          "sha256": "303accce37e2ed5720d729d7a9a098780987c015145fb77d6be23d4b25fbf111"
+        },
+        {
+          "path": "dupcall/dupcall_test.go",
+          "sha256": "b37fbf16141a6d8b6a3832cde2fd6fabaf2a6e64522d0948767c952867a4c8e6"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
+      }
+    },
+    {
+      "source_id": "shad-go",
+      "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "upstream_id": "keylock",
+      "source_path": "keylock",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "keylock/README.md",
+          "sha256": "dba95fcc589f2bc535ed0992c0090b33b5abc8db273ff47babc5069fb9c8e755"
+        },
+        {
+          "path": "keylock/keylock.go",
+          "sha256": "5fcccdee7e0c714c6f1b46ab1e3f41969b330019dbf7be22afac9e9781ec1c13"
+        },
+        {
+          "path": "keylock/keylock_test.go",
+          "sha256": "f38a3fa7382cdf56b8f7e829b3a8c37e0cbea49161b28b1f31712f00b5f86a5b"
+        },
+        {
+          "path": "keylock/speed_test.go",
+          "sha256": "ff29ff2e30c536d51c2f91ef22d42b5e88d13a92f62f72219fb72f1f7e7cb1ac"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
+      }
+    },
+    {
+      "source_id": "shad-go",
+      "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "upstream_id": "pubsub",
+      "source_path": "pubsub",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "pubsub/README.md",
+          "sha256": "fbf99c1d85968e657e9d9652834ed4b6ae0b11271e9b7dc5c793e079a83178dc"
+        },
+        {
+          "path": "pubsub/my_pubsub.go",
+          "sha256": "7a640183886d8562dad34b26a8a0abe0f843983026907ce31e2d8aa80a2f82d0"
+        },
+        {
+          "path": "pubsub/pubsub.go",
+          "sha256": "e16590d570c3935782a5dedf170e635cba56905cb31a2bad91c33bf6afe5f668"
+        },
+        {
+          "path": "pubsub/pubsub_example_test.go",
+          "sha256": "a7b0471d2db000a7dadaa43fbd76e38c2f23ce1ce1526b99c25712747bf16a37"
+        },
+        {
+          "path": "pubsub/pubsub_test.go",
+          "sha256": "96dc9988977f43c91b67a654fe4470db930553b22fd3861c3c88e285db987bbb"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
+      }
+    },
+    {
+      "source_id": "shad-go",
+      "source_commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "upstream_id": "allocs",
+      "source_path": "allocs",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "allocs/README.md",
+          "sha256": "0641e15b049a8e524e8d54e0a242a9ec79ff2b8f5eee79b05b6858d5842c62e2"
+        },
+        {
+          "path": "allocs/allocs.go",
+          "sha256": "389891c036bf1a967dcc03534e813d2cfe54d53c95ef71d01f1ef1e333931766"
+        },
+        {
+          "path": "allocs/allocs_test.go",
+          "sha256": "89d600d4370b4b78f2501343bc7efbfa852d370fc149afef57e487cbb3245b25"
+        },
+        {
+          "path": "allocs/baseline.go",
+          "sha256": "a666a8cb9ff4988583104e1da2d03e6636c08e9c9cb4a3dd7bfdf33d65f15417"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
+      }
+    },
+    {
+      "source_id": "golings",
+      "source_commit": "65fb8ce827c716e54650e88a3ccc7c52308ab59b",
+      "upstream_id": "variables4",
+      "source_path": "exercises/variables/variables4/main.go",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "exercises/variables/variables4/main.go",
+          "sha256": "ccf56a08ffb03f7230e79a1cf55892f7a4f29e0a8925f06c5864c118fa62d20c"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      }
+    },
+    {
+      "source_id": "golings",
+      "source_commit": "65fb8ce827c716e54650e88a3ccc7c52308ab59b",
+      "upstream_id": "arrays1",
+      "source_path": "exercises/arrays/arrays1/main.go",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "exercises/arrays/arrays1/main.go",
+          "sha256": "40ed0e2ec2dc7f29c6c18d0de6849bb243a40136986ab9644e05f85b6b7121a9"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      }
+    },
+    {
+      "source_id": "golings",
+      "source_commit": "65fb8ce827c716e54650e88a3ccc7c52308ab59b",
+      "upstream_id": "slices4",
+      "source_path": "exercises/slices/slices4/main_test.go",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "exercises/slices/slices4/main_test.go",
+          "sha256": "c49ced2b44aebe815568032209c1154256d871ed44642b27f4f0e6ff5acd760b"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      }
+    },
+    {
+      "source_id": "golings",
+      "source_commit": "65fb8ce827c716e54650e88a3ccc7c52308ab59b",
+      "upstream_id": "structs2",
+      "source_path": "exercises/structs/structs2/main.go",
+      "review_status": "rejected-low-value",
+      "files": [
+        {
+          "path": "exercises/structs/structs2/main.go",
+          "sha256": "a84fa38b305643db608667ab1cb86b05150dbd19bf1abf56dfec0eee51d72ea1"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "lineage": "Read exact main.go and root Apache-2.0. Keep reference-only; no files admitted.",
+      "behavior_and_dedup": "Compile-only missing embedded field; no independent state/aliasing contract. Existing embedded-cache-tests-001 already gives executable promotion behavior.",
+      "prerequisites": "structs, embedding and selectors.",
+      "adaptation_decision": "W2 rejected: adding unrelated ownership requirements would invent most of the exercise. No source-representation filler."
+    },
+    {
+      "source_id": "golings",
+      "source_commit": "65fb8ce827c716e54650e88a3ccc7c52308ab59b",
+      "upstream_id": "anonymous_functions3",
+      "source_path": "exercises/anonymous_functions/anonymous_functions3/main.go",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "exercises/anonymous_functions/anonymous_functions3/main.go",
+          "sha256": "05435e488417c5335ba21d9cc269e2d5f59fd95a502a9f0fac8d145ba3772854"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      }
+    },
+    {
+      "source_id": "golings",
+      "source_commit": "65fb8ce827c716e54650e88a3ccc7c52308ab59b",
+      "upstream_id": "generics2",
+      "source_path": "exercises/generics/generics2/main.go",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "exercises/generics/generics2/main.go",
+          "sha256": "9a30fd25f50b097a19d8224cbc50df2677dbb48f98bbcde7cb59da78ade0db6b"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      }
+    },
+    {
+      "source_id": "golings",
+      "source_commit": "65fb8ce827c716e54650e88a3ccc7c52308ab59b",
+      "upstream_id": "concurrent2",
+      "source_path": "exercises/concurrent/concurrent2/main_test.go",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "exercises/concurrent/concurrent2/main_test.go",
+          "sha256": "ab654d859e96f27e22963c2c528e590c06657e82b49a9bd6df8a53d6bbf8f9ee"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      }
+    },
+    {
+      "source_id": "golings",
+      "source_commit": "65fb8ce827c716e54650e88a3ccc7c52308ab59b",
+      "upstream_id": "concurrent3",
+      "source_path": "exercises/concurrent/concurrent3/main_test.go",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "exercises/concurrent/concurrent3/main_test.go",
+          "sha256": "e3f7055bfbde355d183cd66dc99668c6b00f3c4cf6540f0ff5ba6e5ea60c5ff6"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      }
+    },
+    {
+      "source_id": "birsi-go-training",
+      "source_commit": "3ae230e734644d637118f2a6818166922d5197c5",
+      "upstream_id": "03_collections",
+      "source_path": "exercises/stage1/03_collections",
+      "review_status": "rejected-duplicate",
+      "files": [
+        {
+          "path": "exercises/stage1/03_collections/collections.go",
+          "sha256": "5b9645604810e7cf6aa8e5c78dcb2f20d76816badc2efeaa96563214682062b9"
+        },
+        {
+          "path": "exercises/stage1/03_collections/collections_test.go",
+          "sha256": "a1f7191a2209c586418aa174a7f35a03c1a8a3cd90174799282664c6a1b56f27"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "3bcc1e57a3a334565aa6d89bb0087458da29bb58e73ef0e552717dd75ee89226"
+      },
+      "lineage": "Read starter, tests and corresponding solution package at exact commit. Root MIT; keep reference-only.",
+      "behavior_and_dedup": "Filter/count/map fallback/reverse overlap existing collection contracts. Tests use length/equality and do not require distinct nil representation.",
+      "prerequisites": "slice operations, map comma-ok, ownership.",
+      "adaptation_decision": "W5 donor does not supply the desired nil-vs-empty outcome. Existing bounded-slice-view-001 already promises nil, repaired in P4; no new task ID solely for that gap."
+    },
+    {
+      "source_id": "birsi-go-training",
+      "source_commit": "3ae230e734644d637118f2a6818166922d5197c5",
+      "upstream_id": "08_errors",
+      "source_path": "exercises/stage2/08_errors",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "exercises/stage2/08_errors/errors.go",
+          "sha256": "7a3a512482aff62fba1d8662994c1bd988cabb5d30a282d39ae280e4e46448f7"
+        },
+        {
+          "path": "exercises/stage2/08_errors/errors_test.go",
+          "sha256": "6d18d9c9e5f9fa17e91ec5da35724daccb7c5b076a43634311734f1e77e2785d"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "3bcc1e57a3a334565aa6d89bb0087458da29bb58e73ef0e552717dd75ee89226"
+      }
+    },
+    {
+      "source_id": "birsi-go-training",
+      "source_commit": "3ae230e734644d637118f2a6818166922d5197c5",
+      "upstream_id": "09_generics",
+      "source_path": "exercises/stage3/09_generics",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "exercises/stage3/09_generics/generics.go",
+          "sha256": "b043c993a83266c07510c4d7a5b3cba4cd1b27af0db8bda2394000c72105c4e5"
+        },
+        {
+          "path": "exercises/stage3/09_generics/generics_test.go",
+          "sha256": "a2945e7228e660e855f24c2edd0b3adb641dca26c9db09e4706afd2ebbba95ad"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "3bcc1e57a3a334565aa6d89bb0087458da29bb58e73ef0e552717dd75ee89226"
+      }
+    },
+    {
+      "source_id": "birsi-go-training",
+      "source_commit": "3ae230e734644d637118f2a6818166922d5197c5",
+      "upstream_id": "11_channels",
+      "source_path": "exercises/stage3/11_channels",
+      "review_status": "needs-artifact-review",
+      "files": [
+        {
+          "path": "exercises/stage3/11_channels/channels.go",
+          "sha256": "733c991b14a79bf4e57bba3e3103b37298ab319d114b8e708401276f748b90a2"
+        },
+        {
+          "path": "exercises/stage3/11_channels/channels_test.go",
+          "sha256": "f0610e5c10d749b271fccb889a34a4e7e4eecace683df85ce1c01fd767546647"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "3bcc1e57a3a334565aa6d89bb0087458da29bb58e73ef0e552717dd75ee89226"
+      }
+    },
+    {
+      "source_id": "go-koans",
+      "source_commit": "7f0b28e4f551f2120d55eec3a03b4f472ec38044",
+      "upstream_id": "about_anonymous_functions",
+      "source_path": "about_anonymous_functions.go",
+      "review_status": "deferred-remediation",
+      "files": [
+        {
+          "path": "about_anonymous_functions.go",
+          "sha256": "4d1287d29c5b08306a5a27f2d7a5470e8c7830cce39da1988e4a92686d704e32"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "e5dddf7c2f6e04189c14527fd5ae18ca88c9c86f8dcf7d660c21b16f240a3d3a"
+      },
+      "lineage": "Root MIT; reviewed thematic file remains reference-only, no content imported.",
+      "adaptation_decision": "Retain as optional semantic reference. Existing practice is stronger; no first-wave task. Slice capacity growth is not a language guarantee; channel queue observation is not synchronization; original harness is not imported."
+    },
+    {
+      "source_id": "go-koans",
+      "source_commit": "7f0b28e4f551f2120d55eec3a03b4f472ec38044",
+      "upstream_id": "about_defer",
+      "source_path": "about_defer.go",
+      "review_status": "deferred-remediation",
+      "files": [
+        {
+          "path": "about_defer.go",
+          "sha256": "75bb7e0fa7a7ae9be2ab20754846597fb9be970b4d656f532c69f05ce1a6bffa"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "e5dddf7c2f6e04189c14527fd5ae18ca88c9c86f8dcf7d660c21b16f240a3d3a"
+      },
+      "lineage": "Root MIT; reviewed thematic file remains reference-only, no content imported.",
+      "adaptation_decision": "Retain as optional semantic reference. Existing practice is stronger; no first-wave task. Slice capacity growth is not a language guarantee; channel queue observation is not synchronization; original harness is not imported."
+    },
+    {
+      "source_id": "go-koans",
+      "source_commit": "7f0b28e4f551f2120d55eec3a03b4f472ec38044",
+      "upstream_id": "about_interfaces",
+      "source_path": "about_interfaces.go",
+      "review_status": "deferred-remediation",
+      "files": [
+        {
+          "path": "about_interfaces.go",
+          "sha256": "15bdf90fa1e94fd91da8820de0fa119b7f670f2e2649c6b50a5782ff092e0ff8"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "e5dddf7c2f6e04189c14527fd5ae18ca88c9c86f8dcf7d660c21b16f240a3d3a"
+      },
+      "lineage": "Root MIT; reviewed thematic file remains reference-only, no content imported.",
+      "adaptation_decision": "Retain as optional semantic reference. Existing practice is stronger; no first-wave task. Slice capacity growth is not a language guarantee; channel queue observation is not synchronization; original harness is not imported."
+    },
+    {
+      "source_id": "go-koans",
+      "source_commit": "7f0b28e4f551f2120d55eec3a03b4f472ec38044",
+      "upstream_id": "about_pointers",
+      "source_path": "about_pointers.go",
+      "review_status": "deferred-remediation",
+      "files": [
+        {
+          "path": "about_pointers.go",
+          "sha256": "baf7ab5ae66ccd94adf43818fc1ba08bebfc8616b85ea64c692b186b0eb76455"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "e5dddf7c2f6e04189c14527fd5ae18ca88c9c86f8dcf7d660c21b16f240a3d3a"
+      },
+      "lineage": "Root MIT; reviewed thematic file remains reference-only, no content imported.",
+      "adaptation_decision": "Retain as optional semantic reference. Existing practice is stronger; no first-wave task. Slice capacity growth is not a language guarantee; channel queue observation is not synchronization; original harness is not imported."
+    },
+    {
+      "source_id": "go-koans",
+      "source_commit": "7f0b28e4f551f2120d55eec3a03b4f472ec38044",
+      "upstream_id": "about_slices",
+      "source_path": "about_slices.go",
+      "review_status": "deferred-remediation",
+      "files": [
+        {
+          "path": "about_slices.go",
+          "sha256": "575278e88f88adfb554d636bd16f9d52aa5db7347f83625f79b7fd227ee6230d"
+        }
+      ],
+      "license_evidence": {
+        "path": "LICENSE",
+        "sha256": "e5dddf7c2f6e04189c14527fd5ae18ca88c9c86f8dcf7d660c21b16f240a3d3a"
+      },
+      "lineage": "Root MIT; reviewed thematic file remains reference-only, no content imported.",
+      "adaptation_decision": "Retain as optional semantic reference. Existing practice is stronger; no first-wave task. Slice capacity growth is not a language guarantee; channel queue observation is not synchronization; original harness is not imported."
+    }
+  ]
+}
