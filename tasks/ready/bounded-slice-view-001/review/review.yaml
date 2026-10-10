@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "reviewer": "/root/ui_goal_reviewer",
-  "reviewed_at": "2026-09-08",
+  "reviewer": "/root/review_nil",
+  "reviewed_at": "2026-09-11",
   "decision": "approve",
   "story_free": true,
   "prompt_test_alignment": true,
@@ -10,6 +10,6 @@
   "license_verified": true,
   "reference_only_clean_room_verified": true,
   "solution_leakage_checked": true,
-  "minimum_mutants": 6,
-  "notes": "Independent content review approved. The complete input snapshot closes the outside-window mutation gap; shared element updates and isolated append capacity remain distinct requirements. Original ADR0008 creation identity, content digest and empty external source list verified. Author-provided targeted report passes with 6/6 required mutants detected. No authored code executed by reviewer or learner state accessed. Full batch gates and separate public-feedback tooling remain separate; no human calibration is claimed."
+  "minimum_mutants": 7,
+  "notes": "P4C nil-input amendment independently reviewed with P4T. Public requirement is zero length/capacity, not nil representation. Exact content digest pair, unchanged exported files, public-only defect detection, passing reference/full and valid non-nil empty alternative verified. Omission of the nil public assertion fails the persistent tooling regression. Full bank gates and exact-head CI remain separate; no human evidence claimed."
 }

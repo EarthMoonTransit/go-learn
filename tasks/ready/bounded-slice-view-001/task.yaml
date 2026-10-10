@@ -34,6 +34,7 @@ verification:
         - empty-tail-cap
         - mutate-input
         - prefix-cleared
+        - nil-spare-cap
     race_required: false
     vet: true
     limits:

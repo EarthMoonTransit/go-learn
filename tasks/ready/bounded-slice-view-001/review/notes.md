@@ -37,3 +37,26 @@ Original task under ADR0008. Project identity matches `config/project-identity.y
 The complete input snapshot closes the outside-window mutation gap; shared element updates and isolated append capacity remain distinct requirements.
 
 Reviewed current English requirements, API/starter, public or learner reference assertions, grader/mutation layout, all 6 required defects, hints, route prerequisites and provenance. The author-provided `.tmp/checks/bounded-slice-view-001.yaml` reports technical pass and 6/6 required mutants detected. No authored code was executed by the reviewer; no real learner state was accessed. Full batch gates, lifecycle promotion and the separate public-feedback tooling matrix remain separate. Automated fixtures do not establish learner mastery or human calibration.
+
+
+P4C: nil public contract
+
+The existing contract permits nil input with valid zero bounds, requiring length
+and capacity zero. It does not require a nil representation: a non-nil empty
+zero-capacity slice remains valid. TASK, starter, reference, hints and exported
+workspace files are unchanged. The new nil-spare-cap defect returns spare
+capacity only for nil input and must fail public Check with actual/expected
+length and capacity. P4T provides the persistent Service.Check regression and
+exact directional content revision compatibility, without rewriting learner files.
+
+| Requirement | Public assertion | Defect | Diagnostic |
+| --- | --- | --- | --- |
+| elements/length/capacity | TestPublicCase01 | two-index, ignore-start | view values/len/cap |
+| shared elements | TestPublicCase01 | detached | view detached |
+| append isolation | TestPublicCase01 | two-index | append overwrote outside |
+| unchanged input | TestPublicCase01 | mutate-input, prefix-cleared | call changed input |
+| empty bounds | TestPublicCase02 | empty-tail-cap | empty bounds len/cap/input |
+| nil with zero bounds | TestPublicNilView | nil-spare-cap | len=0 cap=1; want len=0 cap=0 |
+
+Reference and existing learner alternatives remain subject to public/full gates.
+This preparation correction adds zero ready IDs and does not change route numbers.
