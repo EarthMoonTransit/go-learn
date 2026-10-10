@@ -12,7 +12,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | --- | ---: |
 | `draft` | 8 |
 | `in-review` | 0 |
-| `ready` | 153 |
+| `ready` | 154 |
 | `rejected` | 1 |
 | `retired` | 0 |
 
@@ -21,7 +21,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | Type | Count |
 | --- | ---: |
 | `debug` | 38 |
-| `implement` | 80 |
+| `implement` | 81 |
 | `refactor` | 3 |
 | `test-writing` | 41 |
 
@@ -44,6 +44,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | `binary-record-tests-001` | `ready` | `dccc302f7193d37fa7f1615f96f1e42ffca4e1be504671b12b7023d09a6e3e9f` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 8/8 | Phase 3A |
 | `boolean-policies-001` | `ready` | `6125c2b4768672b6652693b18bba4865e8e927fc818961560ac4aa80c9b1f393` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 8/8 | Phase 3A |
 | `bounded-copy-001` | `ready` | `b5237d625a227f84f32c994ef3ebfc24dd64d6e60b5ea3a0f722d19ef3e37b61` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 8/8 | Phase 3A |
+| `bounded-lru-cache-001` | `ready` | `04c644538ea0931ddba1be47fb79daca7fbe5e1283a33c07be1387a2ec3716e2` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 20/20 | Phase 3A |
 | `bounded-slice-view-001` | `ready` | `f75840e53ad248369d3ae6fbd9e6a2e31caf035b665fc7ace2d55b3fcc26debb` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
 | `bounded-value-001` | `ready` | `44be7add5819fb3921b6a157ffde2e9c980fa96396b9f98a9de4a4f28fff09ff` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
 | `buffered-flush-001` | `ready` | `08e2bae8bfa48cffd4d88b8b77915b078231b6c64a8ed46b1828f8472077c2ce` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 5/5 | Phase 3A |
