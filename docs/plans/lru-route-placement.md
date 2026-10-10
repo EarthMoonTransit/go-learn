@@ -55,6 +55,11 @@ exercise route boundaries, active later lessons, delayed review and pre-existing
 LRU completion; compare progress bytes and workspace trees across read-only
 UI/CLI access for progress versions 1–3 and an unnumbered LRU workspace.
 Fixture progress is test data, never learner evidence.
+State-compatibility fixtures copy the real route and unchanged LRU package into
+a temporary repository; scheduler cases load their three actual candidates.
+The existing repository-wide route test still binds every step to ready metadata.
+This avoids repeated whole-bank loads under `-race` (CI run `38082591140` reached
+the aggregate 10-minute timeout); no gate, timeout or task check is relaxed.
 
 Run fast tests → race → vet → integration. Reuse the successful full 163-package
 collection from the unchanged bank inputs for `validate -phase1 -checks` and

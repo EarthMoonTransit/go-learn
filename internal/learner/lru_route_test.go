@@ -8,13 +8,16 @@ import (
 	"reflect"
 	"strings"
 	"testing"
+
+	"go-practice-bank/internal/isolation"
+	"go-practice-bank/internal/tasking"
 )
 
 const routeLRU = "bounded-lru-cache-001"
 
 func TestLRURoutePreservesMilestone150Addresses(t *testing.T) {
 	s := uiTestService(t, "")
-	r, err := s.Roadmap()
+	route, err := loadRoute(s.root)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -25,7 +28,7 @@ func TestLRURoutePreservesMilestone150Addresses(t *testing.T) {
 	}
 	positions := map[string]int{}
 	index := 0
-	for _, b := range r.Route.Blocks {
+	for _, b := range route.Blocks {
 		for _, step := range b.Steps {
 			positions[fmt.Sprintf("%s\t%s\t%s", lessonNumber(b, step), b.ID, step.TaskID)] = index
 			index++
@@ -58,18 +61,24 @@ func TestLRURoutePreservesMilestone150Addresses(t *testing.T) {
 
 func TestLRURouteRecommendationsPreserveProgress(t *testing.T) {
 	s := uiTestService(t, "")
-	r, err := s.Roadmap()
+	route, err := loadRoute(s.root)
 	if err != nil {
 		t.Fatal(err)
 	}
-	tasks, _, err := s.ListTasks()
-	if err != nil {
-		t.Fatal(err)
+	// The repository-wide route test already binds every step to ready metadata.
+	// Load only the actual candidates needed by these scheduler scenarios.
+	var tasks []tasking.LearnerTaskInfo
+	for _, id := range []string{routeLRU, "diagnostic-helper-001", "closed-receive-001"} {
+		task, err := s.Show(id)
+		if err != nil {
+			t.Fatal(err)
+		}
+		tasks = append(tasks, task)
 	}
 	// Synthetic completed-prefix histories exercise policy, not authored code.
 	prefix := func(stop string) Progress {
 		p := Progress{SchemaVersion: 3, Tasks: map[string]*TaskProgress{}}
-		for _, b := range r.Route.Blocks {
+		for _, b := range route.Blocks {
 			for _, step := range b.Steps {
 				if step.TaskID == stop {
 					return p
@@ -113,7 +122,7 @@ func TestLRURouteRecommendationsPreserveProgress(t *testing.T) {
 				t.Fatal(err)
 			}
 			before := persistedBytes(t, s)
-			choice, err := routeNext(r.Route, tasks, p)
+			choice, err := routeNext(*route, tasks, p)
 			if err != nil || choice.Task.ID != tc.want || choice.LessonNumber != tc.number || len(choice.MissingPrerequisites) != 0 {
 				t.Fatalf("choice=%+v err=%v", choice, err)
 			}
@@ -134,16 +143,33 @@ func TestLRURouteRecommendationsPreserveProgress(t *testing.T) {
 	p := prefix("diagnostic-helper-001")
 	p.Completions[len(p.Completions)-1].RouteRole = ""
 	before := learningView(p)
-	choice, err := routeNext(r.Route, tasks, p)
+	choice, err := routeNext(*route, tasks, p)
 	if err != nil || choice.Task.ID != "diagnostic-helper-001" || !reflect.DeepEqual(before, learningView(p)) || p.Completions[len(p.Completions)-1].RouteRole != "" {
 		t.Fatalf("off-route completion changed: %+v %v", choice, err)
 	}
 }
 
 func TestLRURouteReadOnlyViewsPreserveWorkspaces(t *testing.T) {
+	repository, err := filepath.Abs(filepath.Join("..", ".."))
+	if err != nil {
+		t.Fatal(err)
+	}
+	root := t.TempDir()
+	// Copy real route/metadata and the unchanged LRU package as data. Repeated
+	// state-compatibility checks do not need to reload the other 150 packages.
+	// No authored code executes here; the full bank keeps its separate gates.
+	for _, dir := range []string{"config", "schemas", "curriculum", "sources", "tasks/ready/" + routeLRU} {
+		if err := isolation.CopyTree(filepath.Join(repository, dir), filepath.Join(root, dir)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if err := isolation.CopyFile(filepath.Join(repository, "docs/LEARNER_START.md"), filepath.Join(root, "docs/LEARNER_START.md")); err != nil {
+		t.Fatal(err)
+	}
 	for _, version := range []int{1, 2, 3} {
 		t.Run(fmt.Sprint(version), func(t *testing.T) {
 			s := uiTestService(t, "")
+			s.root = root
 			// An unnumbered LRU workspace is also the pre-enrollment layout for
 			// numbered homes. Create it through the legacy workspace policy.
 			if err := saveProgress(s.home, Progress{SchemaVersion: 1, Tasks: map[string]*TaskProgress{}}); err != nil {
