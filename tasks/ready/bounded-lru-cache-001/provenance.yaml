@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "kind": "adapted",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "f57610fc17ba67e99e5efc2a0923d199899d6855c16d9b7b4fdb7ee01e9cf9aa"
+  },
+  "creation": {
+    "author": "foundation-author",
+    "created_at": "2026-09-11",
+    "summary": "Substantive adaptation of SHAD integer LRU recency, eviction, traversal and clear behavior. Locally authored generic K/V API, usable zero Cache, typed missing values, bounds, deterministic public/full tests and slice reference assess reusable generic structures (ADR0024). No upstream dependencies, random workloads or benchmarks imported."
+  },
+  "sources": [
+    {
+      "registry_id": "shad-go",
+      "repository": "https://github.com/slon/shad-go",
+      "commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "license": "MIT",
+      "usage_mode": "adapt",
+      "role": "adapted-test-structure",
+      "artifacts": [
+        {
+          "path": "lrucache/README.md",
+          "sha256": "3f52fd660b558bc184af614d1af9ebf1579b8ebe65c82d455eed09dbb4db407a",
+          "usage": "adapted"
+        },
+        {
+          "path": "lrucache/cache.go",
+          "sha256": "30a23d02ca01801d7747ec304e05d1425d5935e453e836a769b5c372883f894b",
+          "usage": "adapted"
+        },
+        {
+          "path": "lrucache/lru.go",
+          "sha256": "f45cb225cdce9a8bfea8e87c8224ab02e75d6a0c27ccc48af04bb10c4ab82608",
+          "usage": "structure-only"
+        },
+        {
+          "path": "lrucache/cache_test.go",
+          "sha256": "4310244811eadf678ca3d575a511276548c0e6bc747ba05dd1f40b131e4126f3",
+          "usage": "adapted"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f",
+          "usage": "copied"
+        }
+      ]
+    }
+  ],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/bounded-lru-cache-001.yaml"
+  }
+}
