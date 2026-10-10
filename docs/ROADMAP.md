@@ -18,6 +18,11 @@ The 47-topic map is a practice map, not a remaining theory-writing target.
 New exercises do not require new theory pages; next work prioritizes settling
 existing PRs and reviewed executable practice.
 
+Route update, 2026-10-10: [LRU placement](plans/lru-route-placement.md) adds the
+reviewed `bounded-lru-cache-001` at **07.20** as a generics transfer lesson.
+The current route has **151** lessons; all 150 milestone addresses are retained.
+The milestone ledger below remains historical.
+
 | Milestone | Product result | Definition of Done |
 | --- | --- | --- |
 | 1. Working course: 150 ready lessons | Numbered sections/workspaces, systematic source adaptation, sequential practice, independent coding/testing and repetitions | 150 learner-visible lessons have prerequisites and route positions, executable checks and independent review. Repetitions and mastery evidence work separately from completion. Existing solutions and history survive migrations. At least 76 lessons substantively adapt permitted exercise material; concept-only seeds do not qualify. |

@@ -1157,6 +1157,14 @@
           "skills": [
             "packages.test-package-boundaries"
           ]
+        },
+        {
+          "number": 20,
+          "task_id": "bounded-lru-cache-001",
+          "role": "transfer",
+          "skills": [
+            "generics.reusable-data-structures"
+          ]
         }
       ],
       "number": 7
