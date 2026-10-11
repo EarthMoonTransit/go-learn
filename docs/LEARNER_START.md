@@ -33,7 +33,9 @@ In the CLI, the common folder is `<learner home>/workspaces` (the home is shown
 when `learn ui` starts). Opening a file does not change the active lesson: use Start
 or Resume in the UI, or `learn resume TASK-ID`, before checking that lesson.
 
-Use the GoLand terminal (these commands work from the shared project root):
+Use the GoLand terminal with your checkout-based `learn` launcher. A standalone
+binary needs `learn -root /path/to/go-learn <command>` when run outside the course
+repository, including from the shared project root:
 
 - learn roadmap: see the course blocks and your place.
 - learn next: see the next lesson, its preparation and the start command.
