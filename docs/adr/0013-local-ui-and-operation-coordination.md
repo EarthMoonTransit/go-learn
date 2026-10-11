@@ -45,9 +45,25 @@ arbitrary file/command/root/home API or reference reveal endpoint. Statements an
 diagnostics render as text nodes. Full-check diagnostics and raw internal errors
 are withheld. Public diagnostics come from the existing safe learner checker.
 
-GoLand receives only a validated server-derived workspace path as a separate
-process argument. The executable and application location are discovered locally,
+GoLand receives only validated server-derived paths as separate process
+arguments. The executable and application location are discovered locally,
 never supplied by HTTP. Failure leaves the copy-path workflow available.
+
+The shared-project launcher (2026-10-11) passes the private `workspaces` root and
+the selected lesson's first declared editable Go file. It validates the lesson
+marker, real ancestor directories and regular target file before launch. The
+GoLand project/file CLI syntax reuses the same project window; macOS forwards
+arguments through the documented `open -n -a … --args` launcher and GoLand's
+single-instance handoff. It does not change global IDE window preferences.
+No shared Go module or `go.work` file is generated. Task workspaces, legacy paths,
+markers and progress are unchanged; opening code never selects the active task.
+Rolling back only restores the former per-lesson launch behavior. The shared
+project's `.idea` directory is outside task roots and verifier/export inputs.
+
+Launcher references: [JetBrains CLI documentation](https://www.jetbrains.com/help/go/working-with-the-ide-features-from-command-line.html)
+and the installed GoLand 2025.3.3 `--help` project-plus-file syntax. Desktop smoke
+used a disposable learner home with two lessons: both files opened in the same
+`workspaces` window without changing the user's individual lesson project.
 
 ## Compatibility, migration and rollback
 

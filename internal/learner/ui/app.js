@@ -121,9 +121,11 @@ function renderTask() {
   markdown(byId('statement'), t.info.Prompt);
   markdown(byId('preparation'), state.course?.preparation || 'Use learn next to see the preparation guide.');
   byId('workspace-path').value = t.workspace;
+  byId('ide-project-path').value = t.ide_project;
+  byId('copy-project').disabled = !t.ide_project;
   byId('copy').disabled = !t.workspace;
   byId('workspace-guidance').textContent = t.workspace_unavailable ? 'Workspace needs attention. Use the CLI to inspect it; your files have not been replaced.' : !t.started ? 'Start this lesson to create its private workspace.' : !t.current ? 'Resume this lesson before checking. Viewing it has not changed your active task.' : 'Edit the files named in the task, then check your work here.';
-  byId('launcher-note').textContent = state.course?.ide_available ? '' : 'GoLand launcher unavailable. Copy the path and open it in your IDE.';
+  byId('launcher-note').textContent = state.course?.ide_available ? '' : 'GoLand launcher unavailable. Copy the project path and open that folder in your IDE.';
   byId('hints').replaceChildren();
   if (!t.used_hints.length) byId('hints').append(element('p', 'No hints used for this lesson.', 'muted'));
   for (const hint of t.used_hints) { const section = element('div', undefined, 'hint'); section.append(element('h3', 'Hint ' + hint.number)); const text = element('p'); inline(text, hint.text); section.append(text); byId('hints').append(section); }
@@ -141,7 +143,7 @@ function renderJob() {
   else if (job.result?.verification) {
     const v = job.result.verification; title = v.Passed ? (job.action === 'complete' ? 'Lesson completed' : 'Public tests passed') : 'Verification did not pass'; summary = v.Summary; outcome = v.Passed ? 'passed' : 'failed';
     if (job.action === 'check' && v.Diagnostic) { byId('diagnostic').textContent = v.Diagnostic; byId('diagnostic').hidden = false; }
-  } else if (job.action === 'start' || job.action === 'resume') { title = 'Workspace ready'; summary = 'Open it in GoLand and edit the files named in the task.'; }
+  } else if (job.action === 'start' || job.action === 'resume') { title = 'Workspace ready'; summary = 'This lesson is in your shared project. Open its folder in GoLand, or use Open lesson in GoLand to jump to the code.'; }
   else if (job.action === 'hint') { title = 'Next hint revealed'; summary = 'It is saved in your lesson progress and shown below.'; }
   byId('result-title').textContent = title; byId('result-summary').textContent = summary; byId('result').dataset.state = outcome;
 }
@@ -182,11 +184,13 @@ async function action(name) {
 for (const button of document.querySelectorAll('[data-action]')) button.addEventListener('click', () => action(button.dataset.action).catch(error => alertMessage(error.message)));
 byId('next').addEventListener('click', () => { if (state.course?.next_task_id) selectTask(state.course.next_task_id).catch(error => alertMessage(error.message)); });
 byId('refresh').addEventListener('click', () => refresh().catch(error => alertMessage(error.message)));
-byId('copy').addEventListener('click', async () => {
-  const input = byId('workspace-path'); if (!input.value) return;
-  try { await navigator.clipboard.writeText(input.value); alertMessage('Workspace path copied.'); }
-  catch (_) { input.focus(); input.select(); alertMessage('Path selected. Copy it and open it in GoLand.'); }
-});
+for (const [button, field, message] of [['copy', 'workspace-path', 'Lesson path copied.'], ['copy-project', 'ide-project-path', 'Project path copied. Open this folder once in GoLand.']]) {
+  byId(button).addEventListener('click', async () => {
+    const input = byId(field); if (!input.value) return;
+    try { await navigator.clipboard.writeText(input.value); alertMessage(message); }
+    catch (_) { input.focus(); input.select(); alertMessage('Path selected. Copy it and open it in GoLand.'); }
+  });
+}
 if (!token) { state.authorized = false; alertMessage('Open the full URL printed by learn ui, including its session fragment.'); byId('connection').textContent = 'Session URL required'; }
 else refresh().then(loadTopics).catch(error => alertMessage(error.message));
 setInterval(() => refresh().catch(error => alertMessage(error.message)), 1800);

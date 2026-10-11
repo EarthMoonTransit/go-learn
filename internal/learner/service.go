@@ -33,7 +33,7 @@ type Service struct {
 	home         string
 	now          func() time.Time
 	verify       func(string, string, string, tasking.LearnerVerificationScope) (tasking.LearnerVerificationResult, error)
-	launch       func(string) error
+	launch       func(ideTarget) error
 	ideAvailable bool
 }
 

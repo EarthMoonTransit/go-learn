@@ -228,10 +228,14 @@ func (s *Service) PerformAction(action, id, revision string) (ActionResult, erro
 			if err != nil {
 				return ActionResult{}, err
 			}
-			if err := s.launch(workspace); err != nil {
+			target, err := s.goLandTarget(id, workspace)
+			if err != nil {
 				return ActionResult{}, err
 			}
-			return ActionResult{Workspace: workspace, Message: "Workspace sent to GoLand."}, nil
+			if err := s.launch(target); err != nil {
+				return ActionResult{}, err
+			}
+			return ActionResult{Workspace: workspace, Message: "Lesson sent to the shared GoLand project. All started lessons stay in this window."}, nil
 		}
 		return ActionResult{}, errors.New("unsupported learner action")
 	})
