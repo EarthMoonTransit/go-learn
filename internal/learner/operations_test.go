@@ -30,7 +30,7 @@ func uiTestService(t *testing.T, home string) *Service {
 	s.verify = func(_, _, _ string, scope tasking.LearnerVerificationScope) (tasking.LearnerVerificationResult, error) {
 		return tasking.LearnerVerificationResult{Passed: true, Scope: scope, Summary: "Fixture verification passed."}, nil
 	}
-	s.launch = func(string) error { return ErrIDEUnavailable }
+	s.launch = func(ideTarget) error { return ErrIDEUnavailable }
 	s.ideAvailable = false
 	return s
 }

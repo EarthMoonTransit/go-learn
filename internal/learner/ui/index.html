@@ -68,11 +68,17 @@
             <div class="eyebrow">YOUR WORKSPACE</div>
             <h2>Edit in GoLand</h2>
             <p id="workspace-guidance">Start this lesson to create its workspace.</p>
-            <label for="workspace-path">Workspace path</label>
+            <label for="ide-project-path">Shared GoLand project</label>
+            <input id="ide-project-path" readonly value="" placeholder="Start the lesson first">
+            <div class="button-row">
+              <button id="copy-project" disabled>Copy project path</button>
+              <button data-action="open" disabled>Open lesson in GoLand</button>
+            </div>
+            <p class="muted">One project for all started lessons. New lessons appear in its folder tree; this button opens the selected lesson’s code in the same project.</p>
+            <label for="workspace-path">This lesson’s folder</label>
             <input id="workspace-path" readonly value="" placeholder="Start the lesson first">
             <div class="button-row">
-              <button id="copy" disabled>Copy path</button>
-              <button data-action="open" disabled>Open in GoLand</button>
+              <button id="copy" disabled>Copy lesson path</button>
             </div>
             <p id="launcher-note" class="muted"></p>
             <button data-action="start" class="primary full">Start lesson</button>

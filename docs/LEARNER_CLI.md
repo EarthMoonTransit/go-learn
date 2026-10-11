@@ -220,8 +220,20 @@ restarting. Jobs and their display results are temporary; progress, completion
 and used hints persist. For a fixed local port use `learn ui -port 8080`.
 Global `-root`, `-home` and `GO_LEARN_HOME` follow the same rules as other commands.
 
-Select a lesson and click Start, then Open in GoLand or Copy path. Open the
-printed workspace as a project and edit the files named in the task. Check runs
+Select a lesson and click Start, then **Open lesson in GoLand**. The button opens
+`<learner home>/workspaces` as one shared project and selects the first declared
+editable Go file of that lesson. **Copy project path** is the manual fallback;
+**Copy lesson path** still copies the individual lesson folder. Keep the shared
+project open: new started lessons appear in its tree, and subsequent button
+presses target the same project. The first open may show GoLand's usual project
+choice dialog. Previously opened individual lesson windows are not closed for
+you; close them when convenient after switching to the shared project.
+
+Each lesson remains an independent Go module. No `go.work`, combined module,
+workspace relocation, IDE settings rewrite or progress migration is needed.
+Numbered and legacy folders both remain usable. The button selects code only;
+it does not start/resume a lesson or run tests. Edit the files named in the task.
+Check runs
 public tests; Complete runs full verification and records completion on success.
 The Review prompts appear after completion. Next lesson follows the route;
 unprepared content is labelled explicitly. Browsing another lesson does not

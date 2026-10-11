@@ -264,27 +264,27 @@ func TestUIOpenUsesValidatedWorkspaceAndUnavailableFallback(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	called := ""
-	s.launch = func(path string) error { called = path; return ErrIDEUnavailable }
+	called := ideTarget{}
+	s.launch = func(target ideTarget) error { called = target; return ErrIDEUnavailable }
 	u := testLocalUI(t, s)
 	request := "request-launcher-0001"
 	if w := uiHTTP(u, "POST", "/api/action", uiActionBody(t, s, "open", id, request), nil); w.Code != 202 {
 		t.Fatal(w.Code)
 	}
 	job := waitUIJob(t, u, request)
-	if called != workspace || job.State != "failed" || !strings.Contains(job.Error, "copy") {
-		t.Fatalf("unavailable fallback: %+v path %q", job, called)
+	if called.Project != filepath.Join(s.home, "workspaces") || called.File != filepath.Join(workspace, "subject", "bindings.go") || job.State != "failed" || !strings.Contains(job.Error, "copy") {
+		t.Fatalf("unavailable fallback: %+v target %+v", job, called)
 	}
 	// Replacing the temporary fixture marker must not invoke the launcher.
 	if err := os.Remove(filepath.Join(workspace, learnerWorkspaceMarker)); err != nil {
 		t.Fatal(err)
 	}
-	called = ""
+	called = ideTarget{}
 	request = "request-launcher-0002"
 	if w := uiHTTP(u, "POST", "/api/action", uiActionBody(t, s, "open", id, request), nil); w.Code != 202 {
 		t.Fatal(w.Code)
 	}
-	if job := waitUIJob(t, u, request); job.State != "failed" || called != "" {
+	if job := waitUIJob(t, u, request); job.State != "failed" || called != (ideTarget{}) {
 		t.Fatal("invalid workspace launched")
 	}
 }

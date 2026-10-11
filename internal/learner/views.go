@@ -46,6 +46,7 @@ type TaskView struct {
 	Attempts             int                     `json:"attempts"`
 	SessionActive        bool                    `json:"session_active"`
 	Workspace            string                  `json:"workspace"`
+	IDEProject           string                  `json:"ide_project"`
 	WorkspaceUnavailable bool                    `json:"workspace_unavailable"`
 	UsedHints            []UsedHint              `json:"used_hints"`
 	HintsRemaining       int                     `json:"hints_remaining"`
@@ -192,6 +193,7 @@ func (s *Service) TaskView(id string) (TaskView, error) {
 			view.WorkspaceUnavailable = true
 		} else {
 			view.Workspace = workspace
+			view.IDEProject = filepath.Join(s.home, "workspaces")
 		}
 		indices := append([]int(nil), task.UsedHints...)
 		sort.Ints(indices)
