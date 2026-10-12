@@ -4,6 +4,7 @@ package learner
 
 import (
 	"fmt"
+	"path/filepath"
 	"testing"
 
 	"go-practice-bank/internal/tasking"
@@ -14,6 +15,11 @@ import (
 // This invokes the same verifier as the one-shot CLI, with no cached results.
 func integrationVerifier(t *testing.T, root string) func(string, string, string, tasking.LearnerVerificationScope) (tasking.LearnerVerificationResult, error) {
 	t.Helper()
+	// Service.New resolves repository symlinks (including macOS /var).
+	root, err := filepath.EvalSymlinks(root)
+	if err != nil {
+		t.Fatal(err)
+	}
 	session, err := tasking.NewCheckSession(root)
 	if err != nil {
 		t.Fatal(err)
