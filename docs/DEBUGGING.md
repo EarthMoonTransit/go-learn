@@ -67,6 +67,16 @@ This prevents an aggregate timeout from truncating otherwise bounded checks;
 it is not a runtime-speed improvement. Cache/session optimization remains
 a separate measured change.
 
+## T0a read-only fixture budget
+
+T0a state regressions use a bounded disposable eight-task catalog with the real
+task manifests and old addresses. Omitted introductions are explicit fixture-only
+preparation assumptions, never learner evidence. The full 151-row mapping and
+its two formal blockers are tested separately against the repository. Repeated
+whole-bank metadata loads in each history/UI fixture exceeded the race package's
+10-minute CI budget; bounding those fixtures preserves their Service/CLI paths
+and every storage/history/workspace assertion without increasing the timeout.
+
 ## Cold race-fixture compilation
 
 Runs 34284014940 and 34284226173 detected the race-only mutant, but the new

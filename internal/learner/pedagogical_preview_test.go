@@ -2,18 +2,142 @@ package learner
 
 import (
 	"bytes"
+	"encoding/csv"
 	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
 	"reflect"
 	"slices"
+	"sort"
 	"strings"
 	"testing"
 	"time"
 
+	"go-practice-bank/internal/isolation"
 	"go-practice-bank/internal/tasking"
+	"gopkg.in/yaml.v3"
 )
+
+// Keep state regressions bounded without bypassing the real Service/CLI loaders.
+// The full 151-task specification and its blockers are checked separately. This
+// disposable fixture preserves actual task metadata and old addresses; omitted
+// prerequisite introductions are explicit fixture-only preparation assumptions.
+func boundedPedagogicalService(t *testing.T) *Service {
+	t.Helper()
+	s := uiTestService(t, "")
+	route, err := loadRoute(s.root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	plan, entries, err := loadPedagogicalPlan(s.root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	skills, err := activeRouteSkills(s.root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	selected := map[string]bool{}
+	preparation := map[string]bool{}
+	for _, id := range route.PreparationSkills {
+		preparation[id] = true
+	}
+	root := t.TempDir()
+	for _, dir := range []string{"config", "schemas", "sources", "curriculum"} {
+		if err := isolation.CopyTree(filepath.Join(s.root, dir), filepath.Join(root, dir)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	for _, id := range []string{"literal-bindings-001", "zero-results-001", "access-logic-001", "clamp-tests-001", "allocated-counter-001", "counter-read-tests-001", "pointer-chain-001", routeLRU} {
+		selected[id] = true
+		info, err := s.Show(id)
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, prerequisite := range info.Prerequisites {
+			preparation[prerequisite] = true
+		}
+		if err := isolation.CopyTree(filepath.Join(s.root, "tasks/ready", id), filepath.Join(root, "tasks/ready", id)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	var blocks []RouteBlock
+	for _, block := range route.Blocks {
+		var steps []RouteStep
+		for _, step := range block.Steps {
+			if selected[step.TaskID] {
+				steps = append(steps, step)
+				for _, id := range step.Skills {
+					for _, prerequisite := range skills[id].Prerequisites {
+						preparation[prerequisite] = true
+					}
+				}
+			}
+		}
+		if len(steps) > 0 {
+			block.Steps = steps
+			blocks = append(blocks, block)
+		}
+	}
+	route.Blocks = blocks
+	route.PreparationSkills = nil
+	for id := range preparation {
+		route.PreparationSkills = append(route.PreparationSkills, id)
+	}
+	sort.Strings(route.PreparationSkills)
+	route.Preparation = "docs/fixture-preparation.md"
+	if err := writePrivateFile(filepath.Join(root, route.Preparation), []byte("Synthetic tooling fixture assumes exposure to these omitted prerequisites; no learner evidence is granted:\n"+strings.Join(route.PreparationSkills, "\n")+"\n"), 0600); err != nil {
+		t.Fatal(err)
+	}
+	var edges []ExposureEdge
+	for _, edge := range plan.ExposureEdges {
+		if selected[edge.TaskID] && selected[edge.BeforeTaskID] {
+			edges = append(edges, edge)
+		}
+	}
+	plan.ExposureEdges = edges
+	var pending []PendingPreparation
+	for _, gate := range plan.PendingPreparation {
+		if selected[gate.TaskID] {
+			pending = append(pending, gate)
+		}
+	}
+	plan.PendingPreparation = pending
+	var mapping bytes.Buffer
+	writer := csv.NewWriter(&mapping)
+	if err := writer.Write([]string{"task_id", "old_number", "proposed_chapter", "proposed_subtopic", "proposed_order", "role", "disposition", "rationale"}); err != nil {
+		t.Fatal(err)
+	}
+	sort.Slice(entries, func(i, j int) bool { return entries[i].ProposedOrder < entries[j].ProposedOrder })
+	position := 0
+	for _, entry := range entries {
+		if selected[entry.TaskID] {
+			position++
+			if err := writer.Write([]string{entry.TaskID, entry.OldNumber, entry.Chapter, entry.Subtopic, fmt.Sprint(position), entry.Role, entry.Disposition, entry.Rationale}); err != nil {
+				t.Fatal(err)
+			}
+		}
+	}
+	writer.Flush()
+	if err := writer.Error(); err != nil {
+		t.Fatal(err)
+	}
+	for path, value := range map[string]any{"curriculum/route.yaml": route, pedagogicalPlanPath: plan} {
+		content, err := yaml.Marshal(value)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(filepath.Join(root, path), content, 0600); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if err := os.WriteFile(filepath.Join(root, plan.MappingFile), mapping.Bytes(), 0600); err != nil {
+		t.Fatal(err)
+	}
+	s.root = root
+	return s
+}
 
 // These histories are synthetic; no personal learner state is read or executed.
 func pedagogicalProgressFixtures(route Route, tasks map[string]tasking.LearnerTaskInfo) map[string]Progress {
@@ -41,7 +165,7 @@ func pedagogicalProgressFixtures(route Route, tasks map[string]tasking.LearnerTa
 	fixtures := map[string]Progress{"fresh": empty()}
 	for _, status := range []string{"in-progress", "paused"} {
 		p := empty()
-		p.CurrentTaskID = routeLRU // proposed position 128, old address 07.20
+		p.CurrentTaskID = routeLRU // position 128 in the full plan, last in this fixture; old address 07.20
 		task := &TaskProgress{TaskID: routeLRU, Status: status, Workspace: "workspaces/07-libraries/20-bounded-lru-cache", Attempts: 3, ActivitySeconds: 321, StartedAt: "2026-10-01T00:00:00Z", LastInteractionAt: "2026-10-01T00:02:00Z"}
 		if status == "in-progress" {
 			task.ActiveSessionStartedAt = "2026-10-01T00:02:00Z"
@@ -100,7 +224,7 @@ func pedagogicalProgressFixtures(route Route, tasks map[string]tasking.LearnerTa
 }
 
 func TestPedagogicalPreviewPreservesSyntheticHistoriesAndWorkspaceTrees(t *testing.T) {
-	base := uiTestService(t, "")
+	base := boundedPedagogicalService(t)
 	roadmap, err := base.Roadmap()
 	if err != nil {
 		t.Fatal(err)
@@ -112,6 +236,7 @@ func TestPedagogicalPreviewPreservesSyntheticHistoriesAndWorkspaceTrees(t *testi
 	for name, fixture := range pedagogicalProgressFixtures(roadmap.Route, roadmap.Tasks) {
 		t.Run(name, func(t *testing.T) {
 			s := uiTestService(t, "")
+			s.root = base.root
 			s.now = func() time.Time { t.Fatal("read-only preview accessed the session clock"); return time.Time{} }
 			s.verify = func(string, string, string, tasking.LearnerVerificationScope) (tasking.LearnerVerificationResult, error) {
 				t.Fatal("preview invoked task verification")
@@ -170,6 +295,10 @@ func TestPedagogicalPreviewPreservesSyntheticHistoriesAndWorkspaceTrees(t *testi
 			case "in-progress", "paused":
 				if afterChoice.Task.ID != routeLRU || !afterChoice.Resume || afterChoice.LessonNumber != "07.20" {
 					t.Fatal(afterChoice, afterErr)
+				}
+				last := preview.Lessons[len(preview.Lessons)-1]
+				if last.TaskID != routeLRU || last.OldNumber != "07.20" || last.LearnerStatus != before.Tasks[routeLRU].Status {
+					t.Fatal("fixture must retain the current task at the far end of the proposed plan", last)
 				}
 			case "due PointerChain without mutation preparation":
 				if knownLearnerSkills(before)["pointers.mutation-sharing"] || afterChoice.Task.ID != "pointer-chain-001" || afterChoice.ReviewSkill != "pointers.address-deref-nil" {
@@ -240,7 +369,7 @@ func TestPedagogicalPreviewCLIShowsStableAddressesAndBlockers(t *testing.T) {
 func TestPedagogicalPreviewKeepsUIWorkspaceAndGoLandTargets(t *testing.T) {
 	for _, version := range []int{1, 3} {
 		t.Run(fmt.Sprint(version), func(t *testing.T) {
-			s := uiTestService(t, "")
+			s := boundedPedagogicalService(t)
 			if err := saveProgress(s.home, Progress{SchemaVersion: version, Tasks: map[string]*TaskProgress{}}); err != nil {
 				t.Fatal(err)
 			}

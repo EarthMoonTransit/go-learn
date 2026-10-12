@@ -188,9 +188,17 @@ func TestRepositoryPedagogicalMappingAndKnownBlockers(t *testing.T) {
 	if fmt.Sprintf("%x", sha256.Sum256(content)) != "d0454a41c8c0a4d4cd7c6fb4c36e14568a15b89444f4157871efcba921367d75" {
 		t.Fatal("review mapping changed; update its planning evidence explicitly")
 	}
-	preview, err := s.PedagogicalPreview()
-	if err != nil || !preview.Valid() || preview.PreparationReady() || len(entries) != 151 || preview.RoutedCount != 151 || p.Status != "inactive" {
-		t.Fatalf("preview=%+v err=%v", preview, err)
+	roadmap, err := s.Roadmap()
+	if err != nil {
+		t.Fatal(err)
+	}
+	skills, err := activeRouteSkills(s.root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	preview := validatePedagogicalOrder(p, entries, roadmap, skills)
+	if !preview.Valid() || preview.PreparationReady() || len(entries) != 151 || preview.RoutedCount != 151 || p.Status != "inactive" {
+		t.Fatalf("preview=%+v", preview)
 	}
 	formal := map[string][]string{}
 	pending := map[string][]string{}
@@ -228,14 +236,6 @@ func TestRepositoryPedagogicalMappingAndKnownBlockers(t *testing.T) {
 		}
 	}
 	// A real route addition is reported, never discarded to force the baseline count.
-	roadmap, err := s.Roadmap()
-	if err != nil {
-		t.Fatal(err)
-	}
-	skills, err := activeRouteSkills(s.root)
-	if err != nil {
-		t.Fatal(err)
-	}
 	roadmap.Route.Blocks[8].Steps = append(roadmap.Route.Blocks[8].Steps, RouteStep{Number: 10, TaskID: "added-task-001", Role: "practice", Skills: []string{"types.zero-values"}})
 	changed := validatePedagogicalOrder(p, entries, roadmap, skills)
 	if changed.RoutedCount != 152 || changed.Valid() || !slices.Contains(changed.StructuralIssues, "missing current route task ID added-task-001") {
