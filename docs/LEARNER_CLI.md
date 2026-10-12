@@ -60,6 +60,8 @@ current directory. Learner state defaults to the OS user-config directory under
   is recorded but never marks completion.
 - `next` selects the first unfinished route lesson; repositories without a route use the fallback policy below.
 - `roadmap` shows the sequential course and local completion state.
+- `roadmap --pedagogical` previews and validates the inactive thematic plan,
+  retaining the existing lesson addresses and reporting preparation blockers.
 - `progress` prints attempts, hints, reveal/completion state, active duration,
   feedback count, and skill encounters.
 - `feedback <text>` stores up to 2,000 characters locally for the current task.
@@ -70,6 +72,70 @@ current directory. Learner state defaults to the OS user-config directory under
 `check` and unsuccessful `complete` use exit code 1. Syntax and public-API
 errors are failed attempts with bounded public diagnostics. Invalid usage or
 unsafe workspace state uses exit code 2.
+
+### Inactive pedagogical preview (T0a)
+
+From the repository, use a separate temporary home to inspect the plan without
+opening personal learner data:
+
+```bash
+go run ./cmd/learn -root . -home .tmp/t0a-preview-home roadmap --pedagogical
+```
+
+The loader reads `curriculum/plans/pedagogical-order.yaml` (version 1, explicitly
+inactive) and its CSV mapping. The CSV is the supplied review's full 151-row
+specification, retained byte-for-byte; SHA-256:
+`d0454a41c8c0a4d4cd7c6fb4c36e14568a15b89444f4157871efcba921367d75`.
+The baseline commit is a planning reference, not a current-test attestation.
+Validation uses the current route set and preserves new lessons as visible
+missing-ID errors when the mapping becomes stale; it never forces the route to
+remain at 151 tasks.
+
+Representative output with unchanged review-baseline metadata:
+
+```text
+Pedagogical plan: inactive (activation disabled)
+Mapping: 151 rows; current route: 151 tasks
+Structural validity: true; preparation ready: false
+Position 15 | C02 ... | ...
+  Address 03.30 | decision-table-tests-001 | transfer | not-started
+  BLOCKED: manifest requires earlier testing.basics-diagnostics
+Position 22 | C02 ... | ...
+  Address 03.26 | constant-value-tests-001 | practice | not-started
+  BLOCKED: manifest requires earlier testing.basics-diagnostics
+Position 95 | C08 ... | ...
+  Address 06.14 | shape-contract-tests-001 | introduction | not-started
+  PENDING P05: ...
+Position 118 | C09 ... | ...
+  Address 06.44 | capture-panic-001 | introduction | not-started
+  PENDING P06: ...
+  PENDING P07: ...
+Position 143 | C14 ... | ...
+  Address 09.01 | worker-completion-tests-001 | introduction | not-started
+  PENDING P11: ...
+  PENDING P12: ...
+  PENDING P13: ...
+```
+
+The complete output includes chapter/subtopic labels, actual manifest
+prerequisites, existing learner status and reasons for pending content actions.
+Formal checks evaluate **planned earlier exposure**, not individual mastery or
+scheduler eligibility. Manifest prerequisites require an earlier encounter;
+taxonomy introduction dependencies may be assessed in the same lesson, matching
+the existing route contract. Reviewed task-to-task exposure edges are checked too.
+Content actions remain pending until separate reviewed changes release them.
+P13 is a scaffold revision of Worker, not a new exercise ID.
+
+A structurally valid but unprepared plan exits 0 so it can be inspected. Unknown,
+duplicate or missing task IDs, address/role drift, unavailable tasks and invalid
+positions/gate references print `INVALID` diagnostics and exit 1. Sidecar/CSV
+syntax errors use the existing CLI error path (exit 2). The output always says
+activation is disabled; passing structural validation does not enable Next.
+
+This read-only command preserves progress bytes, history, current selection,
+session state and workspace paths. `Next`, delayed review, ordinary roadmap,
+local UI and GoLand still use the existing route. See ADR 0025 for the separate
+E01/M1, content-preparation and T0b activation work.
 
 ## Persistent workspace contract
 

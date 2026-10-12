@@ -33,7 +33,7 @@ commands:
   review
   solution --reveal
   next
-  roadmap
+  roadmap [--pedagogical]
   organize [--dry-run]
   progress
   feedback <text>
@@ -249,8 +249,25 @@ func RunCLI(config Config, arguments []string, stdout, stderr io.Writer) int {
 			fmt.Fprintln(stdout, "Organization complete. Open the new workspace path in GoLand.")
 		}
 	case "roadmap":
-		if err := noArguments(command, commandArguments); err != nil {
+		roadmapFlags := flag.NewFlagSet("learn roadmap", flag.ContinueOnError)
+		roadmapFlags.SetOutput(stderr)
+		pedagogical := roadmapFlags.Bool("pedagogical", false, "preview and validate the inactive pedagogical plan")
+		if err := roadmapFlags.Parse(commandArguments); err != nil {
+			return 2
+		}
+		if err := noArguments(command, roadmapFlags.Args()); err != nil {
 			return cliError(stderr, err)
+		}
+		if *pedagogical {
+			preview, err := service.PedagogicalPreview()
+			if err != nil {
+				return cliError(stderr, err)
+			}
+			writePedagogicalPreview(stdout, preview)
+			if !preview.Valid() {
+				return 1
+			}
+			break
 		}
 		roadmap, err := service.Roadmap()
 		if err != nil {
