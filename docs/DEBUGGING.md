@@ -55,6 +55,47 @@ runner/cache и разделение CI jobs делать отдельным too
 проверкой сохранения изоляции. Не ускорять работу отключением race, integration,
 grader или process gate. Пока такой batch не принят, полный CI остаётся нужен.
 
+## Измеренная оптимизация tooling (2026-10-12)
+
+Профиль fast learner suite показал повторный разбор taxonomy и provenance
+policy внутри каждого полного чтения каталога. Теперь один вызов каталога
+использует один loader общих metadata. Следующий вызов создаёт новый loader;
+правки taxonomy, registry, identity, license, schema и task files не скрываются.
+Все package checks и digest checks выполняются для каждой задачи.
+
+Интеграционные матрицы используют явный `CheckSession` на top-level test:
+холодная сборка стандартной библиотеки не повторяется для каждого Check/Complete.
+Каждый variant всё ещё запускается в новой disposable workspace с `-count=1`.
+CLI integration сохраняет одноразовый путь; public/grader, mutation, determinism,
+vet и race assertions не удалены. Сессия закрывается в `t.Cleanup`, включая
+ошибочные сценарии. Подробнее — дополнение к ADR 0006.
+
+Локальные измерения на Apple M4 Max, darwin/arm64, Go 1.27.0, база `7a1c153`
+и те же 151 learner tasks (это наблюдения, не wall-clock acceptance thresholds):
+
+| Сценарий | До | После |
+| --- | ---: | ---: |
+| Полный learner catalog, median из 3 запусков | 1,301 s | 0,639 s |
+| Тот же catalog под race, median из 3 запусков | 14,257 s | 3,152 s |
+| Allocated bytes на catalog без race | 1,077 GB | 0,540 GB |
+| Opening-lesson integration, один запуск | 22,12 s | 7,34 s |
+
+Для воспроизведения benchmark на обеих ревизиях используйте один и тот же
+`BenchmarkReadyLearnerCatalog` из `internal/tasking/learner_catalog_test.go`:
+
+```bash
+go test ./internal/tasking -run '^$' -bench '^BenchmarkReadyLearnerCatalog$' -benchtime=1x -count=3 -benchmem
+go test -race ./internal/tasking -run '^$' -bench '^BenchmarkReadyLearnerCatalog$' -benchtime=1x -count=3 -benchmem
+```
+
+Benchmark читает исходники как данные. Проверка
+`TestLearnerSessionKeepsFreshWorkspacesAndInputs` дополнительно фиксирует пять
+реальных subprocess runs в пяти разных workspace для starter public,
+reference full (два determinism runs и vet) и последующего public. Она помещает
+ломающий test в старые disposable copies, проверяет отсутствие grader в новом
+public workspace, повторную валидацию изменённых inputs и удаление session root.
+Timeouts, workflow gates и содержимое банка этой оптимизацией не меняются.
+
 ## CI integration suite budget
 
 Runs 34253711927 and 34254229744 both hit Go's default 10-minute package

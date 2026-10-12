@@ -9,11 +9,14 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
-
-	"go-practice-bank/internal/tasking"
 )
 
 func TestUIRealVerificationAcrossSubmissionKinds(t *testing.T) {
+	root, err := filepath.Abs("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	verify := integrationVerifier(t, root)
 	for _, fixture := range []struct{ id, editable, reference, weak string }{
 		{"named-block-001", "subject/bindings.go", "subject/bindings.go", "solution/mutants/wrong-element-type/subject/bindings.go"},
 		{"zero-results-001", "subject/subject.go", "subject.go", "solution/mutants/empty-map/subject.go"},
@@ -21,7 +24,7 @@ func TestUIRealVerificationAcrossSubmissionKinds(t *testing.T) {
 	} {
 		t.Run(fixture.id, func(t *testing.T) {
 			s := uiTestService(t, "")
-			s.verify = tasking.VerifyLearnerWorkspace
+			s.verify = verify
 			// Exercise the existing UI flow after moving a legacy workspace.
 			if err := saveProgress(s.home, Progress{SchemaVersion: 1, Tasks: map[string]*TaskProgress{}}); err != nil {
 				t.Fatal(err)

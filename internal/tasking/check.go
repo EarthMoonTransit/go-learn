@@ -432,6 +432,11 @@ func collectGoDirectory(root, relative string, kind directoryKind, problems []st
 }
 
 func checkMetadata(root string, data packageData) []string {
+	_, contracts, err := triage.LoadSkillContracts(root)
+	return checkMetadataWithContracts(data, contracts, err)
+}
+
+func checkMetadataWithContracts(data packageData, contracts map[string]triage.SkillContract, err error) []string {
 	var problems []string
 	if data.Task.ID != data.Located.ID {
 		problems = append(problems, "task id must match its directory")
@@ -449,7 +454,6 @@ func checkMetadata(root string, data packageData) []string {
 	if data.ContractVersion == 2 {
 		problems = append(problems, checkMetadataV2(data)...)
 	}
-	_, contracts, err := triage.LoadSkillContracts(root)
 	if err != nil {
 		return append(problems, "cannot load taxonomy: "+err.Error())
 	}
@@ -628,7 +632,6 @@ func checkProvenanceV1(root string, data packageData) []string {
 }
 
 func checkProvenanceV2(root string, data packageData) []string {
-	var problems []string
 	registry, err := sources.LoadRegistry(root)
 	if err != nil {
 		return []string{"cannot load source registry: " + err.Error()}
@@ -641,6 +644,11 @@ func checkProvenanceV2(root string, data packageData) []string {
 	if err != nil {
 		return []string{err.Error()}
 	}
+	return checkProvenanceV2WithInputs(data, registry, identity, licensePolicy)
+}
+
+func checkProvenanceV2WithInputs(data packageData, registry sources.Registry, identity projectIdentity, licensePolicy outboundLicensePolicy) []string {
+	var problems []string
 	p := data.ProvenanceV2
 	if p.Project.Identity != identity.ID || p.Project.Repository != identity.Repository || p.Project.License != identity.License {
 		problems = append(problems, "provenance project must match config/project-identity.yaml")

@@ -17,6 +17,7 @@ import (
 
 func TestLearnerWorkflowSupportsEveryV2SubmissionKind(t *testing.T) {
 	repository := learnerFixtureRepository(t)
+	verify := integrationVerifier(t, repository)
 	fixtures := []struct {
 		profile             string
 		id                  string
@@ -36,6 +37,7 @@ func TestLearnerWorkflowSupportsEveryV2SubmissionKind(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
+			service.verify = verify
 			taskDirectory := filepath.Join(repository, "tasks", "ready", fixture.id)
 			before, err := tasking.TaskContentDigest(taskDirectory)
 			if err != nil {
