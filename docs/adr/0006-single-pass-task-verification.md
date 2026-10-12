@@ -52,6 +52,23 @@ Collection не является подписью или доказательс�
 доверяют только как результату обязательного предыдущего шага того же job.
 Persistent cross-run cache и changed-task resolver не создаются.
 
+### Явные learner verification batches (2026-10-12)
+
+`CheckSession.VerifyLearnerWorkspace` применяет ту же границу сессии к сериям
+learner-проверок. В интеграционных матрицах сессией владеет один top-level test,
+закрывающий её через `t.Cleanup`; вызовы последовательны. Каждая проверка заново
+читает metadata и submission, каждый public/full/determinism/vet/race variant
+получает новую disposable workspace. Повторно используются только временные
+compiler caches, HOME и TMPDIR сессии, как в `CheckAll`. Результаты проверок
+не кэшируются, `-count=1` сохраняется. Одноразовая функция verifier, используемая
+CLI, по-прежнему создаёт и закрывает отдельный runner.
+
+Одно чтение learner-каталога декодирует общие taxonomy, source registry,
+project identity и license policy один раз. Все проверки каждого package,
+provenance digest, schema, API и файлов сохраняются. Loader живёт только до
+возврата из чтения каталога; следующий вызов заново читает и проверяет inputs.
+Глобального кеша и сохранения metadata между вызовами Service нет.
+
 ## Tests и CI
 
 Обычные unit tests используют маленький internal runner interface и fake

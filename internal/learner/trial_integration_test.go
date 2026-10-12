@@ -15,6 +15,7 @@ import (
 
 func TestBrokenLearnerCodeRemainsExportableAcrossProfiles(t *testing.T) {
 	repository := learnerFixtureRepository(t)
+	verify := integrationVerifier(t, repository)
 	for _, fixture := range []struct{ id, path string }{
 		{"synthetic-fixed-v2-001", "subject/identity.go"},
 		{"synthetic-mutation-v2-001", "subject/identity_test.go"},
@@ -25,6 +26,7 @@ func TestBrokenLearnerCodeRemainsExportableAcrossProfiles(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
+			s.verify = verify
 			workspace, err := s.Start(fixture.id)
 			if err != nil {
 				t.Fatal(err)
@@ -86,10 +88,12 @@ func TestBrokenLearnerCodeRemainsExportableAcrossProfiles(t *testing.T) {
 
 func TestChangedLearnerAPIIsAFailedAttemptAndCanBeExported(t *testing.T) {
 	repository := learnerFixtureRepository(t)
+	verify := integrationVerifier(t, repository)
 	s, err := New(Config{Root: repository, Home: t.TempDir()})
 	if err != nil {
 		t.Fatal(err)
 	}
+	s.verify = verify
 	workspace, err := s.Start("synthetic-fixed-v2-001")
 	if err != nil {
 		t.Fatal(err)
@@ -118,11 +122,13 @@ func TestChangedLearnerAPIIsAFailedAttemptAndCanBeExported(t *testing.T) {
 
 func TestLearnerSessionsCountRetriesAndPauseOnSwitch(t *testing.T) {
 	repository := learnerFixtureRepository(t)
+	verify := integrationVerifier(t, repository)
 	clock := time.Date(2026, 9, 4, 10, 0, 0, 0, time.UTC)
 	s, err := New(Config{Root: repository, Home: t.TempDir(), Now: func() time.Time { return clock }})
 	if err != nil {
 		t.Fatal(err)
 	}
+	s.verify = verify
 	workspace, err := s.Start("synthetic-fixed-v2-001")
 	if err != nil {
 		t.Fatal(err)
@@ -186,6 +192,7 @@ func TestBothReadyTrialTasksCompleteWithoutChangingCanonicalContent(t *testing.T
 	if err != nil {
 		t.Fatal(err)
 	}
+	verify := integrationVerifier(t, repository)
 	for _, id := range []string{"map-take-001", "detached-append-001"} {
 		t.Run(id, func(t *testing.T) {
 			canonical := filepath.Join(repository, "tasks", "ready", id)
@@ -197,6 +204,7 @@ func TestBothReadyTrialTasksCompleteWithoutChangingCanonicalContent(t *testing.T
 			if err != nil {
 				t.Fatal(err)
 			}
+			s.verify = verify
 			workspace, err := s.Start(id)
 			if err != nil {
 				t.Fatal(err)

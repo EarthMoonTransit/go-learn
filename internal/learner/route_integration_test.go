@@ -16,10 +16,12 @@ func TestRealOpeningLessonRunsThroughLearnerWorkspace(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	verify := integrationVerifier(t, root)
 	service, err := New(Config{Root: root, Home: t.TempDir()})
 	if err != nil {
 		t.Fatal(err)
 	}
+	service.verify = verify
 	first, err := service.Next()
 	if err != nil || first.Task.ID != "literal-bindings-001" {
 		t.Fatalf("first=%+v err=%v", first, err)

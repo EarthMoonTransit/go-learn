@@ -19,6 +19,7 @@ func TestReviewedDefectsHavePublicFeedback(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	verify := integrationVerifier(t, root)
 	for _, fixture := range []struct {
 		id, mutant  string
 		diagnostics []string
@@ -61,6 +62,7 @@ func TestReviewedDefectsHavePublicFeedback(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
+			service.verify = verify
 			workspace, err := service.Start(fixture.id)
 			if err != nil {
 				t.Fatal(err)
@@ -148,6 +150,7 @@ func TestReviewedToleranceFixturesPassLearnerVerification(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	verify := integrationVerifier(t, root)
 	for _, id := range []string{"independent-scaled-copy-001", "value-average-001", "category-total-001"} {
 		t.Run(id, func(t *testing.T) {
 			canonical := filepath.Join(root, "tasks", "ready", id)
@@ -159,6 +162,7 @@ func TestReviewedToleranceFixturesPassLearnerVerification(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
+			service.verify = verify
 			workspace, err := service.Start(id)
 			if err != nil {
 				t.Fatal(err)

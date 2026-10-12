@@ -68,6 +68,7 @@ func ListReadyLearnerTasks(root string) ([]LearnerTaskInfo, error) {
 	if err != nil {
 		return nil, err
 	}
+	loader := newLearnerPackageLoader(root)
 	result := make([]LearnerTaskInfo, 0, len(tasks))
 	for _, located := range tasks {
 		version, err := documentSchemaVersion(filepath.Join(located.Path, "task.yaml"))
@@ -77,7 +78,7 @@ func ListReadyLearnerTasks(root string) ([]LearnerTaskInfo, error) {
 		if version != 2 {
 			continue
 		}
-		loaded, err := loadLearnerPackage(root, located.ID)
+		loaded, err := loader.load(located.ID)
 		if err != nil {
 			return nil, err
 		}
@@ -215,7 +216,27 @@ func LearnerSubmissionFiles(root, id, workspace string) ([]LearnerWorkspaceFile,
 // VerifyLearnerWorkspace always assembles and executes a separate temporary Go
 // module. Public mode returns sanitized public diagnostics. Full mode uses the
 // hidden grader internally and returns only a coarse summary.
-func VerifyLearnerWorkspace(root, id, workspace string, scope LearnerVerificationScope) (LearnerVerificationResult, error) {
+func VerifyLearnerWorkspace(root, id, workspace string, scope LearnerVerificationScope) (result LearnerVerificationResult, err error) {
+	runner, err := newRealExecutionRunner()
+	if err != nil {
+		return LearnerVerificationResult{}, err
+	}
+	defer func() { err = closeWithPrimary(err, runner.Close) }()
+	return verifyLearnerWorkspace(root, id, workspace, scope, runner)
+}
+
+// VerifyLearnerWorkspace reuses only this explicit session's disposable compiler
+// caches. It reloads task metadata and learner files on every call; each test
+// invocation still gets a fresh workspace and runs with -count=1. Like Check,
+// callers must serialize calls and close the session when the batch ends.
+func (s *CheckSession) VerifyLearnerWorkspace(id, workspace string, scope LearnerVerificationScope) (LearnerVerificationResult, error) {
+	if s == nil || s.closed {
+		return LearnerVerificationResult{}, errors.New("task-check session is closed")
+	}
+	return verifyLearnerWorkspace(s.root, id, workspace, scope, s.runner)
+}
+
+func verifyLearnerWorkspace(root, id, workspace string, scope LearnerVerificationScope, runner executionRunner) (LearnerVerificationResult, error) {
 	if scope != LearnerPublicChecks && scope != LearnerFullChecks {
 		return LearnerVerificationResult{}, fmt.Errorf("invalid learner verification scope %q", scope)
 	}
@@ -237,12 +258,6 @@ func VerifyLearnerWorkspace(root, id, workspace string, scope LearnerVerificatio
 		}
 		return result, nil
 	}
-	runner, err := newRealExecutionRunner()
-	if err != nil {
-		return LearnerVerificationResult{}, err
-	}
-	defer runner.Close()
-
 	plan := loaded.data.TaskV2.Verification
 	base := variantRequest{TaskID: id, GoVersion: learnerGoVersion(loaded), TimeoutSeconds: plan.Limits.CommandTimeoutSeconds, Race: plan.RaceRequired}
 	switch loaded.data.TaskV2.Submission.Kind {
@@ -285,6 +300,11 @@ type learnerSubmission struct {
 }
 
 func loadLearnerPackage(root, id string) (learnerPackage, error) {
+	return newLearnerPackageLoader(root).load(id)
+}
+
+func (l *learnerPackageLoader) load(id string) (learnerPackage, error) {
+	root := l.root
 	located, err := FindTask(root, id)
 	if err != nil {
 		return learnerPackage{}, err
@@ -301,9 +321,10 @@ func loadLearnerPackage(root, id string) (learnerPackage, error) {
 	}
 	contractProblems, layout := checkPackageContractV2(root, data)
 	problems := append([]string{}, contractProblems...)
-	problems = append(problems, checkMetadata(root, data)...)
+	contracts, contractsErr := l.contracts()
+	problems = append(problems, checkMetadataWithContracts(data, contracts, contractsErr)...)
 	problems = append(problems, checkPrompt(data.Prompt)...)
-	problems = append(problems, checkProvenance(root, data)...)
+	problems = append(problems, l.checkProvenance(data)...)
 	problems = append(problems, checkReview(data.Review)...)
 	problems = append(problems, checkPublicAPIV2(data, layout)...)
 	problems = append(problems, checkTestSourcesV2(data, layout)...)
@@ -604,7 +625,7 @@ func validateLearnerSubmission(loaded learnerPackage, submission learnerSubmissi
 	return nil
 }
 
-func verifyLearnerVariant(runner *realExecutionRunner, request variantRequest, loaded learnerPackage, scope LearnerVerificationScope) (LearnerVerificationResult, error) {
+func verifyLearnerVariant(runner executionRunner, request variantRequest, loaded learnerPackage, scope LearnerVerificationScope) (LearnerVerificationResult, error) {
 	if scope == LearnerPublicChecks {
 		return learnerPublicResult(runner.RunVariant(request), loaded.info.SubmissionKind), nil
 	}
@@ -620,7 +641,7 @@ func verifyLearnerVariant(runner *realExecutionRunner, request variantRequest, l
 	return learnerFullPass(loaded.info.SubmissionKind), nil
 }
 
-func verifyLearnerWorkspaceFull(runner *realExecutionRunner, request workspaceRequest, loaded learnerPackage) LearnerVerificationResult {
+func verifyLearnerWorkspaceFull(runner executionRunner, request workspaceRequest, loaded learnerPackage) LearnerVerificationResult {
 	first, deterministic := repeatLearnerVariant(loaded.data.TaskV2.Verification.Limits.DeterminismRuns, func() variantResult {
 		return runner.RunWorkspace(request)
 	})
@@ -633,7 +654,7 @@ func verifyLearnerWorkspaceFull(runner *realExecutionRunner, request workspaceRe
 	return learnerFullPass(loaded.info.SubmissionKind)
 }
 
-func verifyLearnerMutation(runner *realExecutionRunner, referenceRequest variantRequest, loaded learnerPackage, tests []string) LearnerVerificationResult {
+func verifyLearnerMutation(runner executionRunner, referenceRequest variantRequest, loaded learnerPackage, tests []string) LearnerVerificationResult {
 	first, deterministic := repeatLearnerVariant(loaded.data.TaskV2.Verification.Limits.DeterminismRuns, func() variantResult {
 		return runner.RunVariant(referenceRequest)
 	})
@@ -664,7 +685,7 @@ func verifyLearnerMutation(runner *realExecutionRunner, referenceRequest variant
 	return learnerFullPass(loaded.info.SubmissionKind)
 }
 
-func learnerVariantAuxiliary(runner *realExecutionRunner, request variantRequest, loaded learnerPackage) *LearnerVerificationResult {
+func learnerVariantAuxiliary(runner executionRunner, request variantRequest, loaded learnerPackage) *LearnerVerificationResult {
 	plan := loaded.data.TaskV2.Verification
 	if plan.Vet {
 		vet := request
@@ -685,7 +706,7 @@ func learnerVariantAuxiliary(runner *realExecutionRunner, request variantRequest
 	return nil
 }
 
-func learnerWorkspaceAuxiliary(runner *realExecutionRunner, request workspaceRequest, loaded learnerPackage) *LearnerVerificationResult {
+func learnerWorkspaceAuxiliary(runner executionRunner, request workspaceRequest, loaded learnerPackage) *LearnerVerificationResult {
 	plan := loaded.data.TaskV2.Verification
 	if plan.Vet {
 		vet := request
