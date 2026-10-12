@@ -29,3 +29,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0022` — incomplete-bank preparation versus release acceptance (`accepted`)
 - `0023` — bounded-view nil public feedback and exact revision compatibility (`accepted`)
 - `0024` — generic LRU draft assessment and draft-only API revision (`accepted for authoring`)
+- `0025` — inactive pedagogical order preview with stable addresses (`accepted for T0a implementation`)

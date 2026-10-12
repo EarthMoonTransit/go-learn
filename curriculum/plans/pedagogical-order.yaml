@@ -1,0 +1,60 @@
+schema_version: 1
+status: inactive
+baseline_commit: b9790106edc3d4c7f57e26d5f45dc1960f022c6c
+mapping_file: curriculum/plans/pedagogical-order.csv
+# Review IDs below are planning actions, never task IDs or evidence.
+exposure_edges:
+  - {before_task_id: bounded-value-001, task_id: slice-window-001}
+  - {before_task_id: total-counts-tests-001, task_id: prepend-values-tests-001}
+  - {before_task_id: prepend-values-tests-001, task_id: detached-append-001}
+  - {before_task_id: append-value-001, task_id: variadic-aliasing-001}
+  - {before_task_id: predicate-filter-001, task_id: value-average-001}
+  - {before_task_id: initial-structs-001, task_id: map-entry-tests-001}
+  - {before_task_id: allocated-counter-001, task_id: array-copy-address-tests-001}
+  - {before_task_id: shared-counter-update-001, task_id: pointer-chain-001}
+  - {before_task_id: value-average-001, task_id: shape-contract-tests-001}
+  - {before_task_id: shape-contract-tests-001, task_id: diagnostic-helper-001}
+  - {before_task_id: prepend-values-tests-001, task_id: diagnostic-helper-001}
+  - {before_task_id: predicate-filter-001, task_id: named-cases-001}
+  - {before_task_id: writer-double-001, task_id: filesystem-record-tests-001}
+  - {before_task_id: cleanup-order-001, task_id: filesystem-record-tests-001}
+  - {before_task_id: named-numeric-constraint-001, task_id: bounded-lru-cache-001}
+  - {before_task_id: typed-nil-result-001, task_id: record-result-001}
+  - {before_task_id: exact-dynamic-number-001, task_id: typed-value-observations-001}
+pending_preparation:
+  - task_id: clamp-tests-001
+    review_id: E01/M1
+    reason: Release the early Test API scaffold revision and coordinated testing.basics-diagnostics secondary; preserve historical evidence.
+  - task_id: prepend-values-tests-001
+    review_id: E02
+    reason: Release both supplied variadic call examples before later variadic/append practice.
+  - task_id: detached-append-001
+    review_id: M1
+    reason: Review and add the actual functions.variadic prerequisite in a separate metadata batch.
+  - task_id: pointer-chain-001
+    review_id: M1
+    reason: Review pointers.mutation-sharing prerequisite and future due-review eligibility; production scheduler is unchanged.
+  - task_id: diagnostic-helper-001
+    review_id: M1
+    reason: Review actual interfaces.small-contracts and functions.variadic API prerequisites.
+  - task_id: named-cases-001
+    review_id: M1
+    reason: Review actual functions.function-values, structs.literals-zero and slices.header-model API prerequisites.
+  - task_id: shape-contract-tests-001
+    review_id: P05
+    reason: Promote formatter-contract-001 with full content/source review before Shape; the draft is not a mapped lesson.
+  - task_id: capture-panic-001
+    review_id: P06
+    reason: Release defer registration/evaluation/LIFO preparation before Capture.
+  - task_id: capture-panic-001
+    review_id: P07
+    reason: Release named-result/defer preparation after P06 and before Capture.
+  - task_id: worker-completion-tests-001
+    review_id: P11
+    reason: Release launch-with-handle preparation before P12 and Worker tests.
+  - task_id: worker-completion-tests-001
+    review_id: P12
+    reason: Release channel send/receive/blocking preparation after P11 and before Worker tests.
+  - task_id: worker-completion-tests-001
+    review_id: P13
+    reason: Revise this existing task's scaffold with a failure-safe controlled gate after P11/P12; no new task ID.

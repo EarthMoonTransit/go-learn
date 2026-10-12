@@ -1,0 +1,2 @@
+# Preserve the supplied review CSV bytes, including its BOM and CRLF endings.
+curriculum/plans/pedagogical-order.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
