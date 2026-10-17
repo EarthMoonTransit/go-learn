@@ -407,6 +407,38 @@
           "skills": [
             "control-flow.if"
           ]
+        },
+        {
+          "number": 31,
+          "task_id": "conditional-binding-001",
+          "role": "practice",
+          "skills": [
+            "types.declarations-inference"
+          ]
+        },
+        {
+          "number": 32,
+          "task_id": "lazy-probe-001",
+          "role": "practice",
+          "skills": [
+            "expressions.boolean-logic"
+          ]
+        },
+        {
+          "number": 33,
+          "task_id": "gcd-reduction-001",
+          "role": "practice",
+          "skills": [
+            "control-flow.for"
+          ]
+        },
+        {
+          "number": 34,
+          "task_id": "quadrant-switch-001",
+          "role": "practice",
+          "skills": [
+            "control-flow.switch"
+          ]
         }
       ],
       "number": 3
@@ -722,7 +754,8 @@
           "task_id": "value-average-001",
           "role": "introduction",
           "skills": [
-            "methods.method-sets"
+            "methods.method-sets",
+            "methods.values-expressions"
           ]
         },
         {
@@ -997,6 +1030,48 @@
           "skills": [
             "interfaces.type-switches"
           ]
+        },
+        {
+          "number": 48,
+          "task_id": "formatter-contract-001",
+          "role": "introduction",
+          "skills": [
+            "interfaces.implicit-satisfaction",
+            "interfaces.small-contracts"
+          ]
+        },
+        {
+          "number": 49,
+          "task_id": "defer-trace-001",
+          "role": "practice",
+          "skills": [
+            "functions.defer"
+          ]
+        },
+        {
+          "number": 50,
+          "task_id": "named-result-adjustment-001",
+          "role": "practice",
+          "skills": [
+            "functions.signatures-results",
+            "functions.defer"
+          ]
+        },
+        {
+          "number": 51,
+          "task_id": "captured-method-values-001",
+          "role": "practice",
+          "skills": [
+            "methods.values-expressions"
+          ]
+        },
+        {
+          "number": 52,
+          "task_id": "composite-key-table-001",
+          "role": "introduction",
+          "skills": [
+            "maps.key-comparability"
+          ]
         }
       ],
       "number": 6
@@ -1166,6 +1241,16 @@
           "skills": [
             "generics.reusable-data-structures"
           ]
+        },
+        {
+          "number": 21,
+          "task_id": "resource-finalize-001",
+          "role": "transfer",
+          "skills": [
+            "io.files-cleanup",
+            "functions.defer",
+            "errors.propagation-context"
+          ]
         }
       ],
       "number": 7
@@ -1289,6 +1374,49 @@
           "role": "introduction",
           "skills": [
             "context.propagation-api"
+          ]
+        },
+        {
+          "number": 10,
+          "task_id": "launch-provided-job-001",
+          "role": "introduction",
+          "skills": [
+            "goroutines.launch-lifecycle"
+          ]
+        },
+        {
+          "number": 11,
+          "task_id": "replace-pending-value-001",
+          "role": "introduction",
+          "skills": [
+            "channels.operations-blocking"
+          ]
+        },
+        {
+          "number": 12,
+          "task_id": "merge-two-streams-001",
+          "role": "practice",
+          "skills": [
+            "channels.select",
+            "channels.nil-disabling"
+          ]
+        },
+        {
+          "number": 13,
+          "task_id": "cancelable-forward-001",
+          "role": "practice",
+          "skills": [
+            "context.cancellation",
+            "goroutines.leak-prevention"
+          ]
+        },
+        {
+          "number": 14,
+          "task_id": "timeout-operation-001",
+          "role": "introduction",
+          "skills": [
+            "context.timeouts",
+            "context.deadlines"
           ]
         }
       ],

@@ -114,7 +114,7 @@ func TestRepositoryRouteMatchesReadyTaskMetadata(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	route, err := loadRoute(root)
+	route, err := loadSchedulingRoute(root)
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -1,7 +1,9 @@
 # Go Learn: two milestones to complete Go fundamentals
 
 Status: historical milestone ledger with current delivery policy, 2026-09-11.
-The authoritative active implementation plan is [foundation-next](plans/foundation-next.md). GoLand is the editor; the local UI and short `learn` commands
+The foundation implementation plan is [foundation-next](plans/foundation-next.md);
+the current lesson-order update is [pedagogical-order-rollout](plans/pedagogical-order-rollout.md).
+GoLand is the editor; the local UI and short `learn` commands
 share the learning cycle. Statements, hints and reviews remain English.
 
 ## Active finish line
@@ -20,7 +22,15 @@ existing PRs and reviewed executable practice.
 
 Route update, 2026-10-10: [LRU placement](plans/lru-route-placement.md) adds the
 reviewed `bounded-lru-cache-001` at **07.20** as a generics transfer lesson.
-The current route has **151** lessons; all 150 milestone addresses are retained.
+That checkpoint had **151** lessons; all 150 milestone addresses were retained.
+Pedagogical order update, 2026-10-17: the configured route has **166 ready lessons**.
+Fifteen reviewed preparations receive append-only addresses; every original
+151-row address tuple remains unchanged. The explicit execution sequence is
+`curriculum/plans/pedagogical-order-v2.csv`; chapters and positions do not rename
+workspaces. See [ADR 0030](adr/0030-active-pedagogical-order.md) and the
+[implementation audit](../reports/pedagogical-order-activation-audit.md).
+This preparation rollout does not claim complete foundation coverage or public
+export. P17–P25 Later, M2 and T-FUZZ/T-BENCH/T-MODULE remain subsequent work.
 The milestone ledger below remains historical.
 
 | Milestone | Product result | Definition of Done |
@@ -58,11 +68,12 @@ A successful batch authorizes continuation to the next within the accepted plan.
 
 ## Course organization
 
-Keep the current foundation order, sections 01–09: first steps; values and
+Keep the existing address sections 01–09: first steps; values and
 collections; control and verification; strings/bytes; Unicode; structs, pointers,
 methods, embedding, interfaces and errors; packages, generics, I/O, encoding and
-time; deeper testing; concurrency and context. Backend/production placeholders
-have been removed from the active route.
+time; deeper testing; concurrency and context. Lesson selection follows the
+explicit pedagogical sequence, with chapter and position displayed beside the
+stable address. Backend/production placeholders have been removed from the route.
 
 Store section and lesson numbers explicitly in a versioned route. Display
 `01.01` alongside the English title in UI/CLI. Stable task IDs remain progress,

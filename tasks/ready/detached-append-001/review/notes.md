@@ -12,3 +12,5 @@ only when no values are appended. Independent reviewers found the reference
 idiomatic without making allocation strategy observable. A Phase 3C static
 clean-room comparison was performed only after authoring and found no copied
 upstream text, cases, code, tests, or solutions.
+
+T0b metadata-only independent review (2026-10-17, /root/clamp_e01_content_review): the actual variadic API requires functions.variadic; Prepend introduces it earlier in active execution order while both stable addresses remain unchanged. Authored content, provenance source records and workspace content digest stay unchanged. Ordered batch acceptance and exact-head CI remain required.

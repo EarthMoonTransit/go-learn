@@ -8,7 +8,8 @@ submission:
     workspace_skeleton: []
 skills:
     primary: methods.method-sets
-    secondary: []
+    secondary:
+        - methods.values-expressions
 prerequisites:
     - functions.function-values
     - methods.receiver-semantics

@@ -251,7 +251,7 @@ func RunCLI(config Config, arguments []string, stdout, stderr io.Writer) int {
 	case "roadmap":
 		roadmapFlags := flag.NewFlagSet("learn roadmap", flag.ContinueOnError)
 		roadmapFlags.SetOutput(stderr)
-		pedagogical := roadmapFlags.Bool("pedagogical", false, "preview and validate the inactive pedagogical plan")
+		pedagogical := roadmapFlags.Bool("pedagogical", false, "inspect and validate the configured pedagogical plan")
 		if err := roadmapFlags.Parse(commandArguments); err != nil {
 			return 2
 		}
@@ -283,9 +283,6 @@ func RunCLI(config Config, arguments []string, stdout, stderr io.Writer) int {
 			return cliError(stderr, err)
 		}
 		writeNext(stdout, choice)
-		if choice.ReviewSkill != "" {
-			fmt.Fprintf(stdout, "Delayed review: %s\n", choice.ReviewSkill)
-		}
 	case "progress":
 		if err := noArguments(command, commandArguments); err != nil {
 			return cliError(stderr, err)
@@ -377,7 +374,10 @@ func writeSolution(output io.Writer, files []tasking.LearnerWorkspaceFile) {
 }
 
 func writeNext(output io.Writer, choice SchedulerChoice) {
-	if choice.RouteBlock != "" {
+	if message := choiceMessage(choice); message != "" {
+		fmt.Fprintln(output, message)
+	}
+	if choice.PedagogicalPosition == 0 && choice.RouteBlock != "" {
 		fmt.Fprintf(output, "Route: %s (%s)\n", choice.RouteBlock, choice.RouteRole)
 	}
 	if choice.LessonNumber != "" {
@@ -387,7 +387,7 @@ func writeNext(output io.Writer, choice SchedulerChoice) {
 	}
 	fmt.Fprintf(output, "Activity: %s; difficulty: %s; primary skill: %s\n", choice.Task.Activity, choice.Task.Difficulty, choice.Task.PrimarySkill)
 	if len(choice.MissingPrerequisites) == 0 {
-		fmt.Fprintln(output, "Prerequisites: satisfied by recorded completions.")
+		fmt.Fprintln(output, "Prerequisites: introduced by completed lessons or the preparation guide.")
 	} else {
 		fmt.Fprintf(output, "Prerequisites not yet encountered: %s\n", strings.Join(choice.MissingPrerequisites, ", "))
 	}

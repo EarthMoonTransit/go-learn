@@ -423,7 +423,7 @@ func (s *Service) Next() (SchedulerChoice, error) {
 }
 
 func (s *Service) nextFor(tasks []tasking.LearnerTaskInfo, progress Progress) (SchedulerChoice, error) {
-	route, err := loadRoute(s.root)
+	route, err := loadSchedulingRoute(s.root)
 	if err != nil {
 		return SchedulerChoice{}, err
 	}

@@ -31,10 +31,10 @@ policy and T-FUZZ/T-BENCH/T-MODULE stay subsequent work, as specified in that pl
 
 - [x] M1: PointerChain mutation-sharing prerequisite; DiagnosticHelper interface
   and variadic prerequisites; NamedCases function-value/struct/slice prerequisites.
-- [ ] M1/T0b: DetachedAppend variadic prerequisite. Its 02.07 stable address
+- [x] M1/T0b: DetachedAppend variadic prerequisite. Its 02.07 stable address
   precedes Prepend 03.10; apply with execution-order separation, preserving the
-  current route until activation. Review the conditional ValueAverage secondary
-  explicitly; it is not an automatic tag addition.
+  current addresses through activation. The conditional ValueAverage secondary
+  is independently approved for bounded explicit-receiver callables.
 - [x] S1: bounded source decisions for E02 and P01–P04. Reuse E01's admitted
   lineage; record exact artifacts or specific original reasons before authoring.
   Independent source review approved the decisions recorded in
@@ -69,17 +69,19 @@ policy and T-FUZZ/T-BENCH/T-MODULE stay subsequent work, as specified in that pl
   verify omitted-assertion false accepts fail their outer regression in disposable
   copies (held launch, remaining merge stream, retained receiver/live forwarding,
   nil-success result/release and distinct-child ownership).
-- [ ] Add append-only addresses for actually ready new/promoted packages and
+- [x] Add append-only addresses for actually ready new/promoted packages and
   explicitly extend the pedagogical mapping. Preserve every original tuple.
-- [ ] T0b ADR, existing scheduler activation, readiness filter and concrete
+- [x] T0b ADR, existing scheduler activation, readiness filter and concrete
   review explanations. Current unfinished task retains priority; due eligible
   review precedes ordinary next; interval 3 and two distinct independent
   practice/transfer mastery evidence remain unchanged.
-- [ ] T0b regression audit: old Clamp familiarity without retagging, legacy
+- [x] T0b regression audit: old Clamp familiarity without retagging, legacy
   progress, numbered/legacy workspaces, paused/current tasks, postponed and
   exhausted reviews, assistance, reset and fully completed old route.
-- [ ] Final audit against all items, merged exact-head CI evidence and the
-  actual active route; retain incomplete Later scope explicitly.
+- [x] Implementation audit against all 18 near-term proposals and seven metadata
+  decisions: `reports/pedagogical-order-activation-audit.md`. Exact-head CI and
+  dependency merges remain mandatory publication gates, recorded on the PRs;
+  Later scope remains explicit.
 
 Keep tooling, source decisions, metadata and bounded content batches reviewable.
 No content batch exceeds ten new or substantially changed tasks. Use disposable
@@ -87,18 +89,19 @@ execution only, one full collection per unchanged batch inputs, and reuse it in
 validator/report checks. New preparation tasks are not additional evidence for
 already completed tasks; no learner home is used in acceptance.
 
-C1 releases four reviewed original packages and the exact E02 revision. Their
-append-only addresses and explicit insertion into the pedagogical mapping remain
-the separate unchecked placement step above; the original 151-row mapping and
-all stable address tuples are unchanged in this content batch.
+C1 released four reviewed original packages and the exact E02 revision. That
+content batch preserved the original 151-row mapping and stable address tuples.
+T0b supplies their append-only addresses and explicit pedagogical placement in
+the completed steps above.
 
-C3 releases five original ready packages (launch-provided-job-001,
+C3 supplies five original ready packages (launch-provided-job-001,
 replace-pending-value-001, merge-two-streams-001, cancelable-forward-001 and
 timeout-operation-001) and revises the existing Worker scaffold. The supplied
 synctest/gate helpers are guided support, not independent harness mastery. All
 five new references pass public/full checks and all 41 compiling defects have
-useful public test diagnostics. Append-only placement and activation remain separate unchecked steps above.
-The following tooling batch protects C3 feedback/tolerance regressions.
+useful public test diagnostics. T0b supplies their append-only placement and
+activation in the completed steps above. The separate feedback tooling batch
+protects C3 feedback/tolerance regressions.
 
 C3 feedback tooling protects all 41 public defect rows and four accepted
 alternatives (MergeTwo function value/declaration helpers, buffered Forward and

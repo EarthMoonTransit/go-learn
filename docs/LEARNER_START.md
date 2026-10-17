@@ -23,6 +23,8 @@ Run learn next, then the printed learn start command. In the local UI, click
 and selects the lesson's editable Go file. **Copy project path** lets you open
 that same folder manually. For the first exercise the editable file is
 subject/bindings.go; subject/api.go is supplied plumbing and stays unchanged.
+Next shows the pedagogical chapter and position beside the stable lesson address.
+Workspace folders keep their existing section and lesson numbers.
 
 Keep this project open. Each lesson you Start appears in its folder tree, ordered
 by the existing section and lesson numbers. Open another lesson's file there or
