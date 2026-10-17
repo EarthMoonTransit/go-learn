@@ -1,0 +1,166 @@
+{
+  "format": "go-learn-pedagogical-source-review/v1",
+  "reviewed_at": "2026-10-17",
+  "repository_baseline": "18a6b7cedb19b06fd0dcf59ec1a2944f113188d3",
+  "planning_baseline": "b9790106edc3d4c7f57e26d5f45dc1960f022c6c",
+  "status": "approved-for-authoring-and-candidate-content-review",
+  "coverage_eligible": false,
+  "new_ready_tasks": 0,
+  "boundary": "Bounded source selection and promotion/authoring reasons only. No task content, registry modes, learner state, source execution or release scope changes.",
+  "verified_sources": [
+    {
+      "registry_id": "exercism-go",
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df"
+        },
+        {
+          "path": "exercises/concept/airport-robot/.meta/config.json",
+          "sha256": "7268a45f4d7920ed81c8d34f74f4233c24801778915b13fa31cc406d0fef4b58"
+        }
+      ]
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "fd62bda91923cb60d78846f3038f14cc312ff62b93915d88a4434b92c366fe54"
+        },
+        {
+          "path": "topics/go/language/methods/exercises/template1/template1.go",
+          "sha256": "f684170672b8c049d9311e65c7851afd35f83bff489570bc88e8174c0aa28235"
+        },
+        {
+          "path": "topics/go/language/maps/exercises/template1/template1.go",
+          "sha256": "d7148933b51eec6ac405f6481940b241488d0057adecb3aa65f0857feda8c3e3"
+        }
+      ]
+    },
+    {
+      "registry_id": "golang-go",
+      "commit": "2c31595783c74564c1299a5401dc6e606f379cc7",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "PATENTS",
+          "sha256": "96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+        },
+        {
+          "path": "doc/go_spec.html",
+          "sha256": "338875c4ee9c47d1ea9518b5373ff5e9bd133ba78692cbf16dac0756e896e288"
+        }
+      ]
+    }
+  ],
+  "ardan_search": {
+    "scope": "topics/go/language/*/exercises/template*/*.go",
+    "template_count": 14,
+    "search_pattern": "\\bdefer\\b|comparable|method.value|method.expression|capture",
+    "keyword_matches": 0,
+    "bodies_read": [
+      "topics/go/language/methods/exercises/template1/template1.go",
+      "topics/go/language/maps/exercises/template1/template1.go"
+    ],
+    "answer_bodies_read": false,
+    "ancestor_notice_files": [
+      "LICENSE"
+    ],
+    "claim": "No matching defer, saved receiver or composite map-key contract in this bounded set; not an exhaustive external search."
+  },
+  "semantic_reference": {
+    "registry_id": "golang-go",
+    "commit": "2c31595783c74564c1299a5401dc6e606f379cc7",
+    "path": "doc/go_spec.html",
+    "sha256": "338875c4ee9c47d1ea9518b5373ff5e9bd133ba78692cbf16dac0756e896e288",
+    "anchors": [
+      "Defer_statements",
+      "Return_statements",
+      "Method_values",
+      "Method_expressions",
+      "Map_types",
+      "Comparison_operators"
+    ],
+    "usage": "Semantic fact checking only. No specification code/example/text is admitted as task content."
+  },
+  "planning_inputs": [
+    {
+      "path": "go-learn-review/review.md",
+      "sha256": "feeb94b28e1afbfe3097c45a9537d41f03600fa4697d4ce5750c18c0cb7b2fa5"
+    },
+    {
+      "path": "go-learn-review/proposals.json",
+      "sha256": "d21148efff3138f0ee07b85db89831c744649473c16ed002a8261342b00c6561"
+    },
+    {
+      "path": "go-learn-review/metadata-review.json",
+      "sha256": "33a2c167b752252989d0247994aa517dcb0779db54023ac651312f1f3bf2cc25"
+    }
+  ],
+  "decisions": [
+    {
+      "review_id": "P05",
+      "task_id": "formatter-contract-001",
+      "decision": "reuse-existing-concept-seed-candidate",
+      "reason": "Existing independently authored Formatter/Pair/Render draft isolates implicit satisfaction and caller-defined implementations before Shape. Its only external artifact is pinned airport-robot concept metadata; no task body/code/case/solution lineage is claimed. Preserve that exact concept-only chain and creation record; promotion requires full content review and task-promote.",
+      "candidate_provenance_path": "tasks/drafts/formatter-contract-001/provenance.yaml",
+      "external_registry_id": "exercism-go",
+      "external_commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "external_path": "exercises/concept/airport-robot/.meta/config.json",
+      "external_sha256": "7268a45f4d7920ed81c8d34f74f4233c24801778915b13fa31cc406d0fef4b58",
+      "candidate_content_digest": "2272a1d713d0cb5cf0468bd87a0829fd8b706f2913ea773a4227eaac1af7b4bb"
+    },
+    {
+      "review_id": "P06",
+      "decision": "original-authoring-reason",
+      "reason": "CapturePanic already combines panic/recover and defer; Resource focuses ownership/error preservation. The 14 permitted language templates have no defer-registration/argument-capture/LIFO exercise. Author a separate supplied-recording-API repair with original contract, examples, tests and defect models; GoSpec supplies facts only."
+    },
+    {
+      "review_id": "P07",
+      "decision": "original-authoring-reason",
+      "reason": "No current admitted preparation task isolates a deferred mutation of a named result after an explicit return expression. The Resource draft combines error ownership rather than the proposed scalar result, caller-value and pending-panic boundaries. Author independently after P06; use GoSpec return/defer facts only."
+    },
+    {
+      "review_id": "P08",
+      "decision": "original-authoring-reason",
+      "reason": "The exact Ardan methods template already pinned by ValueAverage only asks for one average method and iterating values. It does not save value/pointer method values across receiver mutation. Current ValueAverage asks for method expressions with explicit current arguments, a different contract. Do not claim that template as a new saved-receiver adaptation; author the distinct method-value capture contract independently.",
+      "inspected_registry_id": "ardanlabs-gotraining",
+      "inspected_commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "inspected_path": "topics/go/language/methods/exercises/template1/template1.go",
+      "inspected_sha256": "f684170672b8c049d9311e65c7851afd35f83bff489570bc88e8174c0aa28235"
+    },
+    {
+      "review_id": "P09",
+      "decision": "original-authoring-reason",
+      "reason": "The inspected Ardan maps template only constructs and iterates a string-keyed map. Current introductory map tasks use scalar keys and the LRU comparable constraint does not isolate equality/copying of a struct key containing an array. Author a supplied composite-key lookup/insertion contract independently; no reference-only exercise collection is consulted."
+    },
+    {
+      "review_id": "P10",
+      "task_id": "resource-finalize-001",
+      "decision": "reuse-existing-original-candidate",
+      "reason": "Keep the independently authored Store(Resource, []byte) draft and its combined write/close error ownership policy instead of creating a second task. Existing creation/identity/digest and empty external sources remain; changed local artifacts, if content review requires them, must refresh the actual digest. Promotion requires full content/feedback review and task-promote.",
+      "candidate_provenance_path": "tasks/drafts/resource-finalize-001/provenance.yaml",
+      "candidate_content_digest": "b1de2cdc031792fbe30fbace8dfd941078736dc1d5f277274e395ce248c74787"
+    }
+  ],
+  "conditions": [
+    "Independent source approval before authoring/promotion; subsequent content approval is separate.",
+    "P06/P07/P08/P09 originals require ADR 0008 identity, creation record, actual content digest, empty external task sources and deferred real release binding.",
+    "P05 keeps existing concept-only lineage without reading or adapting upstream task files.",
+    "No Ardan answer, Exercism test/solution, generated canonical case or reference-only task body was read for this decision.",
+    "C2 is six changes: two existing candidate promotions and four new tasks; append-only addresses and explicit mapping follow actual readiness.",
+    "ValueAverage explicitly requires method expressions; conditional M1 secondary review remains a separate metadata decision, with no retrospective evidence or automatic tag addition."
+  ],
+  "independent_review": {
+    "reviewer": "/root/clamp_compatibility_review",
+    "reviewed_at": "2026-10-17",
+    "decision": "approve",
+    "scope": "Source facts and bounded authoring/promotion reasons only; no content, promotion or executable acceptance approval."
+  }
+}
