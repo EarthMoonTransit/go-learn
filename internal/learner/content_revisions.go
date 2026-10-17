@@ -1,6 +1,6 @@
 package learner
 
-// ADRs 0014, 0026 and 0027: exact, directional compatibility pairs preserve existing
+// ADRs 0014, 0026, 0027 and 0028: exact, directional compatibility pairs preserve existing
 // learner work. Unknown revisions still require explicit reconciliation.
 const (
 	boundedBeforeNilCheck       = "0e8e493addf0119352a834748e66ea26da49ef61b44db5a4e39f2bbf1212f963"
@@ -11,6 +11,8 @@ const (
 	clampWithTestingBridge      = "8f1012bd993cac539813d6658a24ef7d12d5b887b52a3165835172eedc3e08c8"
 	prependBeforeVariadicBridge = "334ffccf8a0b227463a7ef227e02709e0278961f074d32bef639cbcc4aa050f6"
 	prependWithVariadicBridge   = "bc2c7c7028ae1e42ea2bf5144995a5f9698e095b81f86fa1e6f8192e5bff98b8"
+	workerBeforeGatedScaffold   = "4c3339ca779815a6c174e242c5bf2e87c1e0e332eb8e5c0419e5bdbe70abeeb1"
+	workerWithGatedScaffold     = "9b1ad8c690bb9bdfffa46027949fa76d2ad7f77bb04897bb1f5a48e5eede8c69"
 )
 
 func compatibleContentRevision(taskID, stored, current string) bool {
@@ -22,6 +24,9 @@ func compatibleContentRevision(taskID, stored, current string) bool {
 	}
 	if taskID == "clamp-tests-001" {
 		return stored == clampBeforeTestingBridge && current == clampWithTestingBridge
+	}
+	if taskID == "worker-completion-tests-001" {
+		return stored == workerBeforeGatedScaffold && current == workerWithGatedScaffold
 	}
 	if taskID == "prepend-values-tests-001" {
 		return stored == prependBeforeVariadicBridge && current == prependWithVariadicBridge
