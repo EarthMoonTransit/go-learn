@@ -1,0 +1,21 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "pedagogical-c3-author",
+    "created_at": "2026-10-17",
+    "summary": "Original receive a pending value before sending its replacement contract, API, examples, tests and defect models after the approved bounded S3 source decision; no external task content used."
+  },
+  "kind": "original",
+  "project": {
+    "content_digest": "c6ba9d00d120d565011216948acb71ae664a17d25a51550f1a67d9699f878a53",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/replace-pending-value-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": []
+}

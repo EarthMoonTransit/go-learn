@@ -290,6 +290,24 @@ tasks:
         detected: 5
         survived: []
       legacy: false
+    - id: cancelable-forward-001
+      state: ready
+      input_digest: e831dd104e244bf72052591868f58fdefe3a9148bbf4b6c3eadcba18806cde18
+      task_type: implement
+      primary_skill: context.cancellation
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 9
+        total: 9
+        detected: 9
+        survived: []
+      legacy: false
     - id: capture-panic-001
       state: ready
       input_digest: bbd1be6ecb4e97f16a623c534c50aff3d93ea452265f7cce638fbe4a0af67883
@@ -1463,6 +1481,24 @@ tasks:
         detected: 5
         survived: []
       legacy: false
+    - id: launch-provided-job-001
+      state: ready
+      input_digest: 107296f354a9397e2d3aa506c86b14875c10b5ddba8d324bf58a9997eaf18bcd
+      task_type: implement
+      primary_skill: goroutines.launch-lifecycle
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
+        survived: []
+      legacy: false
     - id: lazy-probe-001
       state: ready
       input_digest: 7e75fdb449eacb3f2ac5adb25e1957932579049991ec166b420a211a73da00d7
@@ -1569,6 +1605,24 @@ tasks:
         required: 4
         total: 4
         detected: 4
+        survived: []
+      legacy: false
+    - id: merge-two-streams-001
+      state: ready
+      input_digest: df70d28458f8c6697d2116a58bcd003a569e5b00e02dd77945b28f1a844bb905
+      task_type: implement
+      primary_skill: channels.select
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 7
+        total: 7
+        detected: 7
         survived: []
       legacy: false
     - id: month-enumeration-001
@@ -2183,6 +2237,24 @@ tasks:
         detected: 6
         survived: []
       legacy: false
+    - id: replace-pending-value-001
+      state: ready
+      input_digest: 7ba06bc801abae8d39ceb8fad29ff704faea57a60c75275863d6f6411188958c
+      task_type: implement
+      primary_skill: channels.operations-blocking
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
+        survived: []
+      legacy: false
     - id: reserved-copy-001
       state: ready
       input_digest: da09287626a7e8e2385eeee5c795528ee571401a5f9e5150189fb98c5c6a3987
@@ -2653,6 +2725,24 @@ tasks:
         detected: 7
         survived: []
       legacy: false
+    - id: timeout-operation-001
+      state: ready
+      input_digest: 294e730c270551d4fdc1e04facbd148a16b8df889161379ed1cd65818e8e5d90
+      task_type: implement
+      primary_skill: context.timeouts
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 13
+        total: 13
+        detected: 13
+        survived: []
+      legacy: false
     - id: token-values-001
       state: ready
       input_digest: 025ac7a722e8c0590e3787bba190236e1969a47d593886540154dfc7d43803b3
@@ -2998,7 +3088,7 @@ tasks:
       legacy: false
     - id: worker-completion-tests-001
       state: ready
-      input_digest: 0f05f73f28a4d0f68cab9bb58bb815f3fc6e724bf08c02d297810a996b839632
+      input_digest: 37aec438c1a4d8e08a74d774f80487e07df35dcdca7a0d5043ae20953268fc02
       task_type: test-writing
       primary_skill: goroutines.launch-lifecycle
       technical_status: pass
@@ -3092,7 +3182,7 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 164
+      count: 169
     - state: rejected
       count: 1
     - state: retired
@@ -3101,7 +3191,7 @@ task_types:
     - task_type: debug
       count: 41
     - task_type: implement
-      count: 86
+      count: 91
     - task_type: refactor
       count: 3
     - task_type: test-writing

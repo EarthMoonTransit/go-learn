@@ -32,4 +32,55 @@ func TestWorker0(t *testing.T) {
 	})
 }
 
-// Add controlled blocked-work and independent-call cases inside synctest.Test.
+// gatedWork is supplied test scaffolding. Release is idempotent so every test
+// can defer it, even when an assertion stops the test early.
+type gatedWork struct {
+	gate     chan struct{}
+	released bool
+	calls    int
+}
+
+func newGatedWork() *gatedWork { return &gatedWork{gate: make(chan struct{})} }
+func (work *gatedWork) run()   { work.calls++; <-work.gate }
+func (work *gatedWork) release() {
+	if !work.released {
+		close(work.gate)
+		work.released = true
+	}
+}
+
+func TestWorkerBlockedPhase(t *testing.T) {
+	synctest.Test(t, func(t *testing.T) {
+		work := newGatedWork()
+		defer func() { work.release(); synctest.Wait() }()
+		returned := make(chan (<-chan struct{}), 1)
+		go func() { returned <- subject.Start(work.run) }()
+
+		// At this boundary runnable work has either returned or reached its gate.
+		synctest.Wait()
+		var done <-chan struct{}
+		select {
+		case done = <-returned:
+		default:
+			t.Error("blocked phase: Start has not returned, want return before release")
+			work.release()
+			synctest.Wait()
+			select {
+			case done = <-returned:
+			default:
+				t.Fatal("released phase: Start has not returned, want completion handle")
+			}
+		}
+		if work.calls != 1 {
+			t.Errorf("blocked phase callback calls = %d, want 1", work.calls)
+		}
+		work.release()
+		awaitClosed(t, done)
+		if work.calls != 1 {
+			t.Errorf("completed phase callback calls = %d, want 1", work.calls)
+		}
+	})
+}
+
+// Add your own premature-completion and overlapping independent-call cases.
+// Use synctest.Test/Wait boundaries and release every gate on all failure paths.

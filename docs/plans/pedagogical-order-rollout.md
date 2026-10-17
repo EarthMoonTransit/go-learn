@@ -54,17 +54,21 @@ policy and T-FUZZ/T-BENCH/T-MODULE stay subsequent work, as specified in that pl
 - [x] C2/P08: method capture exercise.
 - [x] C2/P09: comparable map-key exercise.
 - [x] C2/P10: promote existing `resource-finalize-001`.
-- [ ] Tooling: persist C2 public-feedback regressions and verify assertion-removal
-  probes in a disposable repository copy before declaring the rollout complete.
-- [ ] S3: bounded concurrency source decisions, original reasons and existing
-  Worker lineage review.
-- [ ] C3/P11: launch with supplied handle.
-- [ ] C3/P12: receive then send on an open full single-slot channel.
-- [ ] C3/P13: failure-safe controlled Worker scaffold, preserving the task ID
+- [x] Tooling: persist C2 public-feedback regressions and verify assertion-removal
+  probes in a disposable repository copy: PR #77.
+- [x] S3: bounded concurrency source decisions, original reasons and existing
+  Worker lineage review: PR #76.
+- [x] C3/P11: launch with supplied handle.
+- [x] C3/P12: receive then send on an open full single-slot channel.
+- [x] C3/P13: failure-safe controlled Worker scaffold, preserving the task ID
   and old workspaces.
-- [ ] C3/P14: finite channel merge.
-- [ ] C3/P15: cancelable forwarding.
-- [ ] C3/P16: timeout/context exercise.
+- [x] C3/P14: finite channel merge.
+- [x] C3/P15: cancelable forwarding.
+- [x] C3/P16: timeout/context exercise.
+- [ ] Tooling: persist C3 public-only feedback and tolerated-alternative regressions;
+  verify omitted-assertion false accepts fail their outer regression in disposable
+  copies (held launch, remaining merge stream, retained receiver/live forwarding,
+  nil-success result/release and distinct-child ownership).
 - [ ] Add append-only addresses for actually ready new/promoted packages and
   explicitly extend the pedagogical mapping. Preserve every original tuple.
 - [ ] T0b ADR, existing scheduler activation, readiness filter and concrete
@@ -87,3 +91,11 @@ C1 releases four reviewed original packages and the exact E02 revision. Their
 append-only addresses and explicit insertion into the pedagogical mapping remain
 the separate unchecked placement step above; the original 151-row mapping and
 all stable address tuples are unchanged in this content batch.
+
+C3 releases five original ready packages (launch-provided-job-001,
+replace-pending-value-001, merge-two-streams-001, cancelable-forward-001 and
+timeout-operation-001) and revises the existing Worker scaffold. The supplied
+synctest/gate helpers are guided support, not independent harness mastery. All
+five new references pass public/full checks and all 41 compiling defects have
+useful public test diagnostics. Append-only placement, activation and persisted
+C3 feedback/tolerance regressions remain separate unchecked steps above.

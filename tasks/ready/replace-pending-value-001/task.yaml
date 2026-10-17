@@ -1,0 +1,46 @@
+schema_version: 2
+id: replace-pending-value-001
+title: Receive a pending value before sending its replacement
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: channels.operations-blocking
+    secondary: []
+prerequisites:
+    - functions.signatures-results
+    - goroutines.launch-lifecycle
+    - types.zero-values
+new_concepts:
+    - channels.operations-blocking
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - send-before-receive
+        - return-next
+        - drop-replacement
+        - restore-old
+        - return-zero
+        - close-channel
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

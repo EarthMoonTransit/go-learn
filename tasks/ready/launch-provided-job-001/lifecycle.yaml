@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-10-17"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-10-17"
+      actor: pedagogical-c3-author
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-10-17"
+      actor: pedagogical-c3-author
+      reason: C3 bounded content approved after source review and disposable technical evidence
+    - from: in-review
+      to: ready
+      at: "2026-10-17"
+      actor: /root/clamp_e01_content_review
+      reason: Independent C3 content and provenance approval; public/grader/race enforced by promotion; final batch gates follow

@@ -1,0 +1,54 @@
+schema_version: 2
+id: cancelable-forward-001
+title: Forward values with cancellation at both blocking operations
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: context.cancellation
+    secondary:
+        - goroutines.leak-prevention
+prerequisites:
+    - channels.close-semantics
+    - channels.directional
+    - channels.select
+    - context.propagation-api
+    - control-flow.for
+    - functions.defer
+    - goroutines.launch-lifecycle
+    - context.derivation
+new_concepts: []
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - missing-receive-cancel
+        - missing-send-cancel
+        - background-context
+        - close-caller-input
+        - leave-output-open
+        - drop-zero
+        - reverse-input
+        - retain-input-receiver
+        - collect-until-eof
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

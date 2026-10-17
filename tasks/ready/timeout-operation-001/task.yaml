@@ -1,0 +1,58 @@
+schema_version: 2
+id: timeout-operation-001
+title: Own a child timeout while preserving the operation result
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: context.timeouts
+    secondary:
+        - context.deadlines
+prerequisites:
+    - context.cancellation
+    - context.derivation
+    - context.propagation-api
+    - functions.defer
+    - functions.function-values
+    - time.duration-arithmetic
+new_concepts:
+    - context.timeouts
+    - context.deadlines
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - background-parent
+        - no-timeout
+        - no-release
+        - cancel-before-operation
+        - doubled-budget
+        - zero-result
+        - replace-operation-error
+        - skip-canceled-parent
+        - return-before-cleanup
+        - call-twice
+        - successful-result-canceled
+        - release-only-on-error
+        - reuse-earlier-parent
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

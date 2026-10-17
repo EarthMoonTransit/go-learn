@@ -1,0 +1,21 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "pedagogical-c3-author",
+    "created_at": "2026-10-17",
+    "summary": "Original merge two finite input streams contract, API, examples, tests and defect models after the approved bounded S3 source decision; no external task content used."
+  },
+  "kind": "original",
+  "project": {
+    "content_digest": "fc80db760f31d71ff8d50a075e90223cf2c12298280c34a92412740879d85fb2",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/merge-two-streams-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": []
+}
