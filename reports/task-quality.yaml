@@ -1607,6 +1607,24 @@ tasks:
         detected: 4
         survived: []
       legacy: false
+    - id: mapped-records-001
+      state: ready
+      input_digest: 44db24936623ce081cdbb0b965f7cf473b089eafc5a3b129052215f58f32b5b2
+      task_type: implement
+      primary_skill: generics.type-parameters-inference
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 16
+        total: 16
+        detected: 16
+        survived: []
+      legacy: false
     - id: merge-two-streams-001
       state: ready
       input_digest: 106b45098c5bda401d81d91aedb0acb98d11e8d09294f0d6466ee6d35f91d43a
@@ -3182,7 +3200,7 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 169
+      count: 170
     - state: rejected
       count: 1
     - state: retired
@@ -3191,7 +3209,7 @@ task_types:
     - task_type: debug
       count: 41
     - task_type: implement
-      count: 91
+      count: 92
     - task_type: refactor
       count: 3
     - task_type: test-writing

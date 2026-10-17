@@ -1251,6 +1251,14 @@
             "functions.defer",
             "errors.propagation-context"
           ]
+        },
+        {
+          "number": 22,
+          "task_id": "mapped-records-001",
+          "role": "practice",
+          "skills": [
+            "generics.type-parameters-inference"
+          ]
         }
       ],
       "number": 7

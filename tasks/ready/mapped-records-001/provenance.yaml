@@ -1,0 +1,47 @@
+{
+  "schema_version": 2,
+  "kind": "adapted",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "662260bd0b228f0adf6931c3a9d12f29a81567474e17d708158f1999f84c5f4d"
+  },
+  "creation": {
+    "author": "p18-author",
+    "created_at": "2026-10-18",
+    "summary": "Substantive adaptation of admitted Birsi Task 9.2 per-element mapping and independently declared input/output type parameters. Extend results into supplied typed input/output records. Prompt, compile-safe erased starter, go/types call matrix, runtime tests, reference and defects authored locally; no upstream fixtures or solution code copied."
+  },
+  "sources": [
+    {
+      "registry_id": "birsi-go-training",
+      "repository": "https://github.com/birsi/go-training",
+      "commit": "3ae230e734644d637118f2a6818166922d5197c5",
+      "license": "MIT",
+      "usage_mode": "adapt",
+      "role": "api-shape",
+      "artifacts": [
+        {
+          "path": "exercises/stage3/09_generics/generics.go",
+          "sha256": "b043c993a83266c07510c4d7a5b3cba4cd1b27af0db8bda2394000c72105c4e5",
+          "usage": "adapted"
+        },
+        {
+          "path": "exercises/stage3/09_generics/generics_test.go",
+          "sha256": "a2945e7228e660e855f24c2edd0b3adb641dca26c9db09e4706afd2ebbba95ad",
+          "usage": "comparison-only"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "3bcc1e57a3a334565aa6d89bb0087458da29bb58e73ef0e552717dd75ee89226",
+          "usage": "copied"
+        }
+      ]
+    }
+  ],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/mapped-records-001.yaml"
+  }
+}
