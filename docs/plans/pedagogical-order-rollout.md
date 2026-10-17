@@ -45,14 +45,17 @@ policy and T-FUZZ/T-BENCH/T-MODULE stay subsequent work, as specified in that pl
 - [x] C1/P02: short-circuit effects exercise. Ready package: `lazy-probe-001`.
 - [x] C1/P03: GCD loop exercise. Ready package: `gcd-reduction-001`.
 - [x] C1/P04: expressionless switch exercise. Ready package: `quadrant-switch-001`.
-- [ ] S2: Formatter concept-seed provenance, Resource original, exact Ardan
-  method artifact and bounded defer/key source decisions.
-- [ ] C2/P05: promote existing `formatter-contract-001` before Shape.
-- [ ] C2/P06: defer registration, argument evaluation and LIFO exercise.
-- [ ] C2/P07: named result modified by defer before Capture.
-- [ ] C2/P08: method capture exercise.
-- [ ] C2/P09: comparable map-key exercise.
-- [ ] C2/P10: promote existing `resource-finalize-001`.
+- [x] S2: Formatter concept-seed provenance, Resource original, exact Ardan
+  method artifact and bounded defer/key source decisions; PR #74, merged at
+  `49fbd60b7aec9d2f5d7fdf4611afb7c0be8bfbfd`.
+- [x] C2/P05: promote existing `formatter-contract-001` before Shape.
+- [x] C2/P06: defer registration, argument evaluation and LIFO exercise.
+- [x] C2/P07: named result modified by defer before Capture.
+- [x] C2/P08: method capture exercise.
+- [x] C2/P09: comparable map-key exercise.
+- [x] C2/P10: promote existing `resource-finalize-001`.
+- [ ] Tooling: persist C2 public-feedback regressions and verify assertion-removal
+  probes in a disposable repository copy before declaring the rollout complete.
 - [ ] S3: bounded concurrency source decisions, original reasons and existing
   Worker lineage review.
 - [ ] C3/P11: launch with supplied handle.

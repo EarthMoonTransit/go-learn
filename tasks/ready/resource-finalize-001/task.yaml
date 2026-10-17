@@ -1,0 +1,58 @@
+schema_version: 2
+id: resource-finalize-001
+title: Refactor resource cleanup and error propagation
+activity: refactoring
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: io.files-cleanup
+    secondary:
+        - functions.defer
+        - errors.propagation-context
+prerequisites:
+    - errors.is
+    - errors.sentinels-creation
+    - errors.wrapping
+    - functions.function-values
+    - functions.signatures-results
+    - io.reader-writer-contracts
+    - testing.seams-doubles
+new_concepts:
+    - io.files-cleanup
+    - functions.defer
+difficulty: intermediate
+estimated_time_minutes:
+    min: 25
+    max: 45
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - close-before-write
+        - deduplicate-error-text
+        - empty-skips-calls
+        - ignore-close-error
+        - ignore-short-write
+        - lose-write-context
+        - overwrite-write-error
+        - recover-write-panic
+        - retry-write
+        - skip-close-on-write-error
+        - wrong-data
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

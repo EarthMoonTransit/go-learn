@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-10-17"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-10-17"
+      actor: pedagogical-c2-author
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-10-17"
+      actor: codex
+      reason: C2 bounded content package submitted after exact content/provenance approval
+    - from: in-review
+      to: ready
+      at: "2026-10-17"
+      actor: /root/clamp_e01_content_review
+      reason: Independent C2 content/provenance approval; public/grader technical gate enforced by promotion; final batch acceptance follows

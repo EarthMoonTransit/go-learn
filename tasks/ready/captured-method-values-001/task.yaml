@@ -1,0 +1,48 @@
+schema_version: 2
+id: captured-method-values-001
+title: Save value-bound and pointer-bound method values
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: methods.values-expressions
+    secondary: []
+prerequisites:
+    - functions.function-values
+    - methods.method-sets
+    - pointers.mutation-sharing
+    - structs.copy-equality
+new_concepts:
+    - methods.values-expressions
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - nil-functions
+        - live-value
+        - copied-pointer
+        - swapped-functions
+        - frozen-pointer
+        - shared-pointer
+        - mutating-method
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
