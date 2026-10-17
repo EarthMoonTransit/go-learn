@@ -5007,7 +5007,6 @@ domains:
           definition: Composes absolute deadlines without extending an upstream budget.
           prerequisites:
             - context.cancellation
-            - time.timers-tickers
           common_misconceptions:
             - A child may extend its parent's deadline
             - Deadline expiry interrupts arbitrary computation automatically

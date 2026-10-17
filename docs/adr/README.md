@@ -33,3 +33,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0026` — exact Clamp scaffold revision compatibility before E01/M1 content (`accepted for preparation tooling`)
 - `0027` — exact Prepend scaffold revision compatibility before E02 content (`accepted for preparation tooling`)
 - `0028` — exact Worker gated-scaffold compatibility and C2 public feedback (`accepted for preparation tooling`)
+- `0029` — remove false manual-timer prerequisite from context deadlines (`accepted for taxonomy preparation`)
