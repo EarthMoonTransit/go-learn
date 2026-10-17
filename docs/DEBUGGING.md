@@ -191,3 +191,24 @@ bindings in a temporary repository. Inline work is rejected by a named assertion
 after safe release; premature/shared completion remain intentionally uncovered.
 It supplements historical workspace preservation and real learner verification;
 command timeout is never accepted as evidence of defect detection.
+
+### C3 public feedback and valid alternatives
+
+The named `TestReviewedDefectsHavePublicFeedback/<id>/<mutant>` rows execute
+public checks only for all 41 C3 defects, require useful assertion diagnostics,
+and check a passing reference counterpart. Hidden grader detection, command
+timeouts and compilation failures cannot replace these public diagnostics. The
+existing Worker matrix preserves its two intentionally uncovered starter variants.
+
+The tolerance matrix installs review fixtures as learner data and runs public
+and full checks for both MergeTwo helper styles, buffered Forward output and an
+equivalent WithDeadline wrapper. Each top-level matrix owns an explicit disposable
+CheckSession; each verification uses a fresh temporary module and each case a
+private learner home. Canonical task digests must stay unchanged.
+
+Seven disposable assertion-removal experiments were run for held launch,
+right-close merge progress, forwarding before EOF, retained input receivers,
+nil-success result/release and earlier-parent child ownership. Every experiment
+failed the outer row on `Passed:true`. The cleanup-join row instead requires its
+named join diagnostic alongside other result assertions; no join-only
+false-accept claim is made. Keep these proof boundaries when modifying fixtures.
