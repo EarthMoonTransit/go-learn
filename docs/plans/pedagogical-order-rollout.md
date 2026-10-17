@@ -65,7 +65,7 @@ policy and T-FUZZ/T-BENCH/T-MODULE stay subsequent work, as specified in that pl
 - [x] C3/P14: finite channel merge.
 - [x] C3/P15: cancelable forwarding.
 - [x] C3/P16: timeout/context exercise.
-- [ ] Tooling: persist C3 public-only feedback and tolerated-alternative regressions;
+- [x] Tooling: persist C3 public-only feedback and tolerated-alternative regressions;
   verify omitted-assertion false accepts fail their outer regression in disposable
   copies (held launch, remaining merge stream, retained receiver/live forwarding,
   nil-success result/release and distinct-child ownership).
@@ -99,3 +99,13 @@ synctest/gate helpers are guided support, not independent harness mastery. All
 five new references pass public/full checks and all 41 compiling defects have
 useful public test diagnostics. Append-only placement, activation and persisted
 C3 feedback/tolerance regressions remain separate unchecked steps above.
+
+C3 feedback tooling protects all 41 public defect rows and four accepted
+alternatives (MergeTwo function value/declaration helpers, buffered Forward and
+WithDeadline timeout). Seven disposable assertion-removal experiments for held
+launch, right-close progress, live forwarding, retained receiver, nil-success
+result/release and earlier-parent child ownership each produce unexpected public
+success and therefore fail the outer regression. The cooperative-cleanup row
+requires its named join diagnostic; other result assertions also detect that
+defect, so a join-only false-accept experiment is not claimed. No authored task
+file changes in this tooling batch.

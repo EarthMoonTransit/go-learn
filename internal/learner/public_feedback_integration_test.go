@@ -24,6 +24,47 @@ func TestReviewedDefectsHavePublicFeedback(t *testing.T) {
 		id, mutant  string
 		diagnostics []string
 	}{
+		{"launch-provided-job-001", "duplicate-runner", []string{"held job 0 calls = 2, want 1"}},
+		{"launch-provided-job-001", "inline-runner", []string{"StartJob blocked with held work, want return before Release"}},
+		{"launch-provided-job-001", "premature-release", []string{"held job 0 completed before Release, want pending"}},
+		{"launch-provided-job-001", "shared-job", []string{"job 1 returned supplied handle = false, want true"}},
+		{"launch-provided-job-001", "skip-runner", []string{"held job 0 calls = 0, want 1"}},
+		{"launch-provided-job-001", "wrong-handle", []string{"job 0 returned supplied handle = false, want true"}},
+		{"replace-pending-value-001", "close-channel", []string{"channel after drain = closed, want open"}},
+		{"replace-pending-value-001", "drop-replacement", []string{"pending value = absent, want next 7"}},
+		{"replace-pending-value-001", "restore-old", []string{"pending value = 0, want next 7"}},
+		{"replace-pending-value-001", "return-next", []string{"ReplacePending(0,7) returned 7, want old 0"}},
+		{"replace-pending-value-001", "return-zero", []string{"ReplacePending(-3,8) returned 0, want old -3"}},
+		{"replace-pending-value-001", "send-before-receive", []string{"ReplacePending(0,7) blocked on full buffer, want receive before send"}},
+		{"merge-two-streams-001", "buffer-after-right-close", []string{"available input 23 output = absent, want progress from either open input"}},
+		{"merge-two-streams-001", "close-on-first-input", []string{"one input closed output = (0,false), want pending until remaining input"}},
+		{"merge-two-streams-001", "keep-closed-case", []string{"one input closed output = (0,false), want pending until remaining input"}},
+		{"merge-two-streams-001", "reverse-left-order", []string{"available input 11 output = absent, want progress from either open input"}},
+		{"merge-two-streams-001", "serial-inputs", []string{"available input 21 output = absent, want progress from either open input"}},
+		{"merge-two-streams-001", "skip-second-input", []string{"available input 21 output = absent, want progress from either open input"}},
+		{"merge-two-streams-001", "zero-on-close", []string{"one input closed output = (0,true), want pending until remaining input"}},
+		{"cancelable-forward-001", "background-context", []string{"after cancellation/EOF output = pending, want closed"}},
+		{"cancelable-forward-001", "close-caller-input", []string{"caller input = closed, want caller-owned open channel"}},
+		{"cancelable-forward-001", "collect-until-eof", []string{"live input output = pending, want value 9 before EOF"}},
+		{"cancelable-forward-001", "drop-zero", []string{"forwarded order/occurrences = [3 -2 3], want [0 3 -2 3]"}},
+		{"cancelable-forward-001", "leave-output-open", []string{"after cancellation/EOF output = pending, want closed"}},
+		{"cancelable-forward-001", "missing-receive-cancel", []string{"after cancellation/EOF output = pending, want closed"}},
+		{"cancelable-forward-001", "missing-send-cancel", []string{"after cancellation/EOF output = 7, want closed after queued values"}},
+		{"cancelable-forward-001", "retain-input-receiver", []string{"stage still receives caller input after cancellation, want no retained receiver"}},
+		{"cancelable-forward-001", "reverse-input", []string{"forwarded order/occurrences = [3 -2 3 0], want [0 3 -2 3]"}},
+		{"timeout-operation-001", "background-parent", []string{"child value = <nil>, want marker"}},
+		{"timeout-operation-001", "call-twice", []string{"operation calls = 2, want 1"}},
+		{"timeout-operation-001", "cancel-before-operation", []string{"child before operation returns = context canceled, want live context"}},
+		{"timeout-operation-001", "doubled-budget", []string{"child deadline =", "want ("}},
+		{"timeout-operation-001", "no-release", []string{"child after return = live, want canceled/released"}},
+		{"timeout-operation-001", "no-timeout", []string{"child deadline =", "want ("}},
+		{"timeout-operation-001", "release-only-on-error", []string{"child after return = live, want canceled/released"}},
+		{"timeout-operation-001", "replace-operation-error", []string{"operation result = (41,<nil>), want unchanged (41,operation result)"}},
+		{"timeout-operation-001", "return-before-cleanup", []string{"wrapper returned before operation cleanup, want pending until operation returns"}},
+		{"timeout-operation-001", "reuse-earlier-parent", []string{"operation received parent, want distinct derived context"}},
+		{"timeout-operation-001", "skip-canceled-parent", []string{"operation result = (0,context canceled), want unchanged (19,operation result)"}},
+		{"timeout-operation-001", "successful-result-canceled", []string{"operation result = (41,context canceled), want unchanged (41,<nil>)"}},
+		{"timeout-operation-001", "zero-result", []string{"operation result = (0,operation result), want unchanged (41,operation result)"}},
 		{"gcd-reduction-001", "subtraction-only", []string{"GCD remainder reduction in loop = false, want true"}},
 		{"boolean-policies-001", "exclusive-or", []string{"AnyActive(", "got false want true"}},
 		{"token-values-001", "trim-space", []string{"TokenValue(\"ten \")", "got 10 want 0"}},
@@ -166,8 +207,18 @@ func TestReviewedToleranceFixturesPassLearnerVerification(t *testing.T) {
 		t.Fatal(err)
 	}
 	verify := integrationVerifier(t, root)
-	for _, id := range []string{"independent-scaled-copy-001", "value-average-001", "category-total-001", "gcd-reduction-001"} {
-		t.Run(id, func(t *testing.T) {
+	for _, fixture := range []struct{ id, file string }{
+		{"independent-scaled-copy-001", "tolerated-output.txt"},
+		{"value-average-001", "tolerated-output.txt"},
+		{"category-total-001", "tolerated-output.txt"},
+		{"gcd-reduction-001", "tolerated-output.txt"},
+		{"merge-two-streams-001", "tolerated-output.txt"},
+		{"merge-two-streams-001", "tolerated-output-function-declaration.txt"},
+		{"cancelable-forward-001", "tolerated-output.txt"},
+		{"timeout-operation-001", "tolerated-output.txt"},
+	} {
+		t.Run(fixture.id+"/"+fixture.file, func(t *testing.T) {
+			id := fixture.id
 			canonical := filepath.Join(root, "tasks", "ready", id)
 			before, err := tasking.TaskContentDigest(canonical)
 			if err != nil {
@@ -182,7 +233,7 @@ func TestReviewedToleranceFixturesPassLearnerVerification(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			content, err := os.ReadFile(filepath.Join(canonical, "review", "tolerated-output.txt"))
+			content, err := os.ReadFile(filepath.Join(canonical, "review", fixture.file))
 			if err != nil {
 				t.Fatal(err)
 			}
