@@ -1,0 +1,197 @@
+{
+  "format": "go-learn-pedagogical-source-review/v1",
+  "reviewed_at": "2026-10-17",
+  "repository_baseline": "afe6c1267f37aea343841bbc6953824384c0b740",
+  "status": "approved-for-bounded-adaptation",
+  "coverage_eligible": false,
+  "new_ready_tasks": 0,
+  "boundary": "Source-only narrow admission for P18. No task bodies, solutions, ready promotion, source execution or learner-state access.",
+  "planning_artifacts": {
+    "proposals.json": "d21148efff3138f0ee07b85db89831c744649473c16ed002a8261342b00c6561",
+    "review.md": "feeb94b28e1afbfe3097c45a9537d41f03600fa4697d4ce5750c18c0cb7b2fa5",
+    "route-mapping.csv": "d0454a41c8c0a4d4cd7c6fb4c36e14568a15b89444f4157871efcba921367d75"
+  },
+  "verified_sources": [
+    {
+      "registry_id": "birsi-go-training",
+      "commit": "3ae230e734644d637118f2a6818166922d5197c5",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "3bcc1e57a3a334565aa6d89bb0087458da29bb58e73ef0e552717dd75ee89226"
+        },
+        {
+          "path": "exercises/stage3/09_generics/generics.go",
+          "sha256": "b043c993a83266c07510c4d7a5b3cba4cd1b27af0db8bda2394000c72105c4e5"
+        },
+        {
+          "path": "exercises/stage3/09_generics/generics_test.go",
+          "sha256": "a2945e7228e660e855f24c2edd0b3adb641dca26c9db09e4706afd2ebbba95ad"
+        }
+      ]
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "fd62bda91923cb60d78846f3038f14cc312ff62b93915d88a4434b92c366fe54"
+        },
+        {
+          "path": "topics/go/generics/README.md",
+          "sha256": "17700d7148f677d51f67c96021e8760d91c925d0e577562103fe7b48ef041599"
+        },
+        {
+          "path": "topics/go/generics/01-function/generic.go",
+          "sha256": "0b77aae2bf6cbee4a4d333e19c281fc9f53328430bd962a13c550e10ac00b0dc"
+        },
+        {
+          "path": "topics/go/generics/06-multi-type-params/generic.go",
+          "sha256": "7940c6748166f662a4624048c967418d84078e74182ea367d36d1ff8c5822ccd"
+        }
+      ]
+    },
+    {
+      "registry_id": "golings",
+      "commit": "65fb8ce827c716e54650e88a3ccc7c52308ab59b",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "exercises/generics/generics2/main.go",
+          "sha256": "9a30fd25f50b097a19d8224cbc50df2677dbb48f98bbcde7cb59da78ade0db6b"
+        }
+      ]
+    },
+    {
+      "registry_id": "shad-go",
+      "commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
+        },
+        {
+          "path": "genericsum/README.md",
+          "sha256": "ab73273054130748ed075cf3786b432d5fe3b1424f0bcc9b933bbfb42ff61e5a"
+        },
+        {
+          "path": "genericsum/genericsum.go",
+          "sha256": "8dba352a1e8cea8de6af07794e591daded9df990c201030381c5689a1ce07d3d"
+        },
+        {
+          "path": "genericsum/genericsum_test.go",
+          "sha256": "46d09e6248f6628d4486edb22ef6aadcfa5bb403d7413c18bb7295b38c2e9c4d"
+        }
+      ]
+    },
+    {
+      "registry_id": "golang-go",
+      "commit": "2c31595783c74564c1299a5401dc6e606f379cc7",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "PATENTS",
+          "sha256": "96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+        },
+        {
+          "path": "doc/go_spec.html",
+          "sha256": "338875c4ee9c47d1ea9518b5373ff5e9bd133ba78692cbf16dac0756e896e288"
+        }
+      ]
+    }
+  ],
+  "lineage": {
+    "registry_id": "birsi-go-training",
+    "introduced_commit": "022283a1c34743d1821368c5fdf57bf028760e62",
+    "parents": [],
+    "author": "birsi",
+    "co_author": "Claude Fable 5 <noreply@anthropic.com>",
+    "evidence": "https://github.com/birsi/go-training/commit/022283a1c34743d1821368c5fdf57bf028760e62",
+    "paths": [
+      "LICENSE",
+      "exercises/stage3/09_generics/generics.go",
+      "exercises/stage3/09_generics/generics_test.go"
+    ],
+    "finding": "Path-specific GitHub history records one initial commit. Selected file blobs are unchanged at the registry pin. Repository is not a fork; no selected ancestor license override, NOTICE, PATENTS, symlink or gitlink found. This is bounded negative evidence, not proof of all possible historical authorship. No solution implementation was used as a donor; selected-artifact review excluded solution bodies."
+  },
+  "source_decisions": [
+    {
+      "registry_id": "birsi-go-training",
+      "decision": "narrow-admission-approved",
+      "admitted_artifacts": [
+        {
+          "path": "exercises/stage3/09_generics/generics.go",
+          "selector": "Task 9.2 Map only",
+          "role": "api-shape and mapping behavior"
+        },
+        {
+          "path": "exercises/stage3/09_generics/generics_test.go",
+          "selector": "Map instantiation assertion and TestMap only",
+          "role": "comparison-only; no upstream fixtures copied"
+        }
+      ],
+      "reason": "Task 9.2 requires an independently declared two-parameter mapping function. Retain its per-element callback operation as a substantive adaptation; extend each returned element to a supplied typed record holding the original input and mapped output. This explicitly preserves both types and is distinct from the supplied Reduce signature/accumulator. No original slot is justified while this suitable permitted-after-admission donor exists.",
+      "excluded": "All other sections, First/Max/Keys checks, solution files and every other Birsi path remain reference-only."
+    },
+    {
+      "registry_id": "shad-go",
+      "decision": "not-selected-reference-only",
+      "reason": "genericsum covers minimum, sort, map equality, containment, channel merging and matrix predicates. Map equality constrains comparable key/value types; it does not return independently typed input/output records. The existing LRU allowlist grants no rights to these files. No copied text/code/tests/fixtures."
+    },
+    {
+      "registry_id": "golings",
+      "decision": "not-selected-reference-only",
+      "reason": "generics2 is a compile-repair numeric addition, not two independent input/output parameters. Using its incomplete upstream template unchanged would fail the compiled-starter requirement. No copying or policy expansion."
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "decision": "not-selected",
+      "reason": "The nearest two-parameter Print example pairs labels with fmt.Stringer values and prints text, returning neither type. The general function example is print-only and has one parameter. Birsi mapping directly supplies the requested independent input/output transformation; no Ardan example code/comment copied."
+    },
+    {
+      "registry_id": "exercism-go",
+      "decision": "metadata-negative",
+      "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+      "path": "config.json",
+      "reason": "All 177 registered candidate metadata records inspected: no generics concept/prerequisite entry; scale-generator is a lexical name match only. Approach/solution bodies and reference-only canonical cases were not read. This bounded metadata result does not claim the track has no possible generic exercise.",
+      "metadata_inventory_file": "catalog/candidates/exercism-go.jsonl",
+      "metadata_inventory_sha256": "e6aa7730c1dee463cf6c43ab3309035c4d444eccfbdf9bc59212409d5102c7ac"
+    },
+    {
+      "registry_id": "golang-go",
+      "decision": "semantic-facts-only",
+      "reason": "Pinned spec Function_declarations, Type_parameter_declarations, Instantiations and Type_inference check generic function/type facts. No examples, text or tests are content donors."
+    }
+  ],
+  "p18_contract": {
+    "primary_skill": "generics.type-parameters-inference",
+    "role": "practice",
+    "activity": "implementation",
+    "profile": "workspace-tests",
+    "placement_after": "generic-reduce-001",
+    "placement_before": "named-numeric-constraint-001",
+    "api_direction": "Learner declares private mapEntries with two independent unrestricted type parameters; immutable Entry[A,B] retains Input A and Output B. A non-generic erased stub keeps starter compiling. Same-package workspace public tests infer the call and box only in the checker; go/types verifies the declaration and explicit/inferred call matrix. Starter/reference exported Entry API stays stable. Content review must confirm this design before authoring.",
+    "runtime_matrix": "Named input values; []byte outputs; ordered one-call mapping; retained input field; zero-length input; source-slice preservation. No concurrent callbacks or environment access.",
+    "mutant_boundary": "Only compiling variants may be required mutants. A type-erased stub can fail a public signature assertion. Narrow comparable/single-type declarations that break the call matrix are compiler-negative evidence, never behavioral mutant kills."
+  },
+  "conditions": [
+    "Merge the independently reviewed source-only admission before adapting the Birsi section.",
+    "Preserve MIT notice and exact registry commit/path/hashes in adapted provenance; do not label it original.",
+    "No broad Birsi, SHAD or Golings admission. No solution directories or upstream code execution.",
+    "Content/public-feedback/lifecycle/route review and all executable gates remain separate.",
+    "No task or coverage/learner mastery claim in this source batch."
+  ],
+  "independent_review": {
+    "reviewer": "/root/p18_source_review",
+    "reviewed_at": "2026-10-17",
+    "decision": "approve-after-recorded-wording-corrections",
+    "scope": "Exact source-only registry, artifact/lineage record and report. All listed source/planning hashes and 177-candidate inventory independently checked. Corrected Golings compiled-starter wording and narrowed no-solution-donor claim. Content requires fresh review and executable acceptance."
+  }
+}
