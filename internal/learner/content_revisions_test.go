@@ -113,6 +113,11 @@ func TestPublicCheckRevisionIsExactAndDirectional(t *testing.T) {
 		name, id, stored, current string
 		want                      bool
 	}{
+		{"Clamp scaffold update", "clamp-tests-001", clampBeforeTestingBridge, clampWithTestingBridge, true},
+		{"Clamp rollback", "clamp-tests-001", clampWithTestingBridge, clampBeforeTestingBridge, false},
+		{"Clamp unknown source", "clamp-tests-001", "unknown", clampWithTestingBridge, false},
+		{"Clamp unknown target", "clamp-tests-001", clampBeforeTestingBridge, "unknown", false},
+		{"Clamp other task", "literal-bindings-001", clampBeforeTestingBridge, clampWithTestingBridge, false},
 		{"bounded nil update", "bounded-slice-view-001", boundedBeforeNilCheck, boundedWithNilCheck, true},
 		{"bounded rollback", "bounded-slice-view-001", boundedWithNilCheck, boundedBeforeNilCheck, false},
 		{"bounded unknown", "bounded-slice-view-001", "unknown", boundedWithNilCheck, false},
