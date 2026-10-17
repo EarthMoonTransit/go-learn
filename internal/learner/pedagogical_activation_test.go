@@ -265,7 +265,7 @@ func TestCompletedOriginalRouteGetsNewPreparationsWithoutHistoricalRetagging(t *
 		t.Fatal(choice, err)
 	}
 	course, err := s.CourseView()
-	if err != nil || course.Completed != 151 || course.Ready != 166 {
+	if err != nil || course.Completed != 151 || course.Ready != currentRouteLessonCount(t, s.root) {
 		t.Fatal(course, err)
 	}
 	after, err := loadProgress(s.home)

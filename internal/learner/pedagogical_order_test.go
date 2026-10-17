@@ -176,6 +176,21 @@ func TestPedagogicalLoaderSupportsExplicitVersionedActivation(t *testing.T) {
 	}
 }
 
+// Current counts follow the explicit address registry as content grows. Fixed
+// historical address and completion assertions remain separate below.
+func currentRouteLessonCount(t *testing.T, root string) int {
+	t.Helper()
+	route, err := loadRoute(root)
+	if err != nil || route == nil {
+		t.Fatalf("load configured address registry: route=%v err=%v", route, err)
+	}
+	count := 0
+	for _, block := range route.Blocks {
+		count += len(block.Steps)
+	}
+	return count
+}
+
 func TestRepositoryPedagogicalMappingAndKnownBlockers(t *testing.T) {
 	s := uiTestService(t, "")
 	p, entries, err := loadPedagogicalPlan(s.root)
@@ -199,7 +214,8 @@ func TestRepositoryPedagogicalMappingAndKnownBlockers(t *testing.T) {
 		t.Fatal(err)
 	}
 	preview := validatePedagogicalOrder(p, entries, roadmap, skills)
-	if !preview.Valid() || !preview.PreparationReady() || len(entries) != 166 || preview.RoutedCount != 166 || p.Status != "active" {
+	wantLessons := currentRouteLessonCount(t, s.root)
+	if wantLessons < 166 || !preview.Valid() || !preview.PreparationReady() || len(entries) != wantLessons || preview.RoutedCount != wantLessons || p.Status != "active" {
 		t.Fatalf("preview=%+v", preview)
 	}
 	formal := map[string][]string{}
@@ -241,7 +257,7 @@ func TestRepositoryPedagogicalMappingAndKnownBlockers(t *testing.T) {
 	// A real route addition is reported, never discarded to force the baseline count.
 	roadmap.Route.Blocks[8].Steps = append(roadmap.Route.Blocks[8].Steps, RouteStep{Number: 15, TaskID: "added-task-001", Role: "practice", Skills: []string{"types.zero-values"}})
 	changed := validatePedagogicalOrder(p, entries, roadmap, skills)
-	if changed.RoutedCount != 167 || changed.Valid() || !slices.Contains(changed.StructuralIssues, "missing current route task ID added-task-001") {
+	if changed.RoutedCount != wantLessons+1 || changed.Valid() || !slices.Contains(changed.StructuralIssues, "missing current route task ID added-task-001") {
 		t.Fatal(changed)
 	}
 	// Check all stable block IDs/numbers, lesson numbers, roles and IDs independently

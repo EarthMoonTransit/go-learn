@@ -346,7 +346,9 @@ func TestPedagogicalPreviewCLIShowsStableAddressesAndBlockers(t *testing.T) {
 		t.Fatalf("code=%d: %s", code, &diagnostics)
 	}
 	for _, text := range []string{
-		"active (used by the existing scheduler)", "Mapping: 166 rows; current route: 166 tasks", "Structural validity: true; preparation ready: true",
+		"active (used by the existing scheduler)",
+		fmt.Sprintf("Mapping: %d rows; current route: %d tasks", currentRouteLessonCount(t, s.root), currentRouteLessonCount(t, s.root)),
+		"Structural validity: true; preparation ready: true",
 		"Address 03.30 | decision-table-tests-001 | transfer", "Address 03.26 | constant-value-tests-001 | practice",
 		"Address 09.01 | worker-completion-tests-001 | introduction",
 		"Address 09.10 | launch-provided-job-001 | introduction", "Address 09.14 | timeout-operation-001 | introduction",
