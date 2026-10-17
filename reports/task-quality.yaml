@@ -671,7 +671,7 @@ tasks:
       legacy: false
     - id: diagnostic-helper-001
       state: ready
-      input_digest: 93deec4afd0c00f4c38d5a81614390eff324d76ff6cc183549f398a2b8ba389a
+      input_digest: b14918c1f8c0478aabe9fd3689147fcea1c66f6765163ba8b87bb45ff7863f22
       task_type: implement
       primary_skill: testing.helpers
       technical_status: pass
@@ -1538,7 +1538,7 @@ tasks:
       legacy: false
     - id: named-cases-001
       state: ready
-      input_digest: 80c7f967bfbd32048b84de86258064add971470f327af526d32e5ce83da859e5
+      input_digest: 49c93a0e4b13a00893df0bf1836cc83952ae1c4e8604d67933e5ecd4852baa53
       task_type: implement
       primary_skill: testing.subtests
       technical_status: pass
@@ -1754,7 +1754,7 @@ tasks:
       legacy: false
     - id: pointer-chain-001
       state: ready
-      input_digest: cd9f6455e0b9ab281ccef2c9bb5c0fa1ef7909b11d063fd2ce46b9443626e59b
+      input_digest: 84e0e990990aaf7d04c3421e4c6a42306414cbc26e466ab75c4d2e106edf0cde
       task_type: implement
       primary_skill: pointers.address-deref-nil
       technical_status: pass

@@ -11,6 +11,7 @@ skills:
     secondary: []
 prerequisites:
     - types.zero-values
+    - pointers.mutation-sharing
 new_concepts: []
 difficulty: basic
 estimated_time_minutes:

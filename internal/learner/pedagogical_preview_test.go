@@ -278,8 +278,10 @@ func TestPedagogicalPreviewPreservesSyntheticHistoriesAndWorkspaceTrees(t *testi
 			}
 			beforeChoice, beforeErr := s.nextFor(tasks, before)
 			preview, err := s.PedagogicalPreview()
-			if err != nil || !preview.Valid() || preview.PreparationReady() {
-				t.Fatalf("preview invalid: %+v, %v", preview.StructuralIssues, err)
+			// This bounded subset has no remaining preparation actions after
+			// PointerChain's M1 review. The full repository still has eight.
+			if err != nil || !preview.Valid() || !preview.PreparationReady() {
+				t.Fatalf("bounded preview must be valid and prepared: %+v, %v", preview, err)
 			}
 			after, err := loadProgress(s.home)
 			if err != nil {
