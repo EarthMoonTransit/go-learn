@@ -1,0 +1,302 @@
+{
+  "format": "go-learn-pedagogical-source-review/v1",
+  "reviewed_at": "2026-10-18",
+  "repository_baseline": "f458a1aad95626d74c901749fa1664862db0e036",
+  "status": "approved-for-bounded-adaptation-and-original-authoring",
+  "coverage_eligible": false,
+  "new_ready_tasks": 0,
+  "boundary": "Source decisions only for P17/P19. No registry expansion, authored tasks, source execution, learner state access, theory, taxonomy or release/export. P18 content is independent and remains under its own PR gates.",
+  "planning_artifacts": {
+    "proposals.json": "d21148efff3138f0ee07b85db89831c744649473c16ed002a8261342b00c6561",
+    "review.md": "feeb94b28e1afbfe3097c45a9537d41f03600fa4697d4ce5750c18c0cb7b2fa5",
+    "route-mapping.csv": "d0454a41c8c0a4d4cd7c6fb4c36e14568a15b89444f4157871efcba921367d75"
+  },
+  "verified_sources": [
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "repository": "https://github.com/ardanlabs/gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "usage_mode": "adapt",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "fd62bda91923cb60d78846f3038f14cc312ff62b93915d88a4434b92c366fe54"
+        },
+        {
+          "path": "topics/go/concurrency/channels/exercises/template1/template1.go",
+          "sha256": "c747ead8cb3b549b6971876f30c272a22548595f08057a1429bae75a1e73d477"
+        },
+        {
+          "path": "topics/go/concurrency/channels/exercises/template2/template2.go",
+          "sha256": "d24cc6c7dd8214386d2d75fc97eb2ad056167b6bf98e802b34af345a69d43f3a"
+        },
+        {
+          "path": "topics/go/concurrency/channels/exercises/template3/template3.go",
+          "sha256": "0ee93efa21280fadd1ed3b9b56a38813a15c5c2714b749c165063d680fd03b56"
+        },
+        {
+          "path": "topics/go/concurrency/channels/exercises/template4/template4.go",
+          "sha256": "0a470cfb46a14bd16ec0cc13a30bf700cc8d8b4a412785951a4920cf5993753d"
+        },
+        {
+          "path": "topics/go/concurrency/data_race/exercises/template1/template1.go",
+          "sha256": "4f34296366a8f198ae16abafdf08018b1dbe0280bb385ee4fa62cafe360d2f96"
+        },
+        {
+          "path": "topics/go/concurrency/goroutines/exercises/template1/template1.go",
+          "sha256": "0ee87b26d958c212bf8dedac12a2af18d8a4ba683f9e8f13e8fecb7bbd6c8e75"
+        },
+        {
+          "path": "CONTRIBUTORS",
+          "sha256": "1f28976a492474ac6309eb365adb5a932004f7ef82aec2669f7c8a102420c0e2"
+        }
+      ]
+    },
+    {
+      "registry_id": "shad-go",
+      "repository": "https://github.com/slon/shad-go",
+      "commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+      "usage_mode": "reference-only outside lrucache allowlist",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "f14f815b5c693ed65868e3cf4660db7d646534e97be3d942b35f0d3dbce8c74f"
+        },
+        {
+          "path": "tparallel/README.md",
+          "sha256": "f286d1845dd8d3f1d00d938e94b717dd938897d761e7a836425f9f2586b33089"
+        },
+        {
+          "path": "tparallel/tparallel.go",
+          "sha256": "2e5f33236750a253f42c8511e5fba9ddfd9a8532becf07b4172a6553d453f88e"
+        },
+        {
+          "path": "tparallel/tparallel_test.go",
+          "sha256": "433143baf90dcc2a523d0c831be1ddc0f5f008734cf08701ecd38df777643dfc"
+        }
+      ]
+    },
+    {
+      "registry_id": "golang-go",
+      "repository": "https://go.googlesource.com/go",
+      "commit": "2c31595783c74564c1299a5401dc6e606f379cc7",
+      "usage": "semantic facts only, no task-content donor",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "PATENTS",
+          "sha256": "96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+        },
+        {
+          "path": "doc/go_spec.html",
+          "sha256": "338875c4ee9c47d1ea9518b5373ff5e9bd133ba78692cbf16dac0756e896e288"
+        },
+        {
+          "path": "doc/go_mem.html",
+          "sha256": "a7372b4f36c9525ecc7531bbdbb9e53746ae3f58367a25fe8084d5a35bb8ee7c"
+        }
+      ]
+    }
+  ],
+  "p17": {
+    "decision": "substantive-adaptation-approved",
+    "selected_source": {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "path": "topics/go/concurrency/channels/exercises/template2/template2.go",
+      "sha256": "d24cc6c7dd8214386d2d75fc97eb2ad056167b6bf98e802b34af345a69d43f3a"
+    },
+    "retained_operation": "Finite fan-out: start one operation per input, collect all N completions/results into a slice. Do not discard this suitable donor to claim an original.",
+    "local_changes": "Replace random-number generation/printing with supplied deterministic jobs; extend each result with input index, value and exact error. Preserve all results including nonzero value plus error and wait for every started job after any error. No fail-fast, cancellation or panic-recovery promise. Do not copy upstream test cases or answer implementations.",
+    "rights": "Existing registry adapt mode permits consideration. This P17 decision selects the exact template2 as the task-content donor; S3 supplies prior bounded inspection, explicitly without selecting a donor. Preserve Apache-2.0 header/full license and applicable notices; credit William Kennedy/Jacob Walker, clearly mark modifications. All other Ardan content requires its own bounded selection.",
+    "alternatives": [
+      {
+        "registry_id": "shad-go",
+        "commit": "6718601587ec77cfaa632bbd29a8ca0716fe81ec",
+        "paths": [
+          "tparallel/README.md",
+          "tparallel/tparallel.go",
+          "tparallel/tparallel_test.go"
+        ],
+        "decision": "not selected; remains reference-only",
+        "reason": "Testing parent/child scheduling is not indexed collection of arbitrary supplied operation values/errors."
+      },
+      {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "paths": [
+          "topics/go/concurrency/channels/exercises/template1/template1.go",
+          "topics/go/concurrency/channels/exercises/template3/template3.go",
+          "topics/go/concurrency/channels/exercises/template4/template4.go"
+        ],
+        "decision": "less direct than template2",
+        "reason": "Template3 selects/filter outputs; template4 has an open-ended lifecycle. Template1 is bounded ping-pong until a terminal value, rather than one independent result per finite worker."
+      }
+    ],
+    "assessment": {
+      "primary": "goroutines.result-error-collection",
+      "role": "transfer",
+      "activity": "implementation",
+      "profile": "fixed-tests",
+      "prerequisites": [
+        "sync.waitgroup-lifecycle",
+        "goroutines.launch-lifecycle",
+        "goroutines.state-ownership",
+        "errors.propagation-context",
+        "slices.len-cap-slicing"
+      ],
+      "dedup": "JoinAll has void callbacks and completion only. P17 additionally owns indexed result slots and complete value/error collection. Mutex tasks assess synchronization, not all-results accounting.",
+      "public_feedback": [
+        "zero jobs",
+        "mixed success and errors",
+        "reverse controlled completion order with input-index preservation",
+        "nonzero value and exact error identity together",
+        "each job called exactly once",
+        "all jobs started while held; release on every failure path",
+        "wait for held jobs after an earlier error"
+      ],
+      "execution_safety": "race required; deterministic controlled gates/testing synctest, no sleeps, deadlines or timeout-only defect detections. Every required wrong variant must normally compile.",
+      "placement": "After JoinAll, mutex pair and P15; before P19. Append a fresh stable09 address after checking current maximum; preserve all existing addresses/roles."
+    }
+  },
+  "ardan_lineage": {
+    "method": "GitHub API commit reads selected exact template metadata/patches; local cache is shallow and is not introduction evidence. No answer implementation/patch consulted.",
+    "history": [
+      {
+        "commit": "50e6bde1ab0990a0774b4ddca6b8df85c8bee3a1",
+        "url": "https://github.com/ardanlabs/gotraining/commit/50e6bde1ab0990a0774b4ddca6b8df85c8bee3a1",
+        "author": "William Kennedy",
+        "date": "2016-05-11T23:57:49Z",
+        "path": "topics/channels/exercises/template2/template2.go",
+        "previous_path": null,
+        "blob": "5d4daca009bb396b34fd91710386ff5256f15f8c"
+      },
+      {
+        "commit": "fa28ff1e58b8187c579bc43a8b9ab0e428d38fa7",
+        "url": "https://github.com/ardanlabs/gotraining/commit/fa28ff1e58b8187c579bc43a8b9ab0e428d38fa7",
+        "author": "William Kennedy",
+        "date": "2016-09-22T15:35:01Z",
+        "path": "topics/concurrency/channels/exercises/template2/template2.go",
+        "previous_path": "topics/channels/exercises/template2/template2.go",
+        "blob": "90847ada83f9c01f2bf728306f89892c68bc4490"
+      },
+      {
+        "commit": "47261e94421eaad383d5c6bcfdb4e60087fa86f0",
+        "url": "https://github.com/ardanlabs/gotraining/commit/47261e94421eaad383d5c6bcfdb4e60087fa86f0",
+        "author": "William Kennedy",
+        "date": "2017-02-25T03:44:42Z",
+        "path": "topics/go/concurrency/channels/exercises/template2/template2.go",
+        "previous_path": "topics/concurrency/channels/exercises/template2/template2.go",
+        "blob": "90847ada83f9c01f2bf728306f89892c68bc4490"
+      },
+      {
+        "commit": "b71a1313d3f556032488e6b1752ebd510fb4785c",
+        "url": "https://github.com/ardanlabs/gotraining/commit/b71a1313d3f556032488e6b1752ebd510fb4785c",
+        "author": "Jacob Walker",
+        "date": "2018-06-18T23:36:06Z",
+        "path": "topics/go/concurrency/channels/exercises/template2/template2.go",
+        "previous_path": null,
+        "blob": "523a7bfd7e0a7b98ed59233e94b1d5707fb7d21b"
+      },
+      {
+        "commit": "4dcac3b39270500609ebb6a2d23e0bfd5ab9880a",
+        "url": "https://github.com/ardanlabs/gotraining/commit/4dcac3b39270500609ebb6a2d23e0bfd5ab9880a",
+        "author": "Jacob Walker",
+        "date": "2018-06-25T17:23:18Z",
+        "path": "topics/go/concurrency/channels/exercises/template2/template2.go",
+        "previous_path": null,
+        "blob": "72d068bee2b863c4d8b7bad0395d22f03a32043c"
+      }
+    ],
+    "behavior_introduction": "50e6bde1 modifies an existing file to introduce finite fan-out; this is not the first creation of the file. The two rename commits share blob90847ada with each other; it differs from the blob at50e6bde1. Jacob Walker2018 changes add result slice collection and refine comments; final blob72d068be matches selected pin.",
+    "selected_ancestor_notices": [
+      "LICENSE"
+    ],
+    "current_repository_metadata": {
+      "full_name": "ardanlabs/gotraining",
+      "fork": false,
+      "parent": null,
+      "source": null
+    },
+    "claim_limit": "Bounded selected-path history and current nonfork metadata, not exhaustive historical authorship proof."
+  },
+  "p19": {
+    "decision": "original-specifically-justified-approved",
+    "bounded_candidates": {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "paths": [
+        "topics/go/concurrency/channels/exercises/template1/template1.go",
+        "topics/go/concurrency/channels/exercises/template2/template2.go",
+        "topics/go/concurrency/channels/exercises/template3/template3.go",
+        "topics/go/concurrency/channels/exercises/template4/template4.go",
+        "topics/go/concurrency/data_race/exercises/template1/template1.go",
+        "topics/go/concurrency/goroutines/exercises/template1/template1.go"
+      ],
+      "reason": "None of the six S3 templates has an existing = iteration variable captured by workers held until the loop finishes. The data-race append exercise does not capture the loop index. Counter synchronization and generic launch/receive scaffolds would be nominal reuse, not this contract. This is a bounded queued-candidate comparison, not a claim that no matching exercise exists anywhere."
+    },
+    "semantic_facts": {
+      "registry_id": "golang-go",
+      "commit": "2c31595783c74564c1299a5401dc6e606f379cc7",
+      "paths": [
+        "doc/go_spec.html",
+        "doc/go_mem.html"
+      ],
+      "anchors": [
+        "For_range",
+        "Go_1.22",
+        "chan"
+      ],
+      "version_scope": "The pinned specification header describes go1.27; do not label the whole development checkout a Go1.27 release. Range := introduces per-iteration variables; = assigns existing variables. Closing a gate after the loop orders preceding assignments before receives, so wrong capture can be deterministic and race-free.",
+      "usage": "Facts only; no documentation example, prose, task code, tests or solution copied."
+    },
+    "dedup": "Category/period closures retain constructor state; captured-method-values distinguishes receiver binding; StartJob launches one provided callback; range-offset observes copied elements. None assesses a reused loop variable behind a supplied gate.",
+    "authoring_contract": {
+      "primary": "goroutines.capture-arguments",
+      "role": "practice",
+      "activity": "debugging",
+      "profile": "fixed-tests",
+      "prerequisites": [
+        "functions.closure-capture",
+        "goroutines.launch-lifecycle",
+        "channels.operations-blocking",
+        "control-flow.range",
+        "sync.waitgroup-lifecycle"
+      ],
+      "requirements": "Repair workers launched by the supplied reused-variable loop so each gets its own intended argument. Hold workers until the launching loop ends; join all workers; no output-order promise.",
+      "public_feedback": [
+        "exact multiset for distinct/repeated/zero/negative values",
+        "nil/empty inputs",
+        "independent batches",
+        "release every held worker even on assertion failure",
+        "passing argument-binding and per-iteration := alternatives where contract-equivalent"
+      ],
+      "execution_safety": "race required, but exact deterministic values must detect the race-free bad capture. No old pre1.22 := folklore, scheduling chance or timeout-only kill. Add prerequisites for any additional editable mechanics actually selected.",
+      "original_provenance": "Use Task Contract v2 ADR0008 project identity, actual creation record and content digest; external task sources stay empty. Bind digest to real commit at release; never fabricate a commit or internal registry row.",
+      "placement": "After P17, before further bounded fan-out practice; append a fresh stable09 address after verifying current maximum."
+    }
+  },
+  "internal_comparisons": {
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "commit": "f458a1aad95626d74c901749fa1664862db0e036",
+    "paths": [
+      "tasks/ready/join-all-tests-001/TASK.md",
+      "tasks/ready/mutex-counter-001/TASK.md",
+      "tasks/ready/concurrent-counter-read-001/TASK.md",
+      "tasks/ready/category-closure-tests-001/TASK.md",
+      "tasks/ready/period-predicate-001/TASK.md",
+      "tasks/ready/captured-method-values-001/TASK.md",
+      "tasks/ready/launch-provided-job-001/TASK.md",
+      "tasks/ready/range-offset-001/TASK.md"
+    ]
+  },
+  "independent_review": {
+    "status": "approve",
+    "reviewer": "/root/p18_source_review",
+    "reviewed_at": "2026-10-18",
+    "scope": "Two source-only records and evidence; task content and exact-head CI/merge gates remain separate."
+  }
+}
