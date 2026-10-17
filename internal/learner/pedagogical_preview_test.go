@@ -345,16 +345,16 @@ func TestPedagogicalPreviewCLIShowsStableAddressesAndBlockers(t *testing.T) {
 	for _, text := range []string{
 		"inactive (activation disabled)", "Mapping: 151 rows; current route: 151 tasks", "Structural validity: true; preparation ready: false",
 		"Position 15 | C02", "Address 03.30 | decision-table-tests-001 | transfer", "Address 03.26 | constant-value-tests-001 | practice",
-		"PENDING E02", "PENDING P05", "PENDING P06", "PENDING P07",
+		"PENDING P05", "PENDING P06", "PENDING P07",
 		"Position 143 | C14", "Address 09.01 | worker-completion-tests-001 | introduction", "PENDING P11", "PENDING P12", "PENDING P13",
 	} {
 		if !strings.Contains(output.String(), text) {
 			t.Fatalf("missing %q in preview", text)
 		}
 	}
-	for _, resolved := range []string{"BLOCKED:", "PENDING E01/M1"} {
+	for _, resolved := range []string{"BLOCKED:", "PENDING E01/M1", "PENDING E02"} {
 		if strings.Contains(output.String(), resolved) {
-			t.Fatalf("resolved E01/M1 blocker remains in preview: %s", resolved)
+			t.Fatalf("resolved blocker remains in preview: %s", resolved)
 		}
 	}
 	afterTree, err := workspaceTree(s.home, "")

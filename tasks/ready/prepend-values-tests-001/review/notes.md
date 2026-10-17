@@ -50,3 +50,24 @@ Required defects distinguish prefix order, multiple prefix arguments, preserved 
 Reviewed the English prompt, prerequisite placement, public/reference assertions, all 6 required defects, stable API and learner payload boundaries. The adaptation preserves a substantive permitted source operation rather than only its topic; exact pinned artifact hashes, authors/contributors and MIT notice contents match the local Exercism checkout. No reference-only or generated source artifact is claimed as adapted lineage.
 
 The author-provided targeted task-check report is technically passing with all 6 required defects detected. The reviewer inspected files and reports without executing authored code. This approves content for the lifecycle process; full batch gates remain the author's responsibility. Automated checks are not learner calibration.
+
+
+## E02 variadic bridge, 2026-10-17
+
+The starter now supplies TestStartingCase01 with separate arguments and
+TestPrependExpandedPrefix with prefix... expansion. Both named examples assert
+prefix-before-original order and multiple prefix values with actual/want slices.
+The starter passes the reference but intentionally leaves no-prefix-clears and
+empty-input-ignored alive; learners must still add missing contract cases.
+Hints explain both calls without giving an implementation or new ownership,
+allocation or nilness guarantees. TASK, API, reference and six mutants are
+unchanged. Slice header/slicing prerequisites describe already visible syntax.
+
+The exact old→new digest is admitted in ADR 0027. Compatibility tooling tests
+paused/completed, generation/legacy marker, numbered/legacy paths; old editable
+and read-only files and history remain byte-identical. Disposable integration
+checks require both named example diagnostics, old/new starter incompleteness,
+reference detection of all six defects and unchanged primary completion credit.
+Independent content review of this actual package is pending.
+
+Independent content/provenance approval by /root/clamp_e01_content_review on 2026-10-17 covers the final package, including the GCD rejection/tolerance fix where applicable. No further content blockers. Normal lifecycle promotion, final targeted checks, full ordered repository acceptance and exact-head CI remain separate gates.

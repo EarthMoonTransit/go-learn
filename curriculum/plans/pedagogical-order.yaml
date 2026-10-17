@@ -22,9 +22,6 @@ exposure_edges:
   - {before_task_id: typed-nil-result-001, task_id: record-result-001}
   - {before_task_id: exact-dynamic-number-001, task_id: typed-value-observations-001}
 pending_preparation:
-  - task_id: prepend-values-tests-001
-    review_id: E02
-    reason: Release both supplied variadic call examples before later variadic/append practice.
   - task_id: detached-append-001
     review_id: M1
     reason: Add functions.variadic with T0b activation; the stable address registry places this task at 02.07 before its 03.10 prerequisite introduction.

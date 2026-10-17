@@ -222,7 +222,7 @@ func TestRepositoryPedagogicalMappingAndKnownBlockers(t *testing.T) {
 		t.Fatal("Clamp's manifest must match its reviewed route secondary")
 	}
 	for id, want := range map[string][]string{
-		"clamp-tests-001": nil, "prepend-values-tests-001": {"E02"}, "shape-contract-tests-001": {"P05"},
+		"clamp-tests-001": nil, "prepend-values-tests-001": nil, "shape-contract-tests-001": {"P05"},
 		"pointer-chain-001": nil, "diagnostic-helper-001": nil, "named-cases-001": nil,
 		"detached-append-001": {"M1"},
 		"capture-panic-001":   {"P06", "P07"}, "worker-completion-tests-001": {"P11", "P12", "P13"},

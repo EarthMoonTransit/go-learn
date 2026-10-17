@@ -12,6 +12,8 @@ skills:
 prerequisites:
     - functions.signatures-results
     - testing.basics-diagnostics
+    - slices.header-model
+    - slices.len-cap-slicing
 new_concepts:
     - functions.variadic
 difficulty: basic

@@ -24,6 +24,7 @@ func TestReviewedDefectsHavePublicFeedback(t *testing.T) {
 		id, mutant  string
 		diagnostics []string
 	}{
+		{"gcd-reduction-001", "subtraction-only", []string{"GCD remainder reduction in loop = false, want true"}},
 		{"boolean-policies-001", "exclusive-or", []string{"AnyActive(", "got false want true"}},
 		{"token-values-001", "trim-space", []string{"TokenValue(\"ten \")", "got 10 want 0"}},
 		{"column-occupancy-001", "case-normalized", []string{"CountColumn key \"a\"", "got 1 want 0"}},
@@ -151,7 +152,7 @@ func TestReviewedToleranceFixturesPassLearnerVerification(t *testing.T) {
 		t.Fatal(err)
 	}
 	verify := integrationVerifier(t, root)
-	for _, id := range []string{"independent-scaled-copy-001", "value-average-001", "category-total-001"} {
+	for _, id := range []string{"independent-scaled-copy-001", "value-average-001", "category-total-001", "gcd-reduction-001"} {
 		t.Run(id, func(t *testing.T) {
 			canonical := filepath.Join(root, "tasks", "ready", id)
 			before, err := tasking.TaskContentDigest(canonical)
@@ -171,7 +172,11 @@ func TestReviewedToleranceFixturesPassLearnerVerification(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			if err := os.WriteFile(filepath.Join(workspace, "subject", "subject.go"), content, 0600); err != nil {
+			filename := "subject.go"
+			if id == "gcd-reduction-001" {
+				filename = "implementation.go"
+			}
+			if err := os.WriteFile(filepath.Join(workspace, "subject", filename), content, 0600); err != nil {
 				t.Fatal(err)
 			}
 			public, err := service.Check()

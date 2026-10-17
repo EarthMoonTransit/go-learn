@@ -452,6 +452,24 @@ tasks:
         detected: 5
         survived: []
       legacy: false
+    - id: conditional-binding-001
+      state: ready
+      input_digest: f5baf75a92ee761c893871f1eb1dbdf6a84c71633895c17f0fb30c657783b1e6
+      task_type: debug
+      primary_skill: types.declarations-inference
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 4
+        total: 4
+        detected: 4
+        survived: []
+      legacy: false
     - id: constant-kinds-001
       state: ready
       input_digest: 58f9968bbb2f378a9bb12558da4695894afac2251337635b9486dd4acf73d3f4
@@ -1122,6 +1140,24 @@ tasks:
         detected: 6
         survived: []
       legacy: false
+    - id: gcd-reduction-001
+      state: ready
+      input_digest: 42dfd86d5b755705c2e3bc3f0cf26b0d2ad5a9786a7bd1b8f17b3d021d8e00ab
+      task_type: implement
+      primary_skill: control-flow.for
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 7
+        total: 7
+        detected: 7
+        survived: []
+      legacy: false
     - id: generic-find-tests-001
       state: ready
       input_digest: bc3ef42e3968df7e303255e2ba5c404d5c948b8c668782bd1b6dca4b01709fd3
@@ -1361,6 +1397,24 @@ tasks:
       input_digest: d721760945132f6f88a7da89a6b7c1c90a0a467ad27dcd1f34514d665b5e9430
       task_type: implement
       primary_skill: control-flow.if
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 5
+        total: 5
+        detected: 5
+        survived: []
+      legacy: false
+    - id: lazy-probe-001
+      state: ready
+      input_digest: c689bf5392707c7ced3150a9b8ee5eaf7ec7d42746bc279365065ef64927b60f
+      task_type: implement
+      primary_skill: expressions.boolean-logic
       technical_status: pass
       review_status: pass
       promotion_eligible: true
@@ -1790,7 +1844,7 @@ tasks:
       legacy: false
     - id: prepend-values-tests-001
       state: ready
-      input_digest: 9ae3ec0741518df4d77faee8b065b6485d686a48648911cb846df368b8207415
+      input_digest: adefa616db67ea0c7189e6d3f0d708c552a79342592bd6b295a01d74d6f057c7
       task_type: test-writing
       primary_skill: functions.variadic
       technical_status: pass
@@ -1822,6 +1876,24 @@ tasks:
         required: 5
         total: 5
         detected: 5
+        survived: []
+      legacy: false
+    - id: quadrant-switch-001
+      state: ready
+      input_digest: 112118ec76f903ed8208f4627ddaf132271a432b15fb74e7075264d566994273
+      task_type: implement
+      primary_skill: control-flow.switch
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
         survived: []
       legacy: false
     - id: quantity-presence-001
@@ -2950,16 +3022,16 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 154
+      count: 158
     - state: rejected
       count: 1
     - state: retired
       count: 0
 task_types:
     - task_type: debug
-      count: 38
+      count: 39
     - task_type: implement
-      count: 81
+      count: 84
     - task_type: refactor
       count: 3
     - task_type: test-writing

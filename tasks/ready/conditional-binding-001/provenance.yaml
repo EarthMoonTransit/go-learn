@@ -1,0 +1,21 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "pedagogical-c1-author",
+    "created_at": "2026-10-17",
+    "summary": "Original repair assignment across a conditional block contract, API, examples, tests and defect models. Approved S1 topic/fact review supplied no external task content."
+  },
+  "kind": "original",
+  "project": {
+    "content_digest": "ba5b75d999ebe962bd8633639cc4b2154ba16d68c06915a919960fd515a0843b",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/conditional-binding-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": []
+}
