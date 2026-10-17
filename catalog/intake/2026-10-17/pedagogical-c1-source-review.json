@@ -1,0 +1,168 @@
+{
+  "format": "go-learn-pedagogical-source-review/v1",
+  "reviewed_at": "2026-10-17",
+  "repository_baseline": "7b958d84bfa299e501fdcbc414d8631350be546d",
+  "planning_baseline": "b9790106edc3d4c7f57e26d5f45dc1960f022c6c",
+  "status": "approved-for-original-authoring",
+  "coverage_eligible": false,
+  "new_ready_tasks": 0,
+  "boundary": "Bounded source selection and authoring reasons only; no task bodies, new broad upstream admissions, registry expansion, source code execution or learner state access.",
+  "verified_sources": [
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "fd62bda91923cb60d78846f3038f14cc312ff62b93915d88a4434b92c366fe54"
+        },
+        {
+          "path": "topics/go/language/variables/exercises/template1/template1.go",
+          "sha256": "572ff0d17b5c0e433b8785d3c191491c9fed39025fec2eb9205cbb94be5d506b"
+        },
+        {
+          "path": "topics/go/language/functions/exercises/template1/template1.go",
+          "sha256": "e2989b719af158d088f20a706d93e971bb29b5a711fc07b0defb64116743f5d6"
+        },
+        {
+          "path": "topics/go/language/control_flow/exercises/template1/template1.go",
+          "sha256": "e211d011ecd7bd6224e11ff058efd19d69066c94fa3af87633316c4e891c868b"
+        }
+      ]
+    },
+    {
+      "registry_id": "golang-go",
+      "commit": "2c31595783c74564c1299a5401dc6e606f379cc7",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "PATENTS",
+          "sha256": "96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+        },
+        {
+          "path": "doc/go_spec.html",
+          "sha256": "338875c4ee9c47d1ea9518b5373ff5e9bd133ba78692cbf16dac0756e896e288"
+        }
+      ]
+    }
+  ],
+  "ardan_search": {
+    "scope": "topics/go/language/*/exercises/template*/*.go",
+    "template_count": 14,
+    "search_terms": [
+      "scope",
+      "shadow",
+      "greatest",
+      "gcd",
+      "short.circuit",
+      "expressionless",
+      "switch"
+    ],
+    "keyword_matches": 0,
+    "bodies_read": [
+      "topics/go/language/variables/exercises/template1/template1.go",
+      "topics/go/language/functions/exercises/template1/template1.go",
+      "topics/go/language/control_flow/exercises/template1/template1.go"
+    ],
+    "answer_bodies_read": false,
+    "ancestor_notice_files": [
+      "LICENSE"
+    ],
+    "claim": "No suitable contract in this bounded set; not a claim about every external repository."
+  },
+  "semantic_reference": {
+    "registry_id": "golang-go",
+    "commit": "2c31595783c74564c1299a5401dc6e606f379cc7",
+    "path": "doc/go_spec.html",
+    "sha256": "338875c4ee9c47d1ea9518b5373ff5e9bd133ba78692cbf16dac0756e896e288",
+    "anchors": [
+      "Declarations_and_scope",
+      "Short_variable_declarations",
+      "Logical_operators",
+      "For_statements",
+      "Expression_switches"
+    ],
+    "usage": "facts-only; no example, statement, case, implementation or test copying"
+  },
+  "existing_admissions": [
+    {
+      "proposal_id": "E01",
+      "task_id": "clamp-tests-001",
+      "decision": "reuse-previous-admission",
+      "current_content_digest": "8f1012bd993cac539813d6658a24ef7d12d5b887b52a3165835172eedc3e08c8",
+      "provenance_path": "tasks/ready/clamp-tests-001/provenance.yaml",
+      "attribution_path": "tasks/ready/clamp-tests-001/ATTRIBUTION.md"
+    },
+    {
+      "proposal_id": "E02",
+      "task_id": "prepend-values-tests-001",
+      "decision": "reuse-previous-admission",
+      "current_content_digest": "334ffccf8a0b227463a7ef227e02709e0278961f074d32bef639cbcc4aa050f6",
+      "prepared_target_digest": "bc2c7c7028ae1e42ea2bf5144995a5f9698e095b81f86fa1e6f8192e5bff98b8",
+      "content_release": "after exact compatibility tooling",
+      "provenance_path": "tasks/ready/prepend-values-tests-001/provenance.yaml",
+      "attribution_path": "tasks/ready/prepend-values-tests-001/ATTRIBUTION.md"
+    }
+  ],
+  "original_candidates": [
+    {
+      "proposal_id": "P01",
+      "contract_label": "scope-repair",
+      "decision": "original-reason-approved-for-authoring",
+      "reason": "Current literal bindings assess types, not a nested-block assignment that must affect the returned outer value. The bounded Ardan variables template asks for zero/literal declarations and conversion; functions asks for struct/pointer/error returns. Neither supplies the planned shadowing repair contract.",
+      "authoring_contract": "ADR 0008 creation record, actual authored digest and empty external sources; no invented original commit; release binding deferred until actual release.",
+      "external_task_sources": [],
+      "project_identity": "config/project-identity.yaml"
+    },
+    {
+      "proposal_id": "P02",
+      "contract_label": "observable-lazy-gate",
+      "decision": "original-reason-approved-for-authoring",
+      "reason": "Current access-logic and boolean-policies take already-computed booleans. The selected Ardan control-flow unit is an if-based input/classification program; it has no supplied probe or observable evaluation count. A separate original contract isolates laziness without asking the learner to author callbacks.",
+      "authoring_contract": "ADR 0008 creation record, actual authored digest and empty external sources; no invented original commit; release binding deferred until actual release.",
+      "external_task_sources": [],
+      "project_identity": "config/project-identity.yaml"
+    },
+    {
+      "proposal_id": "P03",
+      "contract_label": "condition-only-gcd",
+      "decision": "original-reason-approved-for-authoring",
+      "reason": "Current exclusive-loop repairs a counting boundary. The bounded allowed template inventory and closest control-flow unit contain no GCD/remainder-reduction exercise. A new original bounded numeric contract supplies decreasing two-variable state; restricted binary-search/algorithm sources are not used as substitutes.",
+      "authoring_contract": "ADR 0008 creation record, actual authored digest and empty external sources; no invented original commit; release binding deferred until actual release.",
+      "external_task_sources": [],
+      "project_identity": "config/project-identity.yaml"
+    },
+    {
+      "proposal_id": "P04",
+      "contract_label": "expressionless-switch-priority",
+      "decision": "original-reason-approved-for-authoring",
+      "reason": "Current encoded-width uses a tagged-switch starter but accepts equivalent dispatch implementations. TokenValue maps exact string tokens and does not require expressionless switch construction or overlapping-case priority. The selected Ardan flow-control template only requires if statements and has no expressionless-switch contract. Original coordinate classification will use independently authored inputs and tokens.",
+      "authoring_contract": "ADR 0008 creation record, actual authored digest and empty external sources; no invented original commit; release binding deferred until actual release.",
+      "external_task_sources": [],
+      "project_identity": "config/project-identity.yaml"
+    }
+  ],
+  "planning_artifacts": [
+    {
+      "path": "review.md",
+      "sha256": "feeb94b28e1afbfe3097c45a9537d41f03600fa4697d4ce5750c18c0cb7b2fa5"
+    },
+    {
+      "path": "proposals.json",
+      "sha256": "d21148efff3138f0ee07b85db89831c744649473c16ed002a8261342b00c6561"
+    },
+    {
+      "path": "metadata-review.json",
+      "sha256": "33a2c167b752252989d0247994aa517dcb0779db54023ac651312f1f3bf2cc25"
+    }
+  ],
+  "independent_review": {
+    "reviewer": "/root/clamp_e01_content_review",
+    "reviewed_at": "2026-10-17",
+    "decision": "approve",
+    "scope": "Bounded source/hash/license facts, reuse of historical local admissions, and four original-authoring reasons; not new upstream adaptation, future content approval, promotion or executable acceptance."
+  }
+}

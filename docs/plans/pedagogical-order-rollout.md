@@ -19,17 +19,21 @@ policy and T-FUZZ/T-BENCH/T-MODULE stay subsequent work, as specified in that pl
 - Exact Clamp content-revision compatibility: PR #68.
 - E01/M1 Clamp starter/hints and coordinated secondary: PR #69, merged at
   `49c6202c1c09f7462a98746a0ace883192a24b49`.
+- M1 actual PointerChain/DiagnosticHelper/NamedCases prerequisites: PR #70,
+  merged at `63a0a8f47573959c7b307c9e50fbf504d013ac34`.
 
 ## Remaining execution checklist
 
-- [ ] M1: PointerChain mutation-sharing prerequisite; DiagnosticHelper interface
+- [x] M1: PointerChain mutation-sharing prerequisite; DiagnosticHelper interface
   and variadic prerequisites; NamedCases function-value/struct/slice prerequisites.
 - [ ] M1/T0b: DetachedAppend variadic prerequisite. Its 02.07 stable address
   precedes Prepend 03.10; apply with execution-order separation, preserving the
   current route until activation. Review the conditional ValueAverage secondary
   explicitly; it is not an automatic tag addition.
-- [ ] S1: bounded source decisions for E02 and P01–P04. Reuse E01's admitted
+- [x] S1: bounded source decisions for E02 and P01–P04. Reuse E01's admitted
   lineage; record exact artifacts or specific original reasons before authoring.
+  Independent source review approved the decisions recorded in
+  `reports/pedagogical-c1-source-review.md`; future content acceptance is separate.
 - [ ] C1/E02: both public variadic call examples in Prepend, with old-workspace
   compatibility before changing authored content.
 - [ ] C1/P01: scope exercise.
