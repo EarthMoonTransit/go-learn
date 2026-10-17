@@ -30,7 +30,17 @@ Fifteen reviewed preparations receive append-only addresses; every original
 workspaces. See [ADR 0030](adr/0030-active-pedagogical-order.md) and the
 [implementation audit](../reports/pedagogical-order-activation-audit.md).
 This preparation rollout does not claim complete foundation coverage or public
-export. P17–P25 Later, M2 and T-FUZZ/T-BENCH/T-MODULE remain subsequent work.
+export. P17, P19–P25 Later, M2 and T-FUZZ/T-BENCH/T-MODULE remain subsequent work.
+P18 preparation adds `mapped-records-001` at append-only **07.22**, bringing the
+configured route to **167 ready lessons** after its reviewed PR is merged. Its
+execution position follows Reduce and precedes type sets. The learner declares
+two independent generic parameters and preserves both types; prior Find/Reduce
+signatures were supplied. Birsi Task9.2 is narrowly admitted by PR83; this task
+retains its exact source/license evidence and passes public feedback review.
+The 167-lesson route contains 86 substantive adaptations, 75 originals and six
+concept-seed tasks; seeds are excluded from substantive reuse. Distinct assessed
+skills remain 104 of 142. No foundation release/export or new assessed skill is
+claimed.
 The milestone ledger below remains historical.
 
 | Milestone | Product result | Definition of Done |

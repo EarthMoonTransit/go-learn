@@ -12,7 +12,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | --- | ---: |
 | `draft` | 6 |
 | `in-review` | 0 |
-| `ready` | 169 |
+| `ready` | 170 |
 | `rejected` | 1 |
 | `retired` | 0 |
 
@@ -21,7 +21,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | Type | Count |
 | --- | ---: |
 | `debug` | 41 |
-| `implement` | 91 |
+| `implement` | 92 |
 | `refactor` | 3 |
 | `test-writing` | 41 |
 
@@ -123,6 +123,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | `map-entry-tests-001` | `ready` | `fce4bec49cf27f12dd6a906e1ba472bc03ffb6a6bd914394d97dd69074570e37` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 7/7 | Phase 3A |
 | `map-presence-001` | `ready` | `1176159b03d075b29248e549fb4fb491226cb9b3052af7f5f34b1f2cd36ff315` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
 | `map-take-001` | `ready` | `64f402f223a3dc715b7d42af2c5cc7aee306806f4560984a76cfb4de6985291f` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
+| `mapped-records-001` | `ready` | `44db24936623ce081cdbb0b965f7cf473b089eafc5a3b129052215f58f32b5b2` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 16/16 | Phase 3A |
 | `merge-two-streams-001` | `ready` | `106b45098c5bda401d81d91aedb0acb98d11e8d09294f0d6466ee6d35f91d43a` | `pass` | `pass` | true | `pass` | `pass` | `pass` | 7/7 | Phase 3A |
 | `month-enumeration-001` | `ready` | `5ea7611478cd6369acd616016cc8506fee0489fcb16977eec69a13700fab0197` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 5/5 | Phase 3A |
 | `mutex-counter-001` | `ready` | `052d66d430b11f613668026bf90cf46f48acd2283cadcddb789cde067ab15306` | `pass` | `pass` | true | `pass` | `pass` | `pass` | 5/5 | Phase 3A |

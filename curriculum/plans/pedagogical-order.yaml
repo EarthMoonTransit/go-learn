@@ -47,4 +47,6 @@ exposure_edges:
   - {before_task_id: clamp-tests-001, task_id: lazy-probe-001}
   - {before_task_id: merge-two-streams-001, task_id: cancelable-forward-001}
   - {before_task_id: writer-double-001, task_id: resource-finalize-001}
+  - {before_task_id: generic-reduce-001, task_id: mapped-records-001}
+  - {before_task_id: mapped-records-001, task_id: named-numeric-constraint-001}
 pending_preparation: []

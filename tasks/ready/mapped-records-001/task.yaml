@@ -1,0 +1,60 @@
+schema_version: 2
+id: mapped-records-001
+title: Declare a two-type mapping function
+activity: implementation
+submission:
+    kind: workspace-patch
+    editable_paths:
+        - subject/implementation.go
+    workspace_skeleton:
+        - subject/api.go
+skills:
+    primary: generics.type-parameters-inference
+    secondary: []
+prerequisites:
+    - control-flow.for
+    - functions.function-values
+    - functions.signatures-results
+    - slices.header-model
+    - structs.literals-zero
+    - types.named-underlying
+new_concepts: []
+difficulty: basic
+estimated_time_minutes:
+    min: 20
+    max: 35
+verification:
+    profile: workspace-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - no-type-parameters
+        - erased-input-type
+        - erased-output-type
+        - comparable-input
+        - restricted-output
+        - zero-input
+        - zero-output
+        - reverse-result
+        - reverse-calls
+        - double-call
+        - skip-last
+        - empty-call
+        - overwrite-input
+        - boxed-values
+        - reflection
+        - goroutine-call
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
