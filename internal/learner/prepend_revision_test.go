@@ -208,9 +208,11 @@ func TestPrependRevisionPreservesHistoricalWorkspace(t *testing.T) {
 							t.Fatalf("saved learner bytes changed: %s, %v", path, err)
 						}
 					}
-					progress, err := s.Progress()
+					// Progress() projects elapsed time after Resume. Inspect the
+					// persisted accumulated work that the revision must preserve.
+					progress, err := loadProgress(s.home)
 					if err != nil || !reflect.DeepEqual(progress.Completions, p.Completions) || !reflect.DeepEqual(progress.Tasks[id].SkillEncounters, item.SkillEncounters) || progress.Tasks[id].Attempts != 7 || progress.Tasks[id].ActivitySeconds != 420 || !slices.Equal(progress.Tasks[id].UsedHints, []int{1}) {
-						t.Fatal("revision changed saved evidence, attempts or hints", err)
+						t.Fatalf("revision changed saved evidence, time, attempts or hints: %+v, %v", progress.Tasks[id], err)
 					}
 				})
 			}
