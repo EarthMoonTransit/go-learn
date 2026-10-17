@@ -108,6 +108,9 @@ func TestNilViewPublicFeedbackAndCompatibility(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	// Reuse this test's disposable compiler cache across its public/full checks.
+	// Each verification still assembles a fresh execution module.
+	s.verify = integrationVerifier(t, root)
 	workspace, err := s.Start(id)
 	if err != nil {
 		t.Fatal(err)
