@@ -18,7 +18,7 @@ import (
 
 const pedagogicalPlanPath = "curriculum/plans/pedagogical-order.yaml"
 
-// PedagogicalPlan is inactive planning input, never a scheduler or address registry.
+// PedagogicalPlan selects a validated execution order; route v2 owns addresses.
 type PedagogicalPlan struct {
 	SchemaVersion      int                  `yaml:"schema_version"`
 	Status             string               `yaml:"status"`
@@ -95,8 +95,8 @@ func loadPedagogicalPlan(root string) (PedagogicalPlan, []PedagogicalEntry, erro
 	if err := decoder.Decode(&extra); err != io.EOF {
 		return plan, nil, errors.New("pedagogical plan must contain exactly one document")
 	}
-	if plan.SchemaVersion != 1 || plan.Status != "inactive" {
-		return plan, nil, errors.New("pedagogical plan requires schema_version 1 and explicit status inactive; activation is unsupported")
+	if !((plan.SchemaVersion == 1 && plan.Status == "inactive") || (plan.SchemaVersion == 2 && (plan.Status == "inactive" || plan.Status == "active"))) {
+		return plan, nil, errors.New("pedagogical plan requires v1 inactive or v2 explicit active/inactive status")
 	}
 	if !regexp.MustCompile(`^[0-9a-f]{40}$`).MatchString(plan.BaselineCommit) {
 		return plan, nil, errors.New("pedagogical plan requires an exact baseline commit")
@@ -135,14 +135,25 @@ func parsePedagogicalMapping(content []byte) ([]PedagogicalEntry, error) {
 	}
 }
 
-// PedagogicalPreview reuses the current read-only roadmap and actual catalog.
-// Only this explicit entry point loads the sidecar; Next and UI remain unchanged.
+// Preview reads raw addresses and validates the proposed order even when the
+// configured active order cannot run. It never saves or upgrades learner state.
 func (s *Service) PedagogicalPreview() (PedagogicalPreview, error) {
 	plan, entries, err := loadPedagogicalPlan(s.root)
 	if err != nil {
 		return PedagogicalPreview{}, err
 	}
-	roadmap, err := s.Roadmap()
+	route, err := loadRouteMetadata(s.root)
+	if err != nil {
+		return PedagogicalPreview{}, err
+	}
+	if route == nil {
+		return PedagogicalPreview{}, errors.New("no curriculum route is configured")
+	}
+	tasks, progress, err := s.ListTasks()
+	if err != nil {
+		return PedagogicalPreview{}, err
+	}
+	catalog, err := routeCatalogMetadata(*route, tasks)
 	if err != nil {
 		return PedagogicalPreview{}, err
 	}
@@ -150,7 +161,7 @@ func (s *Service) PedagogicalPreview() (PedagogicalPreview, error) {
 	if err != nil {
 		return PedagogicalPreview{}, err
 	}
-	return validatePedagogicalOrder(plan, entries, roadmap, skills), nil
+	return validatePedagogicalOrder(plan, entries, Roadmap{Route: *route, Tasks: catalog, Progress: progress}, skills), nil
 }
 
 func validatePedagogicalOrder(plan PedagogicalPlan, entries []PedagogicalEntry, roadmap Roadmap, skills map[string]SkillMetadata) PedagogicalPreview {
@@ -291,9 +302,16 @@ func validatePedagogicalOrder(plan PedagogicalPlan, entries []PedagogicalEntry, 
 }
 
 func writePedagogicalPreview(output io.Writer, preview PedagogicalPreview) {
-	fmt.Fprintf(output, "Pedagogical plan: %s (activation disabled)\nBaseline reference: %s\nMapping: %d rows; current route: %d tasks\n", preview.Plan.Status, preview.Plan.BaselineCommit, len(preview.Lessons), preview.RoutedCount)
+	status := preview.Plan.Status + " (activation disabled)"
+	if preview.Plan.Status == "active" {
+		status = "active (used by the existing scheduler)"
+	}
+	fmt.Fprintf(output, "Pedagogical plan: %s\nBaseline reference: %s\nMapping: %d rows; current route: %d tasks\n", status, preview.Plan.BaselineCommit, len(preview.Lessons), preview.RoutedCount)
 	fmt.Fprintf(output, "Structural validity: %t; preparation ready: %t\n", preview.Valid(), preview.PreparationReady())
-	fmt.Fprintln(output, "Exposure checks use the proposed sequence, not learner mastery. Next still uses the existing route.")
+	fmt.Fprintln(output, "Exposure checks use the explicit sequence, not learner mastery.")
+	if preview.Plan.Status == "inactive" {
+		fmt.Fprintln(output, "Next still uses the existing route.")
+	}
 	for _, issue := range preview.StructuralIssues {
 		fmt.Fprintf(output, "INVALID: %s\n", issue)
 	}

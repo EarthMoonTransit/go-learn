@@ -127,7 +127,7 @@ func TestPedagogicalExposureUsesManifestTaxonomyAndReviewedEdges(t *testing.T) {
 	}
 }
 
-func TestPedagogicalLoaderIsStrictAndInactive(t *testing.T) {
+func TestPedagogicalLoaderSupportsExplicitVersionedActivation(t *testing.T) {
 	p, _, _, _ := syntheticPedagogicalPlan()
 	content, err := yaml.Marshal(p)
 	if err != nil {
@@ -141,7 +141,9 @@ func TestPedagogicalLoaderIsStrictAndInactive(t *testing.T) {
 		{"BOM CRLF quoted CSV", string(content), validCSV, true},
 		{"active", strings.Replace(string(content), "inactive", "active", 1), validCSV, false},
 		{"missing status", strings.Replace(string(content), "status: inactive\n", "", 1), validCSV, false},
-		{"version", strings.Replace(string(content), "schema_version: 1", "schema_version: 2", 1), validCSV, false},
+		{"v2 inactive", strings.Replace(string(content), "schema_version: 1", "schema_version: 2", 1), validCSV, true},
+		{"v2 active", strings.Replace(strings.Replace(string(content), "schema_version: 1", "schema_version: 2", 1), "inactive", "active", 1), validCSV, true},
+		{"version", strings.Replace(string(content), "schema_version: 1", "schema_version: 3", 1), validCSV, false},
 		{"short commit", strings.Replace(string(content), p.BaselineCommit, "aaaa", 1), validCSV, false},
 		{"unknown YAML field", string(content) + "scheduler: enabled\n", validCSV, false},
 		{"duplicate YAML field", string(content) + "status: inactive\n", validCSV, false},
@@ -181,7 +183,7 @@ func TestRepositoryPedagogicalMappingAndKnownBlockers(t *testing.T) {
 		t.Fatal(err)
 	}
 	// Supplied route-mapping.csv from the review, copied byte-for-byte.
-	content, err := os.ReadFile(filepath.Join(s.root, p.MappingFile))
+	content, err := os.ReadFile(filepath.Join(s.root, "curriculum/plans/pedagogical-order.csv"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -197,7 +199,7 @@ func TestRepositoryPedagogicalMappingAndKnownBlockers(t *testing.T) {
 		t.Fatal(err)
 	}
 	preview := validatePedagogicalOrder(p, entries, roadmap, skills)
-	if !preview.Valid() || preview.PreparationReady() || len(entries) != 151 || preview.RoutedCount != 151 || p.Status != "inactive" {
+	if !preview.Valid() || !preview.PreparationReady() || len(entries) != 166 || preview.RoutedCount != 166 || p.Status != "active" {
 		t.Fatalf("preview=%+v", preview)
 	}
 	formal := map[string][]string{}
@@ -222,24 +224,24 @@ func TestRepositoryPedagogicalMappingAndKnownBlockers(t *testing.T) {
 		t.Fatal("Clamp's manifest must match its reviewed route secondary")
 	}
 	for id, want := range map[string][]string{
-		"clamp-tests-001": nil, "prepend-values-tests-001": nil, "shape-contract-tests-001": {"P05"},
+		"clamp-tests-001": nil, "prepend-values-tests-001": nil, "shape-contract-tests-001": nil,
 		"pointer-chain-001": nil, "diagnostic-helper-001": nil, "named-cases-001": nil,
-		"detached-append-001": {"M1"},
-		"capture-panic-001":   {"P06", "P07"}, "worker-completion-tests-001": {"P11", "P12", "P13"},
+		"detached-append-001": nil,
+		"capture-panic-001":   nil, "worker-completion-tests-001": nil,
 	} {
 		if !reflect.DeepEqual(pending[id], want) {
 			t.Fatalf("%s gates=%v want=%v", id, pending[id], want)
 		}
 	}
-	for _, id := range []string{"defined-types-001", "zero-state-001", "variadic-sum-001", "formatter-contract-001", "resource-finalize-001", "typed-nil-resource-001", "P13"} {
+	for _, id := range []string{"defined-types-001", "zero-state-001", "variadic-sum-001", "typed-nil-resource-001", "P13"} {
 		if ids[id] {
 			t.Fatalf("legacy/draft/rejected/proposal entered mapping: %s", id)
 		}
 	}
 	// A real route addition is reported, never discarded to force the baseline count.
-	roadmap.Route.Blocks[8].Steps = append(roadmap.Route.Blocks[8].Steps, RouteStep{Number: 10, TaskID: "added-task-001", Role: "practice", Skills: []string{"types.zero-values"}})
+	roadmap.Route.Blocks[8].Steps = append(roadmap.Route.Blocks[8].Steps, RouteStep{Number: 15, TaskID: "added-task-001", Role: "practice", Skills: []string{"types.zero-values"}})
 	changed := validatePedagogicalOrder(p, entries, roadmap, skills)
-	if changed.RoutedCount != 152 || changed.Valid() || !slices.Contains(changed.StructuralIssues, "missing current route task ID added-task-001") {
+	if changed.RoutedCount != 167 || changed.Valid() || !slices.Contains(changed.StructuralIssues, "missing current route task ID added-task-001") {
 		t.Fatal(changed)
 	}
 	// Check all stable block IDs/numbers, lesson numbers, roles and IDs independently
@@ -248,10 +250,14 @@ func TestRepositoryPedagogicalMappingAndKnownBlockers(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	originalIDs := map[string]bool{}
+	for _, line := range strings.Split(strings.TrimSpace(string(baseline)), "\n") {
+		originalIDs[strings.Split(line, "\t")[2]] = true
+	}
 	var current bytes.Buffer
 	for _, block := range roadmap.Route.Blocks {
 		for _, step := range block.Steps {
-			if step.TaskID != "added-task-001" {
+			if originalIDs[step.TaskID] {
 				fmt.Fprintf(&current, "%s\t%s\t%s\t%s\n", lessonNumber(block, step), block.ID, step.TaskID, step.Role)
 			}
 		}

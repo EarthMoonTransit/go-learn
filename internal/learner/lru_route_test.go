@@ -166,6 +166,18 @@ func TestLRURouteReadOnlyViewsPreserveWorkspaces(t *testing.T) {
 	if err := isolation.CopyFile(filepath.Join(repository, "docs/LEARNER_START.md"), filepath.Join(root, "docs/LEARNER_START.md")); err != nil {
 		t.Fatal(err)
 	}
+	// This historical address fixture deliberately has only one ready package.
+	// Keep its scheduler inactive; active-order compatibility is exercised by
+	// TestActivationKeepsPausedAndLegacyWorkspaceBytesAndIDETargets with a fully
+	// prepared bounded mapping and catalog.
+	planPath := filepath.Join(root, pedagogicalPlanPath)
+	planBytes, err := os.ReadFile(planPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(planPath, []byte(strings.Replace(string(planBytes), "status: active", "status: inactive", 1)), 0600); err != nil {
+		t.Fatal(err)
+	}
 	for _, version := range []int{1, 2, 3} {
 		t.Run(fmt.Sprint(version), func(t *testing.T) {
 			s := uiTestService(t, "")

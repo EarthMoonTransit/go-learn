@@ -74,7 +74,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | `deferred-release-001` | `ready` | `0425925af63f23729cd22a9e89c032b89cf110b1fbac134bd7f37ecbfb0d078f` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 5/5 | Phase 3A |
 | `defined-types-001` | `ready` | `0cd8a2a6356e2826df95291f24362e30e819dac0b978660f73a2000c600ecee5` | `pass` | `not-applicable` | false | `not-applicable` | `not-applicable` | `not-applicable` | 0/0 | legacy v1 |
 | `deposit-state-tests-001` | `ready` | `6207a131932ebe760d17fb460c080f3e8e5198981bbbc961ec0c0a06531d258a` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
-| `detached-append-001` | `ready` | `84978f222ca0720f533f368eaf8d624b6abd76ab2325dd66095e7d49d42ac0f4` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
+| `detached-append-001` | `ready` | `3e46dd0d0cfd03b9248b7198e0fae86f759cacebafa4433c40124432440d152c` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
 | `detached-prefix-001` | `ready` | `c8a88c025e88c667bb853abc52b9c71e134b3424019bc734977c4a5f791325b5` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 5/5 | Phase 3A |
 | `diagnostic-helper-001` | `ready` | `e9fd61c94e80c057a629ef2ad5da27f4380c6c4db9b51f6507fcac0aeb2a5ba8` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 5/5 | Phase 3A |
 | `dictionary-add-tests-001` | `ready` | `2fcae7df3448bf43d8da8269fec6fc0f8b938778882cae5c88b2fcf9d83dea55` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 9/9 | Phase 3A |
@@ -198,7 +198,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | `uppercase-label-001` | `ready` | `2276c6a5ebe99306f9029781b0caee91cd7af4b259ac1aed4075ac3eaa8b6377` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
 | `utf8-prefix-001` | `draft` | `8c886afec980b095109e40920dc0be09d2c7e4193d540ed20a06a027a584b940` | `pass` | `fail` | true | `pass` | `pass` | `not-applicable` | 4/4 | Phase 3A |
 | `utf8-validity-tests-001` | `ready` | `7521034ff9966ad08c449b42b6cecbea8803be2247e55d0fc10f28b49bf60512` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 11/11 | Phase 3A |
-| `value-average-001` | `ready` | `5dddf942f448aeb11ae72de839e1154a4fcd5ee021e8b622b06cde78b6e0eaae` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 8/8 | Phase 3A |
+| `value-average-001` | `ready` | `b488b197f644fd744d1800e3f72e95e8c713edf089f194eab2fd6103ef4397e1` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 8/8 | Phase 3A |
 | `variadic-aliasing-001` | `ready` | `bb1ba5323d23bee505fb0bb997dd09a67885d4158f741536da4b0210fb5a0bb8` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 5/5 | Phase 3A |
 | `variadic-sum-001` | `ready` | `1305171956370f5174a87d56a0d7a768e7ae070070c03efa22fe806146810358` | `pass` | `not-applicable` | false | `not-applicable` | `not-applicable` | `not-applicable` | 0/0 | legacy v1 |
 | `variadic-tail-sums-001` | `ready` | `cc663cdbe4a2af0329eef8e44691e87c8662f3a7989665f5b08eec76c99d18eb` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 7/7 | Phase 3A |

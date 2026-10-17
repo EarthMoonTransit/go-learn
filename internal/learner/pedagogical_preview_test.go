@@ -34,6 +34,9 @@ func boundedPedagogicalService(t *testing.T) *Service {
 	if err != nil {
 		t.Fatal(err)
 	}
+	// These historical T0a fixtures explicitly exercise inactive preview policy.
+	plan.SchemaVersion = 1
+	plan.Status = "inactive"
 	skills, err := activeRouteSkills(s.root)
 	if err != nil {
 		t.Fatal(err)
@@ -343,16 +346,16 @@ func TestPedagogicalPreviewCLIShowsStableAddressesAndBlockers(t *testing.T) {
 		t.Fatalf("code=%d: %s", code, &diagnostics)
 	}
 	for _, text := range []string{
-		"inactive (activation disabled)", "Mapping: 151 rows; current route: 151 tasks", "Structural validity: true; preparation ready: false",
-		"Position 15 | C02", "Address 03.30 | decision-table-tests-001 | transfer", "Address 03.26 | constant-value-tests-001 | practice",
-		"PENDING P05", "PENDING P06", "PENDING P07",
-		"Position 143 | C14", "Address 09.01 | worker-completion-tests-001 | introduction", "PENDING P11", "PENDING P12", "PENDING P13",
+		"active (used by the existing scheduler)", "Mapping: 166 rows; current route: 166 tasks", "Structural validity: true; preparation ready: true",
+		"Address 03.30 | decision-table-tests-001 | transfer", "Address 03.26 | constant-value-tests-001 | practice",
+		"Address 09.01 | worker-completion-tests-001 | introduction",
+		"Address 09.10 | launch-provided-job-001 | introduction", "Address 09.14 | timeout-operation-001 | introduction",
 	} {
 		if !strings.Contains(output.String(), text) {
 			t.Fatalf("missing %q in preview", text)
 		}
 	}
-	for _, resolved := range []string{"BLOCKED:", "PENDING E01/M1", "PENDING E02"} {
+	for _, resolved := range []string{"BLOCKED:", "PENDING "} {
 		if strings.Contains(output.String(), resolved) {
 			t.Fatalf("resolved blocker remains in preview: %s", resolved)
 		}
@@ -444,7 +447,7 @@ func TestPedagogicalPreviewKeepsUIWorkspaceAndGoLandTargets(t *testing.T) {
 	}
 }
 
-func TestProductionReadOnlyPathsIgnoreMalformedPedagogicalPlan(t *testing.T) {
+func TestInvalidActivePlanBlocksNextButPreservesAddressReads(t *testing.T) {
 	s := goLandTestService(t)
 	if err := os.WriteFile(filepath.Join(s.root, pedagogicalPlanPath), []byte("schema_version: 99\nstatus: active\n"), 0600); err != nil {
 		t.Fatal(err)
@@ -456,13 +459,17 @@ func TestProductionReadOnlyPathsIgnoreMalformedPedagogicalPlan(t *testing.T) {
 	if _, err := s.PedagogicalPreview(); err == nil {
 		t.Fatal("unsupported active plan accepted")
 	}
-	for _, args := range [][]string{{"next"}, {"roadmap"}, {"show", "literal-bindings-001"}} {
+	var nextOut, nextDiagnostics bytes.Buffer
+	if code := RunCLI(Config{Root: s.root, Home: s.home}, []string{"next"}, &nextOut, &nextDiagnostics); code == 0 {
+		t.Fatal("invalid active plan selected a lesson")
+	}
+	for _, args := range [][]string{{"roadmap"}, {"show", "literal-bindings-001"}} {
 		var out, diagnostics bytes.Buffer
 		if code := RunCLI(Config{Root: s.root, Home: s.home}, args, &out, &diagnostics); code != 0 || !strings.Contains(out.String(), "01.01") {
 			t.Fatalf("production %v: code=%d %s", args, code, &diagnostics)
 		}
 	}
-	if view, err := s.CourseView(); err != nil || view.NextTaskID != "literal-bindings-001" {
+	if view, err := s.CourseView(); err != nil || view.NextTaskID != "" {
 		t.Fatal(view, err)
 	}
 	after, err := workspaceTree(s.home, "")

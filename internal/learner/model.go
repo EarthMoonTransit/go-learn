@@ -73,6 +73,7 @@ type SkillMetadata struct {
 }
 
 type SchedulerChoice struct {
+	Reason               string
 	ReviewSkill          string
 	LessonNumber         string
 	Resume               bool

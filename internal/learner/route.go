@@ -22,6 +22,8 @@ type Route struct {
 	Preparation       string       `yaml:"preparation"`
 	PreparationSkills []string     `yaml:"preparation_skills"`
 	Blocks            []RouteBlock `yaml:"blocks"`
+	execution         []routeLesson
+	pedagogical       bool
 }
 type RouteBlock struct {
 	Number int         `yaml:"number,omitempty"`
@@ -41,7 +43,41 @@ type Roadmap struct {
 	Progress Progress
 }
 
-func loadRoute(root string) (*Route, error) {
+func loadSchedulingRoute(root string) (*Route, error) {
+	route, err := loadRouteMetadata(root)
+	if err != nil {
+		return nil, err
+	}
+	if route == nil {
+		status, exists, err := configuredPedagogicalStatus(root)
+		if err != nil {
+			return nil, err
+		}
+		if exists && status != "inactive" {
+			return nil, errors.New("active pedagogical order requires a curriculum route")
+		}
+		return nil, nil
+	}
+	skills, err := activeRouteSkills(root)
+	if err != nil {
+		return nil, err
+	}
+	if err := configurePedagogicalExecution(root, route, skills); err != nil {
+		return nil, err
+	}
+	if err := validateRouteExposure(*route, skills); err != nil {
+		return nil, err
+	}
+	return route, nil
+}
+
+// Stable-address lookups and explicit workspace operations do not depend on
+// execution-plan readiness. Next validates that plan through loadSchedulingRoute.
+func loadRoute(root string) (*Route, error) { return loadRouteMetadata(root) }
+
+// Address metadata is also readable when a proposed execution order is invalid.
+// Preview reports that invalidity without recursively loading the active order.
+func loadRouteMetadata(root string) (*Route, error) {
 	content, err := os.ReadFile(filepath.Join(root, "curriculum", "route.yaml"))
 	if errors.Is(err, os.ErrNotExist) {
 		return nil, nil
@@ -63,7 +99,7 @@ func loadRoute(root string) (*Route, error) {
 	if err != nil {
 		return nil, err
 	}
-	if err := validateRoute(route, skills); err != nil {
+	if err := validateRouteAddresses(route, skills); err != nil {
 		return nil, err
 	}
 	if route.Preparation != "" {
@@ -94,6 +130,13 @@ func activeRouteSkills(root string) (map[string]SkillMetadata, error) {
 }
 
 func validateRoute(route Route, skills map[string]SkillMetadata) error {
+	if err := validateRouteAddresses(route, skills); err != nil {
+		return err
+	}
+	return validateRouteExposure(route, skills)
+}
+
+func validateRouteAddresses(route Route, skills map[string]SkillMetadata) error {
 	if (route.SchemaVersion != 1 && route.SchemaVersion != 2) || strings.TrimSpace(route.Title) == "" || len(route.Blocks) == 0 {
 		return errors.New("curriculum route requires version 1 or 2, a title and blocks")
 	}
@@ -146,22 +189,14 @@ func validateRoute(route Route, skills map[string]SkillMetadata) error {
 				return fmt.Errorf("route task %s requires declared skills", step.TaskID)
 			}
 			seen := map[string]bool{}
-			// Check the entire step before adding its outcomes. A second skill may
-			// deliberately introduce a dependency of the first in the same exercise.
+			// Bind each assessed skill to an active taxonomy entry. Exposure is
+			// checked separately in the selected execution order.
 			for _, id := range step.Skills {
-				skill, ok := skills[id]
+				_, ok := skills[id]
 				if !ok || seen[id] {
 					return fmt.Errorf("unknown or repeated route skill %s", id)
 				}
 				seen[id] = true
-				for _, prerequisite := range skill.Prerequisites {
-					if !known[prerequisite] && !hasRouteSkill(step.Skills, prerequisite) {
-						return fmt.Errorf("route task %s lacks earlier preparation for %s", step.TaskID, prerequisite)
-					}
-				}
-			}
-			for id := range seen {
-				known[id] = true
 			}
 		}
 	}
@@ -175,14 +210,31 @@ func hasRouteSkill(skills []string, id string) bool {
 	}
 	return false
 }
-func routeCatalog(route Route, tasks []tasking.LearnerTaskInfo) (map[string]tasking.LearnerTaskInfo, error) {
-	catalog := map[string]tasking.LearnerTaskInfo{}
-	for _, task := range tasks {
-		catalog[task.ID] = task
-	}
+func validateRouteExposure(route Route, skills map[string]SkillMetadata) error {
 	known := map[string]bool{}
 	for _, id := range route.PreparationSkills {
 		known[id] = true
+	}
+	for _, lesson := range executionLessons(route) {
+		step := lesson.step
+		for _, id := range step.Skills {
+			for _, prerequisite := range skills[id].Prerequisites {
+				if !known[prerequisite] && !hasRouteSkill(step.Skills, prerequisite) {
+					return fmt.Errorf("route task %s lacks earlier preparation for %s", step.TaskID, prerequisite)
+				}
+			}
+		}
+		for _, id := range step.Skills {
+			known[id] = true
+		}
+	}
+	return nil
+}
+
+func routeCatalogMetadata(route Route, tasks []tasking.LearnerTaskInfo) (map[string]tasking.LearnerTaskInfo, error) {
+	catalog := map[string]tasking.LearnerTaskInfo{}
+	for _, task := range tasks {
+		catalog[task.ID] = task
 	}
 	for _, block := range route.Blocks {
 		for _, step := range block.Steps {
@@ -196,15 +248,32 @@ func routeCatalog(route Route, tasks []tasking.LearnerTaskInfo) (map[string]task
 						return nil, fmt.Errorf("route skill contract differs for %s", step.TaskID)
 					}
 				}
-				for _, skill := range task.Prerequisites {
-					if !known[skill] {
-						return nil, fmt.Errorf("route task %s requires %s before this position", step.TaskID, skill)
-					}
+			}
+		}
+	}
+	return catalog, nil
+}
+
+func routeCatalog(route Route, tasks []tasking.LearnerTaskInfo) (map[string]tasking.LearnerTaskInfo, error) {
+	catalog, err := routeCatalogMetadata(route, tasks)
+	if err != nil {
+		return nil, err
+	}
+	known := map[string]bool{}
+	for _, id := range route.PreparationSkills {
+		known[id] = true
+	}
+	for _, lesson := range executionLessons(route) {
+		step := lesson.step
+		if task, ok := catalog[step.TaskID]; ok {
+			for _, skill := range task.Prerequisites {
+				if !known[skill] {
+					return nil, fmt.Errorf("route task %s requires %s before this position", step.TaskID, skill)
 				}
 			}
-			for _, skill := range step.Skills {
-				known[skill] = true
-			}
+		}
+		for _, skill := range step.Skills {
+			known[skill] = true
 		}
 	}
 	return catalog, nil
@@ -221,7 +290,7 @@ func (s *Service) Roadmap() (Roadmap, error) {
 	if err != nil {
 		return Roadmap{}, err
 	}
-	catalog, err := routeCatalog(*route, tasks)
+	catalog, err := routeCatalogMetadata(*route, tasks)
 	if err != nil {
 		return Roadmap{}, err
 	}
@@ -247,13 +316,18 @@ func routeNext(route Route, tasks []tasking.LearnerTaskInfo, progress Progress) 
 		return SchedulerChoice{}, err
 	}
 	known := knownLearnerSkills(progress)
+	if route.pedagogical {
+		known = introducedLearnerSkills(route, catalog, progress)
+	}
+	lessons := executionLessons(route)
 	if current := progress.Tasks[progress.CurrentTaskID]; current != nil && !current.Completed {
-		for _, block := range route.Blocks {
-			for _, step := range block.Steps {
-				if step.TaskID == progress.CurrentTaskID {
-					if task, ok := catalog[step.TaskID]; ok {
-						return SchedulerChoice{Resume: true, Task: task, LessonNumber: lessonNumber(block, step), RouteBlock: numberedBlockTitle(block), RouteRole: step.Role, Preparation: route.Preparation}, nil
-					}
+		for _, lesson := range lessons {
+			if lesson.step.TaskID == progress.CurrentTaskID {
+				if task, ok := catalog[lesson.step.TaskID]; ok {
+					choice := lessonChoice(route, lesson, task, progress)
+					choice.Resume = true
+					choice.Reason = "Continue the current unfinished lesson."
+					return choice, nil
 				}
 			}
 		}
@@ -261,29 +335,38 @@ func routeNext(route Route, tasks []tasking.LearnerTaskInfo, progress Progress) 
 	if choice, ok := dueReviewChoice(route, catalog, progress, known); ok {
 		return choice, nil
 	}
-	for _, block := range route.Blocks {
-		if len(block.Steps) == 0 {
+	for _, lesson := range lessons {
+		step, block := lesson.step, lesson.block
+		if step.TaskID == "" {
 			return SchedulerChoice{}, fmt.Errorf("next block is planned: %s; no lessons are ready yet", block.Title)
 		}
-		for _, step := range block.Steps {
-			if stored := progress.Tasks[step.TaskID]; stored != nil && stored.Completed {
-				continue
-			}
-			task, ok := catalog[step.TaskID]
-			if !ok {
-				return SchedulerChoice{}, fmt.Errorf("next lesson is not ready: %s (%s); see learn roadmap", step.TaskID, block.Title)
-			}
-			choice := SchedulerChoice{Resume: progress.Tasks[task.ID] != nil, Task: task, RouteBlock: numberedBlockTitle(block), RouteRole: step.Role, Preparation: route.Preparation, LessonNumber: lessonNumber(block, step)}
-			for _, skill := range task.Prerequisites {
-				if !known[skill] {
-					choice.MissingPrerequisites = append(choice.MissingPrerequisites, skill)
-				}
-			}
-			sort.Strings(choice.MissingPrerequisites)
-			return choice, nil
+		if stored := progress.Tasks[step.TaskID]; stored != nil && stored.Completed {
+			continue
 		}
+		task, ok := catalog[step.TaskID]
+		if !ok {
+			return SchedulerChoice{}, fmt.Errorf("next lesson is not ready: %s (%s); see learn roadmap", step.TaskID, block.Title)
+		}
+		choice := lessonChoice(route, lesson, task, progress)
+		for _, skill := range task.Prerequisites {
+			if !known[skill] {
+				choice.MissingPrerequisites = append(choice.MissingPrerequisites, skill)
+			}
+		}
+		sort.Strings(choice.MissingPrerequisites)
+		if route.pedagogical {
+			choice.Reason = "Next in pedagogical order."
+			if progress.SchemaVersion >= 3 && learningView(progress).Due > 0 {
+				choice.Reason += " Delayed reviews remain due until a suitable prepared practice is available."
+			}
+		}
+		return choice, nil
 	}
 	return SchedulerChoice{}, errors.New("all defined route lessons are completed; see learn roadmap for the next milestone")
+}
+
+func lessonChoice(route Route, lesson routeLesson, task tasking.LearnerTaskInfo, progress Progress) SchedulerChoice {
+	return SchedulerChoice{Resume: progress.Tasks[task.ID] != nil, Task: task, RouteBlock: numberedBlockTitle(lesson.block), RouteRole: lesson.step.Role, Preparation: route.Preparation, LessonNumber: lessonNumber(lesson.block, lesson.step)}
 }
 func writeRoadmap(output io.Writer, roadmap Roadmap) {
 	fmt.Fprintln(output, roadmap.Route.Title)

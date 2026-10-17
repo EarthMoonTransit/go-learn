@@ -283,9 +283,6 @@ func RunCLI(config Config, arguments []string, stdout, stderr io.Writer) int {
 			return cliError(stderr, err)
 		}
 		writeNext(stdout, choice)
-		if choice.ReviewSkill != "" {
-			fmt.Fprintf(stdout, "Delayed review: %s\n", choice.ReviewSkill)
-		}
 	case "progress":
 		if err := noArguments(command, commandArguments); err != nil {
 			return cliError(stderr, err)
@@ -377,6 +374,9 @@ func writeSolution(output io.Writer, files []tasking.LearnerWorkspaceFile) {
 }
 
 func writeNext(output io.Writer, choice SchedulerChoice) {
+	if choice.Reason != "" {
+		fmt.Fprintln(output, choice.Reason)
+	}
 	if choice.RouteBlock != "" {
 		fmt.Fprintf(output, "Route: %s (%s)\n", choice.RouteBlock, choice.RouteRole)
 	}
@@ -387,7 +387,7 @@ func writeNext(output io.Writer, choice SchedulerChoice) {
 	}
 	fmt.Fprintf(output, "Activity: %s; difficulty: %s; primary skill: %s\n", choice.Task.Activity, choice.Task.Difficulty, choice.Task.PrimarySkill)
 	if len(choice.MissingPrerequisites) == 0 {
-		fmt.Fprintln(output, "Prerequisites: satisfied by recorded completions.")
+		fmt.Fprintln(output, "Prerequisites: introduced by completed lessons or the preparation guide.")
 	} else {
 		fmt.Fprintf(output, "Prerequisites not yet encountered: %s\n", strings.Join(choice.MissingPrerequisites, ", "))
 	}

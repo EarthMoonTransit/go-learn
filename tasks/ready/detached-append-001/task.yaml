@@ -12,6 +12,7 @@ skills:
         - slices.append-growth
 prerequisites:
     - slices.len-cap-slicing
+    - functions.variadic
 new_concepts:
     - slices.backing-array-aliasing
 difficulty: intermediate

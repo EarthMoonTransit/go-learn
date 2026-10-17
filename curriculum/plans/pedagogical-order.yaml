@@ -1,7 +1,7 @@
-schema_version: 1
-status: inactive
+schema_version: 2
+status: active
 baseline_commit: b9790106edc3d4c7f57e26d5f45dc1960f022c6c
-mapping_file: curriculum/plans/pedagogical-order.csv
+mapping_file: curriculum/plans/pedagogical-order-v2.csv
 # Review IDs below are planning actions, never task IDs or evidence.
 exposure_edges:
   - {before_task_id: bounded-value-001, task_id: slice-window-001}
@@ -21,25 +21,28 @@ exposure_edges:
   - {before_task_id: named-numeric-constraint-001, task_id: bounded-lru-cache-001}
   - {before_task_id: typed-nil-result-001, task_id: record-result-001}
   - {before_task_id: exact-dynamic-number-001, task_id: typed-value-observations-001}
-pending_preparation:
-  - task_id: detached-append-001
-    review_id: M1
-    reason: Add functions.variadic with T0b activation; the stable address registry places this task at 02.07 before its 03.10 prerequisite introduction.
-  - task_id: shape-contract-tests-001
-    review_id: P05
-    reason: Promote formatter-contract-001 with full content/source review before Shape; the draft is not a mapped lesson.
-  - task_id: capture-panic-001
-    review_id: P06
-    reason: Release defer registration/evaluation/LIFO preparation before Capture.
-  - task_id: capture-panic-001
-    review_id: P07
-    reason: Release named-result/defer preparation after P06 and before Capture.
-  - task_id: worker-completion-tests-001
-    review_id: P11
-    reason: Release launch-with-handle preparation before P12 and Worker tests.
-  - task_id: worker-completion-tests-001
-    review_id: P12
-    reason: Release channel send/receive/blocking preparation after P11 and before Worker tests.
-  - task_id: worker-completion-tests-001
-    review_id: P13
-    reason: Revise this existing task's scaffold with a failure-safe controlled gate after P11/P12; no new task ID.
+  - {before_task_id: boolean-policies-001, task_id: lazy-probe-001}
+  - {before_task_id: bounded-value-001, task_id: conditional-binding-001}
+  - {before_task_id: token-values-001, task_id: quadrant-switch-001}
+  - {before_task_id: exclusive-loop-001, task_id: gcd-reduction-001}
+  - {before_task_id: struct-copy-tests-001, task_id: composite-key-table-001}
+  - {before_task_id: value-average-001, task_id: captured-method-values-001}
+  - {before_task_id: formatter-contract-001, task_id: shape-contract-tests-001}
+  - {before_task_id: deferred-release-001, task_id: defer-trace-001}
+  - {before_task_id: deferred-release-001, task_id: named-result-adjustment-001}
+  - {before_task_id: bounded-copy-001, task_id: resource-finalize-001}
+  - {before_task_id: launch-provided-job-001, task_id: worker-completion-tests-001}
+  - {before_task_id: replace-pending-value-001, task_id: worker-completion-tests-001}
+  - {before_task_id: select-ready-case-001, task_id: merge-two-streams-001}
+  - {before_task_id: propagate-context-001, task_id: cancelable-forward-001}
+  - {before_task_id: propagate-context-001, task_id: timeout-operation-001}
+  - {before_task_id: conditional-binding-001, task_id: clamp-tests-001}
+  - {before_task_id: lazy-probe-001, task_id: independent-policies-001}
+  - {before_task_id: gcd-reduction-001, task_id: named-block-001}
+  - {before_task_id: defer-trace-001, task_id: named-result-adjustment-001}
+  - {before_task_id: named-result-adjustment-001, task_id: capture-panic-001}
+  - {before_task_id: launch-provided-job-001, task_id: replace-pending-value-001}
+  - {before_task_id: merge-two-streams-001, task_id: cancel-worker-001}
+  - {before_task_id: cancelable-forward-001, task_id: timeout-operation-001}
+  - {before_task_id: clamp-tests-001, task_id: lazy-probe-001}
+pending_preparation: []

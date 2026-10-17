@@ -139,54 +139,59 @@ func dueReviewChoice(route Route, catalog map[string]tasking.LearnerTaskInfo, p 
 	if p.SchemaVersion < 3 {
 		return SchedulerChoice{}, false
 	}
-	// Preserve an ongoing lesson before offering a different review.
 	if t := p.Tasks[p.CurrentTaskID]; t != nil && !t.Completed {
 		return SchedulerChoice{}, false
 	}
 	due := map[string]bool{}
-	for _, s := range learningView(p).Skills {
-		if s.ReviewDue {
-			due[s.ID] = true
+	for _, skill := range learningView(p).Skills {
+		if skill.ReviewDue {
+			due[skill.ID] = true
 		}
 	}
 	for _, id := range route.PreparationSkills {
 		known[id] = true
 	}
-	for _, b := range route.Blocks {
-		for _, step := range b.Steps {
-			if step.Role != "practice" && step.Role != "transfer" {
-				continue
+	for _, lesson := range executionLessons(route) {
+		step := lesson.step
+		if step.Role != "practice" && step.Role != "transfer" {
+			continue
+		}
+		task, ok := catalog[step.TaskID]
+		if !ok {
+			continue
+		}
+		if old := p.Tasks[task.ID]; old != nil && old.Completed {
+			continue
+		}
+		already := false
+		for _, e := range p.Completions {
+			if e.TaskID == task.ID {
+				already = true
 			}
-			t, ok := catalog[step.TaskID]
-			if !ok {
-				continue
+		}
+		if already {
+			continue
+		}
+		required := append([]string{}, task.Prerequisites...)
+		if route.pedagogical {
+			required = append(required, step.Skills...)
+			required = append(required, task.NewConcepts...)
+		}
+		prepared := true
+		for _, skill := range required {
+			if !known[skill] {
+				prepared = false
 			}
-			if old := p.Tasks[t.ID]; old != nil && old.Completed {
-				continue
-			}
-			// A reset is not a new independent practice task.
-			already := false
-			for _, e := range p.Completions {
-				if e.TaskID == t.ID {
-					already = true
-				}
-			}
-			if already {
-				continue
-			}
-			prepared := true
-			for _, skill := range t.Prerequisites {
-				if !known[skill] {
-					prepared = false
-				}
-			}
-			if !prepared {
-				continue
-			}
-			for _, skill := range step.Skills {
-				if due[skill] {
-					return SchedulerChoice{Task: t, Resume: p.Tasks[t.ID] != nil, LessonNumber: lessonNumber(b, step), RouteBlock: numberedBlockTitle(b), RouteRole: step.Role, Preparation: route.Preparation, ReviewSkill: skill}, true
-				}
+		}
+		if !prepared {
+			continue
+		}
+		for _, skill := range step.Skills {
+			if due[skill] {
+				choice := lessonChoice(route, lesson, task, p)
+				choice.ReviewSkill = skill
+				choice.Reason = fmt.Sprintf("Delayed review: %s; three distinct other lessons completed and required mechanisms already introduced.", skill)
+				return choice, true
 			}
 		}
 	}

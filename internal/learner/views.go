@@ -82,7 +82,7 @@ func (s *Service) CourseView() (CourseView, error) {
 			route.Blocks[0].Steps = append(route.Blocks[0].Steps, RouteStep{TaskID: task.ID})
 		}
 	} else {
-		if _, err := routeCatalog(*route, tasks); err != nil {
+		if _, err := routeCatalogMetadata(*route, tasks); err != nil {
 			return CourseView{}, err
 		}
 		if route.Preparation != "" {
@@ -115,9 +115,7 @@ func (s *Service) CourseView() (CourseView, error) {
 	choice, err := s.nextFor(tasks, progress)
 	if err == nil {
 		view.NextTaskID = choice.Task.ID
-		if choice.ReviewSkill != "" {
-			view.NextMessage = "Delayed review: " + choice.ReviewSkill
-		}
+		view.NextMessage = choice.Reason
 	} else {
 		view.NextMessage = "The next lesson is not prepared yet. See the planned blocks below."
 	}

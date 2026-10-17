@@ -725,7 +725,7 @@ tasks:
       legacy: false
     - id: detached-append-001
       state: ready
-      input_digest: 84978f222ca0720f533f368eaf8d624b6abd76ab2325dd66095e7d49d42ac0f4
+      input_digest: 3e46dd0d0cfd03b9248b7198e0fae86f759cacebafa4433c40124432440d152c
       task_type: debug
       primary_skill: slices.backing-array-aliasing
       technical_status: pass
@@ -2962,7 +2962,7 @@ tasks:
       legacy: false
     - id: value-average-001
       state: ready
-      input_digest: 5dddf942f448aeb11ae72de839e1154a4fcd5ee021e8b622b06cde78b6e0eaae
+      input_digest: b488b197f644fd744d1800e3f72e95e8c713edf089f194eab2fd6103ef4397e1
       task_type: implement
       primary_skill: methods.method-sets
       technical_status: pass
