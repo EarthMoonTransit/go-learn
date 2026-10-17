@@ -1,0 +1,21 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "pedagogical-c2-author",
+    "created_at": "2026-10-17",
+    "summary": "Original repair deferred registration and argument capture contract, API, examples, tests and defect models after the approved bounded S2 source decision; no external task content used."
+  },
+  "kind": "original",
+  "project": {
+    "content_digest": "310872a6bc07be2d726962d3c0fa89f3769ad2c0928308ed99f5c1920c35f241",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/defer-trace-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": []
+}

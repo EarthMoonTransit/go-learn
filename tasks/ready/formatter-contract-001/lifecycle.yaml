@@ -1,0 +1,29 @@
+schema_version: 1
+state: ready
+updated_at: "2026-10-17"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-09-04"
+      actor: phase-3b-authoring
+      reason: initialize foundation pilot task for technical validation
+    - from: draft
+      to: in-review
+      at: "2026-09-04"
+      actor: phase-3c-red-team
+      reason: independent red-team found the primary interface skill already satisfied in starter
+    - from: in-review
+      to: draft
+      at: "2026-09-04"
+      actor: phase-3c-red-team
+      reason: starter already satisfies the claimed primary interface mechanism
+    - from: draft
+      to: in-review
+      at: "2026-10-17"
+      actor: codex
+      reason: C2 bounded content package submitted after exact content/provenance approval
+    - from: in-review
+      to: ready
+      at: "2026-10-17"
+      actor: /root/clamp_e01_content_review
+      reason: Independent C2 content/provenance approval; public/grader technical gate enforced by promotion; final batch acceptance follows

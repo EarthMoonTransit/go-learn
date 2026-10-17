@@ -1,0 +1,21 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "pedagogical-c2-author",
+    "created_at": "2026-10-17",
+    "summary": "Original repair a deferred named-result adjustment contract, API, examples, tests and defect models after the approved bounded S2 source decision; no external task content used."
+  },
+  "kind": "original",
+  "project": {
+    "content_digest": "b387d1bbe909383bde405c7152e7558b2861818562f2d18b0185ea5545244fe2",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/named-result-adjustment-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": []
+}

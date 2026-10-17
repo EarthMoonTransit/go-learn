@@ -1,0 +1,48 @@
+schema_version: 2
+id: defer-trace-001
+title: Repair deferred registration and argument capture
+activity: debugging
+submission:
+    kind: workspace-patch
+    editable_paths:
+        - subject/implementation.go
+    workspace_skeleton:
+        - subject/api.go
+skills:
+    primary: functions.defer
+    secondary: []
+prerequisites:
+    - functions.function-values
+    - functions.signatures-results
+    - slices.append-growth
+new_concepts:
+    - functions.defer
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: workspace-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - eager-calls
+        - late-capture
+        - reverse-registration
+        - defer-third
+        - missing-first
+        - manual-replay
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

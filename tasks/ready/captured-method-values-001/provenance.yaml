@@ -1,0 +1,21 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "pedagogical-c2-author",
+    "created_at": "2026-10-17",
+    "summary": "Original save value-bound and pointer-bound method values contract, API, examples, tests and defect models after the approved bounded S2 source decision; no external task content used."
+  },
+  "kind": "original",
+  "project": {
+    "content_digest": "09ddd05b9f44c502fde561aa8860858f39e27f3e488b9c9affb1d0a4823c7e17",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/captured-method-values-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": []
+}
