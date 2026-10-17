@@ -113,6 +113,11 @@ func TestPublicCheckRevisionIsExactAndDirectional(t *testing.T) {
 		name, id, stored, current string
 		want                      bool
 	}{
+		{"Prepend scaffold update", "prepend-values-tests-001", prependBeforeVariadicBridge, prependWithVariadicBridge, true},
+		{"Prepend rollback", "prepend-values-tests-001", prependWithVariadicBridge, prependBeforeVariadicBridge, false},
+		{"Prepend unknown source", "prepend-values-tests-001", "unknown", prependWithVariadicBridge, false},
+		{"Prepend unknown target", "prepend-values-tests-001", prependBeforeVariadicBridge, "unknown", false},
+		{"Prepend other task", "clamp-tests-001", prependBeforeVariadicBridge, prependWithVariadicBridge, false},
 		{"Clamp scaffold update", "clamp-tests-001", clampBeforeTestingBridge, clampWithTestingBridge, true},
 		{"Clamp rollback", "clamp-tests-001", clampWithTestingBridge, clampBeforeTestingBridge, false},
 		{"Clamp unknown source", "clamp-tests-001", "unknown", clampWithTestingBridge, false},

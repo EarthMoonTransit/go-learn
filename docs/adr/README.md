@@ -31,3 +31,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0024` — generic LRU draft assessment and draft-only API revision (`accepted for authoring`)
 - `0025` — inactive pedagogical order preview with stable addresses (`accepted for T0a implementation`)
 - `0026` — exact Clamp scaffold revision compatibility before E01/M1 content (`accepted for preparation tooling`)
+- `0027` — exact Prepend scaffold revision compatibility before E02 content (`accepted for preparation tooling`)
