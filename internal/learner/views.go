@@ -115,7 +115,7 @@ func (s *Service) CourseView() (CourseView, error) {
 	choice, err := s.nextFor(tasks, progress)
 	if err == nil {
 		view.NextTaskID = choice.Task.ID
-		view.NextMessage = choice.Reason
+		view.NextMessage = choiceMessage(choice)
 	} else {
 		view.NextMessage = "The next lesson is not prepared yet. See the planned blocks below."
 	}
@@ -147,7 +147,7 @@ func (s *Service) CourseView() (CourseView, error) {
 		}
 		if len(block.Steps) > 0 && completed == len(block.Steps) {
 			b.Status = "completed"
-		} else if !currentShown {
+		} else if (view.NextTaskID != "" && blockContainsTask(block, view.NextTaskID)) || (view.NextTaskID == "" && !currentShown) {
 			b.Status = "current"
 			currentShown = true
 		}

@@ -24,6 +24,7 @@ type Route struct {
 	Blocks            []RouteBlock `yaml:"blocks"`
 	execution         []routeLesson
 	pedagogical       bool
+	exposureEdges     []ExposureEdge
 }
 type RouteBlock struct {
 	Number int         `yaml:"number,omitempty"`
@@ -38,9 +39,10 @@ type RouteStep struct {
 	Skills []string `yaml:"skills"`
 }
 type Roadmap struct {
-	Route    Route
-	Tasks    map[string]tasking.LearnerTaskInfo
-	Progress Progress
+	Route      Route
+	Tasks      map[string]tasking.LearnerTaskInfo
+	Progress   Progress
+	NextTaskID string
 }
 
 func loadSchedulingRoute(root string) (*Route, error) {
@@ -294,7 +296,11 @@ func (s *Service) Roadmap() (Roadmap, error) {
 	if err != nil {
 		return Roadmap{}, err
 	}
-	return Roadmap{Route: *route, Tasks: catalog, Progress: progress}, nil
+	roadmap := Roadmap{Route: *route, Tasks: catalog, Progress: progress}
+	if choice, err := s.nextFor(tasks, progress); err == nil {
+		roadmap.NextTaskID = choice.Task.ID
+	}
+	return roadmap, nil
 }
 func knownLearnerSkills(progress Progress) map[string]bool {
 	known := map[string]bool{}
@@ -366,7 +372,7 @@ func routeNext(route Route, tasks []tasking.LearnerTaskInfo, progress Progress) 
 }
 
 func lessonChoice(route Route, lesson routeLesson, task tasking.LearnerTaskInfo, progress Progress) SchedulerChoice {
-	return SchedulerChoice{Resume: progress.Tasks[task.ID] != nil, Task: task, RouteBlock: numberedBlockTitle(lesson.block), RouteRole: lesson.step.Role, Preparation: route.Preparation, LessonNumber: lessonNumber(lesson.block, lesson.step)}
+	return SchedulerChoice{Resume: progress.Tasks[task.ID] != nil, Task: task, RouteBlock: numberedBlockTitle(lesson.block), RouteRole: lesson.step.Role, Preparation: route.Preparation, LessonNumber: lessonNumber(lesson.block, lesson.step), PedagogicalChapter: lesson.chapter, PedagogicalSubtopic: lesson.subtopic, PedagogicalPosition: lesson.position}
 }
 func writeRoadmap(output io.Writer, roadmap Roadmap) {
 	fmt.Fprintln(output, roadmap.Route.Title)
@@ -404,7 +410,7 @@ func writeRoadmap(output io.Writer, roadmap Roadmap) {
 		}
 		if len(block.Steps) > 0 && done == len(block.Steps) {
 			state = "completed"
-		} else if !currentShown {
+		} else if (roadmap.NextTaskID != "" && blockContainsTask(block, roadmap.NextTaskID)) || (roadmap.NextTaskID == "" && !currentShown) {
 			state = "current"
 			currentShown = true
 		}
@@ -428,4 +434,13 @@ func writeRoadmap(output io.Writer, roadmap Roadmap) {
 			fmt.Fprintf(output, "  %-12s %s %s (%s; id: %s)\n", status, lessonNumber(block, step), title, step.Role, step.TaskID)
 		}
 	}
+}
+
+func blockContainsTask(block RouteBlock, id string) bool {
+	for _, step := range block.Steps {
+		if step.TaskID == id {
+			return true
+		}
+	}
+	return false
 }

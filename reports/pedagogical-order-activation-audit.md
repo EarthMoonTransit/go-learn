@@ -45,9 +45,12 @@ v2 lessons and 176 authoring packages. No proposal ID becomes learner evidence.
 ADR 0030 separates strict address validation from prerequisite exposure in the
 validated execution sequence. The existing scheduler keeps unfinished current
 priority, then prepared delayed review, then ordinary next. Review eligibility
-checks actual prerequisites and all assessed/new mechanisms as introduced skills;
+checks actual prerequisites and all assessed/new mechanisms as introduced skills,
+plus completed reviewed task-exposure gates;
 it does not require mastery. Unavailable eligible practice leaves the review due.
-CLI/UI explain current, review and ordinary/postponed selection.
+CLI/UI explain actual introduced mechanisms and current/review/ordinary selection
+with chapter, subtopic, explicit position and stable address. The selected address
+block is highlighted, without renumbering its lessons.
 
 The unchanged ADR 0017 learning model still waits three distinct other completions
 and needs two distinct independent practice/transfer IDs for mastery. Assistance

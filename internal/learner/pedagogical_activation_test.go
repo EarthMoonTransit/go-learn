@@ -65,7 +65,7 @@ func TestActiveReviewWaitsForSecondaryIntroductionWithoutRequiringMastery(t *tes
 	}
 	p.Tasks["introduce-secondary-001"] = &TaskProgress{Completed: true, SkillEncounters: []SkillEncounter{{SkillID: "secondary", Count: 1}}}
 	choice, err = routeNext(r, tasks, p)
-	if err != nil || choice.Task.ID != "review-task-001" || choice.ReviewSkill != "due" || learningView(p).Mastered != 0 || !strings.Contains(choice.Reason, "mechanisms already introduced") {
+	if err != nil || choice.Task.ID != "review-task-001" || choice.ReviewSkill != "due" || learningView(p).Mastered != 0 || !strings.Contains(choice.Reason, "introduced: due, secondary, setup") {
 		t.Fatal(choice, err)
 	}
 	// A reset cannot turn this same task ID into another review opportunity.
@@ -197,7 +197,7 @@ func TestActivationKeepsPausedAndLegacyWorkspaceBytesAndIDETargets(t *testing.T)
 					t.Fatal(choice, err)
 				}
 				course, err := s.CourseView()
-				if err != nil || course.NextTaskID != routeLRU || course.NextMessage != choice.Reason {
+				if err != nil || course.NextTaskID != routeLRU || !strings.Contains(course.NextMessage, choice.Reason) {
 					t.Fatal(course, err)
 				}
 				view, err := s.TaskView(routeLRU)
@@ -288,5 +288,154 @@ func TestActiveOrderCannotFallBackWhenTheAddressRegistryIsMissing(t *testing.T) 
 	}
 	if route, err := loadRoute(root); err != nil || route != nil {
 		t.Fatal("missing address metadata is not readable", route, err)
+	}
+}
+
+func TestActiveReviewCannotJumpPastReviewedClampExposure(t *testing.T) {
+	s := uiTestService(t, "")
+	route, err := loadSchedulingRoute(s.root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	tasks, _, err := s.ListTasks()
+	if err != nil {
+		t.Fatal(err)
+	}
+	byID := map[string]tasking.LearnerTaskInfo{}
+	roles := map[string]string{}
+	for _, task := range tasks {
+		byID[task.ID] = task
+	}
+	for _, lesson := range executionLessons(*route) {
+		roles[lesson.step.TaskID] = lesson.step.Role
+	}
+	p := Progress{SchemaVersion: 3, Tasks: map[string]*TaskProgress{}}
+	for _, id := range []string{"literal-bindings-001", "zero-results-001", "access-logic-001", "division-results-001", "wide-sum-001", "grouped-unit-cost-001", "boolean-policies-001", "remaining-constant-001", "whole-minute-output-001", "percentage-output-001", "constant-kinds-001", "month-enumeration-001", "bounded-value-001", "conditional-binding-001"} {
+		task := byID[id]
+		skills := append([]string{task.PrimarySkill}, task.SecondarySkills...)
+		p.Tasks[id] = &TaskProgress{TaskID: id, Completed: true}
+		p.Completions = append(p.Completions, CompletionEvidence{TaskID: id, Skills: skills, RouteRole: roles[id]})
+	}
+	choice, err := routeNext(*route, tasks, p)
+	if err != nil || choice.Task.ID != "clamp-tests-001" {
+		t.Fatalf("review skipped required Clamp introduction: %+v %v", choice, err)
+	}
+	// All broad LazyProbe mechanisms are familiar, but its reviewed Clamp gate
+	// still requires the actual prior completion; mere public success is not it.
+	p.Tasks["clamp-tests-001"] = &TaskProgress{LastPublicCheck: &PublicCheckRecord{Passed: true}}
+	known := introducedLearnerSkills(*route, byID, p)
+	if reviewedExposureReady(route.exposureEdges, "lazy-probe-001", completedReadinessTasks(p)) {
+		t.Fatal("started/public-passing Clamp satisfied exposure")
+	}
+	if !known["control-flow.if"] {
+		t.Fatal("fixture lacks broad if familiarity")
+	}
+}
+
+func TestActiveTraversalRespectsReviewedGatesWithAndWithoutAssistance(t *testing.T) {
+	s := uiTestService(t, "")
+	route, err := loadSchedulingRoute(s.root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	tasks, _, err := s.ListTasks()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, assisted := range []bool{false, true} {
+		t.Run(map[bool]string{false: "independent", true: "assisted"}[assisted], func(t *testing.T) {
+			p := Progress{SchemaVersion: 3, Tasks: map[string]*TaskProgress{}}
+			completed := map[string]bool{}
+			for len(completed) < len(route.execution) {
+				choice, err := routeNext(*route, tasks, p)
+				if err != nil {
+					t.Fatal(err)
+				}
+				id := choice.Task.ID
+				if completed[id] {
+					t.Fatal("replayed completed ID", id)
+				}
+				for _, edge := range route.exposureEdges {
+					if edge.TaskID == id && !completed[edge.BeforeTaskID] {
+						t.Fatalf("%s selected before reviewed exposure %s (review=%s)", id, edge.BeforeTaskID, choice.ReviewSkill)
+					}
+				}
+				if choice.PedagogicalChapter == "" || choice.PedagogicalSubtopic == "" || choice.PedagogicalPosition < 1 || choice.LessonNumber == "" {
+					t.Fatal("selection lost display-only context", choice)
+				}
+				if choice.ReviewSkill != "" && !strings.Contains(choice.Reason, "introduced:") {
+					t.Fatal("review reason lacks introduced mechanisms", choice)
+				}
+				skills := append([]string{choice.Task.PrimarySkill}, choice.Task.SecondarySkills...)
+				p.Tasks[id] = &TaskProgress{TaskID: id, Completed: true}
+				p.Completions = append(p.Completions, CompletionEvidence{TaskID: id, Skills: skills, RouteRole: choice.RouteRole, Assisted: assisted})
+				completed[id] = true
+			}
+			if _, err := routeNext(*route, tasks, p); err == nil || !strings.Contains(err.Error(), "all defined route lessons are completed") {
+				t.Fatal("exhausted route replayed a review", err)
+			}
+			if assisted && learningView(p).Mastered != 0 {
+				t.Fatal("assisted traversal manufactured mastery")
+			}
+		})
+	}
+}
+
+func TestActiveDisplayShowsPedagogicalContextAtTheStableAddress(t *testing.T) {
+	s := uiTestService(t, "")
+	p := Progress{SchemaVersion: 3, Tasks: map[string]*TaskProgress{}}
+	for _, id := range []string{"literal-bindings-001", "zero-results-001", "access-logic-001", "division-results-001"} {
+		task, err := s.Show(id)
+		if err != nil {
+			t.Fatal(err)
+		}
+		p.Tasks[id] = &TaskProgress{TaskID: id, Completed: true}
+		p.Completions = append(p.Completions, CompletionEvidence{TaskID: id, Skills: append([]string{task.PrimarySkill}, task.SecondarySkills...), RouteRole: "introduction", Assisted: true})
+	}
+	if err := saveProgress(s.home, p); err != nil {
+		t.Fatal(err)
+	}
+	before := persistedBytes(t, s)
+	choice, err := s.Next()
+	if err != nil || choice.Task.ID != "wide-sum-001" || choice.LessonNumber != "03.02" || choice.PedagogicalPosition != 5 || !strings.HasPrefix(choice.PedagogicalChapter, "C01 ") {
+		t.Fatal(choice, err)
+	}
+	course, err := s.CourseView()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, want := range []string{"C01 ", "position 5", "address 03.02", choice.PedagogicalSubtopic, choice.Reason} {
+		if !strings.Contains(course.NextMessage, want) {
+			t.Fatalf("UI context %q lacks %q", course.NextMessage, want)
+		}
+	}
+	for _, block := range course.Blocks {
+		if block.ID == "control-and-verification" && block.Status != "current" {
+			t.Fatal("selected address block is not current", block)
+		}
+		if block.ID == "first-steps" && block.Status == "current" {
+			t.Fatal("earlier address gap overrode selected lesson", block)
+		}
+	}
+	var output, diagnostics bytes.Buffer
+	if code := RunCLI(Config{Root: s.root, Home: s.home}, []string{"next"}, &output, &diagnostics); code != 0 {
+		t.Fatal(code, diagnostics.String())
+	}
+	for _, want := range []string{"C01 ", "position 5", "address 03.02"} {
+		if !strings.Contains(output.String(), want) {
+			t.Fatalf("CLI context lacks %q: %s", want, &output)
+		}
+	}
+	roadmap, err := s.Roadmap()
+	if err != nil {
+		t.Fatal(err)
+	}
+	output.Reset()
+	writeRoadmap(&output, roadmap)
+	if !strings.Contains(output.String(), "03. Control flow, numeric conversions and verification [current]") {
+		t.Fatal("roadmap current does not follow selection", output.String())
+	}
+	if !bytes.Equal(before, persistedBytes(t, s)) {
+		t.Fatal("display context rewrote progress")
 	}
 }

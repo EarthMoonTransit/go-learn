@@ -73,6 +73,9 @@ type SkillMetadata struct {
 }
 
 type SchedulerChoice struct {
+	PedagogicalChapter   string
+	PedagogicalSubtopic  string
+	PedagogicalPosition  int
 	Reason               string
 	ReviewSkill          string
 	LessonNumber         string

@@ -374,10 +374,10 @@ func writeSolution(output io.Writer, files []tasking.LearnerWorkspaceFile) {
 }
 
 func writeNext(output io.Writer, choice SchedulerChoice) {
-	if choice.Reason != "" {
-		fmt.Fprintln(output, choice.Reason)
+	if message := choiceMessage(choice); message != "" {
+		fmt.Fprintln(output, message)
 	}
-	if choice.RouteBlock != "" {
+	if choice.PedagogicalPosition == 0 && choice.RouteBlock != "" {
 		fmt.Fprintf(output, "Route: %s (%s)\n", choice.RouteBlock, choice.RouteRole)
 	}
 	if choice.LessonNumber != "" {

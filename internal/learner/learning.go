@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"sort"
+	"strings"
 
 	"go-practice-bank/internal/tasking"
 )
@@ -151,6 +152,7 @@ func dueReviewChoice(route Route, catalog map[string]tasking.LearnerTaskInfo, p 
 	for _, id := range route.PreparationSkills {
 		known[id] = true
 	}
+	completed := completedReadinessTasks(p)
 	for _, lesson := range executionLessons(route) {
 		step := lesson.step
 		if step.Role != "practice" && step.Role != "transfer" {
@@ -183,14 +185,23 @@ func dueReviewChoice(route Route, catalog map[string]tasking.LearnerTaskInfo, p 
 				prepared = false
 			}
 		}
-		if !prepared {
+		if !prepared || (route.pedagogical && !reviewedExposureReady(route.exposureEdges, task.ID, completed)) {
 			continue
 		}
 		for _, skill := range step.Skills {
 			if due[skill] {
 				choice := lessonChoice(route, lesson, task, p)
 				choice.ReviewSkill = skill
-				choice.Reason = fmt.Sprintf("Delayed review: %s; three distinct other lessons completed and required mechanisms already introduced.", skill)
+				introduced := map[string]bool{}
+				for _, id := range required {
+					introduced[id] = true
+				}
+				names := make([]string, 0, len(introduced))
+				for id := range introduced {
+					names = append(names, id)
+				}
+				sort.Strings(names)
+				choice.Reason = fmt.Sprintf("Delayed review: %s; introduced: %s. Three distinct other lessons completed.", skill, strings.Join(names, ", "))
 				return choice, true
 			}
 		}

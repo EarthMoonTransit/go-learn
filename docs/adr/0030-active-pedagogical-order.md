@@ -16,7 +16,9 @@ The existing pedagogical sidecar gains schema version 2 with explicit status
 active or inactive. Version 1 remains inactive-only. Active loading requires
 structural validity, every mapped ready v2 package, matching assessed skills,
 contiguous explicit positions, all actual manifest/taxonomy prerequisites and
-reviewed exposure edges, and no pending preparation. Invalid active configuration
+reviewed exposure edges, and no pending preparation. Preserve reviewed task exposure edges in runtime;
+a review candidate requires those introductions completed (including retained
+historical completion), without requiring mastery or the candidate itself. Invalid active configuration
 fails closed for scheduler selection; the read-only preview still explains its
 structural/preparation errors. Explicit stable-address lookup, workspace resume
 and IDE targets remain readable independently of scheduler-plan readiness. Missing/inactive sidecars preserve address-order execution.
@@ -32,8 +34,10 @@ Delayed review readiness requires introduced actual manifest prerequisites,
 assessed primary/secondary mechanisms and declared new concepts. It does not
 require mastery or previous completion of the selected practice. Missing
 preparation, including PointerChain mutation-sharing, postpones that candidate;
-review remains due and ordinary progression continues. Show a concrete selection
-reason in CLI and UI. Keep the interval of three distinct other completions,
+review remains due and ordinary progression continues. Show actual introduced
+mechanisms and the display-only chapter/subtopic/position alongside the old
+address in CLI and UI. Highlight the block of the selected lesson, even when
+a different address block has an earlier gap. Keep the interval of three distinct other completions,
 mastery from two distinct independent practice/transfer IDs, durable assistance,
 and reset-without-new-evidence exactly as ADR 0017 defines them.
 

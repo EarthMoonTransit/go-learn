@@ -13,8 +13,11 @@ import (
 
 // A lesson carries its original address even when execution uses another order.
 type routeLesson struct {
-	block RouteBlock
-	step  RouteStep
+	block    RouteBlock
+	step     RouteStep
+	chapter  string
+	subtopic string
+	position int
 }
 
 func executionLessons(route Route) []routeLesson {
@@ -95,9 +98,14 @@ func configurePedagogicalExecution(root string, route *Route, skills map[string]
 	}
 	route.execution = make([]routeLesson, 0, len(preview.Lessons))
 	for _, lesson := range preview.Lessons {
-		route.execution = append(route.execution, addressed[lesson.TaskID])
+		routed := addressed[lesson.TaskID]
+		routed.chapter = lesson.Chapter
+		routed.subtopic = lesson.Subtopic
+		routed.position = lesson.ProposedOrder
+		route.execution = append(route.execution, routed)
 	}
 	route.pedagogical = true
+	route.exposureEdges = append([]ExposureEdge{}, plan.ExposureEdges...)
 	_, err = routeCatalog(*route, tasks)
 	return err
 }
@@ -106,14 +114,8 @@ func configurePedagogicalExecution(root string, route *Route, skills map[string]
 // review clocks and assistance are never rewritten from today's task metadata.
 func introducedLearnerSkills(route Route, catalog map[string]tasking.LearnerTaskInfo, p Progress) map[string]bool {
 	known := knownLearnerSkills(p)
-	completed := map[string]bool{}
-	for id, task := range p.Tasks {
-		if task != nil && task.Completed {
-			completed[id] = true
-		}
-	}
+	completed := completedReadinessTasks(p)
 	for _, e := range completionHistory(p) {
-		completed[e.TaskID] = true
 		for _, skill := range e.Skills {
 			known[skill] = true
 		}
@@ -128,4 +130,35 @@ func introducedLearnerSkills(route Route, catalog map[string]tasking.LearnerTask
 		known["methods.values-expressions"] = true
 	}
 	return known
+}
+
+func completedReadinessTasks(p Progress) map[string]bool {
+	completed := map[string]bool{}
+	for id, task := range p.Tasks {
+		if task != nil && task.Completed {
+			completed[id] = true
+		}
+	}
+	for _, e := range completionHistory(p) {
+		completed[e.TaskID] = true
+	}
+	return completed
+}
+
+// Reviewed task-level exposure gates represent preparation beyond broad skill
+// tags. A recorded completion is familiarity, never a demand for mastery.
+func reviewedExposureReady(edges []ExposureEdge, id string, completed map[string]bool) bool {
+	for _, edge := range edges {
+		if edge.TaskID == id && !completed[edge.BeforeTaskID] {
+			return false
+		}
+	}
+	return true
+}
+
+func choiceMessage(choice SchedulerChoice) string {
+	if choice.PedagogicalPosition == 0 {
+		return choice.Reason
+	}
+	return fmt.Sprintf("%s • position %d • address %s — %s. %s", choice.PedagogicalChapter, choice.PedagogicalPosition, choice.LessonNumber, choice.PedagogicalSubtopic, choice.Reason)
 }
