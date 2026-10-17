@@ -22,9 +22,6 @@ exposure_edges:
   - {before_task_id: typed-nil-result-001, task_id: record-result-001}
   - {before_task_id: exact-dynamic-number-001, task_id: typed-value-observations-001}
 pending_preparation:
-  - task_id: clamp-tests-001
-    review_id: E01/M1
-    reason: Release the early Test API scaffold revision and coordinated testing.basics-diagnostics secondary; preserve historical evidence.
   - task_id: prepend-values-tests-001
     review_id: E02
     reason: Release both supplied variadic call examples before later variadic/append practice.

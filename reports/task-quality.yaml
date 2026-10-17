@@ -364,7 +364,7 @@ tasks:
       legacy: false
     - id: clamp-tests-001
       state: ready
-      input_digest: a323ca4afba6c036dc5443191fc07d9fb402f124a0a08588e384fe7f6af121e2
+      input_digest: a4af4b861ba571fc238793d564f11c0465f06ef135394aadb625f581f96672f1
       task_type: test-writing
       primary_skill: expressions.comparison
       technical_status: pass

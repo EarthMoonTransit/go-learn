@@ -13,6 +13,7 @@ test structure, implementation or solution was copied or adapted.
 - Metadata contributors: bitfield, ekingery, hilary, kytrinyx, petertseng, robphoenix, sebito91
 - Source license: MIT; its notice is preserved below.
 - Local revision: 2026-09-05; the earlier draft's lineage remains intact.
+- Local scaffold/hints revision: 2026-10-17 (E01/M1); the admitted source chain and notice are unchanged.
 
 ## Upstream license notice
 

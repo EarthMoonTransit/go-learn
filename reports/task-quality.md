@@ -54,7 +54,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | `category-closure-tests-001` | `ready` | `309fc62767f76da9d78d2e7dc7a8d55f2b5472f0489234008dd7828e1d34dada` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 8/8 | Phase 3A |
 | `category-total-001` | `ready` | `c057bc7f492ac0cf88dd3cc6caae167c284ab41900d9d5c6c9ea67b1bd33fc47` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 9/9 | Phase 3A |
 | `checked-withdrawal-001` | `ready` | `19b035ac570aa5fac463570c7fbd6460418e4edbdcad7e4c64bf1b79fa114e13` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 7/7 | Phase 3A |
-| `clamp-tests-001` | `ready` | `a323ca4afba6c036dc5443191fc07d9fb402f124a0a08588e384fe7f6af121e2` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
+| `clamp-tests-001` | `ready` | `a4af4b861ba571fc238793d564f11c0465f06ef135394aadb625f581f96672f1` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
 | `cleanup-order-001` | `ready` | `cb09d1f6573708e3d0b8744d586e252597211e232701f13dd139cdc1f212b58e` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 8/8 | Phase 3A |
 | `closed-receive-001` | `ready` | `bc19bcddf9f311398272e53df9d68c8b82a4d107c9c71a5b38e174b520205e6e` | `pass` | `pass` | true | `pass` | `pass` | `pass` | 5/5 | Phase 3A |
 | `column-occupancy-001` | `ready` | `bbff2ac58f1f7df09d94d35111e249c98c93af1d458d397e8e57f9f50f26c95f` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 7/7 | Phase 3A |

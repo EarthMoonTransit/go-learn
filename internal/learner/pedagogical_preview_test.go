@@ -152,7 +152,13 @@ func pedagogicalProgressFixtures(route Route, tasks map[string]tasking.LearnerTa
 		info := tasks[id]
 		stamp := fmt.Sprintf("2026-10-01T00:%02d:%02dZ", len(p.Completions)/60, len(p.Completions)%60)
 		task := &TaskProgress{TaskID: id, Status: "completed", Workspace: "workspaces/" + id, Completed: true, CompletedAt: stamp, PrimarySkill: info.PrimarySkill, Activity: info.Activity}
-		for i, skill := range steps[id].Skills {
+		assessed := steps[id].Skills
+		if id == "clamp-tests-001" {
+			// These October 1 histories predate E01/M1. Preserve the original
+			// assessed skills even though the current route has a new secondary.
+			assessed = []string{"expressions.comparison"}
+		}
+		for i, skill := range assessed {
 			role := "secondary"
 			if i == 0 {
 				role = "primary"
@@ -160,7 +166,7 @@ func pedagogicalProgressFixtures(route Route, tasks map[string]tasking.LearnerTa
 			task.SkillEncounters = append(task.SkillEncounters, SkillEncounter{SkillID: skill, Role: role, Count: 1})
 		}
 		p.Tasks[id] = task
-		p.Completions = append(p.Completions, CompletionEvidence{TaskID: id, CompletedAt: stamp, Skills: slices.Clone(steps[id].Skills), RouteRole: steps[id].Role})
+		p.Completions = append(p.Completions, CompletionEvidence{TaskID: id, CompletedAt: stamp, Skills: slices.Clone(assessed), RouteRole: steps[id].Role})
 	}
 	fixtures := map[string]Progress{"fresh": empty()}
 	for _, status := range []string{"in-progress", "paused"} {
@@ -337,11 +343,16 @@ func TestPedagogicalPreviewCLIShowsStableAddressesAndBlockers(t *testing.T) {
 	for _, text := range []string{
 		"inactive (activation disabled)", "Mapping: 151 rows; current route: 151 tasks", "Structural validity: true; preparation ready: false",
 		"Position 15 | C02", "Address 03.30 | decision-table-tests-001 | transfer", "Address 03.26 | constant-value-tests-001 | practice",
-		"BLOCKED: manifest requires earlier testing.basics-diagnostics", "PENDING E01/M1", "PENDING P05", "PENDING P06", "PENDING P07",
+		"PENDING E02", "PENDING P05", "PENDING P06", "PENDING P07",
 		"Position 143 | C14", "Address 09.01 | worker-completion-tests-001 | introduction", "PENDING P11", "PENDING P12", "PENDING P13",
 	} {
 		if !strings.Contains(output.String(), text) {
 			t.Fatalf("missing %q in preview", text)
+		}
+	}
+	for _, resolved := range []string{"BLOCKED:", "PENDING E01/M1"} {
+		if strings.Contains(output.String(), resolved) {
+			t.Fatalf("resolved E01/M1 blocker remains in preview: %s", resolved)
 		}
 	}
 	afterTree, err := workspaceTree(s.home, "")

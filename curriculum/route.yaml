@@ -202,7 +202,8 @@
           "task_id": "clamp-tests-001",
           "role": "practice",
           "skills": [
-            "expressions.comparison"
+            "expressions.comparison",
+            "testing.basics-diagnostics"
           ],
           "number": 5
         },

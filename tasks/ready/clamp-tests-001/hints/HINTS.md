@@ -1,5 +1,5 @@
 # Progressive hints
 
-1. The starter checks only an interior value. A function can pass it while mishandling both ends of the interval.
-2. Check values below and above, equality at each endpoint, and an unchanged interior value. Give additional test functions distinct names beginning with Test.
-3. Also use a nonzero interval with equal endpoints. Compare Clamp's result with the required endpoint. You may copy the supplied assertion pattern; a table is optional.
+1. Each supplied function begins with Test and takes the runner's *testing.T handle. The examples cover an interior value and a value below the interval; more behavior remains unchecked. Keep the supplied signature when adding a named test. You do not need to construct the handle or write a helper.
+2. In the supplied if statement, got holds the actual result. The body runs when it differs from the expected value. Fatalf marks that test as failed: in `Clamp(-3,-1,8)=-3, want -1`, the arguments identify the input, `-3` is actual and `-1` is expected. A compiler error means the tests could not run; a named Test failure means an assertion ran and disagreed with its expectation.
+3. Add upper and lower equality, above-range and nonzero equal-endpoint cases. Use the requirements to choose expected results. Give added Test functions distinct names; a table, slice of cases, callback or custom reporter is unnecessary. The checker assesses behavior detection, not your diagnostic wording.
