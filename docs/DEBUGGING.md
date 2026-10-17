@@ -175,3 +175,19 @@ The public-feedback matrix also protects bounded-copy sentinel identity and succ
 Testing-component public regressions cover Helper-before-acquire, preservation of the exact close-error argument to Errorf, and the initial empty writer Snapshot. The Snapshot fixture is a narrow tooling-owned modification of the reference installed only in a disposable learner workspace, preserving the accepted content package.
 
 Concurrency public regressions verify that an unused finite stream cannot retain a blocked worker, a readable nonclosed cancellation channel is handled, and both unsynchronized counter updates and reads receive public DATA RACE diagnostics. These checks execute only disposable learner payloads, with a passing reference counterpart for every row.
+
+The C2 feedback regression uses named task/variant subtests for three Formatter
+requirements and all eleven Resource defects. It checks useful public diagnostics
+and public reference success independently of hidden grader coverage. Target only
+these cases while iterating:
+
+```bash
+go test -tags=taskintegration ./internal/learner -run 'TestReviewedDefectsHavePublicFeedback/(formatter-contract-001|resource-finalize-001)' -count=1 -v
+```
+
+Worker's P13 revision is pinned separately by ADR 0028. The bounded fixture matrix
+runs the proposed starter with each of the eight existing controlled defect
+bindings in a temporary repository. Inline work is rejected by a named assertion
+after safe release; premature/shared completion remain intentionally uncovered.
+It supplements historical workspace preservation and real learner verification;
+command timeout is never accepted as evidence of defect detection.
