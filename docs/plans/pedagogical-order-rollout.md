@@ -89,18 +89,19 @@ execution only, one full collection per unchanged batch inputs, and reuse it in
 validator/report checks. New preparation tasks are not additional evidence for
 already completed tasks; no learner home is used in acceptance.
 
-C1 releases four reviewed original packages and the exact E02 revision. Their
-append-only addresses and explicit insertion into the pedagogical mapping remain
-the separate unchecked placement step above; the original 151-row mapping and
-all stable address tuples are unchanged in this content batch.
+C1 released four reviewed original packages and the exact E02 revision. That
+content batch preserved the original 151-row mapping and stable address tuples.
+T0b supplies their append-only addresses and explicit pedagogical placement in
+the completed steps above.
 
-C3 releases five original ready packages (launch-provided-job-001,
+C3 supplies five original ready packages (launch-provided-job-001,
 replace-pending-value-001, merge-two-streams-001, cancelable-forward-001 and
 timeout-operation-001) and revises the existing Worker scaffold. The supplied
 synctest/gate helpers are guided support, not independent harness mastery. All
 five new references pass public/full checks and all 41 compiling defects have
-useful public test diagnostics. Append-only placement and activation remain separate unchecked steps above.
-The following tooling batch protects C3 feedback/tolerance regressions.
+useful public test diagnostics. T0b supplies their append-only placement and
+activation in the completed steps above. The separate feedback tooling batch
+protects C3 feedback/tolerance regressions.
 
 C3 feedback tooling protects all 41 public defect rows and four accepted
 alternatives (MergeTwo function value/declaration helpers, buffered Forward and
