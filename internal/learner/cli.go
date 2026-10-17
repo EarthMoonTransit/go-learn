@@ -251,7 +251,7 @@ func RunCLI(config Config, arguments []string, stdout, stderr io.Writer) int {
 	case "roadmap":
 		roadmapFlags := flag.NewFlagSet("learn roadmap", flag.ContinueOnError)
 		roadmapFlags.SetOutput(stderr)
-		pedagogical := roadmapFlags.Bool("pedagogical", false, "preview and validate the inactive pedagogical plan")
+		pedagogical := roadmapFlags.Bool("pedagogical", false, "inspect and validate the configured pedagogical plan")
 		if err := roadmapFlags.Parse(commandArguments); err != nil {
 			return 2
 		}
