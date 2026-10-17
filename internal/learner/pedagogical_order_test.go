@@ -223,7 +223,9 @@ func TestRepositoryPedagogicalMappingAndKnownBlockers(t *testing.T) {
 	}
 	for id, want := range map[string][]string{
 		"clamp-tests-001": nil, "prepend-values-tests-001": {"E02"}, "shape-contract-tests-001": {"P05"},
-		"capture-panic-001": {"P06", "P07"}, "worker-completion-tests-001": {"P11", "P12", "P13"},
+		"pointer-chain-001": nil, "diagnostic-helper-001": nil, "named-cases-001": nil,
+		"detached-append-001": {"M1"},
+		"capture-panic-001":   {"P06", "P07"}, "worker-completion-tests-001": {"P11", "P12", "P13"},
 	} {
 		if !reflect.DeepEqual(pending[id], want) {
 			t.Fatalf("%s gates=%v want=%v", id, pending[id], want)

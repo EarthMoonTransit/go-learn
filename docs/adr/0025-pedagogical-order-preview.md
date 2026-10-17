@@ -64,9 +64,21 @@ ADR 0026 preserves existing workspaces for this exact content revision. The new
 secondary records scaffold-supported practice, not retroactive completion
 credit or mastery. All 151 stable addresses, roles and CSV bytes stay unchanged. P05 before
 Shape, P06/P07 before Capture and P11/P12/P13-scaffold before Worker are still
-unreleased semantic gates. The four other M1 reviews and E02 remain visible preparation
+unreleased semantic gates. The remaining M1 review and E02 remain visible preparation
 actions; `value-average-001` secondary remains a conditional review, not a new
 mandatory skill or automatically applied metadata.
+
+The 2026-10-17 M1 metadata batch records the actual PointerChain, DiagnosticHelper
+and NamedCases prerequisites without changing their assessed skills, role or
+authored content. All prerequisites occur earlier in both the address order and
+the proposed order. Eight preparation actions remain.
+
+DetachedAppend's variadic prerequisite must be applied with T0b: its stable
+address is 02.07, while Prepend's introduction is 03.10. The current
+`routeCatalog` validates prerequisite exposure in address order, so applying
+this last metadata change before separating execution order would break the
+active route. Retain the pending action; do not fabricate a preparation skill,
+renumber either lesson or weaken validation to remove it prematurely.
 
 Only preview reads the sidecar. Production `Next`, `dueReviewChoice`, UI views,
 lookup, GoLand targets and workspace checks continue to use route v2.

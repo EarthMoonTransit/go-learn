@@ -36,3 +36,23 @@ Substantive adaptation of `ardanlabs-gotraining` at commit `4ae5a46bfc665909a7cb
 Tests distinguish the integer address from the pointer-variable address and verify reassignment and independent call storage without numeric addresses.
 
 Reviewed current prompt, API/starter, public/reference assertions, grader or mutation layout, all 5 required defects, hints, route prerequisites and provenance. `.tmp/checks/pointer-chain-001.yaml` reports technical pass and 5/5 required mutants detected. No authored code was executed by the reviewer; no real learner state was accessed. Full batch acceptance, lifecycle promotion, release binding and separate public-feedback regressions remain independent requirements. Automated fixtures are not human calibration or learner mastery.
+
+## M1 prerequisite review, 2026-10-17
+
+The API and requirements already distinguish mutation through shared integer
+storage from repointing a pointer variable. Add pointers.mutation-sharing to
+prerequisites; shared-counter-update-001 introduces it at address 06.05 before
+this unchanged transfer lesson at 06.36. Its review eligibility will consume the
+same requirement in T0b. No new assessed skill or historical encounter is added.
+
+Metadata-only preparation: TASK, starter, public/grader/reference bodies,
+mutants, hints, authored digest, source chain and license notices are unchanged.
+Reuse the previously admitted content and source review; no new upstream artifact
+audit or learner calibration is claimed. Existing requirement/public-feedback
+mappings remain applicable. Full technical acceptance and the metadata review
+are separate gates.
+
+Independent metadata review by `/root/clamp_e01_content_review` approved this
+M1 correction on 2026-10-17 with no blockers. It verified API requirements, earlier
+introductions in both orders, unchanged authored digests/source chains and the
+limited metadata scope. It did not run suites or claim a new upstream audit.

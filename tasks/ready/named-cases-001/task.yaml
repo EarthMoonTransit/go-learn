@@ -11,6 +11,9 @@ skills:
     secondary: []
 prerequisites:
     - testing.basics-diagnostics
+    - functions.function-values
+    - structs.literals-zero
+    - slices.header-model
 new_concepts:
     - testing.subtests
 difficulty: basic

@@ -11,6 +11,8 @@ skills:
     secondary: []
 prerequisites:
     - testing.basics-diagnostics
+    - interfaces.small-contracts
+    - functions.variadic
 new_concepts:
     - testing.helpers
 difficulty: basic

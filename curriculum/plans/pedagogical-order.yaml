@@ -27,16 +27,7 @@ pending_preparation:
     reason: Release both supplied variadic call examples before later variadic/append practice.
   - task_id: detached-append-001
     review_id: M1
-    reason: Review and add the actual functions.variadic prerequisite in a separate metadata batch.
-  - task_id: pointer-chain-001
-    review_id: M1
-    reason: Review pointers.mutation-sharing prerequisite and future due-review eligibility; production scheduler is unchanged.
-  - task_id: diagnostic-helper-001
-    review_id: M1
-    reason: Review actual interfaces.small-contracts and functions.variadic API prerequisites.
-  - task_id: named-cases-001
-    review_id: M1
-    reason: Review actual functions.function-values, structs.literals-zero and slices.header-model API prerequisites.
+    reason: Add functions.variadic with T0b activation; the stable address registry places this task at 02.07 before its 03.10 prerequisite introduction.
   - task_id: shape-contract-tests-001
     review_id: P05
     reason: Promote formatter-contract-001 with full content/source review before Shape; the draft is not a mapped lesson.

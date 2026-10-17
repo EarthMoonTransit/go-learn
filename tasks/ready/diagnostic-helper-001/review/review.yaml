@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "reviewer": "/root/ui_goal_reviewer",
-  "reviewed_at": "2026-09-09",
+  "reviewer": "/root/clamp_e01_content_review",
+  "reviewed_at": "2026-10-17",
   "decision": "approve",
   "story_free": true,
   "prompt_test_alignment": true,
@@ -11,5 +11,5 @@
   "reference_only_clean_room_verified": true,
   "solution_leakage_checked": true,
   "minimum_mutants": 5,
-  "notes": "Independent content and provenance review approved. Public assertions expose the stated core behavior and valid reference alternatives are accepted. Author-provided targeted task-check report passes; strong reference detects 5/5 required defects. No authored code execution by reviewer or real learner state access. Batch gates and promotion remain separate; estimates and automated fixtures do not establish human calibration."
+  "notes": "Independent M1 metadata review approved the actual API prerequisites and their earlier introduction in both current address and proposed orders. Authored content, public/grader/reference and mutant bodies, assessed skills, source lineage and license notices are unchanged; prior content/source approval is preserved without claiming a fresh upstream audit. Full ordered acceptance and exact-head CI are separate gates. Estimates remain uncalibrated."
 }
