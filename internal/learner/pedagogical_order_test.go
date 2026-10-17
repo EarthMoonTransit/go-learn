@@ -215,15 +215,14 @@ func TestRepositoryPedagogicalMappingAndKnownBlockers(t *testing.T) {
 			pending[lesson.TaskID] = append(pending[lesson.TaskID], gate.ReviewID)
 		}
 	}
-	want := map[string][]string{
-		"decision-table-tests-001": {"manifest requires earlier testing.basics-diagnostics"},
-		"constant-value-tests-001": {"manifest requires earlier testing.basics-diagnostics"},
+	if len(formal) != 0 {
+		t.Fatalf("E01/M1 must resolve the early testing blockers: %v", formal)
 	}
-	if !reflect.DeepEqual(formal, want) {
-		t.Fatalf("formal blockers = %v; want %v", formal, want)
+	if !slices.Contains(roadmap.Tasks["clamp-tests-001"].SecondarySkills, "testing.basics-diagnostics") {
+		t.Fatal("Clamp's manifest must match its reviewed route secondary")
 	}
 	for id, want := range map[string][]string{
-		"clamp-tests-001": {"E01/M1"}, "shape-contract-tests-001": {"P05"},
+		"clamp-tests-001": nil, "prepend-values-tests-001": {"E02"}, "shape-contract-tests-001": {"P05"},
 		"capture-panic-001": {"P06", "P07"}, "worker-completion-tests-001": {"P11", "P12", "P13"},
 	} {
 		if !reflect.DeepEqual(pending[id], want) {

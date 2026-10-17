@@ -54,13 +54,17 @@ readiness. No UI redesign or second scheduler is introduced.
 
 ## Blockers and compatibility
 
-Unchanged baseline metadata produces two manifest blockers:
+At the T0a baseline, unchanged metadata produced two manifest blockers:
 `decision-table-tests-001` and `constant-value-tests-001` need
 `testing.basics-diagnostics` before its current first assessed occurrence.
-E01 plus the coordinated M1 Clamp secondary change must fix that in a separate
-content/metadata batch. T0a preserves and displays both warnings. P05 before
+E01/M1 applies the reviewed Clamp scaffold/hints revision and the coordinated
+`testing.basics-diagnostics` manifest/route secondary on 2026-10-17. Both formal
+blockers are now resolved; only E01/M1 is removed from pending preparation.
+ADR 0026 preserves existing workspaces for this exact content revision. The new
+secondary records scaffold-supported practice, not retroactive completion
+credit or mastery. All 151 stable addresses, roles and CSV bytes stay unchanged. P05 before
 Shape, P06/P07 before Capture and P11/P12/P13-scaffold before Worker are still
-unreleased semantic gates. Other M1 reviews and E02 are also visible preparation
+unreleased semantic gates. The four other M1 reviews and E02 remain visible preparation
 actions; `value-average-001` secondary remains a conditional review, not a new
 mandatory skill or automatically applied metadata.
 

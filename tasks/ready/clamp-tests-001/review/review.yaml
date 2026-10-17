@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "reviewer": "independent-content-review-reset-patch-review",
-  "reviewed_at": "2026-09-05",
+  "reviewer": "independent-agent-clamp-e01-m1-review",
+  "reviewed_at": "2026-10-17",
   "decision": "approve",
   "story_free": true,
   "prompt_test_alignment": true,
@@ -11,5 +11,5 @@
   "reference_only_clean_room_verified": true,
   "solution_leakage_checked": true,
   "minimum_mutants": 6,
-  "notes": "Independent read-only review approved final content, observable skill scope, provenance, prompt/test alignment and distinct defect models. All required mutants passed targeted disposable verification. Clamp repairs add independent exact-boundary/interior/singleton behavior models, remove unsupported table/diagnostic claims and preserve attribution/rejection history. The new route puts three tasks between comparison introduction and verification practice. Estimates remain uncalibrated."
+  "notes": "Independent read-only E01/M1 review approved the exact pinned scaffold/hints revision, scaffold-supported testing secondary and synchronized route tag. TASK/API/reference and all six mutants remain unchanged; targeted disposable checking detects 6/6 mutants. Creation/source lineage and MIT notice are preserved without new upstream admission. Public discovery/diagnostic regressions and a correct single-Test plain-Fail alternative preserve the ungraded style contract. Historical fixtures preserve learner files, markers and old completion skills; only new successful completions record the secondary. The two formal preview blockers are resolved; activation remains separate. Estimates remain uncalibrated."
 }

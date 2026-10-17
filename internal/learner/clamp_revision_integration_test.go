@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"strings"
 	"testing"
 )
@@ -17,6 +18,10 @@ func TestClampRevisionUsesExistingWorkspaceAndRealVerifier(t *testing.T) {
 		t.Fatal(err)
 	}
 	s.root = root
+	prepareHistoricalClampFixture(t, s.root)
+	if err := saveProgress(s.home, Progress{SchemaVersion: 3, Tasks: map[string]*TaskProgress{}}); err != nil {
+		t.Fatal(err)
+	}
 	const id = "clamp-tests-001"
 	workspace, err := s.Start(id)
 	if err != nil {
@@ -80,5 +85,13 @@ func TestClampRevisionUsesExistingWorkspaceAndRealVerifier(t *testing.T) {
 	}
 	if result, err := s.Complete(); err != nil || !result.Passed {
 		t.Fatalf("alternative organization failed full checks: %+v, %v", result, err)
+	}
+	progress, err := s.Progress()
+	if err != nil || len(progress.Completions) != 1 {
+		t.Fatalf("expected one new successful completion: %+v, %v", progress.Completions, err)
+	}
+	evidence := progress.Completions[0]
+	if evidence.TaskID != id || evidence.RouteRole != "practice" || !slices.Equal(evidence.Skills, []string{"expressions.comparison", "testing.basics-diagnostics"}) {
+		t.Fatalf("new completion must record the revised skills and original role: %+v", evidence)
 	}
 }

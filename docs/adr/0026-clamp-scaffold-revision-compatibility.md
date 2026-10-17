@@ -78,3 +78,21 @@ Next: review and release the pinned E01 scaffold together with its M1 manifest
 and route secondary, refresh provenance/reports, and remove only E01/M1 from the
 pending plan. Preserve historical completion evidence. Then address E02 and the
 remaining bounded metadata/content batches. T0b activation remains separate.
+
+## E01/M1 application, 2026-10-17
+
+The following content batch applies the exact pinned starter/hints to canonical
+Clamp and adds the coordinated manifest/route secondary. Its digest matches the
+compatibility target above. The two formal testing prerequisites are resolved;
+11 other preparation records and inactive status remain. No compatibility code,
+API, prompt, address, role, scheduler or historical evidence rule changes.
+
+The old starter/hints are now explicitly retained in
+`internal/learner/testdata/clamp-before-testing-bridge/`, copied from master
+`64926202e914cd57e8caf99d0f4947e7fa65d437`, path
+`tasks/ready/clamp-tests-001`. Compatibility tests reconstruct that old package
+before creating old workspaces, then apply the current content. This preserves
+the historical test boundary after the canonical package advances. The earlier
+status and remaining-work description above record the original tooling batch;
+this application is a preparation content batch under ADR 0022, not foundation
+release/export or activation of the new order.

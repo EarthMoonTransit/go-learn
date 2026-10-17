@@ -12,21 +12,31 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-// Apply the proposed E01/M1 revision only to a disposable repository. Canonical
-// content stays on the old revision until its separate content review and PR.
+// Reconstruct the pre-E01 package from an explicit historical fixture before
+// creating old workspaces. This stays meaningful after canonical content changes.
+func prepareHistoricalClampFixture(t *testing.T, root string) {
+	t.Helper()
+	setClampRevisionFixture(t, root, "clamp-before-testing-bridge", clampWithTestingBridge, clampBeforeTestingBridge, []string{})
+}
+
 func applyClampRevisionFixture(t *testing.T, root string) {
+	t.Helper()
+	setClampRevisionFixture(t, root, "clamp-testing-bridge", clampBeforeTestingBridge, clampWithTestingBridge, []string{"testing.basics-diagnostics"})
+}
+
+func setClampRevisionFixture(t *testing.T, root, fixture, from, to string, secondary []string) {
 	t.Helper()
 	dir := filepath.Join(root, "tasks/ready/clamp-tests-001")
 	before, err := tasking.TaskContentDigest(dir)
-	if err != nil || before != clampBeforeTestingBridge {
-		t.Fatalf("unexpected Clamp baseline: %s, %v", before, err)
+	if err != nil || before != from {
+		t.Fatalf("unexpected Clamp baseline: %s; want %s, %v", before, from, err)
 	}
 	beforeFiles, err := tasking.LearnerWorkspaceFiles(root, "clamp-tests-001")
 	if err != nil {
 		t.Fatal(err)
 	}
 	for _, path := range []string{"starter/subject_test.go", "hints/HINTS.md"} {
-		data, err := os.ReadFile(filepath.Join("testdata/clamp-testing-bridge", path))
+		data, err := os.ReadFile(filepath.Join("testdata", fixture, path))
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -35,8 +45,8 @@ func applyClampRevisionFixture(t *testing.T, root string) {
 		}
 	}
 	digest, err := tasking.TaskContentDigest(dir)
-	if err != nil || digest != clampWithTestingBridge {
-		t.Fatalf("proposed content drifted from the exact compatibility target: %s, %v", digest, err)
+	if err != nil || digest != to {
+		t.Fatalf("fixture drifted from its exact compatibility target: %s; want %s, %v", digest, to, err)
 	}
 	provenancePath := filepath.Join(dir, "provenance.yaml")
 	data, err := os.ReadFile(provenancePath)
@@ -49,16 +59,17 @@ func applyClampRevisionFixture(t *testing.T, root string) {
 	}
 	provenance.Project.ContentDigest = digest
 	writeYAMLFixture(t, provenancePath, provenance)
-	// Exercise future metadata without changing any historical learner record.
 	manifestPath := filepath.Join(dir, "task.yaml")
 	data, err = os.ReadFile(manifestPath)
 	if err != nil {
 		t.Fatal(err)
 	}
-	data = bytes.Replace(data, []byte("secondary: []"), []byte("secondary: [testing.basics-diagnostics]"), 1)
-	if err := os.WriteFile(manifestPath, data, 0600); err != nil {
+	var manifest tasking.TaskV2
+	if err := yaml.Unmarshal(data, &manifest); err != nil {
 		t.Fatal(err)
 	}
+	manifest.Skills.Secondary = secondary
+	writeYAMLFixture(t, manifestPath, manifest)
 	routePath := filepath.Join(root, "curriculum/route.yaml")
 	data, err = os.ReadFile(routePath)
 	if err != nil {
@@ -72,7 +83,7 @@ func applyClampRevisionFixture(t *testing.T, root string) {
 		for i := range route.Blocks[b].Steps {
 			step := &route.Blocks[b].Steps[i]
 			if step.TaskID == "clamp-tests-001" {
-				step.Skills = []string{"expressions.comparison", "testing.basics-diagnostics"}
+				step.Skills = append([]string{"expressions.comparison"}, secondary...)
 			}
 		}
 	}
@@ -106,12 +117,22 @@ func TestClampRevisionPreservesWorkspaceAndHistoricalEvidence(t *testing.T) {
 			name := status + "/" + map[bool]string{false: "legacy-marker", true: "generation-marker"}[generation]
 			t.Run(name, func(t *testing.T) {
 				s := goLandTestService(t)
+				prepareHistoricalClampFixture(t, s.root)
 				const id = "clamp-tests-001"
 				if err := saveProgress(s.home, Progress{SchemaVersion: 3, Tasks: map[string]*TaskProgress{}}); err != nil {
 					t.Fatal(err)
 				}
 				workspace, err := s.Start(id)
 				if err != nil {
+					t.Fatal(err)
+				}
+				learnerPath := filepath.Join(workspace, "subject/subject_test.go")
+				learnerCode, err := os.ReadFile(learnerPath)
+				if err != nil {
+					t.Fatal(err)
+				}
+				learnerCode = append(learnerCode, []byte("\n// Personal boundary-case notes must survive the content update.\n")...)
+				if err := os.WriteFile(learnerPath, learnerCode, 0600); err != nil {
 					t.Fatal(err)
 				}
 				p, err := s.Progress()
@@ -182,6 +203,12 @@ func TestClampRevisionPreservesWorkspaceAndHistoricalEvidence(t *testing.T) {
 				if !item.Completed {
 					if got, err := s.Resume(id); err != nil || got != workspace {
 						t.Fatalf("resume requires reset: %s, %v", got, err)
+					}
+				}
+				for path, want := range map[string][]byte{learnerPath: learnerCode, markerPath: data} {
+					got, err := os.ReadFile(path)
+					if err != nil || !bytes.Equal(got, want) {
+						t.Fatalf("view/resume rewrote saved learner data: %s, %v", path, err)
 					}
 				}
 			})
