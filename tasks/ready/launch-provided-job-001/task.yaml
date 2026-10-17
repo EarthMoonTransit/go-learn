@@ -1,0 +1,49 @@
+schema_version: 2
+id: launch-provided-job-001
+title: Launch a supplied job and return its handle
+activity: implementation
+submission:
+    kind: workspace-patch
+    editable_paths:
+        - subject/implementation.go
+    workspace_skeleton:
+        - subject/api.go
+skills:
+    primary: goroutines.launch-lifecycle
+    secondary: []
+prerequisites:
+    - functions.defer
+    - functions.function-values
+    - methods.receiver-semantics
+    - structs.literals-zero
+new_concepts:
+    - goroutines.launch-lifecycle
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: workspace-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - inline-runner
+        - skip-runner
+        - duplicate-runner
+        - wrong-handle
+        - shared-job
+        - premature-release
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

@@ -1,0 +1,52 @@
+schema_version: 2
+id: merge-two-streams-001
+title: Merge two finite input streams
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: channels.select
+    secondary:
+        - channels.nil-disabling
+prerequisites:
+    - channels.close-semantics
+    - channels.directional
+    - channels.operations-blocking
+    - control-flow.for
+    - control-flow.switch
+    - functions.defer
+    - goroutines.launch-lifecycle
+new_concepts:
+    - channels.nil-disabling
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - zero-on-close
+        - close-on-first-input
+        - skip-second-input
+        - keep-closed-case
+        - reverse-left-order
+        - serial-inputs
+        - buffer-after-right-close
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

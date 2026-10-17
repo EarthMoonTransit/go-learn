@@ -1,0 +1,21 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "pedagogical-c3-author",
+    "created_at": "2026-10-17",
+    "summary": "Original own a child timeout while preserving the operation result contract, API, examples, tests and defect models after the approved bounded S3 source decision; no external task content used."
+  },
+  "kind": "original",
+  "project": {
+    "content_digest": "94d1d12a20bf66fa653bec2f202924be761a2ee32f1adef93fa32e49782eaaae",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/timeout-operation-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": []
+}
