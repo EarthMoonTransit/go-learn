@@ -1,0 +1,46 @@
+schema_version: 2
+id: conditional-binding-001
+title: Repair assignment across a conditional block
+activity: debugging
+submission:
+    kind: workspace-patch
+    editable_paths:
+        - subject/implementation.go
+    workspace_skeleton:
+        - subject/api.go
+skills:
+    primary: types.declarations-inference
+    secondary: []
+prerequisites:
+    - control-flow.if
+    - functions.signatures-results
+    - toolchain.build-run
+new_concepts:
+    - types.declarations-inference
+difficulty: basic
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: workspace-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - shadowed-update
+        - unconditional-update
+        - return-initial
+        - block-removed
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

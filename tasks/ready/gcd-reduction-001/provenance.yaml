@@ -1,0 +1,21 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "pedagogical-c1-author",
+    "created_at": "2026-10-17",
+    "summary": "Original reduce two integers to their greatest common divisor contract, API, examples, tests and defect models. Approved S1 topic/fact review supplied no external task content."
+  },
+  "kind": "original",
+  "project": {
+    "content_digest": "2b567f54a7dbe5664456dc3863c71d65b98b1cb13b4565fb47b510192422ecf1",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/gcd-reduction-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": []
+}

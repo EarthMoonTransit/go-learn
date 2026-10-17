@@ -1,0 +1,47 @@
+schema_version: 2
+id: lazy-probe-001
+title: Gate a supplied probe without eager calls
+activity: implementation
+submission:
+    kind: workspace-patch
+    editable_paths:
+        - subject/implementation.go
+    workspace_skeleton:
+        - subject/api.go
+skills:
+    primary: expressions.boolean-logic
+    secondary: []
+prerequisites:
+    - control-flow.if
+    - functions.signatures-results
+    - types.declarations-inference
+new_concepts:
+    - expressions.boolean-logic
+difficulty: basic
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: workspace-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - eager-call
+        - double-call
+        - inverted-gate
+        - discard-result
+        - never-probe
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

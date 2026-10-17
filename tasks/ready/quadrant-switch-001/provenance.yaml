@@ -1,0 +1,21 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "pedagogical-c1-author",
+    "created_at": "2026-10-17",
+    "summary": "Original classify coordinates with an expressionless switch contract, API, examples, tests and defect models. Approved S1 topic/fact review supplied no external task content."
+  },
+  "kind": "original",
+  "project": {
+    "content_digest": "856e9137acef0c13e5e43d021fe21878054e815f437200960cc9f9b7fce6b537",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/quadrant-switch-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": []
+}

@@ -31,3 +31,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+
+2026-10-17 local pedagogical revision: supply separate-argument and slice-expansion
+call examples with local values and hints. Existing admitted lineage and notices
+are retained; no new upstream task, generated test or solution was consulted.

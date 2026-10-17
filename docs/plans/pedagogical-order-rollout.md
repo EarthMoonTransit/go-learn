@@ -22,6 +22,11 @@ policy and T-FUZZ/T-BENCH/T-MODULE stay subsequent work, as specified in that pl
 - M1 actual PointerChain/DiagnosticHelper/NamedCases prerequisites: PR #70,
   merged at `63a0a8f47573959c7b307c9e50fbf504d013ac34`.
 
+- E02 exact old-workspace compatibility: PR #71, merged at
+  `e80a1de34264aef98d646e0e8654ba2f077fec0b`.
+- S1 bounded source decisions: PR #72, merged at
+  `18a6b7cedb19b06fd0dcf59ec1a2944f113188d3`.
+
 ## Remaining execution checklist
 
 - [x] M1: PointerChain mutation-sharing prerequisite; DiagnosticHelper interface
@@ -34,12 +39,12 @@ policy and T-FUZZ/T-BENCH/T-MODULE stay subsequent work, as specified in that pl
   lineage; record exact artifacts or specific original reasons before authoring.
   Independent source review approved the decisions recorded in
   `reports/pedagogical-c1-source-review.md`; future content acceptance is separate.
-- [ ] C1/E02: both public variadic call examples in Prepend, with old-workspace
+- [x] C1/E02: both public variadic call examples in Prepend, with old-workspace
   compatibility before changing authored content.
-- [ ] C1/P01: scope exercise.
-- [ ] C1/P02: short-circuit effects exercise.
-- [ ] C1/P03: GCD loop exercise.
-- [ ] C1/P04: expressionless switch exercise.
+- [x] C1/P01: scope exercise. Ready package: `conditional-binding-001`.
+- [x] C1/P02: short-circuit effects exercise. Ready package: `lazy-probe-001`.
+- [x] C1/P03: GCD loop exercise. Ready package: `gcd-reduction-001`.
+- [x] C1/P04: expressionless switch exercise. Ready package: `quadrant-switch-001`.
 - [ ] S2: Formatter concept-seed provenance, Resource original, exact Ardan
   method artifact and bounded defer/key source decisions.
 - [ ] C2/P05: promote existing `formatter-contract-001` before Shape.
@@ -74,3 +79,8 @@ No content batch exceeds ten new or substantially changed tasks. Use disposable
 execution only, one full collection per unchanged batch inputs, and reuse it in
 validator/report checks. New preparation tasks are not additional evidence for
 already completed tasks; no learner home is used in acceptance.
+
+C1 releases four reviewed original packages and the exact E02 revision. Their
+append-only addresses and explicit insertion into the pedagogical mapping remain
+the separate unchecked placement step above; the original 151-row mapping and
+all stable address tuples are unchanged in this content batch.

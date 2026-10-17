@@ -1,0 +1,21 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "pedagogical-c1-author",
+    "created_at": "2026-10-17",
+    "summary": "Original gate a supplied probe without eager calls contract, API, examples, tests and defect models. Approved S1 topic/fact review supplied no external task content."
+  },
+  "kind": "original",
+  "project": {
+    "content_digest": "bb6a6dcbf6023b26c8e69842fc8416d5662e3e8dcd6b5b6d470bc871891fd226",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/lazy-probe-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": []
+}
