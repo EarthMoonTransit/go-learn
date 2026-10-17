@@ -1426,6 +1426,14 @@
             "context.timeouts",
             "context.deadlines"
           ]
+        },
+        {
+          "number": 15,
+          "task_id": "indexed-job-results-001",
+          "role": "introduction",
+          "skills": [
+            "goroutines.result-error-collection"
+          ]
         }
       ],
       "number": 9

@@ -30,7 +30,7 @@ Fifteen reviewed preparations receive append-only addresses; every original
 workspaces. See [ADR 0030](adr/0030-active-pedagogical-order.md) and the
 [implementation audit](../reports/pedagogical-order-activation-audit.md).
 This preparation rollout does not claim complete foundation coverage or public
-export. P17, P19–P25 Later, M2 and T-FUZZ/T-BENCH/T-MODULE remain subsequent work.
+export. P19–P25 Later, M2 and T-FUZZ/T-BENCH/T-MODULE remain subsequent work.
 P18 preparation adds `mapped-records-001` at append-only **07.22**, bringing the
 configured route to **167 ready lessons** after its reviewed PR is merged. Its
 execution position follows Reduce and precedes type sets. The learner declares
@@ -41,6 +41,22 @@ The 167-lesson route contains 86 substantive adaptations, 75 originals and six
 concept-seed tasks; seeds are excluded from substantive reuse. Distinct assessed
 skills remain 104 of 142. No foundation release/export or new assessed skill is
 claimed.
+P17 preparation adds `indexed-job-results-001` at append-only **09.15**, bringing
+this route to **168 ready lessons** after its reviewed PR is merged. It executes
+after the two-stream merge lesson and before cancellation. The Ardan template2
+finite fan-out/collect-all contract is substantively adapted to exact indexed values
+and errors, wait-all after early failure and independent concurrent batches.
+Public checks reject all 13 compiling defects; reference and both an unbuffered
+channel collector and a hybrid caller/worker implementation pass public/full.
+The reviewed content refines PR85's provisional transfer/after-P15 placement:
+this first direct assessment is an introduction after P14 (two-stream merge),
+before cancellation. P15 is cancelable forwarding. This API has no cancellation
+policy, and all actual prerequisites are already prepared at the earlier point.
+The exact donor/source decision and every prior route role remain unchanged.
+The 168-lesson route contains 87 substantive adaptations, 75 originals and six
+concept seeds. Distinct assessed skills become 105 of 142 with the first
+`goroutines.result-error-collection` assessment. One encounter does not establish
+mastery or the required depth; no foundation release/export is declared.
 The milestone ledger below remains historical.
 
 | Milestone | Product result | Definition of Done |

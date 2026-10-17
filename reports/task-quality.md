@@ -12,7 +12,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | --- | ---: |
 | `draft` | 6 |
 | `in-review` | 0 |
-| `ready` | 170 |
+| `ready` | 171 |
 | `rejected` | 1 |
 | `retired` | 0 |
 
@@ -21,7 +21,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | Type | Count |
 | --- | ---: |
 | `debug` | 41 |
-| `implement` | 92 |
+| `implement` | 93 |
 | `refactor` | 3 |
 | `test-writing` | 41 |
 
@@ -110,6 +110,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | `guarded-item-001` | `ready` | `7f1f41024eb7d83ebfa2f517f4ae74e201197b4a916029828d464fa0e8771d89` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
 | `independent-policies-001` | `ready` | `844ffa80b98a253f69e22d939807fbd7425cde45fd3c8e79d6b61f0afd0ce30a` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
 | `independent-scaled-copy-001` | `ready` | `81f004d8e865b14cfe6b1940b733b3abbfc9dd6ba3c72302a332e84bf465e88c` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 8/8 | Phase 3A |
+| `indexed-job-results-001` | `ready` | `cb90eea9bcfa51126fbd42a2f53c9dccd15f4c5b39707b5ab303eed33bdf0aa8` | `pass` | `pass` | true | `pass` | `pass` | `pass` | 13/13 | Phase 3A |
 | `initial-structs-001` | `ready` | `7e028a4a3509f3f77ef7e2c28b9c81b705bb883ace987aadac12ddc751c929bb` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 5/5 | Phase 3A |
 | `initialization-values-001` | `ready` | `c6c9af532a4101918e30edd8172732537240816bd8bccd7f263abcc12cc59449` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 5/5 | Phase 3A |
 | `join-all-tests-001` | `ready` | `c6a36cfd703c900ac52bd80015c803447c5f651955efaa642b63630c9ffb9292` | `pass` | `pass` | true | `pass` | `pass` | `pass` | 7/7 | Phase 3A |
