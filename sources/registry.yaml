@@ -326,10 +326,10 @@ sources:
     license:
       expression: MIT
       evidence_path: LICENSE
-      notes: Root MIT notice verified; file-level review and Go Learn compatibility remain pending.
-    usage_mode: reference-only
+      notes: Root MIT notice and bounded Task 9.2 lineage reviewed; preserve Michael Birsak notice. Other artifacts remain pending.
+    usage_mode: adapt
     adapter: manual-intake-reference-v1
-    scope: Metadata paths, package counts and topic-gap review only; no statements, code, tests or solutions copied. Explicit policy change is required before adaptation.
+    scope: Only Task 9.2 Map in exercises/stage3/09_generics/generics.go at the pinned commit is admitted for API/behavior adaptation, per catalog/intake/2026-10-17/p18-source-review.json. The Map instantiation assertion and TestMap in exercises/stage3/09_generics/generics_test.go are comparison-only; no upstream fixtures copied. All other sections, tests, solutions and paths remain reference-only.
     attribution:
       - Preserve Michael Birsak MIT notice and any applicable upstream notices if later approved.
     evidence:
