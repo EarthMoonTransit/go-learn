@@ -25,7 +25,11 @@
    оформлять отдельно от content batches.
 6. Не менять `schemas/task.schema.json`, идентификаторы skills или смысл полей
    без отдельного зафиксированного решения (ADR/issue) и миграционного плана.
-7. Не помещать секретные grader tests и reference solutions в публичный export.
+7. По решению владельца исходный репозиторий Go Learn разрешено публиковать
+   открыто, включая grader tests, reference solutions и содержащую их Git-историю.
+   Публичность репозитория не объявляет foundation release и не меняет состав
+   learner export: по умолчанию он исключает grader, reference, mutants и
+   internal review согласно `docs/QUALITY_GATES.md`.
 8. Перед завершением tooling batch запускать fast `go test ./...`,
    `go test -race ./...`, `go vet ./...`, затем один
    `go test -tags=taskintegration ./...`. Полный `task-check -all` выполняется
