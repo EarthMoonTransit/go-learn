@@ -52,8 +52,22 @@ func TestReviewedDefectsHavePublicFeedback(t *testing.T) {
 		{"select-ready-case-001", "closed-only-cancel", []string{"readable cancel", "want0,canceled"}},
 		{"mutex-counter-001", "no-lock", []string{"DATA RACE"}},
 		{"concurrent-counter-read-001", "unlocked-read", []string{"DATA RACE"}},
+		{"formatter-contract-001", "omit-right", []string{"Pair.Format(\"L\",\"R\") = \"L:\", want \"L:R\""}},
+		{"formatter-contract-001", "double-format", []string{"Format calls = 2, want 1"}},
+		{"formatter-contract-001", "trim-result", []string{"Render caller formatter = \"value:\", want unchanged"}},
+		{"resource-finalize-001", "close-before-write", []string{"calls/order = [close write], want [write close]"}},
+		{"resource-finalize-001", "deduplicate-error-text", []string{"close wrapper identity = false, want true", "close cause identity = false, want true"}},
+		{"resource-finalize-001", "empty-skips-calls", []string{"calls/order = [], want [write close]"}},
+		{"resource-finalize-001", "ignore-close-error", []string{"close identity = false, want true"}},
+		{"resource-finalize-001", "ignore-short-write", []string{"short-write identity = false, want true"}},
+		{"resource-finalize-001", "lose-write-context", []string{"write context =", "want error text naming write"}},
+		{"resource-finalize-001", "overwrite-write-error", []string{"write identity = false, want true", "short-write identity = false, want true"}},
+		{"resource-finalize-001", "recover-write-panic", []string{"write panic = <nil>, want original"}},
+		{"resource-finalize-001", "retry-write", []string{"calls/order = [write write close], want [write close]"}},
+		{"resource-finalize-001", "skip-close-on-write-error", []string{"calls/order = [write], want [write close]"}},
+		{"resource-finalize-001", "wrong-data", []string{"Write data = [], want [97 98 99]"}},
 	} {
-		t.Run(fixture.id, func(t *testing.T) {
+		t.Run(fixture.id+"/"+fixture.mutant, func(t *testing.T) {
 			canonical := filepath.Join(root, "tasks", "ready", fixture.id)
 			before, err := tasking.TaskContentDigest(canonical)
 			if err != nil {
