@@ -97,8 +97,8 @@ replace-pending-value-001, merge-two-streams-001, cancelable-forward-001 and
 timeout-operation-001) and revises the existing Worker scaffold. The supplied
 synctest/gate helpers are guided support, not independent harness mastery. All
 five new references pass public/full checks and all 41 compiling defects have
-useful public test diagnostics. Append-only placement, activation and persisted
-C3 feedback/tolerance regressions remain separate unchecked steps above.
+useful public test diagnostics. Append-only placement and activation remain separate unchecked steps above.
+The following tooling batch protects C3 feedback/tolerance regressions.
 
 C3 feedback tooling protects all 41 public defect rows and four accepted
 alternatives (MergeTwo function value/declaration helpers, buffered Forward and

@@ -181,6 +181,14 @@ func TestReviewedDefectsHavePublicFeedback(t *testing.T) {
 			if err != nil || result.Passed {
 				t.Fatalf("public defect check: result=%+v err=%v", result, err)
 			}
+			switch fixture.id {
+			case "launch-provided-job-001", "replace-pending-value-001", "merge-two-streams-001", "cancelable-forward-001", "timeout-operation-001":
+				// An assertion printed before a later timeout is not bounded
+				// public feedback. Preserve the original race-specific rows below.
+				if result.FailureCategory != "test" {
+					t.Fatalf("C3 public failure category = %q, want test: %+v", result.FailureCategory, result)
+				}
+			}
 			for _, want := range fixture.diagnostics {
 				if !strings.Contains(result.Diagnostic, want) {
 					t.Errorf("public diagnostic %q does not contain %q", result.Diagnostic, want)
