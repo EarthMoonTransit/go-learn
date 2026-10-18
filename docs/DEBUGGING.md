@@ -96,6 +96,39 @@ reference full (два determinism runs и vet) и последующего publ
 public workspace, повторную валидацию изменённых inputs и удаление session root.
 Timeouts, workflow gates и содержимое банка этой оптимизацией не меняются.
 
+## Компиляция schemas каталога (2026-10-18)
+
+Metadata каждого package раньше заново компилировали одни и те же JSON schemas.
+Теперь `learnerPackageLoader` сохраняет compiled schema с первого использования
+до конца одной операции чтения каталога. Для каждого schema name используется
+отдельный Compiler с прежними settings, resource names и разрешением refs.
+Следующая операция создаёт новый loader и видит изменения schemas, включая
+ошибку и последующее исправление через тот же Service. Атомарный filesystem
+snapshot этим не обещается.
+
+Каждый документ по-прежнему проходит strict YAML decoding, JSON normalization
+и schema validation. Результаты package validation не кэшируются. Lookup,
+lifecycle inventory, API, provenance, review, symlink и content-digest checks
+сохраняются для каждой задачи; standalone validation остаётся свежей.
+Fixture с двумя настоящими packages проверяет четыре компиляции и восемь
+document validations, затем отклонение неверного следующего package.
+
+Измерения того же `BenchmarkReadyLearnerCatalog` на Apple M4 Max,
+darwin/arm64, Go 1.27.0: одинаковые 169 learner tasks, база `1e362157`,
+median из трёх запусков командами выше. MB здесь — 1 000 000 bytes.
+
+| Сценарий | До | После |
+| --- | ---: | ---: |
+| Полный каталог без race | 0,686 s | 0,329 s |
+| Полный каталог под race | 3,305 s | 1,673 s |
+| Allocated bytes без race | 650,6 MB | 141,0 MB |
+| Allocated bytes под race | 704,1 MB | 193,3 MB |
+
+Все 169 экспортируемых `LearnerTaskInfo` до/после совпадают при чтении одних
+и тех же inputs. Это локальные наблюдения, не timing acceptance thresholds.
+Race, integration, grader, disposable workspaces и обязательные workflow gates
+не сокращаются.
+
 ## CI integration suite budget
 
 Runs 34253711927 and 34254229744 both hit Go's default 10-minute package
