@@ -1,0 +1,491 @@
+[
+  {
+    "name": "direct",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "function-alias",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encode:=subject.Encode;decode:=subject.Decode;encoded:=encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "encode-clone",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(bytes.Clone(input));if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "decode-clone",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(bytes.Clone(encoded));if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "decode-full-span",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded[0:len(encoded)]);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "decoded-clone-assert",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(bytes.Clone(decoded),input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "tuple-helper-forward",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=decodeValue(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc decodeValue(value []byte)([]byte,bool){return subject.Decode(value)}"
+    }
+  },
+  {
+    "name": "tuple-helper-explicit",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=decodeValue(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc decodeValue(value []byte)([]byte,bool){decoded,ok:=subject.Decode(value);return decoded,ok}"
+    }
+  },
+  {
+    "name": "tuple-named-signature",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=decodeValue(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc decodeValue(value []byte)(result []byte,valid bool){return subject.Decode(value)}"
+    }
+  },
+  {
+    "name": "tuple-helper-function-alias",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decode:=decodeValue;decoded,ok:=decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc decodeValue(value []byte)([]byte,bool){return subject.Decode(value)}"
+    }
+  },
+  {
+    "name": "encode-helper",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=encodeValue(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc encodeValue(value []byte)[]byte{return subject.Encode(value)}"
+    }
+  },
+  {
+    "name": "encode-helper-clone-return",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=encodeValue(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc encodeValue(value []byte)[]byte{return bytes.Clone(subject.Encode(value))}"
+    }
+  },
+  {
+    "name": "encoded-join-same-family",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(maybeClone(encoded));if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc maybeClone(value []byte)[]byte{if len(value)>2{return value};return bytes.Clone(value)}"
+    }
+  },
+  {
+    "name": "tuple-components-join",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=decodeValue(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc decodeValue(value []byte)([]byte,bool){if len(value)>2{decoded,ok:=subject.Decode(value);return decoded,ok};return subject.Decode(bytes.Clone(value))}"
+    }
+  },
+  {
+    "name": "discard-tuple-call",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};subject.Decode(encoded)})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "discard-tuple-bindings",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);_ = decoded;_ = ok})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "tuple-blank-status",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,_:=subject.Decode(encoded);if !bytes.Equal(decoded,input){t.Error(\"mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "nested-encode-decode",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){decoded,ok:=subject.Decode(subject.Encode(input));if !ok||!bytes.Equal(decoded,input){t.Error(\"mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "assertion-helper",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);assertValue(t,decoded,input,ok)})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc assertValue(t *testing.T,got,want []byte,ok bool){t.Helper();if !ok||!bytes.Equal(got,want){t.Errorf(\"got %v want %v valid %v\",got,want,ok)}}"
+    }
+  },
+  {
+    "name": "multi-file",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);assertValue(t,decoded,input,ok)})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n",
+      "helpers_test.go": "package subject_test;import(\"testing\";\"bytes\");func assertValue(t *testing.T,got,want []byte,ok bool){t.Helper();if !ok||!bytes.Equal(got,want){t.Error(\"mismatch\")}}"
+    }
+  },
+  {
+    "name": "unused-empty-blank",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc _(){};func _(){}"
+    }
+  },
+  {
+    "name": "role-four-byte-params",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=decodeValue(input,encoded,encoded,input);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc decodeValue(seed,wire,again,other []byte)([]byte,bool){subject.Encode(seed);_ = again;_ = other;return subject.Decode(wire)}"
+    }
+  },
+  {
+    "name": "wrong-decode-seed",
+    "accepted": false,
+    "diagnostic": "origin.argument",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(input);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "wrong-encode-encoded",
+    "accepted": false,
+    "diagnostic": "origin.argument",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};subject.Encode(encoded)})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "wrong-encode-decoded",
+    "accepted": false,
+    "diagnostic": "origin.argument",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")};subject.Encode(decoded)})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "wrong-decode-decoded",
+    "accepted": false,
+    "diagnostic": "origin.argument",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")};subject.Decode(decoded)})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "wrong-decode-constant",
+    "accepted": false,
+    "diagnostic": "origin.argument",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode([]byte{0xD3,1});if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "wrong-decode-partial",
+    "accepted": false,
+    "diagnostic": "origin.argument",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded[2:]);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "wrong-helper-actual-seed",
+    "accepted": false,
+    "diagnostic": "origin.argument",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=decodeValue(input);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc decodeValue(value []byte)([]byte,bool){return subject.Decode(value)}"
+    }
+  },
+  {
+    "name": "encoded-other-join",
+    "accepted": false,
+    "diagnostic": "origin.argument",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(maybeWire(encoded));if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc maybeWire(value []byte)[]byte{if len(value)>2{return value};return []byte{0xD3,1}}"
+    }
+  },
+  {
+    "name": "tuple-component-mixed-join",
+    "accepted": false,
+    "diagnostic": "origin.argument",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")};wire,_:=mixed(encoded,decoded);subject.Decode(wire)})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc mixed(encoded,decoded []byte)([]byte,bool){if len(encoded)>2{return encoded,true};return decoded,true}"
+    }
+  },
+  {
+    "name": "unused-incompatible-role",
+    "accepted": false,
+    "diagnostic": "origin.argument",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc unused(value []byte){subject.Encode(value);subject.Decode(value)}"
+    }
+  },
+  {
+    "name": "unused-constant-call",
+    "accepted": false,
+    "diagnostic": "origin.argument",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc unused(){subject.Encode([]byte{0})}"
+    }
+  },
+  {
+    "name": "unused-recursive",
+    "accepted": false,
+    "diagnostic": "frame.recursion",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc unused(){unused()}"
+    }
+  },
+  {
+    "name": "tuple-rebind",
+    "accepted": false,
+    "diagnostic": "frame.write",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded:=[]byte(nil);decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "tuple-grouped-var",
+    "accepted": false,
+    "diagnostic": "frame.declaration",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};var decoded,ok=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "tuple-naked-return",
+    "accepted": false,
+    "diagnostic": "frame.return",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc unused(value []byte)(decoded []byte,ok bool){return}"
+    }
+  },
+  {
+    "name": "tuple-argument-spread",
+    "accepted": false,
+    "diagnostic": "frame.call",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};pair(subject.Decode(encoded))})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc pair(value []byte,ok bool){_ = value;_ = ok}"
+    }
+  },
+  {
+    "name": "tuple-wrong-second-type",
+    "accepted": false,
+    "diagnostic": "frame.signature",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc unused(value []byte)([]byte,int){return value,0}"
+    }
+  },
+  {
+    "name": "helper-nine-params",
+    "accepted": false,
+    "diagnostic": "frame.signature",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc unused(a,b,c,d,e,f,g,h,i int){}"
+    }
+  },
+  {
+    "name": "helper-five-byte-params",
+    "accepted": false,
+    "diagnostic": "frame.signature",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc unused(a,b,c,d,e []byte){}"
+    }
+  },
+  {
+    "name": "subject-named-encode-result",
+    "accepted": false,
+    "diagnostic": "frame.api-signature",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "subject-named-decode-result",
+    "accepted": false,
+    "diagnostic": "frame.api-signature",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if len(encoded)!=len(input)*2{t.Fatal(\"length mismatch\")};digits:=[]byte(\"0123456789abcdef\");for i,v:=range input{if encoded[2*i]!=digits[v/16]||encoded[2*i+1]!=digits[v%16]{t.Error(\"canonical wire mismatch\")}};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-direct",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,hex.AppendEncode(nil,input)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-typed-nil",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,hex.AppendEncode([]byte(nil),input)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-seed-clone",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,hex.AppendEncode(nil,bytes.Clone(input))){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-function-alias",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encodeExpected:=hex.AppendEncode;encoded:=subject.Encode(input);if !bytes.Equal(encoded,encodeExpected(nil,input)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-helper",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,expected(input)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc expected(seed []byte)[]byte{return hex.AppendEncode(nil,seed)}"
+    }
+  },
+  {
+    "name": "oracle-helper-actual-encoded",
+    "accepted": false,
+    "diagnostic": "origin.oracle",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,expected(encoded)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\nfunc expected(seed []byte)[]byte{return hex.AppendEncode(nil,seed)}"
+    }
+  },
+  {
+    "name": "oracle-nonnil-destination",
+    "accepted": false,
+    "diagnostic": "origin.oracle",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,hex.AppendEncode(encoded,input)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-empty-destination",
+    "accepted": false,
+    "diagnostic": "origin.oracle",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,hex.AppendEncode([]byte{},input)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-cloned-nil-destination",
+    "accepted": false,
+    "diagnostic": "origin.oracle",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,hex.AppendEncode(bytes.Clone([]byte(nil)),input)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-destination-alias",
+    "accepted": false,
+    "diagnostic": "origin.oracle",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){dst:=[]byte(nil);encoded:=subject.Encode(input);if !bytes.Equal(encoded,hex.AppendEncode(dst,input)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-constant-input",
+    "accepted": false,
+    "diagnostic": "origin.oracle",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,hex.AppendEncode(nil,[]byte{0})){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-encoded-input",
+    "accepted": false,
+    "diagnostic": "origin.oracle",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,hex.AppendEncode(nil,encoded)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-result-to-decode",
+    "accepted": false,
+    "diagnostic": "origin.argument",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,hex.AppendEncode(nil,input)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(hex.AppendEncode(nil,input));if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-result-to-encode",
+    "accepted": false,
+    "diagnostic": "origin.argument",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,hex.AppendEncode(nil,input)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")};subject.Encode(hex.AppendEncode(nil,input))})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-cloned-result-to-decode",
+    "accepted": false,
+    "diagnostic": "origin.argument",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,hex.AppendEncode(nil,input)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(bytes.Clone(hex.AppendEncode(nil,input)));if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-decoded-input",
+    "accepted": false,
+    "diagnostic": "origin.oracle",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,hex.AppendEncode(nil,input)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")};hex.AppendEncode(nil,decoded)})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-other-library-function",
+    "accepted": false,
+    "diagnostic": "frame.call",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";\"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);decoded,err:=hex.AppendDecode(nil,encoded);_ = decoded;_ = err})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  },
+  {
+    "name": "oracle-import-alias",
+    "accepted": true,
+    "diagnostic": "",
+    "sources": {
+      "fuzz_test.go": "package subject_test\nimport(\"testing\";\"bytes\";oracleHex \"encoding/hex\";\"task.local/typed-hex-001/subject\")\nfunc FuzzHex(f *testing.F){f.Add([]byte(nil));f.Add([]byte{});f.Add([]byte{0});f.Add([]byte{128});f.Add([]byte{2,1});f.Add([]byte{7,7,7,7,7});f.Add([]byte{0x0a});f.Fuzz(func(t *testing.T,input []byte){encoded:=subject.Encode(input);if !bytes.Equal(encoded,oracleHex.AppendEncode(nil,input)){t.Error(\"canonical wire mismatch\")};decoded,ok:=subject.Decode(encoded);if !ok||!bytes.Equal(decoded,input){t.Error(\"decoded payload/status mismatch\")}})}\nfunc unusedEquality(a,b []byte)bool{return bytes.Equal(a,b)}\n"
+    }
+  }
+]
