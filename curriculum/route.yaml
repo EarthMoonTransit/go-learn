@@ -1434,6 +1434,14 @@
           "skills": [
             "goroutines.result-error-collection"
           ]
+        },
+        {
+          "number": 16,
+          "task_id": "gated-worker-arguments-001",
+          "role": "introduction",
+          "skills": [
+            "goroutines.capture-arguments"
+          ]
         }
       ],
       "number": 9

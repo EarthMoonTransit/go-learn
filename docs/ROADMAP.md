@@ -30,7 +30,7 @@ Fifteen reviewed preparations receive append-only addresses; every original
 workspaces. See [ADR 0030](adr/0030-active-pedagogical-order.md) and the
 [implementation audit](../reports/pedagogical-order-activation-audit.md).
 This preparation rollout does not claim complete foundation coverage or public
-export. P19–P25 Later, M2 and T-FUZZ/T-BENCH/T-MODULE remain subsequent work.
+export. P20–P25 Later, M2 and T-FUZZ/T-BENCH/T-MODULE remain subsequent work.
 P18 preparation adds `mapped-records-001` at append-only **07.22**, bringing the
 configured route to **167 ready lessons** after its reviewed PR is merged. Its
 execution position follows Reduce and precedes type sets. The learner declares
@@ -57,6 +57,22 @@ The 168-lesson route contains 87 substantive adaptations, 75 originals and six
 concept seeds. Distinct assessed skills become 105 of 142 with the first
 `goroutines.result-error-collection` assessment. One encounter does not establish
 mastery or the required depth; no foundation release/export is declared.
+P19 preparation adds `gated-worker-arguments-001` at append-only **09.16**,
+bringing the route to **169 ready lessons** after its reviewed PR is merged.
+It follows indexed result collection and repairs a reused range variable read
+by workers after the caller releases a start gate.
+Its introduction role explicitly refines PR85's provisional practice planning:
+closure, channel and launch mechanics are prepared, while delayed capture versus
+argument binding receives its first direct assessment here. The historical
+source decision is retained; no earlier completion gains this outcome. The wrong starter is
+race-free and fails exact public argument assertions. Fifteen compiling defects
+receive useful public failures; argument binding, current per-iteration ':='
+and index binding with shared empty completion handles pass public/full.
+The 169-lesson route contains 87 substantive adaptations, 76 originals and six
+concept seeds. Distinct assessed skills become 106 of 142 with the first
+`goroutines.capture-arguments` assessment. Original development is specifically
+justified by the bounded PR85 comparison. This is preparation, with no human
+mastery, complete depth, foundation release or export claim.
 The milestone ledger below remains historical.
 
 | Milestone | Product result | Definition of Done |

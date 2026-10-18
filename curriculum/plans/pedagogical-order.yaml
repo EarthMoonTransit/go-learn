@@ -51,4 +51,6 @@ exposure_edges:
   - {before_task_id: mapped-records-001, task_id: named-numeric-constraint-001}
   - {before_task_id: merge-two-streams-001, task_id: indexed-job-results-001}
   - {before_task_id: indexed-job-results-001, task_id: cancel-worker-001}
+  - {before_task_id: indexed-job-results-001, task_id: gated-worker-arguments-001}
+  - {before_task_id: gated-worker-arguments-001, task_id: cancel-worker-001}
 pending_preparation: []

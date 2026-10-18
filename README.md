@@ -1,8 +1,8 @@
 # Go Practice Bank
 
 
-Active roadmap: **168 ready Go lessons → complete Go foundation**. Backend and production lesson tracks are deferred. See [ROADMAP.md](docs/ROADMAP.md).
-Кураторский банк практических задач по Go: **168 уроков в педагогическом порядке**,
+Active roadmap: **169 ready Go lessons → complete Go foundation**. Backend and production lesson tracks are deferred. See [ROADMAP.md](docs/ROADMAP.md).
+Кураторский банк практических задач по Go: **169 уроков в педагогическом порядке**,
 со стабильными адресами в разделах 01–09, включая самостоятельное написание кода,
 тестов и debugging. Прежние адреса, прогресс и рабочие папки сохраняются.
 87 уроков содержательно адаптируют разрешённые материалы Exercism, Learn Go with
