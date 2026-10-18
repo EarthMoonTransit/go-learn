@@ -1,0 +1,1214 @@
+{
+  "format": "p20-content-matrix-results/v1",
+  "task_id": "hex-wire-invariants-001",
+  "status": "PASS",
+  "scope": "Supplemental real disposable Engine.Verify matrix,2repeats,Race=false,Vet=false. Declared race/vet proved separately by targeted task-check. Not final bank or release acceptance.",
+  "native_matrix_sha256": "22de387fbd0dd891aa2011bbc353235b7acec7c1d4bffe69bc76eddff7eded0d",
+  "trusted_driver_sha256": "6a81495ac441a1e4e81d6c424650b1404b0ff90a60968e5fa9d8cbc1ae6c7172",
+  "targeted_report_sha256": "c5aa9904b155061337755afb63384d7848f60038aaa2069d1491106d16ad217e",
+  "targeted_technical_status": "pass",
+  "targeted_review_status_at_execution": "fail, honestly pending actual independent review",
+  "required_models_detected": 5,
+  "cases": [
+    {
+      "control": "reference",
+      "variant": "canonical",
+      "source_sha256": "c35f5412fe04d7fbb0229ac88c7db8d729fbf64e38c5a451770a9c4110bf67d2",
+      "implementation_sha256": "aa115e7629ce6e47303493e0a4703fa445bbc6965b181ce5718f94e2a6cac324",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "reference",
+      "variant": "loop",
+      "source_sha256": "c35f5412fe04d7fbb0229ac88c7db8d729fbf64e38c5a451770a9c4110bf67d2",
+      "implementation_sha256": "a490ecefb35685ad89cf21b175ff7de4cb3fb416e75d65d87cf76f16cc6799ca",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "reference",
+      "variant": "empty",
+      "source_sha256": "c35f5412fe04d7fbb0229ac88c7db8d729fbf64e38c5a451770a9c4110bf67d2",
+      "implementation_sha256": "f470cf22c7590ab3ebf68e83bdffb4c5d21f487c348e5616864d96a5722548b5",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "reference",
+      "variant": "false-status",
+      "source_sha256": "c35f5412fe04d7fbb0229ac88c7db8d729fbf64e38c5a451770a9c4110bf67d2",
+      "implementation_sha256": "9aac749923ca2fca49fe5edad17fdf313824b40be124795fba6c0158cde7aa44",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        6,
+        6
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "reference",
+      "variant": "paired-byte-order",
+      "source_sha256": "c35f5412fe04d7fbb0229ac88c7db8d729fbf64e38c5a451770a9c4110bf67d2",
+      "implementation_sha256": "f1e23bf45f3e46337ceb13ea61a9f13b12b26f2f1e06aaeedb4a9bf91cccb092",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "reference",
+      "variant": "paired-nibble-order",
+      "source_sha256": "c35f5412fe04d7fbb0229ac88c7db8d729fbf64e38c5a451770a9c4110bf67d2",
+      "implementation_sha256": "eea37f189ac3897d5696d3f60ed0c00655bd74d0cc5b0a4eac9dad85315fcce2",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        3,
+        3
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "reference",
+      "variant": "paired-uppercase",
+      "source_sha256": "c35f5412fe04d7fbb0229ac88c7db8d729fbf64e38c5a451770a9c4110bf67d2",
+      "implementation_sha256": "22635b09676c74c107324f23d9bc1563615e4303294e99c98df7536b0286a605",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "reference",
+      "variant": "wrong-payload",
+      "source_sha256": "c35f5412fe04d7fbb0229ac88c7db8d729fbf64e38c5a451770a9c4110bf67d2",
+      "implementation_sha256": "ca461fe09f3aa1409644e653d20b0cd5b55827461677137ece71d2085749f372",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        5,
+        5
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "starter",
+      "variant": "canonical",
+      "source_sha256": "83ee78cc455b757de1eebe16515b8f5b56c9a3e14f1e58f1b4cda657bc6e7d15",
+      "implementation_sha256": "aa115e7629ce6e47303493e0a4703fa445bbc6965b181ce5718f94e2a6cac324",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "starter",
+      "variant": "loop",
+      "source_sha256": "83ee78cc455b757de1eebe16515b8f5b56c9a3e14f1e58f1b4cda657bc6e7d15",
+      "implementation_sha256": "a490ecefb35685ad89cf21b175ff7de4cb3fb416e75d65d87cf76f16cc6799ca",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "starter",
+      "variant": "empty",
+      "source_sha256": "83ee78cc455b757de1eebe16515b8f5b56c9a3e14f1e58f1b4cda657bc6e7d15",
+      "implementation_sha256": "f470cf22c7590ab3ebf68e83bdffb4c5d21f487c348e5616864d96a5722548b5",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "starter",
+      "variant": "false-status",
+      "source_sha256": "83ee78cc455b757de1eebe16515b8f5b56c9a3e14f1e58f1b4cda657bc6e7d15",
+      "implementation_sha256": "9aac749923ca2fca49fe5edad17fdf313824b40be124795fba6c0158cde7aa44",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        6,
+        6
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "starter",
+      "variant": "paired-byte-order",
+      "source_sha256": "83ee78cc455b757de1eebe16515b8f5b56c9a3e14f1e58f1b4cda657bc6e7d15",
+      "implementation_sha256": "f1e23bf45f3e46337ceb13ea61a9f13b12b26f2f1e06aaeedb4a9bf91cccb092",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "starter",
+      "variant": "paired-nibble-order",
+      "source_sha256": "83ee78cc455b757de1eebe16515b8f5b56c9a3e14f1e58f1b4cda657bc6e7d15",
+      "implementation_sha256": "eea37f189ac3897d5696d3f60ed0c00655bd74d0cc5b0a4eac9dad85315fcce2",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "starter",
+      "variant": "paired-uppercase",
+      "source_sha256": "83ee78cc455b757de1eebe16515b8f5b56c9a3e14f1e58f1b4cda657bc6e7d15",
+      "implementation_sha256": "22635b09676c74c107324f23d9bc1563615e4303294e99c98df7536b0286a605",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "starter",
+      "variant": "wrong-payload",
+      "source_sha256": "83ee78cc455b757de1eebe16515b8f5b56c9a3e14f1e58f1b4cda657bc6e7d15",
+      "implementation_sha256": "ca461fe09f3aa1409644e653d20b0cd5b55827461677137ece71d2085749f372",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        5,
+        5
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "alternative-corpus",
+      "variant": "canonical",
+      "source_sha256": "45da9a6640aef0bbc23528c28731e9c20567f3ae969036fa4e45598d2032774d",
+      "implementation_sha256": "aa115e7629ce6e47303493e0a4703fa445bbc6965b181ce5718f94e2a6cac324",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "alternative-corpus",
+      "variant": "loop",
+      "source_sha256": "45da9a6640aef0bbc23528c28731e9c20567f3ae969036fa4e45598d2032774d",
+      "implementation_sha256": "a490ecefb35685ad89cf21b175ff7de4cb3fb416e75d65d87cf76f16cc6799ca",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "alternative-corpus",
+      "variant": "empty",
+      "source_sha256": "45da9a6640aef0bbc23528c28731e9c20567f3ae969036fa4e45598d2032774d",
+      "implementation_sha256": "f470cf22c7590ab3ebf68e83bdffb4c5d21f487c348e5616864d96a5722548b5",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "alternative-corpus",
+      "variant": "paired-uppercase",
+      "source_sha256": "45da9a6640aef0bbc23528c28731e9c20567f3ae969036fa4e45598d2032774d",
+      "implementation_sha256": "22635b09676c74c107324f23d9bc1563615e4303294e99c98df7536b0286a605",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "alternative-corpus",
+      "variant": "paired-nibble-order",
+      "source_sha256": "45da9a6640aef0bbc23528c28731e9c20567f3ae969036fa4e45598d2032774d",
+      "implementation_sha256": "eea37f189ac3897d5696d3f60ed0c00655bd74d0cc5b0a4eac9dad85315fcce2",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        4,
+        4
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "alternative-corpus",
+      "variant": "paired-byte-order",
+      "source_sha256": "45da9a6640aef0bbc23528c28731e9c20567f3ae969036fa4e45598d2032774d",
+      "implementation_sha256": "f1e23bf45f3e46337ceb13ea61a9f13b12b26f2f1e06aaeedb4a9bf91cccb092",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "alternative-corpus",
+      "variant": "false-status",
+      "source_sha256": "45da9a6640aef0bbc23528c28731e9c20567f3ae969036fa4e45598d2032774d",
+      "implementation_sha256": "9aac749923ca2fca49fe5edad17fdf313824b40be124795fba6c0158cde7aa44",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        6,
+        6
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "alternative-corpus",
+      "variant": "wrong-payload",
+      "source_sha256": "45da9a6640aef0bbc23528c28731e9c20567f3ae969036fa4e45598d2032774d",
+      "implementation_sha256": "ca461fe09f3aa1409644e653d20b0cd5b55827461677137ece71d2085749f372",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        5,
+        5
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "nil-only-wire",
+      "variant": "canonical",
+      "source_sha256": "9399a6d6aa7e0c29dfa50e5f85cba9224668c6897d2ee86166dcf464e7b2c7f5",
+      "implementation_sha256": "aa115e7629ce6e47303493e0a4703fa445bbc6965b181ce5718f94e2a6cac324",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "nil-only-wire",
+      "variant": "loop",
+      "source_sha256": "9399a6d6aa7e0c29dfa50e5f85cba9224668c6897d2ee86166dcf464e7b2c7f5",
+      "implementation_sha256": "a490ecefb35685ad89cf21b175ff7de4cb3fb416e75d65d87cf76f16cc6799ca",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "nil-only-wire",
+      "variant": "empty",
+      "source_sha256": "9399a6d6aa7e0c29dfa50e5f85cba9224668c6897d2ee86166dcf464e7b2c7f5",
+      "implementation_sha256": "f470cf22c7590ab3ebf68e83bdffb4c5d21f487c348e5616864d96a5722548b5",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "nonnil-only-wire",
+      "variant": "canonical",
+      "source_sha256": "56e6b8ebdef2e6c97201e24042e9e2d576569b138609f610ddf4a009e474ad83",
+      "implementation_sha256": "aa115e7629ce6e47303493e0a4703fa445bbc6965b181ce5718f94e2a6cac324",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "nonnil-only-wire",
+      "variant": "loop",
+      "source_sha256": "56e6b8ebdef2e6c97201e24042e9e2d576569b138609f610ddf4a009e474ad83",
+      "implementation_sha256": "a490ecefb35685ad89cf21b175ff7de4cb3fb416e75d65d87cf76f16cc6799ca",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "nonnil-only-wire",
+      "variant": "empty",
+      "source_sha256": "56e6b8ebdef2e6c97201e24042e9e2d576569b138609f610ddf4a009e474ad83",
+      "implementation_sha256": "f470cf22c7590ab3ebf68e83bdffb4c5d21f487c348e5616864d96a5722548b5",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "per-digit-oracle",
+      "variant": "canonical",
+      "source_sha256": "0fc33280d55005cae834fb2ef79956abec428a3f2d21e2c53764276c3d3b9887",
+      "implementation_sha256": "aa115e7629ce6e47303493e0a4703fa445bbc6965b181ce5718f94e2a6cac324",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "per-digit-oracle",
+      "variant": "loop",
+      "source_sha256": "0fc33280d55005cae834fb2ef79956abec428a3f2d21e2c53764276c3d3b9887",
+      "implementation_sha256": "a490ecefb35685ad89cf21b175ff7de4cb3fb416e75d65d87cf76f16cc6799ca",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "per-digit-oracle",
+      "variant": "empty",
+      "source_sha256": "0fc33280d55005cae834fb2ef79956abec428a3f2d21e2c53764276c3d3b9887",
+      "implementation_sha256": "f470cf22c7590ab3ebf68e83bdffb4c5d21f487c348e5616864d96a5722548b5",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "per-digit-oracle",
+      "variant": "paired-uppercase",
+      "source_sha256": "0fc33280d55005cae834fb2ef79956abec428a3f2d21e2c53764276c3d3b9887",
+      "implementation_sha256": "22635b09676c74c107324f23d9bc1563615e4303294e99c98df7536b0286a605",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "per-digit-oracle",
+      "variant": "paired-nibble-order",
+      "source_sha256": "0fc33280d55005cae834fb2ef79956abec428a3f2d21e2c53764276c3d3b9887",
+      "implementation_sha256": "eea37f189ac3897d5696d3f60ed0c00655bd74d0cc5b0a4eac9dad85315fcce2",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        3,
+        3
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "per-digit-oracle",
+      "variant": "paired-byte-order",
+      "source_sha256": "0fc33280d55005cae834fb2ef79956abec428a3f2d21e2c53764276c3d3b9887",
+      "implementation_sha256": "f1e23bf45f3e46337ceb13ea61a9f13b12b26f2f1e06aaeedb4a9bf91cccb092",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "per-digit-oracle",
+      "variant": "false-status",
+      "source_sha256": "0fc33280d55005cae834fb2ef79956abec428a3f2d21e2c53764276c3d3b9887",
+      "implementation_sha256": "9aac749923ca2fca49fe5edad17fdf313824b40be124795fba6c0158cde7aa44",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        6,
+        6
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "per-digit-oracle",
+      "variant": "wrong-payload",
+      "source_sha256": "0fc33280d55005cae834fb2ef79956abec428a3f2d21e2c53764276c3d3b9887",
+      "implementation_sha256": "ca461fe09f3aa1409644e653d20b0cd5b55827461677137ece71d2085749f372",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        5,
+        5
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "copied-first-property",
+      "variant": "canonical",
+      "source_sha256": "27b5ad5c08826805502524373cdd5fe73a7cb774424a015fa2583ba699317a03",
+      "implementation_sha256": "aa115e7629ce6e47303493e0a4703fa445bbc6965b181ce5718f94e2a6cac324",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "copied-first-property",
+      "variant": "loop",
+      "source_sha256": "27b5ad5c08826805502524373cdd5fe73a7cb774424a015fa2583ba699317a03",
+      "implementation_sha256": "a490ecefb35685ad89cf21b175ff7de4cb3fb416e75d65d87cf76f16cc6799ca",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "copied-first-property",
+      "variant": "empty",
+      "source_sha256": "27b5ad5c08826805502524373cdd5fe73a7cb774424a015fa2583ba699317a03",
+      "implementation_sha256": "f470cf22c7590ab3ebf68e83bdffb4c5d21f487c348e5616864d96a5722548b5",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "copied-first-property",
+      "variant": "paired-uppercase",
+      "source_sha256": "27b5ad5c08826805502524373cdd5fe73a7cb774424a015fa2583ba699317a03",
+      "implementation_sha256": "22635b09676c74c107324f23d9bc1563615e4303294e99c98df7536b0286a605",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "copied-first-property",
+      "variant": "paired-nibble-order",
+      "source_sha256": "27b5ad5c08826805502524373cdd5fe73a7cb774424a015fa2583ba699317a03",
+      "implementation_sha256": "eea37f189ac3897d5696d3f60ed0c00655bd74d0cc5b0a4eac9dad85315fcce2",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "copied-first-property",
+      "variant": "paired-byte-order",
+      "source_sha256": "27b5ad5c08826805502524373cdd5fe73a7cb774424a015fa2583ba699317a03",
+      "implementation_sha256": "f1e23bf45f3e46337ceb13ea61a9f13b12b26f2f1e06aaeedb4a9bf91cccb092",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "copied-first-property",
+      "variant": "false-status",
+      "source_sha256": "27b5ad5c08826805502524373cdd5fe73a7cb774424a015fa2583ba699317a03",
+      "implementation_sha256": "9aac749923ca2fca49fe5edad17fdf313824b40be124795fba6c0158cde7aa44",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        6,
+        6
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "copied-first-property",
+      "variant": "wrong-payload",
+      "source_sha256": "27b5ad5c08826805502524373cdd5fe73a7cb774424a015fa2583ba699317a03",
+      "implementation_sha256": "ca461fe09f3aa1409644e653d20b0cd5b55827461677137ece71d2085749f372",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        5,
+        5
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "lowercaseness-only",
+      "variant": "canonical",
+      "source_sha256": "2dcb8f774575c18b90dda4ce9983f935ec7f50d6900ab4dd686275fe1910d053",
+      "implementation_sha256": "aa115e7629ce6e47303493e0a4703fa445bbc6965b181ce5718f94e2a6cac324",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "lowercaseness-only",
+      "variant": "loop",
+      "source_sha256": "2dcb8f774575c18b90dda4ce9983f935ec7f50d6900ab4dd686275fe1910d053",
+      "implementation_sha256": "a490ecefb35685ad89cf21b175ff7de4cb3fb416e75d65d87cf76f16cc6799ca",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "lowercaseness-only",
+      "variant": "empty",
+      "source_sha256": "2dcb8f774575c18b90dda4ce9983f935ec7f50d6900ab4dd686275fe1910d053",
+      "implementation_sha256": "f470cf22c7590ab3ebf68e83bdffb4c5d21f487c348e5616864d96a5722548b5",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "lowercaseness-only",
+      "variant": "paired-uppercase",
+      "source_sha256": "2dcb8f774575c18b90dda4ce9983f935ec7f50d6900ab4dd686275fe1910d053",
+      "implementation_sha256": "22635b09676c74c107324f23d9bc1563615e4303294e99c98df7536b0286a605",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "lowercaseness-only",
+      "variant": "paired-nibble-order",
+      "source_sha256": "2dcb8f774575c18b90dda4ce9983f935ec7f50d6900ab4dd686275fe1910d053",
+      "implementation_sha256": "eea37f189ac3897d5696d3f60ed0c00655bd74d0cc5b0a4eac9dad85315fcce2",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "lowercaseness-only",
+      "variant": "paired-byte-order",
+      "source_sha256": "2dcb8f774575c18b90dda4ce9983f935ec7f50d6900ab4dd686275fe1910d053",
+      "implementation_sha256": "f1e23bf45f3e46337ceb13ea61a9f13b12b26f2f1e06aaeedb4a9bf91cccb092",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "lowercaseness-only",
+      "variant": "false-status",
+      "source_sha256": "2dcb8f774575c18b90dda4ce9983f935ec7f50d6900ab4dd686275fe1910d053",
+      "implementation_sha256": "9aac749923ca2fca49fe5edad17fdf313824b40be124795fba6c0158cde7aa44",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        6,
+        6
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "lowercaseness-only",
+      "variant": "wrong-payload",
+      "source_sha256": "2dcb8f774575c18b90dda4ce9983f935ec7f50d6900ab4dd686275fe1910d053",
+      "implementation_sha256": "ca461fe09f3aa1409644e653d20b0cd5b55827461677137ece71d2085749f372",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        5,
+        5
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-only",
+      "variant": "canonical",
+      "source_sha256": "7b724ed1fed96280252f81433f6dbbc135f2c8cafc85e712149da8616527925d",
+      "implementation_sha256": "aa115e7629ce6e47303493e0a4703fa445bbc6965b181ce5718f94e2a6cac324",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-only",
+      "variant": "loop",
+      "source_sha256": "7b724ed1fed96280252f81433f6dbbc135f2c8cafc85e712149da8616527925d",
+      "implementation_sha256": "a490ecefb35685ad89cf21b175ff7de4cb3fb416e75d65d87cf76f16cc6799ca",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-only",
+      "variant": "empty",
+      "source_sha256": "7b724ed1fed96280252f81433f6dbbc135f2c8cafc85e712149da8616527925d",
+      "implementation_sha256": "f470cf22c7590ab3ebf68e83bdffb4c5d21f487c348e5616864d96a5722548b5",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-only",
+      "variant": "paired-uppercase",
+      "source_sha256": "7b724ed1fed96280252f81433f6dbbc135f2c8cafc85e712149da8616527925d",
+      "implementation_sha256": "22635b09676c74c107324f23d9bc1563615e4303294e99c98df7536b0286a605",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-only",
+      "variant": "paired-nibble-order",
+      "source_sha256": "7b724ed1fed96280252f81433f6dbbc135f2c8cafc85e712149da8616527925d",
+      "implementation_sha256": "eea37f189ac3897d5696d3f60ed0c00655bd74d0cc5b0a4eac9dad85315fcce2",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        3,
+        3
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-only",
+      "variant": "paired-byte-order",
+      "source_sha256": "7b724ed1fed96280252f81433f6dbbc135f2c8cafc85e712149da8616527925d",
+      "implementation_sha256": "f1e23bf45f3e46337ceb13ea61a9f13b12b26f2f1e06aaeedb4a9bf91cccb092",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-only",
+      "variant": "false-status",
+      "source_sha256": "7b724ed1fed96280252f81433f6dbbc135f2c8cafc85e712149da8616527925d",
+      "implementation_sha256": "9aac749923ca2fca49fe5edad17fdf313824b40be124795fba6c0158cde7aa44",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-only",
+      "variant": "wrong-payload",
+      "source_sha256": "7b724ed1fed96280252f81433f6dbbc135f2c8cafc85e712149da8616527925d",
+      "implementation_sha256": "ca461fe09f3aa1409644e653d20b0cd5b55827461677137ece71d2085749f372",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-status-only",
+      "variant": "canonical",
+      "source_sha256": "2aa6556b6376be9a22ba78e94d58f1a5d9a20bef3c2fac8ff4f85a3f193731c9",
+      "implementation_sha256": "aa115e7629ce6e47303493e0a4703fa445bbc6965b181ce5718f94e2a6cac324",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-status-only",
+      "variant": "loop",
+      "source_sha256": "2aa6556b6376be9a22ba78e94d58f1a5d9a20bef3c2fac8ff4f85a3f193731c9",
+      "implementation_sha256": "a490ecefb35685ad89cf21b175ff7de4cb3fb416e75d65d87cf76f16cc6799ca",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-status-only",
+      "variant": "empty",
+      "source_sha256": "2aa6556b6376be9a22ba78e94d58f1a5d9a20bef3c2fac8ff4f85a3f193731c9",
+      "implementation_sha256": "f470cf22c7590ab3ebf68e83bdffb4c5d21f487c348e5616864d96a5722548b5",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-status-only",
+      "variant": "paired-uppercase",
+      "source_sha256": "2aa6556b6376be9a22ba78e94d58f1a5d9a20bef3c2fac8ff4f85a3f193731c9",
+      "implementation_sha256": "22635b09676c74c107324f23d9bc1563615e4303294e99c98df7536b0286a605",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-status-only",
+      "variant": "paired-nibble-order",
+      "source_sha256": "2aa6556b6376be9a22ba78e94d58f1a5d9a20bef3c2fac8ff4f85a3f193731c9",
+      "implementation_sha256": "eea37f189ac3897d5696d3f60ed0c00655bd74d0cc5b0a4eac9dad85315fcce2",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        3,
+        3
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-status-only",
+      "variant": "paired-byte-order",
+      "source_sha256": "2aa6556b6376be9a22ba78e94d58f1a5d9a20bef3c2fac8ff4f85a3f193731c9",
+      "implementation_sha256": "f1e23bf45f3e46337ceb13ea61a9f13b12b26f2f1e06aaeedb4a9bf91cccb092",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-status-only",
+      "variant": "false-status",
+      "source_sha256": "2aa6556b6376be9a22ba78e94d58f1a5d9a20bef3c2fac8ff4f85a3f193731c9",
+      "implementation_sha256": "9aac749923ca2fca49fe5edad17fdf313824b40be124795fba6c0158cde7aa44",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        6,
+        6
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-status-only",
+      "variant": "wrong-payload",
+      "source_sha256": "2aa6556b6376be9a22ba78e94d58f1a5d9a20bef3c2fac8ff4f85a3f193731c9",
+      "implementation_sha256": "ca461fe09f3aa1409644e653d20b0cd5b55827461677137ece71d2085749f372",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-value-only",
+      "variant": "canonical",
+      "source_sha256": "2aaf936c314ff7dfecb8991a18ce2a291575c14151c9f46810636ca8792880f7",
+      "implementation_sha256": "aa115e7629ce6e47303493e0a4703fa445bbc6965b181ce5718f94e2a6cac324",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-value-only",
+      "variant": "loop",
+      "source_sha256": "2aaf936c314ff7dfecb8991a18ce2a291575c14151c9f46810636ca8792880f7",
+      "implementation_sha256": "a490ecefb35685ad89cf21b175ff7de4cb3fb416e75d65d87cf76f16cc6799ca",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-value-only",
+      "variant": "empty",
+      "source_sha256": "2aaf936c314ff7dfecb8991a18ce2a291575c14151c9f46810636ca8792880f7",
+      "implementation_sha256": "f470cf22c7590ab3ebf68e83bdffb4c5d21f487c348e5616864d96a5722548b5",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-value-only",
+      "variant": "paired-uppercase",
+      "source_sha256": "2aaf936c314ff7dfecb8991a18ce2a291575c14151c9f46810636ca8792880f7",
+      "implementation_sha256": "22635b09676c74c107324f23d9bc1563615e4303294e99c98df7536b0286a605",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-value-only",
+      "variant": "paired-nibble-order",
+      "source_sha256": "2aaf936c314ff7dfecb8991a18ce2a291575c14151c9f46810636ca8792880f7",
+      "implementation_sha256": "eea37f189ac3897d5696d3f60ed0c00655bd74d0cc5b0a4eac9dad85315fcce2",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        3,
+        3
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-value-only",
+      "variant": "paired-byte-order",
+      "source_sha256": "2aaf936c314ff7dfecb8991a18ce2a291575c14151c9f46810636ca8792880f7",
+      "implementation_sha256": "f1e23bf45f3e46337ceb13ea61a9f13b12b26f2f1e06aaeedb4a9bf91cccb092",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        1,
+        1
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-value-only",
+      "variant": "false-status",
+      "source_sha256": "2aaf936c314ff7dfecb8991a18ce2a291575c14151c9f46810636ca8792880f7",
+      "implementation_sha256": "9aac749923ca2fca49fe5edad17fdf313824b40be124795fba6c0158cde7aa44",
+      "repeats": 2,
+      "valid": true,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wire-and-value-only",
+      "variant": "wrong-payload",
+      "source_sha256": "2aaf936c314ff7dfecb8991a18ce2a291575c14151c9f46810636ca8792880f7",
+      "implementation_sha256": "ca461fe09f3aa1409644e653d20b0cd5b55827461677137ece71d2085749f372",
+      "repeats": 2,
+      "valid": true,
+      "detected": true,
+      "assertions_per_repeat": [
+        5,
+        5
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "wrong-target",
+      "variant": "canonical",
+      "source_sha256": "fa66f67666d0b94cd48bc2309cd26a0f5d8f5b14816895f4e255dc6cc93c7740",
+      "implementation_sha256": "aa115e7629ce6e47303493e0a4703fa445bbc6965b181ce5718f94e2a6cac324",
+      "repeats": 2,
+      "valid": false,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    },
+    {
+      "control": "no-registration",
+      "variant": "canonical",
+      "source_sha256": "02f65bb1e780f8bb1773a6494e2e48be19d0b6ec8461ebdb6119843c149f2b46",
+      "implementation_sha256": "aa115e7629ce6e47303493e0a4703fa445bbc6965b181ce5718f94e2a6cac324",
+      "repeats": 2,
+      "valid": false,
+      "detected": false,
+      "assertions_per_repeat": [
+        0,
+        0
+      ],
+      "canonical_equal": true,
+      "expectations_matched": true
+    }
+  ]
+}

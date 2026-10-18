@@ -1,0 +1,239 @@
+{
+  "format": "p20-content-controls/v1",
+  "task_id": "hex-wire-invariants-001",
+  "status": "PASS supplemental native matrix and actual learner public/full boundary. See control-results.json and public-results.json; final repository acceptance is separate.",
+  "semantics": "Boolean per-variant expectation is eligible native assertion detection, not process exit. Correct variants must never be detected except deliberately invalid public assertions. Only disposable Engine.Verify or task-check may execute these sources.",
+  "controls": [
+    {
+      "name": "reference",
+      "source": "solution/reference/fuzz_test.go",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty",
+        "false-status",
+        "paired-byte-order",
+        "paired-nibble-order",
+        "paired-uppercase",
+        "wrong-payload"
+      ],
+      "expect": "pass-all-correct-detect-all-models",
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "starter",
+      "source": "starter/fuzz_test.go",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty",
+        "false-status",
+        "paired-byte-order",
+        "paired-nibble-order",
+        "paired-uppercase",
+        "wrong-payload"
+      ],
+      "expect": {
+        "canonical": false,
+        "loop": false,
+        "empty": false,
+        "false-status": true,
+        "paired-byte-order": false,
+        "paired-nibble-order": false,
+        "paired-uppercase": false,
+        "wrong-payload": true
+      },
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "alternative-corpus",
+      "source": "review/controls/alternative-corpus.go.txt",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty",
+        "paired-uppercase",
+        "paired-nibble-order",
+        "paired-byte-order",
+        "false-status",
+        "wrong-payload"
+      ],
+      "expect": "pass-all-correct-detect-all-models",
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "nil-only-wire",
+      "source": "review/controls/nil-only-wire.go.txt",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty"
+      ],
+      "expect": {
+        "canonical": false,
+        "loop": false,
+        "empty": true
+      },
+      "diagnostic_contains": "invalid nil-only wire assumption"
+    },
+    {
+      "name": "nonnil-only-wire",
+      "source": "review/controls/nonnil-only-wire.go.txt",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty"
+      ],
+      "expect": {
+        "canonical": true,
+        "loop": true,
+        "empty": false
+      },
+      "diagnostic_contains": "invalid nonnil-only wire assumption"
+    },
+    {
+      "name": "per-digit-oracle",
+      "source": "review/controls/per-digit-oracle.go.txt",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty",
+        "paired-uppercase",
+        "paired-nibble-order",
+        "paired-byte-order",
+        "false-status",
+        "wrong-payload"
+      ],
+      "expect": "pass-all-correct-detect-all-models",
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "copied-first-property",
+      "source": "review/controls/copied-first-property.go.txt",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty",
+        "paired-uppercase",
+        "paired-nibble-order",
+        "paired-byte-order",
+        "false-status",
+        "wrong-payload"
+      ],
+      "expect": {
+        "paired-uppercase": false,
+        "paired-nibble-order": false,
+        "paired-byte-order": false,
+        "false-status": true,
+        "wrong-payload": true
+      },
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "lowercaseness-only",
+      "source": "review/controls/lowercaseness-only.go.txt",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty",
+        "paired-uppercase",
+        "paired-nibble-order",
+        "paired-byte-order",
+        "false-status",
+        "wrong-payload"
+      ],
+      "expect": {
+        "paired-uppercase": true,
+        "paired-nibble-order": false,
+        "paired-byte-order": false,
+        "false-status": true,
+        "wrong-payload": true
+      },
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "wire-only",
+      "source": "review/controls/wire-only.go.txt",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty",
+        "paired-uppercase",
+        "paired-nibble-order",
+        "paired-byte-order",
+        "false-status",
+        "wrong-payload"
+      ],
+      "expect": {
+        "paired-uppercase": true,
+        "paired-nibble-order": true,
+        "paired-byte-order": true,
+        "false-status": false,
+        "wrong-payload": false
+      },
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "wire-and-status-only",
+      "source": "review/controls/wire-and-status-only.go.txt",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty",
+        "paired-uppercase",
+        "paired-nibble-order",
+        "paired-byte-order",
+        "false-status",
+        "wrong-payload"
+      ],
+      "expect": {
+        "paired-uppercase": true,
+        "paired-nibble-order": true,
+        "paired-byte-order": true,
+        "false-status": true,
+        "wrong-payload": false
+      },
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "wire-and-value-only",
+      "source": "review/controls/wire-and-value-only.go.txt",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty",
+        "paired-uppercase",
+        "paired-nibble-order",
+        "paired-byte-order",
+        "false-status",
+        "wrong-payload"
+      ],
+      "expect": {
+        "paired-uppercase": true,
+        "paired-nibble-order": true,
+        "paired-byte-order": true,
+        "false-status": false,
+        "wrong-payload": true
+      },
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "wrong-target",
+      "source": "review/controls/wrong-target.go.txt",
+      "variants": [
+        "canonical"
+      ],
+      "expect": "ineligible",
+      "diagnostic_contains": "frame."
+    },
+    {
+      "name": "no-registration",
+      "source": "review/controls/no-registration.go.txt",
+      "variants": [
+        "canonical"
+      ],
+      "expect": "ineligible",
+      "diagnostic_contains": "f.Other undefined"
+    }
+  ]
+}

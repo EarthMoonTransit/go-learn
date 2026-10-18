@@ -92,6 +92,27 @@ progress, current-task priority and resume workspaces retain their interpretatio
 Required modes, distinct task types and observable outcomes remain independent
 semantic review obligations; full foundation acceptance still requires actual
 full-bank `-coverage` and semantic review. Earlier v3 counts below are historical.
+P20 preparation adds two ordered introductions at stable addresses **08.05**
+and **08.06**, bringing the configured route to **171 ready lessons** after its
+reviewed PR is merged. The active v2 mapping places them at positions **151/152**
+immediately after `text-level-001` in C12 encoding, before C13 time. Later old
+execution positions shift by two; every old address, task ID and relative order
+is retained. The first lesson extends learner-owned seed classes using a supplied
+round-trip value/status check. The second adds an independent canonical lowercase
+wire invariant; paired wrong codecs preserve round trips for any corpus. A reviewed
+exposure edge requires the first successful encounter before the second review.
+Only the corresponding primary skill is assessed in each lesson.
+
+Both use the exact admitted Go hex artifact as a concept seed, with locally
+authored API, code, seeds and assertions. Concept seeds do not become substantive
+adaptations. The separately accepted finite native profile verifies actual seed
+execution in disposable modules; it does not assess randomized search or crash
+reproduction. Package public/full, race/vet, representation fairness and useful
+public diagnostics are reviewed independently of numeric coverage. The active
+plan has its own real scheduler regression: address-only catalog preservation
+cannot prove execution readiness. This remains incremental preparation under
+ADR 0022, with no release/export, complete foundation or learner mastery claim.
+
 The milestone ledger below remains historical.
 
 | Milestone | Product result | Definition of Done |

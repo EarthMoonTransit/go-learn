@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-10-18"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-10-18"
+      actor: codex-foundation-author
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-10-18"
+      actor: codex-foundation-author
+      reason: Independent concrete content review and disposable matrix plus declared race/vet technical gates passed; P20 preparation only.
+    - from: in-review
+      to: ready
+      at: "2026-10-18"
+      actor: codex-foundation-author
+      reason: Independent concrete content review and disposable matrix plus declared race/vet technical gates passed; P20 preparation only.

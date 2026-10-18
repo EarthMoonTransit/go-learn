@@ -1,0 +1,27 @@
+package subject_test
+
+import (
+	"bytes"
+	"encoding/hex"
+	"task.local/hex-wire-invariants-001/subject"
+	"testing"
+)
+
+func FuzzHex(f *testing.F) {
+	f.Add([]byte{})
+	f.Add([]byte{0x00})
+	f.Add([]byte{0x80})
+	f.Add([]byte{0x0d})
+	f.Add([]byte{0x12, 0x34, 0x56})
+	f.Add([]byte{0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x77})
+	f.Fuzz(func(t *testing.T, input []byte) {
+		wire := subject.Encode(input)
+		if !bytes.Equal(wire, hex.AppendEncode(nil, input)) {
+			t.Fatal("canonical wire mismatch")
+		}
+		decoded, ok := subject.Decode(wire)
+		if len(decoded) > 8192 || (ok && len(input) > 4096) {
+			t.Error("impossible bounds")
+		}
+	})
+}

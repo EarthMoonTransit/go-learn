@@ -12,7 +12,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | --- | ---: |
 | `draft` | 6 |
 | `in-review` | 0 |
-| `ready` | 172 |
+| `ready` | 174 |
 | `rejected` | 1 |
 | `retired` | 0 |
 
@@ -23,7 +23,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | `debug` | 42 |
 | `implement` | 93 |
 | `refactor` | 3 |
-| `test-writing` | 41 |
+| `test-writing` | 43 |
 
 ## Aggregate gates
 
@@ -109,6 +109,8 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | `greeter-dispatch-tests-001` | `ready` | `9633491b928cbb87df7bfa33e13cbd65e2a06109071c620818e150fd7487e6be` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
 | `grouped-unit-cost-001` | `ready` | `d58ac77c6c046b6e1ce57f15bde50f04555469e171ed6da87255876d23c79fe8` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 5/5 | Phase 3A |
 | `guarded-item-001` | `ready` | `0567c7f0b63c4b1e9c0c7ecd8669ec14b921624646e3189677cc9de6473d2d15` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
+| `hex-seed-classes-001` | `ready` | `cbb9e8f33948f0786b9082cfe7e54e049af942d497c782c2e319b899cae5ff8b` | `pass` | `pass` | true | `pass` | `pass` | `pass` | 6/6 | Phase 3A |
+| `hex-wire-invariants-001` | `ready` | `f6caeebe715bc724e5e0c2345115a5b7aaf49545de97d9bdde242a3ed1dc3c95` | `pass` | `pass` | true | `pass` | `pass` | `pass` | 5/5 | Phase 3A |
 | `independent-policies-001` | `ready` | `799b3c020ff6e014f19a38cea181329abe063110dacff910ba9b23ca6dcecfe9` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
 | `independent-scaled-copy-001` | `ready` | `36c9f18f0e73b55e03fbafbf2f594778fea68fff07225b9dec7bc1f3b052e09f` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 8/8 | Phase 3A |
 | `indexed-job-results-001` | `ready` | `e951557789f0923c8926a436b02987b10b78055abc682790bea1bd2451412f8a` | `pass` | `pass` | true | `pass` | `pass` | `pass` | 13/13 | Phase 3A |

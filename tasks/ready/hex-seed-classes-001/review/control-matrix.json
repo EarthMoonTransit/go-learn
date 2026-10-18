@@ -1,0 +1,200 @@
+{
+  "format": "p20-content-controls/v1",
+  "task_id": "hex-seed-classes-001",
+  "status": "PASS supplemental native matrix and actual learner public/full boundary. See control-results.json and public-results.json; final repository acceptance is separate.",
+  "semantics": "Boolean per-variant expectation is eligible native assertion detection, not process exit. Correct variants must never be detected except deliberately invalid public assertions. Only disposable Engine.Verify or task-check may execute these sources.",
+  "controls": [
+    {
+      "name": "reference",
+      "source": "solution/reference/fuzz_test.go",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty",
+        "byte-order",
+        "empty-status",
+        "high-bit",
+        "letter-case",
+        "run-length",
+        "zero-byte"
+      ],
+      "expect": "pass-all-correct-detect-all-models",
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "starter",
+      "source": "starter/fuzz_test.go",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty",
+        "byte-order",
+        "empty-status",
+        "high-bit",
+        "letter-case",
+        "run-length",
+        "zero-byte"
+      ],
+      "expect": {
+        "canonical": false,
+        "loop": false,
+        "empty": false,
+        "byte-order": false,
+        "empty-status": false,
+        "high-bit": false,
+        "letter-case": false,
+        "run-length": false,
+        "zero-byte": false
+      },
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "alternative-corpus",
+      "source": "review/controls/alternative-corpus.go.txt",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty",
+        "empty-status",
+        "zero-byte",
+        "high-bit",
+        "letter-case",
+        "byte-order",
+        "run-length"
+      ],
+      "expect": "pass-all-correct-detect-all-models",
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "nil-only-wire",
+      "source": "review/controls/nil-only-wire.go.txt",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty"
+      ],
+      "expect": {
+        "canonical": false,
+        "loop": false,
+        "empty": true
+      },
+      "diagnostic_contains": "invalid nil-only wire assumption"
+    },
+    {
+      "name": "nonnil-only-wire",
+      "source": "review/controls/nonnil-only-wire.go.txt",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty"
+      ],
+      "expect": {
+        "canonical": true,
+        "loop": true,
+        "empty": false
+      },
+      "diagnostic_contains": "invalid nonnil-only wire assumption"
+    },
+    {
+      "name": "omit-empty-status",
+      "source": "review/controls/omit-empty-status.go.txt",
+      "variants": [
+        "empty-status"
+      ],
+      "expect": {
+        "empty-status": false
+      },
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "omit-zero-byte",
+      "source": "review/controls/omit-zero-byte.go.txt",
+      "variants": [
+        "zero-byte"
+      ],
+      "expect": {
+        "zero-byte": false
+      },
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "omit-high-bit",
+      "source": "review/controls/omit-high-bit.go.txt",
+      "variants": [
+        "high-bit"
+      ],
+      "expect": {
+        "high-bit": false
+      },
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "omit-letter-case",
+      "source": "review/controls/omit-letter-case.go.txt",
+      "variants": [
+        "letter-case"
+      ],
+      "expect": {
+        "letter-case": false
+      },
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "omit-byte-order",
+      "source": "review/controls/omit-byte-order.go.txt",
+      "variants": [
+        "byte-order"
+      ],
+      "expect": {
+        "byte-order": false
+      },
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "omit-run-length",
+      "source": "review/controls/omit-run-length.go.txt",
+      "variants": [
+        "run-length"
+      ],
+      "expect": {
+        "run-length": false
+      },
+      "diagnostic_contains": ""
+    },
+    {
+      "name": "wrong-target",
+      "source": "review/controls/wrong-target.go.txt",
+      "variants": [
+        "canonical"
+      ],
+      "expect": "ineligible",
+      "diagnostic_contains": "frame."
+    },
+    {
+      "name": "no-registration",
+      "source": "review/controls/no-registration.go.txt",
+      "variants": [
+        "canonical"
+      ],
+      "expect": "ineligible",
+      "diagnostic_contains": "f.Other undefined"
+    },
+    {
+      "name": "combined-classes",
+      "source": "review/controls/combined-classes.go.txt",
+      "variants": [
+        "canonical",
+        "loop",
+        "empty",
+        "byte-order",
+        "empty-status",
+        "high-bit",
+        "letter-case",
+        "run-length",
+        "zero-byte"
+      ],
+      "expect": "pass-all-correct-detect-all-models",
+      "diagnostic_contains": ""
+    }
+  ]
+}

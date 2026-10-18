@@ -1,0 +1,34 @@
+package subject_test
+
+import (
+	"bytes"
+	"task.local/hex-wire-invariants-001/subject"
+	"testing"
+)
+
+func FuzzHex(f *testing.F) {
+	f.Add([]byte{})
+	f.Add([]byte{0x00})
+	f.Add([]byte{0x80})
+	f.Add([]byte{0x0d})
+	f.Add([]byte{0x12, 0x34, 0x56})
+	f.Add([]byte{0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x77})
+	f.Fuzz(func(t *testing.T, input []byte) {
+
+		wire := subject.Encode(input)
+		if len(wire) != 2*len(input) {
+			t.Fatalf("wire length = %d, want %d", len(wire), 2*len(input))
+		}
+		digits := []byte("0123456789abcdef")
+		for index, value := range input {
+			if wire[2*index] != digits[value/16] || wire[2*index+1] != digits[value%16] {
+				t.Fatalf("wire has wrong hexadecimal digits at byte %d", index)
+			}
+		}
+		decoded, ok := subject.Decode(wire)
+		if !ok || !bytes.Equal(decoded, input) {
+			t.Errorf("decode value/status = %x/%t, want %x/true", decoded, ok, input)
+		}
+
+	})
+}

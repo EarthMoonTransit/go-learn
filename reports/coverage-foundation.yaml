@@ -1,6 +1,6 @@
 schema_version: 1
 report_contract: numeric-coverage/v1
-input_identity: b776cea3208079ad3bd3805ba20dcbfb49a9b26af791a88e4dddb2311cd5ef97
+input_identity: 9fa4987496fea14122183aa03606b24e4c00a48c3652a92eaee7b6fb019fc78a
 selected_scope: foundation
 selected_skill_ids:
     - arrays.indexing-iteration
@@ -601,12 +601,12 @@ numeric:
         - skill_id: fuzzing.invariants
           domain_id: fuzzing
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 3
-          primary_deficit: 3
-          actual_total: 0
+          primary_deficit: 2
+          actual_total: 1
           required_total: 5
-          total_deficit: 5
+          total_deficit: 4
         - skill_id: fuzzing.reproduction
           domain_id: fuzzing
           scope: foundation
@@ -619,12 +619,12 @@ numeric:
         - skill_id: fuzzing.targets-seeds
           domain_id: fuzzing
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 3
-          primary_deficit: 3
-          actual_total: 0
+          primary_deficit: 2
+          actual_total: 1
           required_total: 5
-          total_deficit: 5
+          total_deficit: 4
         - skill_id: generics.approximation-unions
           domain_id: generics
           scope: foundation
@@ -1596,12 +1596,12 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 172
+        actual_primary: 174
         required_primary: 410
-        primary_deficit: 245
-        actual_total: 196
+        primary_deficit: 243
+        actual_total: 198
         required_total: 692
-        total_deficit: 496
+        total_deficit: 494
         minima_met: false
     specialist:
         skill_ids:
@@ -1763,15 +1763,15 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 172
+        actual_primary: 174
         required_primary: 418
-        primary_deficit: 253
-        actual_total: 196
+        primary_deficit: 251
+        actual_total: 198
         required_total: 708
-        total_deficit: 512
+        total_deficit: 510
         minima_met: false
     ready_target:
-        actual: 172
+        actual: 174
         min: 350
         max: 500
         met: false

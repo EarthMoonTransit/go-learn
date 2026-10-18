@@ -1,0 +1,33 @@
+package subject_test
+
+import (
+	"bytes"
+	"encoding/hex"
+	"task.local/hex-wire-invariants-001/subject"
+	"testing"
+)
+
+func FuzzHex(f *testing.F) {
+	f.Add([]byte(nil))
+	f.Add([]byte{0x00})
+	f.Add([]byte{0x90})
+	f.Add([]byte{0x0f})
+	f.Add([]byte{0x24, 0x61})
+	f.Add([]byte{0x68, 0x68, 0x68, 0x68, 0x68, 0x68, 0x68, 0x68, 0x68})
+	f.Fuzz(func(t *testing.T, input []byte) {
+
+		wire := subject.Encode(input)
+		expected := hex.AppendEncode(nil, input)
+		if !bytes.Equal(wire, expected) {
+			t.Fatalf("wire = %q, want canonical lowercase %q", wire, expected)
+		}
+		decoded, ok := subject.Decode(wire)
+		if !ok {
+			t.Errorf("Decode(Encode(%x)) returned false", input)
+		}
+		if !bytes.Equal(decoded, input) {
+			t.Errorf("decoded bytes = %x, want %x", decoded, input)
+		}
+
+	})
+}

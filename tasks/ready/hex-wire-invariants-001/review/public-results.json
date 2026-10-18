@@ -1,0 +1,281 @@
+{
+  "format": "p20-learner-public-full-results/v1",
+  "task_id": "hex-wire-invariants-001",
+  "status": "PASS",
+  "execution": "Actual ready workspace export in explicitly temporary learner homes; all submitted code through disposable CheckSession. No real learner home accessed.",
+  "primary_report_sha256": "6d4fa202d33c6488182e389556a45f4221faae514c41365a05e2303138ee1a8e",
+  "primary_execution_sha256": "5d833938ab7039c93cb0975afcdbcce96d18c530e13bfba05ecd737620316469",
+  "primary_driver_sha256": "9b31590e17c5ab73986a901cc27cce8cd60ea82847431d33ded032c3f94ceb75",
+  "supplement_report_sha256": "0f2aa1a55479284c28422a289c8658a073b547321920f362f1b04fd0d656854f",
+  "supplement_execution_sha256": "563749914e9a69a179c1a898fec60c9bd2f9890e75bae16dac531910cd5fc994",
+  "supplement_driver_sha256": "c712cbdc500b621993c52972e23232f8a557cc075e209bcd034274887227b01d",
+  "independent_review_sha256": "97c1fc12c9e3c2f540d11948712c6b496d54524f2f565149079d2e649eaef22f",
+  "ready_and_route_inputs_unchanged_during_execution": true,
+  "temporary_homes_removed": true,
+  "probes": [
+    {
+      "Control": "starter",
+      "Scope": "public",
+      "WantPass": true,
+      "Category": "",
+      "Diagnostic": "",
+      "Matched": true,
+      "Result": {
+        "Passed": true,
+        "Scope": "public",
+        "SubmissionKind": "tests",
+        "Summary": "public checks passed",
+        "Diagnostic": "",
+        "FailureCategory": ""
+      },
+      "Error": ""
+    },
+    {
+      "Control": "reference",
+      "Scope": "public",
+      "WantPass": true,
+      "Category": "",
+      "Diagnostic": "",
+      "Matched": true,
+      "Result": {
+        "Passed": true,
+        "Scope": "public",
+        "SubmissionKind": "tests",
+        "Summary": "public checks passed",
+        "Diagnostic": "",
+        "FailureCategory": ""
+      },
+      "Error": ""
+    },
+    {
+      "Control": "nil-only-wire",
+      "Scope": "public",
+      "WantPass": false,
+      "Category": "public-behavior",
+      "Diagnostic": "invalid nil-only wire assumption",
+      "Matched": true,
+      "Result": {
+        "Passed": false,
+        "Scope": "public",
+        "SubmissionKind": "tests",
+        "Summary": "submitted tests reject valid public behavior",
+        "Diagnostic": "public behavior variant 2 rejects valid public behavior: === RUN   FuzzHex\n=== RUN   FuzzHex/seed#0\n    fuzz_test.go:21: invalid nil-only wire assumption\n--- FAIL: FuzzHex/seed#0 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#1\n--- PASS: FuzzHex/seed#1 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#2\n--- PASS: FuzzHex/seed#2 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#3\n--- PASS: FuzzHex/seed#3 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#4\n--- PASS: FuzzHex/seed#4 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#5\n--- PASS: FuzzHex/seed#5 (0.00s)\n=== NAME  FuzzHex\n--- FAIL: FuzzHex (0.00s)\n=== NAME\nFAIL",
+        "FailureCategory": "public-behavior"
+      },
+      "Error": ""
+    },
+    {
+      "Control": "nonnil-only-wire",
+      "Scope": "public",
+      "WantPass": false,
+      "Category": "public-behavior",
+      "Diagnostic": "invalid nonnil-only wire assumption",
+      "Matched": true,
+      "Result": {
+        "Passed": false,
+        "Scope": "public",
+        "SubmissionKind": "tests",
+        "Summary": "submitted tests reject valid public behavior",
+        "Diagnostic": "public behavior variant 1 rejects valid public behavior: === RUN   FuzzHex\n=== RUN   FuzzHex/seed#0\n    fuzz_test.go:21: invalid nonnil-only wire assumption\n--- FAIL: FuzzHex/seed#0 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#1\n--- PASS: FuzzHex/seed#1 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#2\n--- PASS: FuzzHex/seed#2 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#3\n--- PASS: FuzzHex/seed#3 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#4\n--- PASS: FuzzHex/seed#4 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#5\n--- PASS: FuzzHex/seed#5 (0.00s)\n=== NAME  FuzzHex\n--- FAIL: FuzzHex (0.00s)\n=== NAME\nFAIL\npublic behavior variant 3 rejects valid public behavior: === RUN   FuzzHex\n=== RUN   FuzzHex/seed#0\n    fuzz_test.go:21: invalid nonnil-only wire assumption\n--- FAIL: FuzzHex/seed#0 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#1\n--- PASS: FuzzHex/seed#1 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#2\n--- PASS: FuzzHex/seed#2 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#3\n--- PASS: FuzzHex/seed#3 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#4\n--- PASS: FuzzHex/seed#4 (0.00s)\n=== NAME  FuzzHex\n=== RUN   FuzzHex/seed#5\n--- PASS: FuzzHex/seed#5 (0.00s)\n=== NAME  FuzzHex\n--- FAIL: FuzzHex (0.00s)\n=== NAME\nFAIL",
+        "FailureCategory": "public-behavior"
+      },
+      "Error": ""
+    },
+    {
+      "Control": "wrong-target",
+      "Scope": "public",
+      "WantPass": false,
+      "Category": "native-eligibility",
+      "Diagnostic": "frame.",
+      "Matched": true,
+      "Result": {
+        "Passed": false,
+        "Scope": "public",
+        "SubmissionKind": "tests",
+        "Summary": "submitted tests did not complete eligible native checks",
+        "Diagnostic": "public behavior variant 1 run 1 did not complete declared go vet\npublic behavior variant 1 run 1 is not eligible (admission): frame.top-level at fuzz_test.go:9:1: additional native entrypoints/init unsupported\npublic behavior variant 1 run 2 did not complete declared go vet\npublic behavior variant 1 run 2 is not eligible (admission): frame.top-level at fuzz_test.go:9:1: additional native entrypoints/init unsupported\npublic behavior variant 2 run 1 did not complete declared go vet\npublic behavior variant 2 run 1 is not eligible (admission): frame.top-level at fuzz_test.go:9:1: additional native entrypoints/init unsupported\npublic behavior variant 2 run 2 did not complete declared go vet\npublic behavior variant 2 run 2 is not eligible (admission): frame.top-level at fuzz_test.go:9:1: additional native entrypoints/init unsupported\npublic behavior variant 3 run 1 did not complete declared go vet\npublic behavior variant 3 run 1 is not eligible (admission): frame.top-level at fuzz_test.go:9:1: additional native entrypoints/init unsupported\npublic behavior variant 3 run 2 did not complete declared go vet\npublic behavior variant 3 run 2 is not eligible (admission): frame.top-level at fuzz_test.go:9:1: additional native entrypoints/init unsupported",
+        "FailureCategory": "native-eligibility"
+      },
+      "Error": ""
+    },
+    {
+      "Control": "no-registration",
+      "Scope": "public",
+      "WantPass": false,
+      "Category": "native-eligibility",
+      "Diagnostic": "f.Other undefined",
+      "Matched": true,
+      "Result": {
+        "Passed": false,
+        "Scope": "public",
+        "SubmissionKind": "tests",
+        "Summary": "submitted tests did not complete eligible native checks",
+        "Diagnostic": "public behavior variant 1 run 1 did not complete declared go vet\npublic behavior variant 1 run 1 is not eligible (admission): type-check original source: fuzz_test.go:16:4: f.Other undefined (type *testing.F has no field or method Other)\npublic behavior variant 1 run 2 did not complete declared go vet\npublic behavior variant 1 run 2 is not eligible (admission): type-check original source: fuzz_test.go:16:4: f.Other undefined (type *testing.F has no field or method Other)\npublic behavior variant 2 run 1 did not complete declared go vet\npublic behavior variant 2 run 1 is not eligible (admission): type-check original source: fuzz_test.go:16:4: f.Other undefined (type *testing.F has no field or method Other)\npublic behavior variant 2 run 2 did not complete declared go vet\npublic behavior variant 2 run 2 is not eligible (admission): type-check original source: fuzz_test.go:16:4: f.Other undefined (type *testing.F has no field or method Other)\npublic behavior variant 3 run 1 did not complete declared go vet\npublic behavior variant 3 run 1 is not eligible (admission): type-check original source: fuzz_test.go:16:4: f.Other undefined (type *testing.F has no field or method Other)\npublic behavior variant 3 run 2 did not complete declared go vet\npublic behavior variant 3 run 2 is not eligible (admission): type-check original source: fuzz_test.go:16:4: f.Other undefined (type *testing.F has no field or method Other)",
+        "FailureCategory": "native-eligibility"
+      },
+      "Error": ""
+    },
+    {
+      "Control": "reference",
+      "Scope": "full",
+      "WantPass": true,
+      "Category": "",
+      "Diagnostic": "",
+      "Matched": true,
+      "Result": {
+        "Passed": true,
+        "Scope": "full",
+        "SubmissionKind": "tests",
+        "Summary": "full verification passed",
+        "Diagnostic": "",
+        "FailureCategory": ""
+      },
+      "Error": ""
+    },
+    {
+      "Control": "alternative-corpus",
+      "Scope": "full",
+      "WantPass": true,
+      "Category": "",
+      "Diagnostic": "",
+      "Matched": true,
+      "Result": {
+        "Passed": true,
+        "Scope": "full",
+        "SubmissionKind": "tests",
+        "Summary": "full verification passed",
+        "Diagnostic": "",
+        "FailureCategory": ""
+      },
+      "Error": ""
+    },
+    {
+      "Control": "per-digit-oracle",
+      "Scope": "full",
+      "WantPass": true,
+      "Category": "",
+      "Diagnostic": "",
+      "Matched": true,
+      "Result": {
+        "Passed": true,
+        "Scope": "full",
+        "SubmissionKind": "tests",
+        "Summary": "full verification passed",
+        "Diagnostic": "",
+        "FailureCategory": ""
+      },
+      "Error": ""
+    },
+    {
+      "Control": "copied-first-property",
+      "Scope": "full",
+      "WantPass": false,
+      "Category": "hidden-verification",
+      "Diagnostic": "",
+      "Matched": true,
+      "Result": {
+        "Passed": false,
+        "Scope": "full",
+        "SubmissionKind": "tests",
+        "Summary": "one or more private defect models survived the submitted native seeds and invariants",
+        "Diagnostic": "",
+        "FailureCategory": "hidden-verification"
+      },
+      "Error": ""
+    },
+    {
+      "Control": "lowercaseness-only",
+      "Scope": "full",
+      "WantPass": false,
+      "Category": "hidden-verification",
+      "Diagnostic": "",
+      "Matched": true,
+      "Result": {
+        "Passed": false,
+        "Scope": "full",
+        "SubmissionKind": "tests",
+        "Summary": "one or more private defect models survived the submitted native seeds and invariants",
+        "Diagnostic": "",
+        "FailureCategory": "hidden-verification"
+      },
+      "Error": ""
+    },
+    {
+      "Control": "wire-only",
+      "Scope": "full",
+      "WantPass": false,
+      "Category": "hidden-verification",
+      "Diagnostic": "",
+      "Matched": true,
+      "Result": {
+        "Passed": false,
+        "Scope": "full",
+        "SubmissionKind": "tests",
+        "Summary": "one or more private defect models survived the submitted native seeds and invariants",
+        "Diagnostic": "",
+        "FailureCategory": "hidden-verification"
+      },
+      "Error": ""
+    },
+    {
+      "Control": "wire-and-status-only",
+      "Scope": "full",
+      "WantPass": false,
+      "Category": "hidden-verification",
+      "Diagnostic": "",
+      "Matched": true,
+      "Result": {
+        "Passed": false,
+        "Scope": "full",
+        "SubmissionKind": "tests",
+        "Summary": "one or more private defect models survived the submitted native seeds and invariants",
+        "Diagnostic": "",
+        "FailureCategory": "hidden-verification"
+      },
+      "Error": ""
+    },
+    {
+      "Control": "wire-and-value-only",
+      "Scope": "full",
+      "WantPass": false,
+      "Category": "hidden-verification",
+      "Diagnostic": "",
+      "Matched": true,
+      "Result": {
+        "Passed": false,
+        "Scope": "full",
+        "SubmissionKind": "tests",
+        "Summary": "one or more private defect models survived the submitted native seeds and invariants",
+        "Diagnostic": "",
+        "FailureCategory": "hidden-verification"
+      },
+      "Error": ""
+    }
+  ],
+  "readonly_starter_full": {
+    "ContractSHA256": "39b15b5b3debed065cc9005da65bacc221a9ff6361cdf0ff766568cba3fc287e",
+    "ContractEqual": true,
+    "ReadOnlyMode": true,
+    "TamperRejected": true,
+    "RestoredPublicPass": true,
+    "StarterFullRejected": true,
+    "TamperError": "learner read-only file was modified: FUZZ_SOURCE.md",
+    "Public": {
+      "Passed": true,
+      "Scope": "public",
+      "SubmissionKind": "tests",
+      "Summary": "public checks passed",
+      "Diagnostic": "",
+      "FailureCategory": ""
+    },
+    "Full": {
+      "Passed": false,
+      "Scope": "full",
+      "SubmissionKind": "tests",
+      "Summary": "one or more private defect models survived the submitted native seeds and invariants",
+      "Diagnostic": "",
+      "FailureCategory": "hidden-verification"
+    }
+  },
+  "limits": "Final full collection, report freshness, ordered repository acceptance, final head review and exact-head CI remain separate. No release/export or foundation completion."
+}

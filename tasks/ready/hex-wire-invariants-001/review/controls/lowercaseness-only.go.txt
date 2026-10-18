@@ -1,0 +1,28 @@
+package subject_test
+
+import (
+	"bytes"
+	"task.local/hex-wire-invariants-001/subject"
+	"testing"
+)
+
+func FuzzHex(f *testing.F) {
+	f.Add([]byte{})
+	f.Add([]byte{0x00})
+	f.Add([]byte{0x80})
+	f.Add([]byte{0x0d})
+	f.Add([]byte{0x12, 0x34, 0x56})
+	f.Add([]byte{0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x77})
+	f.Fuzz(func(t *testing.T, input []byte) {
+		wire := subject.Encode(input)
+		for _, digit := range wire {
+			if digit >= 'A' && digit <= 'F' {
+				t.Fatal("wire contains uppercase")
+			}
+		}
+		decoded, ok := subject.Decode(wire)
+		if !ok || !bytes.Equal(decoded, input) {
+			t.Error("round-trip value/status mismatch")
+		}
+	})
+}
