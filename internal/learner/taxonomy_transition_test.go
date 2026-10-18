@@ -2,6 +2,7 @@ package learner
 
 import (
 	"bytes"
+	"encoding/csv"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -12,6 +13,7 @@ import (
 
 	"go-practice-bank/internal/isolation"
 	"go-practice-bank/internal/tasking"
+	"gopkg.in/yaml.v3"
 )
 
 func TestAdditiveTaxonomyPreservesLearnerHistoryAndWorkspace(t *testing.T) {
@@ -19,16 +21,11 @@ func TestAdditiveTaxonomyPreservesLearnerHistoryAndWorkspace(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	root := t.TempDir()
+	root := boundedTaxonomyHistoryRoot(t, repository)
 	// Copy authored files only as data. Verification below is the explicit fast
 	// service fixture; no task source or tests are executed in this regression.
 	// All reviewed source-document bytes are deliberately absent below, including
 	// the retained snapshots, so consumers cannot acquire a snapshot dependency.
-	for _, path := range []string{"curriculum", "schemas", "config", "sources", "docs", "theory", "tasks/ready"} {
-		if err := isolation.CopyTree(filepath.Join(repository, path), filepath.Join(root, path)); err != nil {
-			t.Fatal(err)
-		}
-	}
 	for _, relative := range []string{
 		"curriculum/mappings/exercism-go.yaml",
 		"curriculum/evidence/exercism-go.yaml",
@@ -114,6 +111,16 @@ func TestAdditiveTaxonomyPreservesLearnerHistoryAndWorkspace(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	if beforeChoice.Task.ID != "zero-results-001" || beforeChoice.LessonNumber != "01.02" || !beforeChoice.Resume || beforeChoice.PedagogicalPosition != 2 {
+		t.Fatalf("fixture must resume the original second lesson: %+v", beforeChoice)
+	}
+	schedulingRoute, err := loadSchedulingRoute(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if schedulingRoute == nil || !schedulingRoute.pedagogical || len(executionLessons(*schedulingRoute)) != 2 || len(beforeRoadmap.Tasks) != 2 || beforeRoadmap.Tasks["literal-bindings-001"].ID == "" || beforeRoadmap.Tasks["zero-results-001"].ID == "" {
+		t.Fatal("fixture must use the active execution plan and exactly two original tasks")
+	}
 	beforeProgress, err := beforeService.Progress()
 	if err != nil {
 		t.Fatal(err)
@@ -171,4 +178,121 @@ func TestAdditiveTaxonomyPreservesLearnerHistoryAndWorkspace(t *testing.T) {
 	if !reflect.DeepEqual(beforeProgress.Completions, resumedProgress.Completions) || resumedProgress.CurrentTaskID != beforeProgress.CurrentTaskID {
 		t.Fatal("resume retagged historical completion or changed current task")
 	}
+}
+
+// The complete bank's task bytes, addresses and exposure rules have separate
+// inventory/route regressions. This composed state case needs two real tasks:
+// a historical completion and a different unfinished workspace. Keep the full
+// taxonomy and its transition, but bound repeated catalog reads to those tasks.
+func boundedTaxonomyHistoryRoot(t *testing.T, repository string) string {
+	t.Helper()
+	root := t.TempDir()
+	for _, path := range []string{"curriculum", "schemas", "config", "sources", "docs", "theory"} {
+		if err := isolation.CopyTree(filepath.Join(repository, path), filepath.Join(root, path)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	selected := map[string]bool{"literal-bindings-001": true, "zero-results-001": true}
+	for id := range selected {
+		relative := filepath.Join("tasks", "ready", id)
+		if err := isolation.CopyTree(filepath.Join(repository, relative), filepath.Join(root, relative)); err != nil {
+			t.Fatal(err)
+		}
+		original, err := tasking.TaskContentDigest(filepath.Join(repository, relative))
+		if err != nil {
+			t.Fatal(err)
+		}
+		copied, err := tasking.TaskContentDigest(filepath.Join(root, relative))
+		if err != nil || copied != original {
+			t.Fatalf("fixture changed original task %s: %v", id, err)
+		}
+	}
+	route, err := loadRouteMetadata(root)
+	if err != nil || route == nil {
+		t.Fatalf("original route: %v", err)
+	}
+	// The runtime loader resolves this path for display; the fixture file must
+	// retain its original repository-relative guide reference.
+	guide, err := filepath.Rel(root, route.Preparation)
+	if err != nil {
+		t.Fatal(err)
+	}
+	route.Preparation = filepath.ToSlash(guide)
+	var blocks []RouteBlock
+	for _, block := range route.Blocks {
+		var steps []RouteStep
+		for _, step := range block.Steps {
+			if selected[step.TaskID] {
+				steps = append(steps, step)
+			}
+		}
+		if len(steps) > 0 {
+			block.Steps = steps
+			blocks = append(blocks, block)
+		}
+	}
+	route.Blocks = blocks
+	if len(blocks) != 1 || blocks[0].Number != 1 || len(blocks[0].Steps) != 2 || blocks[0].Steps[0].Number != 1 || blocks[0].Steps[1].Number != 2 {
+		t.Fatal("fixture must retain the original first two addresses")
+	}
+	// Preserve the real preparation skills; these two adjacent early tasks need
+	// no invented exposure assumptions. Keep schema v2 and active plan semantics.
+	plan, _, err := loadPedagogicalPlan(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if plan.SchemaVersion != 2 || plan.Status != "active" {
+		t.Fatal("expected active v2 plan")
+	}
+	var edges []ExposureEdge
+	for _, edge := range plan.ExposureEdges {
+		if selected[edge.TaskID] && selected[edge.BeforeTaskID] {
+			edges = append(edges, edge)
+		}
+	}
+	plan.ExposureEdges = edges
+	var pending []PendingPreparation
+	for _, gate := range plan.PendingPreparation {
+		if selected[gate.TaskID] {
+			pending = append(pending, gate)
+		}
+	}
+	plan.PendingPreparation = pending
+	for path, value := range map[string]any{"curriculum/route.yaml": route, pedagogicalPlanPath: plan} {
+		data, err := yaml.Marshal(value)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(filepath.Join(root, path), data, 0600); err != nil {
+			t.Fatal(err)
+		}
+	}
+	path := filepath.Join(root, plan.MappingFile)
+	data, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	rows, err := csv.NewReader(bytes.NewReader(data)).ReadAll()
+	if err != nil || len(rows) == 0 {
+		t.Fatalf("active mapping: %v", err)
+	}
+	kept := [][]string{rows[0]}
+	for _, row := range rows[1:] {
+		if selected[row[0]] {
+			kept = append(kept, row)
+		}
+	}
+	if len(kept) != 3 || kept[1][0] != "literal-bindings-001" || kept[1][1] != "01.01" || kept[1][4] != "1" || kept[2][0] != "zero-results-001" || kept[2][1] != "01.02" || kept[2][4] != "2" {
+		t.Fatal("fixture must retain the exact original mapping rows without renumbering")
+	}
+	var output bytes.Buffer
+	writer := csv.NewWriter(&output)
+	writer.UseCRLF = true
+	if err := writer.WriteAll(kept); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(path, output.Bytes(), 0600); err != nil {
+		t.Fatal(err)
+	}
+	return root
 }
