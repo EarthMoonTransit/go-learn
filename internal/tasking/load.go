@@ -33,20 +33,32 @@ func decodeStrictFile(path string, destination any) error {
 }
 
 func validateSchema(root, schemaName string, value any) error {
+	schema, err := compileSchema(root, schemaName)
+	if err != nil {
+		return err
+	}
+	return validateSchemaValue(schemaName, schema, value)
+}
+
+func compileSchema(root, schemaName string) (*jsonschema.Schema, error) {
 	path := filepath.Join(root, "schemas", schemaName)
 	content, err := os.ReadFile(path)
 	if err != nil {
-		return fmt.Errorf("read %s: %w", schemaName, err)
+		return nil, fmt.Errorf("read %s: %w", schemaName, err)
 	}
 	compiler := jsonschema.NewCompiler()
 	compiler.AssertFormat = true
 	if err := compiler.AddResource(schemaName, bytes.NewReader(content)); err != nil {
-		return fmt.Errorf("load %s: %w", schemaName, err)
+		return nil, fmt.Errorf("load %s: %w", schemaName, err)
 	}
 	schema, err := compiler.Compile(schemaName)
 	if err != nil {
-		return fmt.Errorf("compile %s: %w", schemaName, err)
+		return nil, fmt.Errorf("compile %s: %w", schemaName, err)
 	}
+	return schema, nil
+}
+
+func validateSchemaValue(schemaName string, schema *jsonschema.Schema, value any) error {
 	normalized, err := json.Marshal(value)
 	if err != nil {
 		return err
@@ -75,8 +87,20 @@ type packageData struct {
 }
 
 func loadPackage(root string, located LocatedTask) (packageData, []string) {
+	return loadPackageWithSchemaValidator(root, located, func(name string, value any) error {
+		return validateSchema(root, name, value)
+	})
+}
+
+func loadPackageWithSchemaValidator(root string, located LocatedTask, validate func(string, any) error) (packageData, []string) {
 	result := packageData{Located: located}
 	var problems []string
+	decode := func(path, schema string, value any) error {
+		if err := decodeStrictFile(path, value); err != nil {
+			return err
+		}
+		return validate(schema, value)
+	}
 	if err := inspectTree(located.Path); err != nil {
 		return result, []string{err.Error()}
 	}
@@ -88,11 +112,11 @@ func loadPackage(root string, located LocatedTask) (packageData, []string) {
 		result.ContractVersion = taskVersion
 		switch taskVersion {
 		case 1:
-			if err := decodeAndValidate(root, taskPath, "task.schema.json", &result.Task); err != nil {
+			if err := decode(taskPath, "task.schema.json", &result.Task); err != nil {
 				problems = append(problems, "task.yaml: "+err.Error())
 			}
 		case 2:
-			if err := decodeAndValidate(root, taskPath, "task-v2.schema.json", &result.TaskV2); err != nil {
+			if err := decode(taskPath, "task-v2.schema.json", &result.TaskV2); err != nil {
 				problems = append(problems, "task.yaml: "+err.Error())
 			} else {
 				result.Task = normalizeTaskV2(result.TaskV2)
@@ -116,7 +140,7 @@ func loadPackage(root string, located LocatedTask) (packageData, []string) {
 			problems = append(problems, fmt.Sprintf("%s: %v", file.name, err))
 			continue
 		}
-		if err := validateSchema(root, file.schema, file.value); err != nil {
+		if err := validate(file.schema, file.value); err != nil {
 			problems = append(problems, fmt.Sprintf("%s: %v", file.name, err))
 		}
 	}
@@ -128,11 +152,11 @@ func loadPackage(root string, located LocatedTask) (packageData, []string) {
 		result.ProvenanceVersion = provenanceVersion
 		switch provenanceVersion {
 		case 1:
-			if err := decodeAndValidate(root, provenancePath, "task-provenance.schema.json", &result.Provenance); err != nil {
+			if err := decode(provenancePath, "task-provenance.schema.json", &result.Provenance); err != nil {
 				problems = append(problems, "provenance.yaml: "+err.Error())
 			}
 		case 2:
-			if err := decodeAndValidate(root, provenancePath, "task-provenance-v2.schema.json", &result.ProvenanceV2); err != nil {
+			if err := decode(provenancePath, "task-provenance-v2.schema.json", &result.ProvenanceV2); err != nil {
 				problems = append(problems, "provenance.yaml: "+err.Error())
 			}
 		default:

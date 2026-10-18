@@ -312,7 +312,7 @@ func (l *learnerPackageLoader) load(id string) (learnerPackage, error) {
 	if located.State != StateReady {
 		return learnerPackage{}, fmt.Errorf("task %q is not ready", id)
 	}
-	data, loadProblems := loadPackage(root, located)
+	data, loadProblems := loadPackageWithSchemaValidator(root, located, l.schema)
 	if len(loadProblems) != 0 {
 		return learnerPackage{}, fmt.Errorf("ready task %q has invalid metadata: %s", id, loadProblems[0])
 	}
