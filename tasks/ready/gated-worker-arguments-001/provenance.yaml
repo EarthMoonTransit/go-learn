@@ -1,0 +1,21 @@
+{
+  "attribution_file": "ATTRIBUTION.md",
+  "creation": {
+    "author": "p19-author",
+    "created_at": "2026-10-18",
+    "summary": "Original gated batch argument-capture debugging contract after specifically justified source decision PR85; locally authored API, starter, tests, reference, defects and hints. No external task sources; actual release commit binding deferred."
+  },
+  "kind": "original",
+  "project": {
+    "content_digest": "fa650c5d49680a004d93e0da70eecb6a6b5b4210b3853b5d96e131f9a025d2ed",
+    "identity": "go-practice-bank",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/EarthMoonTransit/go-learn"
+  },
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/gated-worker-arguments-001.yaml"
+  },
+  "schema_version": 2,
+  "sources": []
+}

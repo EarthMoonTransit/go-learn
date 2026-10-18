@@ -12,7 +12,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | --- | ---: |
 | `draft` | 6 |
 | `in-review` | 0 |
-| `ready` | 171 |
+| `ready` | 172 |
 | `rejected` | 1 |
 | `retired` | 0 |
 
@@ -20,7 +20,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 
 | Type | Count |
 | --- | ---: |
-| `debug` | 41 |
+| `debug` | 42 |
 | `implement` | 93 |
 | `refactor` | 3 |
 | `test-writing` | 41 |
@@ -101,6 +101,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | `formatted-assignment-001` | `ready` | `0944bd358bef3aa3e3687213d4dd99a9ee08499985ae891e3e5a38286df3fb0e` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 7/7 | Phase 3A |
 | `formatter-contract-001` | `ready` | `296815ec004b5756e2e5e1dffc4851efcc2532b17be6c8ef09a5af2525bc5ba3` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
 | `fractional-band-001` | `ready` | `63d71bfa6747f0e20e10d18ee6f8516ce9f4a8580fe5f80f33e0391b9b791ac3` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
+| `gated-worker-arguments-001` | `ready` | `ad943eb979ffa80758a21dfd56dd3ea5127451200101a8e66eb79b024057d298` | `pass` | `pass` | true | `pass` | `pass` | `pass` | 15/15 | Phase 3A |
 | `gcd-reduction-001` | `ready` | `a1642c6f13db0ff3a9dc138a884a498ca24c96bf2795de829683215d227fecda` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 7/7 | Phase 3A |
 | `generic-find-tests-001` | `ready` | `deefcc19acb3052194e00a9b1c7a096c4706f79947b1e9b01eda2fa95cc1e794` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 9/9 | Phase 3A |
 | `generic-reduce-001` | `ready` | `04bd5a45202d4f3d49f986b5043f5ee70e73aef7d0be2fd381b5f2ec402eb911` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |

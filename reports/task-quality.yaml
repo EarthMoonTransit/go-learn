@@ -1211,6 +1211,24 @@ tasks:
         detected: 6
         survived: []
       legacy: false
+    - id: gated-worker-arguments-001
+      state: ready
+      input_digest: ad943eb979ffa80758a21dfd56dd3ea5127451200101a8e66eb79b024057d298
+      task_type: debug
+      primary_skill: goroutines.capture-arguments
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 15
+        total: 15
+        detected: 15
+        survived: []
+      legacy: false
     - id: gcd-reduction-001
       state: ready
       input_digest: a1642c6f13db0ff3a9dc138a884a498ca24c96bf2795de829683215d227fecda
@@ -3218,14 +3236,14 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 171
+      count: 172
     - state: rejected
       count: 1
     - state: retired
       count: 0
 task_types:
     - task_type: debug
-      count: 41
+      count: 42
     - task_type: implement
       count: 93
     - task_type: refactor
