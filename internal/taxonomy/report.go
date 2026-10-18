@@ -25,6 +25,10 @@ func MigrationReport(root string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	scopes, err := readCoverageScopes(root, all)
+	if err != nil {
+		return nil, err
+	}
 	active, deprecated, primary, total := 0, 0, 0, 0
 	for _, s := range all {
 		if s["status"] == "deprecated" {
@@ -49,6 +53,7 @@ func MigrationReport(root string) ([]byte, error) {
 	fmt.Fprintf(&b, "The v3 baseline comes from `curriculum/skills.yaml` at commit `%s` (SHA-256 `%s`). Its byte-identical retained snapshot is `%s`.\n\n", t.Baseline.SourceCommit, t.Baseline.TaxonomySHA256, t.Baseline.TaxonomyPath)
 	fmt.Fprintf(&b, "All **%d** old IDs are preserved: **%d** active teaching contracts and **%d** deprecated non-assignable stubs. Only taxonomy-version fields advance.\n\n", len(t.Entries), t.Baseline.ActiveCount, t.Baseline.DeprecatedCount)
 	fmt.Fprintf(&b, "The live v4 taxonomy has **%d active skills**, **%d deprecated stubs**, and **%d total IDs**. Full-bank numeric requirements are **%d primary / %d total occurrences**; the ready-task target stays **350–500**.\n\n", active, deprecated, len(all), primary, total)
+	fmt.Fprintf(&b, "The explicit versioned `%s` classification contains **%d foundation / %d specialist skills** and is closed under foundation prerequisites. It classifies every active ID exactly once; missing, duplicate, unknown, deprecated or unapproved assignments are errors.\n\n", ScopePath, len(scopes.Foundation), len(scopes.Specialist))
 	b.WriteString("These are bank requirements, not actual task counts, required learner completions, or human mastery. Required modes/distinct exercise types and observable outcomes remain separate semantic review obligations. This migration does not implement scoped numeric coverage or a recursion assessment runner.\n\n## Explicit additions\n\n| ID | Canonical teaching-contract SHA-256 |\n|---|---|\n")
 	for _, entry := range t.Additions {
 		fmt.Fprintf(&b, "| `%s` | `%s` |\n", entry.ID, entry.ContractSHA256)

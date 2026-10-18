@@ -18,6 +18,7 @@ func TestV4CollectionBindsMigrationAndReviewedInputs(t *testing.T) {
 	}
 	for _, path := range []string{
 		"schemas/taxonomy-v4.schema.json", "schemas/taxonomy-v3-to-v4.schema.json",
+		"schemas/coverage-scopes.schema.json", "curriculum/coverage-scopes.yaml",
 		"curriculum/migrations/v3-to-v4.yaml", "curriculum/migrations/snapshots/skills-v3.yaml",
 		"curriculum/mappings/exercism-go.yaml", "curriculum/evidence/exercism-go.yaml",
 		"catalog/reviews/exercism-go.yaml", "catalog/seed-plans/exercism-foundation-pilot.yaml",
@@ -60,6 +61,11 @@ func TestV3CollectionRetainsOriginalFreshnessContract(t *testing.T) {
 	}
 	if err := os.WriteFile(filepath.Join(root, "curriculum/migrations/v3-to-v4.yaml"), []byte("not part of a v3 collection\n"), 0600); err != nil {
 		t.Fatal(err)
+	}
+	for _, path := range []string{"curriculum/coverage-scopes.yaml", "schemas/coverage-scopes.schema.json"} {
+		if err := os.WriteFile(filepath.Join(root, filepath.FromSlash(path)), []byte("not part of a v3 collection\n"), 0600); err != nil {
+			t.Fatal(err)
+		}
 	}
 	if err := ValidateCheckCollection(root, collection, nil); err != nil {
 		t.Fatalf("v4 metadata reinterpreted v3 collection: %v", err)

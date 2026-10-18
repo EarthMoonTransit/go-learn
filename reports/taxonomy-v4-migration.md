@@ -8,6 +8,8 @@ All **177** old IDs are preserved: **142** active teaching contracts and **35** 
 
 The live v4 taxonomy has **145 active skills**, **35 deprecated stubs**, and **180 total IDs**. Full-bank numeric requirements are **418 primary / 708 total occurrences**; the ready-task target stays **350–500**.
 
+The explicit versioned `curriculum/coverage-scopes.yaml` classification contains **141 foundation / 4 specialist skills** and is closed under foundation prerequisites. It classifies every active ID exactly once; missing, duplicate, unknown, deprecated or unapproved assignments are errors.
+
 These are bank requirements, not actual task counts, required learner completions, or human mastery. Required modes/distinct exercise types and observable outcomes remain separate semantic review obligations. This migration does not implement scoped numeric coverage or a recursion assessment runner.
 
 ## Explicit additions

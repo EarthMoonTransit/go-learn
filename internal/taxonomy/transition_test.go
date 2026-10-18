@@ -13,7 +13,7 @@ func fixture(t *testing.T) string {
 	t.Helper()
 	root := t.TempDir()
 	source := filepath.Join("..", "..")
-	paths := []string{"curriculum/skills.yaml", MigrationPath, V3Path}
+	paths := []string{"curriculum/skills.yaml", MigrationPath, V3Path, ScopePath}
 	for path, pin := range reviewedV3 {
 		paths = append(paths, path, pin.snapshot)
 	}

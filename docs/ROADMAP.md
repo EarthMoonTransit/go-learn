@@ -81,9 +81,11 @@ and adds bit masks, integer shifts and recursion. Current assessed coverage is
 **106 of 145 active skills**, leaving **39** without an assessed occurrence;
 the three additions receive no retroactive task or completion credit.
 Full-bank minima become **418 primary / 708 total** occurrences, with the
-unchanged **350–500** ready-task target. The 141-foundation/4-specialist design
-is recorded in [ADR 0031](adr/0031-foundation-scope-and-taxonomy-v4.md);
-scoped numeric coverage remains a separate tooling batch. The
+unchanged **350–500** ready-task target. The versioned
+[`coverage-scopes.yaml`](../curriculum/coverage-scopes.yaml) explicitly classifies
+141 foundation and 4 specialist skills under
+[ADR 0031](adr/0031-foundation-scope-and-taxonomy-v4.md), with prerequisite closure
+and complete inventory validation. Scoped numeric coverage remains a separate tooling batch. The
 [migration report](../reports/taxonomy-v4-migration.md) records preserved
 contracts and exact historical source-document compatibility. Existing learner
 progress, current-task priority and resume workspaces retain their interpretation.

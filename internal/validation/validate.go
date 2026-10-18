@@ -75,7 +75,11 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 		{"config/outbound-license.yaml", "schemas/outbound-license-policy.schema.json", "outbound license policy"},
 	}
 	if result.Curriculum.Version == 4 {
-		staticSchemas = append(staticSchemas, struct{ data, schema, label string }{taxonomy.V3Path, "schemas/taxonomy-v3.schema.json", "historical v3 taxonomy"}, struct{ data, schema, label string }{taxonomy.MigrationPath, "schemas/taxonomy-v3-to-v4.schema.json", "taxonomy v3 to v4 migration"})
+		staticSchemas = append(staticSchemas,
+			struct{ data, schema, label string }{taxonomy.V3Path, "schemas/taxonomy-v3.schema.json", "historical v3 taxonomy"},
+			struct{ data, schema, label string }{taxonomy.MigrationPath, "schemas/taxonomy-v3-to-v4.schema.json", "taxonomy v3 to v4 migration"},
+			struct{ data, schema, label string }{taxonomy.ScopePath, taxonomy.ScopeSchemaPath, "coverage scopes"},
+		)
 	}
 	if _, err := os.Lstat(filepath.Join(root, "curriculum/topics.yaml")); err == nil {
 		staticSchemas = append(staticSchemas, struct{ data, schema, label string }{"curriculum/topics.yaml", "schemas/topic.schema.json", "theory topics"})

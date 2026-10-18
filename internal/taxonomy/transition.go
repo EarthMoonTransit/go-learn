@@ -89,7 +89,7 @@ var approvedAdditions = map[string]string{
 // ContractPaths returns the additional v4 freshness inputs. V3 collections keep
 // their original byte contract; a v4 collection binds its complete transition.
 func ContractPaths() []string {
-	paths := []string{MigrationPath, V3Path, "schemas/taxonomy-v4.schema.json", "schemas/taxonomy-v3-to-v4.schema.json", "schemas/exercism-concept-map.schema.json", "schemas/skill-evidence.schema.json", "schemas/candidate-review.schema.json", "schemas/seed-plan.schema.json", "curriculum/migrations/v2-to-v3.yaml", "schemas/taxonomy-migration.schema.json", "curriculum/migrations/snapshots/skills-v2.yaml", "curriculum/migrations/snapshots/exercism-map-v2.yaml", "curriculum/migrations/snapshots/exercism-evidence-v2.yaml"}
+	paths := []string{MigrationPath, V3Path, ScopePath, ScopeSchemaPath, "schemas/taxonomy-v4.schema.json", "schemas/taxonomy-v3-to-v4.schema.json", "schemas/exercism-concept-map.schema.json", "schemas/skill-evidence.schema.json", "schemas/candidate-review.schema.json", "schemas/seed-plan.schema.json", "curriculum/migrations/v2-to-v3.yaml", "schemas/taxonomy-migration.schema.json", "curriculum/migrations/snapshots/skills-v2.yaml", "curriculum/migrations/snapshots/exercism-map-v2.yaml", "curriculum/migrations/snapshots/exercism-evidence-v2.yaml"}
 	for path, pin := range reviewedV3 {
 		paths = append(paths, path, pin.snapshot)
 	}
@@ -201,6 +201,9 @@ func validateTransition(root string, requireReviewedBytes bool) (Transition, err
 		if before[id] != nil || skill == nil || skill["status"] != "active" || skill["assignable"] != true || skill["taxonomy_version"] != 4 || entry.ID != id || entry.Status != "" || entry.ContractSHA256 != contractHash(skill) || entry.ContractSHA256 != approvedAdditions[id] {
 			return t, fmt.Errorf("taxonomy migration: invalid approved addition %s", id)
 		}
+	}
+	if _, err := readCoverageScopes(root, after); err != nil {
+		return t, err
 	}
 	if len(t.ReviewedDocuments) != len(reviewedV3) {
 		return t, fmt.Errorf("taxonomy migration: exactly4 reviewed compatibility documents required")

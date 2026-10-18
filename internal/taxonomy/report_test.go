@@ -18,7 +18,7 @@ func TestMigrationReportIsDeterministicAndCheckIsReadOnly(t *testing.T) {
 	if err != nil || !bytes.Equal(first, second) {
 		t.Fatalf("nondeterministic metadata report: %v", err)
 	}
-	for _, needle := range []string{"145 active skills", "35 deprecated stubs", "180 total IDs", "418 primary / 708 total", "not actual task counts", "Recursion implementation/debugging authoring remains blocked"} {
+	for _, needle := range []string{"145 active skills", "35 deprecated stubs", "180 total IDs", "418 primary / 708 total", "141 foundation / 4 specialist skills", "not actual task counts", "Recursion implementation/debugging authoring remains blocked"} {
 		if !bytes.Contains(first, []byte(needle)) {
 			t.Fatalf("missing report claim %q", needle)
 		}
