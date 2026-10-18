@@ -7,7 +7,9 @@ const (
 	ScopeSchemaPath = "schemas/coverage-scopes.schema.json"
 )
 
-type coverageScopes struct {
+// CoverageScopes is the explicit finite v4 classification. Public loaders
+// return independently owned slices; no parsed taxonomy graphs are exposed.
+type CoverageScopes struct {
 	SchemaVersion   int      `yaml:"schema_version"`
 	TaxonomyVersion int      `yaml:"taxonomy_version"`
 	Decision        string   `yaml:"decision"`
@@ -15,10 +17,30 @@ type coverageScopes struct {
 	Specialist      []string `yaml:"specialist"`
 }
 
+// LoadCoverageScopes verifies the live transition and returns a fresh, complete
+// classification. Historical v3 contexts do not acquire an implicit scope.
+func LoadCoverageScopes(root string) (CoverageScopes, error) {
+	_, live, err := readImmutableDocument(root, "curriculum/skills.yaml")
+	if err != nil {
+		return CoverageScopes{}, err
+	}
+	if live.Version != 4 {
+		return CoverageScopes{}, fmt.Errorf("coverage scopes: taxonomy version %d is unsupported; require v4", live.Version)
+	}
+	if _, err := ValidateLiveTransition(root); err != nil {
+		return CoverageScopes{}, err
+	}
+	all, err := skills(live)
+	if err != nil {
+		return CoverageScopes{}, err
+	}
+	return readCoverageScopes(root, all)
+}
+
 // readCoverageScopes validates the explicit classification of the already
 // checked finite v4 inventory. It supplies no default for omitted or future IDs.
-func readCoverageScopes(root string, live map[string]map[string]any) (coverageScopes, error) {
-	var scopes coverageScopes
+func readCoverageScopes(root string, live map[string]map[string]any) (CoverageScopes, error) {
+	var scopes CoverageScopes
 	if _, err := readStrict(root, ScopePath, &scopes); err != nil {
 		return scopes, err
 	}

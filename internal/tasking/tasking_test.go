@@ -738,6 +738,7 @@ func fixtureRepository(t *testing.T) string {
 		"curriculum/skills.yaml", "sources/registry.yaml",
 	}
 	contracts = append(contracts, taxonomy.ContractPaths()...)
+	contracts = append(contracts, "schemas/coverage-report.schema.json")
 	for _, relative := range contracts {
 		if err := os.MkdirAll(filepath.Dir(filepath.Join(root, filepath.FromSlash(relative))), 0o755); err != nil {
 			t.Fatal(err)

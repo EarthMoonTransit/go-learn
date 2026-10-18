@@ -1,0 +1,361 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:go-practice-bank:numeric-coverage-report:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "report_contract",
+    "input_identity",
+    "selected_scope",
+    "selected_skill_ids",
+    "selected_numeric_passed",
+    "numeric",
+    "semantic_review_status"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "report_contract": {
+      "const": "numeric-coverage/v1"
+    },
+    "input_identity": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "selected_scope": {
+      "enum": [
+        "full",
+        "foundation"
+      ]
+    },
+    "selected_skill_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*[.][a-z][a-z0-9-]*$"
+      }
+    },
+    "selected_numeric_passed": {
+      "type": "boolean"
+    },
+    "numeric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "taxonomy_version",
+        "skills",
+        "foundation",
+        "specialist",
+        "full",
+        "ready_target",
+        "full_numeric_passed"
+      ],
+      "properties": {
+        "taxonomy_version": {
+          "const": 4
+        },
+        "skills": {
+          "type": "array",
+          "minItems": 145,
+          "maxItems": 145,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "skill_id",
+              "domain_id",
+              "scope",
+              "actual_primary",
+              "required_primary",
+              "primary_deficit",
+              "actual_total",
+              "required_total",
+              "total_deficit"
+            ],
+            "properties": {
+              "skill_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*[.][a-z][a-z0-9-]*$"
+              },
+              "domain_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "scope": {
+                "enum": [
+                  "foundation",
+                  "specialist"
+                ]
+              },
+              "actual_primary": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "required_primary": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "primary_deficit": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "actual_total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "required_total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "total_deficit": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        "foundation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "skill_ids",
+            "actual_primary",
+            "required_primary",
+            "primary_deficit",
+            "actual_total",
+            "required_total",
+            "total_deficit",
+            "minima_met"
+          ],
+          "properties": {
+            "skill_ids": {
+              "type": "array",
+              "minItems": 141,
+              "maxItems": 141,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*[.][a-z][a-z0-9-]*$"
+              }
+            },
+            "actual_primary": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "required_primary": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "primary_deficit": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "actual_total": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "required_total": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "total_deficit": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "minima_met": {
+              "type": "boolean"
+            }
+          }
+        },
+        "specialist": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "skill_ids",
+            "actual_primary",
+            "required_primary",
+            "primary_deficit",
+            "actual_total",
+            "required_total",
+            "total_deficit",
+            "minima_met"
+          ],
+          "properties": {
+            "skill_ids": {
+              "type": "array",
+              "minItems": 4,
+              "maxItems": 4,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*[.][a-z][a-z0-9-]*$"
+              }
+            },
+            "actual_primary": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "required_primary": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "primary_deficit": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "actual_total": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "required_total": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "total_deficit": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "minima_met": {
+              "type": "boolean"
+            }
+          }
+        },
+        "full": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "skill_ids",
+            "actual_primary",
+            "required_primary",
+            "primary_deficit",
+            "actual_total",
+            "required_total",
+            "total_deficit",
+            "minima_met"
+          ],
+          "properties": {
+            "skill_ids": {
+              "type": "array",
+              "minItems": 145,
+              "maxItems": 145,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*[.][a-z][a-z0-9-]*$"
+              }
+            },
+            "actual_primary": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "required_primary": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "primary_deficit": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "actual_total": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "required_total": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "total_deficit": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "minima_met": {
+              "type": "boolean"
+            }
+          }
+        },
+        "ready_target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "actual",
+            "min",
+            "max",
+            "met"
+          ],
+          "properties": {
+            "actual": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "min": {
+              "const": 350
+            },
+            "max": {
+              "const": 500
+            },
+            "met": {
+              "type": "boolean"
+            }
+          }
+        },
+        "full_numeric_passed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "semantic_review_status": {
+      "const": "not_evaluated_by_numeric_coverage"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "selected_scope": {
+            "const": "full"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "selected_skill_ids": {
+            "type": "array",
+            "minItems": 145,
+            "maxItems": 145,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]*[.][a-z][a-z0-9-]*$"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "selected_scope": {
+            "const": "foundation"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "selected_skill_ids": {
+            "type": "array",
+            "minItems": 141,
+            "maxItems": 141,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]*[.][a-z][a-z0-9-]*$"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

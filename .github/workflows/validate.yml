@@ -45,6 +45,7 @@ jobs:
           go build -o "$RUNNER_TEMP/go-practice-bank/bin/task-check" ./cmd/task-check
           go build -o "$RUNNER_TEMP/go-practice-bank/bin/validate" ./cmd/validate
           go build -o "$RUNNER_TEMP/go-practice-bank/bin/task-report" ./cmd/task-report
+          go build -o "$RUNNER_TEMP/go-practice-bank/bin/coverage-report" ./cmd/coverage-report
       - name: Execute the task bank once
         shell: bash
         run: "$RUNNER_TEMP/go-practice-bank/bin/task-check -root . -all -output $RUNNER_TEMP/go-practice-bank/results/checks.yaml"
@@ -54,3 +55,8 @@ jobs:
       - name: Reuse collection in deterministic report check
         shell: bash
         run: "$RUNNER_TEMP/go-practice-bank/bin/task-report -root . -check -checks $RUNNER_TEMP/go-practice-bank/results/checks.yaml"
+      - name: Reuse collection in both numeric coverage reports
+        shell: bash
+        run: |
+          "$RUNNER_TEMP/go-practice-bank/bin/coverage-report" -root . -scope full -check -checks "$RUNNER_TEMP/go-practice-bank/results/checks.yaml"
+          "$RUNNER_TEMP/go-practice-bank/bin/coverage-report" -root . -scope foundation -check -checks "$RUNNER_TEMP/go-practice-bank/results/checks.yaml"

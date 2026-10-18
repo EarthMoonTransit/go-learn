@@ -39,13 +39,31 @@ var transformValues = set("original", "adapted", "translated-adaptation", "combi
 var usageValues = set("adapt", "reference-only", "concepts-only", "blocked")
 
 func ValidateRoot(root string, opts Options) (Result, error) {
+	return validateRoot(root, opts, tasking.CheckAll)
+}
+
+func validateRoot(root string, opts Options, runChecks func(string, []tasking.State) (tasking.CheckCollection, error)) (Result, error) {
 	var result Result
+	result.NumericUnavailable = "ordinary repository validation did not complete"
+	if opts.EnforceCoverage && opts.EnforceFoundationCoverage {
+		return result, errors.New("-coverage and -foundation-coverage are mutually exclusive")
+	}
+	if opts.EnforceFoundationCoverage && opts.Checks == nil && !opts.RunCommands {
+		return result, errors.New("-foundation-coverage requires a current -checks collection or explicit -run-commands")
+	}
+	result.SelectedScope = "full"
+	if opts.EnforceFoundationCoverage {
+		result.SelectedScope = "foundation"
+	}
 	var problems []error
 	if err := learner.ValidateTheory(root); err != nil {
 		problems = append(problems, fmt.Errorf("theory: %w", err))
 	}
 	if err := decodeStrict(filepath.Join(root, "curriculum", "skills.yaml"), &result.Curriculum); err != nil {
 		return result, err
+	}
+	if opts.EnforceFoundationCoverage && result.Curriculum.Version != 4 {
+		return result, errors.New("foundation coverage requires taxonomy v4")
 	}
 	taxonomySchema := "schemas/taxonomy-v3.schema.json"
 	if result.Curriculum.Version == 4 {
@@ -237,13 +255,15 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 	}
 	var aggregate tasking.AggregateReport
 	var aggregateErr error
+	effectiveChecks := opts.Checks
 	switch {
 	case opts.Checks != nil:
 		aggregate, aggregateErr = tasking.BuildAggregateReportFromChecks(root, *opts.Checks)
 	case opts.RunCommands:
 		var checks tasking.CheckCollection
-		checks, aggregateErr = tasking.CheckAll(root, nil)
+		checks, aggregateErr = runChecks(root, nil)
 		if aggregateErr == nil {
+			effectiveChecks = &checks
 			aggregate, aggregateErr = tasking.BuildAggregateReportFromChecks(root, checks)
 		}
 	default:
@@ -278,8 +298,20 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 	}
 	problems = append(problems, validateMigrationTaskReferences(root, result.Migration, result.Tasks)...)
 	result.Coverage = calculateCoverage(result.Curriculum, result.Tasks, domainBySkill, migrationIndex)
+	result.populateNumericCoverage(root, effectiveChecks, errors.Join(problems...) == nil)
 	if opts.EnforceCoverage {
 		problems = append(problems, validateCoverage(result)...)
+	}
+	if opts.EnforceFoundationCoverage {
+		if result.NumericCoverage == nil {
+			problems = append(problems, fmt.Errorf("foundation coverage: %s", result.NumericUnavailable))
+		} else {
+			for _, row := range result.NumericCoverage.Skills {
+				if row.Scope == "foundation" && (row.PrimaryDeficit != 0 || row.TotalDeficit != 0) {
+					problems = append(problems, fmt.Errorf("foundation coverage: %s has primary %d/%d and total %d/%d", row.SkillID, row.ActualPrimary, row.RequiredPrimary, row.ActualTotal, row.RequiredTotal))
+				}
+			}
+		}
 	}
 
 	return result, errors.Join(problems...)
