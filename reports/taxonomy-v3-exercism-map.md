@@ -1,7 +1,7 @@
 # Taxonomy v3 Exercism map
 
 - Source commit: `ae1477abfeeb9fbeaf971caee220e91f9e4df790`
-- Taxonomy SHA-256: `4cc68407da591576cbce72117bc9a92993d491084ec736c26e5921323b269f16`
+- Taxonomy SHA-256: `8fc463c93634564e7972117ea7f7c1f90d4e5cb82659f2f631698ef68ba4ab64`
 
 All **38** frozen upstream labels are explicit: **21 mapped**, **12 ambiguous**, **2 taxonomy-gap**, and **3 scope-deferred**. Accepted reviewed evidence records: **18**; coverage-eligible records: **0**.
 
