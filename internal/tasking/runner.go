@@ -13,6 +13,7 @@ import (
 	"time"
 	"unicode"
 
+	"go-practice-bank/internal/fuzznative"
 	"go-practice-bank/internal/isolation"
 )
 
@@ -77,6 +78,8 @@ type variantResult struct {
 
 type executionRunner interface {
 	RunVariant(variantRequest) variantResult
+	RunFuzz(fuzzRequest) fuzznative.Result
+	ActualRuntime() (isolation.RuntimeInfo, error)
 	RunWorkspace(workspaceRequest) variantResult
 	RunLegacy(string, []string) ([]isolation.CommandResult, error)
 	Metrics() ExecutionMetrics
@@ -86,6 +89,7 @@ type executionRunner interface {
 type realExecutionRunner struct {
 	environment *isolation.Environment
 	metrics     ExecutionMetrics
+	fuzz        *fuzznative.Engine
 }
 
 func newRealExecutionRunner() (*realExecutionRunner, error) {

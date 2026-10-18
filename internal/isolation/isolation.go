@@ -54,7 +54,36 @@ func NewEnvironment(prefix string) (*Environment, error) {
 			return nil, fmt.Errorf("prepare isolated environment: %w", err)
 		}
 	}
-	return &Environment{Root: root}, nil
+	environment := &Environment{Root: root}
+	// GOTELEMETRY is a read-only `go env` value, not a mode override.
+	// Disable collection before the first Go command can open counters or
+	// start a telemetry sidecar that outlives the disposable environment.
+	mode := filepath.Join(environment.configDir(), "go", "telemetry", "mode")
+	if err := os.MkdirAll(filepath.Dir(mode), 0o700); err != nil {
+		_ = environment.Close()
+		return nil, fmt.Errorf("prepare isolated telemetry configuration: %w", err)
+	}
+	if err := os.WriteFile(mode, []byte("off\n"), 0o600); err != nil {
+		_ = environment.Close()
+		return nil, fmt.Errorf("disable isolated Go telemetry: %w", err)
+	}
+	return environment, nil
+}
+
+// Match os.UserConfigDir for the child environment's isolated home/AppData.
+// No path or setting from the user's actual configuration is consulted.
+func (e *Environment) configDir() string {
+	home := filepath.Join(e.Root, "home")
+	switch runtime.GOOS {
+	case "darwin", "ios":
+		return filepath.Join(home, "Library", "Application Support")
+	case "windows":
+		return filepath.Join(home, "AppData", "Roaming")
+	case "plan9":
+		return filepath.Join(home, "lib")
+	default:
+		return filepath.Join(home, ".config")
+	}
 }
 
 func (e *Environment) Close() error {
@@ -94,7 +123,6 @@ func (e *Environment) GoEnv(options RunGoOptions) ([]string, error) {
 		"GOMODCACHE":  filepath.Join(e.Root, "modcache"),
 		"GOFLAGS":     "-mod=readonly",
 		"GOPROXY":     "off",
-		"GOTELEMETRY": "off",
 		"GOTOOLCHAIN": "local",
 		"GOWORK":      "off",
 		"HOME":        filepath.Join(e.Root, "home"),
@@ -102,11 +130,15 @@ func (e *Environment) GoEnv(options RunGoOptions) ([]string, error) {
 		"TMPDIR":      filepath.Join(e.Root, "tmp"),
 	}
 	if runtime.GOOS == "windows" {
+		values["APPDATA"] = e.configDir()
 		for _, key := range []string{"PATHEXT", "SYSTEMROOT", "WINDIR"} {
 			if value, ok := os.LookupEnv(key); ok {
 				values[key] = value
 			}
 		}
+	}
+	if runtime.GOOS == "plan9" {
+		values["home"] = filepath.Join(e.Root, "home")
 	}
 	keys := make([]string, 0, len(values))
 	for key := range values {

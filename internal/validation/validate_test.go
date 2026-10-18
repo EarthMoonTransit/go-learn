@@ -7,6 +7,7 @@ import (
 	"strings"
 	"testing"
 
+	"go-practice-bank/internal/isolation"
 	"go-practice-bank/internal/tasking"
 	"go-practice-bank/internal/taxonomy"
 )
@@ -100,6 +101,8 @@ func TestRepositoryValidationReusesCheckCollection(t *testing.T) {
 	collection := tasking.CheckCollection{
 		SchemaVersion: 1, ContractVersion: tasking.CheckContractVersion,
 		ToolchainPolicyDigest: toolchainDigest,
+		VerifierSourceDigest:  tasking.VerifierSourceDigest(),
+		Runtime:               isolation.RuntimeInfo{Version: runtime.Version(), GOOS: runtime.GOOS, GOARCH: runtime.GOARCH},
 		Execution:             tasking.ExecutionMetrics{Sessions: 1, TaskChecks: len(located)},
 	}
 	for _, item := range located {

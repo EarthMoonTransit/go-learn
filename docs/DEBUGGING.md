@@ -41,6 +41,28 @@ reference, учёт попыток и переход к следующей за�
 задачи не нужны повторный browser smoke и полный банк на каждой итерации. Они
 нужны, когда меняется соответствующее поведение или это требует acceptance.
 
+## Отладка finite fuzz
+
+```bash
+go test -tags=taskintegration ./internal/tasking -run '^TestNativeFuzzTaskCheckAndPublicFeedback$' -count=1 -v
+```
+
+Synthetic регрессия выполняет task code только через disposable Engine.
+Сначала различать `native-eligibility` (source frame, process или complete
+observation) и public assertion failure. Public feedback проверяется на всех
+correct variants; paired roundtrip может пройти Check и оставить defect на
+Complete. После изменения production verifier source, actual runtime или
+grammar contract старый collection не переименовывается: после freeze inputs
+создаётся один новый v4 файл для всех acceptance consumers. Реальный learner
+home не используется.
+
+Metadata-only `go env` тоже проходит через isolated environment. Перед первой
+командой environment создаёт telemetry mode file `off` в своём user config.
+Одна переменная `GOTELEMETRY=off` не задаёт режим: без файла Go использует
+`local` и может оставить sidecar, который мешает немедленному cleanup.
+`TestIsolatedGoTelemetryIsOffBeforeFirstCommand` проверяет actual mode, отсутствие
+counter/sidecar files и удаление disposable root; real user config не меняется.
+
 ## Где уходит время
 
 В CI run `34168388464` исправления literal-bindings интеграционные тесты заняли
@@ -162,6 +184,21 @@ timeouts, isolation, required test cases and collection reuse are unchanged.
 This prevents an aggregate timeout from truncating otherwise bounded checks;
 it is not a runtime-speed improvement. Cache/session optimization remains
 a separate measured change.
+
+## CI race suite budget (2026-10-18)
+
+Run `39136659242` stopped the learner race package at Go's default 10-minute
+alarm (600.036 s). The current test was 12 seconds old and its active subtest
+2 seconds old, running metadata YAML loading; there was no preceding assertion
+failure or data-race diagnostic. The same source passed local race in 370.528 s.
+CI now gives the complete race suite a bounded 20-minute package budget.
+The job remains bounded at 50 minutes and tagged integration at 30 minutes.
+Per-task deadlines, assertions, race instrumentation and collection reuse are
+unchanged. This aggregate budget does not establish that a run passes: exact-head
+`validate` must still complete successfully. The workflow/documentation-only
+change does not invalidate the current checker-input collection.
+
+Source: https://github.com/EarthMoonTransit/go-learn/actions/runs/39136659242.
 
 ## T0a read-only fixture budget
 

@@ -2,24 +2,43 @@ package tasking
 
 import (
 	"os"
+	"runtime"
 	"sort"
 	"strings"
 
+	"go-practice-bank/internal/fuzznative"
 	"go-practice-bank/internal/isolation"
 )
 
-// fakeExecutionRunner keeps ordinary unit tests process-free. The real Go
-// subprocess behavior is exercised only by taskintegration-tagged tests.
+// fakeExecutionRunner never executes authored verification in ordinary unit
+// tests. Real task subprocess behavior uses taskintegration-tagged tests;
+// collection validation may query only the trusted Go runtime metadata.
 type fakeExecutionRunner struct {
 	metrics         ExecutionMetrics
 	workspaceIDs    []string
 	cacheIDs        []string
 	raceUnsupported bool
 	closed          bool
+	runtimeRead     bool
+}
+
+func (r *fakeExecutionRunner) ActualRuntime() (isolation.RuntimeInfo, error) {
+	if !r.runtimeRead {
+		r.runtimeRead = true
+		r.metrics.Workspaces++
+		r.metrics.ChildGoRuns++
+		r.metrics.RuntimeQueries++
+	}
+	return isolation.RuntimeInfo{Version: runtime.Version(), GOOS: runtime.GOOS, GOARCH: runtime.GOARCH}, nil
 }
 
 func newFakeExecutionRunner() *fakeExecutionRunner {
 	return &fakeExecutionRunner{metrics: ExecutionMetrics{Sessions: 1}}
+}
+
+func (r *fakeExecutionRunner) RunFuzz(fuzzRequest) fuzznative.Result {
+	r.metrics.FuzzRuns++
+	return fuzznative.Result{Phase: "infrastructure", Diagnostic: "synthetic fuzz verification requires an explicit scripted outcome"}
 }
 
 func (r *fakeExecutionRunner) RunVariant(request variantRequest) variantResult {

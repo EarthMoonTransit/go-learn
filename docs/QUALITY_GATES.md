@@ -7,6 +7,16 @@ Task Contract v2 выбирает проверяемую матрицу чере
 запуском отдельно проверяются allowlisted skeleton и точное множество editable
 paths. Полные контракты описаны в `docs/TASK_CONTRACT_V2.md`.
 
+Для `fuzz-seed-tests` действует ADR 0032 и [полный finite source contract](FUZZ_SOURCE.md).
+Public повторяет canonical и все declared correct variants. Full сначала
+подтверждает public correctness, затем требует eligible assertion detection
+каждого обязательного defect model во всех повторах. Starter оставляет один и
+тот же eligible survivor во всех повторах. Seeds принадлежат learner; скрытый
+corpus не добавляется. Panic/race/timeout/truncation/quota, даже после assertion,
+не являются detection. Сравниваются native semantic events и полные observer
+values/status; nil/empty нормализуются по значению. Для этого профиля обычные
+правила starter-failure ниже заменены starter-correctness и insufficiency.
+
 Lifecycle использует состояния `draft`, `in-review`, `ready`, `rejected`,
 `retired`. Разрешённые переходы определены ADR 0004, hardened semantics — ADR
 0005.

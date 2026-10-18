@@ -1,0 +1,3 @@
+# Synthetic fixture review
+
+Internal own fixture only; not curriculum content or P20 delivery. Public requirements: exact native target, learner seeds, executed codec participation and byte-value correctness. Loop/non-nil empty and nil-empty variants protect representation independence. Reference wire oracle detects paired-uppercase; independent status check detects false-status. The weaker starter roundtrip survives paired-uppercase on every repeat. Every teacher API is synchronous, preserves arguments and never calls its own public API internally. All actual execution must use disposable verifier copies.

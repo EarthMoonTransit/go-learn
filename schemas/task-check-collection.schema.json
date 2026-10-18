@@ -4,11 +4,13 @@
   "title": "Versioned deterministic task-check collection",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "contract_version", "toolchain_policy_digest", "tasks", "execution"],
+  "required": ["schema_version", "contract_version", "toolchain_policy_digest", "verifier_source_digest", "runtime", "tasks", "execution"],
   "properties": {
     "schema_version": {"const": 1},
-    "contract_version": {"const": "task-check/v3"},
+    "contract_version": {"const": "task-check/v4"},
     "toolchain_policy_digest": {"$ref": "#/$defs/digest"},
+    "verifier_source_digest": {"$ref": "#/$defs/digest"},
+    "runtime": {"type": "object", "additionalProperties": false, "required": ["version", "goos", "goarch"], "properties": {"version": {"type": "string", "minLength": 1, "maxLength": 160}, "goos": {"type": "string", "pattern": "^[a-z][a-z0-9]{1,15}$"}, "goarch": {"type": "string", "pattern": "^[a-z][a-z0-9]{1,15}$"}}},
     "tasks": {
       "type": "array",
       "items": {
@@ -26,14 +28,20 @@
     "execution": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["sessions", "task_checks", "workspaces", "variant_runs", "legacy_commands", "child_go_runs"],
+      "required": ["sessions", "task_checks", "workspaces", "variant_runs", "legacy_commands", "child_go_runs", "runtime_queries", "fuzz_runs", "fuzz_go_runs", "fuzz_workspaces", "fuzz_helper_runs", "fuzz_native_runs"],
       "properties": {
         "sessions": {"type": "integer", "minimum": 0, "maximum": 1},
         "task_checks": {"type": "integer", "minimum": 0},
         "workspaces": {"type": "integer", "minimum": 0},
         "variant_runs": {"type": "integer", "minimum": 0},
         "legacy_commands": {"type": "integer", "minimum": 0},
-        "child_go_runs": {"type": "integer", "minimum": 0}
+        "child_go_runs": {"type": "integer", "minimum": 0},
+        "runtime_queries": {"type": "integer", "minimum": 0, "maximum": 1},
+        "fuzz_runs": {"type": "integer", "minimum": 0},
+        "fuzz_go_runs": {"type": "integer", "minimum": 0},
+        "fuzz_workspaces": {"type": "integer", "minimum": 0},
+        "fuzz_helper_runs": {"type": "integer", "minimum": 0},
+        "fuzz_native_runs": {"type": "integer", "minimum": 0}
       }
     }
   },

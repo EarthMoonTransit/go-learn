@@ -1,6 +1,6 @@
 schema_version: 1
 report_contract: numeric-coverage/v1
-input_identity: 8a8dfaad547d3fdb097fb27a1a923f586586877498d652b1597e50f4e2e94444
+input_identity: b776cea3208079ad3bd3805ba20dcbfb49a9b26af791a88e4dddb2311cd5ef97
 selected_scope: foundation
 selected_skill_ids:
     - arrays.indexing-iteration

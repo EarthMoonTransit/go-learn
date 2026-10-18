@@ -39,7 +39,7 @@ func TestCheckAllUsesOneSessionAndFreshVariantWorkspaces(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if collection.Execution.Sessions != 1 || collection.Execution.TaskChecks != 1 || collection.Execution.VariantRuns != 5 || collection.Execution.Workspaces != 5 {
+	if collection.Execution.Sessions != 1 || collection.Execution.TaskChecks != 1 || collection.Execution.VariantRuns != 5 || collection.Execution.Workspaces != 6 || collection.Execution.RuntimeQueries != 1 || collection.Execution.ChildGoRuns != 6 {
 		t.Fatalf("unexpected execution topology: %+v", collection.Execution)
 	}
 	seen := map[string]bool{}

@@ -91,7 +91,7 @@ func TestTaskV2SchemaRejectsPathTraversal(t *testing.T) {
 
 func TestStaleCollectionFixturesAreRejected(t *testing.T) {
 	root := fixtureRepository(t)
-	for _, test := range []struct{ name, fragment string }{{"stale-v1.yaml", "task-check/v3"}, {"stale-v2.yaml", "task-check/v3"}} {
+	for _, test := range []struct{ name, fragment string }{{"stale-v1.yaml", "task-check/v4"}, {"stale-v2.yaml", "task-check/v4"}} {
 		t.Run(test.name, func(t *testing.T) {
 			path := filepath.Join(repositoryRoot(t), "internal", "testdata", "tasking", "collections", test.name)
 			var collection CheckCollection
@@ -163,7 +163,7 @@ func TestCheckCollectionRejectsV1ContractAfterV2Bump(t *testing.T) {
 		t.Fatal(err)
 	}
 	collection.ContractVersion = "task-check/v1"
-	if err := ValidateCheckCollection(root, collection, []State{StateDraft}); err == nil || !strings.Contains(err.Error(), "task-check/v3") {
+	if err := ValidateCheckCollection(root, collection, []State{StateDraft}); err == nil || !strings.Contains(err.Error(), "task-check/v4") {
 		t.Fatalf("stale v1 collection was not rejected by v2 contract: %v", err)
 	}
 }

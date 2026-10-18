@@ -28,6 +28,7 @@ func TestLearnerWorkflowSupportsEveryV2SubmissionKind(t *testing.T) {
 		{"fixed", "synthetic-fixed-v2-001", "subject/identity.go", "solution/reference/identity.go", false},
 		{"mutation", "synthetic-mutation-v2-001", "subject/identity_test.go", "solution/reference/identity_test.go", true},
 		{"workspace", "synthetic-workspace-v2-001", "core/apply.go", "solution/reference/core/apply.go", false},
+		{"fuzz", "synthetic-hex-v2-001", "subject/fuzz_test.go", "solution/reference/fuzz_test.go", true},
 	}
 	for _, fixture := range fixtures {
 		t.Run(fixture.profile, func(t *testing.T) {
@@ -61,6 +62,17 @@ func TestLearnerWorkflowSupportsEveryV2SubmissionKind(t *testing.T) {
 				api, err := os.ReadFile(filepath.Join(workspace, "subject", "learn_api.go"))
 				if err != nil || !strings.Contains(string(api), "func Identity(") || !strings.Contains(string(api), "panic(") {
 					t.Fatalf("missing editor API declaration: %q err=%v", api, err)
+				}
+			}
+			if fixture.profile == "fuzz" {
+				info, err := tasking.LoadReadyLearnerTask(repository, fixture.id)
+				if err != nil || !strings.Contains(info.Prompt, "](#finite-native-fuzz-source-contract-hex-codec-v1)") || !strings.Contains(info.Prompt, "100,000-step") {
+					t.Fatalf("learner statement omitted complete finite grammar: %v", err)
+				}
+				contract, err := os.ReadFile(filepath.Join(workspace, "FUZZ_SOURCE.md"))
+				canonical, readErr := os.ReadFile(filepath.Join(repository, "docs/FUZZ_SOURCE.md"))
+				if err != nil || readErr != nil || !bytes.Equal(contract, canonical) {
+					t.Fatalf("learner grammar differs: %v %v", err, readErr)
 				}
 			}
 			if _, err := service.Solution(false); err == nil {
@@ -249,6 +261,12 @@ func learnerFixtureRepository(t *testing.T) string {
 			t.Fatalf("copy %s: %v", directory, err)
 		}
 	}
+	if err := os.MkdirAll(filepath.Join(root, "docs"), 0700); err != nil {
+		t.Fatal(err)
+	}
+	if err := isolation.CopyFile(filepath.Join(repository, "docs/FUZZ_SOURCE.md"), filepath.Join(root, "docs/FUZZ_SOURCE.md")); err != nil {
+		t.Fatal(err)
+	}
 	// Synthetic repositories exercise the generic fallback; they do not
 	// contain the real course route, active plan or preparation guide.
 	for _, relative := range []string{"route.yaml", "plans/pedagogical-order.yaml"} {
@@ -270,6 +288,7 @@ func learnerFixtureRepository(t *testing.T) string {
 		{"fixed", "synthetic-fixed-v2-001"},
 		{"mutation", "synthetic-mutation-v2-001"},
 		{"workspace", "synthetic-workspace-v2-001"},
+		{"fuzz", "synthetic-hex-v2-001"},
 	} {
 		source := filepath.Join(repository, "internal", "testdata", "tasking", "v2", fixture.profile, fixture.id)
 		destination := filepath.Join(root, "tasks", "ready", fixture.id)

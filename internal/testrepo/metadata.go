@@ -5,6 +5,7 @@ package testrepo
 import (
 	"os"
 	"path/filepath"
+	"runtime"
 	"sort"
 	"testing"
 
@@ -96,7 +97,11 @@ func Collection(t testing.TB, root string) tasking.CheckCollection {
 	if err != nil {
 		t.Fatal(err)
 	}
-	checks := tasking.CheckCollection{SchemaVersion: 1, ContractVersion: tasking.CheckContractVersion, ToolchainPolicyDigest: policyDigest, Execution: tasking.ExecutionMetrics{Sessions: 1, TaskChecks: len(located)}}
+	// This is synthetic metadata, so the test compiler supplies the runtime
+	// identity; no authored program or acceptance run is represented here.
+	checks := tasking.CheckCollection{SchemaVersion: 1, ContractVersion: tasking.CheckContractVersion, ToolchainPolicyDigest: policyDigest,
+		VerifierSourceDigest: tasking.VerifierSourceDigest(), Runtime: isolation.RuntimeInfo{Version: runtime.Version(), GOOS: runtime.GOOS, GOARCH: runtime.GOARCH},
+		Execution: tasking.ExecutionMetrics{Sessions: 1, TaskChecks: len(located)}}
 	for _, item := range located {
 		inputDigest, err := tasking.TaskInputDigest(root, item)
 		if err != nil {

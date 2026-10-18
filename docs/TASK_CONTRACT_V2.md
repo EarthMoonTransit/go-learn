@@ -77,11 +77,31 @@ must contain exactly `editable_paths`. Tests are added only by the checker. The
 same starter/reference/mutant and determinism gates apply across declared package
 checks.
 
+## Finite native fuzz profile
+
+`fuzz-seed-tests` uses the closed `verification.fuzz` descriptor from ADR 0032:
+`grammar: hex-codec-v1`, `target: FuzzHex`, and two to four declared
+`correct_variants`. Its package selectors are exactly `["./subject"]`, active
+fuzz duration is zero, and required mutants are nonempty. The layout extends
+mutation submissions with `verification/correct/<id>` and the public
+`verification/FUZZ_SOURCE.md` contract. Task-init copies the canonical contract;
+the prompt links it, workspace export makes it readonly, and learner statements
+include it inline. The complete finite Go language is documented in
+[FUZZ_SOURCE.md](FUZZ_SOURCE.md).
+
+Public checks repeat the canonical and every declared correct implementation.
+Full checks require those assertions to pass before testing every required
+defect model with the same learner seeds. Every repetition must produce an
+eligible assertion failure to earn detection. Starter tests must retain one
+same eligible surviving defect across every repetition. Semantic native events
+and complete observed codec values must agree across runs. No hidden corpus is
+added. Panic, race, timeout and incomplete observation invalidate execution,
+including after an assertion.
+
 ## Reserved profiles
 
-`fuzz-seed-tests` and `benchmark-contract` define bounded metadata only. They are
-not promotion-eligible until their runners and non-flaky evidence contracts are
-accepted in a later ADR.
+`benchmark-contract` defines bounded metadata only. It is not promotion-eligible
+until its runner and evidence contract are accepted in a later ADR.
 
 ADR 0018 clarifies the learner-test relevance screen: a task-package selector
 reference in a declaration or function counts as API usage, including constructing a
@@ -91,4 +111,11 @@ and every required mutant's detection remain mandatory.
 
 ## Race-required verification
 
-ADR 0019 applies `-race` to every test invocation for v2 tasks with `race_required: true`, including public Check and defect models. A compiled race-test failure is a detected behavior defect. Timeouts, compile errors and unsupported race infrastructure never count as detection. Collections now use `task-check/v3`; regenerate older collections instead of relabeling them. Task and progress schemas remain unchanged.
+ADR 0019 applies `-race` to every test invocation for v2 tasks with
+`race_required: true`, including public Check and defect models. For the older
+fixed, mutation and workspace profiles, a compiled race-test failure is a
+detected behavior defect. Finite native fuzz instead requires eligible assertion
+failure; a race is invalid execution. Timeouts, compile errors and unsupported
+race infrastructure never count as detection. Collections use `task-check/v4`;
+regenerate older collections instead of relabeling them. Existing task content
+digests and progress formats retain their meanings.

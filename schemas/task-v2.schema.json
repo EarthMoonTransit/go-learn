@@ -43,6 +43,7 @@
       "additionalProperties": false,
       "required": ["profile", "packages", "public_checks", "grader_checks", "reference_checks", "required_mutants", "race_required", "vet", "limits"],
       "properties": {
+        "fuzz": {"$ref": "#/$defs/fuzzPlan"},
         "profile": {"enum": ["fixed-tests", "mutation-tests", "workspace-tests", "fuzz-seed-tests", "benchmark-contract"]},
         "packages": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/packagePath"}, "uniqueItems": true},
         "public_checks": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/packagePath"}, "uniqueItems": true},
@@ -70,10 +71,11 @@
     {"if": {"properties": {"verification": {"properties": {"profile": {"const": "fixed-tests"}}}}}, "then": {"properties": {"submission": {"properties": {"kind": {"const": "implementation"}, "editable_paths": {"maxItems": 0}, "workspace_skeleton": {"maxItems": 0}}}}}},
     {"if": {"properties": {"verification": {"properties": {"profile": {"const": "mutation-tests"}}}}}, "then": {"properties": {"activity": {"enum": ["test-writing", "test-repair"]}, "submission": {"properties": {"kind": {"const": "tests"}, "editable_paths": {"maxItems": 0}, "workspace_skeleton": {"maxItems": 0}}}}}},
     {"if": {"properties": {"verification": {"properties": {"profile": {"const": "workspace-tests"}}}}}, "then": {"properties": {"submission": {"properties": {"kind": {"const": "workspace-patch"}, "editable_paths": {"minItems": 1}, "workspace_skeleton": {"minItems": 1}}}}}},
-    {"if": {"properties": {"verification": {"properties": {"profile": {"const": "fuzz-seed-tests"}}}}}, "then": {"properties": {"activity": {"const": "fuzz-test-writing"}, "submission": {"properties": {"kind": {"const": "tests"}, "editable_paths": {"maxItems": 0}, "workspace_skeleton": {"maxItems": 0}}}}}},
+    {"if": {"properties": {"verification": {"properties": {"profile": {"const": "fuzz-seed-tests"}}}}}, "then": {"properties": {"activity": {"const": "fuzz-test-writing"}, "submission": {"properties": {"kind": {"const": "tests"}, "editable_paths": {"maxItems": 0}, "workspace_skeleton": {"maxItems": 0}}}, "verification": {"required": ["fuzz"], "properties": {"packages": {"const": ["./subject"]}, "public_checks": {"const": ["./subject"]}, "grader_checks": {"const": ["./subject"]}, "reference_checks": {"const": ["./subject"]}, "required_mutants": {"minItems": 1}, "limits": {"properties": {"fuzz_seconds": {"const": 0}}}}}}}, "else": {"properties": {"verification": {"properties": {"fuzz": false}}}}},
     {"if": {"properties": {"verification": {"properties": {"profile": {"const": "benchmark-contract"}}}}}, "then": {"properties": {"activity": {"const": "performance"}}}}
   ],
   "$defs": {
+    "fuzzPlan": {"type": "object", "additionalProperties": false, "required": ["grammar", "target", "correct_variants"], "properties": {"grammar": {"const": "hex-codec-v1"}, "target": {"const": "FuzzHex"}, "correct_variants": {"type": "array", "minItems": 2, "maxItems": 4, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}}}},
     "skillId": {"type": "string", "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$"},
     "goPath": {"type": "string", "pattern": "^(?:[A-Za-z0-9_-][A-Za-z0-9_.-]*/)*[A-Za-z0-9_-][A-Za-z0-9_.-]*\\.go$", "maxLength": 240},
     "packagePath": {"type": "string", "pattern": "^\\./(?:\\.\\.\\.|[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*)$", "maxLength": 240}

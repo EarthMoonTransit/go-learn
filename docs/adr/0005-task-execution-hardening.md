@@ -36,7 +36,11 @@ mutant. Пустой public test обнаруживается тем, что sta
 текущего runtime по абсолютному пути; произвольного process API у task checker
 нет. Среда строится из allowlist: отдельные `HOME`, `TMPDIR`, `GOCACHE`,
 `GOMODCACHE`, плюс `GOWORK=off`, `GOPROXY=off`, `GOTOOLCHAIN=local`,
-`GOFLAGS=-mod=readonly`, `GOENV=off`, `GOTELEMETRY=off` и фиксированный `PATH`.
+`GOFLAGS=-mod=readonly`, `GOENV=off` и фиксированный `PATH`.
+Уточнение реализации 2026-10-18: до первого Go command создаётся telemetry
+mode file `off` в isolated user config; Windows `APPDATA` также указывает внутрь
+disposable home. `GOTELEMETRY` — read-only значение `go env`, а не override
+режима ([Go telemetry configuration](https://go.dev/doc/telemetry#configuration)).
 Типизированный execution mode задаёт `CGO_ENABLED=0` обычным runs и
 `CGO_ENABLED=1` только race runs; runner не выводит mode из текста команды.
 Не связанные переменные, включая secrets, не наследуются.

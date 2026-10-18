@@ -270,6 +270,9 @@ func verifyLearnerWorkspace(root, id, workspace string, scope LearnerVerificatio
 		request.Implementation, request.Tests = submission.implementation, tests
 		return verifyLearnerVariant(runner, request, loaded, scope)
 	case "tests":
+		if plan.Profile == "fuzz-seed-tests" {
+			return verifyLearnerFuzz(runner, loaded, submission.tests, scope), nil
+		}
 		request := base
 		request.Implementation, request.Tests = loaded.layout.VerificationReference, submission.tests
 		if scope == LearnerPublicChecks {
@@ -336,6 +339,16 @@ func (l *learnerPackageLoader) load(id string) (learnerPackage, error) {
 	if err != nil {
 		return learnerPackage{}, err
 	}
+	prompt := string(data.Prompt)
+	if data.TaskV2.Verification.Profile == "fuzz-seed-tests" {
+		contract, err := readRegularFile(filepath.Join(located.Path, filepath.FromSlash(fuzzSourceContractPath)), 8<<20)
+		if err != nil {
+			return learnerPackage{}, err
+		}
+		// Local workspace links name the readonly file. The CLI/UI statement
+		// carries the same contract inline and uses its safe local heading link.
+		prompt = strings.ReplaceAll(prompt, "]("+fuzzPublicContractPath+")", "](#finite-native-fuzz-source-contract-hex-codec-v1)") + "\n\n" + string(contract)
+	}
 	info := LearnerTaskInfo{
 		ID: id, Title: data.TaskV2.Title, Activity: data.TaskV2.Activity,
 		SubmissionKind: data.TaskV2.Submission.Kind, PrimarySkill: data.TaskV2.Skills.Primary,
@@ -343,7 +356,7 @@ func (l *learnerPackageLoader) load(id string) (learnerPackage, error) {
 		Prerequisites:   append([]string(nil), data.TaskV2.Prerequisites...),
 		NewConcepts:     append([]string(nil), data.TaskV2.NewConcepts...),
 		Difficulty:      data.TaskV2.Difficulty, EstimatedTimeMinutes: data.TaskV2.EstimatedTimeMinutes,
-		VerificationProfile: data.TaskV2.Verification.Profile, Prompt: string(data.Prompt), ContentDigest: digest,
+		VerificationProfile: data.TaskV2.Verification.Profile, Prompt: prompt, ContentDigest: digest,
 	}
 	loaded := learnerPackage{data: data, layout: layout, info: info}
 	loaded.files, err = buildLearnerWorkspaceFiles(loaded)
@@ -368,6 +381,12 @@ func buildLearnerWorkspaceFiles(loaded learnerPackage) ([]LearnerWorkspaceFile, 
 			editable bool
 		}{mappedFile{Source: filepath.Join(loaded.data.Located.Path, "go.mod"), Relative: "go.mod"}, false},
 	)
+	if loaded.data.TaskV2.Verification.Profile == "fuzz-seed-tests" {
+		mapped = append(mapped, struct {
+			file     mappedFile
+			editable bool
+		}{mappedFile{Source: filepath.Join(loaded.data.Located.Path, filepath.FromSlash(fuzzSourceContractPath)), Relative: fuzzPublicContractPath}, false})
+	}
 	switch loaded.data.TaskV2.Submission.Kind {
 	case "implementation":
 		for _, source := range loaded.layout.Starter {
@@ -599,6 +618,11 @@ func validateLearnerSubmission(loaded learnerPackage, submission learnerSubmissi
 	case "tests":
 		if len(submission.tests) == 0 {
 			return errors.New("test submission has no Go test files")
+		}
+		if loaded.data.TaskV2.Verification.Profile == "fuzz-seed-tests" {
+			// The kernel applies the complete typed FuzzHex source contract
+			// before execution; keep the generic Test-only inspector separate.
+			return nil
 		}
 		var problems []string
 		for _, path := range submission.tests {

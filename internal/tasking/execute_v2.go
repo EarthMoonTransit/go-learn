@@ -13,6 +13,8 @@ func (s *CheckSession) executeV2(c *checker, data packageData, layout packageLay
 		s.executeV2Mutation(c, data, layout)
 	case "workspace-tests":
 		s.executeV2Workspace(c, data, layout)
+	case "fuzz-seed-tests":
+		s.executeV2Fuzz(c, data, layout)
 	}
 }
 

@@ -1,5 +1,7 @@
 package tasking
 
+import "go-practice-bank/internal/isolation"
+
 type State string
 
 const (
@@ -78,6 +80,15 @@ type VerificationPlan struct {
 	RaceRequired    bool               `yaml:"race_required" json:"race_required"`
 	Vet             bool               `yaml:"vet" json:"vet"`
 	Limits          VerificationLimits `yaml:"limits" json:"limits"`
+	Fuzz            *FuzzPlan          `yaml:"fuzz,omitempty" json:"fuzz,omitempty"`
+}
+
+// FuzzPlan selects the finite checker-owned source grammar, never commands.
+// The descriptor is required only by fuzz-seed-tests (ADR 0032).
+type FuzzPlan struct {
+	Grammar         string   `yaml:"grammar" json:"grammar"`
+	Target          string   `yaml:"target" json:"target"`
+	CorrectVariants []string `yaml:"correct_variants" json:"correct_variants"`
 }
 
 type VerificationLimits struct {
@@ -217,7 +228,7 @@ type QualityReport struct {
 	Mutants           MutantSummary `yaml:"mutants" json:"mutants"`
 }
 
-const CheckContractVersion = "task-check/v3"
+const CheckContractVersion = "task-check/v4"
 
 type ExecutionMetrics struct {
 	Sessions       int `yaml:"sessions" json:"sessions"`
@@ -226,6 +237,12 @@ type ExecutionMetrics struct {
 	VariantRuns    int `yaml:"variant_runs" json:"variant_runs"`
 	LegacyCommands int `yaml:"legacy_commands" json:"legacy_commands"`
 	ChildGoRuns    int `yaml:"child_go_runs" json:"child_go_runs"`
+	RuntimeQueries int `yaml:"runtime_queries" json:"runtime_queries"`
+	FuzzRuns       int `yaml:"fuzz_runs" json:"fuzz_runs"`
+	FuzzGoRuns     int `yaml:"fuzz_go_runs" json:"fuzz_go_runs"`
+	FuzzWorkspaces int `yaml:"fuzz_workspaces" json:"fuzz_workspaces"`
+	FuzzHelperRuns int `yaml:"fuzz_helper_runs" json:"fuzz_helper_runs"`
+	FuzzNativeRuns int `yaml:"fuzz_native_runs" json:"fuzz_native_runs"`
 }
 
 type CheckedTask struct {
@@ -236,11 +253,13 @@ type CheckedTask struct {
 }
 
 type CheckCollection struct {
-	SchemaVersion         int              `yaml:"schema_version" json:"schema_version"`
-	ContractVersion       string           `yaml:"contract_version" json:"contract_version"`
-	ToolchainPolicyDigest string           `yaml:"toolchain_policy_digest" json:"toolchain_policy_digest"`
-	Tasks                 []CheckedTask    `yaml:"tasks" json:"tasks"`
-	Execution             ExecutionMetrics `yaml:"execution" json:"execution"`
+	SchemaVersion         int                   `yaml:"schema_version" json:"schema_version"`
+	ContractVersion       string                `yaml:"contract_version" json:"contract_version"`
+	ToolchainPolicyDigest string                `yaml:"toolchain_policy_digest" json:"toolchain_policy_digest"`
+	VerifierSourceDigest  string                `yaml:"verifier_source_digest" json:"verifier_source_digest"`
+	Runtime               isolation.RuntimeInfo `yaml:"runtime" json:"runtime"`
+	Tasks                 []CheckedTask         `yaml:"tasks" json:"tasks"`
+	Execution             ExecutionMetrics      `yaml:"execution" json:"execution"`
 }
 
 type AggregateTask struct {

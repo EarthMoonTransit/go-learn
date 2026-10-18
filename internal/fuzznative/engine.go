@@ -88,25 +88,15 @@ func processFailure(p Process, output []byte, err error) string {
 
 func (e *Engine) prepare(version string, timeout time.Duration) error {
 	if e.helper != "" {
-		return nil
+		return e.checkGoTool()
 	}
-	work, err := e.workspace("fuzz-helper")
-	if err != nil {
+	if err := e.queryRuntime(timeout); err != nil {
 		return err
 	}
-	p, output, err := e.goCommand(work, []string{"env", "-json", "GOVERSION", "GOOS", "GOARCH"}, isolation.ExecutionModeNormal, timeout)
-	if failure := processFailure(p, output, err); failure != "" {
-		return fmt.Errorf("query toolchain: %s", failure)
-	}
-	var values struct{ GOVERSION, GOOS, GOARCH string }
-	if err := json.Unmarshal(output, &values); err != nil {
-		return fmt.Errorf("decode Go runtime: %w", err)
-	}
-	e.runtime = Runtime{Version: values.GOVERSION, GOOS: values.GOOS, GOARCH: values.GOARCH}
 	if err := e.runtime.Validate(); err != nil {
 		return err
 	}
-	e.goTool, err = os.Stat(goExecutable())
+	work, err := e.workspace("fuzz-helper")
 	if err != nil {
 		return err
 	}
@@ -114,11 +104,57 @@ func (e *Engine) prepare(version string, timeout time.Duration) error {
 		return err
 	}
 	helper := filepath.Join(work, "fuzz-admit"+executableSuffix())
-	p, output, err = e.goCommand(work, []string{"build", "-ldflags=-X=main.kernelDigest=" + SourceDigest(), "-o", helper, "./internal/fuzznative/worker"}, isolation.ExecutionModeNormal, timeout)
+	p, output, err := e.goCommand(work, []string{"build", "-ldflags=-X=main.kernelDigest=" + SourceDigest(), "-o", helper, "./internal/fuzznative/worker"}, isolation.ExecutionModeNormal, timeout)
 	if failure := processFailure(p, output, err); failure != "" {
 		return fmt.Errorf("build trusted helper: %s", failure)
 	}
 	e.helper = helper
+	return nil
+}
+
+// ActualRuntime queries only the trusted Go tool, without building a helper or
+// executing authored code. The engine caches immutable identity within its
+// operation and refuses a changed Go executable on every subsequent use.
+func (e *Engine) ActualRuntime(timeout time.Duration) (isolation.RuntimeInfo, error) {
+	e.mu.Lock()
+	defer e.mu.Unlock()
+	if timeout < time.Second || timeout > 60*time.Second {
+		return isolation.RuntimeInfo{}, fmt.Errorf("invalid runtime query deadline")
+	}
+	if err := e.queryRuntime(timeout); err != nil {
+		return isolation.RuntimeInfo{}, err
+	}
+	return isolation.RuntimeInfo{Version: e.runtime.Version, GOOS: e.runtime.GOOS, GOARCH: e.runtime.GOARCH}, nil
+}
+
+func (e *Engine) queryRuntime(timeout time.Duration) error {
+	if e.runtime.Version != "" {
+		return e.checkGoTool()
+	}
+	if e.environment == nil {
+		return fmt.Errorf("isolated environment is not initialized")
+	}
+	var err error
+	e.goTool, err = os.Stat(goExecutable())
+	if err != nil {
+		return err
+	}
+	work, err := e.workspace("fuzz-runtime")
+	if err != nil {
+		return err
+	}
+	p, output, err := e.goCommand(work, []string{"env", "-json", "GOVERSION", "GOOS", "GOARCH"}, isolation.ExecutionModeNormal, timeout)
+	if failure := processFailure(p, output, err); failure != "" {
+		return fmt.Errorf("query toolchain: %s", failure)
+	}
+	info, err := isolation.ParseRuntimeInfo(output)
+	if err != nil {
+		return err
+	}
+	if err := e.checkGoTool(); err != nil {
+		return err
+	}
+	e.runtime = Runtime{Version: info.Version, GOOS: info.GOOS, GOARCH: info.GOARCH}
 	return nil
 }
 
