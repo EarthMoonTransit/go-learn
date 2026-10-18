@@ -13,6 +13,7 @@ import (
 	"path/filepath"
 	"sort"
 
+	"go-practice-bank/internal/isolation"
 	"go-practice-bank/internal/taxonomy"
 	"gopkg.in/yaml.v3"
 )
@@ -51,8 +52,22 @@ func ToolchainPolicyDigest(root string) (string, error) {
 func TaskInputDigest(root string, located LocatedTask) (string, error) {
 	hash := sha256.New()
 	writeDigestField(hash, "contract", []byte(CheckContractVersion))
+	writeDigestField(hash, "verifier-source", []byte(VerifierSourceDigest()))
 	writeDigestField(hash, "state", []byte(located.State))
 	contracts := taskDigestContracts
+	var descriptor struct {
+		Verification struct {
+			Profile string `yaml:"profile"`
+		} `yaml:"verification"`
+	}
+	// Invalid manifests still produce failed package reports, as before. This
+	// header read only adds the public grammar dependency for a readable fuzz
+	// descriptor; the complete raw task files are always hashed below.
+	if taskMetadata, err := readDigestFile(filepath.Join(located.Path, "task.yaml")); err == nil {
+		if err := yaml.Unmarshal(taskMetadata, &descriptor); err == nil && descriptor.Verification.Profile == "fuzz-seed-tests" {
+			contracts = append(append([]string(nil), contracts...), fuzzCanonicalContractPath)
+		}
+	}
 	taxonomyBytes, err := readDigestFile(filepath.Join(root, "curriculum", "skills.yaml"))
 	if err != nil {
 		return "", fmt.Errorf("read taxonomy version for collection: %w", err)
@@ -173,11 +188,21 @@ func LoadCheckCollection(root, path string) (CheckCollection, error) {
 }
 
 func ValidateCheckCollection(root string, collection CheckCollection, states []State) error {
+	return validateCheckCollectionWithRuntime(root, collection, states, nil)
+}
+
+func validateCheckCollectionWithRuntime(root string, collection CheckCollection, states []State, actual *isolation.RuntimeInfo) error {
+	if collection.ContractVersion != CheckContractVersion {
+		return fmt.Errorf("stale check contract %q; require %q", collection.ContractVersion, CheckContractVersion)
+	}
 	if err := validateSchema(root, "task-check-collection.schema.json", collection); err != nil {
 		return fmt.Errorf("check collection schema: %w", err)
 	}
-	if collection.ContractVersion != CheckContractVersion {
-		return fmt.Errorf("stale check contract %q; require %q", collection.ContractVersion, CheckContractVersion)
+	if collection.VerifierSourceDigest != VerifierSourceDigest() {
+		return errors.New("stale check collection: verifier source digest changed")
+	}
+	if err := collection.Runtime.Validate(); err != nil {
+		return fmt.Errorf("check collection runtime: %w", err)
 	}
 	toolchainDigest, err := ToolchainPolicyDigest(root)
 	if err != nil {
@@ -234,8 +259,33 @@ func ValidateCheckCollection(root string, collection CheckCollection, states []S
 	if len(collection.Tasks) != 0 && collection.Execution.Sessions != 1 {
 		return errors.New("forged check collection: a non-empty full pass must use one execution session")
 	}
-	if collection.Execution.ChildGoRuns != collection.Execution.VariantRuns+collection.Execution.LegacyCommands || collection.Execution.Workspaces != collection.Execution.ChildGoRuns {
+	execution := collection.Execution
+	if execution.ChildGoRuns != execution.VariantRuns+execution.LegacyCommands+execution.RuntimeQueries+execution.FuzzGoRuns || execution.Workspaces != execution.VariantRuns+execution.LegacyCommands+execution.RuntimeQueries+execution.FuzzWorkspaces {
 		return errors.New("forged check collection: execution topology is inconsistent")
+	}
+	if execution.FuzzNativeRuns > execution.FuzzHelperRuns || execution.FuzzHelperRuns > execution.FuzzRuns || execution.RuntimeQueries > 1 {
+		return errors.New("forged check collection: native execution accounting is inconsistent")
+	}
+	if execution.FuzzRuns == 0 && (execution.FuzzGoRuns != 0 || execution.FuzzWorkspaces != 0) {
+		return errors.New("forged check collection: native execution accounting has no fuzz requests")
+	}
+	if actual == nil {
+		runner, err := newRealExecutionRunner()
+		if err != nil {
+			return err
+		}
+		info, queryErr := runner.ActualRuntime()
+		closeErr := runner.Close()
+		if queryErr != nil {
+			return fmt.Errorf("query actual execution runtime: %w", queryErr)
+		}
+		if closeErr != nil {
+			return closeErr
+		}
+		actual = &info
+	}
+	if collection.Runtime != *actual {
+		return fmt.Errorf("stale check collection: actual Go runtime changed from %+v to %+v", collection.Runtime, *actual)
 	}
 	return nil
 }

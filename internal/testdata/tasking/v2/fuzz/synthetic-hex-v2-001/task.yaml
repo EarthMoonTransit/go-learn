@@ -1,0 +1,46 @@
+schema_version: 2
+id: synthetic-hex-v2-001
+title: Synthetic finite native hex verifier fixture
+activity: fuzz-test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: fuzzing.targets-seeds
+    secondary: []
+prerequisites:
+    - testing.basics-diagnostics
+new_concepts:
+    - fuzzing.targets-seeds
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fuzz-seed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - paired-uppercase
+        - false-status
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+    fuzz:
+        grammar: hex-codec-v1
+        target: FuzzHex
+        correct_variants:
+            - loop
+            - empty
+quality_status: draft

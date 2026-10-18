@@ -1,0 +1,13 @@
+schema_version: 1
+reviewer: synthetic-infrastructure-reviewer
+reviewed_at: "2026-10-18"
+decision: approve
+story_free: true
+prompt_test_alignment: true
+public_api_stable: true
+provenance_verified: true
+license_verified: true
+reference_only_clean_room_verified: true
+solution_leakage_checked: true
+minimum_mutants: 2
+notes: Synthetic own verifier fixture only; no curriculum admission or coverage credit.

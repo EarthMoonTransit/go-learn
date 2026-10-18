@@ -71,6 +71,10 @@ func (s *CheckSession) checkLocated(located LocatedTask) (QualityReport, error) 
 		determinismProblems = checkTestSourcesV2(data, layout)
 	}
 	c.gate("deterministic-tests", determinismProblems)
+	if data.ContractVersion == 2 && data.TaskV2.Verification.Profile == "fuzz-seed-tests" {
+		c.report.Gates[len(c.report.Gates)-1].Status = "not-applicable"
+		c.report.Gates[len(c.report.Gates)-1].Details = []string{"typed finite source admission and repeated native observations are checked by the native execution gates"}
+	}
 
 	c.gate("task-type-diversity", nil)
 	c.report.Gates[len(c.report.Gates)-1].Status = "not-applicable"
@@ -245,6 +249,12 @@ type packageLayout struct {
 	WorkspaceGrader       []mappedFile
 	WorkspaceMutants      []workspaceMutantLayout
 	VerificationReference []string
+	VerificationCorrect   []correctVariantLayout
+}
+
+type correctVariantLayout struct {
+	ID    string
+	Files []string
 }
 
 type mutantLayout struct {

@@ -25,8 +25,10 @@ func checkPackageContractV2(root string, data packageData) ([]string, packageLay
 		return checkMutationLayout(root, data)
 	case "workspace-tests":
 		return checkWorkspaceLayout(root, data)
-	case "fuzz-seed-tests", "benchmark-contract":
-		return []string{"verification profile " + profile + " is reserved but not executable in task-check/v3"}, packageLayout{TaskDir: data.Located.Path}
+	case "fuzz-seed-tests":
+		return checkFuzzLayout(root, data)
+	case "benchmark-contract":
+		return []string{"verification profile " + profile + " is reserved but not executable in " + CheckContractVersion}, packageLayout{TaskDir: data.Located.Path}
 	default:
 		return []string{"unknown verification profile"}, packageLayout{TaskDir: data.Located.Path}
 	}
@@ -230,7 +232,7 @@ func checkMetadataV2(data packageData) []string {
 			}
 		}
 	}
-	if len(plan.RequiredMutants) == 0 && contains([]string{"fixed-tests", "mutation-tests", "workspace-tests"}, plan.Profile) {
+	if len(plan.RequiredMutants) == 0 && contains([]string{"fixed-tests", "mutation-tests", "workspace-tests", "fuzz-seed-tests"}, plan.Profile) {
 		problems = append(problems, "executable v2 profiles require at least one required mutant")
 	}
 	if len(plan.RequiredMutants) < data.Review.MinimumMutants {
@@ -275,6 +277,8 @@ func checkPublicAPIV2(data packageData, layout packageLayout) []string {
 			}
 		}
 		return problems
+	case "fuzz-seed-tests":
+		return checkFuzzPublicAPI(layout)
 	case "workspace-tests":
 		starterAPI, err := workspaceAPIFingerprint(layout.WorkspaceSkeleton, layout.WorkspaceStarter)
 		if err != nil {
@@ -332,6 +336,11 @@ func checkTestSourcesV2(data packageData, layout packageLayout) []string {
 			}
 		}
 		return uniqueSorted(problems)
+	case "fuzz-seed-tests":
+		// Typed finite admission uses actual pinned compiler exports in the
+		// native kernel, before any submitted test binary can run. Generic
+		// Test-entrypoint rules do not describe the explicit FuzzHex grammar.
+		return nil
 	case "workspace-tests":
 		var problems []string
 		for _, file := range append(append([]mappedFile{}, layout.WorkspacePublic...), layout.WorkspaceGrader...) {

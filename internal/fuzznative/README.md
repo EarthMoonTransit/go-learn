@@ -1,10 +1,11 @@
 # Finite native seed kernel
 
 This internal package implements the bounded `hex-codec-v1` mechanism accepted
-by [ADR 0032](../../docs/adr/0032-finite-native-fuzz.md). It is not connected to
-tasking or learner verification yet. `fuzz-seed-tests` remains reserved by the
-current checker; the v2 schema and `task-check/v3` collection contract are
-unchanged. This package grants no task, promotion or coverage credit.
+by [ADR 0032](../../docs/adr/0032-finite-native-fuzz.md). Tasking uses this engine
+for the explicit `fuzz-seed-tests` descriptor and learner public/full checks.
+The `task-check/v4` collection binds production verifier sources and the actual
+Go runtime. This mechanism and its synthetic fixtures grant no catalog or
+coverage credit. New course content requires a separate reviewed content batch.
 
 `Engine` receives an existing disposable `isolation.Environment`. Each native
 invocation gets a new module. Original learner test sources are parsed and
@@ -49,10 +50,14 @@ critical seed classes, all assertion wrappers, minimum/maximum task-id lengths,
 late raw failures and quotas, the 64-seed maximum and race mode. Offline parser
 fixtures are explicitly separate from evidence of an actual native run.
 
-Activation is a separate tooling change. It must add the complete declarative
-descriptor/layout, task-check and learner public/full orchestration, all correct
-variants and repetitions, strict mutant eligibility, public-feedback/service/CLI
-regressions, learner-state preservation and v4 freshness migration required by
-ADR 0032. Existing profile behavior and learner data remain under their current
-contracts until those gates pass. No alternate Go SDK execution is claimed by
-runtime-mismatch controls.
+Tasking runs the canonical and every declared correct implementation on public
+Check, repeating each with declared vet/race checks. Full verification first
+requires that public correctness, then eligible detection of every required
+mutant on every repetition. Starter insufficiency requires one same eligible
+survivor across all repetitions. No hidden seeds repair a weak submission.
+The complete learner source language is published in
+[FUZZ_SOURCE.md](../../docs/FUZZ_SOURCE.md), copied readonly into workspaces and
+included inline in learner statements. Existing task content identities and
+learner state formats retain their meanings. Old collections must be regenerated;
+relabeling v3 output does not create v4 evidence. Runtime mismatch controls are
+offline metadata controls; no alternate Go SDK execution is claimed.

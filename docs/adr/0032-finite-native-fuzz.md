@@ -1,22 +1,24 @@
 # ADR 0032: Finite native fuzz-seed verification
 
-- Status: accepted design for a separate tooling batch; no live activation
+- Status: accepted; implemented in a separate finite native fuzz tooling batch
 - Date: 2026-10-18
 - Extends: ADR 0007 and ADR 0019
 
 ## Context and activation boundary
 
-`fuzz-seed-tests` is reserved by Task Contract v2. Ordinary test failure does
+`fuzz-seed-tests` was reserved by Task Contract v2. Ordinary test failure does
 not establish that a learner registered a native target, exercised its seeds,
 called the intended implementation, or checked an invariant. A mutually wrong
 encoder and decoder can preserve a round trip. A panic, race, timeout, broken
 observer or truncated result can also produce a failing process.
 
-Accept the independently reviewed finite design below. This documentation
-batch changes no executable profile, schema, task, taxonomy, route or learner
-state. The reservation remains enforced until a separate implementation PR
-passes all acceptance gates. That PR changes schema v2 and the collection
-contract as explicitly described here. New content follows in a separate PR.
+The independently reviewed finite design below was accepted in a documentation
+batch without executable profile, schema, task, taxonomy, route or learner
+state changes. The subsequent tooling batch implements the profile, changes
+schema v2 and advances the collection contract to v4 as described here. It
+includes an original synthetic infrastructure fixture, with no ready content
+or curriculum credit. Its merge requires all implementation acceptance gates
+below. New content follows in a separate PR.
 
 The first grammar is `hex-codec-v1`, with exactly one target named `FuzzHex`.
 It assesses deterministic native seed execution and value properties of a
@@ -288,8 +290,9 @@ the new grammar/observer/admission protocol versions, trusted source and runtime
 identity in the checker contract/freshness boundary, alongside the changed v2
 schema and existing policy inputs. After implementation inputs stabilize,
 produce one fresh full `task-check -all -output` and use that same file for
-validator, task-report and scoped coverage checks. This documentation-only
-decision can reuse the current unchanged-input v3 collection.
+validator, task-report and scoped coverage checks. The original documentation-only
+decision reused its unchanged-input v3 collection; implementation requires a
+fresh v4 collection.
 
 Preserve task schema v1 and all existing executable-profile behavior. Existing
 tasks, ids, content digests, skills, route addresses, editable solutions,

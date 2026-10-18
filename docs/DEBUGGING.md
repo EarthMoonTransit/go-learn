@@ -41,6 +41,21 @@ reference, учёт попыток и переход к следующей за�
 задачи не нужны повторный browser smoke и полный банк на каждой итерации. Они
 нужны, когда меняется соответствующее поведение или это требует acceptance.
 
+## Отладка finite fuzz
+
+```bash
+go test -tags=taskintegration ./internal/tasking -run '^TestNativeFuzzTaskCheckAndPublicFeedback$' -count=1 -v
+```
+
+Synthetic регрессия выполняет task code только через disposable Engine.
+Сначала различать `native-eligibility` (source frame, process или complete
+observation) и public assertion failure. Public feedback проверяется на всех
+correct variants; paired roundtrip может пройти Check и оставить defect на
+Complete. После изменения production verifier source, actual runtime или
+grammar contract старый collection не переименовывается: после freeze inputs
+создаётся один новый v4 файл для всех acceptance consumers. Реальный learner
+home не используется.
+
 ## Где уходит время
 
 В CI run `34168388464` исправления literal-bindings интеграционные тесты заняли

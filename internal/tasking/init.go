@@ -359,6 +359,9 @@ func initV2(root string, options InitOptions) (LocatedTask, error) {
 		QualityStatus: "draft",
 	}
 	sort.Strings(task.Prerequisites)
+	if options.VerificationProfile == "fuzz-seed-tests" {
+		task.Verification.Fuzz = &FuzzPlan{Grammar: "hex-codec-v1", Target: "FuzzHex", CorrectVariants: []string{"loop", "empty"}}
+	}
 	if err := validateSchema(root, "task-v2.schema.json", task); err != nil {
 		return LocatedTask{}, fmt.Errorf("generated v2 task metadata: %w", err)
 	}
@@ -399,6 +402,8 @@ func initV2(root string, options InitOptions) (LocatedTask, error) {
 		directories = append(directories, "tests/public", "tests/grader", "solution/mutants/required-behavior")
 	case "mutation-tests":
 		directories = append(directories, "verification/reference", "verification/mutants/required-behavior")
+	case "fuzz-seed-tests":
+		directories = append(directories, "verification/reference", "verification/mutants/required-behavior", "verification/correct/loop", "verification/correct/empty")
 	case "workspace-tests":
 		directories = append(directories, "workspace/subject", "tests/public/subject", "tests/grader/subject", "solution/mutants/required-behavior/subject", "starter/subject", "solution/reference/subject")
 	default:
@@ -429,6 +434,24 @@ func initV2(root string, options InitOptions) (LocatedTask, error) {
 			text = strings.ReplaceAll(text, old, replacement)
 		}
 		if err := os.WriteFile(filepath.Join(staging, filepath.FromSlash(name)), []byte(text), 0o644); err != nil {
+			return LocatedTask{}, err
+		}
+	}
+	if options.VerificationProfile == "fuzz-seed-tests" {
+		contract, err := readRegularFile(filepath.Join(root, filepath.FromSlash(fuzzCanonicalContractPath)), 8<<20)
+		if err != nil {
+			return LocatedTask{}, fmt.Errorf("finite source contract: %w", err)
+		}
+		if err := os.WriteFile(filepath.Join(staging, filepath.FromSlash(fuzzSourceContractPath)), contract, 0644); err != nil {
+			return LocatedTask{}, err
+		}
+		promptPath := filepath.Join(staging, "TASK.md")
+		prompt, err := os.ReadFile(promptPath)
+		if err != nil {
+			return LocatedTask{}, err
+		}
+		prompt = append(prompt, []byte("\n## Finite native source contract\n\nRead the [complete source contract](FUZZ_SOURCE.md) before editing the native target.\n")...)
+		if err := os.WriteFile(promptPath, prompt, 0644); err != nil {
 			return LocatedTask{}, err
 		}
 	}

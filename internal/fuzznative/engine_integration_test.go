@@ -28,6 +28,28 @@ func integrationEngine(t *testing.T) *Engine {
 	return NewEngine(environment)
 }
 
+func TestTrustedActualRuntimeQueryDoesNotBuildOrRunAuthoredCode(t *testing.T) {
+	engine := integrationEngine(t)
+	first, err := engine.ActualRuntime(60 * time.Second)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := first.Validate(); err != nil {
+		t.Fatal(err)
+	}
+	before := engine.Metrics()
+	second, err := engine.ActualRuntime(60 * time.Second)
+	if err != nil || second != first {
+		t.Fatalf("operation runtime changed: %+v %+v %v", first, second, err)
+	}
+	if after := engine.Metrics(); after != before {
+		t.Fatalf("cached runtime spawned another query: %+v %+v", before, after)
+	}
+	if before.Workspaces != 1 || before.GoRuns != 1 || before.HelperRuns != 0 || before.NativeRuns != 0 || engine.helper != "" {
+		t.Fatalf("metadata query built or ran authored code: %+v helper=%q", before, engine.helper)
+	}
+}
+
 func nativeRequest(variant string, sources map[string]string) Request {
 	return Request{Identity: Identity{ModulePath: "task.local/integration-hex-001", Grammar: "hex-codec-v1", Target: "FuzzHex"}, GoVersion: "1.27", Implementation: map[string]string{"hex.go": subject(variant)}, Sources: sources, Timeout: 60 * time.Second}
 }

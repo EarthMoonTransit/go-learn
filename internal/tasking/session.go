@@ -68,6 +68,10 @@ func (s *CheckSession) CheckAll(states []State) (CheckCollection, error) {
 		return CheckCollection{}, err
 	}
 	beforeExecution := s.runner.Metrics()
+	actualRuntime, err := s.runner.ActualRuntime()
+	if err != nil {
+		return CheckCollection{}, fmt.Errorf("query actual execution runtime: %w", err)
+	}
 	toolchainDigest, err := ToolchainPolicyDigest(s.root)
 	if err != nil {
 		return CheckCollection{}, err
@@ -76,6 +80,8 @@ func (s *CheckSession) CheckAll(states []State) (CheckCollection, error) {
 		SchemaVersion:         1,
 		ContractVersion:       CheckContractVersion,
 		ToolchainPolicyDigest: toolchainDigest,
+		VerifierSourceDigest:  VerifierSourceDigest(),
+		Runtime:               actualRuntime,
 		Tasks:                 make([]CheckedTask, 0, len(located)),
 	}
 	for _, task := range located {
@@ -101,7 +107,11 @@ func (s *CheckSession) CheckAll(states []State) (CheckCollection, error) {
 	collection.Execution = executionDelta(beforeExecution, s.runner.Metrics())
 	collection.Execution.Sessions = 1
 	collection.Execution.TaskChecks = len(located)
-	if err := ValidateCheckCollection(s.root, collection, states); err != nil {
+	actualRuntime, err = s.runner.ActualRuntime()
+	if err != nil {
+		return CheckCollection{}, fmt.Errorf("confirm actual execution runtime: %w", err)
+	}
+	if err := validateCheckCollectionWithRuntime(s.root, collection, states, &actualRuntime); err != nil {
 		return CheckCollection{}, fmt.Errorf("generated check collection is invalid: %w", err)
 	}
 	return collection, nil
@@ -114,6 +124,12 @@ func executionDelta(before, after ExecutionMetrics) ExecutionMetrics {
 		VariantRuns:    after.VariantRuns - before.VariantRuns,
 		LegacyCommands: after.LegacyCommands - before.LegacyCommands,
 		ChildGoRuns:    after.ChildGoRuns - before.ChildGoRuns,
+		RuntimeQueries: after.RuntimeQueries - before.RuntimeQueries,
+		FuzzRuns:       after.FuzzRuns - before.FuzzRuns,
+		FuzzGoRuns:     after.FuzzGoRuns - before.FuzzGoRuns,
+		FuzzWorkspaces: after.FuzzWorkspaces - before.FuzzWorkspaces,
+		FuzzHelperRuns: after.FuzzHelperRuns - before.FuzzHelperRuns,
+		FuzzNativeRuns: after.FuzzNativeRuns - before.FuzzNativeRuns,
 	}
 }
 
