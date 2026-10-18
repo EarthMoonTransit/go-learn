@@ -1,0 +1,126 @@
+{
+  "format": "go-learn-pedagogical-source-review/v1",
+  "reviewed_at": "2026-10-18",
+  "repository_baseline": "78bc1425caefe64823f82945d48fd4f40d81a567",
+  "status": "approved-for-concept-seed-selection-only",
+  "coverage_eligible": false,
+  "new_ready_tasks": 0,
+  "boundary": "Source selection for proposed P20 only. No task authoring, source code/test/text/vector copying, registry expansion, schema/profile/runtime activation, learner-state access, theory, taxonomy or release/export. The separately authored native-fuzz assessment still requires an executable profile and its own reviewed ADR/tooling/content batches.",
+  "verified_sources": [
+    {
+      "registry_id": "golang-go",
+      "repository": "https://go.googlesource.com/go",
+      "commit": "2c31595783c74564c1299a5401dc6e606f379cc7",
+      "usage_mode": "adapt",
+      "license": "BSD-3-Clause",
+      "files": [
+        {
+          "path": "src/encoding/hex/hex_test.go",
+          "sha256": "b59de7b29f9b3d0bd75d661666d57fed17d87574b79f5a299a92f9c0f88123bb"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "PATENTS",
+          "sha256": "96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+        }
+      ]
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "repository": "https://github.com/ardanlabs/gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "usage": "bounded comparison only; not a P20 donor",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "fd62bda91923cb60d78846f3038f14cc312ff62b93915d88a4434b92c366fe54"
+        },
+        {
+          "path": "topics/go/testing/fuzzing/README.md",
+          "sha256": "5c6e059a69355c29f6025080d107eafaf24a0fc9d3e8a8b335a9ed73bb77b705"
+        },
+        {
+          "path": "topics/go/testing/fuzzing/exercises/exercise1/exercise1.go",
+          "sha256": "16cbf64df2525b105e9c885090bcfec02bfaffef7452a06a81bc9266a5ad8b5e"
+        },
+        {
+          "path": "topics/go/testing/fuzzing/exercises/exercise1/exercise1_test.go",
+          "sha256": "695b26ac356679bab3fba409e47026704f694a5ab019f61e1e0811e1d1b5cce4"
+        },
+        {
+          "path": "topics/go/testing/fuzzing/exercises/exercise1/fuzzer.go",
+          "sha256": "7a23decc99db78e8cea970564e86e8b9d2fd11a04d4c1919ceccb5e1b3ef33f0"
+        },
+        {
+          "path": "topics/go/testing/fuzzing/exercises/exercise1/workdir/corpus/input.txt",
+          "sha256": "88cb9eb6b5640ad78154ef140017a855c6df27f95793f4c90622ebbc19f7a412"
+        }
+      ]
+    }
+  ],
+  "p20": {
+    "decision": "selected-concept-seed; no original or substantive-adaptation claim",
+    "selected_source": {
+      "registry_id": "golang-go",
+      "commit": "2c31595783c74564c1299a5401dc6e606f379cc7",
+      "path": "src/encoding/hex/hex_test.go",
+      "sha256": "b59de7b29f9b3d0bd75d661666d57fed17d87574b79f5a299a92f9c0f88123bb",
+      "selected_elements": [
+        "encDecTest and encDecTests as inspected concept evidence only",
+        "TestEncodeToString",
+        "TestDecodeString"
+      ],
+      "role": "concept-seed",
+      "artifact_usage": "concept-only"
+    },
+    "retained_concept": "Canonical lowercase hexadecimal encoding and value-preserving decoding are independently checkable against the wire mapping, rather than only by composing a mutually consistent encoder and decoder.",
+    "source_limit": "The selected artifact supplies ordinary test vectors and string/error API examples. It contains no native-fuzz exercise and does not supply learner F.Add corpus planning, fuzz invariants, or the new byte/bool API. Do not copy its vectors into starter/reference learner seeds or count this decision as a substantive adaptation.",
+    "proposed_local_outcome": "Learner authors a bounded native fuzz target, discriminating F.Add cases, independent canonical-wire invariants and valid-image decode value/status assertions. Instructor seeds and diagnostic probes never rescue missing learner cases or invariants.",
+    "proposed_api": "Encode([]byte) []byte returns lowercase ASCII hex; Decode([]byte) ([]byte, bool) is observed only on completed Encode results from the same callback. Nil and empty are equivalent byte values. The byte/bool shape is locally authored, not the selected upstream string/error signature.",
+    "assessment_scope": [
+      "fuzzing.targets-seeds primary candidate and fuzzing.invariants secondary candidate, subject to later task review",
+      "Canonical wire mapping, valid-image decode status/payload and lossless roundtrip",
+      "No invalid-image rejection, uppercase-input decoder acceptance, ownership/capacity, codec implementation, or P21 crash/reproduction credit"
+    ],
+    "source_policy": "A later task records this exact registry/commit/path/hash as concept-seed with concept-only usage. It must not use original provenance with an empty external source list. Keep concept-only lineage distinct from substantive adaptations in reports. No task id, creation record or task digest is fabricated by this source decision.",
+    "rights": "The file is first-party Go Authors BSD-licensed test material. Retain its exact attribution and LICENSE/PATENTS lineage in later content. Any future copied or adapted artifact requires the notices and usage classification appropriate to that artifact; this decision copies no upstream implementation, test, statement or vector.",
+    "alternatives": [
+      {
+        "registry_id": "ardanlabs-gotraining",
+        "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+        "paths": [
+          "topics/go/testing/fuzzing/README.md",
+          "topics/go/testing/fuzzing/exercises/exercise1/exercise1.go",
+          "topics/go/testing/fuzzing/exercises/exercise1/exercise1_test.go",
+          "topics/go/testing/fuzzing/exercises/exercise1/fuzzer.go",
+          "topics/go/testing/fuzzing/exercises/exercise1/workdir/corpus/input.txt"
+        ],
+        "decision": "retained as a substantive parser/crash/fix/regression donor for separate P21 selection; not a lossless hex invariant exercise"
+      },
+      {
+        "registry_id": "golang-go",
+        "commit": "2c31595783c74564c1299a5401dc6e606f379cc7",
+        "path": "src/encoding/csv/fuzz_test.go",
+        "sha256": "e1a11fd0b88fa48dc7846cceb3af5cb27f333279c7795d5cbfc26ac175d6fedf",
+        "decision": "not selected: normalized record roundtrip, not arbitrary-byte lossless encoding"
+      }
+    ],
+    "search_limit": "This is a bounded comparison and a positive concept-seed selection. It does not claim an exhaustive absence of a suitable fuzz donor."
+  },
+  "future_assessment_gates": {
+    "canonical_case": "At least one learner-selected seed must produce letters a-f. The design proof uses a low byte such as0x0a so that the high-bit case remains independently necessary. A paired uppercase encoder/decoder survives roundtrip-only assertions and removal of the sole letter seed; an independent lowercase wire oracle rejects it. Do not publish the instructor proof corpus as a required learner seed list.",
+    "oracle_alternatives": "Prove readonly []byte digit-table indexing with division/remainder, plus exact standard-library encoding/hex.AppendEncode with literal nil or typed []byte(nil) destination and current Seed/SeedClone input. Its output remains OtherBytes and cannot replace a SUT-produced encoded argument. Import/function aliases and synchronous helpers retain exact signature/origin checks.",
+    "resources": "Hex doubles the byte length: the existing synthetic prefix fixture cap/proof does not establish the new8192-byte output bound. Recalculate serialization, prove maximum trace/race/native/raw-exit behavior and review before executable-profile activation.",
+    "pipeline": "Separate reviewed ADR and check-collection migration; same finite contract at task-check starter/reference/mutants and learner public/full; useful public feedback; hidden mutation adequacy uses only learner F.Add. Then separate tooling and content PRs with required gates, independent review and exact-head green validate before merge."
+  },
+  "independent_review": {
+    "reviewer": "codec_static_review",
+    "authorization": "Human authorized reviewer subagents for source and final PR review in the foundation goal chain.",
+    "decision": "APPROVE source-only concept/API decision and private hex extension design; content authoring remains gated on executable profile and separate activation ADR/tooling/content reviews.",
+    "execution": "Read-only source/design review; no source execution or reviewer edits.",
+    "limits": "No P20 readiness/coverage, original provenance, substantive-adaptation count, production activation or P21 assessment approval."
+  }
+}
