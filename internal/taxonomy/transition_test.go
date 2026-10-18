@@ -141,6 +141,9 @@ func TestRejectsChangedHistoryAndUnreviewedCompatibility(t *testing.T) {
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
 			root := fixture(t)
+			if _, err := ValidateTransition(root); err != nil {
+				t.Fatal(err)
+			}
 			tc.change(t, root)
 			_, err := ValidateTransition(root)
 			if err == nil || !strings.Contains(err.Error(), tc.want) {
@@ -151,6 +154,9 @@ func TestRejectsChangedHistoryAndUnreviewedCompatibility(t *testing.T) {
 	for path := range reviewedV3 {
 		t.Run("reviewed bytes "+path, func(t *testing.T) {
 			root := fixture(t)
+			if _, _, err := ReviewedPath(root); err != nil {
+				t.Fatal(err)
+			}
 			p := filepath.Join(root, filepath.FromSlash(path))
 			b, err := os.ReadFile(p)
 			if err != nil {
@@ -236,6 +242,9 @@ func TestRepinningAdditionCannotChangeApprovedTeachingContract(t *testing.T) {
 
 func TestLiveTeachingContractsDoNotDependOnInternalReviewBytes(t *testing.T) {
 	root := fixture(t)
+	if _, _, err := ReviewedPath(fixture(t)); err != nil {
+		t.Fatal(err)
+	}
 	for path, pin := range reviewedV3 {
 		for _, relative := range []string{path, pin.snapshot} {
 			if err := os.Remove(filepath.Join(root, filepath.FromSlash(relative))); err != nil {

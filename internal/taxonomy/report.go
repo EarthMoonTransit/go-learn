@@ -17,8 +17,8 @@ func MigrationReport(root string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	var current document
-	if _, err := readStrict(root, "curriculum/skills.yaml", &current); err != nil {
+	_, current, err := readImmutableDocument(root, "curriculum/skills.yaml")
+	if err != nil {
 		return nil, err
 	}
 	all, err := skills(current)

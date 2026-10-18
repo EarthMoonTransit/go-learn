@@ -8,12 +8,10 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"io"
 	"reflect"
 	"sort"
 	"strings"
 
-	"go-practice-bank/internal/safeio"
 	"gopkg.in/yaml.v3"
 )
 
@@ -100,8 +98,8 @@ func ContractPaths() []string {
 // ReviewedPath selects a historical taxonomy only after verifying the exact
 // finite compatibility record. It is not a general version alias.
 func ReviewedPath(root string) (string, int, error) {
-	var current document
-	if _, err := readStrict(root, "curriculum/skills.yaml", &current); err != nil {
+	_, current, err := readImmutableDocument(root, "curriculum/skills.yaml")
+	if err != nil {
 		return "", 0, err
 	}
 	if current.Version == 3 {
@@ -141,15 +139,15 @@ func validateTransition(root string, requireReviewedBytes bool) (Transition, err
 	if b.SourceCommit != V3Commit || b.TaxonomyPath != V3Path || b.TaxonomySHA256 != V3SHA256 || b.SkillCount != 177 || b.ActiveCount != 142 || b.DeprecatedCount != 35 {
 		return t, fmt.Errorf("taxonomy migration: immutable v3 baseline identity/counts mismatch")
 	}
-	var old, live document
-	data, err := readStrict(root, V3Path, &old)
+	data, old, err := readImmutableDocument(root, V3Path)
 	if err != nil {
 		return t, err
 	}
 	if hash(data) != V3SHA256 || old.Version != 3 {
 		return t, fmt.Errorf("taxonomy migration: immutable v3 taxonomy hash/version mismatch")
 	}
-	if _, err := readStrict(root, "curriculum/skills.yaml", &live); err != nil {
+	_, live, err := readImmutableDocument(root, "curriculum/skills.yaml")
+	if err != nil {
 		return t, err
 	}
 	if live.Version != 4 || live.Track != old.Track || !nodeEqual(live.Target, old.Target) {
@@ -242,23 +240,6 @@ func validateTransition(root string, requireReviewedBytes bool) (Transition, err
 		}
 	}
 	return t, nil
-}
-
-func readStrict(root, relative string, dst any) ([]byte, error) {
-	b, err := safeio.ReadFile(root, relative, 4<<20)
-	if err != nil {
-		return nil, fmt.Errorf("taxonomy: read %s: %w", relative, err)
-	}
-	d := yaml.NewDecoder(bytes.NewReader(b))
-	d.KnownFields(true)
-	if err := d.Decode(dst); err != nil {
-		return nil, fmt.Errorf("taxonomy: decode %s: %w", relative, err)
-	}
-	var trailing any
-	if err := d.Decode(&trailing); err != io.EOF {
-		return nil, fmt.Errorf("taxonomy: trailing data in %s", relative)
-	}
-	return b, nil
 }
 
 func skills(d document) (map[string]map[string]any, error) {

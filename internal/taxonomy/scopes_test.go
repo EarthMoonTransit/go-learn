@@ -63,6 +63,9 @@ func TestLiveAndReviewedLoadersRejectInvalidScopes(t *testing.T) {
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
 			root := fixture(t)
+			if _, err := ValidateTransition(root); err != nil {
+				t.Fatal(err)
+			}
 			var scopes coverageScopes
 			rewrite(t, root, ScopePath, &scopes, func() { tc.change(&scopes) })
 			assertScopeRejected(t, root, tc.want)

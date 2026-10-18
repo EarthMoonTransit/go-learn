@@ -64,3 +64,29 @@ func TestReviewedSourceContractsStayV3WhileTaskContractsAreV4(t *testing.T) {
 		}
 	}
 }
+
+func TestLiveContractOutputsCannotPoisonWarmTaxonomyValidation(t *testing.T) {
+	root, err := filepath.Abs(filepath.Join("..", ".."))
+	if err != nil {
+		t.Fatal(err)
+	}
+	_, first, err := LoadSkillContracts(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	_, want, err := LoadSkillContracts(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	contract := first["functions.recursion"]
+	if len(contract.Prerequisites) == 0 {
+		t.Fatal("fixture lost recursion prerequisites")
+	}
+	contract.Prerequisites[0] = "poisoned"
+	first["functions.recursion"] = contract
+	delete(first, "expressions.bitwise-masks")
+	_, got, err := LoadSkillContracts(root)
+	if err != nil || !reflect.DeepEqual(got, want) {
+		t.Fatalf("mutable public contracts poisoned subsequent load: %v", err)
+	}
+}

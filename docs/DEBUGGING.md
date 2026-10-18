@@ -129,6 +129,28 @@ median из трёх запусков командами выше. MB здесь
 Race, integration, grader, disposable workspaces и обязательные workflow gates
 не сокращаются.
 
+## Разбор taxonomy v4 (2026-10-18)
+
+Приёмка миграции v4 обнаружила повторный YAML-разбор live taxonomy и frozen v3
+при одиночных metadata reads. Private read-only consumers теперь сохраняют
+последний успешный parse в двух slots по роли и точным bytes. Перед lookup каждый
+вызов заново читает файл через прежние path/size guards. Migration, scopes,
+reviewed bytes и все semantic checks проверяются каждый раз; результаты
+validation и repository roots не сохраняются. Обычный `readStrict` продолжает
+создавать независимые mutable maps и nodes.
+
+На Apple M4 Max, darwin/arm64, Go 1.27.0, одна серия из 20 вызовов
+`LoadReadyLearnerTask(".", "zero-results-001")` на одинаковых v4 inputs дала
+0,388 → 0,239 s без race и 5,173 → 2,698 s под race. Allocated bytes под race
+снизились с 327,3 до 213,8 MB. База — `b89f80c`; это наблюдение одного запуска,
+не timing threshold. Для полного каталога выигрыш небольшой: его filesystem
+и Go AST guards сохраняются. Все 169 экспортируемых `LearnerTaskInfo` совпали.
+
+Регрессии прогревают slots перед изменением bytes, YAML errors, missing files,
+symlinks, nonregular files и превышением 4 MiB. Отдельно проверяются свежие
+semantic checks, конкурентная замена slots под race и невозможность испортить
+shared parse через mutable публичные outputs. Таймауты и workflow не меняются.
+
 ## CI integration suite budget
 
 Runs 34253711927 and 34254229744 both hit Go's default 10-minute package
