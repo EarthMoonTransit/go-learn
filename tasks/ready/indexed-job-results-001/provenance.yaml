@@ -1,0 +1,47 @@
+{
+  "schema_version": 2,
+  "kind": "adapted",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "ca5286149480287fdcdb52ea8a68c6ce758fd69b263447ee854a965b6fdf51e3"
+  },
+  "creation": {
+    "author": "p17-author",
+    "created_at": "2026-10-18",
+    "summary": "Substantively adapt the admitted finite fan-out/all-results operation from Ardan template2. Translate random generation/printing into supplied jobs and indexed value/error records with wait-all-after-error and independent result storage. All API code, tests, reference and defects are local; no answer implementation or upstream cases copied."
+  },
+  "sources": [
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "repository": "https://github.com/ardanlabs/gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "license": "Apache-2.0",
+      "usage_mode": "adapt",
+      "role": "api-shape",
+      "artifacts": [
+        {
+          "path": "topics/go/concurrency/channels/exercises/template2/template2.go",
+          "sha256": "d24cc6c7dd8214386d2d75fc97eb2ad056167b6bf98e802b34af345a69d43f3a",
+          "usage": "adapted"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "fd62bda91923cb60d78846f3038f14cc312ff62b93915d88a4434b92c366fe54",
+          "usage": "copied"
+        },
+        {
+          "path": "CONTRIBUTORS",
+          "sha256": "1f28976a492474ac6309eb365adb5a932004f7ef82aec2669f7c8a102420c0e2",
+          "usage": "comparison-only"
+        }
+      ]
+    }
+  ],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/indexed-job-results-001.yaml"
+  }
+}

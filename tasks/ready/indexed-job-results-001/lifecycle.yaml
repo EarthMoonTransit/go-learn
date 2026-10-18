@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-10-18"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-10-18"
+      actor: p17-author
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-10-18"
+      actor: p17-author
+      reason: Independent canonical content review and public verifier evidence complete
+    - from: in-review
+      to: ready
+      at: "2026-10-18"
+      actor: /root/p18_content_review
+      reason: Actual independent content APPROVE;13 compiled defects fail public assertions; reference and two valid alternatives public/full pass

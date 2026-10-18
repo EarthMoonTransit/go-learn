@@ -1,0 +1,60 @@
+schema_version: 2
+id: indexed-job-results-001
+title: Collect every indexed job result and error
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: goroutines.result-error-collection
+    secondary: []
+prerequisites:
+    - control-flow.range
+    - errors.propagation-context
+    - functions.closure-capture
+    - functions.function-values
+    - functions.signatures-results
+    - goroutines.launch-lifecycle
+    - goroutines.state-ownership
+    - slices.len-cap-slicing
+    - structs.literals-zero
+    - sync.waitgroup-lifecycle
+new_concepts:
+    - goroutines.result-error-collection
+difficulty: intermediate
+estimated_time_minutes:
+    min: 30
+    max: 50
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - zero-value
+        - drop-error
+        - zero-on-error
+        - clone-error
+        - wrong-index
+        - duplicate-call
+        - no-wait
+        - empty-result
+        - shared-output
+        - serial
+        - skip-last
+        - completion-order
+        - fail-fast
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
