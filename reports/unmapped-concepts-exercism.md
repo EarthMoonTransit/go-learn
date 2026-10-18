@@ -1,7 +1,7 @@
 # Unmapped Exercism concepts
 
 - Source commit: `ae1477abfeeb9fbeaf971caee220e91f9e4df790`
-- Taxonomy SHA-256: `4cc68407da591576cbce72117bc9a92993d491084ec736c26e5921323b269f16`
+- Taxonomy SHA-256: `8fc463c93634564e7972117ea7f7c1f90d4e5cb82659f2f631698ef68ba4ab64`
 
 Frozen concept inventory: **38**; mapped: **21**; ambiguous: **12**; taxonomy gaps: **2**; scope-deferred: **3**. Fuzzy matching, stemming, and topic normalization are disabled.
 

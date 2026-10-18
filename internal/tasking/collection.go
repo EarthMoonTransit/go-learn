@@ -13,6 +13,7 @@ import (
 	"path/filepath"
 	"sort"
 
+	"go-practice-bank/internal/taxonomy"
 	"gopkg.in/yaml.v3"
 )
 
@@ -51,7 +52,21 @@ func TaskInputDigest(root string, located LocatedTask) (string, error) {
 	hash := sha256.New()
 	writeDigestField(hash, "contract", []byte(CheckContractVersion))
 	writeDigestField(hash, "state", []byte(located.State))
-	for _, relative := range taskDigestContracts {
+	contracts := taskDigestContracts
+	taxonomyBytes, err := readDigestFile(filepath.Join(root, "curriculum", "skills.yaml"))
+	if err != nil {
+		return "", fmt.Errorf("read taxonomy version for collection: %w", err)
+	}
+	var header struct {
+		Version int `yaml:"version"`
+	}
+	if err := yaml.Unmarshal(taxonomyBytes, &header); err != nil {
+		return "", fmt.Errorf("decode taxonomy version for collection: %w", err)
+	}
+	if header.Version == 4 {
+		contracts = append(append([]string(nil), contracts...), taxonomy.ContractPaths()...)
+	}
+	for _, relative := range contracts {
 		content, err := readDigestFile(filepath.Join(root, filepath.FromSlash(relative)))
 		if err != nil {
 			return "", fmt.Errorf("digest contract %s: %w", relative, err)
@@ -59,7 +74,7 @@ func TaskInputDigest(root string, located LocatedTask) (string, error) {
 		writeDigestField(hash, "contract-file:"+relative, content)
 	}
 	var paths []string
-	err := filepath.WalkDir(located.Path, func(path string, entry fs.DirEntry, walkErr error) error {
+	err = filepath.WalkDir(located.Path, func(path string, entry fs.DirEntry, walkErr error) error {
 		if walkErr != nil {
 			return walkErr
 		}

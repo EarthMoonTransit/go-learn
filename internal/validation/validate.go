@@ -19,6 +19,7 @@ import (
 	"go-practice-bank/internal/learner"
 	sourcepolicy "go-practice-bank/internal/sources"
 	"go-practice-bank/internal/tasking"
+	"go-practice-bank/internal/taxonomy"
 	"go-practice-bank/internal/toolchainpolicy"
 	"go-practice-bank/internal/triage"
 	"gopkg.in/yaml.v3"
@@ -43,6 +44,13 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 	if err := learner.ValidateTheory(root); err != nil {
 		problems = append(problems, fmt.Errorf("theory: %w", err))
 	}
+	if err := decodeStrict(filepath.Join(root, "curriculum", "skills.yaml"), &result.Curriculum); err != nil {
+		return result, err
+	}
+	taxonomySchema := "schemas/taxonomy-v3.schema.json"
+	if result.Curriculum.Version == 4 {
+		taxonomySchema = "schemas/taxonomy-v4.schema.json"
+	}
 
 	taskSchema, err := compileTaskSchema(filepath.Join(root, "schemas", "task.schema.json"))
 	if err != nil {
@@ -55,7 +63,7 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 	staticSchemas := []struct {
 		data, schema, label string
 	}{
-		{"curriculum/skills.yaml", "schemas/taxonomy-v3.schema.json", "taxonomy"},
+		{"curriculum/skills.yaml", taxonomySchema, "taxonomy"},
 		{"curriculum/migrations/v2-to-v3.yaml", "schemas/taxonomy-migration.schema.json", "taxonomy migration"},
 		{"curriculum/mappings/exercism-go.yaml", "schemas/exercism-concept-map.schema.json", "Exercism concept map"},
 		{"curriculum/evidence/exercism-go.yaml", "schemas/skill-evidence.schema.json", "Exercism skill evidence"},
@@ -65,6 +73,13 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 		{"config/toolchain.yaml", "schemas/toolchain-policy.schema.json", "toolchain policy"},
 		{"config/project-identity.yaml", "schemas/project-identity.schema.json", "project identity"},
 		{"config/outbound-license.yaml", "schemas/outbound-license-policy.schema.json", "outbound license policy"},
+	}
+	if result.Curriculum.Version == 4 {
+		staticSchemas = append(staticSchemas,
+			struct{ data, schema, label string }{taxonomy.V3Path, "schemas/taxonomy-v3.schema.json", "historical v3 taxonomy"},
+			struct{ data, schema, label string }{taxonomy.MigrationPath, "schemas/taxonomy-v3-to-v4.schema.json", "taxonomy v3 to v4 migration"},
+			struct{ data, schema, label string }{taxonomy.ScopePath, taxonomy.ScopeSchemaPath, "coverage scopes"},
+		)
 	}
 	if _, err := os.Lstat(filepath.Join(root, "curriculum/topics.yaml")); err == nil {
 		staticSchemas = append(staticSchemas, struct{ data, schema, label string }{"curriculum/topics.yaml", "schemas/topic.schema.json", "theory topics"})
@@ -92,15 +107,31 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 		}
 	}
 
-	if err := decodeStrict(filepath.Join(root, "curriculum", "skills.yaml"), &result.Curriculum); err != nil {
-		return result, err
-	}
 	skills, domainBySkill, curriculumProblems := validateCurriculum(result.Curriculum)
 	problems = append(problems, curriculumProblems...)
+	reviewedSkills := skills
+	reviewedVersion := result.Curriculum.Version
+	if result.Curriculum.Version == 4 {
+		path, version, err := taxonomy.ReviewedPath(root)
+		if err != nil {
+			return result, errors.Join(append(problems, err)...)
+		}
+		var historical Curriculum
+		if err := decodeStrict(filepath.Join(root, filepath.FromSlash(path)), &historical); err != nil {
+			return result, err
+		}
+		var historicalProblems []error
+		reviewedSkills, _, historicalProblems = validateCurriculum(historical)
+		problems = append(problems, historicalProblems...)
+		reviewedVersion = version
+		if err := taxonomy.CheckMigrationReport(root); err != nil {
+			problems = append(problems, err)
+		}
+	}
 	if err := decodeStrict(filepath.Join(root, "curriculum", "migrations", "v2-to-v3.yaml"), &result.Migration); err != nil {
 		return result, err
 	}
-	migrationIndex, migrationProblems := validateMigration(root, result.Migration, skills)
+	migrationIndex, migrationProblems := validateMigration(root, result.Migration, reviewedSkills)
 	problems = append(problems, migrationProblems...)
 
 	if err := decodeStrict(filepath.Join(root, "sources", "registry.yaml"), &result.Registry); err != nil {
@@ -129,9 +160,9 @@ func ValidateRoot(root string, opts Options) (Result, error) {
 			problems = append(problems, candidatesErr)
 		}
 		if mapErr == nil && evidenceErr == nil && inventoryErr == nil && candidatesErr == nil {
-			problems = append(problems, curriculumdata.Validate(mapping, evidence, exercismSource, result.Curriculum.Version, skillSet(skills), inventory.Concepts, candidates))
+			problems = append(problems, curriculumdata.Validate(mapping, evidence, exercismSource, reviewedVersion, skillSet(reviewedSkills), inventory.Concepts, candidates))
 			bundle, bundleErr := triage.Load(root)
-			taxonomyVersion, contracts, contractsErr := triage.LoadSkillContracts(root)
+			taxonomyVersion, contracts, contractsErr := triage.LoadReviewedSkillContracts(root)
 			if bundleErr != nil {
 				problems = append(problems, bundleErr)
 			}
@@ -459,8 +490,8 @@ func validateTaskSchema(path string, schema *jsonschema.Schema) error {
 
 func validateCurriculum(c Curriculum) (map[string]Skill, map[string]string, []error) {
 	var problems []error
-	if c.Version != 3 {
-		problems = append(problems, fmt.Errorf("curriculum: version must be 3, got %d", c.Version))
+	if c.Version != 3 && c.Version != 4 {
+		problems = append(problems, fmt.Errorf("curriculum: version must be 3 or 4, got %d", c.Version))
 	}
 	if c.Track != "go-fundamentals" {
 		problems = append(problems, fmt.Errorf("curriculum: track must be go-fundamentals, got %q", c.Track))
@@ -494,8 +525,8 @@ func validateCurriculum(c Curriculum) (map[string]Skill, map[string]string, []er
 			if skill.Assignable == nil {
 				problems = append(problems, fmt.Errorf("curriculum: skill %q must explicitly declare assignable", skill.ID))
 			}
-			if skill.TaxonomyVersion != 3 {
-				problems = append(problems, fmt.Errorf("curriculum: skill %q must declare taxonomy_version 3", skill.ID))
+			if skill.TaxonomyVersion != c.Version {
+				problems = append(problems, fmt.Errorf("curriculum: skill %q must declare taxonomy_version %d", skill.ID, c.Version))
 			}
 			problems = append(problems, duplicateFieldProblems(skill.ID, "prerequisite", skill.Prerequisites)...)
 			problems = append(problems, duplicateFieldProblems(skill.ID, "misconception", skill.CommonMisconceptions)...)

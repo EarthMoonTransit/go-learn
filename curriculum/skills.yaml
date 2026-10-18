@@ -1,4 +1,4 @@
-version: 3
+version: 4
 track: go-fundamentals
 target_ready_tasks:
     min: 350
@@ -7,7 +7,7 @@ coverage_policy:
     counted_status: ready
     primary_skill_per_task: 1
     prerequisite_counts_as_occurrence: false
-    note: Taxonomy v3 uses 2/4, 3/5, or 4/6 encounter tiers according to breadth and failure risk; only active assignable skills count.
+    note: Taxonomy v4 uses 2/4, 3/5, or 4/6 encounter tiers according to breadth and failure risk; only active assignable skills count.
 domains:
     - id: toolchain
       title: Toolchain
@@ -40,7 +40,7 @@ domains:
                 - Explains module, package, workspace, and import path boundaries
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: toolchain.build-run
           domain: toolchain
           definition: Builds, runs, and tests the intended package
@@ -70,7 +70,7 @@ domains:
                 - Diagnoses package and entry-point errors from tool output
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: toolchain.formatting-vetting
           domain: toolchain
           definition: Uses gofmt/go fmt and interprets stable formatting
@@ -100,7 +100,7 @@ domains:
                 - Uses vet findings as targeted diagnostics rather than a proof
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: toolchain.docs-environment
           domain: toolchain
           definition: Finds symbol documentation with go doc
@@ -130,7 +130,7 @@ domains:
                 - Inspects relevant go env values and predicts build selection
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: types
       title: Types, declarations, and constants
       skills:
@@ -163,7 +163,7 @@ domains:
                 - Predicts scope and type of mixed short declarations
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: types.zero-values
           domain: types
           definition: States zero values for fundamental and composite types
@@ -193,7 +193,7 @@ domains:
                 - Distinguishes valid zero values from nil values that reject writes
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: types.numeric-conversions
           domain: types
           definition: Makes explicit conversions at type boundaries
@@ -223,7 +223,7 @@ domains:
                 - Predicts truncation, overflow, and integer division
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: types.floating-point-semantics
           domain: types
           definition: Reasons about finite precision, rounding, NaN, infinity, and tolerance-based comparison.
@@ -254,7 +254,7 @@ domains:
                 - Tests rounding, exceptional values, and magnitude-sensitive error
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: types.constants-iota
           domain: types
           definition: Historical taxonomy v2 umbrella. Typed and untyped constants do not require iota, while enumeration patterns add independent declaration semantics.
@@ -271,7 +271,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - types.constants
             - types.iota-enumeration
@@ -304,7 +304,7 @@ domains:
                 - Chooses typed or untyped constants without accidental overflow
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: types.iota-enumeration
           domain: types
           definition: Builds maintainable constant sequences with iota, repetition, offsets, and bit patterns.
@@ -334,7 +334,7 @@ domains:
                 - Uses explicit types and expressions to keep an enumeration stable
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: types.named-underlying
           domain: types
           definition: Distinguishes defined types from aliases
@@ -364,7 +364,7 @@ domains:
                 - Predicts assignability and conversion using underlying types
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: functions
       title: Functions
       skills:
@@ -397,7 +397,7 @@ domains:
                 - Uses blank identifiers and named results without obscuring flow
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: functions.variadic
           domain: functions
           definition: Calls and implements variadic functions correctly
@@ -427,7 +427,7 @@ domains:
                 - Explains the slice observed by a variadic callee
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: functions.first-class-closures
           domain: functions
           definition: Historical taxonomy v2 umbrella. Calling and passing function values is independent from capture lifetime and mutation.
@@ -444,7 +444,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - functions.closure-capture
             - functions.function-values
@@ -477,7 +477,7 @@ domains:
                 - Removes accidental capture by passing or rebinding state deliberately
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: functions.function-values
           domain: functions
           definition: Passes, stores, returns, and compares function values according to Go's function-value rules.
@@ -507,7 +507,7 @@ domains:
                 - Handles nil function values without invalid comparison assumptions
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: functions.defer
           domain: functions
           definition: Predicts LIFO order and argument evaluation
@@ -537,7 +537,40 @@ domains:
                 - Places cleanup at the correct function lifetime
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
+        - assignable: true
+          common_misconceptions:
+            - A terminal branch guarantees termination even when a recursive subproblem does not progress.
+            - One recursive branch is sufficient when the decomposition requires multiple subproblems.
+            - Correct output or an unused recursive call proves that recursion performed the requested computation.
+          definition: Defines finite recursive decomposition with correct base cases, progressing subproblems and complete result combination.
+          domain: functions
+          evidence_requirements:
+            minimum_distinct_task_types: 3
+            observable_outcomes:
+                - Handles terminal and minimal nonterminal inputs, plus unequal branches when the task decomposition branches.
+                - For implementation and debugging evidence, executes learner-authored recursive decomposition that progresses to terminal cases and contributes required results.
+                - For verification evidence, learner-authored tests distinguish missing base cases, nonprogressing or skipped branches, and incorrect combination; this alone does not prove authored recursion.
+            required_modes:
+                - implementation
+                - debugging
+                - verification-or-integration
+          id: functions.recursion
+          mastery:
+            - States a decreasing measure and handles its terminal inputs.
+            - Combines every required recursive subresult without duplicating or skipping branches.
+          minimum_occurrences:
+            primary: 3
+            total: 5
+          prerequisites:
+            - control-flow.if
+            - functions.signatures-results
+          recommended_exercise_types:
+            - implement
+            - debug
+            - test-writing
+          status: active
+          taxonomy_version: 4
     - id: expressions
       title: Expressions and operators
       skills:
@@ -570,7 +603,7 @@ domains:
                 - Uses precedence and parentheses without accidental integer semantics
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: expressions.boolean-logic
           domain: expressions
           definition: Builds boolean expressions without truthiness assumptions
@@ -600,7 +633,7 @@ domains:
                 - Predicts short-circuit evaluation and its observable effects
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: expressions.comparison
           domain: expressions
           definition: Selects equality or ordering operators for compatible operands
@@ -630,7 +663,74 @@ domains:
                 - Recognizes non-comparable values and writes explicit range comparisons
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
+        - assignable: true
+          common_misconceptions:
+            - Boolean conjunction inspects the same state as an integer mask.
+            - Clearing selected bits may also reset unrelated flags.
+            - XOR is interchangeable with setting bits already present.
+          definition: Inspects, sets, clears and toggles selected integer bits while preserving unrelated bits.
+          domain: expressions
+          evidence_requirements:
+            minimum_distinct_task_types: 3
+            observable_outcomes:
+                - Checks whether any or all selected bits are present, including zero-mask behavior fixed by the task contract.
+                - Sets, clears, and toggles selected bits and preserves every unrelated bit for overlapping, disjoint, zero, and already-set masks.
+            required_modes:
+                - implementation
+                - debugging
+                - verification-or-integration
+          id: expressions.bitwise-masks
+          mastery:
+            - Expresses each mask operation with explicit integer types.
+            - Checks both selected-bit behavior and preservation of other bits.
+          minimum_occurrences:
+            primary: 3
+            total: 5
+          prerequisites:
+            - expressions.arithmetic
+            - types.numeric-conversions
+            - expressions.comparison
+          recommended_exercise_types:
+            - implement
+            - debug
+            - test-writing
+          status: active
+          taxonomy_version: 4
+        - assignable: true
+          common_misconceptions:
+            - A runtime shift count is automatically reduced modulo the operand width.
+            - Signed and unsigned right shifts always fill the same high bits.
+            - An untyped constant and a fixed-width integer always retain the same shifted value.
+          definition: Reasons about integer shift direction, count, operand type and width for constant and runtime operands.
+          domain: expressions
+          evidence_requirements:
+            minimum_distinct_task_types: 3
+            observable_outcomes:
+                - Separates untyped/typed constant representability from fixed-width runtime left-shift bit loss.
+                - Handles count zero, width and beyond-width counts without assuming modulo reduction; distinguishes signed and unsigned right shifts.
+                - Distinguishes invalid negative constant counts from the runtime panic for a negative signed count. Compile-negative examples are checker-owned semantic facts, never mutant kills.
+            required_modes:
+                - implementation
+                - debugging
+                - verification-or-integration
+          id: expressions.integer-shifts
+          mastery:
+            - Chooses operand types and valid count domains explicitly.
+            - Separates constant representability from runtime fixed-width shift behavior.
+          minimum_occurrences:
+            primary: 3
+            total: 5
+          prerequisites:
+            - expressions.arithmetic
+            - types.constants
+            - types.numeric-conversions
+          recommended_exercise_types:
+            - implement
+            - debug
+            - test-writing
+          status: active
+          taxonomy_version: 4
     - id: control-flow
       title: Control flow
       skills:
@@ -663,7 +763,7 @@ domains:
                 - Expresses mutually exclusive branches without unreachable or duplicated conditions
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: control-flow.switch
           domain: control-flow
           definition: Uses expression and expressionless switches intentionally
@@ -694,7 +794,7 @@ domains:
                 - Predicts case selection, break behavior, and explicit fallthrough
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: control-flow.for
           domain: control-flow
           definition: Chooses three-clause, condition-only, or infinite for forms
@@ -724,7 +824,7 @@ domains:
                 - Controls loop termination with correctly scoped state, break, and continue
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: control-flow.range
           domain: control-flow
           definition: Predicts key/value results for supported range operands
@@ -754,7 +854,7 @@ domains:
                 - Distinguishes iteration values from addressable source elements
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: arrays
       title: Arrays
       skills:
@@ -787,7 +887,7 @@ domains:
                 - Uses length as part of an array contract
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: arrays.indexing-iteration
           domain: arrays
           definition: Chooses index or range iteration intentionally
@@ -817,7 +917,7 @@ domains:
                 - Avoids mutating only the range value copy
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: slices
       title: Slices
       skills:
@@ -837,7 +937,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - slices.header-model
             - slices.nil-empty
@@ -871,7 +971,7 @@ domains:
                 - Separates header mutation from backing-array mutation
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: slices.nil-empty
           domain: slices
           definition: Distinguishes nil, non-nil empty, and allocated slices where APIs expose the difference.
@@ -901,7 +1001,7 @@ domains:
                 - Returns the intended nil or non-nil empty representation
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: slices.capacity-bounds
           domain: slices
           definition: Historical taxonomy v2 umbrella. Ordinary len/cap calculations do not require full-slice capacity control.
@@ -918,7 +1018,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - slices.full-slice-expressions
             - slices.len-cap-slicing
@@ -951,7 +1051,7 @@ domains:
                 - Constrains capacity to enforce an append boundary
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: slices.len-cap-slicing
           domain: slices
           definition: Computes length, capacity, and valid two-index slice bounds.
@@ -981,7 +1081,7 @@ domains:
                 - Diagnoses a bounds panic using the applicable capacity
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: slices.append-aliasing
           domain: slices
           definition: Historical taxonomy v2 umbrella. Append allocation behavior and cross-slice aliasing require different counterexamples.
@@ -998,7 +1098,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - slices.append-growth
             - slices.backing-array-aliasing
@@ -1031,7 +1131,7 @@ domains:
                 - Writes code whose correctness does not depend on a growth factor
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: slices.backing-array-aliasing
           domain: slices
           definition: Detects and controls mutations visible through slices that share backing storage.
@@ -1061,7 +1161,7 @@ domains:
                 - Uses copying or capacity control to enforce ownership
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: slices.copy-overlap
           domain: slices
           definition: Predicts copy count from both lengths
@@ -1091,7 +1191,7 @@ domains:
                 - Uses copy safely for overlapping regions
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: slices.growth-allocation
           domain: slices
           definition: Historical taxonomy v2 umbrella. Growth behavior and deliberate preallocation are related but independently measurable.
@@ -1108,7 +1208,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - slices.append-growth
             - slices.preallocation
@@ -1141,7 +1241,7 @@ domains:
                 - Measures allocation changes while preserving behavior
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: slices.subslice-retention
           domain: slices
           definition: Prevents small long-lived subslices from retaining disproportionately large backing arrays.
@@ -1172,7 +1272,7 @@ domains:
                 - Copies the required window into right-sized owned storage
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: strings
       title: Strings
       skills:
@@ -1205,7 +1305,7 @@ domains:
                 - Predicts byte indexing and slicing behavior
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: strings.construction-conversion
           domain: strings
           definition: Historical taxonomy v2 umbrella. Efficient construction and representation conversion have different allocation and correctness contracts.
@@ -1222,7 +1322,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - strings.building
             - strings.byte-rune-conversions
@@ -1256,7 +1356,7 @@ domains:
                 - Preserves output while reducing avoidable allocations
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: strings.byte-rune-conversions
           domain: strings
           definition: Converts among string, []byte, and []rune with explicit copying and encoding consequences.
@@ -1288,7 +1388,7 @@ domains:
                 - Chooses byte or rune conversion from the API contract
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: strings.formatting
           domain: strings
           definition: Uses fmt-style verbs, width, precision, and argument matching without accidental output contracts.
@@ -1319,7 +1419,7 @@ domains:
                 - Detects wrong verbs and unintended diagnostic markers in tests
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: strings.standard-library
           domain: strings
           definition: Uses package strings operations with their exact separator, trimming, search, and replacement contracts.
@@ -1349,7 +1449,7 @@ domains:
                 - Tests empty input, repeated separators, and count limits
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: unicode
       title: Bytes, runes, and UTF-8
       skills:
@@ -1369,7 +1469,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - unicode.rune-model
             - unicode.utf8-encoding
@@ -1403,7 +1503,7 @@ domains:
                 - Predicts rune values and string byte lengths
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: unicode.utf8-encoding
           domain: unicode
           definition: Encodes and decodes runes as variable-width UTF-8 byte sequences.
@@ -1433,7 +1533,7 @@ domains:
                 - Uses utf8 APIs to decode width and validity explicitly
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: unicode.range-decoding
           domain: unicode
           definition: Predicts byte offsets and rune values from range
@@ -1464,7 +1564,7 @@ domains:
                 - Chooses byte or rune iteration for the contract
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: unicode.invalid-utf8
           domain: unicode
           definition: Detects invalid UTF-8 at trust boundaries
@@ -1494,7 +1594,7 @@ domains:
                 - Predicts replacement-rune behavior during decoding
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: maps
       title: Maps
       skills:
@@ -1527,7 +1627,7 @@ domains:
                 - Separates absence from a stored zero value
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: maps.nil-delete-clear
           domain: maps
           definition: Handles nil maps according to the API contract
@@ -1557,7 +1657,7 @@ domains:
                 - Uses delete/clear without redundant existence checks
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: maps.iteration-comparability
           domain: maps
           definition: Historical taxonomy v2 umbrella. Unspecified iteration order and key-type comparability are separate language rules.
@@ -1574,7 +1674,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - maps.iteration
             - maps.key-comparability
@@ -1608,7 +1708,7 @@ domains:
                 - Writes order-independent assertions
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: maps.key-comparability
           domain: maps
           definition: Determines whether a type is comparable and therefore valid as a map key.
@@ -1638,7 +1738,7 @@ domains:
                 - Chooses stable comparable key representations
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: structs
       title: Structs
       skills:
@@ -1671,7 +1771,7 @@ domains:
                 - Designs structs whose invariant is explicit
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: structs.copy-equality
           domain: structs
           definition: Predicts shallow-copy behavior
@@ -1702,7 +1802,7 @@ domains:
                 - Determines comparability from all fields
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: structs.field-visibility-tags
           domain: structs
           definition: Uses export rules across packages
@@ -1732,7 +1832,7 @@ domains:
                 - Treats tags as metadata interpreted by specific APIs
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: methods
       title: Methods
       skills:
@@ -1752,7 +1852,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - methods.method-sets
             - methods.receiver-semantics
@@ -1785,7 +1885,7 @@ domains:
                 - Explains successful direct calls that still fail interface satisfaction
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: methods.receiver-semantics
           domain: methods
           definition: Chooses value or pointer receivers from mutation, copying, nil handling, consistency, and API identity.
@@ -1817,7 +1917,7 @@ domains:
                 - Refactors receiver kind without accidental interface or nil changes
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: methods.values-expressions
           domain: methods
           definition: Constructs and calls method values and expressions
@@ -1848,7 +1948,7 @@ domains:
                 - Predicts receiver capture for value and pointer receivers
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: pointers
       title: Pointers
       skills:
@@ -1881,7 +1981,7 @@ domains:
                 - Makes nil handling an explicit part of the contract
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: pointers.mutation-sharing
           domain: pointers
           definition: Explains copied pointer values and shared pointees
@@ -1912,7 +2012,7 @@ domains:
                 - Chooses value or pointer APIs based on mutation and identity
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: pointers.receiver-choice
           domain: pointers
           definition: Historical taxonomy v2 umbrella. Receiver choice belongs with receiver semantics rather than general pointer operations.
@@ -1929,7 +2029,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - methods.receiver-semantics
     - id: embedding
@@ -1964,7 +2064,7 @@ domains:
                 - Uses explicit composition when promotion obscures ownership
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: embedding.method-promotion-ambiguity
           domain: embedding
           definition: Computes promoted method sets for value and pointer forms
@@ -1993,7 +2093,7 @@ domains:
                 - Detects and resolves selector ambiguity explicitly
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: interfaces
       title: Interfaces
       skills:
@@ -2026,7 +2126,7 @@ domains:
                 - Uses compile-time assertions where they improve clarity
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: interfaces.dynamic-values-nil
           domain: interfaces
           definition: Historical taxonomy v2 umbrella. Dynamic representation can be understood without correctly handling a nil pointer stored in an interface.
@@ -2043,7 +2143,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - interfaces.dynamic-type-value
             - interfaces.typed-nil
@@ -2076,7 +2176,7 @@ domains:
                 - Uses that representation to explain formatting and dispatch
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: interfaces.typed-nil
           domain: interfaces
           definition: Detects non-nil interfaces that contain nil concrete pointers and prevents typed-nil API bugs.
@@ -2107,7 +2207,7 @@ domains:
                 - Returns or accepts nil interface values with an explicit contract
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: interfaces.assertions-switches
           domain: interfaces
           definition: Historical taxonomy v2 umbrella. Single assertions and multi-branch type switches have different control-flow and exhaustiveness tests.
@@ -2124,7 +2224,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - interfaces.type-assertions
             - interfaces.type-switches
@@ -2157,7 +2257,7 @@ domains:
                 - Predicts the result from exact dynamic type identity
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: interfaces.type-switches
           domain: interfaces
           definition: Narrows interface values across purposeful type-switch branches.
@@ -2188,7 +2288,7 @@ domains:
                 - Designs exhaustive branches without duplicate behavior
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: interfaces.stringer-contract
           domain: interfaces
           definition: Implements fmt.Stringer as a stable, non-recursive representation contract.
@@ -2220,7 +2320,7 @@ domains:
                 - Tests stable output through fmt's interface dispatch
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: interfaces.small-contracts
           domain: interfaces
           definition: Defines minimal consumer-side contracts
@@ -2250,7 +2350,7 @@ domains:
                 - Composes interfaces without leaking implementation detail
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: errors
       title: Errors
       skills:
@@ -2270,7 +2370,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - errors.propagation-context
             - errors.sentinels-creation
@@ -2303,7 +2403,7 @@ domains:
                 - Returns each failure without duplicate logging or lost classification
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: errors.sentinels-creation
           domain: errors
           definition: Creates plain or sentinel errors only when stable identity or classification is part of the API.
@@ -2333,7 +2433,7 @@ domains:
                 - Tests sentinel identity without message equality
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: errors.wrapping-is
           domain: errors
           definition: Historical taxonomy v2 umbrella. Building an unwrap chain and inspecting it with errors.Is are independently testable.
@@ -2350,7 +2450,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - errors.is
             - errors.wrapping
@@ -2383,7 +2483,7 @@ domains:
                 - Implements or reviews custom Is semantics without broad false matches
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: errors.wrapping
           domain: errors
           definition: Builds error chains with %w and Unwrap only when downstream inspection is intended.
@@ -2413,7 +2513,7 @@ domains:
                 - Chooses wrapping versus opaque translation from the API boundary
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: errors.typed-as
           domain: errors
           definition: Historical taxonomy v2 umbrella. Designing a typed error and extracting one from a chain require different target-shape knowledge.
@@ -2430,7 +2530,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - errors.as
             - errors.typed
@@ -2464,7 +2564,7 @@ domains:
                 - Tests extraction through wrapping and nonmatching chains
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: errors.typed
           domain: errors
           definition: Designs typed errors only when callers need stable structured recovery data.
@@ -2496,7 +2596,7 @@ domains:
                 - Avoids exposing incidental implementation detail as an error type
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: errors.panic-recover-boundaries
           domain: errors
           definition: Reserves panic for broken invariants or process boundaries
@@ -2527,7 +2627,7 @@ domains:
                 - Places recover narrowly and converts failures deliberately
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: generics
       title: Generics
       skills:
@@ -2561,7 +2661,7 @@ domains:
                 - Explains which arguments participate in inference
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: generics.constraints-type-sets
           domain: generics
           definition: Chooses constraints that expose exactly required operations
@@ -2592,7 +2692,7 @@ domains:
                 - Distinguishes basic value interfaces from non-basic constraints
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: generics.approximation-unions
           domain: generics
           definition: Uses unions and approximation for intended defined types
@@ -2622,7 +2722,7 @@ domains:
                 - Predicts the resulting type set and permitted operations
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: generics.reusable-data-structures
           domain: generics
           definition: Implements a zero-value-aware generic structure
@@ -2653,7 +2753,7 @@ domains:
                 - Avoids constraints not required by the algorithm
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: packages
       title: Packages and project boundaries
       skills:
@@ -2687,7 +2787,7 @@ domains:
                 - Controls API visibility through identifiers and package boundaries
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: packages.init-order-cycles
           domain: packages
           definition: Historical taxonomy v2 umbrella. Initialization ordering is a runtime prediction problem; import cycles are a compile-time architecture problem.
@@ -2704,7 +2804,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - packages.import-cycles
             - packages.initialization-order
@@ -2738,7 +2838,7 @@ domains:
                 - Refactors the graph into acyclic packages
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: packages.initialization-order
           domain: packages
           definition: Predicts package variable initialization and init execution from dependency and file rules.
@@ -2768,7 +2868,7 @@ domains:
                 - Removes hidden ordering assumptions from a package
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: packages.internal-layout-tests
           domain: packages
           definition: Historical taxonomy v2 umbrella. Internal import visibility and same/external test package access are independent boundaries.
@@ -2785,7 +2885,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - packages.internal-boundaries
             - packages.test-package-boundaries
@@ -2818,7 +2918,7 @@ domains:
                 - Places shared code at the narrowest useful internal boundary
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: packages.test-package-boundaries
           domain: packages
           definition: Chooses same-package or external-package tests according to visibility and consumer contracts.
@@ -2849,7 +2949,7 @@ domains:
                 - Refactors tests without accidental private coupling
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: io
       title: I/O abstractions
       skills:
@@ -2884,7 +2984,7 @@ domains:
                 - Implements small Reader/Writer adapters correctly
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: io.copy-limit-pipe
           domain: io
           definition: Historical taxonomy v2 umbrella. Stream copying/limiting and synchronous pipe ownership have different blocking behavior.
@@ -2901,7 +3001,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - io.copy-limit-composition
             - io.pipe-lifecycle
@@ -2934,7 +3034,7 @@ domains:
                 - Composes stream adapters while preserving errors and counts
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: io.pipe-lifecycle
           domain: io
           definition: Owns both ends and error propagation of a synchronous io.Pipe without stranded goroutines.
@@ -2965,7 +3065,7 @@ domains:
                 - Diagnoses blocked pipe readers and writers
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: io.buffering-scanning
           domain: io
           definition: Historical taxonomy v2 umbrella. Flush ownership and token-size/scanning semantics fail independently.
@@ -2982,7 +3082,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - io.buffered
             - io.scanning
@@ -3015,7 +3115,7 @@ domains:
                 - Tests errors that occur during final flush
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: io.scanning
           domain: io
           definition: Configures Scanner split functions, token limits, and terminal errors for bounded token streams.
@@ -3046,7 +3146,7 @@ domains:
                 - Configures limits and checks Err after iteration
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: io.files-cleanup
           domain: io
           definition: Closes resources on all paths and handles cleanup errors
@@ -3077,7 +3177,7 @@ domains:
                 - Uses file flags, permissions, and temporary files deliberately
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: encoding
       title: Encoding and serialization
       skills:
@@ -3111,7 +3211,7 @@ domains:
                 - Distinguishes absent, null, zero, and unknown fields where required
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: encoding.streaming-strictness
           domain: encoding
           definition: Consumes streams with explicit trailing-data policy
@@ -3141,7 +3241,7 @@ domains:
                 - Applies size and unknown-field constraints at trust boundaries
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: encoding.text-binary-custom
           domain: encoding
           definition: Historical taxonomy v2 umbrella. Text and binary representations have different malformed-input and framing contracts.
@@ -3158,7 +3258,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - encoding.binary-marshaling
             - encoding.text-marshaling
@@ -3193,7 +3293,7 @@ domains:
                 - Round-trips values and rejects truncated or trailing payloads
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: encoding.text-marshaling
           domain: encoding
           definition: Implements symmetric text marshal/unmarshal contracts with validation and stable representation.
@@ -3224,7 +3324,7 @@ domains:
                 - Rejects malformed text without partial invalid state
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: time
       title: Time
       skills:
@@ -3257,7 +3357,7 @@ domains:
                 - Separates elapsed durations from civil times
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: time.parsing-zones
           domain: time
           definition: Parses and formats using Go reference layouts
@@ -3288,7 +3388,7 @@ domains:
                 - Handles locations, offsets, and DST-aware civil times explicitly
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: time.timers-tickers
           domain: time
           definition: Owns Stop/reset lifecycle without goroutine leaks
@@ -3318,7 +3418,7 @@ domains:
                 - Tests time-dependent code through controllable boundaries
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: testing
       title: Testing
       skills:
@@ -3338,7 +3438,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - testing.basics-diagnostics
             - testing.subtests
@@ -3373,7 +3473,7 @@ domains:
                 - Reports boundary failures with stable diagnostic context
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: testing.subtests
           domain: testing
           definition: Uses subtests for independent selection, lifecycle, grouping, and diagnostics.
@@ -3403,7 +3503,7 @@ domains:
                 - Uses stable names that support targeted runs
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: testing.table-driven
           domain: testing
           definition: Uses data-driven test cases when shared execution clarifies meaningful input partitions.
@@ -3434,7 +3534,7 @@ domains:
                 - Keeps setup and assertions readable rather than hiding behavior
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: testing.helpers-cleanup
           domain: testing
           definition: Historical taxonomy v2 umbrella. Failure attribution and resource cleanup attach to different test lifecycles.
@@ -3451,7 +3551,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - testing.cleanup
             - testing.helpers
@@ -3485,7 +3585,7 @@ domains:
                 - Attaches teardown to the smallest owning test scope
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: testing.helpers
           domain: testing
           definition: Builds test helpers that preserve caller attribution and fail at the right scope.
@@ -3515,7 +3615,7 @@ domains:
                 - Chooses fatal versus nonfatal failure deliberately
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: testing.seams-doubles
           domain: testing
           definition: Creates narrow deterministic seams at nondeterministic boundaries
@@ -3546,7 +3646,7 @@ domains:
                 - Prefers simple fakes/stubs when interaction verification is unnecessary
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: testing.deterministic-boundaries
           domain: testing
           definition: Controls clocks, randomness, scheduling, environment, and I/O so tests assert contracts deterministically.
@@ -3577,7 +3677,7 @@ domains:
                 - Repeats tests without order, time, or environment flakes
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: testing.parallel-race
           domain: testing
           definition: Historical taxonomy v2 umbrella. Parallel test scheduling and interpreting dynamic race reports are different skills.
@@ -3594,7 +3694,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - testing.parallel
             - testing.race-detector
@@ -3628,7 +3728,7 @@ domains:
                 - Eliminates shared fixture mutation across concurrent cases
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: testing.race-detector
           domain: testing
           definition: Runs and interprets the race detector as dynamic evidence rather than proof of race freedom.
@@ -3659,7 +3759,7 @@ domains:
                 - Adds synchronization and a regression test that exercises the path
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: testing.examples-golden
           domain: testing
           definition: Historical taxonomy v2 umbrella. Executable examples and reviewed golden snapshots have different maintenance contracts.
@@ -3676,7 +3776,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - testing.examples
             - testing.golden
@@ -3709,7 +3809,7 @@ domains:
                 - Chooses unordered output or omission when ordering is not guaranteed
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: testing.golden
           domain: testing
           definition: Uses reviewed golden files for large stable outputs without automatic approval in CI.
@@ -3740,7 +3840,7 @@ domains:
                 - Requires explicit review to update expected behavior
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: fuzzing
       title: Fuzzing
       skills:
@@ -3773,7 +3873,7 @@ domains:
                 - Separates invalid-input rejection from harness failures
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: fuzzing.invariants-reproduction
           domain: fuzzing
           definition: Historical taxonomy v2 umbrella. Stating a property and preserving a minimized failure are separate review steps.
@@ -3790,7 +3890,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - fuzzing.invariants
             - fuzzing.reproduction
@@ -3823,7 +3923,7 @@ domains:
                 - Rejects false properties with counterexamples
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: fuzzing.reproduction
           domain: fuzzing
           definition: Turns minimized fuzz failures into deterministic regression tests and diagnoses their root cause.
@@ -3854,7 +3954,7 @@ domains:
                 - Preserves the smallest meaningful case in version control
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: benchmarks
       title: Benchmarks
       skills:
@@ -3874,7 +3974,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - benchmarks.allocations
             - benchmarks.loops-timing
@@ -3907,7 +4007,7 @@ domains:
                 - Connects allocation changes to ownership and lifetime behavior
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: benchmarks.loops-timing
           domain: benchmarks
           definition: Places setup, timed work, and observable results correctly around the benchmark loop API.
@@ -3938,7 +4038,7 @@ domains:
                 - Prevents dead-code elimination with semantically neutral observation
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: benchmarks.experimental-design
           domain: benchmarks
           definition: Designs representative inputs and observable results
@@ -3968,7 +4068,7 @@ domains:
                 - Compares distributions and validates semantic equivalence before optimizing
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: goroutines
       title: Goroutines
       skills:
@@ -4001,7 +4101,7 @@ domains:
                 - Waits using explicit synchronization rather than timing
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: goroutines.capture-arguments
           domain: goroutines
           definition: Predicts captures under the active Go language version
@@ -4031,7 +4131,7 @@ domains:
                 - Passes values explicitly when lifetime or identity matters
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: goroutines.ownership-results
           domain: goroutines
           definition: Historical taxonomy v2 umbrella. Mutable-state ownership and complete result/error collection fail independently.
@@ -4048,7 +4148,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - goroutines.result-error-collection
             - goroutines.state-ownership
@@ -4082,7 +4182,7 @@ domains:
                 - Preserves cancellation and the selected error policy without blocked sends
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: goroutines.state-ownership
           domain: goroutines
           definition: Assigns concurrent mutable state to one owner or a documented synchronization discipline.
@@ -4113,7 +4213,7 @@ domains:
                 - Refactors state to confinement or explicit synchronization
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: goroutines.leaks-panics
           domain: goroutines
           definition: Historical taxonomy v2 umbrella. Blocked-worker leaks and goroutine-local panic containment require different diagnostics.
@@ -4130,7 +4230,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - goroutines.leak-prevention
             - goroutines.panic-boundaries
@@ -4163,7 +4263,7 @@ domains:
                 - Adds a completion or cancellation path for every blocking operation
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: goroutines.panic-boundaries
           domain: goroutines
           definition: Contains panics within the goroutine that owns an execution boundary when policy requires recovery.
@@ -4194,7 +4294,7 @@ domains:
                 - Propagates a deliberate failure result with diagnostic context
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: channels
       title: Channels
       skills:
@@ -4214,7 +4314,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - channels.close-semantics
             - channels.operations-blocking
@@ -4248,7 +4348,7 @@ domains:
                 - Predicts duplicate close and send-after-close panics
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: channels.operations-blocking
           domain: channels
           definition: Predicts send and receive blocking for nil, unbuffered, buffered, open, and closed channels.
@@ -4279,7 +4379,7 @@ domains:
                 - Pairs communicating operations without timing assumptions
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: channels.ownership
           domain: channels
           definition: Assigns exactly one sending owner the right to close a channel and documents when closure is unnecessary.
@@ -4309,7 +4409,7 @@ domains:
                 - Removes duplicate-close and receiver-close paths
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: channels.directional
           domain: channels
           definition: Uses send-only and receive-only channel types to encode API permissions and ownership.
@@ -4339,7 +4439,7 @@ domains:
                 - Diagnoses invalid operations from channel direction
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: channels.range-drain
           domain: channels
           definition: Uses range only with a defined close path
@@ -4371,7 +4471,7 @@ domains:
                 - Designs early-exit behavior without stranding senders
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: channels.buffering-backpressure
           domain: channels
           definition: Chooses buffer capacity from bounded in-flight work
@@ -4401,7 +4501,7 @@ domains:
                 - Explains how buffering changes blocking and backpressure
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: channels.select-nil
           domain: channels
           definition: Historical taxonomy v2 umbrella. Select readiness/fair choice and nil-channel case disabling are independent rules.
@@ -4418,7 +4518,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - channels.nil-disabling
             - channels.select
@@ -4451,7 +4551,7 @@ domains:
                 - Prevents select loops from spinning after one input closes
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: channels.select
           domain: channels
           definition: Uses select with nondeterministic ready-case choice, default behavior, and explicit completion cases.
@@ -4482,7 +4582,7 @@ domains:
                 - Avoids busy loops and ordering assumptions
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: channels.pipeline-fan
           domain: channels
           definition: Historical taxonomy v2 umbrella. Stage composition, fan topology, and end-to-end cancellation have different invariants.
@@ -4499,7 +4599,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - channels.cancellation
             - channels.fan-out-in
@@ -4535,7 +4635,7 @@ domains:
                 - Proves early failure leaves no active stage
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: channels.fan-out-in
           domain: channels
           definition: Implements bounded fan-out and fan-in without assuming source ordering or losing results.
@@ -4566,7 +4666,7 @@ domains:
                 - Tests completeness independently from order
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: channels.pipeline
           domain: channels
           definition: Builds stages with explicit input/output ownership and termination across the whole pipeline.
@@ -4598,7 +4698,7 @@ domains:
                 - Completes all stages on normal input exhaustion
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: sync
       title: Synchronization
       skills:
@@ -4618,7 +4718,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - sync.mutex-critical-sections
             - sync.mutex-ownership
@@ -4652,7 +4752,7 @@ domains:
                 - Keeps all reads and writes under one consistent discipline
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: sync.mutex-ownership
           domain: sync
           definition: Keeps mutexes non-copyable and owned with the state whose access they coordinate.
@@ -4682,7 +4782,7 @@ domains:
                 - Prevents copying through API and receiver design
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: sync.data-races-happens-before
           domain: sync
           definition: Identifies conflicting unsynchronized accesses and reasons about the happens-before edges that order them.
@@ -4713,7 +4813,7 @@ domains:
                 - Distinguishes race freedom from higher-level logical correctness
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: sync.rwmutex-tradeoffs
           domain: sync
           definition: Chooses RWMutex only from measured contention
@@ -4744,7 +4844,7 @@ domains:
                 - Avoids upgrade and recursive-lock assumptions
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: sync.waitgroup-lifecycle
           domain: sync
           definition: Balances task registration and completion without races
@@ -4774,7 +4874,7 @@ domains:
                 - Combines waiting with a separate result/error path
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: sync.once-initialization
           domain: sync
           definition: Uses one-time initialization with explicit failure semantics
@@ -4804,7 +4904,7 @@ domains:
                 - Avoids hiding lifecycle that requires reset or teardown
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: sync.atomics
           domain: sync
           definition: Uses atomics only for a precisely defined state transition
@@ -4835,7 +4935,7 @@ domains:
                 - Explains why every access to shared atomic state follows one synchronization discipline
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: sync.cond
           domain: sync
           definition: Waits in a predicate loop while holding the associated lock
@@ -4865,7 +4965,7 @@ domains:
                 - Chooses Signal/Broadcast deliberately and considers channels for simpler event flows
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: sync.pool
           domain: sync
           definition: Uses Pool only for disposable allocation reuse
@@ -4896,7 +4996,7 @@ domains:
                 - Validates that pooling preserves semantics and improves measured allocation behavior
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
     - id: context
       title: Context
       skills:
@@ -4916,7 +5016,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - context.cancellation
             - context.derivation
@@ -4950,7 +5050,7 @@ domains:
                 - Proves launched or blocking work terminates after cancellation
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: context.derivation
           domain: context
           definition: Derives child contexts from the incoming parent without breaking cancellation and value propagation.
@@ -4981,7 +5081,7 @@ domains:
                 - Predicts cancellation propagation across a context tree
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: context.deadlines-timeouts
           domain: context
           definition: Historical taxonomy v2 umbrella. Absolute inherited deadlines and relative timeout budgeting require different reasoning.
@@ -4998,7 +5098,7 @@ domains:
             observable_outcomes: []
           status: deprecated
           assignable: false
-          taxonomy_version: 3
+          taxonomy_version: 4
           replaced_by:
             - context.deadlines
             - context.timeouts
@@ -5031,7 +5131,7 @@ domains:
                 - Makes deadline-sensitive operations observe context
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: context.timeouts
           domain: context
           definition: Allocates relative timeout budgets and releases timeout resources promptly.
@@ -5062,7 +5162,7 @@ domains:
                 - Uses deterministic boundaries to test timeout behavior
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: context.propagation-api
           domain: context
           definition: Passes context explicitly as the first parameter
@@ -5093,7 +5193,7 @@ domains:
                 - Does not create background contexts inside request call chains
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4
         - id: context.values-boundaries
           domain: context
           definition: Stores only request-scoped cross-boundary metadata
@@ -5124,4 +5224,4 @@ domains:
                 - Uses private comparable key types and typed accessors
           status: active
           assignable: true
-          taxonomy_version: 3
+          taxonomy_version: 4

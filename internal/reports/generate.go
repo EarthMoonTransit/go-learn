@@ -13,6 +13,7 @@ import (
 	curriculumdata "go-practice-bank/internal/curriculum"
 	"go-practice-bank/internal/safeio"
 	"go-practice-bank/internal/sources"
+	taxonomytransition "go-practice-bank/internal/taxonomy"
 	"gopkg.in/yaml.v3"
 )
 
@@ -74,7 +75,11 @@ type taxonomyMigration struct {
 }
 
 func Generate(root string, source sources.Source, candidates []catalog.Candidate, config exercism.Config) (Summary, error) {
-	taxonomyBytes, err := safeio.ReadFile(root, "curriculum/skills.yaml", 4<<20)
+	reviewedPath, _, err := taxonomytransition.ReviewedPath(root)
+	if err != nil {
+		return Summary{}, err
+	}
+	taxonomyBytes, err := safeio.ReadFile(root, reviewedPath, 4<<20)
 	if err != nil {
 		return Summary{}, fmt.Errorf("read taxonomy: %w", err)
 	}

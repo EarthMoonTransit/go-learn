@@ -1,0 +1,537 @@
+schema_version: 1
+source_id: exercism-go
+source_commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+taxonomy_version: 3
+reviewed_by: phase-2d-independent-review
+reviewed_at: "2026-09-04"
+selected_seeds:
+    - candidate_id: concept/airport-robot
+      target_skills:
+        - interfaces.implicit-satisfaction
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for interfaces.implicit-satisfaction without reusing its statement or canonical cases.
+    - candidate_id: concept/annalyns-infiltration
+      target_skills:
+        - expressions.boolean-logic
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for expressions.boolean-logic without reusing its statement or canonical cases.
+    - candidate_id: concept/bird-watcher
+      target_skills:
+        - control-flow.for
+        - control-flow.range
+        - slices.backing-array-aliasing
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for control-flow.for, control-flow.range, slices.backing-array-aliasing without reusing its statement or canonical cases.
+    - candidate_id: concept/blackjack
+      target_skills:
+        - control-flow.if
+        - control-flow.switch
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for control-flow.if, control-flow.switch without reusing its statement or canonical cases.
+    - candidate_id: concept/card-tricks
+      target_skills:
+        - functions.variadic
+        - slices.append-growth
+        - slices.backing-array-aliasing
+        - slices.len-cap-slicing
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for functions.variadic, slices.append-growth, slices.backing-array-aliasing, slices.len-cap-slicing without reusing its statement or canonical cases.
+    - candidate_id: concept/cars-assemble
+      target_skills:
+        - expressions.arithmetic
+        - types.numeric-conversions
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for expressions.arithmetic, types.numeric-conversions without reusing its statement or canonical cases.
+    - candidate_id: concept/census
+      target_skills:
+        - pointers.mutation-sharing
+        - structs.literals-zero
+        - types.zero-values
+      intended_task_forms:
+        - API-design
+        - debugging
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for pointers.mutation-sharing, structs.literals-zero, types.zero-values without reusing its statement or canonical cases.
+    - candidate_id: concept/chessboard
+      target_skills:
+        - control-flow.range
+        - maps.iteration
+        - types.named-underlying
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for control-flow.range, maps.iteration, types.named-underlying without reusing its statement or canonical cases.
+    - candidate_id: concept/election-day
+      target_skills:
+        - pointers.address-deref-nil
+        - pointers.mutation-sharing
+      intended_task_forms:
+        - code-review
+        - debugging
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for pointers.address-deref-nil, pointers.mutation-sharing without reusing its statement or canonical cases.
+    - candidate_id: concept/expenses
+      target_skills:
+        - functions.closure-capture
+        - functions.function-values
+      intended_task_forms:
+        - implementation
+        - refactoring
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for functions.closure-capture, functions.function-values without reusing its statement or canonical cases.
+    - candidate_id: concept/gross-store
+      target_skills:
+        - maps.nil-delete-clear
+        - maps.operations-comma-ok
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for maps.nil-delete-clear, maps.operations-comma-ok without reusing its statement or canonical cases.
+    - candidate_id: concept/interest-is-interesting
+      target_skills:
+        - control-flow.for
+        - types.floating-point-semantics
+        - types.numeric-conversions
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for control-flow.for, types.floating-point-semantics, types.numeric-conversions without reusing its statement or canonical cases.
+    - candidate_id: concept/jedliks-toys
+      target_skills:
+        - methods.method-sets
+        - methods.receiver-semantics
+      intended_task_forms:
+        - API-design
+        - debugging
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for methods.method-sets, methods.receiver-semantics without reusing its statement or canonical cases.
+    - candidate_id: concept/logs-logs-logs
+      target_skills:
+        - unicode.range-decoding
+        - unicode.rune-model
+        - unicode.utf8-encoding
+      intended_task_forms:
+        - fuzzing
+        - implementation
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for unicode.range-decoding, unicode.rune-model, unicode.utf8-encoding without reusing its statement or canonical cases.
+    - candidate_id: concept/meteorology
+      target_skills:
+        - interfaces.stringer-contract
+      intended_task_forms:
+        - API-design
+        - implementation
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for interfaces.stringer-contract without reusing its statement or canonical cases.
+    - candidate_id: concept/need-for-speed
+      target_skills:
+        - structs.copy-equality
+        - structs.literals-zero
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for structs.copy-equality, structs.literals-zero without reusing its statement or canonical cases.
+    - candidate_id: concept/party-robot
+      target_skills:
+        - strings.formatting
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for strings.formatting without reusing its statement or canonical cases.
+    - candidate_id: concept/sorting-room
+      target_skills:
+        - interfaces.type-assertions
+        - interfaces.type-switches
+        - types.numeric-conversions
+      intended_task_forms:
+        - API-design
+        - debugging
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for interfaces.type-assertions, interfaces.type-switches, types.numeric-conversions without reusing its statement or canonical cases.
+    - candidate_id: concept/the-farm
+      target_skills:
+        - errors.propagation-context
+        - errors.typed
+      intended_task_forms:
+        - code-review
+        - debugging
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for errors.propagation-context, errors.typed without reusing its statement or canonical cases.
+    - candidate_id: concept/welcome-to-tech-palace
+      target_skills:
+        - strings.building
+        - strings.standard-library
+      intended_task_forms:
+        - benchmark
+        - refactoring
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for strings.building, strings.standard-library without reusing its statement or canonical cases.
+    - candidate_id: practice/acronym
+      target_skills:
+        - strings.building
+        - strings.standard-library
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: practice
+      selection_rationale: Selected for future practice work because the reviewed source provides independently observable evidence for strings.building, strings.standard-library without reusing its statement or canonical cases.
+    - candidate_id: practice/anagram
+      target_skills:
+        - maps.operations-comma-ok
+        - unicode.range-decoding
+      intended_task_forms:
+        - fuzzing
+        - implementation
+      pilot_role: practice
+      selection_rationale: Selected for future practice work because the reviewed source provides independently observable evidence for maps.operations-comma-ok, unicode.range-decoding without reusing its statement or canonical cases.
+    - candidate_id: practice/bob
+      target_skills:
+        - expressions.boolean-logic
+        - strings.standard-library
+        - unicode.range-decoding
+      intended_task_forms:
+        - debugging
+        - write-tests
+      pilot_role: practice
+      selection_rationale: Selected for future practice work because the reviewed source provides independently observable evidence for expressions.boolean-logic, strings.standard-library, unicode.range-decoding without reusing its statement or canonical cases.
+    - candidate_id: practice/circular-buffer
+      target_skills:
+        - errors.sentinels-creation
+        - io.reader-writer-contracts
+        - methods.receiver-semantics
+      intended_task_forms:
+        - API-design
+        - integration
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for errors.sentinels-creation, io.reader-writer-contracts, methods.receiver-semantics without reusing its statement or canonical cases.
+    - candidate_id: practice/clock
+      target_skills:
+        - interfaces.stringer-contract
+        - methods.receiver-semantics
+        - structs.copy-equality
+      intended_task_forms:
+        - API-design
+        - refactoring
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for interfaces.stringer-contract, methods.receiver-semantics, structs.copy-equality without reusing its statement or canonical cases.
+    - candidate_id: practice/collatz-conjecture
+      target_skills:
+        - control-flow.for
+        - control-flow.if
+        - errors.propagation-context
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: practice
+      selection_rationale: Selected for future practice work because the reviewed source provides independently observable evidence for control-flow.for, control-flow.if, errors.propagation-context without reusing its statement or canonical cases.
+    - candidate_id: practice/counter
+      target_skills:
+        - testing.basics-diagnostics
+        - testing.seams-doubles
+        - testing.table-driven
+      intended_task_forms:
+        - repair-tests
+        - write-tests
+      pilot_role: diagnostic
+      selection_rationale: Selected for future diagnostic work because the reviewed source provides independently observable evidence for testing.basics-diagnostics, testing.seams-doubles, testing.table-driven without reusing its statement or canonical cases.
+    - candidate_id: practice/darts
+      target_skills:
+        - expressions.arithmetic
+        - expressions.comparison
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for expressions.arithmetic, expressions.comparison without reusing its statement or canonical cases.
+    - candidate_id: practice/error-handling
+      target_skills:
+        - errors.panic-recover-boundaries
+        - errors.propagation-context
+      intended_task_forms:
+        - code-review
+        - debugging
+      pilot_role: diagnostic
+      selection_rationale: Selected for future diagnostic work because the reviewed source provides independently observable evidence for errors.panic-recover-boundaries, errors.propagation-context without reusing its statement or canonical cases.
+    - candidate_id: practice/etl
+      target_skills:
+        - maps.operations-comma-ok
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: practice
+      selection_rationale: Selected for future practice work because the reviewed source provides independently observable evidence for maps.operations-comma-ok without reusing its statement or canonical cases.
+    - candidate_id: practice/flatten-array
+      target_skills:
+        - interfaces.type-switches
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: practice
+      selection_rationale: Selected for future practice work because the reviewed source provides independently observable evidence for interfaces.type-switches without reusing its statement or canonical cases.
+    - candidate_id: practice/gigasecond
+      target_skills:
+        - time.duration-arithmetic
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for time.duration-arithmetic without reusing its statement or canonical cases.
+    - candidate_id: practice/hamming
+      target_skills:
+        - control-flow.for
+      intended_task_forms:
+        - debugging
+        - write-tests
+      pilot_role: diagnostic
+      selection_rationale: Selected for future diagnostic work because the reviewed source provides independently observable evidence for control-flow.for without reusing its statement or canonical cases.
+    - candidate_id: practice/high-scores
+      target_skills:
+        - methods.receiver-semantics
+      intended_task_forms:
+        - API-design
+        - debugging
+      pilot_role: practice
+      selection_rationale: Selected for future practice work because the reviewed source provides independently observable evidence for methods.receiver-semantics without reusing its statement or canonical cases.
+    - candidate_id: practice/isogram
+      target_skills:
+        - maps.operations-comma-ok
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: practice
+      selection_rationale: Selected for future practice work because the reviewed source provides independently observable evidence for maps.operations-comma-ok without reusing its statement or canonical cases.
+    - candidate_id: practice/leap
+      target_skills:
+        - expressions.boolean-logic
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for expressions.boolean-logic without reusing its statement or canonical cases.
+    - candidate_id: practice/line-up
+      target_skills:
+        - strings.formatting
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for strings.formatting without reusing its statement or canonical cases.
+    - candidate_id: practice/list-ops
+      target_skills:
+        - functions.function-values
+      intended_task_forms:
+        - implementation
+        - refactoring
+      pilot_role: practice
+      selection_rationale: Selected for future practice work because the reviewed source provides independently observable evidence for functions.function-values without reusing its statement or canonical cases.
+    - candidate_id: practice/luhn
+      target_skills:
+        - control-flow.for
+      intended_task_forms:
+        - fuzzing
+        - write-tests
+      pilot_role: practice
+      selection_rationale: Selected for future practice work because the reviewed source provides independently observable evidence for control-flow.for without reusing its statement or canonical cases.
+    - candidate_id: practice/matching-brackets
+      target_skills:
+        - slices.append-growth
+      intended_task_forms:
+        - debugging
+        - fuzzing
+      pilot_role: practice
+      selection_rationale: Selected for future practice work because the reviewed source provides independently observable evidence for slices.append-growth without reusing its statement or canonical cases.
+    - candidate_id: practice/micro-blog
+      target_skills:
+        - unicode.rune-model
+      intended_task_forms:
+        - fuzzing
+        - implementation
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for unicode.rune-model without reusing its statement or canonical cases.
+    - candidate_id: practice/nucleotide-count
+      target_skills:
+        - maps.operations-comma-ok
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for maps.operations-comma-ok without reusing its statement or canonical cases.
+    - candidate_id: practice/resistor-color
+      target_skills:
+        - arrays.indexing-iteration
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for arrays.indexing-iteration without reusing its statement or canonical cases.
+    - candidate_id: practice/reverse-string
+      target_skills:
+        - unicode.range-decoding
+      intended_task_forms:
+        - fuzzing
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for unicode.range-decoding without reusing its statement or canonical cases.
+    - candidate_id: practice/space-age
+      target_skills:
+        - types.floating-point-semantics
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for types.floating-point-semantics without reusing its statement or canonical cases.
+    - candidate_id: practice/strain
+      target_skills:
+        - generics.type-parameters-inference
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for generics.type-parameters-inference without reusing its statement or canonical cases.
+    - candidate_id: practice/sum-of-multiples
+      target_skills:
+        - functions.variadic
+      intended_task_forms:
+        - debugging
+        - implementation
+      pilot_role: introduction
+      selection_rationale: Selected for future introduction work because the reviewed source provides independently observable evidence for functions.variadic without reusing its statement or canonical cases.
+    - candidate_id: practice/tournament
+      target_skills:
+        - io.reader-writer-contracts
+        - io.scanning
+      intended_task_forms:
+        - code-review
+        - integration
+      pilot_role: transfer
+      selection_rationale: Selected for future transfer work because the reviewed source provides independently observable evidence for io.reader-writer-contracts, io.scanning without reusing its statement or canonical cases.
+gaps:
+    - skill_ids:
+        - benchmarks.allocations
+        - benchmarks.experimental-design
+        - benchmarks.loops-timing
+        - errors.as
+        - errors.is
+        - errors.wrapping
+        - fuzzing.invariants
+        - fuzzing.reproduction
+        - fuzzing.targets-seeds
+        - slices.full-slice-expressions
+        - slices.subslice-retention
+        - testing.cleanup
+        - testing.deterministic-boundaries
+        - testing.examples
+        - testing.golden
+        - testing.helpers
+        - testing.parallel
+        - testing.race-detector
+        - testing.subtests
+        - unicode.invalid-utf8
+      required_origin: debugging-tasks
+      rationale: These failure modes need deliberately broken code, mutants, deterministic seams, or test repair; accepting a superficially related algorithm would not provide reviewed evidence.
+    - skill_ids:
+        - functions.defer
+        - functions.signatures-results
+        - interfaces.dynamic-type-value
+        - interfaces.small-contracts
+        - maps.key-comparability
+        - slices.copy-overlap
+        - slices.header-model
+        - slices.nil-empty
+        - slices.preallocation
+        - strings.byte-rune-conversions
+        - strings.immutable-bytes
+        - structs.field-visibility-tags
+        - toolchain.build-run
+        - toolchain.docs-environment
+        - toolchain.formatting-vetting
+        - toolchain.modules-workspaces
+        - types.constants
+        - types.declarations-inference
+        - types.iota-enumeration
+      required_origin: original-tasks
+      rationale: These foundation mechanisms need narrowly specified original tasks because no reviewed Exercism candidate isolates them without story, algorithm, or coverage distortion.
+    - skill_ids:
+        - arrays.value-semantics
+        - embedding.field-promotion
+        - embedding.method-promotion-ambiguity
+        - generics.approximation-unions
+        - generics.constraints-type-sets
+        - generics.reusable-data-structures
+        - interfaces.typed-nil
+        - methods.values-expressions
+      required_origin: permissive-sources
+      rationale: These mechanisms need a different permissive source with clearer language-specific evidence; Exercism candidates are absent or too indirect for seed selection.
+    - skill_ids:
+        - channels.buffering-backpressure
+        - channels.cancellation
+        - channels.close-semantics
+        - channels.directional
+        - channels.fan-out-in
+        - channels.nil-disabling
+        - channels.operations-blocking
+        - channels.ownership
+        - channels.pipeline
+        - channels.range-drain
+        - channels.select
+        - context.cancellation
+        - context.deadlines
+        - context.derivation
+        - context.propagation-api
+        - context.timeouts
+        - context.values-boundaries
+        - encoding.binary-marshaling
+        - encoding.json-shape-tags
+        - encoding.streaming-strictness
+        - encoding.text-marshaling
+        - goroutines.capture-arguments
+        - goroutines.launch-lifecycle
+        - goroutines.leak-prevention
+        - goroutines.panic-boundaries
+        - goroutines.result-error-collection
+        - goroutines.state-ownership
+        - io.buffered
+        - io.copy-limit-composition
+        - io.files-cleanup
+        - io.pipe-lifecycle
+        - packages.import-cycles
+        - packages.imports-exports-naming
+        - packages.initialization-order
+        - packages.internal-boundaries
+        - packages.test-package-boundaries
+        - sync.atomics
+        - sync.cond
+        - sync.data-races-happens-before
+        - sync.mutex-critical-sections
+        - sync.mutex-ownership
+        - sync.once-initialization
+        - sync.pool
+        - sync.rwmutex-tradeoffs
+        - sync.waitgroup-lifecycle
+        - time.parsing-zones
+        - time.timers-tickers
+      required_origin: production-derived-tasks
+      rationale: These skills require realistic package, I/O, serialization, time, lifecycle, or concurrency boundaries that the selected foundation seeds do not establish safely.

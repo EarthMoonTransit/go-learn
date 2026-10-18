@@ -30,7 +30,7 @@ Fifteen reviewed preparations receive append-only addresses; every original
 workspaces. See [ADR 0030](adr/0030-active-pedagogical-order.md) and the
 [implementation audit](../reports/pedagogical-order-activation-audit.md).
 This preparation rollout does not claim complete foundation coverage or public
-export. P20–P25 Later, M2 and T-FUZZ/T-BENCH/T-MODULE remain subsequent work.
+export. P20–P25 Later, remaining M2 tooling and T-FUZZ/T-BENCH/T-MODULE remain subsequent work.
 P18 preparation adds `mapped-records-001` at append-only **07.22**, bringing the
 configured route to **167 ready lessons** after its reviewed PR is merged. Its
 execution position follows Reduce and precedes type sets. The learner declares
@@ -73,6 +73,25 @@ concept seeds. Distinct assessed skills become 106 of 142 with the first
 `goroutines.capture-arguments` assessment. Original development is specifically
 justified by the bounded PR85 comparison. This is preparation, with no human
 mastery, complete depth, foundation release or export claim.
+
+Taxonomy v4 preparation, 2026-10-18: the route retains **169 ready lessons**,
+every existing address and every task content digest. The additive migration
+preserves all 142 existing active teaching contracts and 35 deprecated stubs,
+and adds bit masks, integer shifts and recursion. Current assessed coverage is
+**106 of 145 active skills**, leaving **39** without an assessed occurrence;
+the three additions receive no retroactive task or completion credit.
+Full-bank minima become **418 primary / 708 total** occurrences, with the
+unchanged **350–500** ready-task target. The versioned
+[`coverage-scopes.yaml`](../curriculum/coverage-scopes.yaml) explicitly classifies
+141 foundation and 4 specialist skills under
+[ADR 0031](adr/0031-foundation-scope-and-taxonomy-v4.md), with prerequisite closure
+and complete inventory validation. Scoped numeric coverage remains a separate tooling batch. The
+[migration report](../reports/taxonomy-v4-migration.md) records preserved
+contracts and exact historical source-document compatibility. Existing learner
+progress, current-task priority and resume workspaces retain their interpretation.
+Required modes, distinct task types and observable outcomes remain independent
+semantic review obligations; full foundation acceptance still requires actual
+full-bank `-coverage` and semantic review. Earlier v3 counts below are historical.
 The milestone ledger below remains historical.
 
 | Milestone | Product result | Definition of Done |

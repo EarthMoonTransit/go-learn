@@ -1,0 +1,162 @@
+schema_version: 1
+source_id: exercism-go
+source_commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+taxonomy_version: 3
+review:
+  status: reviewed
+  reviewed_by: codex-curriculum-review
+  reviewed_at: "2026-09-04"
+  decision: docs/adr/0003-taxonomy-v3.md
+concepts:
+  - upstream: arithmetic-operators
+    status: mapped
+    skill_ids: [expressions.arithmetic]
+    rationale: The label directly names evaluation of arithmetic expressions.
+  - upstream: basics
+    status: taxonomy-gap
+    skill_ids: []
+    rationale: The label is an umbrella and cannot identify one atomic current skill.
+  - upstream: booleans
+    status: mapped
+    skill_ids: [expressions.boolean-logic]
+    rationale: The label directly targets boolean values and boolean operators.
+  - upstream: comments
+    status: scope-deferred
+    skill_ids: []
+    rationale: Comment authoring needs a separate decision on the fundamentals track boundary.
+  - upstream: comparison
+    status: mapped
+    skill_ids: [expressions.comparison]
+    rationale: The label directly targets equality and ordering comparisons.
+  - upstream: conditionals-if
+    status: mapped
+    skill_ids: [control-flow.if]
+    rationale: The label directly identifies if-based conditional control flow.
+  - upstream: conditionals-switch
+    status: mapped
+    skill_ids: [control-flow.switch]
+    rationale: The label directly identifies switch-based conditional control flow.
+  - upstream: constants
+    status: mapped
+    skill_ids: [types.constants]
+    rationale: Taxonomy v3 separates constants from iota enumeration mechanics.
+  - upstream: error-wrapping
+    status: mapped
+    skill_ids: [errors.wrapping]
+    rationale: Taxonomy v3 gives wrapping-chain construction its own assignable skill.
+  - upstream: errors
+    status: ambiguous
+    skill_ids: [errors.as, errors.is, errors.panic-recover-boundaries, errors.propagation-context, errors.sentinels-creation, errors.typed, errors.wrapping]
+    rationale: The source label does not distinguish creation, propagation, wrapping, typed errors, or panic boundaries.
+  - upstream: first-class-functions
+    status: mapped
+    skill_ids: [functions.function-values]
+    rationale: Taxonomy v3 separates function values from closure capture and lifetime mechanics.
+  - upstream: floating-point-numbers
+    status: mapped
+    skill_ids: [types.floating-point-semantics]
+    rationale: Taxonomy v3 adds an atomic skill for floating-point representation, comparison, and rounding.
+  - upstream: for-loops
+    status: mapped
+    skill_ids: [control-flow.for]
+    rationale: The label directly identifies Go for-loop forms and termination mechanics.
+  - upstream: functions
+    status: ambiguous
+    skill_ids: [functions.closure-capture, functions.defer, functions.function-values, functions.signatures-results, functions.variadic]
+    rationale: The umbrella label cannot select one of the distinct function mechanics.
+  - upstream: interfaces
+    status: ambiguous
+    skill_ids: [interfaces.dynamic-type-value, interfaces.implicit-satisfaction, interfaces.small-contracts, interfaces.type-assertions, interfaces.type-switches, interfaces.typed-nil]
+    rationale: The label spans satisfaction, dynamic values, type inspection, nil behavior, and contract design.
+  - upstream: maps
+    status: ambiguous
+    skill_ids: [maps.iteration, maps.key-comparability, maps.nil-delete-clear, maps.operations-comma-ok]
+    rationale: The label spans lookup, mutation, nil behavior, iteration, and key comparability.
+  - upstream: methods
+    status: ambiguous
+    skill_ids: [methods.method-sets, methods.receiver-semantics, methods.values-expressions]
+    rationale: The label does not distinguish receiver and method-set semantics from method values.
+  - upstream: multiple-return-values
+    status: mapped
+    skill_ids: [functions.signatures-results]
+    rationale: The label directly identifies multiple function results within signature semantics.
+  - upstream: numbers
+    status: taxonomy-gap
+    skill_ids: []
+    rationale: The umbrella label spans literals, arithmetic, conversions, integer division, and representation.
+  - upstream: packages
+    status: ambiguous
+    skill_ids: [packages.import-cycles, packages.imports-exports-naming, packages.initialization-order, packages.internal-boundaries, packages.test-package-boundaries]
+    rationale: The label does not identify imports, initialization, layout, visibility, or test boundaries separately.
+  - upstream: pointers
+    status: ambiguous
+    skill_ids: [pointers.address-deref-nil, pointers.mutation-sharing]
+    rationale: The label spans addressability, nil, sharing, mutation, and receiver selection.
+  - upstream: randomness
+    status: scope-deferred
+    skill_ids: []
+    rationale: Random number generation is a standard-library topic requiring a separate track-boundary decision.
+  - upstream: range-iteration
+    status: mapped
+    skill_ids: [control-flow.range]
+    rationale: The label directly targets the mechanics of the range clause.
+  - upstream: regular-expressions
+    status: scope-deferred
+    skill_ids: []
+    rationale: Regular expressions are a library topic and are not automatically part of language fundamentals.
+  - upstream: runes
+    status: mapped
+    skill_ids: [unicode.rune-model]
+    rationale: Taxonomy v3 separates the rune/code-point model from UTF-8 encoding and range decoding.
+  - upstream: slices
+    status: ambiguous
+    skill_ids: [slices.append-growth, slices.backing-array-aliasing, slices.copy-overlap, slices.full-slice-expressions, slices.header-model, slices.len-cap-slicing, slices.nil-empty, slices.preallocation, slices.subslice-retention]
+    rationale: The label spans representation, slicing, append, aliasing, copy, and allocation.
+  - upstream: string-formatting
+    status: mapped
+    skill_ids: [strings.formatting]
+    rationale: Taxonomy v3 adds an atomic fmt-style formatting contract.
+  - upstream: stringers
+    status: mapped
+    skill_ids: [interfaces.stringer-contract]
+    rationale: Taxonomy v3 adds an atomic fmt.Stringer interface contract.
+  - upstream: strings
+    status: ambiguous
+    skill_ids: [strings.building, strings.byte-rune-conversions, strings.immutable-bytes]
+    rationale: The label does not distinguish byte semantics, construction, conversion, or allocation.
+  - upstream: strings-package
+    status: mapped
+    skill_ids: [strings.standard-library]
+    rationale: Taxonomy v3 adds an atomic standard-library strings package skill.
+  - upstream: structs
+    status: ambiguous
+    skill_ids: [structs.copy-equality, structs.field-visibility-tags, structs.literals-zero]
+    rationale: The label spans literals, zero values, copying, equality, visibility, and tags.
+  - upstream: time
+    status: ambiguous
+    skill_ids: [time.duration-arithmetic, time.parsing-zones, time.timers-tickers]
+    rationale: The label does not distinguish durations, parsing and zones, or timers and tickers.
+  - upstream: type-assertion
+    status: mapped
+    skill_ids: [interfaces.type-assertions]
+    rationale: Taxonomy v3 separates single assertions from type switches.
+  - upstream: type-conversion
+    status: ambiguous
+    skill_ids: [strings.byte-rune-conversions, types.numeric-conversions]
+    rationale: The label does not identify numeric conversion versus string and slice conversion.
+  - upstream: type-definitions
+    status: mapped
+    skill_ids: [types.named-underlying]
+    rationale: The label directly identifies defined types and their underlying types.
+  - upstream: variables
+    status: mapped
+    skill_ids: [types.declarations-inference]
+    rationale: The label directly identifies variable declarations and inferred concrete types.
+  - upstream: variadic-functions
+    status: mapped
+    skill_ids: [functions.variadic]
+    rationale: The label directly identifies variadic declarations and calls.
+  - upstream: zero-values
+    status: mapped
+    skill_ids: [types.zero-values]
+    rationale: The label directly identifies zero values of Go types.

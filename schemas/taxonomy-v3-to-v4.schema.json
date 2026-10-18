@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:go-practice-bank:taxonomy-migration:v3-to-v4",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "from_taxonomy_version",
+    "to_taxonomy_version",
+    "decision",
+    "baseline",
+    "entries",
+    "additions",
+    "reviewed_documents"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "from_taxonomy_version": {
+      "const": 3
+    },
+    "to_taxonomy_version": {
+      "const": 4
+    },
+    "decision": {
+      "const": "docs/adr/0031-foundation-scope-and-taxonomy-v4.md"
+    },
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "active_count",
+        "deprecated_count",
+        "skill_count",
+        "skill_ids_sha256",
+        "source_commit",
+        "taxonomy_path",
+        "taxonomy_sha256"
+      ],
+      "properties": {
+        "active_count": {
+          "const": 142
+        },
+        "deprecated_count": {
+          "const": 35
+        },
+        "skill_count": {
+          "const": 177
+        },
+        "skill_ids_sha256": {
+          "const": "9e4fa8ca73a973e4b0ea58e24b6a67669a65f92fba1e2bfbe251e46e901679ae"
+        },
+        "source_commit": {
+          "const": "0bc11985e9f67ab8677c3a7726f3239118e76442"
+        },
+        "taxonomy_path": {
+          "const": "curriculum/migrations/snapshots/skills-v3.yaml"
+        },
+        "taxonomy_sha256": {
+          "const": "8fc463c93634564e7972117ea7f7c1f90d4e5cb82659f2f631698ef68ba4ab64"
+        }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 177,
+      "maxItems": 177,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "status",
+          "contract_sha256"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$"
+          },
+          "status": {
+            "enum": [
+              "active",
+              "deprecated"
+            ]
+          },
+          "contract_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "additions": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "contract_sha256"
+            ],
+            "properties": {
+              "contract_sha256": {
+                "const": "74406b8f2afcfb663c21c75cecd7b84aceeb9f9430eb2a734efd1e7fa5d79b8c"
+              },
+              "id": {
+                "const": "expressions.bitwise-masks"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "contract_sha256"
+            ],
+            "properties": {
+              "contract_sha256": {
+                "const": "2d437a42847d3e2babc2288bd75ddddf01366f7a0470ee21c6f971b1ffe1923b"
+              },
+              "id": {
+                "const": "expressions.integer-shifts"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "contract_sha256"
+            ],
+            "properties": {
+              "contract_sha256": {
+                "const": "dec90f41de0b538fc44e9adc95f39139eb84ac197b5b48f531d9801004f8d5d6"
+              },
+              "id": {
+                "const": "functions.recursion"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "reviewed_documents": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "snapshot_path",
+          "sha256",
+          "skill_ids"
+        ],
+        "properties": {
+          "path": {
+            "enum": [
+              "catalog/reviews/exercism-go.yaml",
+              "catalog/seed-plans/exercism-foundation-pilot.yaml",
+              "curriculum/evidence/exercism-go.yaml",
+              "curriculum/mappings/exercism-go.yaml"
+            ]
+          },
+          "snapshot_path": {
+            "enum": [
+              "curriculum/migrations/snapshots/exercism-reviews-v3.yaml",
+              "curriculum/migrations/snapshots/exercism-seeds-v3.yaml",
+              "curriculum/migrations/snapshots/exercism-evidence-v3.yaml",
+              "curriculum/migrations/snapshots/exercism-map-v3.yaml"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "skill_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$"
+            }
+          }
+        }
+      }
+    }
+  }
+}
