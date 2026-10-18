@@ -1,0 +1,245 @@
+schema_version: 1
+source_id: exercism-go
+source_commit: ae1477abfeeb9fbeaf971caee220e91f9e4df790
+taxonomy_version: 3
+migration_review:
+  status: reviewed
+  reviewed_by: codex-curriculum-review
+  reviewed_at: "2026-09-04"
+  decision: docs/adr/0003-taxonomy-v3.md
+  previous_evidence_sha256: 3c41aeeaa62c13601f4b5a7dbdaf9b94be9056b05a4bff5a4a10d76bf79b6ca5
+reviews:
+  - id: concept/cars-assemble/expressions-arithmetic
+    exercise_kind: concept
+    slug: cars-assemble
+    source_path: exercises/concept/cars-assemble
+    upstream_concept: arithmetic-operators
+    skill_id: expressions.arithmetic
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares arithmetic-operators as a taught concept.
+  - id: concept/annalyns-infiltration/expressions-boolean-logic
+    exercise_kind: concept
+    slug: annalyns-infiltration
+    source_path: exercises/concept/annalyns-infiltration
+    upstream_concept: booleans
+    skill_id: expressions.boolean-logic
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares booleans as a taught concept.
+  - id: concept/vehicle-purchase/expressions-comparison
+    exercise_kind: concept
+    slug: vehicle-purchase
+    source_path: exercises/concept/vehicle-purchase
+    upstream_concept: comparison
+    skill_id: expressions.comparison
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares comparison as a taught concept.
+  - id: concept/vehicle-purchase/control-flow-if
+    exercise_kind: concept
+    slug: vehicle-purchase
+    source_path: exercises/concept/vehicle-purchase
+    upstream_concept: conditionals-if
+    skill_id: control-flow.if
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares conditionals-if as a taught concept.
+  - id: concept/blackjack/control-flow-switch
+    exercise_kind: concept
+    slug: blackjack
+    source_path: exercises/concept/blackjack
+    upstream_concept: conditionals-switch
+    skill_id: control-flow.switch
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares conditionals-switch as a taught concept.
+  - id: concept/bird-watcher/control-flow-for
+    exercise_kind: concept
+    slug: bird-watcher
+    source_path: exercises/concept/bird-watcher
+    upstream_concept: for-loops
+    skill_id: control-flow.for
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares for-loops as a taught concept.
+  - id: concept/chessboard/control-flow-range
+    exercise_kind: concept
+    slug: chessboard
+    source_path: exercises/concept/chessboard
+    upstream_concept: range-iteration
+    skill_id: control-flow.range
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares range-iteration as a taught concept.
+  - id: concept/chessboard/types-named-underlying
+    exercise_kind: concept
+    slug: chessboard
+    source_path: exercises/concept/chessboard
+    upstream_concept: type-definitions
+    skill_id: types.named-underlying
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares type-definitions as a taught concept.
+  - id: concept/card-tricks/functions-variadic
+    exercise_kind: concept
+    slug: card-tricks
+    source_path: exercises/concept/card-tricks
+    upstream_concept: variadic-functions
+    skill_id: functions.variadic
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares variadic-functions as a taught concept.
+  - id: concept/census/types-zero-values
+    exercise_kind: concept
+    slug: census
+    source_path: exercises/concept/census
+    upstream_concept: zero-values
+    skill_id: types.zero-values
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares zero-values as a taught concept.
+  - id: concept/expenses/functions-function-values
+    exercise_kind: concept
+    slug: expenses
+    source_path: exercises/concept/expenses
+    upstream_concept: first-class-functions
+    skill_id: functions.function-values
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares first-class-functions as a taught concept, which v3 maps only to function values.
+  - id: concept/interest-is-interesting/types-floating-point-semantics
+    exercise_kind: concept
+    slug: interest-is-interesting
+    source_path: exercises/concept/interest-is-interesting
+    upstream_concept: floating-point-numbers
+    skill_id: types.floating-point-semantics
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares floating-point-numbers as a taught concept.
+  - id: concept/logs-logs-logs/unicode-rune-model
+    exercise_kind: concept
+    slug: logs-logs-logs
+    source_path: exercises/concept/logs-logs-logs
+    upstream_concept: runes
+    skill_id: unicode.rune-model
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares runes as a taught concept, which v3 separates from UTF-8 codec mechanics.
+  - id: concept/meteorology/interfaces-stringer-contract
+    exercise_kind: concept
+    slug: meteorology
+    source_path: exercises/concept/meteorology
+    upstream_concept: stringers
+    skill_id: interfaces.stringer-contract
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares stringers as a taught concept.
+  - id: concept/party-robot/strings-formatting
+    exercise_kind: concept
+    slug: party-robot
+    source_path: exercises/concept/party-robot
+    upstream_concept: string-formatting
+    skill_id: strings.formatting
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares string-formatting as a taught concept.
+  - id: concept/savings-account/types-constants
+    exercise_kind: concept
+    slug: savings-account
+    source_path: exercises/concept/savings-account
+    upstream_concept: constants
+    skill_id: types.constants
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares constants as a taught concept, which v3 separates from iota mechanics.
+  - id: concept/sorting-room/interfaces-type-assertions
+    exercise_kind: concept
+    slug: sorting-room
+    source_path: exercises/concept/sorting-room
+    upstream_concept: type-assertion
+    skill_id: interfaces.type-assertions
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares type-assertion as a taught concept, which v3 separates from type switches.
+  - id: concept/welcome-to-tech-palace/strings-standard-library
+    exercise_kind: concept
+    slug: welcome-to-tech-palace
+    source_path: exercises/concept/welcome-to-tech-palace
+    upstream_concept: strings-package
+    skill_id: strings.standard-library
+    basis: upstream-concept-label
+    strength: direct
+    decision: accepted
+    coverage_eligible: false
+    reviewed_by: codex-curriculum-review
+    reviewed_at: "2026-09-04"
+    rationale: The exercise declares strings-package as a taught concept.

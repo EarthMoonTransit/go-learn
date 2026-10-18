@@ -52,6 +52,7 @@ catalog/candidates/       метаданные сырых кандидатов (
 cmd/source-sync/          pinned cache synchronization
 cmd/harvest/              offline candidate extraction
 cmd/catalog-report/       deterministic import/taxonomy reports
+cmd/taxonomy-report/      additive v4 migration report and read-only freshness check
 cmd/task-*/                authoring, isolation, promotion и quality reports
 cmd/learn/                 локальный learner workflow без hidden artifacts
 cmd/validate/             CLI-валидатор

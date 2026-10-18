@@ -22,12 +22,22 @@ skill. Циклы запрещены.
 - lifecycle states `draft`, `in-review`, `rejected`, `retired` не входят в
   coverage; legacy schema value `validated` также не учитывается без `ready`.
 
-`minimum_occurrences.primary` и `.total` — нижние границы, не квоты. Taxonomy v3
-использует три обоснованных уровня: 2/4 для specialist-механик, 3/5 как базовый
+`minimum_occurrences.primary` и `.total` — нижние границы, не квоты. Taxonomy v4
+сохраняет три обоснованных уровня: 2/4 для узких механик, 3/5 как базовый
 контракт и 4/6 для навыков с высоким риском ошибок владения, lifetime, encoding
-или concurrency. Для 142 assignable skills это 409 primary и 693 total встреч.
-Решение и полная миграция зафиксированы в
-`docs/adr/0003-taxonomy-v3.md` и `curriculum/migrations/v2-to-v3.yaml`.
+или concurrency. Для 145 assignable skills это 418 primary и 708 total встреч.
+Все 142 прежних active-контракта и 35 deprecated stubs сохранены; три новых
+контракта добавлены через ADR 0031 и `curriculum/migrations/v3-to-v4.yaml`.
+Историческая v2→v3 миграция продолжает проверяться против immutable v3 snapshot.
+
+Encounter tier не задаёт scope. По ADR 0031 foundation включает 141 active skill,
+specialist — четыре; полный `-coverage` сохраняет требования всех 145 и target
+350–500 ready tasks. Раздельная числовая scope-проверка — следующая tooling
+партия. Нынешний executable coverage gate проверяет primary/total и размер банка;
+фактические modes, distinct types и outcomes требуют отдельного semantic review.
+Ни количество встреч в банке, ни успешная числовая проверка не доказывают learner
+completion или mastery. Recursion authoring дополнительно заблокирован до
+проверенного assessment-механизма из ADR 0031.
 
 ## Spacing и прогрессия
 

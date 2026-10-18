@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"go-practice-bank/internal/tasking"
+	"go-practice-bank/internal/taxonomy"
 )
 
 func TestRepositoryPhase1(t *testing.T) {
@@ -19,7 +20,7 @@ func TestRepositoryPhase1(t *testing.T) {
 	if got, want := len(result.Curriculum.Domains), 28; got != want {
 		t.Fatalf("domains = %d, want %d", got, want)
 	}
-	if got, want := len(result.Coverage), 142; got != want {
+	if got, want := len(result.Coverage), 145; got != want {
 		t.Fatalf("skills = %d, want %d", got, want)
 	}
 	primary, total := 0, 0
@@ -27,8 +28,8 @@ func TestRepositoryPhase1(t *testing.T) {
 		primary += item.RequiredPrimary
 		total += item.RequiredTotal
 	}
-	if primary != 409 || total != 693 {
-		t.Fatalf("minimums = %d primary / %d total, want 409 / 693", primary, total)
+	if primary != 418 || total != 708 {
+		t.Fatalf("minimums = %d primary / %d total, want 418 / 708", primary, total)
 	}
 	if len(result.Registry.Sources) < 1 {
 		t.Fatal("expected audited sources")
@@ -43,6 +44,38 @@ func TestRepositoryPhase1(t *testing.T) {
 	}
 	if deprecated != 35 || len(result.Migration.Entries) != 99 || len(result.Migration.Additions) != 8 {
 		t.Fatalf("migration inventory = %d deprecated / %d entries / %d additions", deprecated, len(result.Migration.Entries), len(result.Migration.Additions))
+	}
+}
+
+func TestV3HistoricalContractAndMigrationRemainExact(t *testing.T) {
+	root := repositoryRoot(t)
+	var old Curriculum
+	if err := decodeStrict(filepath.Join(root, filepath.FromSlash(taxonomy.V3Path)), &old); err != nil {
+		t.Fatal(err)
+	}
+	skills, _, problems := validateCurriculum(old)
+	if len(problems) != 0 || old.Version != 3 {
+		t.Fatalf("historical v3 contract invalid: %v", problems)
+	}
+	active, deprecated, primary, total := 0, 0, 0, 0
+	for _, skill := range skills {
+		if isAssignable(skill) {
+			active++
+			primary += skill.MinimumOccurrences.Primary
+			total += skill.MinimumOccurrences.Total
+		} else {
+			deprecated++
+		}
+	}
+	if active != 142 || deprecated != 35 || primary != 409 || total != 693 {
+		t.Fatalf("v3 baseline = %d active/%d stubs/%d primary/%d total; want142/35/409/693", active, deprecated, primary, total)
+	}
+	var migration Migration
+	if err := decodeStrict(filepath.Join(root, "curriculum/migrations/v2-to-v3.yaml"), &migration); err != nil {
+		t.Fatal(err)
+	}
+	if _, problems := validateMigration(root, migration, skills); len(problems) != 0 {
+		t.Fatalf("historical v2-to-v3 target was reinterpreted: %v", problems)
 	}
 }
 

@@ -1,0 +1,1250 @@
+{
+  "additions": [
+    {
+      "contract_sha256": "74406b8f2afcfb663c21c75cecd7b84aceeb9f9430eb2a734efd1e7fa5d79b8c",
+      "id": "expressions.bitwise-masks"
+    },
+    {
+      "contract_sha256": "2d437a42847d3e2babc2288bd75ddddf01366f7a0470ee21c6f971b1ffe1923b",
+      "id": "expressions.integer-shifts"
+    },
+    {
+      "contract_sha256": "dec90f41de0b538fc44e9adc95f39139eb84ac197b5b48f531d9801004f8d5d6",
+      "id": "functions.recursion"
+    }
+  ],
+  "baseline": {
+    "active_count": 142,
+    "deprecated_count": 35,
+    "skill_count": 177,
+    "skill_ids_sha256": "9e4fa8ca73a973e4b0ea58e24b6a67669a65f92fba1e2bfbe251e46e901679ae",
+    "source_commit": "0bc11985e9f67ab8677c3a7726f3239118e76442",
+    "taxonomy_path": "curriculum/migrations/snapshots/skills-v3.yaml",
+    "taxonomy_sha256": "8fc463c93634564e7972117ea7f7c1f90d4e5cb82659f2f631698ef68ba4ab64"
+  },
+  "decision": "docs/adr/0031-foundation-scope-and-taxonomy-v4.md",
+  "entries": [
+    {
+      "contract_sha256": "c09b6572879b4a5f2ec52ac9fc7a4fd2e66a31f0d822bdd800024eeb50e21bb2",
+      "id": "arrays.indexing-iteration",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "0bc586fa8959c0acd66340ac84c40175668de8d29e7440c8a9e5fcdfdc0df48f",
+      "id": "arrays.value-semantics",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "e713364473fd0a9bb0e73667e4747efb3316f7102be063c66db2449b79f5f7b8",
+      "id": "benchmarks.allocations",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "dff385b60c6de3cad71792b55f4cb4572b7f9fa7b1602e7145a83541dd9d0cbe",
+      "id": "benchmarks.experimental-design",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "1f2263b2f818caa79c2e884d13c5564eee191c7791867735e5d63c4ed383bf2b",
+      "id": "benchmarks.loops-allocations",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "5cbeae9503eb9f145004ccb225377a1a3e0e2fe9abe9f90e1014edd43e4d4ac4",
+      "id": "benchmarks.loops-timing",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "d9c1903509ad9f6cf019ad6c5587a23f79443e52303f4e44f394f1d552a31405",
+      "id": "channels.buffering-backpressure",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "6606f74935dabcba22dcf446b5510c324e2389e749f940ab31234ade9a91c774",
+      "id": "channels.cancellation",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "f21e35e479f8e8160b118e17fbd90268a5848965a23f6d635c1ddbbdab8f791e",
+      "id": "channels.close-semantics",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "fc0ba0ef53a9d28c879ada106c42535aeb777bf34454e871b73a425226dba888",
+      "id": "channels.directional",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "722afeb0f47658620bd351f11547e6ea67a190346671fdbbbe68a160c6d60824",
+      "id": "channels.fan-out-in",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "8d7c393c29c78941c988dd50494ec9a7e5f0d549aaaec555e0d27e65b78d3c3a",
+      "id": "channels.nil-disabling",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "568dd3ae720e9579fe5175130ac402bbb029f4737327bd9506051bd3970933e6",
+      "id": "channels.operations-blocking",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "cda547aafb50d0d0a4a5560e3257b6246566c6834d049b3848369c821b8e0440",
+      "id": "channels.ownership",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "a9d2d9f97cee915b52b2cd368132cc731d2e423d47115c667409d4264d48cb45",
+      "id": "channels.pipeline",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "f307c2335668f3b29213653263174b7ff2f456b83ff539751880a6ad8b494e89",
+      "id": "channels.pipeline-fan",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "2bb5949a8ffd51fbe9c79d063eab311500fcc90a3a0a3511644164cb291a877a",
+      "id": "channels.range-drain",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "4d37b6bb3dc93475afb0dcee167c09bba75ad6e8fe97cfedaabd9cc3919f2421",
+      "id": "channels.select",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "b3d2682d2e1b49039afc5116151d7c8fea142f6e9faab3cf86555d43e03612dd",
+      "id": "channels.select-nil",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "0eeb2455c01cf1452819e534ec2cbfded182a8fccbd733e49df5e660026c003c",
+      "id": "channels.send-receive-close",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "99d506b60f2c7039d5e9346b687900ab630af466fe3bf0efbc23463b12ca0f90",
+      "id": "context.cancellation",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "38888b2bfae9f6100d7e5f25b719376a2912a45e32265e065500d8b5bbb0b13c",
+      "id": "context.deadlines",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "166f0071e531df9dd12bd39eb4607a25b7c2be6fc2d05a246491983b7b2693f9",
+      "id": "context.deadlines-timeouts",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "b2de4df5168e0960bb03229ea4fd7d11baffdfdf5e3ba752bda9b413de57171f",
+      "id": "context.derivation",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "92d656d5b1f7e297395d2f4ae02f6ade440220243d8ca379e70b8ee5f9daa87c",
+      "id": "context.derive-cancel",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "20b2fd579eccf40a6ea867d5a41215d48b75bdbadfe05f8bff930332e1b4ccb4",
+      "id": "context.propagation-api",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "bc963a3d1ae569f4b3e9448f310c3d1e6131fd5b633afafa029caf93e467f6a5",
+      "id": "context.timeouts",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "984938e9629806855c634ebab8faab6a9d3ac132653aa4b3f79998278dcf48a2",
+      "id": "context.values-boundaries",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "f7af35def86ca8a6df7645e00b62dfa7b233a7a1529051bb6397424e15e6b5ef",
+      "id": "control-flow.for",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "88cdcba166a00f30efbcb4422509235cfa138075eb854e19f8f3c7ef4e32950b",
+      "id": "control-flow.if",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "9c6b624504bd0f4ac2f4e8fc385c12bd6c4fb541d85a28aa6d2fbca5a2ae5982",
+      "id": "control-flow.range",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "d1e38553cfe32d8f1e0d75d3aa1260ead745b71ebebfabfb62841c25afa59458",
+      "id": "control-flow.switch",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "4e7cf5db4693fc5edb63b144de97d1d5ad7fe89cf6ec623d2e4bc68d2eee7b56",
+      "id": "embedding.field-promotion",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "38ed761190529163b2cac7bd74dcdf9eee9a2a71385bf2a3bff4eaeca73b82f3",
+      "id": "embedding.method-promotion-ambiguity",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "7c197a58765d65f7984fa02e0b60bfd52267e4b9c5de06998445b50983fb0915",
+      "id": "encoding.binary-marshaling",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "8b06d6c28fd9606d5795bb109f42396c599f37b7789554a92880cb07cc33f26a",
+      "id": "encoding.json-shape-tags",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "81af06ecc57b8cb032a6bdc885cfefe77651b20e12f1f3ce8aabe48fcc6d5cd6",
+      "id": "encoding.streaming-strictness",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "c0c4670979337adf43243d6140926d03745a6a4b839363187830408c1be37aff",
+      "id": "encoding.text-binary-custom",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "b2214fe051b37d489a21ec89caa6c4f7305b94a71bf3bebecd6a87385911034a",
+      "id": "encoding.text-marshaling",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "4bdf710d7cb06769750cfe3d148befeb9f37a06892d610c5424bb58451692bbd",
+      "id": "errors.as",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "673168ebff238c5d9ab47a019a8a2e85b6e7e8e296ea9236cf8e2e346de63188",
+      "id": "errors.creation-propagation",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "323fdddcdf5a9ca661339f5ff449d266142109d81a5435e3cf9c098d63d83843",
+      "id": "errors.is",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "1d95bbcef971b55a94ffa4e11c106ac5b192e24e078ac5d097688e6344a28d16",
+      "id": "errors.panic-recover-boundaries",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "2b9ea18ec95c9c00a6e6ba631e97107e56081bd53d3d11f7950ed39c6d6433e7",
+      "id": "errors.propagation-context",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "0554f20e016cfc573db4581b463a88ab796aa6da8146b913032aa0f84d9ba0b6",
+      "id": "errors.sentinels-creation",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "0a4f504401b97f29a6372998a83b7c14e5695776f57625a46e8ad4182d721372",
+      "id": "errors.typed",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "47ac189afdc27156b7cdae291e115ce24f50e60dbe74cff14fa98a2436208618",
+      "id": "errors.typed-as",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "c6baff45c77ec61a55663bcc367405c7fc68091e2045ddb3e1057892571eec34",
+      "id": "errors.wrapping",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "c3267ac8ddbc37dc1e4b9836a5e803dbc3f80381f52bc9679e56c6175dfafeb9",
+      "id": "errors.wrapping-is",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "46fc8a0fee07063adaa8f69bdf8bdfb1555219f7459e040eeddbad992ce25ff0",
+      "id": "expressions.arithmetic",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "7bc10c236708a037fc6eed971e4ef14493509647aac40ddaca6d22da79d7ce11",
+      "id": "expressions.boolean-logic",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "171992973cd21b21dbff459184c724c1dc4465b8c4100c0bd1a65693df11ee1e",
+      "id": "expressions.comparison",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "ee4a76f846e12722a3afb7af85108e568e2ec92307e32b5b568c6663642ecc34",
+      "id": "functions.closure-capture",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "cc1d53f033a1d6568f361339c143e7392cfc3fe9e8b4ea56191869a00ed742bb",
+      "id": "functions.defer",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "d36604f3db0a7e78964ff37b79281a8b749e2ea598f277654b9032d017d808d7",
+      "id": "functions.first-class-closures",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "697e640230e598bca1727b6ebbf1f096cb228a0356eb93ec41d8c169fe2634c0",
+      "id": "functions.function-values",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "74bca0654d236cce547bbf546dbc9933b9a0fa052bd94ebb32d5b20c9dcc9f79",
+      "id": "functions.signatures-results",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "2e63e1e911d80aaf94c1c0227cc55a50fc64685a11e2a110835f986a0498face",
+      "id": "functions.variadic",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "4bbba37acaef706626512ebf9d36e3bd855d3fbe7a6b42de4e8cbe69392ef673",
+      "id": "fuzzing.invariants",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "5a39f874b807c9f3afaaca283d8f93dade7ae93ca5990f369efbea4e6aed4914",
+      "id": "fuzzing.invariants-reproduction",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "22e6509012aae40417fce974c6a756daa0a4aae5db8ce40aceae9d9e9d10b9c6",
+      "id": "fuzzing.reproduction",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "669ea5314b6cf5db65f1618ced4f4cc76eae5409bd680de2266c0a552658c3da",
+      "id": "fuzzing.targets-seeds",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "71c25eb194cebad6d7bee50bb1aed0a929e863bf432864aef1f9135bed6b005e",
+      "id": "generics.approximation-unions",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "a784234c67033dece9bf56a8daea6726ac1fda7f341aa16bbad090fccebca866",
+      "id": "generics.constraints-type-sets",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "2abff3d00d3b612be0eeca95e6fa0ce16f194ffd41c326cfd82b890bb1494c88",
+      "id": "generics.reusable-data-structures",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "0dfd91bb0a1d491e331bf904a89cb25b03e9c466a1bf22406dfc90dcb3867f33",
+      "id": "generics.type-parameters-inference",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "bb3bf94953d451bfce1d7d85af2c90660bca84332e0ec8795197f6758e330a53",
+      "id": "goroutines.capture-arguments",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "f9488563e55b0e15b2e51f89dc29069868f28bea9dadb3f22223f7774e67b607",
+      "id": "goroutines.launch-lifecycle",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "8d864662345c6bd30733b9ff000630b2312c4f19a71d993c14bf2d2ff451b4e5",
+      "id": "goroutines.leak-prevention",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "88007eefe0d53d910d012e95a2ca21bfe905d82e59469e08a8566a22a1c3e678",
+      "id": "goroutines.leaks-panics",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "7abe36383207bc112d6d2053bd029bdf8643268b35677b4ccca6200751077ed9",
+      "id": "goroutines.ownership-results",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "cea1742eaf312500334f8b29233a6a91340f9525776199cebd0e65783d1c0299",
+      "id": "goroutines.panic-boundaries",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "1cc091c843005254d7eca9161802d8fc98b28263c701eb220b6fbae515783f32",
+      "id": "goroutines.result-error-collection",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "06f6f8f08e2820d059be7918c14e9b6b800f08a17a4720190f39e8f176735d5a",
+      "id": "goroutines.state-ownership",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "78d06bf8d4ccf107495dda4da64fb8185cbf9e00bc7e10d6cf83765252c9bf4a",
+      "id": "interfaces.assertions-switches",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "b94c44253822da50c76fa88f1ed83eb5f2b9e561f2ddd7ecc72490aed4500268",
+      "id": "interfaces.dynamic-type-value",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "c1e808b12f5be4d9ddb7f2b06ce0517303131bad48c713aaee5524586d7e85a7",
+      "id": "interfaces.dynamic-values-nil",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "bbf36da55f2c0fae73e21bc737e5a97ce891b9637c781fe16eaeab697e9107dd",
+      "id": "interfaces.implicit-satisfaction",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "2b8225bb52cf9b1ff8c6044f62841cc1faf8effe1e20f6ba2ae412edd2a27950",
+      "id": "interfaces.small-contracts",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "c8ea50b34d09048bb344a50337e9d4ea74f7f22a6b0fff1ee0b49bde7368fe66",
+      "id": "interfaces.stringer-contract",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "b8b17df252f2b93443f991070bc5ee6b0cd3f25a1e65bd48629c59c63c3f8e79",
+      "id": "interfaces.type-assertions",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "20ab45fa877b9fd041372531b064a3240e4446cdb6771677f98479d02e4b8193",
+      "id": "interfaces.type-switches",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "07dcd1ec061580d9b38aac0bb33a383bc13f300d1048169d5c19a42ba5376e18",
+      "id": "interfaces.typed-nil",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "a3880a8aa7b5db0ec941693c5402133a91118be80f7b1d9d6fd06982de7a588d",
+      "id": "io.buffered",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "029ba4a2b2f6cc7bfc55606dcfadc1c1f708d31cab87b1e2d03fa301e0d5226b",
+      "id": "io.buffering-scanning",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "9a21a758b2087e5a1cba7c6122a7093b1de68ca787d427750473971d9f716046",
+      "id": "io.copy-limit-composition",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "41ea47be1751cab83809463d2e0f9f365fd62246d2650d115d80efe28943153a",
+      "id": "io.copy-limit-pipe",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "b532eabe40b08c55f06b8eb072443710102fca15cdafd461ef9373ef8c4ae7bd",
+      "id": "io.files-cleanup",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "e9190f04115e379d482b8a0972dcda3403d810a6cb8f1fa92fbe72b2ad56cfdf",
+      "id": "io.pipe-lifecycle",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "9a1ac7c3799dad9996d320316f31a00d133614317fbf5598a2ab1a17950b8a95",
+      "id": "io.reader-writer-contracts",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "e6a81b74a6f19d0f25ebc2642de310dab41b1d1fe381e3223fdb4aa129bcd04b",
+      "id": "io.scanning",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "795a9e465b75dd0ade4fe14753516c3b11eb0962baeb44261aa8d66a9adfd7b0",
+      "id": "maps.iteration",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "1fb8c50cd6f620879d7a42513664686ef3235ab831b99d6ec6948487481fdb1f",
+      "id": "maps.iteration-comparability",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "f6bf1405582abae95dae709cb098e046ab6894de2de43f1d2d3c9391f82b8597",
+      "id": "maps.key-comparability",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "25b5059d15a1d84e96cbc32b5d99d654cd5d6fd20a1736e26bf25b3f82b065fd",
+      "id": "maps.nil-delete-clear",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "be75f5349cee79e9542fb795c8ea27a0e71a8666bdf2c6ad1545e695d74d35c8",
+      "id": "maps.operations-comma-ok",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "a1c1bc48af93afc5a0490f2303c708a960ae048344f94efa2fc0d6b63f72578f",
+      "id": "methods.method-sets",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "6cfa47282a5fe8eb6bdd223f1f77186eb2c2bdf55970d226530a2cf841b966b1",
+      "id": "methods.receiver-semantics",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "0b7ecf0312b5bae976bcffef7921c0184e37b1453ff79ca91db093156a7313b8",
+      "id": "methods.receivers-method-sets",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "e43f41c59d9af33b748f4fb83d90f68e532e6e68550a95795a0ebaaf77a2cfc3",
+      "id": "methods.values-expressions",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "ac787953274b1f5eeba2d83e65f5a8d9b4c9e6e0e7c074a1e66a75d673c472d1",
+      "id": "packages.import-cycles",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "1c0e9e425155b6c995a81ef8a7ae05b4dddfd1d2e0041cdfab9795062cf2d5e2",
+      "id": "packages.imports-exports-naming",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "3ddc710c322a3b3d1a8c006fed414f1893317dfb2fb11c146b329ca36dedb3f2",
+      "id": "packages.init-order-cycles",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "3448024223eb653d7b2aabfd3e909d2e66080e602e94bbfcce5214c27903ca04",
+      "id": "packages.initialization-order",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "5bef008db4548d3803f77de868aa4f3370395d07280423c49c2466aa7d6b87a9",
+      "id": "packages.internal-boundaries",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "af8e50f706028dd7098b2c00fbb025852cc3da27e5a089fe209dcdab439fa75a",
+      "id": "packages.internal-layout-tests",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "e8228416ea794a6eb508aaae9940426de01918e0c1a36a59394db14b8fcd8f2e",
+      "id": "packages.test-package-boundaries",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "fccc5b41d660ddb554339ef0d7464220b46a00b29c3f8f3d026211893136dda8",
+      "id": "pointers.address-deref-nil",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "e03928acecf5d3d625ab20a41bc11e393399ca633eabea1300062e144eaf0a19",
+      "id": "pointers.mutation-sharing",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "bfcd45461350161abf555a91521a9b8b00f89dcc40df47fe321103d764f81028",
+      "id": "pointers.receiver-choice",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "a655e0207b94afcea4cc154af0459f364fcda788165fc63fce6225b606694990",
+      "id": "slices.append-aliasing",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "498c763bbc1c6c8c906042d288e06fb3dfd20a7257430bb542fb61e25a6a903f",
+      "id": "slices.append-growth",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "36552f1deda3effc633fa4187977ef55f1a227a739f1c1c6cf8ad3e3e11d1866",
+      "id": "slices.backing-array-aliasing",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "b342713dd121845c0917a1742441979dee546abedbfff7582370be695ebc2329",
+      "id": "slices.capacity-bounds",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "4df1595bc1fdebb66c6454b5d3dc618fe8d7a28b48b99bd710129973d1b0c047",
+      "id": "slices.copy-overlap",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "69e3c5e89f7cee2244a89c064d5dd4424c3f92aae3d653ac1243f7f308534b8c",
+      "id": "slices.full-slice-expressions",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "bf90004558b9ae910f832a0dc1634a6d3b7d53867b0c9aac13425b54c4ad03fe",
+      "id": "slices.growth-allocation",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "87487ecdf98061d42e9683337a2ac47ec7b01b977da96912d3a9ebb7c8edb0c9",
+      "id": "slices.header-model",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "941d8c2f7c8f396a6005579c2ada44284419d74b215535daa97018662004d59a",
+      "id": "slices.len-cap-slicing",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "e32f5b28a206bb2745e71b86b5b45069fc591c262d3652bb6147a7d263e850c6",
+      "id": "slices.model",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "45eff3b830ca0f156fc9b7c2908cddcbcf956c1be1b0786f231d601c4684a7cb",
+      "id": "slices.nil-empty",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "77acaeaa039417f5b7d00735647d560aef067858ee3519a8968bc335b1464ab6",
+      "id": "slices.preallocation",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "7dd5a045482e78ac299e344241149bef3d0c4f8ab26c8113cda62bb9ba792530",
+      "id": "slices.subslice-retention",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "94eb55be44395bccea0349b9e8a86779ab0ca6eb6df8a7cbeb5e737d1059d3cf",
+      "id": "strings.building",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "2f2353ffadbf87b16ad5c410481e52251a59a9888df50c69c8294cb71da06b9e",
+      "id": "strings.byte-rune-conversions",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "a1c0779e8183608eb06edcfee99b9f9060ca9562f8a7f0aac4bb414829293131",
+      "id": "strings.construction-conversion",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "61eac6cb287a1b51686496c8a7064f39bcc4a634c51e897b2b94cd0a0657f80d",
+      "id": "strings.formatting",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "9849b1c6527abda4b9a9450cf8a6c62b1f1e4a77ad860bbca27b79cc9a8f94bb",
+      "id": "strings.immutable-bytes",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "64768de34a4ac37f1cddfe42d6073e2a90c6a5bc9504e8ccb9a1414aaf97cc37",
+      "id": "strings.standard-library",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "d76917c1f3b47d53ac89b4f915fa1aa20745224be318b97d9199de15f2b765ef",
+      "id": "structs.copy-equality",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "4f08d41d1ca9e9638614be7e6ce3551daf73243bad51834ef0f149262d3e617d",
+      "id": "structs.field-visibility-tags",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "a468dda5f792fd7adb981dda159b275a4b3c1b561c7ff5d7aa4b3e2ebb2f5b93",
+      "id": "structs.literals-zero",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "0053ac66fa86e3ef3c3ca3154099bbe7cabeb2fc16ea0f6ef57c23005e50b9e3",
+      "id": "sync.atomics",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "533bf266d58bb32846210d7833b1c02e01584a8794c26f8877f7084706b1fa78",
+      "id": "sync.cond",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "af0b1d60fda637efdf0ccd5e3d7de63150c631df9bf74dbe0c5fb15769923daf",
+      "id": "sync.data-races-happens-before",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "79868338cfdd4d83d6767e578d32b5fd8dd465583b0fd4bab1438a4cfda71e77",
+      "id": "sync.mutex-critical-sections",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "ab6ab16b967cae2ab42a81d5722191149e29ad665ba980802554ec02452a01be",
+      "id": "sync.mutex-invariants",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "5cbdb1d0bab8da78fe2e8d1683f4bac0382edbbfb0565adbd63b51550fdb55e9",
+      "id": "sync.mutex-ownership",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "7e11a29ddb8c029e40ecfdf8996361d4b4416035f258cbabd87263f028dc2e46",
+      "id": "sync.once-initialization",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "b9a954e7bc24a624830a712ffeb326bb7088c11870e1780850d120cce81bd337",
+      "id": "sync.pool",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "e333d12824bfa9622fe9b7a3a0e1567d42769cc15259abb2834960c09c38ff7c",
+      "id": "sync.rwmutex-tradeoffs",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "98df649a740ff5918fa8733ad693c2186e6ff5a2ad4f46b281c2486cd8471365",
+      "id": "sync.waitgroup-lifecycle",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "ce41fca22386ba7653773b5aea34d03da7e91848f28af1fca286e0cb83d11756",
+      "id": "testing.basics-diagnostics",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "41a488d1c637fbd8d79a6098c991891105479890b197babd90a18ee6a310c45d",
+      "id": "testing.cleanup",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "1cc877167010b62a92e8fda802bfd5c372256fa2d834eab1e1f1560a8a702947",
+      "id": "testing.deterministic-boundaries",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "95997f0a4535821b240d309a6ee467409da7bdbd76aabe86d955bbd62c2000e1",
+      "id": "testing.examples",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "d202d18c3df6b71e40bcfe4da41f470ef65056118adcd752e664e156f69227ea",
+      "id": "testing.examples-golden",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "cd9caa10ca3d7d674a76a318a49bf15e396882e76277959a4c8caa5c04c904d4",
+      "id": "testing.golden",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "d0d75d78d48625addd81c9f4a43177efa27e82b517eadd37f8ce6a3537ab3cba",
+      "id": "testing.helpers",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "aa5835876a97406d5c4f1903237fcc49ff2195eb392245274a1e826e0c8d5ad3",
+      "id": "testing.helpers-cleanup",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "8c9466f278ce80806fba22bef99eb937b820a6695e6872ad98dfb0721ded6dca",
+      "id": "testing.parallel",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "140b9434f53883be162c7825763f6ece36cdbcf6ef9c8fe125edd227c58fe5e8",
+      "id": "testing.parallel-race",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "211228a3627b475357bccb17f6499ca27a9a7ec142a078d46e4f3b64e7e7a58c",
+      "id": "testing.race-detector",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "e7557281ec238469591ab813d8ec9af1f027c8f7e5c1e2b491521d3fec22d9b1",
+      "id": "testing.seams-doubles",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "c69c79c17d9a2fc834d3092608bb493ac3bd734c9699d15849cd03882df4c655",
+      "id": "testing.subtests",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "32c4ffbfc2e248bb2c8fa121f613084ef02b6b44f59b88534671b8f82929b846",
+      "id": "testing.table-driven",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "21402ee477df61e02558c9f68bfbf89cd2812b546d0d73ff4a61f245888a8f7a",
+      "id": "testing.table-subtests",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "4137813a2b2d462fa8c0dabfb344de0090e67fe7bab8f833004a0e0ea55da264",
+      "id": "time.duration-arithmetic",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "90f63a4edc90aa4955104aa2732acb1f02d4ee41f839846334382e60223151b5",
+      "id": "time.parsing-zones",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "f693b743537f043c7004ca0a8e0b57161ae402d7804e8049900a3e99d64b058a",
+      "id": "time.timers-tickers",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "84585c46da61039ad93a0a4d23815827e000b5324488007ba0f9f5faf3603734",
+      "id": "toolchain.build-run",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "593df785b9029f0c6ca9a382c95a502941be6128878de621cb814715e1ed4301",
+      "id": "toolchain.docs-environment",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "f637a421120e7f1fec5ce7ee836f76440885307780939c7f7eac606c37c6605b",
+      "id": "toolchain.formatting-vetting",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "37ff267270187f15a93e94ad6319ffa6431f58022aed7369da48bd33efaae841",
+      "id": "toolchain.modules-workspaces",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "ebf4cc2d2b9b15c2d6b53580b58d119e3bbdeaf4b75fa9ba2cb97815b2e521dc",
+      "id": "types.constants",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "7ec8dc530185895fb5daf5c951e7692961cc458d9b805533265ac1eb2cc80365",
+      "id": "types.constants-iota",
+      "status": "deprecated"
+    },
+    {
+      "contract_sha256": "097061bfc6d75a9b0b54ddc30d448f845c87556c219fff06f56e05a0d2f0bdcf",
+      "id": "types.declarations-inference",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "dcfc3f17e10214289024c845975119053c9dff608c9ca6ab6dd86437ea148111",
+      "id": "types.floating-point-semantics",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "d55226e92c2b71814fbae77a11c74ef23cbadbc684a0f26feaa804d7e911229d",
+      "id": "types.iota-enumeration",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "1543a0a9c60bb46bc30fcd056147b62653e87ded8e555338a12dc5f59c492df1",
+      "id": "types.named-underlying",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "4ab2bd47c6946c23547e23b059c7f9a498b85edd6298ae1287c5d48064e4df12",
+      "id": "types.numeric-conversions",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "d3e351b418358ac5688c184fa640150abf6ef429522dca525036d7364c9a75f1",
+      "id": "types.zero-values",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "385a32d9771fbab9a8fd518680d167e9c4e0683233192fcf787854a55ae2ffda",
+      "id": "unicode.invalid-utf8",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "f5f019f01c1a439875e665cc2c0113c5cd67611309aa1d047bea8dfb333c4976",
+      "id": "unicode.range-decoding",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "269064a7e7b21db4c513087a3eb43af8e837fb852fba2c876cdd4677340db2b7",
+      "id": "unicode.rune-model",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "f5e6eead1cfa9837803c103282579bbc5e4c0989be7dec47e739ba9e6a03f86e",
+      "id": "unicode.utf8-encoding",
+      "status": "active"
+    },
+    {
+      "contract_sha256": "882c0ebf6bcb72bfc857f1fe3eaf522f7ad0359402d0ed8ab7bc2e7bb9bd8fb8",
+      "id": "unicode.utf8-runes",
+      "status": "deprecated"
+    }
+  ],
+  "from_taxonomy_version": 3,
+  "reviewed_documents": [
+    {
+      "path": "catalog/reviews/exercism-go.yaml",
+      "sha256": "05bf10d9bdbc282ca66c8b0c5bc9129deab1475be5a53bab3c303d51ec698f03",
+      "skill_ids": [
+        "arrays.indexing-iteration",
+        "arrays.value-semantics",
+        "channels.close-semantics",
+        "channels.ownership",
+        "control-flow.for",
+        "control-flow.if",
+        "control-flow.range",
+        "control-flow.switch",
+        "encoding.binary-marshaling",
+        "errors.as",
+        "errors.panic-recover-boundaries",
+        "errors.propagation-context",
+        "errors.sentinels-creation",
+        "errors.typed",
+        "errors.wrapping",
+        "expressions.arithmetic",
+        "expressions.boolean-logic",
+        "expressions.comparison",
+        "functions.closure-capture",
+        "functions.defer",
+        "functions.function-values",
+        "functions.signatures-results",
+        "functions.variadic",
+        "generics.type-parameters-inference",
+        "goroutines.launch-lifecycle",
+        "goroutines.state-ownership",
+        "interfaces.dynamic-type-value",
+        "interfaces.implicit-satisfaction",
+        "interfaces.small-contracts",
+        "interfaces.stringer-contract",
+        "interfaces.type-assertions",
+        "interfaces.type-switches",
+        "io.files-cleanup",
+        "io.reader-writer-contracts",
+        "io.scanning",
+        "maps.iteration",
+        "maps.nil-delete-clear",
+        "maps.operations-comma-ok",
+        "methods.method-sets",
+        "methods.receiver-semantics",
+        "packages.imports-exports-naming",
+        "pointers.address-deref-nil",
+        "pointers.mutation-sharing",
+        "slices.append-growth",
+        "slices.backing-array-aliasing",
+        "slices.header-model",
+        "slices.len-cap-slicing",
+        "slices.preallocation",
+        "strings.building",
+        "strings.byte-rune-conversions",
+        "strings.formatting",
+        "strings.immutable-bytes",
+        "strings.standard-library",
+        "structs.copy-equality",
+        "structs.field-visibility-tags",
+        "structs.literals-zero",
+        "sync.data-races-happens-before",
+        "sync.mutex-critical-sections",
+        "sync.mutex-ownership",
+        "testing.basics-diagnostics",
+        "testing.deterministic-boundaries",
+        "testing.seams-doubles",
+        "testing.table-driven",
+        "time.duration-arithmetic",
+        "time.parsing-zones",
+        "toolchain.build-run",
+        "toolchain.modules-workspaces",
+        "types.constants",
+        "types.declarations-inference",
+        "types.floating-point-semantics",
+        "types.iota-enumeration",
+        "types.named-underlying",
+        "types.numeric-conversions",
+        "types.zero-values",
+        "unicode.range-decoding",
+        "unicode.rune-model",
+        "unicode.utf8-encoding"
+      ],
+      "snapshot_path": "curriculum/migrations/snapshots/exercism-reviews-v3.yaml"
+    },
+    {
+      "path": "catalog/seed-plans/exercism-foundation-pilot.yaml",
+      "sha256": "0cbbf900b5da2ba75460bd0f2d54c832f64e1debeaa2f0daadfe2025c134a2c5",
+      "skill_ids": [
+        "arrays.indexing-iteration",
+        "arrays.value-semantics",
+        "benchmarks.allocations",
+        "benchmarks.experimental-design",
+        "benchmarks.loops-timing",
+        "channels.buffering-backpressure",
+        "channels.cancellation",
+        "channels.close-semantics",
+        "channels.directional",
+        "channels.fan-out-in",
+        "channels.nil-disabling",
+        "channels.operations-blocking",
+        "channels.ownership",
+        "channels.pipeline",
+        "channels.range-drain",
+        "channels.select",
+        "context.cancellation",
+        "context.deadlines",
+        "context.derivation",
+        "context.propagation-api",
+        "context.timeouts",
+        "context.values-boundaries",
+        "control-flow.for",
+        "control-flow.if",
+        "control-flow.range",
+        "control-flow.switch",
+        "embedding.field-promotion",
+        "embedding.method-promotion-ambiguity",
+        "encoding.binary-marshaling",
+        "encoding.json-shape-tags",
+        "encoding.streaming-strictness",
+        "encoding.text-marshaling",
+        "errors.as",
+        "errors.is",
+        "errors.panic-recover-boundaries",
+        "errors.propagation-context",
+        "errors.sentinels-creation",
+        "errors.typed",
+        "errors.wrapping",
+        "expressions.arithmetic",
+        "expressions.boolean-logic",
+        "expressions.comparison",
+        "functions.closure-capture",
+        "functions.defer",
+        "functions.function-values",
+        "functions.signatures-results",
+        "functions.variadic",
+        "fuzzing.invariants",
+        "fuzzing.reproduction",
+        "fuzzing.targets-seeds",
+        "generics.approximation-unions",
+        "generics.constraints-type-sets",
+        "generics.reusable-data-structures",
+        "generics.type-parameters-inference",
+        "goroutines.capture-arguments",
+        "goroutines.launch-lifecycle",
+        "goroutines.leak-prevention",
+        "goroutines.panic-boundaries",
+        "goroutines.result-error-collection",
+        "goroutines.state-ownership",
+        "interfaces.dynamic-type-value",
+        "interfaces.implicit-satisfaction",
+        "interfaces.small-contracts",
+        "interfaces.stringer-contract",
+        "interfaces.type-assertions",
+        "interfaces.type-switches",
+        "interfaces.typed-nil",
+        "io.buffered",
+        "io.copy-limit-composition",
+        "io.files-cleanup",
+        "io.pipe-lifecycle",
+        "io.reader-writer-contracts",
+        "io.scanning",
+        "maps.iteration",
+        "maps.key-comparability",
+        "maps.nil-delete-clear",
+        "maps.operations-comma-ok",
+        "methods.method-sets",
+        "methods.receiver-semantics",
+        "methods.values-expressions",
+        "packages.import-cycles",
+        "packages.imports-exports-naming",
+        "packages.initialization-order",
+        "packages.internal-boundaries",
+        "packages.test-package-boundaries",
+        "pointers.address-deref-nil",
+        "pointers.mutation-sharing",
+        "slices.append-growth",
+        "slices.backing-array-aliasing",
+        "slices.copy-overlap",
+        "slices.full-slice-expressions",
+        "slices.header-model",
+        "slices.len-cap-slicing",
+        "slices.nil-empty",
+        "slices.preallocation",
+        "slices.subslice-retention",
+        "strings.building",
+        "strings.byte-rune-conversions",
+        "strings.formatting",
+        "strings.immutable-bytes",
+        "strings.standard-library",
+        "structs.copy-equality",
+        "structs.field-visibility-tags",
+        "structs.literals-zero",
+        "sync.atomics",
+        "sync.cond",
+        "sync.data-races-happens-before",
+        "sync.mutex-critical-sections",
+        "sync.mutex-ownership",
+        "sync.once-initialization",
+        "sync.pool",
+        "sync.rwmutex-tradeoffs",
+        "sync.waitgroup-lifecycle",
+        "testing.basics-diagnostics",
+        "testing.cleanup",
+        "testing.deterministic-boundaries",
+        "testing.examples",
+        "testing.golden",
+        "testing.helpers",
+        "testing.parallel",
+        "testing.race-detector",
+        "testing.seams-doubles",
+        "testing.subtests",
+        "testing.table-driven",
+        "time.duration-arithmetic",
+        "time.parsing-zones",
+        "time.timers-tickers",
+        "toolchain.build-run",
+        "toolchain.docs-environment",
+        "toolchain.formatting-vetting",
+        "toolchain.modules-workspaces",
+        "types.constants",
+        "types.declarations-inference",
+        "types.floating-point-semantics",
+        "types.iota-enumeration",
+        "types.named-underlying",
+        "types.numeric-conversions",
+        "types.zero-values",
+        "unicode.invalid-utf8",
+        "unicode.range-decoding",
+        "unicode.rune-model",
+        "unicode.utf8-encoding"
+      ],
+      "snapshot_path": "curriculum/migrations/snapshots/exercism-seeds-v3.yaml"
+    },
+    {
+      "path": "curriculum/evidence/exercism-go.yaml",
+      "sha256": "98f93350520bf6319d8a348a8a016fac3262d57c227b8b82c7993308427487c2",
+      "skill_ids": [
+        "control-flow.for",
+        "control-flow.if",
+        "control-flow.range",
+        "control-flow.switch",
+        "expressions.arithmetic",
+        "expressions.boolean-logic",
+        "expressions.comparison",
+        "functions.function-values",
+        "functions.variadic",
+        "interfaces.stringer-contract",
+        "interfaces.type-assertions",
+        "strings.formatting",
+        "strings.standard-library",
+        "types.constants",
+        "types.floating-point-semantics",
+        "types.named-underlying",
+        "types.zero-values",
+        "unicode.rune-model"
+      ],
+      "snapshot_path": "curriculum/migrations/snapshots/exercism-evidence-v3.yaml"
+    },
+    {
+      "path": "curriculum/mappings/exercism-go.yaml",
+      "sha256": "28238a0d041da4d283ae9d0873ceedd1dcf4ac3b83a68d1ee006158ce839a9f8",
+      "skill_ids": [
+        "control-flow.for",
+        "control-flow.if",
+        "control-flow.range",
+        "control-flow.switch",
+        "errors.as",
+        "errors.is",
+        "errors.panic-recover-boundaries",
+        "errors.propagation-context",
+        "errors.sentinels-creation",
+        "errors.typed",
+        "errors.wrapping",
+        "expressions.arithmetic",
+        "expressions.boolean-logic",
+        "expressions.comparison",
+        "functions.closure-capture",
+        "functions.defer",
+        "functions.function-values",
+        "functions.signatures-results",
+        "functions.variadic",
+        "interfaces.dynamic-type-value",
+        "interfaces.implicit-satisfaction",
+        "interfaces.small-contracts",
+        "interfaces.stringer-contract",
+        "interfaces.type-assertions",
+        "interfaces.type-switches",
+        "interfaces.typed-nil",
+        "maps.iteration",
+        "maps.key-comparability",
+        "maps.nil-delete-clear",
+        "maps.operations-comma-ok",
+        "methods.method-sets",
+        "methods.receiver-semantics",
+        "methods.values-expressions",
+        "packages.import-cycles",
+        "packages.imports-exports-naming",
+        "packages.initialization-order",
+        "packages.internal-boundaries",
+        "packages.test-package-boundaries",
+        "pointers.address-deref-nil",
+        "pointers.mutation-sharing",
+        "slices.append-growth",
+        "slices.backing-array-aliasing",
+        "slices.copy-overlap",
+        "slices.full-slice-expressions",
+        "slices.header-model",
+        "slices.len-cap-slicing",
+        "slices.nil-empty",
+        "slices.preallocation",
+        "slices.subslice-retention",
+        "strings.building",
+        "strings.byte-rune-conversions",
+        "strings.formatting",
+        "strings.immutable-bytes",
+        "strings.standard-library",
+        "structs.copy-equality",
+        "structs.field-visibility-tags",
+        "structs.literals-zero",
+        "time.duration-arithmetic",
+        "time.parsing-zones",
+        "time.timers-tickers",
+        "types.constants",
+        "types.declarations-inference",
+        "types.floating-point-semantics",
+        "types.named-underlying",
+        "types.numeric-conversions",
+        "types.zero-values",
+        "unicode.rune-model"
+      ],
+      "snapshot_path": "curriculum/migrations/snapshots/exercism-map-v3.yaml"
+    }
+  ],
+  "schema_version": 1,
+  "to_taxonomy_version": 4
+}

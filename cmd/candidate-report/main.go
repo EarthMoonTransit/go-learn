@@ -34,7 +34,7 @@ func main() {
 	if err != nil {
 		fail(err)
 	}
-	version, skills, err := triage.LoadSkillContracts(root)
+	version, skills, err := triage.LoadReviewedSkillContracts(root)
 	if err != nil {
 		fail(err)
 	}

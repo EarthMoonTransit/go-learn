@@ -1,0 +1,346 @@
+{
+  "$defs": {
+    "evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "minimum_distinct_task_types": {
+          "maximum": 6,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "observable_outcomes": {
+          "items": {
+            "minLength": 10,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "required_modes": {
+          "items": {
+            "enum": [
+              "implementation",
+              "debugging",
+              "verification-or-integration"
+            ]
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "minimum_distinct_task_types",
+        "required_modes",
+        "observable_outcomes"
+      ],
+      "type": "object"
+    },
+    "minimum": {
+      "additionalProperties": false,
+      "properties": {
+        "primary": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "total": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "primary",
+        "total"
+      ],
+      "type": "object"
+    },
+    "skill": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "active"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "assignable": {
+                "const": true
+              },
+              "common_misconceptions": {
+                "minItems": 2
+              },
+              "evidence_requirements": {
+                "properties": {
+                  "minimum_distinct_task_types": {
+                    "minimum": 3
+                  },
+                  "observable_outcomes": {
+                    "minItems": 2
+                  },
+                  "required_modes": {
+                    "minItems": 3
+                  }
+                }
+              },
+              "mastery": {
+                "minItems": 2
+              },
+              "recommended_exercise_types": {
+                "minItems": 3
+              }
+            },
+            "required": [
+              "assignable"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "deprecated"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "assignable": {
+                "const": false
+              },
+              "common_misconceptions": {
+                "maxItems": 0
+              },
+              "evidence_requirements": {
+                "properties": {
+                  "minimum_distinct_task_types": {
+                    "const": 0
+                  },
+                  "observable_outcomes": {
+                    "maxItems": 0
+                  },
+                  "required_modes": {
+                    "maxItems": 0
+                  }
+                }
+              },
+              "mastery": {
+                "maxItems": 0
+              },
+              "minimum_occurrences": {
+                "properties": {
+                  "primary": {
+                    "const": 0
+                  },
+                  "total": {
+                    "const": 0
+                  }
+                }
+              },
+              "prerequisites": {
+                "maxItems": 0
+              },
+              "recommended_exercise_types": {
+                "maxItems": 0
+              }
+            },
+            "required": [
+              "replaced_by"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "assignable": {
+          "type": "boolean"
+        },
+        "common_misconceptions": {
+          "items": {
+            "minLength": 10,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "definition": {
+          "minLength": 10,
+          "type": "string"
+        },
+        "domain": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "type": "string"
+        },
+        "evidence_requirements": {
+          "$ref": "#/$defs/evidence"
+        },
+        "id": {
+          "$ref": "#/$defs/skillId"
+        },
+        "mastery": {
+          "items": {
+            "minLength": 10,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "minimum_occurrences": {
+          "$ref": "#/$defs/minimum"
+        },
+        "prerequisites": {
+          "items": {
+            "$ref": "#/$defs/skillId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "recommended_exercise_types": {
+          "items": {
+            "enum": [
+              "implement",
+              "debug",
+              "predict",
+              "refactor",
+              "test-writing",
+              "performance"
+            ]
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "replaced_by": {
+          "items": {
+            "$ref": "#/$defs/skillId"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "status": {
+          "enum": [
+            "active",
+            "deprecated"
+          ]
+        },
+        "taxonomy_version": {
+          "const": 4
+        }
+      },
+      "required": [
+        "id",
+        "domain",
+        "definition",
+        "prerequisites",
+        "common_misconceptions",
+        "recommended_exercise_types",
+        "minimum_occurrences",
+        "mastery",
+        "evidence_requirements",
+        "status",
+        "assignable",
+        "taxonomy_version"
+      ],
+      "type": "object"
+    },
+    "skillId": {
+      "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$",
+      "type": "string"
+    }
+  },
+  "$id": "urn:go-practice-bank:taxonomy:v4",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "coverage_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "counted_status": {
+          "const": "ready"
+        },
+        "note": {
+          "minLength": 20,
+          "type": "string"
+        },
+        "prerequisite_counts_as_occurrence": {
+          "const": false
+        },
+        "primary_skill_per_task": {
+          "const": 1
+        }
+      },
+      "required": [
+        "counted_status",
+        "primary_skill_per_task",
+        "prerequisite_counts_as_occurrence",
+        "note"
+      ],
+      "type": "object"
+    },
+    "domains": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "type": "string"
+          },
+          "skills": {
+            "items": {
+              "$ref": "#/$defs/skill"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "title": {
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "skills"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "target_ready_tasks": {
+      "additionalProperties": false,
+      "properties": {
+        "max": {
+          "maximum": 500,
+          "minimum": 350,
+          "type": "integer"
+        },
+        "min": {
+          "maximum": 500,
+          "minimum": 350,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "min",
+        "max"
+      ],
+      "type": "object"
+    },
+    "track": {
+      "const": "go-fundamentals"
+    },
+    "version": {
+      "const": 4
+    }
+  },
+  "required": [
+    "version",
+    "track",
+    "target_ready_tasks",
+    "coverage_policy",
+    "domains"
+  ],
+  "type": "object"
+}

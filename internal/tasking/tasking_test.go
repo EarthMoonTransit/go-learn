@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"go-practice-bank/internal/isolation"
+	"go-practice-bank/internal/taxonomy"
 )
 
 const syntheticID = "synthetic-identity-001"
@@ -730,12 +731,17 @@ func fixtureRepository(t *testing.T) string {
 			t.Fatal(err)
 		}
 	}
-	for _, relative := range []string{
+	contracts := []string{
 		"LICENSE", "THIRD_PARTY_NOTICES",
 		"schemas/task.schema.json", "schemas/task-v2.schema.json", "schemas/task-lifecycle.schema.json", "schemas/task-review.schema.json", "schemas/task-provenance.schema.json", "schemas/task-provenance-v2.schema.json", "schemas/project-identity.schema.json", "schemas/outbound-license-policy.schema.json", "schemas/task-quality-report.schema.json", "schemas/task-check-collection.schema.json", "schemas/task-aggregate-report.schema.json", "schemas/taxonomy-v3.schema.json", "schemas/toolchain-policy.schema.json",
 		"config/toolchain.yaml", "config/project-identity.yaml", "config/outbound-license.yaml",
 		"curriculum/skills.yaml", "sources/registry.yaml",
-	} {
+	}
+	contracts = append(contracts, taxonomy.ContractPaths()...)
+	for _, relative := range contracts {
+		if err := os.MkdirAll(filepath.Dir(filepath.Join(root, filepath.FromSlash(relative))), 0o755); err != nil {
+			t.Fatal(err)
+		}
 		if err := isolation.CopyFile(filepath.Join(repositoryRoot, filepath.FromSlash(relative)), filepath.Join(root, filepath.FromSlash(relative))); err != nil {
 			t.Fatalf("copy repository contract %s: %v", relative, err)
 		}

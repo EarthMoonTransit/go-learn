@@ -7,6 +7,7 @@ import (
 	"io"
 
 	"go-practice-bank/internal/safeio"
+	"go-practice-bank/internal/taxonomy"
 	"gopkg.in/yaml.v3"
 )
 
@@ -28,6 +29,31 @@ func Load(root string) (Bundle, error) {
 }
 
 func LoadSkillContracts(root string) (int, map[string]SkillContract, error) {
+	version, contracts, err := loadSkillContractsAt(root, "curriculum/skills.yaml")
+	if err != nil {
+		return version, contracts, err
+	}
+	switch version {
+	case 3:
+	case 4:
+		_, err = taxonomy.ValidateLiveTransition(root)
+	default:
+		err = fmt.Errorf("triage: unsupported taxonomy version %d", version)
+	}
+	return version, contracts, err
+}
+
+// LoadReviewedSkillContracts retains the exact taxonomy of the reviewed source
+// decisions after validating their finite compatibility with the live taxonomy.
+func LoadReviewedSkillContracts(root string) (int, map[string]SkillContract, error) {
+	path, _, err := taxonomy.ReviewedPath(root)
+	if err != nil {
+		return 0, nil, err
+	}
+	return loadSkillContractsAt(root, path)
+}
+
+func loadSkillContractsAt(root, path string) (int, map[string]SkillContract, error) {
 	var document struct {
 		Version          int       `yaml:"version"`
 		Track            string    `yaml:"track"`
@@ -53,7 +79,7 @@ func LoadSkillContracts(root string) (int, map[string]SkillContract, error) {
 			} `yaml:"skills"`
 		} `yaml:"domains"`
 	}
-	if err := decodeStrict(root, "curriculum/skills.yaml", &document); err != nil {
+	if err := decodeStrict(root, path, &document); err != nil {
 		return 0, nil, err
 	}
 	contracts := map[string]SkillContract{}

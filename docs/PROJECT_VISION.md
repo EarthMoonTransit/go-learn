@@ -212,9 +212,12 @@ batch-ами с независимым review и периодической де
 - goroutines, channels, sync primitives и context;
 - ownership, cancellation, termination, race conditions и leak prevention.
 
-Текущая taxonomy v3 содержит 142 assignable skills. Полный foundation bank
-должен удовлетворить её encounter requirements, а основной маршрут — дать
-достаточную глубину без обязательного прохождения всех альтернатив.
+Текущая taxonomy v4 содержит 145 assignable skills и сохраняет 35 deprecated
+compatibility stubs. ADR 0031 относит 141 active skill к foundation и четыре
+специальных исхода синхронизации к specialist. Полный банк сохраняет требования
+всех 145 skills; раздельная числовая scope-проверка требует следующей tooling
+партии. Основной маршрут должен дать достаточную глубину без обязательного
+прохождения всех альтернатив; текущий all-bank route не сокращён этой миграцией.
 
 ### 5.2. Backend track
 
@@ -306,8 +309,9 @@ UI не должен дублировать scheduler, progress и verification 
 - Foundation alpha: около 60 качественных задач.
 - Foundation beta: 120–180 задач и стабильный локальный UI.
 - Foundation core route: ориентировочно 250–350 задач.
-- Foundation full bank: не менее 409 primary encounters; вероятный размер
-  450–650 задач с альтернативами и remedial practice.
+- Foundation full bank: не менее 418 primary и 708 total encounters;
+  неизменный target банка — 350–500 ready tasks с альтернативами и remedial
+  practice. При одном primary на задачу фактический минимум не ниже 418.
 - Backend/production core: ориентировочно 180–260 задач.
 - Полный curated bank: ориентировочно 800–1,200 задач.
 - Основной персонализированный маршрут не обязан включать весь банк; ожидаемый
