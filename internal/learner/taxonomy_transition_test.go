@@ -22,10 +22,29 @@ func TestAdditiveTaxonomyPreservesLearnerHistoryAndWorkspace(t *testing.T) {
 	root := t.TempDir()
 	// Copy authored files only as data. Verification below is the explicit fast
 	// service fixture; no task source or tests are executed in this regression.
-	// Internal catalog review bytes are deliberately absent from this checkout.
+	// All reviewed source-document bytes are deliberately absent below, including
+	// the retained snapshots, so consumers cannot acquire a snapshot dependency.
 	for _, path := range []string{"curriculum", "schemas", "config", "sources", "docs", "theory", "tasks/ready"} {
 		if err := isolation.CopyTree(filepath.Join(repository, path), filepath.Join(root, path)); err != nil {
 			t.Fatal(err)
+		}
+	}
+	for _, relative := range []string{
+		"curriculum/mappings/exercism-go.yaml",
+		"curriculum/evidence/exercism-go.yaml",
+		"catalog/reviews/exercism-go.yaml",
+		"catalog/seed-plans/exercism-foundation-pilot.yaml",
+		"curriculum/migrations/snapshots/exercism-map-v3.yaml",
+		"curriculum/migrations/snapshots/exercism-evidence-v3.yaml",
+		"curriculum/migrations/snapshots/exercism-reviews-v3.yaml",
+		"curriculum/migrations/snapshots/exercism-seeds-v3.yaml",
+	} {
+		path := filepath.Join(root, filepath.FromSlash(relative))
+		if err := os.Remove(path); err != nil && !os.IsNotExist(err) {
+			t.Fatal(err)
+		}
+		if _, err := os.Lstat(path); !os.IsNotExist(err) {
+			t.Fatalf("reviewed bytes %s must be absent from learner fixture: %v", relative, err)
 		}
 	}
 	live, err := os.ReadFile(filepath.Join(root, "curriculum/skills.yaml"))
