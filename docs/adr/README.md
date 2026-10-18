@@ -36,3 +36,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0029` — remove false manual-timer prerequisite from context deadlines (`accepted for taxonomy preparation`)
 - `0030` — active pedagogical order with stable addresses and introduced-mechanism readiness (`accepted for T0b implementation`)
 - `0031` — foundation/specialist numeric bank scopes and additive taxonomy v4 (`accepted design for a separate migration batch; no live activation`)
+- `0032` — finite native hex fuzz-seed verification and collection v4 migration (`accepted design for a separate tooling batch; no live activation`)
