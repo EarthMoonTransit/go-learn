@@ -185,6 +185,21 @@ This prevents an aggregate timeout from truncating otherwise bounded checks;
 it is not a runtime-speed improvement. Cache/session optimization remains
 a separate measured change.
 
+## CI race suite budget (2026-10-18)
+
+Run `39136659242` stopped the learner race package at Go's default 10-minute
+alarm (600.036 s). The current test was 12 seconds old and its active subtest
+2 seconds old, running metadata YAML loading; there was no preceding assertion
+failure or data-race diagnostic. The same source passed local race in 370.528 s.
+CI now gives the complete race suite a bounded 20-minute package budget.
+The job remains bounded at 50 minutes and tagged integration at 30 minutes.
+Per-task deadlines, assertions, race instrumentation and collection reuse are
+unchanged. This aggregate budget does not establish that a run passes: exact-head
+`validate` must still complete successfully. The workflow/documentation-only
+change does not invalidate the current checker-input collection.
+
+Source: https://github.com/EarthMoonTransit/go-learn/actions/runs/39136659242.
+
 ## T0a read-only fixture budget
 
 T0a state regressions use a bounded disposable eight-task catalog with the real
