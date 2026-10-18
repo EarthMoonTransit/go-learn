@@ -1,0 +1,49 @@
+schema_version: 2
+id: hex-wire-invariants-001
+title: Check hexadecimal wire invariants
+activity: fuzz-test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: fuzzing.invariants
+    secondary: []
+prerequisites:
+    - fuzzing.targets-seeds
+new_concepts:
+    - fuzzing.invariants
+difficulty: intermediate
+estimated_time_minutes:
+    min: 20
+    max: 40
+verification:
+    profile: fuzz-seed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - paired-uppercase
+        - paired-nibble-order
+        - paired-byte-order
+        - false-status
+        - wrong-payload
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+    fuzz:
+        grammar: hex-codec-v1
+        target: FuzzHex
+        correct_variants:
+            - loop
+            - empty
+quality_status: ready

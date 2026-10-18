@@ -1,0 +1,26 @@
+schema_version: 2
+kind: adapted
+project:
+    identity: go-practice-bank
+    repository: https://github.com/EarthMoonTransit/go-learn
+    license: Apache-2.0
+    content_digest: 7b6610465aa8c38e4ba7f28e8b62da8e746879678bbab3f413090ef0489e2164
+creation:
+    author: codex-foundation-author
+    created_at: "2026-10-18"
+    summary: Go hexadecimal tests supplied the canonical-codec concept only. The byte/bool API, native target, corpus, properties, implementations and defect models were independently authored; no upstream code, test vectors or exercise text was copied.
+sources:
+    - registry_id: golang-go
+      repository: https://go.googlesource.com/go
+      commit: 2c31595783c74564c1299a5401dc6e606f379cc7
+      license: BSD-3-Clause
+      usage_mode: adapt
+      role: concept-seed
+      artifacts:
+        - path: src/encoding/hex/hex_test.go
+          sha256: b59de7b29f9b3d0bd75d661666d57fed17d87574b79f5a299a92f9c0f88123bb
+          usage: concept-only
+attribution_file: ATTRIBUTION.md
+release:
+    binding: deferred-to-release-manifest
+    manifest: provenance/releases/hex-seed-classes-001.yaml

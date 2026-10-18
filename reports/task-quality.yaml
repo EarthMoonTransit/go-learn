@@ -1355,6 +1355,42 @@ tasks:
         detected: 6
         survived: []
       legacy: false
+    - id: hex-seed-classes-001
+      state: ready
+      input_digest: cbb9e8f33948f0786b9082cfe7e54e049af942d497c782c2e319b899cae5ff8b
+      task_type: test-writing
+      primary_skill: fuzzing.targets-seeds
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
+        survived: []
+      legacy: false
+    - id: hex-wire-invariants-001
+      state: ready
+      input_digest: f6caeebe715bc724e5e0c2345115a5b7aaf49545de97d9bdde242a3ed1dc3c95
+      task_type: test-writing
+      primary_skill: fuzzing.invariants
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 5
+        total: 5
+        detected: 5
+        survived: []
+      legacy: false
     - id: independent-policies-001
       state: ready
       input_digest: 799b3c020ff6e014f19a38cea181329abe063110dacff910ba9b23ca6dcecfe9
@@ -3236,7 +3272,7 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 172
+      count: 174
     - state: rejected
       count: 1
     - state: retired
@@ -3249,7 +3285,7 @@ task_types:
     - task_type: refactor
       count: 3
     - task_type: test-writing
-      count: 41
+      count: 43
 gates:
     - id: task-state-policy
       status: pass

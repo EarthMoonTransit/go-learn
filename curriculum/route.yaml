@@ -1298,6 +1298,22 @@
           "skills": [
             "testing.seams-doubles"
           ]
+        },
+        {
+          "number": 5,
+          "task_id": "hex-seed-classes-001",
+          "role": "introduction",
+          "skills": [
+            "fuzzing.targets-seeds"
+          ]
+        },
+        {
+          "number": 6,
+          "task_id": "hex-wire-invariants-001",
+          "role": "introduction",
+          "skills": [
+            "fuzzing.invariants"
+          ]
         }
       ],
       "number": 8
