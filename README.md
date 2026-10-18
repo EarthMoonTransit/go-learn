@@ -39,10 +39,18 @@ go run ./cmd/task-promote -root . -id <task-id> -to in-review -actor <name> -rea
 go run ./cmd/task-report -root .
 go run ./cmd/validate -root . -phase1 -checks .tmp/results/task-checks.yaml
 go run ./cmd/task-report -root . -check -checks .tmp/results/task-checks.yaml
+go run ./cmd/coverage-report -root . -scope full -checks .tmp/results/task-checks.yaml
+go run ./cmd/coverage-report -root . -scope foundation -checks .tmp/results/task-checks.yaml
 go run ./cmd/validate -root . -coverage -checks .tmp/results/task-checks.yaml
 ```
 
 Последняя команда станет зелёной только после наполнения банка в следующих фазах.
+`validate -foundation-coverage -checks <collection>` отдельно требует числовые
+минимумы 141 foundation skills. Оба numeric отчёта сохраняют все 145 skills,
+дефициты specialist и full, а также общий target 350..500 ready tasks.
+Генерация и `coverage-report -check` допускают числовые дефициты; enforcement
+остаётся в `validate`. Modes, distinct types и observable outcomes требуют
+независимой semantic review. Подробный контракт — [QUALITY_GATES](docs/QUALITY_GATES.md).
 
 ## Карта репозитория
 

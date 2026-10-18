@@ -185,11 +185,16 @@ type Result struct {
 	ReadyTasks         int
 	ReviewedCandidates int
 	SelectedSeeds      int
+	NumericCoverage    *NumericCoverage
+	NumericUnavailable string
+	SelectedScope      string
+	SelectedSkillIDs   []string
 }
 
 type Options struct {
-	EnforceCoverage bool
-	AllowEmpty      bool
-	RunCommands     bool
-	Checks          *tasking.CheckCollection
+	EnforceCoverage           bool
+	EnforceFoundationCoverage bool
+	AllowEmpty                bool
+	RunCommands               bool
+	Checks                    *tasking.CheckCollection
 }

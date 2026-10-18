@@ -145,7 +145,65 @@ go test -tags=taskintegration ./...
 go run ./cmd/task-check -root . -all -output .tmp/results/task-checks.yaml
 go run ./cmd/validate -root . -phase1 -checks .tmp/results/task-checks.yaml
 go run ./cmd/task-report -root . -check -checks .tmp/results/task-checks.yaml
+go run ./cmd/coverage-report -root . -scope full -check -checks .tmp/results/task-checks.yaml
+go run ./cmd/coverage-report -root . -scope foundation -check -checks .tmp/results/task-checks.yaml
 ```
+
+### Scoped numeric reports
+
+`coverage-report` требует явные `-scope full|foundation` и `-checks`; команда
+не запускает task code. Она сначала проверяет ordinary repository validation,
+schema/freshness полного collection и `Report.Passed` каждой задачи. Любая ошибка,
+включая ordinary error с частичным Result, останавливает запись обоих файлов.
+Fresh collection с failed package и согласованными task-quality artifacts также
+отклоняется. Без eligible evidence новый numeric Result/CLI status unavailable;
+старые raw counts доступны для диагностики. Новый foundation selector требует
+`-checks` или явный `-run-commands`, создающий один effective collection.
+
+Фиксированные файлы `reports/coverage-{full,foundation}.{md,yaml}` используют
+собственную strict `schemas/coverage-report.schema.json`. Оба scope сохраняют
+145 active rows с actual/required primary/total и дефицитами, выбранные sorted
+IDs (145 или 141), foundation/specialist/full sums и independent ready target.
+Каждый дефицит обрезается снизу нулём **до** суммирования: surplus другого skill
+не компенсирует пропуск, total не компенсирует недостаток primary.
+Full numeric pass требует всех minima **и** общего target 350..500; foundation
+numeric pass требует только foundation minima. Меньший foundation target
+не вводится. Генерация без `-check` обновляет файлы; `-check` сравнивает точные
+bytes. Оба режима успешны при валидном неполном банке и отражают deficits.
+`validate -coverage` и `validate -foundation-coverage` отдельно enforce числа;
+оба флага вместе и каждый из них с `-phase1` — CLI usage error (exit 2).
+Ordinary/full v3 validation сохраняется; новые foundation/report paths требуют v4.
+
+Input identity — SHA-256 JSON encoding typed struct в порядке полей:
+`report_contract`, `selected_scope`, `taxonomy_version`, `classification`,
+`report_schema_sha256`, `check_contract`, `toolchain_policy_digest`, `tasks`.
+Classification содержит sorted по skill ID пары `skill_id, scope`; tasks —
+sorted по task ID тройки `id, state, input_digest` из полного validated collection.
+Schema digest вычисляется по точным bytes. Timing, execution counters, timestamps,
+absolute paths, formatting YAML collection и outputs в identity не входят.
+Исходные task/contract/schema bytes связаны через task input digests и schema
+digest; их форматирование остаётся input change. При этом
+переставленный collection по-прежнему отклоняется обычным validator: сортировка
+identity не ослабляет contract collection. Собственная report schema входит
+только в v4 TaskInputDigest; v3 contract и TaskContentDigest не меняются.
+
+Порядок обновления после изменения inputs: один `task-check -all -output`, затем
+`task-report -checks` для task-quality, затем оба `coverage-report -checks`.
+Validator, task-report check и оба coverage checks используют тот же collection.
+Собственные coverage outputs не проверяются внутри ordinary ValidateRoot,
+чтобы generation не зависела от собственной freshness. CI проверяет их отдельно.
+`semantic_review_status: not_evaluated_by_numeric_coverage` означает, что counts
+не устанавливают required modes, distinct task types, observable outcomes или
+learner mastery. Release требует отдельной semantic acceptance.
+
+Metadata-регрессии numeric guard/report используют ограниченный disposable
+catalog: все задачи шести Theory pages, три точные migration references и
+diversity control (сейчас 12 пакетов с исходными bytes, максимум 16). Полные
+taxonomy, scopes, route, source metadata и ordinary validation сохраняются; synthetic
+checks пересчитывают digests только этого fixture. Assertions для failed/current
+evidence, partial Result, v3, обоих scopes и всех active rows сохраняются.
+Это не evidence полного банка: acceptance collection исполняет все packages
+через `task-check` и повторно используется всеми report/validator consumers.
 
 Public release/export и итоговый foundation acceptance дополнительно используют
 `-coverage`. Промежуточный ready package не объявляет весь банк выпущенным;

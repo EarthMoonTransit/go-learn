@@ -65,6 +65,7 @@ func TaskInputDigest(root string, located LocatedTask) (string, error) {
 	}
 	if header.Version == 4 {
 		contracts = append(append([]string(nil), contracts...), taxonomy.ContractPaths()...)
+		contracts = append(contracts, "schemas/coverage-report.schema.json")
 	}
 	for _, relative := range contracts {
 		content, err := readDigestFile(filepath.Join(root, filepath.FromSlash(relative)))

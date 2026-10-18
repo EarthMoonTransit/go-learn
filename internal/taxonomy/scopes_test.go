@@ -8,6 +8,30 @@ import (
 	"testing"
 )
 
+func TestPublicCoverageScopeLoaderOwnsItsOutputAndRequiresV4(t *testing.T) {
+	root := fixture(t)
+	first, err := LoadCoverageScopes(root)
+	if err != nil || len(first.Foundation) != 141 || len(first.Specialist) != 4 {
+		t.Fatalf("public scopes: %+v, %v", first, err)
+	}
+	original := first.Foundation[0]
+	first.Foundation[0], first.Specialist[0] = "poisoned", "poisoned"
+	again, err := LoadCoverageScopes(root)
+	if err != nil || again.Foundation[0] != original || again.Specialist[0] == "poisoned" {
+		t.Fatalf("mutable result poisoned later scopes: %v", err)
+	}
+	var scopes CoverageScopes
+	rewrite(t, root, ScopePath, &scopes, func() { scopes.Foundation[0] = "functions.future" })
+	if _, err := LoadCoverageScopes(root); err == nil || !strings.Contains(err.Error(), "unknown skill") {
+		t.Fatalf("public loader accepted changed scope: %v", err)
+	}
+	v3 := t.TempDir()
+	writeDocument(t, v3, "curriculum/skills.yaml", []byte("version: 3\n"))
+	if _, err := LoadCoverageScopes(v3); err == nil || !strings.Contains(err.Error(), "taxonomy version 3 is unsupported") {
+		t.Fatalf("v3 acquired an implicit foundation: %v", err)
+	}
+}
+
 func TestExplicitScopesPreserveApprovedInventoryAndArithmetic(t *testing.T) {
 	root := fixture(t)
 	var live document
@@ -47,18 +71,18 @@ func TestExplicitScopesPreserveApprovedInventoryAndArithmetic(t *testing.T) {
 func TestLiveAndReviewedLoadersRejectInvalidScopes(t *testing.T) {
 	cases := []struct {
 		name, want string
-		change     func(*coverageScopes)
+		change     func(*CoverageScopes)
 	}{
-		{"schema version", "expected versioned", func(s *coverageScopes) { s.SchemaVersion = 2 }},
-		{"taxonomy version", "expected versioned", func(s *coverageScopes) { s.TaxonomyVersion = 3 }},
-		{"decision", "expected versioned", func(s *coverageScopes) { s.Decision = "unreviewed" }},
-		{"missing foundation", "missing skill", func(s *coverageScopes) { s.Foundation = s.Foundation[1:] }},
-		{"missing specialist", "missing skill", func(s *coverageScopes) { s.Specialist = s.Specialist[1:] }},
-		{"duplicate within scope", "duplicate skill", func(s *coverageScopes) { s.Foundation = append(s.Foundation, s.Foundation[0]) }},
-		{"duplicate across scopes", "duplicate skill", func(s *coverageScopes) { s.Specialist = append(s.Specialist, s.Foundation[0]) }},
-		{"unknown id", "unknown skill", func(s *coverageScopes) { s.Foundation[0] = "functions.future" }},
-		{"wildcard", "unknown skill", func(s *coverageScopes) { s.Foundation[0] = "*" }},
-		{"unapproved swap", "unapproved scope", func(s *coverageScopes) { s.Foundation[0], s.Specialist[0] = s.Specialist[0], s.Foundation[0] }},
+		{"schema version", "expected versioned", func(s *CoverageScopes) { s.SchemaVersion = 2 }},
+		{"taxonomy version", "expected versioned", func(s *CoverageScopes) { s.TaxonomyVersion = 3 }},
+		{"decision", "expected versioned", func(s *CoverageScopes) { s.Decision = "unreviewed" }},
+		{"missing foundation", "missing skill", func(s *CoverageScopes) { s.Foundation = s.Foundation[1:] }},
+		{"missing specialist", "missing skill", func(s *CoverageScopes) { s.Specialist = s.Specialist[1:] }},
+		{"duplicate within scope", "duplicate skill", func(s *CoverageScopes) { s.Foundation = append(s.Foundation, s.Foundation[0]) }},
+		{"duplicate across scopes", "duplicate skill", func(s *CoverageScopes) { s.Specialist = append(s.Specialist, s.Foundation[0]) }},
+		{"unknown id", "unknown skill", func(s *CoverageScopes) { s.Foundation[0] = "functions.future" }},
+		{"wildcard", "unknown skill", func(s *CoverageScopes) { s.Foundation[0] = "*" }},
+		{"unapproved swap", "unapproved scope", func(s *CoverageScopes) { s.Foundation[0], s.Specialist[0] = s.Specialist[0], s.Foundation[0] }},
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
@@ -66,7 +90,7 @@ func TestLiveAndReviewedLoadersRejectInvalidScopes(t *testing.T) {
 			if _, err := ValidateTransition(root); err != nil {
 				t.Fatal(err)
 			}
-			var scopes coverageScopes
+			var scopes CoverageScopes
 			rewrite(t, root, ScopePath, &scopes, func() { tc.change(&scopes) })
 			assertScopeRejected(t, root, tc.want)
 		})
@@ -83,7 +107,7 @@ func TestLiveAndReviewedLoadersRejectInvalidScopes(t *testing.T) {
 		}
 		for _, id := range sortedKeys(all) {
 			if all[id]["status"] == "deprecated" {
-				var scopes coverageScopes
+				var scopes CoverageScopes
 				rewrite(t, root, ScopePath, &scopes, func() { scopes.Foundation[0] = id })
 				assertScopeRejected(t, root, "deprecated/non-assignable")
 				return
@@ -97,7 +121,7 @@ func TestLiveAndReviewedLoadersRejectInvalidScopes(t *testing.T) {
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			root := fixture(t)
-			var scopes coverageScopes
+			var scopes CoverageScopes
 			// Marshal to ordinary YAML before appending another field/document.
 			rewrite(t, root, ScopePath, &scopes, func() {})
 			path := filepath.Join(root, filepath.FromSlash(ScopePath))
