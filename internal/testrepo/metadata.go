@@ -5,6 +5,7 @@ package testrepo
 import (
 	"os"
 	"path/filepath"
+	"sort"
 	"testing"
 
 	"go-practice-bank/internal/isolation"
@@ -12,18 +13,59 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-// Copy includes the complete bank and ordinary validation inputs, without the
-// source checkout's Git data, ignored evidence, binaries or dependency tree.
+// Copy retains complete ordinary validation metadata and a bounded real task
+// catalog: all Theory links, the three pinned migration references, and a task
+// type diversity control. Full v3/v4 taxonomies and scopes are never pruned.
+// This is a synthetic metadata fixture, not full-bank acceptance evidence.
 func Copy(t testing.TB, source string) string {
 	t.Helper()
 	root := t.TempDir()
-	for _, name := range []string{"adapters", "catalog", "config", "curriculum", "docs", "provenance", "reports", "schemas", "sources", "tasks", "theory", ".github"} {
+	for _, name := range []string{"adapters", "catalog", "config", "curriculum", "docs", "provenance", "reports", "schemas", "sources", "theory", ".github"} {
 		if err := isolation.CopyTree(filepath.Join(source, name), filepath.Join(root, name)); err != nil {
 			t.Fatal(err)
 		}
 	}
 	for _, name := range []string{"AGENTS.md", "CONTRIBUTING.md", "LICENSE", "README.md", "THIRD_PARTY_NOTICES", "go.mod", "go.sum"} {
 		if err := isolation.CopyFile(filepath.Join(source, name), filepath.Join(root, name)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	selected := map[string]bool{
+		"defined-types-001": true, "variadic-sum-001": true, "zero-state-001": true,
+		"alternate-correction-001": true,
+	}
+	content, err := os.ReadFile(filepath.Join(root, "curriculum/topics.yaml"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var topics struct {
+		Topics []struct {
+			TaskIDs []string `yaml:"task_ids"`
+		} `yaml:"topics"`
+	}
+	if err := yaml.Unmarshal(content, &topics); err != nil {
+		t.Fatal(err)
+	}
+	for _, topic := range topics.Topics {
+		for _, id := range topic.TaskIDs {
+			selected[id] = true
+		}
+	}
+	if !selected["literal-bindings-001"] || len(selected) > 16 {
+		t.Fatal("metadata fixture needs review: missing evidence control or more than 16 tasks")
+	}
+	for _, state := range []string{"drafts", "review", "ready", "rejected", "retired"} {
+		if err := os.MkdirAll(filepath.Join(root, "tasks", state), 0755); err != nil {
+			t.Fatal(err)
+		}
+	}
+	ids := make([]string, 0, len(selected))
+	for id := range selected {
+		ids = append(ids, id)
+	}
+	sort.Strings(ids)
+	for _, id := range ids {
+		if err := isolation.CopyTree(filepath.Join(source, "tasks/ready", id), filepath.Join(root, "tasks/ready", id)); err != nil {
 			t.Fatal(err)
 		}
 	}

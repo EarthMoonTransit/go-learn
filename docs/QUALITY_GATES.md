@@ -196,6 +196,15 @@ Validator, task-report check и оба coverage checks используют то
 не устанавливают required modes, distinct task types, observable outcomes или
 learner mastery. Release требует отдельной semantic acceptance.
 
+Metadata-регрессии numeric guard/report используют ограниченный disposable
+catalog: все задачи шести Theory pages, три точные migration references и
+diversity control (сейчас 12 пакетов с исходными bytes, максимум 16). Полные
+taxonomy, scopes, route, source metadata и ordinary validation сохраняются; synthetic
+checks пересчитывают digests только этого fixture. Assertions для failed/current
+evidence, partial Result, v3, обоих scopes и всех active rows сохраняются.
+Это не evidence полного банка: acceptance collection исполняет все packages
+через `task-check` и повторно используется всеми report/validator consumers.
+
 Public release/export и итоговый foundation acceptance дополнительно используют
 `-coverage`. Промежуточный ready package не объявляет весь банк выпущенным;
 P2/P4C/P5 первой волны являются preparation batches. Ни `-phase1`, ни наличие
