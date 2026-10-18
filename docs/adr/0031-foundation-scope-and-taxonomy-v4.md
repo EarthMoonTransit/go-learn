@@ -198,8 +198,11 @@ own finite design and review before any activation.
 This ADR is a documentation decision. Complete the independent audit of the
 P18/P17/P19 content wave before merging it. Deliver taxonomy/schema/compatibility
 tooling and scoped numeric coverage tooling as separate reviewable batches;
-neither batch contains new tasks or Theory pages. New content follows only
-after its required profile and source decisions are actually accepted.
+neither batch contains new tasks or Theory pages. The
+[completed preparation-wave audit](../../reports/p18-p17-p19-preparation-audit.md)
+records the independent P18/P17/P19 acceptance on canonical
+`8e08ea1f6b7997e8226f3d59a6ea69ab193e2313`. New content follows only after its
+required profile and source decisions are actually accepted.
 
 Migration checks must cover the complete old/new inventory; byte-exact old
 contracts and reviewed documents; deprecated-stub rejection; prerequisite
