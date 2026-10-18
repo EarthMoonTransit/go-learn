@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-18",
+  "status": "approved-source-only-selection",
+  "scope": "P21 source-only decision. No task, code, test, profile, schema, taxonomy, route, assessed encounter or learner evidence is added.",
+  "source": {
+    "registry_id": "ardanlabs-gotraining",
+    "repository": "https://github.com/ardanlabs/gotraining",
+    "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+    "registry_usage_mode": "adapt",
+    "license": "Apache-2.0",
+    "selected_artifacts": [
+      {
+        "path": "LICENSE",
+        "sha256": "fd62bda91923cb60d78846f3038f14cc312ff62b93915d88a4434b92c366fe54",
+        "git_blob_sha1": "4fd9488450d6514bfb859e97ba097b26b537ac13",
+        "bytes": 553,
+        "url": "https://raw.githubusercontent.com/ardanlabs/gotraining/4ae5a46bfc665909a7cb29e11c18775330c63401/LICENSE",
+        "role": "license evidence"
+      },
+      {
+        "path": "topics/go/testing/fuzzing/README.md",
+        "sha256": "5c6e059a69355c29f6025080d107eafaf24a0fc9d3e8a8b335a9ed73bb77b705",
+        "git_blob_sha1": "96038a4918aea35bf1f2da5671a1d3bfc13b9902",
+        "bytes": 3671,
+        "url": "https://raw.githubusercontent.com/ardanlabs/gotraining/4ae5a46bfc665909a7cb29e11c18775330c63401/topics/go/testing/fuzzing/README.md",
+        "role": "purpose/instructions lineage only; legacy external-fuzzer and HTTP instructions excluded from local execution"
+      },
+      {
+        "path": "topics/go/testing/fuzzing/exercises/exercise1/exercise1.go",
+        "sha256": "16cbf64df2525b105e9c885090bcfec02bfaffef7452a06a81bc9266a5ad8b5e",
+        "git_blob_sha1": "53ed0aaedc76130f4c514f5ae4f7cd3ef73abeea",
+        "bytes": 1456,
+        "url": "https://raw.githubusercontent.com/ardanlabs/gotraining/4ae5a46bfc665909a7cb29e11c18775330c63401/topics/go/testing/fuzzing/exercises/exercise1/exercise1.go",
+        "role": "exercise behavior and debugging substrate; future bounded substantive adaptation candidate"
+      },
+      {
+        "path": "topics/go/testing/fuzzing/exercises/exercise1/exercise1_test.go",
+        "sha256": "695b26ac356679bab3fba409e47026704f694a5ab019f61e1e0811e1d1b5cce4",
+        "git_blob_sha1": "af3b8ccd6c390403ab8c4b88676b89552fa9f8dd",
+        "bytes": 871,
+        "url": "https://raw.githubusercontent.com/ardanlabs/gotraining/4ae5a46bfc665909a7cb29e11c18775330c63401/topics/go/testing/fuzzing/exercises/exercise1/exercise1_test.go",
+        "role": "successful-path comparison only; local assertions must specify errors and malformed boundaries independently"
+      },
+      {
+        "path": "topics/go/testing/fuzzing/exercises/exercise1/fuzzer.go",
+        "sha256": "7a23decc99db78e8cea970564e86e8b9d2fd11a04d4c1919ceccb5e1b3ef33f0",
+        "git_blob_sha1": "96c54508f58d97bb5ad69620c34f9473300937f4",
+        "bytes": 267,
+        "url": "https://raw.githubusercontent.com/ardanlabs/gotraining/4ae5a46bfc665909a7cb29e11c18775330c63401/topics/go/testing/fuzzing/exercises/exercise1/fuzzer.go",
+        "role": "legacy comparison only; do not treat as native target or recorded/minimized failure"
+      },
+      {
+        "path": "topics/go/testing/fuzzing/exercises/exercise1/workdir/corpus/input.txt",
+        "sha256": "88cb9eb6b5640ad78154ef140017a855c6df27f95793f4c90622ebbc19f7a412",
+        "git_blob_sha1": "636a07d12cc260cb5598de72747062c95ec65f65",
+        "bytes": 16,
+        "url": "https://raw.githubusercontent.com/ardanlabs/gotraining/4ae5a46bfc665909a7cb29e11c18775330c63401/topics/go/testing/fuzzing/exercises/exercise1/workdir/corpus/input.txt",
+        "role": "legacy comparison only; do not treat as native target or recorded/minimized failure"
+      },
+      {
+        "path": "CONTRIBUTORS",
+        "sha256": "1f28976a492474ac6309eb365adb5a932004f7ef82aec2669f7c8a102420c0e2",
+        "git_blob_sha1": "2864d2fe313a0618366a6cca6df335558bb8cfe5",
+        "bytes": 5985,
+        "url": "https://raw.githubusercontent.com/ardanlabs/gotraining/4ae5a46bfc665909a7cb29e11c18775330c63401/CONTRIBUTORS",
+        "role": "root contributor/identity evidence only, no exercise-code reuse or authorship inference"
+      },
+      {
+        "path": ".mailmap",
+        "sha256": "ff5b076e08a2536a47d5d48c9d19c7ea7c44cd2feec086e81b27b23d256810a1",
+        "git_blob_sha1": "84a7d29356602a1d47803613406215c049c88f20",
+        "bytes": 1084,
+        "url": "https://raw.githubusercontent.com/ardanlabs/gotraining/4ae5a46bfc665909a7cb29e11c18775330c63401/.mailmap",
+        "role": "root contributor/identity evidence only, no exercise-code reuse or authorship inference"
+      }
+    ]
+  },
+  "selection": {
+    "proposal_id": "P21",
+    "primary_outcome_candidate": "fuzzing.reproduction",
+    "prerequisites": [
+      "fuzzing.targets-seeds",
+      "fuzzing.invariants"
+    ],
+    "decision": "selected exact donor-specific binary-parser artifact for later bounded adaptation; all recorded contract, mechanism, task, execution and credit gates remain",
+    "retained_donor_candidate": "The count-prefixed tagged-record parser, its length-prefixed string and fixed-width decimal fields, and a selected unchecked-boundary fault supply a substantive debugging substrate. Local content must retain meaningful donor-specific behavior or the actual donor-specific fault/repair relation. A generic discover/fix/test workflow alone is concept-only.",
+    "local_outcome_boundary": "Reproduce a supplied minimized failure without active fuzzing, identify its cause through explicit observable evidence, repair specified parser behavior while preserving valid behavior, and retain the smallest meaningful live regression. A supplied minimal case earns no discovery or minimization credit.",
+    "not_selected_for_execution": [
+      "The legacy go-fuzz []byte-to-int wrapper and external go-fuzz installation/search instructions",
+      "The unrelated HTTP example and its external inputs",
+      "The upstream success fixture and binary seed as a recorded native crash or minimized failure",
+      "Any answer implementation, reference-only source code/text/test or invented malformed-input policy attributed to upstream"
+    ],
+    "upstream_specification_limit": "Static inspection reveals several unchecked boundaries. The lone success case omits error checking and does not define complete malformed or valid-input semantics. A later contract must select the fault and define local normative behavior explicitly; no execution or runtime-fault claim is made here.",
+    "search_limit": "Positive bounded selection at the recorded pin, not an exhaustive absence or superiority claim about other donors.",
+    "future_content_classification": "No substantive adaptation or assessed skill is counted now. Actual retained donor-specific substance, exact attribution and independently reviewed public/grader matrices decide any later content classification."
+  },
+  "rights": {
+    "upstream_license": {
+      "path": "LICENSE",
+      "sha256": "fd62bda91923cb60d78846f3038f14cc312ff62b93915d88a4434b92c366fe54"
+    },
+    "copyright_notice": "Copyright 2014 Ardan Studios",
+    "source_header_notice": [
+      "All material is licensed under the Apache License Version 2.0, January 2004",
+      "http://www.apache.org/licenses/LICENSE-2.0"
+    ],
+    "project_full_license": "LICENSE",
+    "selected_ancestor_directories": [
+      ".",
+      "topics",
+      "topics/go",
+      "topics/go/testing",
+      "topics/go/testing/fuzzing",
+      "topics/go/testing/fuzzing/exercises",
+      "topics/go/testing/fuzzing/exercises/exercise1",
+      "topics/go/testing/fuzzing/exercises/exercise1/workdir",
+      "topics/go/testing/fuzzing/exercises/exercise1/workdir/corpus"
+    ],
+    "notice_inventory": "The complete pinned tree has no additional LICENSE/COPYING/NOTICE/PATENT/AUTHORS file in the selected ancestor chain beyond root LICENSE. Root CONTRIBUTORS and .mailmap were separately fetched, read and matched by SHA256 and Git blob ID. They contain contributor/identity information and no additional license terms. This is a bounded selected-artifact inventory.",
+    "contributors": {
+      "upstream_path": "CONTRIBUTORS",
+      "preserved_path": "sources/notices/ardanlabs-gotraining/4ae5a46bfc665909a7cb29e11c18775330c63401/CONTRIBUTORS",
+      "sha256": "1f28976a492474ac6309eb365adb5a932004f7ef82aec2669f7c8a102420c0e2",
+      "interpretation": "Best-effort repository-wide contributor list; not proof that every listed person authored this exercise. Preserved complete and byte-identical as source attribution evidence."
+    },
+    "mailmap_role": "Identity evidence only; no attribution or full identity is inferred from a matching first name.",
+    "future_distribution": "Retain root/source license and applicable attribution/patent/trademark notices, complete Apache License 2.0, this complete pinned contributor evidence and task attribution links. Mark modified upstream material clearly; identify local API/specification/assertion changes. No upstream exercise code or test is redistributed in this source-only batch."
+  },
+  "lineage": {
+    "method": "Selected-path commit metadata and complete parent trees across two moves; only selected file status/blob metadata consulted. No answer or solution patch used.",
+    "introduction": {
+      "commit": "7d6eea8a3bdc98ae8e19987fe776d7868cd4a753",
+      "url": "https://github.com/ardanlabs/gotraining/commit/7d6eea8a3bdc98ae8e19987fe776d7868cd4a753",
+      "author": "William Kennedy",
+      "date": "2016-05-27T10:56:50Z",
+      "selected_directory_absent_in_parent": true,
+      "credit": "The introduction commit explicitly thanks Damian. Preserve that credit without guessing a full identity or claiming exhaustive authorship."
+    },
+    "moves": [
+      {
+        "commit": "fa28ff1e58b8187c579bc43a8b9ab0e428d38fa7",
+        "from": "topics/fuzzing/exercises/exercise1/",
+        "to": "topics/testing/fuzzing/exercises/exercise1/"
+      },
+      {
+        "commit": "47261e94421eaad383d5c6bcfdb4e60087fa86f0",
+        "from": "topics/testing/fuzzing/exercises/exercise1/",
+        "to": "topics/go/testing/fuzzing/exercises/exercise1/"
+      }
+    ],
+    "parser_blob": "53ed0aaedc76130f4c514f5ae4f7cd3ef73abeea",
+    "legacy_fuzzer_blob": "96c54508f58d97bb5ad69620c34f9473300937f4",
+    "parser_and_fuzzer_unchanged_at_selected_boundaries": true,
+    "test_blob_limit": "Success-test imports changed across moves; its blobs are not all identical. This record does not copy the fixture.",
+    "repository_metadata": {
+      "full_name": "ardanlabs/gotraining",
+      "fork": false,
+      "parent": null,
+      "source": null
+    },
+    "limit": "Bounded selected-file history and current nonfork metadata; not an exhaustive historical ownership proof."
+  },
+  "required_future_gates": [
+    {
+      "id": "P21-D1",
+      "decision": "Select the actual fault class and specify fixed and preserved valid behavior; separate local policy from unspecified upstream cases."
+    },
+    {
+      "id": "P21-D2",
+      "decision": "Define observable causal diagnosis with a fair rubric that accepts equivalent explanations and rejects misleading diagnoses independently of a passing patch."
+    },
+    {
+      "id": "P21-D3",
+      "decision": "Define minimality within the selected fault family, equivalent input representations, persistence and actual liveness of the retained regression; do not require one instructor literal or claim global mathematical minimality."
+    },
+    {
+      "id": "P21-D4",
+      "decision": "Bind the expected original subject fault to the intended actual input/call/finality. Separate it from learner/late faults, assertion, race, timeout and infrastructure failure; panic or exit 1 alone never proves reproduction."
+    },
+    {
+      "id": "P21-D5",
+      "decision": "Choose submission artifacts and assembly, editable/readonly boundaries, source/runtime freshness and migration in a separate reviewed ADR if existing schema or semantics change. Existing hex-codec-v1 deliberately excludes parser reproduction."
+    },
+    {
+      "id": "P21-D6",
+      "decision": "Independently review the bounded mechanism/proof design before executing authored parser or task fixtures. Then prove positive buggy-replay/fixed-pass behavior and wrong-input, fake/dead replay, swallowed/learner/late fault, omitted regression, misleading diagnosis and broken-valid-behavior controls through approved disposable execution before production activation or content admission."
+    }
+  ],
+  "delivery": {
+    "batch_kind": "source-only",
+    "p20_dependency": "P20 merge after exact-head validate remains separate. This source decision does not make its prerequisites ready or alter the frozen P20 batch.",
+    "later_batches": "Separate reproduction contract/ADR and bounded mechanism proof, then separate tooling and content PRs with their full gates.",
+    "profile_or_execution_approval": false,
+    "foundation_or_release_approval": false,
+    "task_authoring_approval": false
+  },
+  "independent_review": {
+    "status": "approve",
+    "reviewer": "/root/activation_final_review",
+    "reviewed_at": "2026-10-18",
+    "scope": "Actual exact selected-source admission and complete preserved contributor notice only; no task/profile/code/schema/credit/execution/merge approval.",
+    "receipt_id": "p21-source-admission-review-epoch-6",
+    "receipt_sha256": "36003dd300c983e2ae367afa8c13d95199767e1b0244292ff03ee064e2dbe634"
+  }
+}
