@@ -4,7 +4,7 @@ toolchain_policy_digest: 51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a515
 tasks:
     - id: access-logic-001
       state: ready
-      input_digest: 672084b6d9a5d4a53e58de9b5956492eb385840dbc1f7884e98a290a014373bd
+      input_digest: bdfb23b33098effe6da2e5a5b7119c434d7b9ef7a07c17890adedb97dc7d34a8
       task_type: implement
       primary_skill: expressions.boolean-logic
       technical_status: pass
@@ -22,7 +22,7 @@ tasks:
       legacy: false
     - id: afternoon-window-001
       state: ready
-      input_digest: 2ebe804f0c63842752795b2d3148386f968d2f08290d8dea6ec598bfbdb37d32
+      input_digest: fc34da604f294a416f45811630b0c18243a55667909e7ad3fee9c30511b88a9a
       task_type: implement
       primary_skill: time.parsing-zones
       technical_status: pass
@@ -40,7 +40,7 @@ tasks:
       legacy: false
     - id: allocated-counter-001
       state: ready
-      input_digest: 4802ec80e2d434a59eee2db71962297a1d447c100ac4e782e1d10bc69b3c6490
+      input_digest: 1507e77b4a737984d61adef39faf799c81cfb0c22a889a1794e3df63090172e1
       task_type: implement
       primary_skill: pointers.address-deref-nil
       technical_status: pass
@@ -58,7 +58,7 @@ tasks:
       legacy: false
     - id: alternate-correction-001
       state: ready
-      input_digest: 41a95b0f7001ddeacbc8d0de553801a911d53a750c6d9aa740c5f8aa6d229dd0
+      input_digest: 1edf16d4857192ab01f156e4e1adefad271638f9a6e1c560438ff8770da2a0dd
       task_type: debug
       primary_skill: control-flow.range
       technical_status: pass
@@ -76,7 +76,7 @@ tasks:
       legacy: false
     - id: append-value-001
       state: ready
-      input_digest: 728c343af2af3c2b9f0cd1d2a4d0e2998b14ffc96925908a8498f8153217d537
+      input_digest: ba720ffec31b0f0da4032efdc4415647ade78da2b5257f8a7a03eda80b3f4fb0
       task_type: debug
       primary_skill: slices.append-growth
       technical_status: pass
@@ -94,7 +94,7 @@ tasks:
       legacy: false
     - id: array-copy-001
       state: ready
-      input_digest: 1028276920788307601ac31958cc89956688e2ac0b4564360f018804257cf94f
+      input_digest: fe99ff79db04df403af89a2bc83cc5629a0955ab0aa9e65a5ec0441a1a9a3911
       task_type: implement
       primary_skill: arrays.value-semantics
       technical_status: pass
@@ -112,7 +112,7 @@ tasks:
       legacy: false
     - id: array-copy-address-tests-001
       state: ready
-      input_digest: bfb9ed5514cbe646641727e8d95d22af3ae6cd4a813193724b2755f6003b5831
+      input_digest: 8b1fc2d308c5a7444924a07f9240ccf5043e8cf1e56a75f42cc9ea9b12c08c07
       task_type: test-writing
       primary_skill: arrays.value-semantics
       technical_status: pass
@@ -130,7 +130,7 @@ tasks:
       legacy: false
     - id: binary-record-tests-001
       state: ready
-      input_digest: 1126ccf47687e89d311b8a8ed81eee7e2310c4fb4036fe031650b0ec2c75e319
+      input_digest: 2167596e0547a7c3fd55c892cbbc2b416aa828c797038e57110ac955c8342872
       task_type: test-writing
       primary_skill: encoding.binary-marshaling
       technical_status: pass
@@ -148,7 +148,7 @@ tasks:
       legacy: false
     - id: boolean-policies-001
       state: ready
-      input_digest: 7ad7299917977b83604ff164dc5ed9d814395cbcb383f1a1f2230e7d2ff22dc0
+      input_digest: e2bbe29e07543bf1fa727149d3246d4d7d4d6c0b9f5963eed7e79a3dd7d2845e
       task_type: implement
       primary_skill: expressions.boolean-logic
       technical_status: pass
@@ -166,7 +166,7 @@ tasks:
       legacy: false
     - id: bounded-copy-001
       state: ready
-      input_digest: c86bb15bf7cd03779236f52f8862fe12b2e30d53aad2d79c72544f236dfd8cf9
+      input_digest: 9696ce824e0d628d19e4228027d11014e77cfdf8ba1e0785b447757aa41f738c
       task_type: implement
       primary_skill: io.copy-limit-composition
       technical_status: pass
@@ -184,7 +184,7 @@ tasks:
       legacy: false
     - id: bounded-lru-cache-001
       state: ready
-      input_digest: 7f947edded693ee2e343a7889243b2d4c9ec7b742a59f7fc28f8e7f62ee4202c
+      input_digest: 8edd337d00cbd40abaeff6f37c5feb273f393775650c2a7db9ea9571218212a7
       task_type: implement
       primary_skill: generics.reusable-data-structures
       technical_status: pass
@@ -202,7 +202,7 @@ tasks:
       legacy: false
     - id: bounded-slice-view-001
       state: ready
-      input_digest: 5ba9465880f4b7aae43bda44b09be13d96303a042c80f7980d09c712c84fcb69
+      input_digest: b3a40f5a835ebc09e68b20f3f9d326257cdd5808cbc15ccd54d0b72f4482ab43
       task_type: implement
       primary_skill: slices.full-slice-expressions
       technical_status: pass
@@ -220,7 +220,7 @@ tasks:
       legacy: false
     - id: bounded-value-001
       state: ready
-      input_digest: e03b7d836558c358c719ac73587807193137cc19f7323a26b087cfaa60b23628
+      input_digest: ca561b5655d0a065a8c9bbd6e0b79893076bc09403685581ed7743b6e012e8d2
       task_type: implement
       primary_skill: control-flow.if
       technical_status: pass
@@ -238,7 +238,7 @@ tasks:
       legacy: false
     - id: buffered-flush-001
       state: ready
-      input_digest: 2ea44756a952344e887c9c25ea8bc613d755e602df9b4fdda3edd77d64300ca3
+      input_digest: 7376fcaeaa25c38786be3291e8d46ef579855d0d725aa73e99736d8a356d9fad
       task_type: implement
       primary_skill: io.buffered
       technical_status: pass
@@ -256,7 +256,7 @@ tasks:
       legacy: false
     - id: byte-window-tests-001
       state: ready
-      input_digest: 2b31edbc2f88db309fb1751ef9289275c50efc714927a845464482004498f652
+      input_digest: aecb2b3def2d5501d993ce2b4f903f1adca109fca3bf9f779277986f0ff23f75
       task_type: test-writing
       primary_skill: strings.immutable-bytes
       technical_status: pass
@@ -274,7 +274,7 @@ tasks:
       legacy: false
     - id: cancel-worker-001
       state: ready
-      input_digest: 93af2f676dad244622c7400bc83cd16a6f9c254eeb30458a95154750aa24eae5
+      input_digest: ef5cd4dad8eb4c8caa0a9151edd94c56e1d6c4e47c5f3bf74284243d64a6731d
       task_type: debug
       primary_skill: context.cancellation
       technical_status: pass
@@ -292,7 +292,7 @@ tasks:
       legacy: false
     - id: cancelable-forward-001
       state: ready
-      input_digest: 609022751aaa799728d8451d26d0c67bf3d7ebc7c21e6d3081d76ae874d6e54c
+      input_digest: b1faa2490d037ae3f57d006db2270d959d9a094ece0b73cd6b11e82d898c3f5d
       task_type: implement
       primary_skill: context.cancellation
       technical_status: pass
@@ -310,7 +310,7 @@ tasks:
       legacy: false
     - id: capture-panic-001
       state: ready
-      input_digest: 439b8fcccb52c49ebf334dce1aa4f59dae0dc99476a3acbd141e74a75451f4d9
+      input_digest: 7beea33c79a446d178419d6112f2fef01940a803025791198a2085ab7333b7a1
       task_type: implement
       primary_skill: errors.panic-recover-boundaries
       technical_status: pass
@@ -328,7 +328,7 @@ tasks:
       legacy: false
     - id: captured-method-values-001
       state: ready
-      input_digest: 1705e321db1d5644ed2e3f2cab62dca18d380ad89e26d2ce1d1d64abcb653059
+      input_digest: d6743870954590bfe6eb3413f64c0de7fbba7fd08b78b732437e6e98cefa2565
       task_type: implement
       primary_skill: methods.values-expressions
       technical_status: pass
@@ -346,7 +346,7 @@ tasks:
       legacy: false
     - id: category-closure-tests-001
       state: ready
-      input_digest: 8514b90c541b240f92b86f2d8c45919126da7a837ead41b508b4b61f00e5fecf
+      input_digest: 4b305afe17b0ab60f1d1e3aa1aab9b652563d13ec1dbc0e6e25dc5b48573e435
       task_type: test-writing
       primary_skill: functions.closure-capture
       technical_status: pass
@@ -364,7 +364,7 @@ tasks:
       legacy: false
     - id: category-total-001
       state: ready
-      input_digest: 36b4d33a3e34c6590836607dfa56e05130942e85de8d6967e028893b3c4531f5
+      input_digest: b468c25b7e37c5b5ebbacd11b152ca8dfa0c86192da075db0ed3f7a729c1beb7
       task_type: implement
       primary_skill: errors.sentinels-creation
       technical_status: pass
@@ -382,7 +382,7 @@ tasks:
       legacy: false
     - id: checked-withdrawal-001
       state: ready
-      input_digest: 7e7afccffc8443b6729e7e7482605e96d910750669a2b43978446654efb46c7d
+      input_digest: e5e0804bd5255ee422a1a8a0c0e51a1bc85e8c977b6cc1ff7a826a8f7f31f217
       task_type: implement
       primary_skill: errors.sentinels-creation
       technical_status: pass
@@ -400,7 +400,7 @@ tasks:
       legacy: false
     - id: clamp-tests-001
       state: ready
-      input_digest: c3ec0a861d52d3a1e9b2b54ec50af86d657ec6d9033c8249a0cee2a805626a9e
+      input_digest: e80f407f938832a6efcec84508fd9f117be44a0cdc627896525e2670775e0cdb
       task_type: test-writing
       primary_skill: expressions.comparison
       technical_status: pass
@@ -418,7 +418,7 @@ tasks:
       legacy: false
     - id: cleanup-order-001
       state: ready
-      input_digest: 6156b8e39bee289b61301190c8174cd05ef1a485a3f320f46c0dd5cd3b257f5e
+      input_digest: 80317901c7313b474fd24209bbb5365e91e65b9705b4d454d0a7d52a721a2f82
       task_type: implement
       primary_skill: testing.cleanup
       technical_status: pass
@@ -436,7 +436,7 @@ tasks:
       legacy: false
     - id: closed-receive-001
       state: ready
-      input_digest: dba7cec705090e35ac76cb893216380d5f83ef4487782a685c51980d72160555
+      input_digest: cd11197eeb405494556d75b56ba6362b5159dc542f561060a336a4cc5cf65195
       task_type: debug
       primary_skill: channels.close-semantics
       technical_status: pass
@@ -454,7 +454,7 @@ tasks:
       legacy: false
     - id: column-occupancy-001
       state: ready
-      input_digest: fe1eff820e4c1dab5da6ba5c4e94b757ca531d24304f9828b6a4d4f3cebeb95c
+      input_digest: 37248c884e5f6272ed0b644637d59b2c3063b0677ec4e01b9ff8c8939a2b2ffe
       task_type: implement
       primary_skill: control-flow.range
       technical_status: pass
@@ -472,7 +472,7 @@ tasks:
       legacy: false
     - id: composite-key-table-001
       state: ready
-      input_digest: a92c85a21572e716923ea7bab7d7c76fe4ed0e2e52a673b94f6b4053cd2d8bd4
+      input_digest: 32b9836ba5c728a475c750ac4cac0c04be43ebc72e37a4850c5b8e92731d079e
       task_type: implement
       primary_skill: maps.key-comparability
       technical_status: pass
@@ -490,7 +490,7 @@ tasks:
       legacy: false
     - id: concurrent-counter-read-001
       state: ready
-      input_digest: 9896e1b181f7148e7335b4f669e5895860ce9cec71a42528071900618ebd684f
+      input_digest: bc057d88939fb3f1e79f873dd74b9bebdfd77ebee4af0a81d253f637f0998ab0
       task_type: implement
       primary_skill: sync.data-races-happens-before
       technical_status: pass
@@ -508,7 +508,7 @@ tasks:
       legacy: false
     - id: conditional-binding-001
       state: ready
-      input_digest: 6ff06b137f71f34a921cd67ba7fb96d305bd9d51098eb38739304d8f86424b28
+      input_digest: 3060e60707797dbe91fd47817df0fbf0946c9790d5a3055084f520a9b20aad61
       task_type: debug
       primary_skill: types.declarations-inference
       technical_status: pass
@@ -526,7 +526,7 @@ tasks:
       legacy: false
     - id: constant-kinds-001
       state: ready
-      input_digest: a14310cd4ff70808dab5f32abe4beb4e2016e20f101c089c0e91f31a3c7254dc
+      input_digest: 3f314b87ff53acacd0b3bb48a342da4b415c7e3e7cdff91bcd2f948246518f96
       task_type: debug
       primary_skill: types.constants
       technical_status: pass
@@ -544,7 +544,7 @@ tasks:
       legacy: false
     - id: constant-value-tests-001
       state: ready
-      input_digest: f5467aadd5c8087d527ab7b28775d4e1b9a051154e79a687b5d360a1dcaaf818
+      input_digest: 28fa42949db8be630c68baed9be53153ef504f400566fc7ab157de2e403ff5f0
       task_type: test-writing
       primary_skill: types.constants
       technical_status: pass
@@ -562,7 +562,7 @@ tasks:
       legacy: false
     - id: copy-final-element-001
       state: ready
-      input_digest: 0313c9dfdd884aabe134576ac5db08accfaae6c3d8d796675276e765add26314
+      input_digest: abed54a288dad593fbadedef334b9291c341937c8fb8460da07d52a14c68065c
       task_type: debug
       primary_skill: slices.backing-array-aliasing
       technical_status: pass
@@ -580,7 +580,7 @@ tasks:
       legacy: false
     - id: counter-read-tests-001
       state: ready
-      input_digest: cd228e8ee912fb0f6bb4d7df08b10969d08877f6447efd55d639dcdc311e9dfb
+      input_digest: ba9d8a400cd0b7c32b937d03798a30a7644b375656d9300caab944874bfdf108
       task_type: test-writing
       primary_skill: pointers.address-deref-nil
       technical_status: pass
@@ -598,7 +598,7 @@ tasks:
       legacy: false
     - id: counter-receiver-001
       state: draft
-      input_digest: 1db797d7ad51197056943b81717369ee4b990d1877f5da387ec19a9c046bd0a8
+      input_digest: 8979949ce98c00fef08cdc9f4525aa905d95d0ded5db6a95b17fbcda81705935
       task_type: refactor
       primary_skill: methods.receiver-semantics
       technical_status: pass
@@ -617,7 +617,7 @@ tasks:
       legacy: false
     - id: decision-table-tests-001
       state: ready
-      input_digest: 903a6eeebbc57164a0ec41647f4d4341ab2518340ff6ff9b2bf3a695b72f14a1
+      input_digest: e3380f105e50b7c0fdeb9b2dbc55d5120600ca2bac3f482a3b4fa9488806bb2e
       task_type: test-writing
       primary_skill: control-flow.if
       technical_status: pass
@@ -635,7 +635,7 @@ tasks:
       legacy: false
     - id: decode-prefix-001
       state: ready
-      input_digest: f86cd158fec3ed05f98490f2243cf11846bd1b5af39faf45009995e12953de5b
+      input_digest: 16aab50851a48d052e8955e5a9bed8507b6ed43633ac64784edb2388607050a4
       task_type: implement
       primary_skill: unicode.invalid-utf8
       technical_status: pass
@@ -653,7 +653,7 @@ tasks:
       legacy: false
     - id: defer-trace-001
       state: ready
-      input_digest: dd4daa5f5873d4e80a0a9e9b43ff7584d415d1fb2fe0df804d9a85d1b10ea182
+      input_digest: 61619cab4b03dfcbec228188b8e0e2a0995f4b405c51c39dd80aae76c8e1b8ad
       task_type: debug
       primary_skill: functions.defer
       technical_status: pass
@@ -671,7 +671,7 @@ tasks:
       legacy: false
     - id: deferred-release-001
       state: ready
-      input_digest: 8074789f85bba9ba65ec17c834c0f4c731efff24ad3bf18d0d60904987a8649c
+      input_digest: f07fdb3ddc11cc33d9b4580afb15fb08c5c6c526f388f2daf5d0abe31d7d100f
       task_type: implement
       primary_skill: functions.defer
       technical_status: pass
@@ -689,7 +689,7 @@ tasks:
       legacy: false
     - id: defined-types-001
       state: ready
-      input_digest: 6883213c43653b261ee3614f48ee9a4ed43222263d711d4f52a0b99fa8873131
+      input_digest: 55b2783cd04e088b1701b6f61852aea1c05db2e9cb49b91feb53dd340805aec1
       task_type: refactor
       primary_skill: types.named-underlying
       technical_status: pass
@@ -707,7 +707,7 @@ tasks:
       legacy: true
     - id: deposit-state-tests-001
       state: ready
-      input_digest: 670c5a5d80de589016d05465117f84cd8d4aa481eaa1c706937b69ca93399052
+      input_digest: 47bec0b345f8f4b2724078545a4dd0563f551c14ac64734a58a02123815457c8
       task_type: test-writing
       primary_skill: methods.receiver-semantics
       technical_status: pass
@@ -725,7 +725,7 @@ tasks:
       legacy: false
     - id: detached-append-001
       state: ready
-      input_digest: c42bf24a34e47bcb588bc0542fafb33c0698273e7cac794f3483945f73ec7e5c
+      input_digest: c0a2d1dee1b0d9db280b6ecd3d3cd081457cb8b88cdd1d6a8b551b58de6291a6
       task_type: debug
       primary_skill: slices.backing-array-aliasing
       technical_status: pass
@@ -743,7 +743,7 @@ tasks:
       legacy: false
     - id: detached-prefix-001
       state: ready
-      input_digest: daea074810fc48603c53dfe8103798f632703ec330aafddda762ba04c0ba2f91
+      input_digest: bc3060ee0be68ce79867fd11e86270f28799f6f537d737996b153bb5ae9e8d11
       task_type: debug
       primary_skill: slices.subslice-retention
       technical_status: pass
@@ -761,7 +761,7 @@ tasks:
       legacy: false
     - id: diagnostic-helper-001
       state: ready
-      input_digest: c10b2c6cbefd8bd72c18a01650bc948eddbcff21c4f206adbf200dc2969b3e84
+      input_digest: 77bb74b0e3e3106ac5d68ca5b5e4059adcf315b43c02445039bdbe0b6a93c6c4
       task_type: implement
       primary_skill: testing.helpers
       technical_status: pass
@@ -779,7 +779,7 @@ tasks:
       legacy: false
     - id: dictionary-add-tests-001
       state: ready
-      input_digest: cd8c7b97bbe604c6380b4376c148330b77a4d3bd0e0f669f2c532120c04739e9
+      input_digest: b1b853ee2fb571e49f73b89253559ca8171fa812fc98b508f4fb72c529a834f7
       task_type: test-writing
       primary_skill: errors.sentinels-creation
       technical_status: pass
@@ -797,7 +797,7 @@ tasks:
       legacy: false
     - id: dictionary-delete-001
       state: ready
-      input_digest: 6e2e1cad724368e10786906938cf58792659bb2339806b61a99c27edf0dc29d8
+      input_digest: 9af110220ca175bbf6704146d5928e26379a7493addb398adf6db42bd7a452b2
       task_type: implement
       primary_skill: maps.nil-delete-clear
       technical_status: pass
@@ -815,7 +815,7 @@ tasks:
       legacy: false
     - id: dictionary-update-001
       state: ready
-      input_digest: 86960201e50ff0405ad4dc4775aa5bc29cdd1cb6a532f96b34d8c34153cd8c6a
+      input_digest: 43d595126a7fb999bb67d3aac29ec540555323076993e3e7908aa140ab71bf3b
       task_type: debug
       primary_skill: errors.typed
       technical_status: pass
@@ -833,7 +833,7 @@ tasks:
       legacy: false
     - id: division-results-001
       state: ready
-      input_digest: 99dc41197b526d1abe661350e7af549eb13f1d74d2baeacbe94b6b73669403b9
+      input_digest: 2566d2e4f1754d3829f4a960e911148a2bf6b08499ee45ea35cb33448df75b5c
       task_type: debug
       primary_skill: functions.signatures-results
       technical_status: pass
@@ -851,7 +851,7 @@ tasks:
       legacy: false
     - id: duration-rounding-001
       state: ready
-      input_digest: 2e244dd2d79a5fb43f8ac1b02cfdf493d6a829368827c94d63256046840f2cea
+      input_digest: 666d6f7eb3e42f66ff91b58e4fc3ed006ce2fc397d5e0dc453b5139da92b66ad
       task_type: debug
       primary_skill: time.duration-arithmetic
       technical_status: pass
@@ -869,7 +869,7 @@ tasks:
       legacy: false
     - id: dynamic-description-001
       state: ready
-      input_digest: e13318e7f1677c285773c047f0936c08715500db3fb63d2ed90d5d3b0f36ff91
+      input_digest: 2d89d4c422f5cf8c8ca1eb4dbee85bb9661ae152255a36c955aebc980b2c58a0
       task_type: debug
       primary_skill: interfaces.type-switches
       technical_status: pass
@@ -887,7 +887,7 @@ tasks:
       legacy: false
     - id: edit-rune-copy-001
       state: ready
-      input_digest: 22f042ccf8803de9ab47523d9b7be29ff4adfd052bd849a026289766caba2870
+      input_digest: addfa6aee9474d7ec7b65d9c81cf8aae7c98438a0f6238ab71df72a3f0ed3183
       task_type: implement
       primary_skill: strings.byte-rune-conversions
       technical_status: pass
@@ -905,7 +905,7 @@ tasks:
       legacy: false
     - id: effective-rate-001
       state: draft
-      input_digest: 89f3d83bddc12b51a25251fbe1ba512e1d28f55d2baf719aed1cc958f6c81dda
+      input_digest: 642be720f59dcf5e54b0db05193d43cba6b4f9f8b4e894f5458882dd9fd781fe
       task_type: implement
       primary_skill: types.numeric-conversions
       technical_status: pass
@@ -924,7 +924,7 @@ tasks:
       legacy: false
     - id: embedded-cache-tests-001
       state: ready
-      input_digest: 3d78258ab8ea19434205a27ddaebf41884b495c9a84de8eb084a5fb59d0113ec
+      input_digest: 9dd364e373d448e48ceaf3428456071a8a93c88f24779f44d73a22594f12dfc6
       task_type: test-writing
       primary_skill: embedding.method-promotion-ambiguity
       technical_status: pass
@@ -942,7 +942,7 @@ tasks:
       legacy: false
     - id: encode-scalar-001
       state: ready
-      input_digest: 8be3fd115f9bbffce34686000a0bfecb1951c95a2e3a6d0630bd1ec20adb29fc
+      input_digest: e7c0106eb488c275c589285741b5ef1f6749683cbd1ab2829cd914db6c988b53
       task_type: implement
       primary_skill: unicode.utf8-encoding
       technical_status: pass
@@ -960,7 +960,7 @@ tasks:
       legacy: false
     - id: encoded-width-001
       state: ready
-      input_digest: d6a090ed96657b83d840f06e72e2e06209653405ac1a6440179a2fdb69bc6608
+      input_digest: a121c9b56f2b2007b2a28f383f911b8949df1630caf6782cc1866fc25535e62b
       task_type: debug
       primary_skill: control-flow.switch
       technical_status: pass
@@ -978,7 +978,7 @@ tasks:
       legacy: false
     - id: error-chain-match-001
       state: ready
-      input_digest: 18a0b83f15cb0077cc56bd5c881070ce1b7f3c8df2ebbaa9db0c0a661a4f0856
+      input_digest: 86f0f25bd7546990cde780005fb8e60bde6b1d2fe11d33eb96e685fcd8b9bebc
       task_type: implement
       primary_skill: errors.is
       technical_status: pass
@@ -996,7 +996,7 @@ tasks:
       legacy: false
     - id: error-chain-query-001
       state: draft
-      input_digest: 5937d9a11aac43c271581137f65aa11bb4aab7fa8dd9e663842b69406c134517
+      input_digest: 83768573b7f21e559b6f95ae2b5189e8ef9374b42af0d71cba4e185adab60998
       task_type: implement
       primary_skill: errors.wrapping
       technical_status: pass
@@ -1015,7 +1015,7 @@ tasks:
       legacy: false
     - id: error-context-wrap-001
       state: ready
-      input_digest: e0e5280c1f9ecf9786554b6759cb1f0a32c1a25eac5132c518a134dfd3e37b0a
+      input_digest: 99c976058bf471d4161d59f5b1337fdf703b7728ac9ad426587e7c59478d842b
       task_type: debug
       primary_skill: errors.wrapping
       technical_status: pass
@@ -1033,7 +1033,7 @@ tasks:
       legacy: false
     - id: error-detail-tests-001
       state: ready
-      input_digest: b9d94f3033171c690ec80c710cf7c1125bdd69261f318b169b2ca3f5948e5d91
+      input_digest: f2a3caf4c10d9a6c5f4c5c99d111ee1c773921f42e8a7872ae58945939ec5a94
       task_type: test-writing
       primary_skill: errors.as
       technical_status: pass
@@ -1051,7 +1051,7 @@ tasks:
       legacy: false
     - id: exact-dynamic-number-001
       state: ready
-      input_digest: e3b542b45c3b3149b469568bde587d72098d71e7666fa51dab4e1d3efb77a22d
+      input_digest: 69bf0bd7958a31acb8a4481402588bc89ccdcaa0c01bfed908e4a2e650a85c7a
       task_type: implement
       primary_skill: interfaces.type-assertions
       technical_status: pass
@@ -1069,7 +1069,7 @@ tasks:
       legacy: false
     - id: exact-prefix-001
       state: ready
-      input_digest: ee0265f4afec860da9d71dabf21641bdb8e2bffdd430503d5888ee5d958fd222
+      input_digest: a2586951de7f8b99bf91916349bee5bf7eb6150b2d3c70ba66edb99ad9d959dd
       task_type: debug
       primary_skill: strings.standard-library
       technical_status: pass
@@ -1087,7 +1087,7 @@ tasks:
       legacy: false
     - id: exclusive-loop-001
       state: ready
-      input_digest: 0e8e7cf882ea05f5b89741d17ffd9b15fde44d13851b223b706a71fd9201fbe6
+      input_digest: a17bc8f6a43b7da877d706e6fb2231769233160a6201fab6346f97c0f1c10e92
       task_type: debug
       primary_skill: control-flow.for
       technical_status: pass
@@ -1105,7 +1105,7 @@ tasks:
       legacy: false
     - id: external-window-tests-001
       state: ready
-      input_digest: 08ace20726aecfc016c39c72da4e384b90b55efb1999f7b77b37df3e620888aa
+      input_digest: c0c0913cda81b51d3ca4c3395e09ff4913a2b751a76fa3785f986399c05a2c14
       task_type: test-writing
       primary_skill: packages.test-package-boundaries
       technical_status: pass
@@ -1123,7 +1123,7 @@ tasks:
       legacy: false
     - id: filesystem-record-tests-001
       state: ready
-      input_digest: 3e3450b27c7bf6a3a76de9be8d8c96617f9034ca7ce0a8baca2c9985bb5edbe6
+      input_digest: a9aee50f14ec8108dfd076bd04969a60f4c81969e1dac98fe1cb85a22989e5f7
       task_type: test-writing
       primary_skill: io.files-cleanup
       technical_status: pass
@@ -1141,7 +1141,7 @@ tasks:
       legacy: false
     - id: floating-categories-001
       state: ready
-      input_digest: 46f0aea9234b71c77047ff823a8be45dd0a7a0ad2329ddb35869d0212a527829
+      input_digest: 813971e105b80967eed278948f98e8b950334774938576759008cef17d11b053
       task_type: implement
       primary_skill: types.floating-point-semantics
       technical_status: pass
@@ -1159,7 +1159,7 @@ tasks:
       legacy: false
     - id: formatted-assignment-001
       state: ready
-      input_digest: 3295994731c414641fd3612faf63e37ce8e07aa5af6525369a98673058b15fa8
+      input_digest: 5eb932d033cf7e0180ca42794e2a64ea681f18b44903b1f12896c219d046a3c8
       task_type: implement
       primary_skill: strings.formatting
       technical_status: pass
@@ -1177,7 +1177,7 @@ tasks:
       legacy: false
     - id: formatter-contract-001
       state: ready
-      input_digest: 8e7f67f7dbdfda55d269544e48836ce1b691eb4a0477355cb3996f6bfafe6f49
+      input_digest: ed66e9321665e21e4d6c2b429a08c5918e4ca4ffff707ce43c20ed09330886f3
       task_type: implement
       primary_skill: interfaces.implicit-satisfaction
       technical_status: pass
@@ -1195,7 +1195,7 @@ tasks:
       legacy: false
     - id: fractional-band-001
       state: ready
-      input_digest: af7df8e29948f5861e9360449efc7f872efb91601382715c60c49701d52a13a6
+      input_digest: 0dde7ee0591355306575bf70d45fecf8d5bd03cca269dce7de0f64e9ecbe8349
       task_type: debug
       primary_skill: types.floating-point-semantics
       technical_status: pass
@@ -1213,7 +1213,7 @@ tasks:
       legacy: false
     - id: gated-worker-arguments-001
       state: ready
-      input_digest: 7d383bea6920adc03a2a513c0f1e68b503b9532a56615c31d1c54859f6bcef68
+      input_digest: aeef062948ec37a7913e11dd1f68a9d95ebc34752e4a956c97ee703bf7c8c424
       task_type: debug
       primary_skill: goroutines.capture-arguments
       technical_status: pass
@@ -1231,7 +1231,7 @@ tasks:
       legacy: false
     - id: gcd-reduction-001
       state: ready
-      input_digest: 70866ac67fe065eefc71846bb4076d8701b717256a89974d5c364a65c7dbb694
+      input_digest: 803289f9e875aeebd9a9d748eacaf5e1c5ea93abf33ebf080360a4f49b8a8905
       task_type: implement
       primary_skill: control-flow.for
       technical_status: pass
@@ -1249,7 +1249,7 @@ tasks:
       legacy: false
     - id: generic-find-tests-001
       state: ready
-      input_digest: 31feab102c51326ae33f046b0baec8452904428248bc0c6f9b0a7be11116bac4
+      input_digest: ba675db33f66a5a91b6a28d46804db2eddaebf4c71924dbcd788e43adf21dda9
       task_type: test-writing
       primary_skill: generics.type-parameters-inference
       technical_status: pass
@@ -1267,7 +1267,7 @@ tasks:
       legacy: false
     - id: generic-reduce-001
       state: ready
-      input_digest: 792823ebd2b29125660f5b20e20787a9c60040097b4bea70b8489ae745f76a33
+      input_digest: d7e6e75bab4e2d4c421e01c72c5766eb4dc9e8611b7631f5368526dd3bfec8e1
       task_type: debug
       primary_skill: generics.type-parameters-inference
       technical_status: pass
@@ -1285,7 +1285,7 @@ tasks:
       legacy: false
     - id: generic-stack-001
       state: ready
-      input_digest: b5a434d578e9cec3c9ea2dea4bd74ab95d665244a314172cdd36f58195afdcb1
+      input_digest: d6c12661f1db57457c0b584a82f0317cc73004f2d830fcd71f9117838fb38818
       task_type: implement
       primary_skill: generics.reusable-data-structures
       technical_status: pass
@@ -1303,7 +1303,7 @@ tasks:
       legacy: false
     - id: greeter-dispatch-tests-001
       state: ready
-      input_digest: 2ae82f253474e73811d7a2865455b4e6e159a83131a37edf5962f91803087992
+      input_digest: 9633491b928cbb87df7bfa33e13cbd65e2a06109071c620818e150fd7487e6be
       task_type: test-writing
       primary_skill: interfaces.small-contracts
       technical_status: pass
@@ -1321,7 +1321,7 @@ tasks:
       legacy: false
     - id: grouped-unit-cost-001
       state: ready
-      input_digest: 5f331b9ec0d56c8d544d538c180f8b96b51920118d44c506e57f3d56e932906d
+      input_digest: d58ac77c6c046b6e1ce57f15bde50f04555469e171ed6da87255876d23c79fe8
       task_type: implement
       primary_skill: expressions.arithmetic
       technical_status: pass
@@ -1339,7 +1339,7 @@ tasks:
       legacy: false
     - id: guarded-item-001
       state: ready
-      input_digest: 2543a8a4bf3063fb1d30fd0208bcc23d4d721031d13ff52892cf302497d32db7
+      input_digest: 0567c7f0b63c4b1e9c0c7ecd8669ec14b921624646e3189677cc9de6473d2d15
       task_type: debug
       primary_skill: slices.len-cap-slicing
       technical_status: pass
@@ -1357,7 +1357,7 @@ tasks:
       legacy: false
     - id: independent-policies-001
       state: ready
-      input_digest: 5b6efd283506b71ecd4efb218e8aab275ae28f6649133aac9df701e947269b78
+      input_digest: 799b3c020ff6e014f19a38cea181329abe063110dacff910ba9b23ca6dcecfe9
       task_type: implement
       primary_skill: control-flow.if
       technical_status: pass
@@ -1375,7 +1375,7 @@ tasks:
       legacy: false
     - id: independent-scaled-copy-001
       state: ready
-      input_digest: eb83840bf31fc116e0f3dad98c5b8d3d6277ef8a7476f37c51efe6c0a49fe79a
+      input_digest: 36c9f18f0e73b55e03fbafbf2f594778fea68fff07225b9dec7bc1f3b052e09f
       task_type: debug
       primary_skill: slices.backing-array-aliasing
       technical_status: pass
@@ -1393,7 +1393,7 @@ tasks:
       legacy: false
     - id: indexed-job-results-001
       state: ready
-      input_digest: 712d84f38d3577ea7a950674a7aa7eeecee7c487f9257098ecf6a356308afd53
+      input_digest: e951557789f0923c8926a436b02987b10b78055abc682790bea1bd2451412f8a
       task_type: implement
       primary_skill: goroutines.result-error-collection
       technical_status: pass
@@ -1411,7 +1411,7 @@ tasks:
       legacy: false
     - id: initial-structs-001
       state: ready
-      input_digest: 6cc90cf60d9eea2b461750c96be04a803c08a77bd4ef462b16dd6e2b1da1d1f5
+      input_digest: aeb48770efdb7193dcb3a44606f139c5065fff215b6f295444d67748f04bdb62
       task_type: implement
       primary_skill: structs.literals-zero
       technical_status: pass
@@ -1429,7 +1429,7 @@ tasks:
       legacy: false
     - id: initialization-values-001
       state: ready
-      input_digest: 0cf6e3cd9f9c565281cc8b28cd86ff11ab3005dea3a078cdc0344cdd8a8b8091
+      input_digest: a36570e370abf51710b5858024022a0e46416652d3b389241974b50178736896
       task_type: implement
       primary_skill: packages.initialization-order
       technical_status: pass
@@ -1447,7 +1447,7 @@ tasks:
       legacy: false
     - id: join-all-tests-001
       state: ready
-      input_digest: 9f281f187c01a5c1adcbf4c6dc3245aed687117af6d2f5bc4b245ea504fbbaaa
+      input_digest: c47810775cdecf958f0cdf28337cb126c1dd0d7c6e1800f9485c4d158dc88bfc
       task_type: test-writing
       primary_skill: sync.waitgroup-lifecycle
       technical_status: pass
@@ -1465,7 +1465,7 @@ tasks:
       legacy: false
     - id: join-values-001
       state: ready
-      input_digest: 47f331174637adcb94e638291de86c5ca5cbd8ec2f7c16c3c492880eb9d9d6c7
+      input_digest: c81835d0c0154449feb9d2af3363f16e9ebddea14c3cafaac26229204570adf4
       task_type: implement
       primary_skill: strings.building
       technical_status: pass
@@ -1483,7 +1483,7 @@ tasks:
       legacy: false
     - id: json-field-shape-001
       state: ready
-      input_digest: a55594d6acf31243d400ed86c7e2bfc6732217deb59294c98af0659e1cec9d02
+      input_digest: adb50271b8214efbe7b0effdc8930b1bbe451e5fbd40e474ecf95bd82434aa92
       task_type: debug
       primary_skill: encoding.json-shape-tags
       technical_status: pass
@@ -1501,7 +1501,7 @@ tasks:
       legacy: false
     - id: kind-condition-001
       state: ready
-      input_digest: 00a0fa7a47575764043dcbed221db70a424e6cb349e149c2d93cc535e5989b21
+      input_digest: aeb350713036b9a12848b92c0f1ca9da04efdaaef3e08bcef848d1cd55099063
       task_type: implement
       primary_skill: control-flow.if
       technical_status: pass
@@ -1519,7 +1519,7 @@ tasks:
       legacy: false
     - id: launch-provided-job-001
       state: ready
-      input_digest: 297176267070bad64c6cddd577851f36cbd45d7f76d86ac81711de4c3a824681
+      input_digest: fd5d2aec13d0025167bed584a5a8ca88988b0f328b3862cb51968f605a7976a0
       task_type: implement
       primary_skill: goroutines.launch-lifecycle
       technical_status: pass
@@ -1537,7 +1537,7 @@ tasks:
       legacy: false
     - id: lazy-probe-001
       state: ready
-      input_digest: 987e9ae74f6c2013d2b5a53e52c163bbf62bfea84a33d81c6338046362caa975
+      input_digest: b4a9d8d15f804afdf616238bd4bd57e312b1af80a8ffe37668e0c79d01f535db
       task_type: implement
       primary_skill: expressions.boolean-logic
       technical_status: pass
@@ -1555,7 +1555,7 @@ tasks:
       legacy: false
     - id: lexical-choice-tests-001
       state: ready
-      input_digest: af1cbcc4bfb136e28adef85dc2840f3d091d0245e912020609f966f10225658a
+      input_digest: 2cbe94a16e75422aca7030cfb61e9ac5e0f0a2c81fca8c55a03f2f1d6ced7ca8
       task_type: test-writing
       primary_skill: expressions.comparison
       technical_status: pass
@@ -1573,7 +1573,7 @@ tasks:
       legacy: false
     - id: literal-bindings-001
       state: ready
-      input_digest: 40cdcc31cb528e673c07f5d59892ec9c4b528f759a7bbe64c94b8258759039a8
+      input_digest: c72c96b1703a7c7739372fd35f63859c52c66d9e3bad44ca16a628436a3487f2
       task_type: implement
       primary_skill: types.declarations-inference
       technical_status: pass
@@ -1591,7 +1591,7 @@ tasks:
       legacy: false
     - id: map-entry-tests-001
       state: ready
-      input_digest: 706ecbbc89d2ca9c59b05f40a06d18e559c4f889b95e7e202ae12d43613406ee
+      input_digest: e0f65f2868f861786a401cb057219aa972e17821f895cd4d6a21f9e0f41fceed
       task_type: test-writing
       primary_skill: maps.iteration
       technical_status: pass
@@ -1609,7 +1609,7 @@ tasks:
       legacy: false
     - id: map-presence-001
       state: ready
-      input_digest: 6c83fdb390b19ffee834faa312dab04025103c7c877cc64bb87832ccbc506535
+      input_digest: e8844fc4404bc87af33edfc9f16fbdde5780e744fdfb792df9dcc28549c65728
       task_type: implement
       primary_skill: maps.operations-comma-ok
       technical_status: pass
@@ -1627,7 +1627,7 @@ tasks:
       legacy: false
     - id: map-take-001
       state: ready
-      input_digest: f65996a0d04fad4d14bf5caf6291475499584db48b8c2269d658cbf4174c8240
+      input_digest: 48a5cac02099d3e5f20e566c19ab1e4bcf14ae2a9cbc33f11b993efb0e3c10a3
       task_type: implement
       primary_skill: maps.nil-delete-clear
       technical_status: pass
@@ -1645,7 +1645,7 @@ tasks:
       legacy: false
     - id: mapped-records-001
       state: ready
-      input_digest: f9d29ae3695b4360c6b2d86eb8221869ca6e2882f6c3244873dae2702806a7f5
+      input_digest: 647d8b8a739841ff81bea349055f437652df7035ecf206ed65bb54b5c7d75ff5
       task_type: implement
       primary_skill: generics.type-parameters-inference
       technical_status: pass
@@ -1663,7 +1663,7 @@ tasks:
       legacy: false
     - id: merge-two-streams-001
       state: ready
-      input_digest: 223c2b610419f83ecf92dcf96566fac2e37e6571697835c6f1a2969274b06c9c
+      input_digest: df5aee0a06b90cea32604789db831a1c52347d43a8b0cc877d8704e808ace31b
       task_type: implement
       primary_skill: channels.select
       technical_status: pass
@@ -1681,7 +1681,7 @@ tasks:
       legacy: false
     - id: month-enumeration-001
       state: ready
-      input_digest: 6e962beef6ca4ec5f7edddbb7da2c996abd5a35edc2aecbee9b6c317887d9909
+      input_digest: bd9e80a69a6f20b0c5be1944446391f766f317e5edd983200fdd7ebe327726fe
       task_type: implement
       primary_skill: types.iota-enumeration
       technical_status: pass
@@ -1699,7 +1699,7 @@ tasks:
       legacy: false
     - id: mutex-counter-001
       state: ready
-      input_digest: b7ba65f69503842edd8aa5ae157c82aa59fd2cc4449bec289095844d3c9174c8
+      input_digest: 18f8c5e6b5d2e588d73205275b4268de54a204ec70f2be86dbe43221f7e710ff
       task_type: implement
       primary_skill: sync.mutex-critical-sections
       technical_status: pass
@@ -1717,7 +1717,7 @@ tasks:
       legacy: false
     - id: named-anonymous-struct-001
       state: ready
-      input_digest: e008544dbd77a25396a42cad2b4d42d828ad8e48129775d28ec4ad9b8258d1e5
+      input_digest: 80026a41a8cf7049d6d726a6adca777163791f9b3644f4ba416a7b711fcf7504
       task_type: debug
       primary_skill: structs.literals-zero
       technical_status: pass
@@ -1735,7 +1735,7 @@ tasks:
       legacy: false
     - id: named-block-001
       state: ready
-      input_digest: a4d0f45e4b794afcbb48d97005558b11ec6521d6bcd6ecaa85d16e8977cea550
+      input_digest: 09f16ac82d665cdc6e492fbaee685d69ac777b35c4bd9acb9fc30773a5d97233
       task_type: implement
       primary_skill: types.named-underlying
       technical_status: pass
@@ -1753,7 +1753,7 @@ tasks:
       legacy: false
     - id: named-cases-001
       state: ready
-      input_digest: fc94531e329c95296867e44a9aaf02f2af71d0e547c7f45205f177bb8c5d18f6
+      input_digest: 1511bc6e37d12a986720ae744d4fedf27bf90c132cb17d25b94d564703382e47
       task_type: implement
       primary_skill: testing.subtests
       technical_status: pass
@@ -1771,7 +1771,7 @@ tasks:
       legacy: false
     - id: named-numeric-constraint-001
       state: ready
-      input_digest: 1450de136f480f9dd6ab168996ff903ee04b77734de1908d281dd37edc5c8e22
+      input_digest: fbb1dd251316579c0187b11fbbd82d74720253ed9f39eccfd5534961c23bd0b7
       task_type: debug
       primary_skill: generics.approximation-unions
       technical_status: pass
@@ -1789,7 +1789,7 @@ tasks:
       legacy: false
     - id: named-result-adjustment-001
       state: ready
-      input_digest: 8a7f45a219837f4c753724ea275a11e56d6d916840001f4ce49988c9f2f628e6
+      input_digest: 7b32eec41212bbbf8dfae5ec924cc86b02cdbdd6ee102d5bf79f6cf84ce2cc04
       task_type: debug
       primary_skill: functions.signatures-results
       technical_status: pass
@@ -1807,7 +1807,7 @@ tasks:
       legacy: false
     - id: nested-slot-count-001
       state: ready
-      input_digest: c2c75e615ce989808d035946493d340a4daea15066ef80f59ecda3dd1136ea09
+      input_digest: 88f0a28ec1d21a0536e349f8418c3bbc2d6a45468840a1f009f9df484c9fbe85
       task_type: debug
       primary_skill: control-flow.range
       technical_status: pass
@@ -1825,7 +1825,7 @@ tasks:
       legacy: false
     - id: nested-stringers-001
       state: ready
-      input_digest: 92e448a2be8f9875d4b4205d12b18d9549792c96344750dea39be373b6aa526e
+      input_digest: 7519698cbf9fa84b4a07c1703b280c2c9c2bdd5b5ff4e3be6ede6dc23e803506
       task_type: implement
       primary_skill: interfaces.stringer-contract
       technical_status: pass
@@ -1843,7 +1843,7 @@ tasks:
       legacy: false
     - id: number-box-tests-001
       state: ready
-      input_digest: 2443ae63daabb02e2a67413173bde36385144c94ba6e9ebf1a88c54488559735
+      input_digest: 318bfc498e072fd384425b7af9bc95cb54fafe75616eb9a75321bccd3049ffc9
       task_type: test-writing
       primary_skill: interfaces.small-contracts
       technical_status: pass
@@ -1861,7 +1861,7 @@ tasks:
       legacy: false
     - id: ordered-error-propagation-001
       state: ready
-      input_digest: 94bdf260cd474d54ab88a4266d2216e47b0cf85e8cb4a97b69fcaaec74e5427e
+      input_digest: 7fad9bb59fe9ae8333b38d796440c7c35b18146081cf3e777425370351576590
       task_type: debug
       primary_skill: errors.propagation-context
       technical_status: pass
@@ -1879,7 +1879,7 @@ tasks:
       legacy: false
     - id: overlapping-shift-tests-001
       state: ready
-      input_digest: 220641931ca2ddfb3a72abf1a8bfaff9ca03a3da1269196c2e719166306273ea
+      input_digest: ea96ca44951eb82e4270c0d2a62edfb5665d0866088e94e14a30aa39a987ff8c
       task_type: test-writing
       primary_skill: slices.copy-overlap
       technical_status: pass
@@ -1897,7 +1897,7 @@ tasks:
       legacy: false
     - id: owned-values-001
       state: ready
-      input_digest: 1a2b27cea6268d8d5b80f2a8e1bd93e067c55985e15006497d086955f4a66eae
+      input_digest: dde8a2b9c33b3b54da8a5bf3bd0de610fb8c24f8778a74c7fc90a7bc027d32d9
       task_type: implement
       primary_skill: channels.directional
       technical_status: pass
@@ -1915,7 +1915,7 @@ tasks:
       legacy: false
     - id: package-inventory-001
       state: ready
-      input_digest: 3f438d009e719ccad45914f6eabd59baa1419e54da3d2840ac46e45157fe9036
+      input_digest: 3a08c4d8087f93af6eecb4a726755f044467efae477d60f379192a6579960196
       task_type: implement
       primary_skill: packages.imports-exports-naming
       technical_status: pass
@@ -1933,7 +1933,7 @@ tasks:
       legacy: false
     - id: parse-timestamp-001
       state: ready
-      input_digest: 331621b356a370a7fa95f28f001d977b1e1a0879dcbc6d17d6e0bc7e484b96da
+      input_digest: f12f8ca31f37f0f27223a2e77f52f5bfe56da43958bd0164944678134995a676
       task_type: implement
       primary_skill: time.parsing-zones
       technical_status: pass
@@ -1951,7 +1951,7 @@ tasks:
       legacy: false
     - id: percentage-output-001
       state: ready
-      input_digest: 59396c14df3c94b60bac35feb34ad8550cb48410185b620ac2a076348b942647
+      input_digest: ba4b6910e82063bede60d63df2bdb35ff57b8885986cfd71f8f629df3d86e8f7
       task_type: implement
       primary_skill: expressions.arithmetic
       technical_status: pass
@@ -1969,7 +1969,7 @@ tasks:
       legacy: false
     - id: period-predicate-001
       state: ready
-      input_digest: f99c7b917394f0b4c35b924dec25370e57db3debcb04bcaedec50aa5ceae1659
+      input_digest: b5b6d32f6d2ffa3ab1d14b86d328b3c96d8c2a76a6100e8009fa0b53c1387e4a
       task_type: implement
       primary_skill: functions.closure-capture
       technical_status: pass
@@ -1987,7 +1987,7 @@ tasks:
       legacy: false
     - id: pointer-chain-001
       state: ready
-      input_digest: 4130bae940896121742e539dd9704f3e5bc6873e49bf049fda75fe3897170a21
+      input_digest: f8d604729660ffec304c7d1467ca5cd7b2ef24baf0e39a78dc8648523ac8cb54
       task_type: implement
       primary_skill: pointers.address-deref-nil
       technical_status: pass
@@ -2005,7 +2005,7 @@ tasks:
       legacy: false
     - id: predicate-filter-001
       state: ready
-      input_digest: 2bb16c6be151059957cc704e48954de0ca95d906e5c25a132307c75551ecd7a6
+      input_digest: 3c0637a477cd7cb7ced3b0203edea0107c352186f459cfa2652f7ddcda09609f
       task_type: debug
       primary_skill: functions.function-values
       technical_status: pass
@@ -2023,7 +2023,7 @@ tasks:
       legacy: false
     - id: prepend-values-tests-001
       state: ready
-      input_digest: 3132525689c6060676a060bfe465cf7915457906693842184f1b07a32b7059ae
+      input_digest: eaf47f37858604025b774388f9140766b6e37b9f16d358c558af531294cb07b4
       task_type: test-writing
       primary_skill: functions.variadic
       technical_status: pass
@@ -2041,7 +2041,7 @@ tasks:
       legacy: false
     - id: propagate-context-001
       state: ready
-      input_digest: 1a79e076f7a0c29bb50b4362460f6e59b1cafd2e0d6494b057f9ed787ac933e8
+      input_digest: a9d43fe4e34c1a1c4e22f243965d2e52de827b360e96167531819e18be3eb449
       task_type: implement
       primary_skill: context.propagation-api
       technical_status: pass
@@ -2059,7 +2059,7 @@ tasks:
       legacy: false
     - id: quadrant-switch-001
       state: ready
-      input_digest: 0b1f435a8e4e714be86c12b5e9806e9653925877b796d14d746909d848d2f771
+      input_digest: 1e2e9affe62871d0a0411102bfe2e39bc7688ba990345411fcdc9a8cf4b91e88
       task_type: implement
       primary_skill: control-flow.switch
       technical_status: pass
@@ -2077,7 +2077,7 @@ tasks:
       legacy: false
     - id: quantity-presence-001
       state: ready
-      input_digest: 2862e52d21b8a7c55e278f188e9ded6d1ef1cc520ee8422dc2dc05a4c83ac0f0
+      input_digest: ad9ee30ebb14f7929163249103fde128418636738038abb7673e87ffa89cb76c
       task_type: implement
       primary_skill: maps.operations-comma-ok
       technical_status: pass
@@ -2095,7 +2095,7 @@ tasks:
       legacy: false
     - id: quantity-removal-001
       state: ready
-      input_digest: f44607f97294a9c10f2166824b04d1c42f6e7c18bc0039c50fedfdfca50117a2
+      input_digest: 667d6689ae86a24907faab2154e3ed8d514edbe0a02b6820d22a179d16b5fae4
       task_type: implement
       primary_skill: maps.nil-delete-clear
       technical_status: pass
@@ -2113,7 +2113,7 @@ tasks:
       legacy: false
     - id: range-offset-001
       state: ready
-      input_digest: a80dc5794366f34ef94775c08dc5bc65da07502ca5573fc69f3c548af9097090
+      input_digest: 17d00dc21fa9af132e07f4c61728594f2b4033facd00e9ca6af9c730c64252ab
       task_type: debug
       primary_skill: control-flow.range
       technical_status: pass
@@ -2131,7 +2131,7 @@ tasks:
       legacy: false
     - id: rank-occupancy-tests-001
       state: ready
-      input_digest: c4aa2c820635de0f2c4589e35e92ec44e3841f39d6d620ab786f962f9e259de3
+      input_digest: 89f90f00fb6301ad48ac13e44dcd37ca4df92812d7b6a136295247b42aa8647b
       task_type: test-writing
       primary_skill: maps.iteration
       technical_status: pass
@@ -2149,7 +2149,7 @@ tasks:
       legacy: false
     - id: receiver-reset-001
       state: ready
-      input_digest: 2c14320171846b43f09408d772f6e72451595a77d54e18c51e73dd2eeb32203a
+      input_digest: 5d79013be08bd9051db28580b5f5925f7b8026dc066a9259f743555a2915df5e
       task_type: implement
       primary_skill: methods.receiver-semantics
       technical_status: pass
@@ -2167,7 +2167,7 @@ tasks:
       legacy: false
     - id: receiver-speakers-001
       state: ready
-      input_digest: 265442613524a5bb4eb6deba52b8f491af2e352d9c669f71975b6edd487dbaf1
+      input_digest: 2bf8567a350b06be1c749ebd151bef3b1564783e4e5c31efb3188fe925665914
       task_type: implement
       primary_skill: interfaces.implicit-satisfaction
       technical_status: pass
@@ -2185,7 +2185,7 @@ tasks:
       legacy: false
     - id: record-result-001
       state: ready
-      input_digest: e4c7be7391893f352c73621c10da7469df5f5ebd7212e6a907cf0563c59628b1
+      input_digest: 65dc76260b9d5b7444b113486d39cf17056f51a98f81d0f24dda7ebd5181b9a8
       task_type: debug
       primary_skill: functions.signatures-results
       technical_status: pass
@@ -2203,7 +2203,7 @@ tasks:
       legacy: false
     - id: rectangle-perimeter-001
       state: ready
-      input_digest: 7d5093f33ca6bfe29bf63b8acf237adf5dd111427a6c8e7ec203d5c89f7686af
+      input_digest: 7e67c75f6c13a5bf01ccfe63d9cf21991a51fd76aabd4ff004ac2fe7ece96210
       task_type: debug
       primary_skill: structs.literals-zero
       technical_status: pass
@@ -2221,7 +2221,7 @@ tasks:
       legacy: false
     - id: remaining-constant-001
       state: ready
-      input_digest: 822af7fada7bdab4247ee534034f4e84bdf1a9e65d3079146aa69dc676ae9d5d
+      input_digest: 99d25aca0d03057759e126f6790e7d83926b0191d208c75c7f7270d3303f4878
       task_type: implement
       primary_skill: types.constants
       technical_status: pass
@@ -2239,7 +2239,7 @@ tasks:
       legacy: false
     - id: remove-item-tests-001
       state: ready
-      input_digest: 204515afffb5840342692dc5ab7a295dad126b72d6307a8bb993bef83bb8cddb
+      input_digest: 258b97df650a35f36569d1c2b80d29c46d346eef6168b8c9266a4180340f5f54
       task_type: test-writing
       primary_skill: slices.len-cap-slicing
       technical_status: pass
@@ -2257,7 +2257,7 @@ tasks:
       legacy: false
     - id: repair-utf8-001
       state: ready
-      input_digest: 61f0bdeabc19d4aac9353fb9f091383da1a6b13bbb0552a076ccd1a9d04bbaac
+      input_digest: f924e8ccfc322be6d157c5b7614af10c1e94184609dfed734ef15f555cda205d
       task_type: implement
       primary_skill: unicode.invalid-utf8
       technical_status: pass
@@ -2275,7 +2275,7 @@ tasks:
       legacy: false
     - id: replace-byte-001
       state: ready
-      input_digest: da0d22d6d152c3d95818431f9fb4cb317ee2bb5cd8a43a8d86e56f95ac13f2e8
+      input_digest: fb51efd4c03ec61e7a981a437c626707ca664b3f66e7aee51608c6e6b42e9458
       task_type: implement
       primary_skill: strings.immutable-bytes
       technical_status: pass
@@ -2293,7 +2293,7 @@ tasks:
       legacy: false
     - id: replace-pending-value-001
       state: ready
-      input_digest: da9081825e23fc48fc96d57288bbcc1ae8823660d296f4cd05d8bf8f4c1a8e8b
+      input_digest: 30c4a93dd07c17513586e31ffd1ed538888b72fef2a885737f9671a3746246d1
       task_type: implement
       primary_skill: channels.operations-blocking
       technical_status: pass
@@ -2311,7 +2311,7 @@ tasks:
       legacy: false
     - id: reserved-copy-001
       state: ready
-      input_digest: 688a13e4dc69f0179e903ad6224dac8a94ebcadde85c4fd27415d562e52a1b0f
+      input_digest: 68cb121962bfef0de82b36c38b631153d80d9eb99b67f2d6b884eaa5832b4958
       task_type: implement
       primary_skill: slices.preallocation
       technical_status: pass
@@ -2329,7 +2329,7 @@ tasks:
       legacy: false
     - id: resource-finalize-001
       state: ready
-      input_digest: d4bb3cde09096fea9ec1a2285b0da5eed342631bc4457ecedc18efd9d6b2b5ab
+      input_digest: 7b1e12833b1f234d2c34773b38d47ab9da19303c31b0e276e6e05e5eb659ba7e
       task_type: refactor
       primary_skill: io.files-cleanup
       technical_status: pass
@@ -2347,7 +2347,7 @@ tasks:
       legacy: false
     - id: rune-boundary-tests-001
       state: ready
-      input_digest: 66831076960ac6f263c717704ce3938892d37aa9c3debf498d71a614be10dc27
+      input_digest: f7042dff44d622315742c8f0fc46e2451d835b7b6ae1fb45d7649b5611ae147f
       task_type: test-writing
       primary_skill: unicode.range-decoding
       technical_status: pass
@@ -2365,7 +2365,7 @@ tasks:
       legacy: false
     - id: rune-limit-001
       state: ready
-      input_digest: f24b09322d8a1e759152c24132de744492df50fa046cb87ad746c9c975c71e2b
+      input_digest: 9cc5680beca06bea9a40872725e333d120bd9736930cde3725669083f74ef6c6
       task_type: debug
       primary_skill: unicode.rune-model
       technical_status: pass
@@ -2383,7 +2383,7 @@ tasks:
       legacy: false
     - id: rune-marker-001
       state: ready
-      input_digest: aa7a1054bf433584e8fd919317a8f117602ff6ab37cf1f998a9a5e8fe66a380d
+      input_digest: ee16f955178098ca68b6b96ae0bbc4acd06793ba3df90f1c79806f9936996fa9
       task_type: implement
       primary_skill: unicode.rune-model
       technical_status: pass
@@ -2401,7 +2401,7 @@ tasks:
       legacy: false
     - id: rune-offset-tests-001
       state: draft
-      input_digest: ac874ea5b6cfd23425d17dbd4471e5fdb35f2ac0fa00406b29d4aaf8c35a3296
+      input_digest: 140278506e1a69bb46f9b56252e826b85b37d4b1d2e52f20502f7f08d4578911
       task_type: test-writing
       primary_skill: unicode.range-decoding
       technical_status: pass
@@ -2420,7 +2420,7 @@ tasks:
       legacy: false
     - id: rune-offsets-001
       state: ready
-      input_digest: 9eb44a9c65479587ffc5e7dda308ecb68c86df82969bbdc950e0df45d274dcdb
+      input_digest: 51393e5cac3c801a1eba1d8380e84990263a736026ac5b2272e7f0a399dac7ab
       task_type: debug
       primary_skill: unicode.range-decoding
       technical_status: pass
@@ -2438,7 +2438,7 @@ tasks:
       legacy: false
     - id: rune-replace-tests-001
       state: ready
-      input_digest: 3e565d4607d9b41b54c1157b17a5ce59e225d3d3ff38baa14fae592b6c57acf6
+      input_digest: 17bbd6056bf577b073f7974ed150bf161a5163ac9c25b285df2fe7459a6ada15
       task_type: test-writing
       primary_skill: unicode.rune-model
       technical_status: pass
@@ -2456,7 +2456,7 @@ tasks:
       legacy: false
     - id: scan-lines-tests-001
       state: ready
-      input_digest: 2deb8c4e1f85be775587f4e6c761792edef38483a310ddca1057c27334bcde10
+      input_digest: e69dc15cf9d3a66c6e8241cf7df73d22cb9a45b28328fde502c7292182768ebc
       task_type: test-writing
       primary_skill: io.scanning
       technical_status: pass
@@ -2474,7 +2474,7 @@ tasks:
       legacy: false
     - id: select-ready-case-001
       state: ready
-      input_digest: aa1f1795ea810e8f33293dc97c0bdc1e2cd021b05d96f662ce2eef353de20f49
+      input_digest: ddd95e0003112ceef12da8b03ed26731b63b120ab9c47813bfb8acca7dfb82c4
       task_type: implement
       primary_skill: channels.select
       technical_status: pass
@@ -2492,7 +2492,7 @@ tasks:
       legacy: false
     - id: sentinel-lookup-001
       state: ready
-      input_digest: 7da29505d3aaffbabc6d2c53b00e7be77372654728057236ac2f9c0b070e5dcc
+      input_digest: 6922c0c757db8d8284d327f889b69976c3c4ccaf7b56e2d9ebfefa7c4db8ca09
       task_type: implement
       primary_skill: errors.sentinels-creation
       technical_status: pass
@@ -2510,7 +2510,7 @@ tasks:
       legacy: false
     - id: set-or-append-001
       state: ready
-      input_digest: ff6a5d3ac5142af550418e0de218c7f274edef007a690e0fd47a956fe3bdc62b
+      input_digest: a3408f828c8c217047dd2d434946928a7e9c8877fc17ad1c8cd0d2ccc6ff105e
       task_type: implement
       primary_skill: slices.backing-array-aliasing
       technical_status: pass
@@ -2528,7 +2528,7 @@ tasks:
       legacy: false
     - id: seven-value-window-001
       state: ready
-      input_digest: 98d6603df85c88a0a64572e38a4ef01a092f1e5c71e1cab0153f6c53715bc116
+      input_digest: 3df86924740ffb825e5e7b5804ac93b4d8ad4057edf849820110261a50126fd7
       task_type: implement
       primary_skill: slices.len-cap-slicing
       technical_status: pass
@@ -2546,7 +2546,7 @@ tasks:
       legacy: false
     - id: shape-contract-tests-001
       state: ready
-      input_digest: 8badbf1214b6bb6e9160f5866e5ac525b08fe7bb42882551324fe3c260716f82
+      input_digest: 615ab9aef1991a2a2db089411bef4c3bb1ca941646b41699f1a309d8af8356df
       task_type: test-writing
       primary_skill: interfaces.implicit-satisfaction
       technical_status: pass
@@ -2564,7 +2564,7 @@ tasks:
       legacy: false
     - id: shared-counter-update-001
       state: ready
-      input_digest: 3ef4be2df1eff19f0991270a65814c4bcb064b41907d52004ed5c3d57fa51f3a
+      input_digest: 23d39bb426b8a4b5edf3b3097ea0d70c3ff4f4b9632a44096c2daa1b1c15ad5f
       task_type: implement
       primary_skill: pointers.mutation-sharing
       technical_status: pass
@@ -2582,7 +2582,7 @@ tasks:
       legacy: false
     - id: single-json-value-001
       state: ready
-      input_digest: ef01ceddc357019d8a5eac205e3a73c3ac9f83ce4164c3a4b303c5408df69160
+      input_digest: ae6a3052ed66e9998862cb326b4c76c5e66a866cb9ddf0afe80226c54f09fff6
       task_type: implement
       primary_skill: encoding.streaming-strictness
       technical_status: pass
@@ -2600,7 +2600,7 @@ tasks:
       legacy: false
     - id: slice-sequence-tests-001
       state: ready
-      input_digest: bb3b4671f0cb5f83309c021e2515b57650d20cdf51ac204d8f38e2999a423a38
+      input_digest: 89003d1c4ee56655ebdd061f97466c9f4ec807976bb0091e4f1c6ce6373ddbd2
       task_type: test-writing
       primary_skill: slices.len-cap-slicing
       technical_status: pass
@@ -2618,7 +2618,7 @@ tasks:
       legacy: false
     - id: slice-window-001
       state: ready
-      input_digest: c68f0147cda29c6179535f009bdf3cbcff0526dfffc35123ee74c0dac69bab46
+      input_digest: 78c428c69bd8c847834c8da015eed5d263fe1801d4f2111de7a877744ec3fbea
       task_type: implement
       primary_skill: slices.header-model
       technical_status: pass
@@ -2636,7 +2636,7 @@ tasks:
       legacy: false
     - id: stateful-counter-tests-001
       state: ready
-      input_digest: aa0a708e7265397f4e4999b9379c17754c7f5077bcfb8a761b2d793271c882c7
+      input_digest: 599814193278f7244a28288f447b6b780c061a6a8a597c8ba659e39b2412b002
       task_type: test-writing
       primary_skill: functions.closure-capture
       technical_status: pass
@@ -2654,7 +2654,7 @@ tasks:
       legacy: false
     - id: stream-normalize-001
       state: draft
-      input_digest: d860149401279666054a3ab37a3c408b523d205d7417aefe5d53bf39276664b0
+      input_digest: 72ffd557dd017b747af2c575cc6086b7e92a7dac66c0a9528c5958b115e605c4
       task_type: implement
       primary_skill: io.reader-writer-contracts
       technical_status: pass
@@ -2673,7 +2673,7 @@ tasks:
       legacy: false
     - id: struct-copy-tests-001
       state: ready
-      input_digest: 3c34a03f4e798df6cdeb8278ab4518291a51b1d86ef87606b9fe9db4f0985bdc
+      input_digest: 853777690b1f3c8bcaca2845a600fd2cd685a9b98b77f59055fb3ecc81f21be4
       task_type: test-writing
       primary_skill: structs.copy-equality
       technical_status: pass
@@ -2691,7 +2691,7 @@ tasks:
       legacy: false
     - id: struct-record-tests-001
       state: ready
-      input_digest: a8d93c02c7f3b7e4e17137428979d627c1dd3b9ae3f29cdbd7d9e64116d0489f
+      input_digest: dd88400d7e86262bbdc2c89496e3c24f2031f597fe553c12df6aa542c94fd313
       task_type: test-writing
       primary_skill: structs.literals-zero
       technical_status: pass
@@ -2709,7 +2709,7 @@ tasks:
       legacy: false
     - id: struct-transition-tests-001
       state: ready
-      input_digest: fab4337564787a0419727fa66eee114ae73e0f0ab5cdac3e41e06ffc5f7c2481
+      input_digest: 1c76207ed80d08e11bf012031a46c598950352572fec690fc47a758adde9999e
       task_type: test-writing
       primary_skill: structs.copy-equality
       technical_status: pass
@@ -2727,7 +2727,7 @@ tasks:
       legacy: false
     - id: structured-error-tests-001
       state: ready
-      input_digest: fe499c301ec4cf01a4cb1116568b8fc58972e9e393679c405877d804f682ccdc
+      input_digest: 9532266e3eb1e3c1434a6e1ff272474201f2d0c92884b739159d1467ce45f356
       task_type: test-writing
       primary_skill: errors.typed
       technical_status: pass
@@ -2745,7 +2745,7 @@ tasks:
       legacy: false
     - id: text-border-001
       state: ready
-      input_digest: b4f28598183117812e4da736d451daf35e6625fcc270fe1188dd0b335ce28d13
+      input_digest: 795feac3dd98ba663cb03199e96c59743f5a70978182f0abba28684103c09065
       task_type: implement
       primary_skill: strings.building
       technical_status: pass
@@ -2763,7 +2763,7 @@ tasks:
       legacy: false
     - id: text-level-001
       state: ready
-      input_digest: a000a4b164b086c0ea121bca0c75c39ad00e2733370502913f3e6442668bfeac
+      input_digest: 00edf839d80e5abbba1e72ed083717a8efc8c1d324bd9738b4af3d1aa7986029
       task_type: implement
       primary_skill: encoding.text-marshaling
       technical_status: pass
@@ -2781,7 +2781,7 @@ tasks:
       legacy: false
     - id: timeout-operation-001
       state: ready
-      input_digest: 54545521f02da6fd195951d7ad84a683379ebdef3cae95c419dacb59e538af63
+      input_digest: 315b015d79303a874db29e3b65dca50cc727a85dedb1b0604b2b90061c0ae79b
       task_type: implement
       primary_skill: context.timeouts
       technical_status: pass
@@ -2799,7 +2799,7 @@ tasks:
       legacy: false
     - id: token-values-001
       state: ready
-      input_digest: 4aa5603a9bc29e0315c9aaa95715771e3101ffb7e02f651f197d3eccffe79700
+      input_digest: 86cb8b87edecbb50a2fe8c45908ed90f75e35311dd908bc89593914cc607e3e5
       task_type: implement
       primary_skill: control-flow.switch
       technical_status: pass
@@ -2817,7 +2817,7 @@ tasks:
       legacy: false
     - id: total-counts-tests-001
       state: ready
-      input_digest: c8bd4976274531193da685d564c546b2c8ef24c8e90e0df6932848376c355e04
+      input_digest: 4da2ea8e0e0a7afe0ac9bb9f5761d80e60c1778617cf088eba8e50290297a9d1
       task_type: test-writing
       primary_skill: control-flow.for
       technical_status: pass
@@ -2835,7 +2835,7 @@ tasks:
       legacy: false
     - id: two-quantity-tests-001
       state: ready
-      input_digest: baec5bde5f850d683e38a61b409c7edaa84a498929db7c9570a6fded0e86f2ea
+      input_digest: bbbace23b18e3926a4281165af99a7fd529f857685bea7a900981874100b3663
       task_type: test-writing
       primary_skill: functions.signatures-results
       technical_status: pass
@@ -2853,7 +2853,7 @@ tasks:
       legacy: false
     - id: type-switch-default-tests-001
       state: ready
-      input_digest: 9804a58194c92aa1fdf429f132ce95849bb0f14a20cfb7259501b3b162862b44
+      input_digest: 2a9cc26834b0d60c3462d5bf008cced52a69c9855917e88ce40d203959cfd1c1
       task_type: test-writing
       primary_skill: interfaces.type-switches
       technical_status: pass
@@ -2871,7 +2871,7 @@ tasks:
       legacy: false
     - id: typed-line-001
       state: ready
-      input_digest: 7db7407a10ca2e69df296e49c971dc979a708b924ade5ec64b2753a6d32843b1
+      input_digest: 8901bf2c40974a9bffa0603e942b045be4f7add95fe766fc8beeae940dda6261
       task_type: debug
       primary_skill: strings.formatting
       technical_status: pass
@@ -2889,7 +2889,7 @@ tasks:
       legacy: false
     - id: typed-nil-resource-001
       state: rejected
-      input_digest: 0d47ed2069a1275853ac85e8911f0616f3ce293b2cd4a309c35ee925b3649ce9
+      input_digest: ed2499f418474a615d3e20627e50e3f16ce3707605af4de8e26877f8610d8110
       task_type: debug
       primary_skill: interfaces.typed-nil
       technical_status: pass
@@ -2907,7 +2907,7 @@ tasks:
       legacy: false
     - id: typed-nil-result-001
       state: ready
-      input_digest: c0e4b6dfabb26865d40d38885d4e4a5c4facd174d6301cfa04bf40f49fd5a032
+      input_digest: 2d6080370954d9d349c0489a4ed6660608eb67973fb06889ab4442b9704a231c
       task_type: implement
       primary_skill: interfaces.typed-nil
       technical_status: pass
@@ -2925,7 +2925,7 @@ tasks:
       legacy: false
     - id: typed-value-observations-001
       state: ready
-      input_digest: 66012a0901432ce1d70edd37598b53112d4bb59f63357ea52759ae71d6cb74de
+      input_digest: 179d56c5105b3f51704320b54110df7d45099c07c1a9a01700e49b26024477af
       task_type: implement
       primary_skill: types.declarations-inference
       technical_status: pass
@@ -2943,7 +2943,7 @@ tasks:
       legacy: false
     - id: unit-addition-tests-001
       state: ready
-      input_digest: 1479e5fe4645bff273c002014c3423fe2b324900395ab4105f45ad10bc3b4a86
+      input_digest: af37aea3ce281c7529cbc5d68669bf6718b60e38130cdd658917863ad5cdd84a
       task_type: test-writing
       primary_skill: maps.operations-comma-ok
       technical_status: pass
@@ -2961,7 +2961,7 @@ tasks:
       legacy: false
     - id: uppercase-label-001
       state: ready
-      input_digest: d2de48d327e063ff6a80602571dbe44693689d7c5250f8fcf6a965def26ac9fe
+      input_digest: e1756de7b3d342f68288959eb753eacfe05bc91ca6ee93a1eaea34da8774693f
       task_type: implement
       primary_skill: strings.standard-library
       technical_status: pass
@@ -2979,7 +2979,7 @@ tasks:
       legacy: false
     - id: utf8-prefix-001
       state: draft
-      input_digest: 7e161a31172398ceed3ba23d9364e127540f747e0afaffea888ccb32ce9d3617
+      input_digest: 098a8555831ac2b803cbe5a6e460a4875da75db35728240b371e665f7b3b31b4
       task_type: debug
       primary_skill: unicode.range-decoding
       technical_status: pass
@@ -2998,7 +2998,7 @@ tasks:
       legacy: false
     - id: utf8-validity-tests-001
       state: ready
-      input_digest: fc0c7ff066ec0ccf424812fdcc6a5567638d4ac5e178e17e253ad7a22b061580
+      input_digest: 255742d027b52223fe9530e9b38fef251565532d337de74490342fe896a73961
       task_type: test-writing
       primary_skill: unicode.utf8-encoding
       technical_status: pass
@@ -3016,7 +3016,7 @@ tasks:
       legacy: false
     - id: value-average-001
       state: ready
-      input_digest: bd215aa2a9810a2081f4e25efbdbf92984dfc08f7d65f363d3469b71b0bb36d5
+      input_digest: 92e7c45fc4ffc810282aa5373816980137419a19af99f7d9bc3a24f316b93df7
       task_type: implement
       primary_skill: methods.method-sets
       technical_status: pass
@@ -3034,7 +3034,7 @@ tasks:
       legacy: false
     - id: variadic-aliasing-001
       state: ready
-      input_digest: e306a087365c5214a14760fd10a6d10e03039b230f63fc7102cb0dab99be4441
+      input_digest: d3e34e8b21f2254c4d9898f7c57d04e63846ffb39542b946676960fb8f1ab587
       task_type: debug
       primary_skill: functions.variadic
       technical_status: pass
@@ -3052,7 +3052,7 @@ tasks:
       legacy: false
     - id: variadic-sum-001
       state: ready
-      input_digest: f7aef546b1a4e005e24842b2689e43af1dc213e0aa7321922bf71175fa0fc4cf
+      input_digest: e5e2cdbc214d9091661015284f45730dc686e6beca0c44de866b115b50a2f1bc
       task_type: implement
       primary_skill: functions.variadic
       technical_status: pass
@@ -3070,7 +3070,7 @@ tasks:
       legacy: true
     - id: variadic-tail-sums-001
       state: ready
-      input_digest: 0f056b32d553a71eab12985d535da33755adac9d33961b5c10a90fd233ad7204
+      input_digest: e91716f5238017876a040e04d3d84fcc829b95147c5fb73cd64748b5387082aa
       task_type: implement
       primary_skill: functions.variadic
       technical_status: pass
@@ -3088,7 +3088,7 @@ tasks:
       legacy: false
     - id: whole-minute-output-001
       state: ready
-      input_digest: f7cc26245550a65ddc197694229ee8e1fc46e0d3581001f03f09a1e6d4e9b432
+      input_digest: 9db129d11488c92e077145f9877845efdc121a34e30fba7b2c7a457ee9c892df
       task_type: debug
       primary_skill: types.numeric-conversions
       technical_status: pass
@@ -3106,7 +3106,7 @@ tasks:
       legacy: false
     - id: wide-sum-001
       state: ready
-      input_digest: ef0509ff72ae9dc8730914e9a20ebbac11784c8dfb1f1b96fd47fe462ea51e2d
+      input_digest: 8e72c30bb9e51ff0321fdeeecd2eb1ab95f6dfe264424f869c6c307f93685c9f
       task_type: debug
       primary_skill: types.numeric-conversions
       technical_status: pass
@@ -3124,7 +3124,7 @@ tasks:
       legacy: false
     - id: widened-rate-001
       state: ready
-      input_digest: 49182a9c0dfabf6d5a9690109afb5012897ea67dfa6aa62166ffc3a1fe05350c
+      input_digest: 4a20e7a0f1a0c460d903a3a0a68d67ad4e28fcc543b1e96d86c81b0e9eb0c47e
       task_type: implement
       primary_skill: types.numeric-conversions
       technical_status: pass
@@ -3142,7 +3142,7 @@ tasks:
       legacy: false
     - id: worker-completion-tests-001
       state: ready
-      input_digest: af666324ac62584aca76eae08847a560d586e9a7acf2e2675cac6a8d020c2a74
+      input_digest: 65b8cb0b4d1e3965b901d0811901cb40994027278e22f8295a70d24d24e08182
       task_type: test-writing
       primary_skill: goroutines.launch-lifecycle
       technical_status: pass
@@ -3160,7 +3160,7 @@ tasks:
       legacy: false
     - id: writer-double-001
       state: ready
-      input_digest: f0d693b7d2833aa5dde07c246b2d9d34fd3dea49b43d476d56afe71ab554e4ba
+      input_digest: d24e5534c3e1f30023bbad482b9c088cf2c04a1a5cca76f18a84104b3179d838
       task_type: implement
       primary_skill: testing.seams-doubles
       technical_status: pass
@@ -3178,7 +3178,7 @@ tasks:
       legacy: false
     - id: writer-greeting-001
       state: ready
-      input_digest: bed1eabdca7a468183c5a8c30c7ba23508ae2646f75355ca56bb126022b077ec
+      input_digest: f8c0d7e98fcb32ff2bae1462204462acd9d74737cd137b83e495465bb7b975e9
       task_type: implement
       primary_skill: io.reader-writer-contracts
       technical_status: pass
@@ -3196,7 +3196,7 @@ tasks:
       legacy: false
     - id: zero-results-001
       state: ready
-      input_digest: 346cd9149bc56d8c5d7834d51dc74eb8933126bfdf573a01695659310a456af9
+      input_digest: 4adf6a872298501b1f4508e2c05e04453e8a1fc5c7d2b988496b354f768864b6
       task_type: implement
       primary_skill: types.zero-values
       technical_status: pass
@@ -3214,7 +3214,7 @@ tasks:
       legacy: false
     - id: zero-state-001
       state: ready
-      input_digest: 1a89134b20adb56d7db4f4495d629f8017ab738fd2916dd450f876af8c06ca06
+      input_digest: 85f6cda3f3f9155c7a4112122ee96a7393951c7832a6d460f05ddb8fe5d68bc0
       task_type: debug
       primary_skill: types.zero-values
       technical_status: pass

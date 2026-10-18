@@ -166,9 +166,11 @@ solutions, and mutants are never copied there.
 ## Verification boundary
 
 Every check creates a fresh temporary Go module with isolated build, module,
-home, and temporary directories. `GOWORK=off`, `GOPROXY=off`,
-`GOTELEMETRY=off`, and read-only module mode prevent workspace inheritance,
-dependency downloads, and Go telemetry. The canonical task and learner
+home, and temporary directories. `GOWORK=off`, `GOPROXY=off`, and read-only
+module mode prevent workspace inheritance and dependency downloads. Before
+the first Go command, the isolated user configuration contains a telemetry
+mode file set to `off`; `GOTELEMETRY` itself is a read-only Go environment value.
+The canonical task and learner
 workspace are inputs; commands execute only in the temporary copy.
 
 `check` returns bounded diagnostics produced by public tests. `complete` can use

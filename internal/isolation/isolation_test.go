@@ -1,12 +1,50 @@
 package isolation
 
 import (
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
 	"time"
 )
+
+func TestIsolatedGoTelemetryIsOffBeforeFirstCommand(t *testing.T) {
+	environment, err := NewEnvironment("telemetry-off")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = environment.Close() })
+	workspace, err := environment.NewWorkspace("metadata")
+	if err != nil {
+		t.Fatal(err)
+	}
+	output, err := environment.RunGo(workspace, 10*time.Second, RunGoOptions{Mode: ExecutionModeNormal}, "env", "-json", "GOTELEMETRY", "GOTELEMETRYDIR")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var info struct{ GOTELEMETRY, GOTELEMETRYDIR string }
+	if err := json.Unmarshal(output, &info); err != nil {
+		t.Fatal(err)
+	}
+	if info.GOTELEMETRY != "off" {
+		t.Fatalf("first isolated Go command has telemetry mode %q; want off", info.GOTELEMETRY)
+	}
+	relative, err := filepath.Rel(environment.Root, info.GOTELEMETRYDIR)
+	if err != nil || relative == ".." || strings.HasPrefix(relative, ".."+string(filepath.Separator)) || filepath.IsAbs(relative) {
+		t.Fatalf("telemetry configuration escaped disposable root: %q (%v)", info.GOTELEMETRYDIR, err)
+	}
+	entries, err := os.ReadDir(info.GOTELEMETRYDIR)
+	if err != nil || len(entries) != 1 || entries[0].Name() != "mode" {
+		t.Fatalf("disabled telemetry created counters or sidecar files: %v (%v)", entries, err)
+	}
+	if err := environment.Close(); err != nil {
+		t.Fatalf("close after trusted metadata query: %v", err)
+	}
+	if _, err := os.Stat(environment.Root); !os.IsNotExist(err) {
+		t.Fatalf("disposable telemetry configuration survived Close: %v", err)
+	}
+}
 
 func TestLegacyParserRejectsShellAndOtherProgramsBeforeExecution(t *testing.T) {
 	marker := filepath.Join(t.TempDir(), "marker")

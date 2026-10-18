@@ -56,6 +56,13 @@ grammar contract старый collection не переименовывается
 создаётся один новый v4 файл для всех acceptance consumers. Реальный learner
 home не используется.
 
+Metadata-only `go env` тоже проходит через isolated environment. Перед первой
+командой environment создаёт telemetry mode file `off` в своём user config.
+Одна переменная `GOTELEMETRY=off` не задаёт режим: без файла Go использует
+`local` и может оставить sidecar, который мешает немедленному cleanup.
+`TestIsolatedGoTelemetryIsOffBeforeFirstCommand` проверяет actual mode, отсутствие
+counter/sidecar files и удаление disposable root; real user config не меняется.
+
 ## Где уходит время
 
 В CI run `34168388464` исправления literal-bindings интеграционные тесты заняли
