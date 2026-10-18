@@ -1,0 +1,190 @@
+{
+  "decision": "docs/adr/0031-foundation-scope-and-taxonomy-v4.md",
+  "status": "accepted design for a separate migration; not live taxonomy or assignable task metadata",
+  "baseline": {
+    "registry_project": "go-practice-bank",
+    "commit": "0bc11985e9f67ab8677c3a7726f3239118e76442",
+    "path": "curriculum/skills.yaml",
+    "sha256": "8fc463c93634564e7972117ea7f7c1f90d4e5cb82659f2f631698ef68ba4ab64",
+    "active_existing_ids": 142,
+    "minima": {
+      "primary": 409,
+      "total": 693
+    }
+  },
+  "contracts": [
+    {
+      "id": "expressions.bitwise-masks",
+      "domain": "expressions",
+      "definition": "Inspects, sets, clears and toggles selected integer bits while preserving unrelated bits.",
+      "prerequisites": [
+        "expressions.arithmetic",
+        "types.numeric-conversions",
+        "expressions.comparison"
+      ],
+      "common_misconceptions": [
+        "Boolean conjunction inspects the same state as an integer mask.",
+        "Clearing selected bits may also reset unrelated flags.",
+        "XOR is interchangeable with setting bits already present."
+      ],
+      "mastery": [
+        "Expresses each mask operation with explicit integer types.",
+        "Checks both selected-bit behavior and preservation of other bits."
+      ],
+      "recommended_exercise_types": [
+        "implement",
+        "debug",
+        "test-writing"
+      ],
+      "minimum_occurrences": {
+        "primary": 3,
+        "total": 5
+      },
+      "evidence_requirements": {
+        "minimum_distinct_task_types": 3,
+        "required_modes": [
+          "implementation",
+          "debugging",
+          "verification-or-integration"
+        ],
+        "observable_outcomes": [
+          "Checks whether any or all selected bits are present, including zero-mask behavior fixed by the task contract.",
+          "Sets, clears, and toggles selected bits and preserves every unrelated bit for overlapping, disjoint, zero, and already-set masks."
+        ]
+      },
+      "status": "active-proposed-only",
+      "assignable": false,
+      "scope": "foundation-proposed",
+      "minimum_rationale": "Three primary encounters reserve distinct learner-authored implementation, repair, and tests of an existing implementation; two further encounters apply the same outcome with materially different contracts. This retains the ordinary 3/5 foundation tier; availability/depth minima are not mandatory linear completions.",
+      "forms": {
+        "implementation": "Implement mask inspection and transformation for supplied fixed-width masks.",
+        "debugging": "Repair a transformation that confuses set and toggle or erases unrelated bits.",
+        "verification-or-integration": "Write tests distinguishing any/all inspection, zero masks, pre-existing selected bits, and preservation of unrelated flags."
+      }
+    },
+    {
+      "id": "expressions.integer-shifts",
+      "domain": "expressions",
+      "definition": "Reasons about integer shift direction, count, operand type and width for constant and runtime operands.",
+      "prerequisites": [
+        "expressions.arithmetic",
+        "types.constants",
+        "types.numeric-conversions"
+      ],
+      "common_misconceptions": [
+        "A runtime shift count is automatically reduced modulo the operand width.",
+        "Signed and unsigned right shifts always fill the same high bits.",
+        "An untyped constant and a fixed-width integer always retain the same shifted value."
+      ],
+      "mastery": [
+        "Chooses operand types and valid count domains explicitly.",
+        "Separates constant representability from runtime fixed-width shift behavior."
+      ],
+      "recommended_exercise_types": [
+        "implement",
+        "debug",
+        "test-writing"
+      ],
+      "minimum_occurrences": {
+        "primary": 3,
+        "total": 5
+      },
+      "evidence_requirements": {
+        "minimum_distinct_task_types": 3,
+        "required_modes": [
+          "implementation",
+          "debugging",
+          "verification-or-integration"
+        ],
+        "observable_outcomes": [
+          "Separates untyped/typed constant representability from fixed-width runtime left-shift bit loss.",
+          "Handles count zero, width and beyond-width counts without assuming modulo reduction; distinguishes signed and unsigned right shifts.",
+          "Distinguishes invalid negative constant counts from the runtime panic for a negative signed count. Compile-negative examples are checker-owned semantic facts, never mutant kills."
+        ]
+      },
+      "status": "active-proposed-only",
+      "assignable": false,
+      "scope": "foundation-proposed",
+      "minimum_rationale": "Three primary encounters reserve distinct learner-authored implementation, repair, and tests of an existing implementation; two further encounters apply the same outcome with materially different contracts. This retains the ordinary 3/5 foundation tier; availability/depth minima are not mandatory linear completions.",
+      "forms": {
+        "implementation": "Compute a finite table of fixed-width runtime shift results and explicitly stated invalid-count behavior.",
+        "debugging": "Repair width-modulo, conversion-order or signed-fill defects in a normally compiling implementation.",
+        "verification-or-integration": "Write tests for fixed-width boundaries, signed/unsigned behavior, and runtime negative-count policy, with compiler facts checked separately."
+      }
+    },
+    {
+      "id": "functions.recursion",
+      "domain": "functions",
+      "definition": "Defines finite recursive decomposition with correct base cases, progressing subproblems and complete result combination.",
+      "prerequisites": [
+        "control-flow.if",
+        "functions.signatures-results"
+      ],
+      "common_misconceptions": [
+        "A terminal branch guarantees termination even when a recursive subproblem does not progress.",
+        "One recursive branch is sufficient when the decomposition requires multiple subproblems.",
+        "Correct output or an unused recursive call proves that recursion performed the requested computation."
+      ],
+      "mastery": [
+        "States a decreasing measure and handles its terminal inputs.",
+        "Combines every required recursive subresult without duplicating or skipping branches."
+      ],
+      "recommended_exercise_types": [
+        "implement",
+        "debug",
+        "test-writing"
+      ],
+      "minimum_occurrences": {
+        "primary": 3,
+        "total": 5
+      },
+      "evidence_requirements": {
+        "minimum_distinct_task_types": 3,
+        "required_modes": [
+          "implementation",
+          "debugging",
+          "verification-or-integration"
+        ],
+        "observable_outcomes": [
+          "Handles terminal and minimal nonterminal inputs, plus unequal branches when the task decomposition branches.",
+          "For implementation and debugging evidence, executes learner-authored recursive decomposition that progresses to terminal cases and contributes required results.",
+          "For verification evidence, learner-authored tests distinguish missing base cases, nonprogressing or skipped branches, and incorrect combination; this alone does not prove authored recursion."
+        ]
+      },
+      "status": "active-proposed-only",
+      "assignable": false,
+      "scope": "foundation-proposed",
+      "minimum_rationale": "Three primary encounters reserve distinct learner-authored implementation, repair, and tests of an existing implementation; two further encounters apply the same outcome with materially different contracts. This retains the ordinary 3/5 foundation tier; availability/depth minima are not mandatory linear completions.",
+      "forms": {
+        "implementation": "Author recursive decomposition and result combination under an explicit decreasing measure.",
+        "debugging": "Repair progress, terminal handling, or branch combination in an existing recursive implementation.",
+        "verification-or-integration": "Write tests for an existing recursive API that expose base-case and decomposition defects; separate implementation evidence still required."
+      },
+      "assessment_gate": {
+        "state": "blocked-until-reviewed-mechanism",
+        "rule": "No P25 or recursion implementation/debugging task authoring/promotion until a bounded public verification contract and disposable proof reject iterative substitution, dead self-calls and unused dummy recursion, while accepting the stated direct/helper/mutual forms. Output tests plus selfcall AST presence are insufficient.",
+        "proof_requirements": [
+          "Correct recursive alternatives pass public/full",
+          "Iterative, dead and dummy recursive substitutes fail a useful public assertion",
+          "Behavioral base/progress/branch/combination mutants compile and fail public tests",
+          "Restrictions and accepted recursive forms are stated to learner; no hidden implementation shape"
+        ],
+        "mechanism": "Not selected or implemented. Runtime executed-path evidence with reviewed structural bounds is a candidate, not acceptance evidence."
+      }
+    }
+  ],
+  "proposed_addition_minima": {
+    "primary": 9,
+    "total": 15
+  },
+  "proposed_fullbank_after_additions": {
+    "active_skills": 145,
+    "required_primary": 418,
+    "required_total": 708,
+    "ready_task_target": [
+      350,
+      500
+    ]
+  },
+  "activation_gate": "Separate reviewed v4 schema/loader/migration batch with complete preserved177-ID inventory; recursion task authoring additionally blocked on independent assessment mechanism review."
+}
