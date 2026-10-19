@@ -115,6 +115,19 @@ ADR 0022, with no release/export, complete foundation or learner mastery claim.
 
 The milestone ledger below remains historical.
 
+P21 preparation, 2026-10-19: source-only PR98 admits the exact Ardan tagged
+parser. [ADR 0033](adr/0033-finite-text-reproduction.md) and its
+[finite mechanism design](plans/reproduction-text-mechanism.md) are independently reviewed
+for a separate repair/live-regression/causal-report profile. No parser proof,
+profile activation or P21 task has been delivered by this design. The current
+bank remains 171 route lessons, 174 ready packages and 181 total packages;
+108 of 145 skills are assessed. Foundation still has 33 zero-assessed skills
+and deficits of 243 primary / 494 total occurrences. Required modes, types,
+components and semantic outcomes remain additional gates. Actual learner VCS
+retention for reproduction is explicitly deferred to a later assessed encounter;
+teacher commits and workspace persistence do not satisfy it. Theory remains
+frozen at six pages, and the 350–500 target is unchanged.
+
 | Milestone | Product result | Definition of Done |
 | --- | --- | --- |
 | 1. Working course: 150 ready lessons | Numbered sections/workspaces, systematic source adaptation, sequential practice, independent coding/testing and repetitions | 150 learner-visible lessons have prerequisites and route positions, executable checks and independent review. Repetitions and mastery evidence work separately from completion. Existing solutions and history survive migrations. At least 76 lessons substantively adapt permitted exercise material; concept-only seeds do not qualify. |
