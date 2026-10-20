@@ -9,9 +9,11 @@ import (
 	"strings"
 	"testing"
 
+	"go-practice-bank/internal/learner"
 	"go-practice-bank/internal/tasking"
 	"go-practice-bank/internal/taxonomy"
 	"go-practice-bank/internal/testrepo"
+	"go-practice-bank/internal/triage"
 	"go-practice-bank/internal/validation"
 	"gopkg.in/yaml.v3"
 )
@@ -193,6 +195,33 @@ func TestV3OrdinaryAndFullCompatibilityRejectNewConsumers(t *testing.T) {
 		t.Fatal(err)
 	}
 	if err := os.WriteFile(filepath.Join(root, "curriculum/skills.yaml"), v3, 0600); err != nil {
+		t.Fatal(err)
+	}
+	// This bounded metadata fixture contains only historical v3 packages.
+	// Later v4 route introductions are not consumers of the v3 contract.
+	_, skills, err := triage.LoadSkillContracts(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	routePath := filepath.Join(root, "curriculum/route.yaml")
+	data, err := os.ReadFile(routePath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var route learner.Route
+	if err := yaml.Unmarshal(data, &route); err != nil {
+		t.Fatal(err)
+	}
+	for i := range route.Blocks {
+		route.Blocks[i].Steps = slices.DeleteFunc(route.Blocks[i].Steps, func(step learner.RouteStep) bool {
+			return slices.ContainsFunc(step.Skills, func(id string) bool { _, ok := skills[id]; return !ok })
+		})
+	}
+	data, err = yaml.Marshal(route)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(routePath, data, 0600); err != nil {
 		t.Fatal(err)
 	}
 	checks := testrepo.Collection(t, root)
