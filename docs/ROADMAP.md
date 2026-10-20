@@ -9,6 +9,17 @@ P21 engine and further batches do not continue automatically. The larger bank
 and numeric minima remain visible deferred work; v1 is not full-bank release
 or learner mastery. Dated counts and earlier priorities below are historical.
 
+M1 content checkpoint, 2026-10-20: **176 routed lessons**, with five original
+first encounters at append-only addresses: `02.12` array window updates,
+`02.13` nil-preserving filtering, `06.53` promoted field selection,
+`03.35` selected-bit tests and `03.36` fixed-width shifts. All 171 previous
+address/role/skill tuples and their relative pedagogical order are retained.
+The allocation now has 28 first-encounter slots left, 92 independent-application
+slots and six component slots; those are planning slots, not accepted tasks.
+This batch uses existing fixed-tests and mutation-tests profiles. It does not
+implement P21, new tooling, full-bank release or learner-mastery evidence.
+After exact-head validation and merge the goal pauses; M2 requires a new instruction.
+
 Status: historical milestone ledger with current delivery policy, 2026-09-11.
 The foundation implementation plan is [foundation-next](plans/foundation-next.md);
 the current lesson-order update is [pedagogical-order-rollout](plans/pedagogical-order-rollout.md).

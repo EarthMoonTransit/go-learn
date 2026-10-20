@@ -20,7 +20,9 @@
       "slot": "first-encounter:arrays.indexing-iteration",
       "skill_id": "arrays.indexing-iteration",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "array-window-update-001",
+      "delivery_batch": "M1"
     },
     {
       "slot": "first-encounter:benchmarks.allocations",
@@ -86,19 +88,25 @@
       "slot": "first-encounter:embedding.field-promotion",
       "skill_id": "embedding.field-promotion",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "promoted-field-selection-001",
+      "delivery_batch": "M1"
     },
     {
       "slot": "first-encounter:expressions.bitwise-masks",
       "skill_id": "expressions.bitwise-masks",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "mask-state-tests-001",
+      "delivery_batch": "M1"
     },
     {
       "slot": "first-encounter:expressions.integer-shifts",
       "skill_id": "expressions.integer-shifts",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "fixed-width-shifts-001",
+      "delivery_batch": "M1"
     },
     {
       "slot": "first-encounter:functions.recursion",
@@ -140,7 +148,9 @@
       "slot": "first-encounter:slices.nil-empty",
       "skill_id": "slices.nil-empty",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "nil-preserving-filter-001",
+      "delivery_batch": "M1"
     },
     {
       "slot": "first-encounter:sync.once-initialization",
@@ -913,5 +923,13 @@
       "slot": "component-performance-experiment",
       "outcome": "Measure equivalent implementations with representative inputs, repeated measurements and allocation interpretation."
     }
-  ]
+  ],
+  "delivery": {
+    "batch": "M1",
+    "route_lessons_after": 176,
+    "first_encounters_remaining": 28,
+    "independent_applications_remaining": 92,
+    "component_slots_remaining": 6,
+    "note": "First encounters only. Automatic acceptance evidence is in task/review and reports; no human mastery or whole-skill credit implied."
+  }
 }

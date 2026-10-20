@@ -1,0 +1,56 @@
+schema_version: 2
+id: mask-state-tests-001
+title: Test selected-bit operations and unrelated-bit preservation
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: expressions.bitwise-masks
+    secondary: []
+prerequisites:
+    - expressions.arithmetic
+    - expressions.comparison
+    - functions.signatures-results
+    - structs.literals-zero
+    - testing.basics-diagnostics
+    - types.numeric-conversions
+new_concepts:
+    - expressions.bitwise-masks
+difficulty: basic
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - any-is-all
+        - all-is-any
+        - zero-mask-not-all
+        - set-toggles
+        - clear-keeps-selected
+        - clear-drops-unrelated
+        - toggle-sets
+        - set-drops-unrelated
+        - any-false-nonzero
+        - any-true-nonzero
+        - all-false-nonzero
+        - all-true-nonzero
+        - toggle-drops-unrelated
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

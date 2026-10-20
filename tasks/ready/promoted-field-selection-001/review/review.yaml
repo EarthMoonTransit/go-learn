@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "reviewer": "independent-reviewer-p21-admission-review",
+  "reviewed_at": "2026-10-20",
+  "decision": "approve",
+  "story_free": true,
+  "prompt_test_alignment": true,
+  "public_api_stable": true,
+  "provenance_verified": true,
+  "license_verified": true,
+  "reference_only_clean_room_verified": true,
+  "solution_leakage_checked": true,
+  "minimum_mutants": 6,
+  "notes": "Independent review of actual prompt/API, source decision, tests, reference, defects, public feedback and prerequisite order. Original-v2 digest independently verified. Reviewed fixes and runtime evidence accepted; full repository gates and exact-head CI remain separate."
+}

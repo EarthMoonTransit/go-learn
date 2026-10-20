@@ -157,6 +157,22 @@
           "skills": [
             "maps.operations-comma-ok"
           ]
+        },
+        {
+          "number": 12,
+          "task_id": "array-window-update-001",
+          "role": "introduction",
+          "skills": [
+            "arrays.indexing-iteration"
+          ]
+        },
+        {
+          "number": 13,
+          "task_id": "nil-preserving-filter-001",
+          "role": "introduction",
+          "skills": [
+            "slices.nil-empty"
+          ]
         }
       ],
       "number": 2
@@ -438,6 +454,22 @@
           "role": "practice",
           "skills": [
             "control-flow.switch"
+          ]
+        },
+        {
+          "number": 35,
+          "task_id": "mask-state-tests-001",
+          "role": "introduction",
+          "skills": [
+            "expressions.bitwise-masks"
+          ]
+        },
+        {
+          "number": 36,
+          "task_id": "fixed-width-shifts-001",
+          "role": "introduction",
+          "skills": [
+            "expressions.integer-shifts"
           ]
         }
       ],
@@ -1071,6 +1103,14 @@
           "role": "introduction",
           "skills": [
             "maps.key-comparability"
+          ]
+        },
+        {
+          "number": 53,
+          "task_id": "promoted-field-selection-001",
+          "role": "introduction",
+          "skills": [
+            "embedding.field-promotion"
           ]
         }
       ],
