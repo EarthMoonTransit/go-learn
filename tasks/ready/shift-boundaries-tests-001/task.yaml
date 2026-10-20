@@ -1,0 +1,54 @@
+schema_version: 2
+id: shift-boundaries-tests-001
+title: Test extraction at fixed-width shift boundaries
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: expressions.integer-shifts
+    secondary: []
+prerequisites:
+    - expressions.arithmetic
+    - expressions.bitwise-masks
+    - expressions.comparison
+    - functions.signatures-results
+    - structs.literals-zero
+    - testing.basics-diagnostics
+    - types.constants
+    - types.numeric-conversions
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - offset-modulo
+        - width-modulo
+        - zero-means-full
+        - cap-at-fifteen
+        - left-shift
+        - mask-before-shift
+        - signed-fill
+        - offset-plus-one
+        - ignore-width
+        - always-zero
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

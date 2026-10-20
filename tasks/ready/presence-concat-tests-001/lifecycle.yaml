@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-10-20"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-10-20"
+      actor: v1-next-five-author
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-10-20"
+      actor: independent-reviewer-p21-admission-review
+      reason: M2.1 bounded original independent application; source/content review approved, disposable reference/mutant/public evidence passed.
+    - from: in-review
+      to: ready
+      at: "2026-10-20"
+      actor: independent-reviewer-p21-admission-review
+      reason: M2.1 bounded original independent application; source/content review approved, disposable reference/mutant/public evidence passed.

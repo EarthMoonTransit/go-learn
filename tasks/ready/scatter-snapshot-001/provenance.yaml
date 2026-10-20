@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "5f2d363c667488832bc80001109d13e78732a5db0cf93e765b89db410d3d0f9a"
+  },
+  "creation": {
+    "author": "v1-next-five-author",
+    "created_at": "2026-10-20",
+    "summary": "Original M2.1 independent application after bounded source/design review. Statements, APIs, tests, reference and defects authored locally; upstream comparisons supply facts only."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/scatter-snapshot-001.yaml"
+  }
+}

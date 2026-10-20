@@ -1,0 +1,49 @@
+schema_version: 2
+id: scatter-snapshot-001
+title: Gather an array from an index map
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: arrays.indexing-iteration
+    secondary: []
+prerequisites:
+    - arrays.value-semantics
+    - control-flow.if
+    - control-flow.range
+    - expressions.comparison
+    - functions.signatures-results
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - identity
+        - in-place
+        - scatter-instead-gather
+        - skip-last
+        - reject-repeated-indexes
+        - invalid-zero-result
+        - invalid-success
+        - partial-on-invalid
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

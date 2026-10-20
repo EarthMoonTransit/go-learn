@@ -1,0 +1,144 @@
+{
+  "format": "go-learn-bounded-source-decision/v1",
+  "date": "2026-10-20",
+  "baseline_commit": "89a1ab80849c2cdedfb588a96377794e8a1ad9b1",
+  "status": "source/design approved for bounded original authoring; content acceptance pending",
+  "coverage_eligible": false,
+  "new_ready_tasks": 0,
+  "verified_comparisons": [
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "path": "topics/go/language/arrays/exercises/template1/template1.go",
+      "sha256": "1b8a1846030a956b9e77ebcdef73126e4d9b410361b41d9c4e0dd6f289787e3c",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "path": "topics/go/language/arrays/example3/example3.go",
+      "sha256": "cb9cf0da125441bedd923b994a9a17af3e15e9b4f7c21d8c4ffcf94e181bbe8a",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "path": "topics/go/language/slices/exercises/template1/template1.go",
+      "sha256": "5a4ca1311e6a650e1b4e017d1e5e7ea7ef5973e0b58317af93d362e1402f33bc",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "path": "topics/go/language/embedding/exercises/template1/template1.go",
+      "sha256": "246de178e97686f61d17c2c902eb9dd784539dbc5ca677bb1a9142cfe35c50c8",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "path": "topics/go/language/embedding/example2/example2.go",
+      "sha256": "34e8b849342aa067aaadce11b7e18b521ca9c6732cdea38d5de1224ff5cbdd5a",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "path": "LICENSE",
+      "sha256": "fd62bda91923cb60d78846f3038f14cc312ff62b93915d88a4434b92c366fe54",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    },
+    {
+      "registry_id": "golang-go",
+      "commit": "2c31595783c74564c1299a5401dc6e606f379cc7",
+      "path": "doc/go_spec.html",
+      "sha256": "338875c4ee9c47d1ea9518b5373ff5e9bd133ba78692cbf16dac0756e896e288",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    },
+    {
+      "registry_id": "golang-go",
+      "commit": "2c31595783c74564c1299a5401dc6e606f379cc7",
+      "path": "LICENSE",
+      "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    }
+  ],
+  "existing_inventory_evidence": [
+    "catalog/seed-plans/exercism-foundation-pilot.yaml",
+    "catalog/reviews/exercism-go.yaml",
+    "docs/plans/taxonomy-v4-additions.json"
+  ],
+  "decision_boundary": "Bounded follow-up of M1 source decisions; comparison/semantic facts only. Original v2 packages use project identity, creation, digests, empty external sources. No copied upstream task content. Five independent-application slots, not whole-skill mastery.",
+  "tasks": [
+    {
+      "primary_skill": "arrays.indexing-iteration",
+      "proposed_task_id": "scatter-snapshot-001",
+      "activity": "implementation",
+      "profile": "fixed-tests",
+      "contract": "Gather a new [8]int by an index map against the unchanged source; repeated indexes are valid and any invalid index preserves the input result.",
+      "original_reason": "Unlike mutable constant windows, combines source/destination positions and all-or-nothing validation; Ardan array print/copy and selected Exercism color lookup do not supply this snapshot contract.",
+      "slot": "independent-application:arrays.indexing-iteration",
+      "scope": "Second distinct encounter and independent application of the bounded outcome; no full-bank minima or learner mastery claim.",
+      "existing_selected_seed": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "path": "exercises/practice/resistor-color",
+        "basis": "catalog/reviews/exercism-go.yaml and catalog/seed-plans/exercism-foundation-pilot.yaml, metadata review only",
+        "disposition": "retain for lookup/enumeration; not selected as a donor for mutable interval/range-copy repair"
+      }
+    },
+    {
+      "primary_skill": "slices.nil-empty",
+      "proposed_task_id": "presence-concat-tests-001",
+      "activity": "test-writing",
+      "profile": "mutation-tests",
+      "contract": "Test ordered variadic concatenation with result presence iff any part is non-nil; preserve all input elements.",
+      "original_reason": "Independent test design across multiple representations and argument positions; no donor in reviewed slice append/length material specifies the cross-part presence fold. Existing prepend/variadic tasks omit this presence contract.",
+      "slot": "independent-application:slices.nil-empty",
+      "scope": "Second distinct encounter and independent application of the bounded outcome; no full-bank minima or learner mastery claim."
+    },
+    {
+      "primary_skill": "embedding.field-promotion",
+      "proposed_task_id": "embedded-field-update-001",
+      "activity": "implementation",
+      "profile": "fixed-tests",
+      "contract": "Apply three separate increments to promoted, embedded-shadowed and outer fields of a value copy.",
+      "original_reason": "Independent field writes with distinct destinations instead of reading selected fields; Ardan method/cache examples and existing method tasks do not supply this state transition.",
+      "slot": "independent-application:embedding.field-promotion",
+      "scope": "Second distinct encounter and independent application of the bounded outcome; no full-bank minima or learner mastery claim."
+    },
+    {
+      "primary_skill": "expressions.bitwise-masks",
+      "proposed_task_id": "replace-mask-field-001",
+      "activity": "debugging",
+      "profile": "fixed-tests",
+      "contract": "Replace exactly the selected bits of a base byte with those from a replacement byte, preserving all other bits.",
+      "original_reason": "Composition of complement/selection across two operands; differs from independently testing five one-operand mask operations. No upstream statement, canonical fixture or solution used.",
+      "slot": "independent-application:expressions.bitwise-masks",
+      "scope": "Second distinct encounter and independent application of the bounded outcome; no full-bank minima or learner mastery claim."
+    },
+    {
+      "primary_skill": "expressions.integer-shifts",
+      "proposed_task_id": "shift-boundaries-tests-001",
+      "activity": "test-writing",
+      "profile": "mutation-tests",
+      "contract": "Test a uint16 bit window with saturated width and unbounded unsigned offset; width zero and offsets beyond word width produce zero.",
+      "original_reason": "Independent tests combine offset shifts and a bounded mask; different width and API from direct uint8/int8 four-result shift repair. No constant or negative-count evidence claimed.",
+      "slot": "independent-application:expressions.integer-shifts",
+      "scope": "Second distinct encounter and independent application of the bounded outcome; no full-bank minima or learner mastery claim."
+    }
+  ],
+  "review": {
+    "reviewer": "/root/p21_admission_review",
+    "date": "2026-10-20",
+    "decision": "approve",
+    "scope": "Bounded source/design and independent-application allocation only; not acceptance of unauthored tasks.",
+    "findings_closed": [
+      "Restored exact registry/commit/path for retained Exercism color lookup comparison."
+    ]
+  },
+  "prior_source_decision": {
+    "path": "catalog/intake/2026-10-20/v1-first-five-source-review.json",
+    "commit": "89a1ab80849c2cdedfb588a96377794e8a1ad9b1"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "title": "Go Learn \u2014 Go foundation",
+  "title": "Go Learn — Go foundation",
   "preparation": "docs/LEARNER_START.md",
   "preparation_skills": [
     "toolchain.modules-workspaces",
@@ -170,6 +170,22 @@
           "number": 13,
           "task_id": "nil-preserving-filter-001",
           "role": "introduction",
+          "skills": [
+            "slices.nil-empty"
+          ]
+        },
+        {
+          "number": 14,
+          "task_id": "scatter-snapshot-001",
+          "role": "practice",
+          "skills": [
+            "arrays.indexing-iteration"
+          ]
+        },
+        {
+          "number": 15,
+          "task_id": "presence-concat-tests-001",
+          "role": "practice",
           "skills": [
             "slices.nil-empty"
           ]
@@ -468,6 +484,22 @@
           "number": 36,
           "task_id": "fixed-width-shifts-001",
           "role": "introduction",
+          "skills": [
+            "expressions.integer-shifts"
+          ]
+        },
+        {
+          "number": 37,
+          "task_id": "replace-mask-field-001",
+          "role": "practice",
+          "skills": [
+            "expressions.bitwise-masks"
+          ]
+        },
+        {
+          "number": 38,
+          "task_id": "shift-boundaries-tests-001",
+          "role": "practice",
           "skills": [
             "expressions.integer-shifts"
           ]
@@ -1109,6 +1141,14 @@
           "number": 53,
           "task_id": "promoted-field-selection-001",
           "role": "introduction",
+          "skills": [
+            "embedding.field-promotion"
+          ]
+        },
+        {
+          "number": 54,
+          "task_id": "embedded-field-update-001",
+          "role": "practice",
           "skills": [
             "embedding.field-promotion"
           ]
