@@ -1,0 +1,137 @@
+{
+  "format": "go-learn-bounded-source-decision/v1",
+  "date": "2026-10-20",
+  "baseline_commit": "21d89d59939c3ee1f7ea891c136798decce9e9da",
+  "status": "independently approved for bounded original authoring after M0 merge",
+  "coverage_eligible": false,
+  "new_ready_tasks": 0,
+  "verified_comparisons": [
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "path": "topics/go/language/arrays/exercises/template1/template1.go",
+      "sha256": "1b8a1846030a956b9e77ebcdef73126e4d9b410361b41d9c4e0dd6f289787e3c",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "path": "topics/go/language/arrays/example3/example3.go",
+      "sha256": "cb9cf0da125441bedd923b994a9a17af3e15e9b4f7c21d8c4ffcf94e181bbe8a",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "path": "topics/go/language/slices/exercises/template1/template1.go",
+      "sha256": "5a4ca1311e6a650e1b4e017d1e5e7ea7ef5973e0b58317af93d362e1402f33bc",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "path": "topics/go/language/embedding/exercises/template1/template1.go",
+      "sha256": "246de178e97686f61d17c2c902eb9dd784539dbc5ca677bb1a9142cfe35c50c8",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "path": "topics/go/language/embedding/example2/example2.go",
+      "sha256": "34e8b849342aa067aaadce11b7e18b521ca9c6732cdea38d5de1224ff5cbdd5a",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    },
+    {
+      "registry_id": "ardanlabs-gotraining",
+      "commit": "4ae5a46bfc665909a7cb29e11c18775330c63401",
+      "path": "LICENSE",
+      "sha256": "fd62bda91923cb60d78846f3038f14cc312ff62b93915d88a4434b92c366fe54",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    },
+    {
+      "registry_id": "golang-go",
+      "commit": "2c31595783c74564c1299a5401dc6e606f379cc7",
+      "path": "doc/go_spec.html",
+      "sha256": "338875c4ee9c47d1ea9518b5373ff5e9bd133ba78692cbf16dac0756e896e288",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    },
+    {
+      "registry_id": "golang-go",
+      "commit": "2c31595783c74564c1299a5401dc6e606f379cc7",
+      "path": "LICENSE",
+      "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+      "use": "comparison/semantic facts only; not a task-content donor"
+    }
+  ],
+  "existing_inventory_evidence": [
+    "catalog/seed-plans/exercism-foundation-pilot.yaml",
+    "catalog/reviews/exercism-go.yaml",
+    "docs/plans/taxonomy-v4-additions.json"
+  ],
+  "decision_boundary": "Bounded comparison, not a claim of exhaustive upstream search. Original v2 packages will have project identity, creation record, content digest and empty external sources. Source facts/comparisons are recorded here; no source artifact supplies task code, tests, text or solution. No reference-only contents copied.",
+  "tasks": [
+    {
+      "primary_skill": "arrays.indexing-iteration",
+      "proposed_task_id": "array-window-update-001",
+      "activity": "debugging",
+      "profile": "fixed-tests",
+      "contract": "Update an inclusive-exclusive interval of a supplied [8]int by index, preserving other elements; invalid bounds leave it unchanged.",
+      "original_reason": "Ardan template1 copies a populated array and prints element values/addresses; example3 contrasts range-value and element addresses. Neither requests in-array interval updates, invalid-bound atomicity or range-copy debugging. Retaining their print/copy operation would assess a different contract. Existing selected Exercism practice/resistor-color remains a valid introductory lookup/enumeration seed. It does not require writing array elements or diagnose modifying only the range-value copy. Choosing it for the specific mutable interval outcome would replace that outcome or amount to nominal reuse; retain that candidate for later lookup practice rather than claiming it unsuitable in general.",
+      "scope": "One introduction encounter, not whole-skill depth or mastery.",
+      "existing_selected_seed": {
+        "registry_id": "exercism-go",
+        "commit": "ae1477abfeeb9fbeaf971caee220e91f9e4df790",
+        "path": "exercises/practice/resistor-color",
+        "basis": "catalog/reviews/exercism-go.yaml and catalog/seed-plans/exercism-foundation-pilot.yaml, metadata review only",
+        "disposition": "retain for lookup/enumeration; not selected as a donor for mutable interval/range-copy repair"
+      }
+    },
+    {
+      "primary_skill": "slices.nil-empty",
+      "proposed_task_id": "nil-preserving-filter-001",
+      "activity": "implementation",
+      "profile": "fixed-tests",
+      "contract": "Filter negative values while preserving nil versus non-nil input presence in the returned representation.",
+      "original_reason": "Ardan slices template1 starts with a nil slice and appends ten integers, then slices strings; it does not specify nil/non-nil empty API results. Existing Exercism pilot gap explicitly reserves slices.nil-empty for original tasks.",
+      "scope": "One introduction encounter, not whole-skill depth or mastery."
+    },
+    {
+      "primary_skill": "embedding.field-promotion",
+      "proposed_task_id": "promoted-field-selection-001",
+      "activity": "debugging",
+      "profile": "fixed-tests",
+      "contract": "Read outer, promoted and explicitly qualified fields of supplied nested value structs, including a shadowed name and same-depth sibling fields.",
+      "original_reason": "Ardan embedding template1 builds a caching method wrapper; example2 demonstrates promoted methods. Neither assesses the values selected from shadowed and sibling fields; existing embedded-cache-tests-001 already covers the method/cache donor.",
+      "scope": "One introduction encounter, not whole-skill depth or mastery."
+    },
+    {
+      "primary_skill": "expressions.bitwise-masks",
+      "proposed_task_id": "mask-state-tests-001",
+      "activity": "test-writing",
+      "profile": "mutation-tests",
+      "contract": "Write tests for uint8 any/all/set/clear/toggle operations with zero, overlapping and unrelated bits.",
+      "original_reason": "The newly accepted taxonomy contract needs mask inspection plus preservation across five operations. Previously catalogued domain-specific bit/enumeration puzzles do not isolate this complete finite API; no story, canonical cases, source solution or reference-only artifact is used.",
+      "scope": "One introduction encounter, not whole-skill depth or mastery."
+    },
+    {
+      "primary_skill": "expressions.integer-shifts",
+      "proposed_task_id": "fixed-width-shifts-001",
+      "activity": "debugging",
+      "profile": "fixed-tests",
+      "contract": "Repair supplied uint8/int8 left/right operations for unsigned counts, covering zero, eight and larger counts without modulo reduction.",
+      "original_reason": "The v4 contract distinguishes fixed-width loss and signed/unsigned fill. No admitted donor in this bounded slice of the source inventory supplies this four-result runtime diagnostic API. Constant representability and negative counts remain later encounters; no compiler-failing mutant credit.",
+      "scope": "One introduction encounter, not whole-skill depth or mastery."
+    }
+  ],
+  "review": {
+    "reviewer": "/root/p21_admission_review",
+    "date": "2026-10-20",
+    "decision": "approve",
+    "scope": "M0 policy and source/design admission only; no acceptance of task content not yet authored.",
+    "checked_source_hashes": 8,
+    "findings_closed": [
+      "README lesson count",
+      "explicit disposition of selected resistor-color seed"
+    ]
+  }
+}

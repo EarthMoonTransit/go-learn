@@ -1,5 +1,7 @@
 # Curriculum rules
 
+[ADR 0034](adr/0034-finite-v1-course.md) defines a separate v1 route-readiness milestone with two reviewed encounters per foundation skill. The deeper bank minima, modes and types below remain unchanged and are not claimed by v1. Its limited hybrid-recursion rule supersedes the machine-proof prerequisite below; numeric credit and task lifecycle rules remain unchanged.
+
 ## Объём и границы
 
 Фундаментальный трек содержит 350–500 задач. Его границы заданы доменами в

@@ -1,5 +1,7 @@
 # ADR 0033: Finite text-boundary repair and reproduction
 
+Update 2026-10-20: implementation is deferred by [ADR 0034](0034-finite-v1-course.md). Retain this design and evidence; do not continue its profile, prototype or collection-v5 work during v1.
+
 - Status: independently accepted design; preparation starts after docs PR merge,
   no execution or activation approval
 - Date: 2026-10-19

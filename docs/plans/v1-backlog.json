@@ -1,0 +1,917 @@
+{
+  "status": "planning allocation, not task or coverage evidence",
+  "baseline_commit": "21d89d59939c3ee1f7ea891c136798decce9e9da",
+  "foundation_skill_count": 141,
+  "existing_route_lessons": 171,
+  "first_encounters": 33,
+  "independent_applications": 92,
+  "component_slots": 6,
+  "maximum_additional_units": 131,
+  "maximum_total_units": 302,
+  "first_batch_skills": [
+    "arrays.indexing-iteration",
+    "slices.nil-empty",
+    "embedding.field-promotion",
+    "expressions.bitwise-masks",
+    "expressions.integer-shifts"
+  ],
+  "slots": [
+    {
+      "slot": "first-encounter:arrays.indexing-iteration",
+      "skill_id": "arrays.indexing-iteration",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:benchmarks.allocations",
+      "skill_id": "benchmarks.allocations",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:benchmarks.experimental-design",
+      "skill_id": "benchmarks.experimental-design",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:benchmarks.loops-timing",
+      "skill_id": "benchmarks.loops-timing",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:channels.buffering-backpressure",
+      "skill_id": "channels.buffering-backpressure",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:channels.cancellation",
+      "skill_id": "channels.cancellation",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:channels.fan-out-in",
+      "skill_id": "channels.fan-out-in",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:channels.ownership",
+      "skill_id": "channels.ownership",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:channels.pipeline",
+      "skill_id": "channels.pipeline",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:channels.range-drain",
+      "skill_id": "channels.range-drain",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:context.values-boundaries",
+      "skill_id": "context.values-boundaries",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:embedding.field-promotion",
+      "skill_id": "embedding.field-promotion",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:expressions.bitwise-masks",
+      "skill_id": "expressions.bitwise-masks",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:expressions.integer-shifts",
+      "skill_id": "expressions.integer-shifts",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:functions.recursion",
+      "skill_id": "functions.recursion",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:fuzzing.reproduction",
+      "skill_id": "fuzzing.reproduction",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:goroutines.panic-boundaries",
+      "skill_id": "goroutines.panic-boundaries",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:io.pipe-lifecycle",
+      "skill_id": "io.pipe-lifecycle",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:packages.import-cycles",
+      "skill_id": "packages.import-cycles",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:packages.internal-boundaries",
+      "skill_id": "packages.internal-boundaries",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:slices.nil-empty",
+      "skill_id": "slices.nil-empty",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:sync.once-initialization",
+      "skill_id": "sync.once-initialization",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:testing.deterministic-boundaries",
+      "skill_id": "testing.deterministic-boundaries",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:testing.examples",
+      "skill_id": "testing.examples",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:testing.golden",
+      "skill_id": "testing.golden",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:testing.parallel",
+      "skill_id": "testing.parallel",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:testing.race-detector",
+      "skill_id": "testing.race-detector",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:testing.table-driven",
+      "skill_id": "testing.table-driven",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:time.timers-tickers",
+      "skill_id": "time.timers-tickers",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:toolchain.build-run",
+      "skill_id": "toolchain.build-run",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:toolchain.docs-environment",
+      "skill_id": "toolchain.docs-environment",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:toolchain.formatting-vetting",
+      "skill_id": "toolchain.formatting-vetting",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "first-encounter:toolchain.modules-workspaces",
+      "skill_id": "toolchain.modules-workspaces",
+      "role": "first-encounter",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:arrays.indexing-iteration",
+      "skill_id": "arrays.indexing-iteration",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:benchmarks.allocations",
+      "skill_id": "benchmarks.allocations",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:benchmarks.experimental-design",
+      "skill_id": "benchmarks.experimental-design",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:benchmarks.loops-timing",
+      "skill_id": "benchmarks.loops-timing",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:channels.buffering-backpressure",
+      "skill_id": "channels.buffering-backpressure",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:channels.cancellation",
+      "skill_id": "channels.cancellation",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:channels.close-semantics",
+      "skill_id": "channels.close-semantics",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "closed-receive-001"
+      ]
+    },
+    {
+      "slot": "independent-application:channels.directional",
+      "skill_id": "channels.directional",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "owned-values-001"
+      ]
+    },
+    {
+      "slot": "independent-application:channels.fan-out-in",
+      "skill_id": "channels.fan-out-in",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:channels.nil-disabling",
+      "skill_id": "channels.nil-disabling",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "merge-two-streams-001"
+      ]
+    },
+    {
+      "slot": "independent-application:channels.operations-blocking",
+      "skill_id": "channels.operations-blocking",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "worker-completion-tests-001",
+        "closed-receive-001",
+        "replace-pending-value-001"
+      ]
+    },
+    {
+      "slot": "independent-application:channels.ownership",
+      "skill_id": "channels.ownership",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:channels.pipeline",
+      "skill_id": "channels.pipeline",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:channels.range-drain",
+      "skill_id": "channels.range-drain",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:context.deadlines",
+      "skill_id": "context.deadlines",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "timeout-operation-001"
+      ]
+    },
+    {
+      "slot": "independent-application:context.derivation",
+      "skill_id": "context.derivation",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "cancel-worker-001"
+      ]
+    },
+    {
+      "slot": "independent-application:context.propagation-api",
+      "skill_id": "context.propagation-api",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "propagate-context-001"
+      ]
+    },
+    {
+      "slot": "independent-application:context.timeouts",
+      "skill_id": "context.timeouts",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "timeout-operation-001"
+      ]
+    },
+    {
+      "slot": "independent-application:context.values-boundaries",
+      "skill_id": "context.values-boundaries",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:embedding.field-promotion",
+      "skill_id": "embedding.field-promotion",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:embedding.method-promotion-ambiguity",
+      "skill_id": "embedding.method-promotion-ambiguity",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "embedded-cache-tests-001"
+      ]
+    },
+    {
+      "slot": "independent-application:encoding.binary-marshaling",
+      "skill_id": "encoding.binary-marshaling",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "binary-record-tests-001"
+      ]
+    },
+    {
+      "slot": "independent-application:encoding.json-shape-tags",
+      "skill_id": "encoding.json-shape-tags",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "json-field-shape-001"
+      ]
+    },
+    {
+      "slot": "independent-application:encoding.streaming-strictness",
+      "skill_id": "encoding.streaming-strictness",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "single-json-value-001"
+      ]
+    },
+    {
+      "slot": "independent-application:encoding.text-marshaling",
+      "skill_id": "encoding.text-marshaling",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "text-level-001"
+      ]
+    },
+    {
+      "slot": "independent-application:errors.as",
+      "skill_id": "errors.as",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "error-detail-tests-001"
+      ]
+    },
+    {
+      "slot": "independent-application:errors.is",
+      "skill_id": "errors.is",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "error-chain-match-001"
+      ]
+    },
+    {
+      "slot": "independent-application:errors.panic-recover-boundaries",
+      "skill_id": "errors.panic-recover-boundaries",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "capture-panic-001"
+      ]
+    },
+    {
+      "slot": "independent-application:errors.wrapping",
+      "skill_id": "errors.wrapping",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "error-context-wrap-001"
+      ]
+    },
+    {
+      "slot": "independent-application:expressions.bitwise-masks",
+      "skill_id": "expressions.bitwise-masks",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:expressions.integer-shifts",
+      "skill_id": "expressions.integer-shifts",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:functions.function-values",
+      "skill_id": "functions.function-values",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "predicate-filter-001"
+      ]
+    },
+    {
+      "slot": "independent-application:functions.recursion",
+      "skill_id": "functions.recursion",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:fuzzing.invariants",
+      "skill_id": "fuzzing.invariants",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "hex-wire-invariants-001"
+      ]
+    },
+    {
+      "slot": "independent-application:fuzzing.reproduction",
+      "skill_id": "fuzzing.reproduction",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:fuzzing.targets-seeds",
+      "skill_id": "fuzzing.targets-seeds",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "hex-seed-classes-001"
+      ]
+    },
+    {
+      "slot": "independent-application:generics.approximation-unions",
+      "skill_id": "generics.approximation-unions",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "named-numeric-constraint-001"
+      ]
+    },
+    {
+      "slot": "independent-application:generics.constraints-type-sets",
+      "skill_id": "generics.constraints-type-sets",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "named-numeric-constraint-001"
+      ]
+    },
+    {
+      "slot": "independent-application:goroutines.capture-arguments",
+      "skill_id": "goroutines.capture-arguments",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "gated-worker-arguments-001"
+      ]
+    },
+    {
+      "slot": "independent-application:goroutines.launch-lifecycle",
+      "skill_id": "goroutines.launch-lifecycle",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "worker-completion-tests-001",
+        "launch-provided-job-001"
+      ]
+    },
+    {
+      "slot": "independent-application:goroutines.panic-boundaries",
+      "skill_id": "goroutines.panic-boundaries",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:goroutines.result-error-collection",
+      "skill_id": "goroutines.result-error-collection",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "indexed-job-results-001"
+      ]
+    },
+    {
+      "slot": "independent-application:goroutines.state-ownership",
+      "skill_id": "goroutines.state-ownership",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "join-all-tests-001"
+      ]
+    },
+    {
+      "slot": "independent-application:interfaces.dynamic-type-value",
+      "skill_id": "interfaces.dynamic-type-value",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "greeter-dispatch-tests-001"
+      ]
+    },
+    {
+      "slot": "independent-application:interfaces.stringer-contract",
+      "skill_id": "interfaces.stringer-contract",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "nested-stringers-001"
+      ]
+    },
+    {
+      "slot": "independent-application:interfaces.type-assertions",
+      "skill_id": "interfaces.type-assertions",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "exact-dynamic-number-001"
+      ]
+    },
+    {
+      "slot": "independent-application:interfaces.typed-nil",
+      "skill_id": "interfaces.typed-nil",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "typed-nil-result-001"
+      ]
+    },
+    {
+      "slot": "independent-application:io.buffered",
+      "skill_id": "io.buffered",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "buffered-flush-001"
+      ]
+    },
+    {
+      "slot": "independent-application:io.copy-limit-composition",
+      "skill_id": "io.copy-limit-composition",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "bounded-copy-001"
+      ]
+    },
+    {
+      "slot": "independent-application:io.pipe-lifecycle",
+      "skill_id": "io.pipe-lifecycle",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:io.reader-writer-contracts",
+      "skill_id": "io.reader-writer-contracts",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "writer-greeting-001"
+      ]
+    },
+    {
+      "slot": "independent-application:io.scanning",
+      "skill_id": "io.scanning",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "scan-lines-tests-001"
+      ]
+    },
+    {
+      "slot": "independent-application:maps.key-comparability",
+      "skill_id": "maps.key-comparability",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "composite-key-table-001"
+      ]
+    },
+    {
+      "slot": "independent-application:methods.method-sets",
+      "skill_id": "methods.method-sets",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "value-average-001"
+      ]
+    },
+    {
+      "slot": "independent-application:packages.import-cycles",
+      "skill_id": "packages.import-cycles",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:packages.imports-exports-naming",
+      "skill_id": "packages.imports-exports-naming",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "package-inventory-001"
+      ]
+    },
+    {
+      "slot": "independent-application:packages.initialization-order",
+      "skill_id": "packages.initialization-order",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "initialization-values-001"
+      ]
+    },
+    {
+      "slot": "independent-application:packages.internal-boundaries",
+      "skill_id": "packages.internal-boundaries",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:packages.test-package-boundaries",
+      "skill_id": "packages.test-package-boundaries",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "external-window-tests-001"
+      ]
+    },
+    {
+      "slot": "independent-application:pointers.mutation-sharing",
+      "skill_id": "pointers.mutation-sharing",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "shared-counter-update-001"
+      ]
+    },
+    {
+      "slot": "independent-application:slices.copy-overlap",
+      "skill_id": "slices.copy-overlap",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "overlapping-shift-tests-001"
+      ]
+    },
+    {
+      "slot": "independent-application:slices.full-slice-expressions",
+      "skill_id": "slices.full-slice-expressions",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "bounded-slice-view-001"
+      ]
+    },
+    {
+      "slot": "independent-application:slices.header-model",
+      "skill_id": "slices.header-model",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "slice-window-001"
+      ]
+    },
+    {
+      "slot": "independent-application:slices.nil-empty",
+      "skill_id": "slices.nil-empty",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:slices.preallocation",
+      "skill_id": "slices.preallocation",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "reserved-copy-001"
+      ]
+    },
+    {
+      "slot": "independent-application:slices.subslice-retention",
+      "skill_id": "slices.subslice-retention",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "detached-prefix-001"
+      ]
+    },
+    {
+      "slot": "independent-application:strings.byte-rune-conversions",
+      "skill_id": "strings.byte-rune-conversions",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "edit-rune-copy-001"
+      ]
+    },
+    {
+      "slot": "independent-application:structs.field-visibility-tags",
+      "skill_id": "structs.field-visibility-tags",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "package-inventory-001"
+      ]
+    },
+    {
+      "slot": "independent-application:sync.data-races-happens-before",
+      "skill_id": "sync.data-races-happens-before",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "concurrent-counter-read-001"
+      ]
+    },
+    {
+      "slot": "independent-application:sync.mutex-critical-sections",
+      "skill_id": "sync.mutex-critical-sections",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "mutex-counter-001"
+      ]
+    },
+    {
+      "slot": "independent-application:sync.mutex-ownership",
+      "skill_id": "sync.mutex-ownership",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "mutex-counter-001"
+      ]
+    },
+    {
+      "slot": "independent-application:sync.once-initialization",
+      "skill_id": "sync.once-initialization",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:sync.waitgroup-lifecycle",
+      "skill_id": "sync.waitgroup-lifecycle",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "join-all-tests-001"
+      ]
+    },
+    {
+      "slot": "independent-application:testing.cleanup",
+      "skill_id": "testing.cleanup",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "cleanup-order-001"
+      ]
+    },
+    {
+      "slot": "independent-application:testing.deterministic-boundaries",
+      "skill_id": "testing.deterministic-boundaries",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:testing.examples",
+      "skill_id": "testing.examples",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:testing.golden",
+      "skill_id": "testing.golden",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:testing.helpers",
+      "skill_id": "testing.helpers",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "diagnostic-helper-001"
+      ]
+    },
+    {
+      "slot": "independent-application:testing.parallel",
+      "skill_id": "testing.parallel",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:testing.race-detector",
+      "skill_id": "testing.race-detector",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:testing.seams-doubles",
+      "skill_id": "testing.seams-doubles",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "writer-double-001"
+      ]
+    },
+    {
+      "slot": "independent-application:testing.subtests",
+      "skill_id": "testing.subtests",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "named-cases-001"
+      ]
+    },
+    {
+      "slot": "independent-application:testing.table-driven",
+      "skill_id": "testing.table-driven",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:time.duration-arithmetic",
+      "skill_id": "time.duration-arithmetic",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "duration-rounding-001"
+      ]
+    },
+    {
+      "slot": "independent-application:time.timers-tickers",
+      "skill_id": "time.timers-tickers",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:toolchain.build-run",
+      "skill_id": "toolchain.build-run",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:toolchain.docs-environment",
+      "skill_id": "toolchain.docs-environment",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:toolchain.formatting-vetting",
+      "skill_id": "toolchain.formatting-vetting",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:toolchain.modules-workspaces",
+      "skill_id": "toolchain.modules-workspaces",
+      "role": "independent-application",
+      "existing_task_ids": []
+    },
+    {
+      "slot": "independent-application:types.iota-enumeration",
+      "skill_id": "types.iota-enumeration",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "month-enumeration-001"
+      ]
+    },
+    {
+      "slot": "independent-application:types.named-underlying",
+      "skill_id": "types.named-underlying",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "named-block-001"
+      ]
+    },
+    {
+      "slot": "independent-application:types.zero-values",
+      "skill_id": "types.zero-values",
+      "role": "independent-application",
+      "existing_task_ids": [
+        "zero-results-001"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "slot": "component-io-encoding",
+      "outcome": "Process a bounded record stream with explicit partial-read, malformed-input and error contracts."
+    },
+    {
+      "slot": "component-generic-container",
+      "outcome": "Use a generic container under a complete API contract; first assess whether existing bounded-lru-cache-001 already meets this capstone."
+    },
+    {
+      "slot": "component-packages-toolchain",
+      "outcome": "Organize and verify a small multi-package project with intentional module, import and internal boundaries."
+    },
+    {
+      "slot": "component-concurrent-lifecycle",
+      "outcome": "Complete or cancel finite concurrent work with defined ownership, backpressure, result and error behavior."
+    },
+    {
+      "slot": "component-regression-testing",
+      "outcome": "Repair a defect and retain a meaningful regression; exercise public behavior and review the causal explanation."
+    },
+    {
+      "slot": "component-performance-experiment",
+      "outcome": "Measure equivalent implementations with representative inputs, repeated measurements and allocation interpretation."
+    }
+  ]
+}
