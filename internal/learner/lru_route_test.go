@@ -11,6 +11,7 @@ import (
 
 	"go-practice-bank/internal/isolation"
 	"go-practice-bank/internal/tasking"
+	"gopkg.in/yaml.v3"
 )
 
 const routeLRU = "bounded-lru-cache-001"
@@ -176,6 +177,42 @@ func TestLRURouteReadOnlyViewsPreserveWorkspaces(t *testing.T) {
 		t.Fatal(err)
 	}
 	if err := os.WriteFile(planPath, []byte(strings.Replace(string(planBytes), "status: active", "status: inactive", 1)), 0600); err != nil {
+		t.Fatal(err)
+	}
+	// Keep this inactive-order fixture at its historical 150+LRU boundary.
+	// New lessons may require the active pedagogical order; their append-only
+	// addresses must not change this older workspace-compatibility scenario.
+	baseline, err := os.ReadFile("testdata/foundation-150-addresses.tsv")
+	if err != nil {
+		t.Fatal(err)
+	}
+	included := map[string]bool{routeLRU: true}
+	for _, line := range strings.Split(strings.TrimSpace(string(baseline)), "\n") {
+		included[strings.Split(line, "\t")[2]] = true
+	}
+	routePath := filepath.Join(root, "curriculum/route.yaml")
+	data, err := os.ReadFile(routePath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var historical Route
+	if err := yaml.Unmarshal(data, &historical); err != nil {
+		t.Fatal(err)
+	}
+	for i := range historical.Blocks {
+		steps := historical.Blocks[i].Steps[:0]
+		for _, step := range historical.Blocks[i].Steps {
+			if included[step.TaskID] {
+				steps = append(steps, step)
+			}
+		}
+		historical.Blocks[i].Steps = steps
+	}
+	data, err = yaml.Marshal(historical)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(routePath, data, 0600); err != nil {
 		t.Fatal(err)
 	}
 	for _, version := range []int{1, 2, 3} {

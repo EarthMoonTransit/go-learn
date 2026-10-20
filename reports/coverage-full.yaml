@@ -1,6 +1,6 @@
 schema_version: 1
 report_contract: numeric-coverage/v1
-input_identity: 2c3c2a323baacd5bc7be5bb66cb2a7601660839cf43a2a4a86c262c5b13bf201
+input_identity: e26d74bd1cc05d3d1ef3c860257a72a70781f9900ebf3cc989723e7bb7d440d8
 selected_scope: full
 selected_skill_ids:
     - arrays.indexing-iteration
@@ -155,12 +155,12 @@ numeric:
         - skill_id: arrays.indexing-iteration
           domain_id: arrays
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 3
-          primary_deficit: 3
-          actual_total: 0
+          primary_deficit: 2
+          actual_total: 1
           required_total: 5
-          total_deficit: 5
+          total_deficit: 4
         - skill_id: arrays.value-semantics
           domain_id: arrays
           scope: foundation
@@ -389,12 +389,12 @@ numeric:
         - skill_id: embedding.field-promotion
           domain_id: embedding
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 2
-          primary_deficit: 2
-          actual_total: 0
+          primary_deficit: 1
+          actual_total: 1
           required_total: 4
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: embedding.method-promotion-ambiguity
           domain_id: embedding
           scope: foundation
@@ -515,12 +515,12 @@ numeric:
         - skill_id: expressions.bitwise-masks
           domain_id: expressions
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 3
-          primary_deficit: 3
-          actual_total: 0
+          primary_deficit: 2
+          actual_total: 1
           required_total: 5
-          total_deficit: 5
+          total_deficit: 4
         - skill_id: expressions.boolean-logic
           domain_id: expressions
           scope: foundation
@@ -542,12 +542,12 @@ numeric:
         - skill_id: expressions.integer-shifts
           domain_id: expressions
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 3
-          primary_deficit: 3
-          actual_total: 0
+          primary_deficit: 2
+          actual_total: 1
           required_total: 5
-          total_deficit: 5
+          total_deficit: 4
         - skill_id: functions.closure-capture
           domain_id: functions
           scope: foundation
@@ -1019,12 +1019,12 @@ numeric:
         - skill_id: slices.nil-empty
           domain_id: slices
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 3
-          primary_deficit: 3
-          actual_total: 0
+          primary_deficit: 2
+          actual_total: 1
           required_total: 5
-          total_deficit: 5
+          total_deficit: 4
         - skill_id: slices.preallocation
           domain_id: slices
           scope: foundation
@@ -1600,12 +1600,12 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 174
+        actual_primary: 179
         required_primary: 410
-        primary_deficit: 243
-        actual_total: 198
+        primary_deficit: 238
+        actual_total: 203
         required_total: 692
-        total_deficit: 494
+        total_deficit: 489
         minima_met: false
     specialist:
         skill_ids:
@@ -1767,15 +1767,15 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 174
+        actual_primary: 179
         required_primary: 418
-        primary_deficit: 251
-        actual_total: 198
+        primary_deficit: 246
+        actual_total: 203
         required_total: 708
-        total_deficit: 510
+        total_deficit: 505
         minima_met: false
     ready_target:
-        actual: 174
+        actual: 179
         min: 350
         max: 500
         met: false

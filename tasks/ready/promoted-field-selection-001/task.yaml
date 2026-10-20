@@ -1,0 +1,46 @@
+schema_version: 2
+id: promoted-field-selection-001
+title: Repair selection of promoted and shadowed fields
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: embedding.field-promotion
+    secondary: []
+prerequisites:
+    - functions.signatures-results
+    - structs.field-visibility-tags
+    - structs.literals-zero
+new_concepts:
+    - embedding.field-promotion
+difficulty: basic
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - embedded-for-outer
+        - outer-for-embedded
+        - label-for-name
+        - swap-siblings
+        - left-for-both
+        - missing-right
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

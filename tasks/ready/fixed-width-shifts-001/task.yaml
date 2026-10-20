@@ -1,0 +1,49 @@
+schema_version: 2
+id: fixed-width-shifts-001
+title: Repair fixed-width signed and unsigned shifts
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: expressions.integer-shifts
+    secondary: []
+prerequisites:
+    - expressions.arithmetic
+    - functions.signatures-results
+    - types.constants
+    - types.numeric-conversions
+new_concepts:
+    - expressions.integer-shifts
+difficulty: basic
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - modulo-count
+        - unsigned-signed-right
+        - signed-unsigned-right
+        - left-as-right
+        - left-identity
+        - right-identity
+        - clamp-count
+        - zero-count-zero
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "a9a840b63508142ed94edf7e36f9a4d51428566f2108b20304d24955a0b8b4b5"
+  },
+  "creation": {
+    "author": "v1-first-five-author",
+    "created_at": "2026-10-20",
+    "summary": "Original finite v1 task after independently approved source/design decision in PR100. API, statements, tests, reference, defects and hints authored locally; external comparisons supply facts only."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/nil-preserving-filter-001.yaml"
+  }
+}

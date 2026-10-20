@@ -54,4 +54,9 @@ exposure_edges:
   - {before_task_id: indexed-job-results-001, task_id: gated-worker-arguments-001}
   - {before_task_id: gated-worker-arguments-001, task_id: cancel-worker-001}
   - {before_task_id: hex-seed-classes-001, task_id: hex-wire-invariants-001}
+  - {before_task_id: range-offset-001, task_id: array-window-update-001}
+  - {before_task_id: append-value-001, task_id: nil-preserving-filter-001}
+  - {before_task_id: package-inventory-001, task_id: promoted-field-selection-001}
+  - {before_task_id: promoted-field-selection-001, task_id: mask-state-tests-001}
+  - {before_task_id: constant-value-tests-001, task_id: fixed-width-shifts-001}
 pending_preparation: []

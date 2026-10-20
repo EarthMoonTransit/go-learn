@@ -73,3 +73,21 @@ Applicable checks and exact-head GitHub validate pass.
 Report automatic ready packages, manual units, remaining full-bank minima and
 unknown human mastery separately. This milestone is not full-bank `-coverage`
 or a full-bank release/export.
+
+## M1 delivery record
+
+Five original task packages consume the five selected first-encounter slots:
+`array-window-update-001`, `nil-preserving-filter-001`,
+`promoted-field-selection-001`, `mask-state-tests-001` and
+`fixed-width-shifts-001`. Their task reviews record the contracts, defect
+matrices and limits; generated reports remain the automatic acceptance evidence.
+The route grows from 171 to 176 without renumbering previous lessons. This is
+five introductions, not five mastered skills. The historical allocation baseline
+above stays fixed; `v1-backlog.json` links delivered slots separately.
+
+A preliminary wall-clock alert during M1 was corrected after inspecting host
+sleep intervals: at 16:44 UTC, roughly 8h44 of 9h57 elapsed had been host sleep.
+The remaining 1h13 is an upper bound on active work, not measured CPU/model time;
+CI overlaps some sleep intervals. The four-hour agent-work limit was therefore
+not shown to be exceeded. The final report separates wall time, observed host
+sleep, command intervals and CI without adding overlapping intervals.
