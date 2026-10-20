@@ -1,5 +1,7 @@
 # ADR 0031: Foundation scope and additive taxonomy v4
 
+Update 2026-10-20: [ADR 0034](0034-finite-v1-course.md) supersedes the special recursion machine-proof prerequisite for v1 hybrid authoring and defines v1 route readiness separately from full-bank acceptance. The migration, taxonomy contracts, numeric minima and full-bank release gates below remain unchanged.
+
 - Status: accepted design for a separate migration batch; no live activation
 - Date: 2026-10-18
 - Extends: ADR 0003; retains all existing skill meanings and encounter minima

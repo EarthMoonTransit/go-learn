@@ -1,5 +1,7 @@
 # Go Learn: видение продукта и путь к конечному результату
 
+Current delivery is the owner-approved [finite v1 course](plans/finite-v1.md) under [ADR 0034](adr/0034-finite-v1-course.md). Earlier full-bank sizing below is retained as historical/future scope. The current run stops after its documentation PR and five tasks.
+
 Статус документа: живое долгосрочное видение.
 Актуальный приоритет с 10 сентября 2026 года — полное покрытие Go и
 фундаментальной стандартной библиотеки по [исполняемому плану](plans/foundation-next.md); [ROADMAP.md](ROADMAP.md) хранит ledger: сначала

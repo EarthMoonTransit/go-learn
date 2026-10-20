@@ -1,4 +1,13 @@
-# Go Learn: two milestones to complete Go fundamentals
+# Go Learn: finite v1 course
+
+**Current owner decision, 2026-10-20:** [finite v1](plans/finite-v1.md) and
+[ADR 0034](adr/0034-finite-v1-course.md) supersede the delivery priority below.
+Keep the 171 lessons; finish a frozen 141-skill route with independent application
+and six components using existing checks plus explicit checklist review.
+This run is one documentation PR, five tasks, then a pause and time/result report.
+P21 engine and further batches do not continue automatically. The larger bank
+and numeric minima remain visible deferred work; v1 is not full-bank release
+or learner mastery. Dated counts and earlier priorities below are historical.
 
 Status: historical milestone ledger with current delivery policy, 2026-09-11.
 The foundation implementation plan is [foundation-next](plans/foundation-next.md);

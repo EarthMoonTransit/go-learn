@@ -38,3 +38,4 @@ ADR фиксируют изменения стабильных контракт�
 - `0031` — foundation/specialist numeric bank scopes and additive taxonomy v4 (`accepted design for a separate migration batch; no live activation`)
 - `0032` — finite native hex fuzz-seed verification and collection v4 migration (`accepted design for a separate tooling batch; no live activation`)
 - `0033` — finite tagged-text repair, live reproduction and causal evidence, with collection v5 migration (`independently accepted design; preparation after docs PR merge, no execution or activation approval`)
+- `0034` — finite v1 course, explicit checklist review and bounded five-task delivery (`accepted owner decision; defers 0033 implementation`)

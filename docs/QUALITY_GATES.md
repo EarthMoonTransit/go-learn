@@ -1,5 +1,7 @@
 # Quality gates
 
+[ADR 0034](adr/0034-finite-v1-course.md) adds separate v1 route-readiness and explicit checklist review. All executable ready-task gates below remain mandatory. Manual units/checklists do not create automatic coverage or full-bank release/export eligibility; incomplete-bank preparation still follows ADR 0022.
+
 Task Contract v2 выбирает проверяемую матрицу через конечный
 `verification.profile`; произвольные command strings запрещены. Для
 `mutation-tests` mutant coverage означает способность learner-authored tests
