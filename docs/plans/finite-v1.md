@@ -85,7 +85,9 @@ The route grows from 171 to 176 without renumbering previous lessons. This is
 five introductions, not five mastered skills. The historical allocation baseline
 above stays fixed; `v1-backlog.json` links delivered slots separately.
 
-The four-hour checkpoint was exceeded and reported during M1. No additional
-content or verification mechanism was added. Remaining work at that checkpoint
-was existing acceptance gates, final review and CI/merge; the end-of-run time
-report separates measured checks from CI and unclassified elapsed intervals.
+A preliminary wall-clock alert during M1 was corrected after inspecting host
+sleep intervals: at 16:44 UTC, roughly 8h44 of 9h57 elapsed had been host sleep.
+The remaining 1h13 is an upper bound on active work, not measured CPU/model time;
+CI overlaps some sleep intervals. The four-hour agent-work limit was therefore
+not shown to be exceeded. The final report separates wall time, observed host
+sleep, command intervals and CI without adding overlapping intervals.
