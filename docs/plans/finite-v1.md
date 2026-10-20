@@ -1,7 +1,8 @@
 # Finite Go Learn v1 delivery
 
 Owner-approved 2026-10-20; normative boundary: [ADR 0034](../adr/0034-finite-v1-course.md).
-This run ends after M1.
+M0 and M1 are complete. The owner authorized one further five-task batch (M2.1),
+then another pause and result/time report; no subsequent batch is authorized.
 
 | Stage | Deliverable | Exit |
 | --- | --- | --- |
@@ -91,3 +92,27 @@ The remaining 1h13 is an upper bound on active work, not measured CPU/model time
 CI overlaps some sleep intervals. The four-hour agent-work limit was therefore
 not shown to be exceeded. The final report separates wall time, observed host
 sleep, command intervals and CI without adding overlapping intervals.
+
+## M2.1 bounded application batch
+
+Owner-authorized on 2026-10-20 after the M1 checkpoint. This batch selects the
+five independent-application slots corresponding to M1: arrays, slice presence,
+promoted fields, masks and shifts. It changes the observable contracts and uses
+implementation, debugging and learner-written tests on existing profiles.
+Source/design approval precedes authoring; each application must follow its
+introductions and all prerequisites. Existing addresses/order are preserved.
+
+Exit remains five accepted and routed tasks, independent content/final-diff
+review, mandatory local checks and exact-head green GitHub validate before
+merge, then stop and report. Apply the same four-hour work checkpoint and
+separate overlapping check/CI intervals and host sleep. No new verifier,
+taxonomy, skill identifiers or automatic completion semantics are authorized.
+The first-encounter backlog remains visible; this batch consumes application
+slots only and does not establish full-bank coverage or human mastery.
+
+M2.1 delivery: `scatter-snapshot-001`, `presence-concat-tests-001`,
+`embedded-field-update-001`, `replace-mask-field-001`,
+`shift-boundaries-tests-001`. The five reviewed application slots are linked
+in the backlog; first-encounter slots are unchanged. The route has 181 lessons
+and preserves all 176 prior tuples/order. Generated reports and PR acceptance
+are the executable evidence; no claim that the entire v1 course is complete.

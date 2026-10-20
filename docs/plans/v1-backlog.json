@@ -228,7 +228,9 @@
       "slot": "independent-application:arrays.indexing-iteration",
       "skill_id": "arrays.indexing-iteration",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "scatter-snapshot-001",
+      "delivery_batch": "M2.1"
     },
     {
       "slot": "independent-application:benchmarks.allocations",
@@ -360,7 +362,9 @@
       "slot": "independent-application:embedding.field-promotion",
       "skill_id": "embedding.field-promotion",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "embedded-field-update-001",
+      "delivery_batch": "M2.1"
     },
     {
       "slot": "independent-application:embedding.method-promotion-ambiguity",
@@ -438,13 +442,17 @@
       "slot": "independent-application:expressions.bitwise-masks",
       "skill_id": "expressions.bitwise-masks",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "replace-mask-field-001",
+      "delivery_batch": "M2.1"
     },
     {
       "slot": "independent-application:expressions.integer-shifts",
       "skill_id": "expressions.integer-shifts",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "shift-boundaries-tests-001",
+      "delivery_batch": "M2.1"
     },
     {
       "slot": "independent-application:functions.function-values",
@@ -695,7 +703,9 @@
       "slot": "independent-application:slices.nil-empty",
       "skill_id": "slices.nil-empty",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "presence-concat-tests-001",
+      "delivery_batch": "M2.1"
     },
     {
       "slot": "independent-application:slices.preallocation",
@@ -925,11 +935,21 @@
     }
   ],
   "delivery": {
-    "batch": "M1",
-    "route_lessons_after": 176,
+    "batch": "M2.1",
+    "route_lessons_after": 181,
     "first_encounters_remaining": 28,
-    "independent_applications_remaining": 92,
+    "independent_applications_remaining": 87,
     "component_slots_remaining": 6,
-    "note": "First encounters only. Automatic acceptance evidence is in task/review and reports; no human mastery or whole-skill credit implied."
-  }
+    "note": "Five distinct independent-application tasks, not whole-skill/full-bank or human-mastery evidence. Prior M1 record retained in delivery_history."
+  },
+  "delivery_history": [
+    {
+      "batch": "M1",
+      "route_lessons_after": 176,
+      "first_encounters_remaining": 28,
+      "independent_applications_remaining": 92,
+      "component_slots_remaining": 6,
+      "note": "First encounters only. Automatic acceptance evidence is in task/review and reports; no human mastery or whole-skill credit implied."
+    }
+  ]
 }

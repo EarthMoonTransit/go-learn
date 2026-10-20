@@ -1,0 +1,48 @@
+schema_version: 2
+id: replace-mask-field-001
+title: Replace selected bits while preserving the rest
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: expressions.bitwise-masks
+    secondary: []
+prerequisites:
+    - expressions.arithmetic
+    - expressions.comparison
+    - expressions.integer-shifts
+    - functions.signatures-results
+    - types.numeric-conversions
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - or-only
+        - drop-unselected
+        - take-all-replacement
+        - swap-selection
+        - xor-instead-replace
+        - ignore-mask
+        - ignore-replacement
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

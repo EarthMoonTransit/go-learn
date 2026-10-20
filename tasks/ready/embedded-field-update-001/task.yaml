@@ -1,0 +1,49 @@
+schema_version: 2
+id: embedded-field-update-001
+title: Update promoted and shadowed fields independently
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: embedding.field-promotion
+    secondary: []
+prerequisites:
+    - expressions.arithmetic
+    - functions.signatures-results
+    - structs.copy-equality
+    - structs.field-visibility-tags
+    - structs.literals-zero
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - swap-rejected-targets
+        - only-outer-rejected
+        - only-embedded-rejected
+        - assign-accepted
+        - assign-embedded
+        - assign-outer
+        - clear-kept
+        - clear-tag
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

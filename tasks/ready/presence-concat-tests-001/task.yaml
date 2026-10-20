@@ -1,0 +1,53 @@
+schema_version: 2
+id: presence-concat-tests-001
+title: Test presence across concatenated slices
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: slices.nil-empty
+    secondary: []
+prerequisites:
+    - control-flow.range
+    - expressions.comparison
+    - functions.variadic
+    - slices.append-growth
+    - slices.header-model
+    - testing.basics-diagnostics
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 10
+    max: 25
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - always-nil
+        - absent-becomes-present
+        - empty-presence-lost
+        - stop-at-nil
+        - first-part-only
+        - reverse-parts
+        - drop-zero
+        - duplicate
+        - mutate-input
+        - first-part-presence
+        - last-part-presence
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
