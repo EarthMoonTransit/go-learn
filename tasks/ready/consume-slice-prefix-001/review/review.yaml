@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "reviewer": "independent-reviewer-m2_2_review",
+  "reviewed_at": "2026-10-21",
+  "decision": "approve",
+  "story_free": true,
+  "prompt_test_alignment": true,
+  "public_api_stable": true,
+  "provenance_verified": true,
+  "license_verified": true,
+  "reference_only_clean_room_verified": true,
+  "solution_leakage_checked": true,
+  "minimum_mutants": 10,
+  "notes": "Independent source/design and exact-content approval. Public requirement/defect matrix reviewed; disposable reference and all required mutants passed. Fixed-profile defects also fail useful public assertions without grader. Original ADR0008 provenance and content digest verified. Route/final diff and mandatory repository/CI acceptance remain separate."
+}

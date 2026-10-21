@@ -1,0 +1,12 @@
+package subject
+
+func Transfer(dst, src *int, limit int) int {
+	if dst == nil || src == nil || dst == src || limit <= 0 {
+		return 0
+	}
+	amount := limit
+
+	*src -= amount
+	*dst += amount
+	return amount
+}

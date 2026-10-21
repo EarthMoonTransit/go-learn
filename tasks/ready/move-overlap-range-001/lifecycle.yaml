@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-10-21"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-10-21"
+      actor: v1-m2-2-author
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-10-21"
+      actor: independent-reviewer-m2_2_review
+      reason: M2.2 original independent application; source/content review approved, reference/mutant and public-feedback checks passed.
+    - from: in-review
+      to: ready
+      at: "2026-10-21"
+      actor: independent-reviewer-m2_2_review
+      reason: M2.2 original independent application; source/content review approved, reference/mutant and public-feedback checks passed.

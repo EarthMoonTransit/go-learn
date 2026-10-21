@@ -1,0 +1,167 @@
+{
+  "format": "go-learn-bounded-source-decision/v1",
+  "date": "2026-10-21",
+  "baseline_commit": "7d55d2ffdd77ca0b38c8dc7fa6e91cfb82248ac0",
+  "status": "source/design approved for bounded original authoring; task acceptance pending",
+  "coverage_eligible": false,
+  "new_ready_tasks": 0,
+  "external_sources": [],
+  "decision_boundary": "Original content under ADR0008. No external code/tests/educational text consulted or used. Existing local contracts inspected only to establish distinct allocation. Existing fixed-tests and mutation-tests only; no tooling/taxonomy/schema changes.",
+  "tasks": [
+    {
+      "proposed_task_id": "consume-slice-prefix-001",
+      "primary_skill": "slices.header-model",
+      "activity": "debugging",
+      "profile": "fixed-tests",
+      "contract": "TakePrefix(input *[]int, n int) ([]int,bool). input is nonnil. Let old=*input before the call. Valid n means 0<=n<=len(old): return old[:n],true with length n and capacity cap(old), and replace *input by old[n:] with length len(old)-n and capacity cap(old)-n. Both views share original backing storage; do not change its values or other copied headers. Invalid n returns nil,false and preserves caller header and storage. A nil slice accepts n=0 and yields a nil prefix and nil remaining slice. Repeated calls operate on the current header.",
+      "distinct_from": "slice-window-001 only returns a view; this API changes one caller-owned header across successive operations while copied headers retain their length/capacity.",
+      "prerequisites": [
+        "arrays.value-semantics",
+        "types.zero-values",
+        "slices.len-cap-slicing",
+        "pointers.address-deref-nil",
+        "pointers.mutation-sharing",
+        "functions.signatures-results",
+        "expressions.comparison"
+      ],
+      "slot": "independent-application:slices.header-model",
+      "scope": "Bounded distinct second encounter; no whole-skill, human-mastery or full-bank claim.",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-m2-2-author",
+        "creation_date": "2026-10-21",
+        "content_digest": "assigned after authoring under ADR0008",
+        "external_sources": []
+      },
+      "existing_task_evidence": {
+        "commit": "7d55d2ffdd77ca0b38c8dc7fa6e91cfb82248ac0",
+        "path": "tasks/ready/slice-window-001/TASK.md"
+      }
+    },
+    {
+      "proposed_task_id": "move-overlap-range-001",
+      "primary_skill": "slices.copy-overlap",
+      "activity": "implementation",
+      "profile": "fixed-tests",
+      "contract": "MoveRange(buf []int,dst,src,n int) bool: validate nonnegative range endpoints without integer overflow; copy exactly n original source values into destination in same storage. Handle both overlap directions and self-copy; preserve all other cells. Invalid ranges return false and change nothing; empty ranges allow endpoints len(buf).",
+      "distinct_from": "overlapping-shift-tests-001 asks tests for a fixed one-position right shift; this implementation handles arbitrary size and direction plus atomic range validation.",
+      "prerequisites": [
+        "slices.header-model",
+        "slices.len-cap-slicing",
+        "expressions.comparison",
+        "expressions.boolean-logic",
+        "functions.signatures-results"
+      ],
+      "slot": "independent-application:slices.copy-overlap",
+      "scope": "Bounded distinct second encounter; no whole-skill, human-mastery or full-bank claim.",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-m2-2-author",
+        "creation_date": "2026-10-21",
+        "content_digest": "assigned after authoring under ADR0008",
+        "external_sources": []
+      },
+      "existing_task_evidence": {
+        "commit": "7d55d2ffdd77ca0b38c8dc7fa6e91cfb82248ac0",
+        "path": "tasks/ready/overlapping-shift-tests-001/TASK.md"
+      }
+    },
+    {
+      "proposed_task_id": "spare-view-tests-001",
+      "primary_skill": "slices.full-slice-expressions",
+      "activity": "test-writing",
+      "profile": "mutation-tests",
+      "contract": "Test SpareView(in []int,low,high,spare int) []int with valid 0<=low<=high<=len(in), 0<=spare<=cap(in)-high: length high-low, capacity high-low+spare, shares selected storage. Appends within spare must reuse and update original backing cells; append beyond limit must detach. Preserve input during call; nil/empty valid.",
+      "distinct_from": "bounded-slice-view-001 implements a view with zero spare capacity; this tests partial allowed reuse and its exact boundary using nonzero spare and hidden capacity beyond len.",
+      "prerequisites": [
+        "slices.len-cap-slicing",
+        "slices.header-model",
+        "slices.append-growth",
+        "slices.backing-array-aliasing",
+        "testing.basics-diagnostics",
+        "control-flow.range"
+      ],
+      "slot": "independent-application:slices.full-slice-expressions",
+      "scope": "Bounded distinct second encounter; no whole-skill, human-mastery or full-bank claim.",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-m2-2-author",
+        "creation_date": "2026-10-21",
+        "content_digest": "assigned after authoring under ADR0008",
+        "external_sources": []
+      },
+      "existing_task_evidence": {
+        "commit": "7d55d2ffdd77ca0b38c8dc7fa6e91cfb82248ac0",
+        "path": "tasks/ready/bounded-slice-view-001/TASK.md"
+      }
+    },
+    {
+      "proposed_task_id": "guarded-stage-values-001",
+      "primary_skill": "functions.function-values",
+      "activity": "implementation",
+      "profile": "fixed-tests",
+      "contract": "RunStages(initial int,steps []func(int)(int,bool)) (int,int): call each nonnil function in order on last committed value, once per encountered entry; count only accepted results. Nil entries are skipped. A false result stops execution, discards its candidate value and preserves prior committed state/count. Do not alter function slice.",
+      "distinct_from": "predicate-filter-001 calls one predicate on independent records; this folds multiple stored functions, handles nil values and early rejection with callback input/call-order observability.",
+      "prerequisites": [
+        "functions.signatures-results",
+        "functions.closure-capture",
+        "slices.header-model",
+        "control-flow.range",
+        "control-flow.if",
+        "types.zero-values"
+      ],
+      "slot": "independent-application:functions.function-values",
+      "scope": "Bounded distinct second encounter; no whole-skill, human-mastery or full-bank claim.",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-m2-2-author",
+        "creation_date": "2026-10-21",
+        "content_digest": "assigned after authoring under ADR0008",
+        "external_sources": []
+      },
+      "existing_task_evidence": {
+        "commit": "7d55d2ffdd77ca0b38c8dc7fa6e91cfb82248ac0",
+        "path": "tasks/ready/predicate-filter-001/TASK.md"
+      }
+    },
+    {
+      "proposed_task_id": "transfer-shared-values-001",
+      "primary_skill": "pointers.mutation-sharing",
+      "activity": "debugging",
+      "profile": "fixed-tests",
+      "contract": "Transfer(dst,src *int,limit int) int: nil pointer, identical pointers or limit<=0 return zero without changes. Otherwise transfer min(limit,*src) from source to destination and return amount, with nonnegative pointees and sums guaranteed to fit int. Caller aliases observe both changes; repeated calls use current values.",
+      "distinct_from": "shared-counter-update-001 changes one pointee; this uses two identities and must preserve atomicity for nil/alias cases, report capped transfer and expose both shared mutations.",
+      "prerequisites": [
+        "pointers.address-deref-nil",
+        "structs.copy-equality",
+        "expressions.comparison",
+        "expressions.arithmetic",
+        "functions.signatures-results",
+        "control-flow.if"
+      ],
+      "slot": "independent-application:pointers.mutation-sharing",
+      "scope": "Bounded distinct second encounter; no whole-skill, human-mastery or full-bank claim.",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-m2-2-author",
+        "creation_date": "2026-10-21",
+        "content_digest": "assigned after authoring under ADR0008",
+        "external_sources": []
+      },
+      "existing_task_evidence": {
+        "commit": "7d55d2ffdd77ca0b38c8dc7fa6e91cfb82248ac0",
+        "path": "tasks/ready/shared-counter-update-001/TASK.md"
+      }
+    }
+  ],
+  "review": {
+    "reviewer": "/root/m2_2_review",
+    "date": "2026-10-21",
+    "decision": "approve",
+    "scope": "Bounded source/design and distinct application allocation; content/public/route review remains required.",
+    "findings_closed": [
+      "Canonical functions.closure-capture prerequisite",
+      "Explicit TakePrefix input domain and both header capacities"
+    ]
+  }
+}

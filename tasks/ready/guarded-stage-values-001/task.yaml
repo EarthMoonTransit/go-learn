@@ -1,0 +1,51 @@
+schema_version: 2
+id: guarded-stage-values-001
+title: Apply stored functions until a result is rejected
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: functions.function-values
+    secondary: []
+prerequisites:
+    - control-flow.if
+    - control-flow.range
+    - functions.closure-capture
+    - functions.signatures-results
+    - slices.header-model
+    - types.zero-values
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - reuse-initial
+        - commit-rejected
+        - continue-after-reject
+        - count-rejected
+        - stop-at-nil
+        - count-nil
+        - double-call
+        - reverse-order
+        - clear-entries
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

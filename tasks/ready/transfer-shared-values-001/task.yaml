@@ -1,0 +1,51 @@
+schema_version: 2
+id: transfer-shared-values-001
+title: Repair a transfer between shared integer values
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: pointers.mutation-sharing
+    secondary: []
+prerequisites:
+    - control-flow.if
+    - expressions.arithmetic
+    - expressions.comparison
+    - functions.signatures-results
+    - pointers.address-deref-nil
+    - structs.copy-equality
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - local-copies-only
+        - uncapped-limit
+        - report-zero
+        - add-to-both
+        - subtract-from-both
+        - alias-reports-transfer
+        - equal-value-is-alias
+        - nil-clears-other
+        - nonpositive-clears-destination
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
