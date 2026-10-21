@@ -4,11 +4,21 @@
 [ADR 0034](adr/0034-finite-v1-course.md) supersede the delivery priority below.
 Keep the 171 lessons; finish a frozen 141-skill route with independent application
 and six components using existing checks plus explicit checklist review.
-M0/M1 are complete. The owner authorized one additional five-task application
-batch, M2.1, then another pause and time/result report.
+M0/M1 and M2.1 are complete. The owner authorized one further five-task
+application batch, M2.2, then another pause and time/result report.
 P21 engine and further batches do not continue automatically. The larger bank
 and numeric minima remain visible deferred work; v1 is not full-bank release
 or learner mastery. Dated counts and earlier priorities below are historical.
+
+M2.2 content checkpoint, 2026-10-21: **186 routed lessons**. Five independent
+applications on existing profiles: `02.16` advancing a shared slice header,
+`02.17` moving overlapping ranges, `02.18` testing append reserves, `01.07`
+guarded stored functions, and `06.55` transfers between shared pointees.
+All 181 prior address/role/skill tuples and relative order are preserved.
+Remaining allocation: 28 first encounters, 82 independent applications and
+six components. Source/content/route review, local acceptance and exact-head
+green validate are required before merge; stop after this batch. No new
+verification engine, schema, taxonomy or learner-state change.
 
 M2.1 content checkpoint, 2026-10-20: **181 routed lessons**. Five independent
 applications use existing fixed-tests and mutation-tests: `02.14` indexed array

@@ -59,6 +59,14 @@
           "skills": [
             "expressions.boolean-logic"
           ]
+        },
+        {
+          "number": 7,
+          "task_id": "guarded-stage-values-001",
+          "role": "practice",
+          "skills": [
+            "functions.function-values"
+          ]
         }
       ],
       "number": 1
@@ -188,6 +196,30 @@
           "role": "practice",
           "skills": [
             "slices.nil-empty"
+          ]
+        },
+        {
+          "number": 16,
+          "task_id": "consume-slice-prefix-001",
+          "role": "practice",
+          "skills": [
+            "slices.header-model"
+          ]
+        },
+        {
+          "number": 17,
+          "task_id": "move-overlap-range-001",
+          "role": "practice",
+          "skills": [
+            "slices.copy-overlap"
+          ]
+        },
+        {
+          "number": 18,
+          "task_id": "spare-view-tests-001",
+          "role": "practice",
+          "skills": [
+            "slices.full-slice-expressions"
           ]
         }
       ],
@@ -1151,6 +1183,14 @@
           "role": "practice",
           "skills": [
             "embedding.field-promotion"
+          ]
+        },
+        {
+          "number": 55,
+          "task_id": "transfer-shared-values-001",
+          "role": "practice",
+          "skills": [
+            "pointers.mutation-sharing"
           ]
         }
       ],

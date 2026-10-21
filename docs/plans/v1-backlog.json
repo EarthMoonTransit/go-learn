@@ -460,7 +460,9 @@
       "role": "independent-application",
       "existing_task_ids": [
         "predicate-filter-001"
-      ]
+      ],
+      "delivered_task_id": "guarded-stage-values-001",
+      "delivery_batch": "M2.2"
     },
     {
       "slot": "independent-application:functions.recursion",
@@ -673,7 +675,9 @@
       "role": "independent-application",
       "existing_task_ids": [
         "shared-counter-update-001"
-      ]
+      ],
+      "delivered_task_id": "transfer-shared-values-001",
+      "delivery_batch": "M2.2"
     },
     {
       "slot": "independent-application:slices.copy-overlap",
@@ -681,7 +685,9 @@
       "role": "independent-application",
       "existing_task_ids": [
         "overlapping-shift-tests-001"
-      ]
+      ],
+      "delivered_task_id": "move-overlap-range-001",
+      "delivery_batch": "M2.2"
     },
     {
       "slot": "independent-application:slices.full-slice-expressions",
@@ -689,7 +695,9 @@
       "role": "independent-application",
       "existing_task_ids": [
         "bounded-slice-view-001"
-      ]
+      ],
+      "delivered_task_id": "spare-view-tests-001",
+      "delivery_batch": "M2.2"
     },
     {
       "slot": "independent-application:slices.header-model",
@@ -697,7 +705,9 @@
       "role": "independent-application",
       "existing_task_ids": [
         "slice-window-001"
-      ]
+      ],
+      "delivered_task_id": "consume-slice-prefix-001",
+      "delivery_batch": "M2.2"
     },
     {
       "slot": "independent-application:slices.nil-empty",
@@ -935,12 +945,12 @@
     }
   ],
   "delivery": {
-    "batch": "M2.1",
-    "route_lessons_after": 181,
+    "batch": "M2.2",
+    "route_lessons_after": 186,
     "first_encounters_remaining": 28,
-    "independent_applications_remaining": 87,
+    "independent_applications_remaining": 82,
     "component_slots_remaining": 6,
-    "note": "Five distinct independent-application tasks, not whole-skill/full-bank or human-mastery evidence. Prior M1 record retained in delivery_history."
+    "note": "Five distinct independent applications on existing fixed/mutation profiles. Earlier deliveries retained; no full-bank or human-mastery claim."
   },
   "delivery_history": [
     {
@@ -950,6 +960,14 @@
       "independent_applications_remaining": 92,
       "component_slots_remaining": 6,
       "note": "First encounters only. Automatic acceptance evidence is in task/review and reports; no human mastery or whole-skill credit implied."
+    },
+    {
+      "batch": "M2.1",
+      "route_lessons_after": 181,
+      "first_encounters_remaining": 28,
+      "independent_applications_remaining": 87,
+      "component_slots_remaining": 6,
+      "note": "Five distinct independent-application tasks, not whole-skill/full-bank or human-mastery evidence. Prior M1 record retained in delivery_history."
     }
   ]
 }

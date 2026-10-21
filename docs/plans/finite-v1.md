@@ -1,7 +1,7 @@
 # Finite Go Learn v1 delivery
 
 Owner-approved 2026-10-20; normative boundary: [ADR 0034](../adr/0034-finite-v1-course.md).
-M0 and M1 are complete. The owner authorized one further five-task batch (M2.1),
+M0, M1 and M2.1 are complete. The owner authorized one further five-task batch (M2.2),
 then another pause and result/time report; no subsequent batch is authorized.
 
 | Stage | Deliverable | Exit |
@@ -116,3 +116,20 @@ M2.1 delivery: `scatter-snapshot-001`, `presence-concat-tests-001`,
 in the backlog; first-encounter slots are unchanged. The route has 181 lessons
 and preserves all 176 prior tuples/order. Generated reports and PR acceptance
 are the executable evidence; no claim that the entire v1 course is complete.
+
+## M2.2 bounded application batch
+
+Owner-authorized on 2026-10-21, limited to five applications on existing profiles:
+`consume-slice-prefix-001`, `move-overlap-range-001`, `spare-view-tests-001`,
+`guarded-stage-values-001`, `transfer-shared-values-001`. These change the
+observable contracts relative to their introductions; source/design approval
+precedes authoring. The pointer-dependent slice task follows pointer mutation,
+and the stored-function task follows the closure introduction.
+
+The route grows from 181 to 186, retaining all prior addresses and order.
+Remaining allocation: 28 first encounters, 82 applications, six components.
+Keep independent content/public-feedback/final-diff review, the single shared
+collection, required local gates and green exact-head validate before merge.
+Apply the same four-hour work checkpoint and separate overlapping local/CI
+intervals and host sleep. Stop after this batch and report results/time; no
+subsequent batch, P21 work or new checking engine is authorized.

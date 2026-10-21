@@ -578,6 +578,24 @@ tasks:
         detected: 8
         survived: []
       legacy: false
+    - id: consume-slice-prefix-001
+      state: ready
+      input_digest: 1c7e683be2d2189a50d82a04b1d662ce7961af54ab4ab6402131dd9b993c0dfe
+      task_type: debug
+      primary_skill: slices.header-model
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 10
+        total: 10
+        detected: 10
+        survived: []
+      legacy: false
     - id: copy-final-element-001
       state: ready
       input_digest: abed54a288dad593fbadedef334b9291c341937c8fb8460da07d52a14c68065c
@@ -1409,6 +1427,24 @@ tasks:
         detected: 6
         survived: []
       legacy: false
+    - id: guarded-stage-values-001
+      state: ready
+      input_digest: 6f5471daaec9b55da3760c112fd70a6f5c1b9309a2fb10e787a9b5ea1bd68550
+      task_type: implement
+      primary_skill: functions.function-values
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 9
+        total: 9
+        detected: 9
+        survived: []
+      legacy: false
     - id: hex-seed-classes-001
       state: ready
       input_digest: cbb9e8f33948f0786b9082cfe7e54e049af942d497c782c2e319b899cae5ff8b
@@ -1803,6 +1839,24 @@ tasks:
         required: 5
         total: 5
         detected: 5
+        survived: []
+      legacy: false
+    - id: move-overlap-range-001
+      state: ready
+      input_digest: aaa395101eba62b57f6ae38a771ccf1aabbf29ab0c4853d9bfc56f97d59af2eb
+      task_type: implement
+      primary_skill: slices.copy-overlap
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 9
+        total: 9
+        detected: 9
         survived: []
       legacy: false
     - id: mutex-counter-001
@@ -2850,6 +2904,24 @@ tasks:
         detected: 5
         survived: []
       legacy: false
+    - id: spare-view-tests-001
+      state: ready
+      input_digest: ccc2894b816af87d10b17c8f50317f94b11a8fb1430e13a3958e7d2235d5a3ab
+      task_type: test-writing
+      primary_skill: slices.full-slice-expressions
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 9
+        total: 9
+        detected: 9
+        survived: []
+      legacy: false
     - id: stateful-counter-tests-001
       state: ready
       input_digest: 599814193278f7244a28288f447b6b780c061a6a8a597c8ba659e39b2412b002
@@ -3047,6 +3119,24 @@ tasks:
         required: 6
         total: 6
         detected: 6
+        survived: []
+      legacy: false
+    - id: transfer-shared-values-001
+      state: ready
+      input_digest: 7f66e94d7dc1a89a81e2e541a820f2420c04de78f89e2f0f740532263deb39d0
+      task_type: debug
+      primary_skill: pointers.mutation-sharing
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 9
+        total: 9
+        detected: 9
         survived: []
       legacy: false
     - id: two-quantity-tests-001
@@ -3452,20 +3542,20 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 184
+      count: 189
     - state: rejected
       count: 1
     - state: retired
       count: 0
 task_types:
     - task_type: debug
-      count: 46
+      count: 48
     - task_type: implement
-      count: 96
+      count: 98
     - task_type: refactor
       count: 3
     - task_type: test-writing
-      count: 46
+      count: 47
 gates:
     - id: task-state-policy
       status: pass
