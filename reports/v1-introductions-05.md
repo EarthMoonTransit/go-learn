@@ -68,3 +68,8 @@ lessons. The sole reviewer accepted this planning split, preserving old relative
 order. Historical extra repair allowance becomes4 including the delivered consumer
 first; current remaining estimate is203+10+71+3+3=290units, within302. No new skill,
 meaning, ceiling or readiness credit is created by that allocation change.
+
+Final sequence check places the repaired consumer-interface first immediately
+after formatter-contract and before greeter-dispatch or later dependent lessons.
+writer-double is not a prerequisite of this manual first; requiring it would
+reverse the small-contract dependency. No old automatic order/address changes.
