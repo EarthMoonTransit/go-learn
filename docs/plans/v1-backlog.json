@@ -64,7 +64,11 @@
       "slot": "first-encounter:channels.ownership",
       "skill_id": "channels.ownership",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "owned-batch-channel-001",
+      "delivery_batch": "I1",
+      "assessment": "hybrid: automatic behavior plus published method review",
+      "review_evidence": "tasks/ready/owned-batch-channel-001/review/notes.md"
     },
     {
       "slot": "first-encounter:channels.pipeline",
@@ -112,7 +116,11 @@
       "slot": "first-encounter:functions.recursion",
       "skill_id": "functions.recursion",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "recursive-total-001",
+      "delivery_batch": "I1",
+      "assessment": "hybrid: automatic behavior plus published method review",
+      "review_evidence": "tasks/ready/recursive-total-001/review/notes.md"
     },
     {
       "slot": "first-encounter:fuzzing.reproduction",
@@ -162,7 +170,13 @@
       "slot": "first-encounter:testing.deterministic-boundaries",
       "skill_id": "testing.deterministic-boundaries",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "worker-completion-tests-001",
+      "delivery_batch": "I1",
+      "assessment": "reviewed reuse; existing automatic task unchanged",
+      "review_evidence": "reports/v1-introductions-01.md",
+      "scope": "Learner-owned premature-completion and overlapping-call assertions at controlled scheduling boundaries. Supplied helper/synctest scaffold earns no independent-method credit. Future application must introduce/select a seam.",
+      "reuse_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f"
     },
     {
       "slot": "first-encounter:testing.examples",
@@ -192,7 +206,11 @@
       "slot": "first-encounter:testing.table-driven",
       "skill_id": "testing.table-driven",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "interval-table-tests-001",
+      "delivery_batch": "I1",
+      "assessment": "hybrid: automatic behavior plus published method review",
+      "review_evidence": "tasks/ready/interval-table-tests-001/review/notes.md"
     },
     {
       "slot": "first-encounter:time.timers-tickers",
@@ -204,7 +222,11 @@
       "slot": "first-encounter:toolchain.build-run",
       "skill_id": "toolchain.build-run",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_unit_path": "docs/labs/modules-build-001/TASK.md",
+      "delivery_batch": "I1",
+      "assessment": "manual; no automatic coverage or progress",
+      "review_evidence": "docs/labs/modules-build-001/review/acceptance.md"
     },
     {
       "slot": "first-encounter:toolchain.docs-environment",
@@ -222,7 +244,11 @@
       "slot": "first-encounter:toolchain.modules-workspaces",
       "skill_id": "toolchain.modules-workspaces",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_unit_path": "docs/labs/modules-build-001/TASK.md",
+      "delivery_batch": "I1",
+      "assessment": "manual; no automatic coverage or progress",
+      "review_evidence": "docs/labs/modules-build-001/review/acceptance.md"
     },
     {
       "slot": "independent-application:arrays.indexing-iteration",
@@ -955,12 +981,17 @@
     }
   ],
   "delivery": {
-    "batch": "M2.3",
-    "route_lessons_after": 191,
-    "first_encounters_remaining": 28,
+    "batch": "I1",
+    "status": "content/method/native review accepted; final batch gates and merge pending",
+    "route_lessons_after": 194,
+    "first_encounters_remaining": 22,
     "independent_applications_remaining": 77,
     "component_slots_remaining": 6,
-    "note": "Five distinct independent applications on existing fixed/workspace/mutation profiles. Earlier deliveries retained; no full-bank or human-mastery claim."
+    "new_automatic_packages": 3,
+    "reused_automatic_packages": 1,
+    "manual_units": 1,
+    "manual_first_slots": 2,
+    "note": "Five reviewed units close six distinct first slots, including modules before build/run. Existing learner bytes/tuples/order unchanged. Numeric coverage and learner mastery remain separate."
   },
   "delivery_history": [
     {
@@ -986,6 +1017,398 @@
       "independent_applications_remaining": 82,
       "component_slots_remaining": 6,
       "note": "Five distinct independent applications on existing fixed/mutation profiles. Earlier deliveries retained; no full-bank or human-mastery claim."
+    },
+    {
+      "batch": "M2.3",
+      "route_lessons_after": 191,
+      "first_encounters_remaining": 28,
+      "independent_applications_remaining": 77,
+      "component_slots_remaining": 6,
+      "note": "Five distinct independent applications on existing fixed/workspace/mutation profiles. Earlier deliveries retained; no full-bank or human-mastery claim."
     }
-  ]
+  ],
+  "existing_pair_reviews": {
+    "baseline_candidate_count": 49,
+    "reviewed_count": 12,
+    "accepted_count": 11,
+    "remaining_count": 37,
+    "assessment_scope": "Finite-v1 semantic pairs only; no full-bank depth/minima or learner mastery claim. Unreviewed candidates remain pending.",
+    "decisions": [
+      {
+        "skill_id": "control-flow.range",
+        "status": "accepted",
+        "date": "2026-10-22",
+        "batch": "I1",
+        "reviewer": "/root/reviewer",
+        "source_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+        "first_task_id": "range-offset-001",
+        "independent_application_task_id": "nested-slot-count-001",
+        "distinction_and_learner_action": "Repair slice range value-copy by choosing index/addressable update; independently traverse map values and sum variable slice lengths, including nil/false values. Starter for the second supplies no traversal.",
+        "assessment": "shared-window public check; variable-length/nil/preservation public cases",
+        "evidence_paths": [
+          "tasks/ready/range-offset-001/TASK.md",
+          "tasks/ready/range-offset-001/starter",
+          "tasks/ready/range-offset-001/solution/reference",
+          "tasks/ready/range-offset-001/tests/public",
+          "tasks/ready/range-offset-001/solution/mutants",
+          "tasks/ready/range-offset-001/review/notes.md",
+          "tasks/ready/nested-slot-count-001/TASK.md",
+          "tasks/ready/nested-slot-count-001/starter",
+          "tasks/ready/nested-slot-count-001/solution/reference",
+          "tasks/ready/nested-slot-count-001/tests/public",
+          "tasks/ready/nested-slot-count-001/solution/mutants",
+          "tasks/ready/nested-slot-count-001/review/notes.md"
+        ]
+      },
+      {
+        "skill_id": "expressions.arithmetic",
+        "status": "accepted",
+        "date": "2026-10-22",
+        "batch": "I1",
+        "reviewer": "/root/reviewer",
+        "source_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+        "first_task_id": "division-results-001",
+        "independent_application_task_id": "grouped-unit-cost-001",
+        "distinction_and_learner_action": "Correct quotient/remainder and output order with supplied zero guard excluded from credit; independently compute complete tens, remainder and both cost terms from empty starter.",
+        "assessment": "public 9/10/21/37 boundaries; remainder-free, round-groups-up and one-group-only mutants",
+        "evidence_paths": [
+          "tasks/ready/division-results-001/TASK.md",
+          "tasks/ready/division-results-001/starter",
+          "tasks/ready/division-results-001/solution/reference",
+          "tasks/ready/division-results-001/tests/public",
+          "tasks/ready/division-results-001/solution/mutants",
+          "tasks/ready/division-results-001/review/notes.md",
+          "tasks/ready/grouped-unit-cost-001/TASK.md",
+          "tasks/ready/grouped-unit-cost-001/starter",
+          "tasks/ready/grouped-unit-cost-001/solution/reference",
+          "tasks/ready/grouped-unit-cost-001/tests/public",
+          "tasks/ready/grouped-unit-cost-001/solution/mutants",
+          "tasks/ready/grouped-unit-cost-001/review/notes.md"
+        ]
+      },
+      {
+        "skill_id": "control-flow.if",
+        "status": "accepted",
+        "date": "2026-10-22",
+        "batch": "I1",
+        "reviewer": "/root/reviewer",
+        "source_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+        "first_task_id": "bounded-value-001",
+        "independent_application_task_id": "decision-table-tests-001",
+        "distinction_and_learner_action": "Implement ordered invalid/below/above/inside/singleton branches; independently select boundary and overlap tests for a different ordered-decision contract. Supplied sum-22 case and ready implementation receive no extra credit.",
+        "assessment": "learner tests at 12/16/17/21 and visible thresholds; stand-at-sixteen, exclude-twelve, visible-seven-low, win-against-ten mutants",
+        "evidence_paths": [
+          "tasks/ready/bounded-value-001/TASK.md",
+          "tasks/ready/bounded-value-001/starter",
+          "tasks/ready/bounded-value-001/solution/reference",
+          "tasks/ready/bounded-value-001/tests/public",
+          "tasks/ready/bounded-value-001/solution/mutants",
+          "tasks/ready/bounded-value-001/review/notes.md",
+          "tasks/ready/decision-table-tests-001/TASK.md",
+          "tasks/ready/decision-table-tests-001/starter",
+          "tasks/ready/decision-table-tests-001/solution/reference",
+          "tasks/ready/decision-table-tests-001/verification/reference",
+          "tasks/ready/decision-table-tests-001/verification/mutants",
+          "tasks/ready/decision-table-tests-001/review/notes.md"
+        ],
+        "rejected_candidate": {
+          "task_id": "independent-policies-001",
+          "reason": "Reference computes boolean formulas without if/else branches; metadata does not establish the frozen conditional-control-flow outcome. Existing task is preserved unchanged."
+        }
+      },
+      {
+        "skill_id": "functions.variadic",
+        "status": "accepted",
+        "date": "2026-10-22",
+        "batch": "I1",
+        "reviewer": "/root/reviewer",
+        "source_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+        "first_task_id": "prepend-values-tests-001",
+        "independent_application_task_id": "variadic-tail-sums-001",
+        "distinction_and_learner_action": "Learner adds zero-prefix/empty-input tests beyond supplied variadic call/expansion examples; later independently reduces each of multiple variadic slices from an empty starter while preserving group cardinality.",
+        "assessment": "Public group boundaries plus shared-total, skip-empty and no-groups-one defects.",
+        "evidence_paths": [
+          "tasks/ready/prepend-values-tests-001/TASK.md",
+          "tasks/ready/prepend-values-tests-001/task.yaml",
+          "tasks/ready/prepend-values-tests-001/starter",
+          "tasks/ready/prepend-values-tests-001/solution/reference",
+          "tasks/ready/prepend-values-tests-001/verification/reference",
+          "tasks/ready/prepend-values-tests-001/verification/mutants",
+          "tasks/ready/variadic-tail-sums-001/TASK.md",
+          "tasks/ready/variadic-tail-sums-001/task.yaml",
+          "tasks/ready/variadic-tail-sums-001/starter",
+          "tasks/ready/variadic-tail-sums-001/solution/reference",
+          "tasks/ready/variadic-tail-sums-001/tests/public",
+          "tasks/ready/variadic-tail-sums-001/solution/mutants"
+        ]
+      },
+      {
+        "skill_id": "functions.defer",
+        "status": "accepted",
+        "date": "2026-10-22",
+        "batch": "I1",
+        "reviewer": "/root/reviewer",
+        "source_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+        "first_task_id": "defer-trace-001",
+        "independent_application_task_id": "resource-finalize-001",
+        "distinction_and_learner_action": "Learner repairs LIFO registration and argument evaluation timing; later independently ensures cleanup across returns/panics and preserves both operation and cleanup errors. Resource interface and wrappers earn no credit.",
+        "assessment": "Workspace public/subject/contract_test.go and grader/subject/extended_test.go, independent cleanup/error defects.",
+        "evidence_paths": [
+          "tasks/ready/defer-trace-001/TASK.md",
+          "tasks/ready/defer-trace-001/task.yaml",
+          "tasks/ready/defer-trace-001/starter",
+          "tasks/ready/defer-trace-001/solution/reference",
+          "tasks/ready/defer-trace-001/tests/public",
+          "tasks/ready/resource-finalize-001/TASK.md",
+          "tasks/ready/resource-finalize-001/task.yaml",
+          "tasks/ready/resource-finalize-001/starter",
+          "tasks/ready/resource-finalize-001/solution/reference",
+          "tasks/ready/resource-finalize-001/tests/public",
+          "tasks/ready/defer-trace-001/workspace/subject/api.go"
+        ],
+        "rejected_candidate": {
+          "task_id": "deferred-release-001",
+          "reason": "Pairing only cleanup introduction with cleanup application misses frozen LIFO/argument-evaluation outcome; retain as preparation and select defer-trace-001 instead."
+        }
+      },
+      {
+        "skill_id": "functions.closure-capture",
+        "status": "accepted",
+        "date": "2026-10-22",
+        "batch": "I1",
+        "reviewer": "/root/reviewer",
+        "source_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+        "first_task_id": "period-predicate-001",
+        "independent_application_task_id": "stateful-counter-tests-001",
+        "distinction_and_learner_action": "Learner creates independent captures that survive constructor return; later independently tests persistent mutation and interleaved closures including equal starts. Supplied first counter call earns no credit.",
+        "assessment": "Public construction cases and learner reference tests detecting no-persistence/shared-state.",
+        "evidence_paths": [
+          "tasks/ready/period-predicate-001/TASK.md",
+          "tasks/ready/period-predicate-001/task.yaml",
+          "tasks/ready/period-predicate-001/starter",
+          "tasks/ready/period-predicate-001/solution/reference",
+          "tasks/ready/period-predicate-001/tests/public",
+          "tasks/ready/period-predicate-001/solution/mutants",
+          "tasks/ready/stateful-counter-tests-001/TASK.md",
+          "tasks/ready/stateful-counter-tests-001/task.yaml",
+          "tasks/ready/stateful-counter-tests-001/starter",
+          "tasks/ready/stateful-counter-tests-001/solution/reference",
+          "tasks/ready/stateful-counter-tests-001/verification/reference",
+          "tasks/ready/stateful-counter-tests-001/verification/mutants"
+        ]
+      },
+      {
+        "skill_id": "control-flow.for",
+        "status": "accepted",
+        "date": "2026-10-22",
+        "batch": "I1",
+        "reviewer": "/root/reviewer",
+        "source_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+        "first_task_id": "exclusive-loop-001",
+        "independent_application_task_id": "gcd-reduction-001",
+        "distinction_and_learner_action": "Repair a supplied three-clause loop bound; independently construct a condition-only loop with shrinking remainder from empty starter. Supplied first loop is not independent construction.",
+        "assessment": "Public bounds and gcd reduction behavior.",
+        "evidence_paths": [
+          "tasks/ready/exclusive-loop-001/TASK.md",
+          "tasks/ready/exclusive-loop-001/task.yaml",
+          "tasks/ready/exclusive-loop-001/starter",
+          "tasks/ready/exclusive-loop-001/solution/reference",
+          "tasks/ready/exclusive-loop-001/tests/public",
+          "tasks/ready/exclusive-loop-001/solution/mutants",
+          "tasks/ready/gcd-reduction-001/TASK.md",
+          "tasks/ready/gcd-reduction-001/task.yaml",
+          "tasks/ready/gcd-reduction-001/starter",
+          "tasks/ready/gcd-reduction-001/solution/reference",
+          "tasks/ready/gcd-reduction-001/tests/public",
+          "tasks/ready/gcd-reduction-001/solution/mutants"
+        ]
+      },
+      {
+        "skill_id": "control-flow.switch",
+        "status": "accepted",
+        "date": "2026-10-22",
+        "batch": "I1",
+        "reviewer": "/root/reviewer",
+        "source_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+        "first_task_id": "encoded-width-001",
+        "independent_application_task_id": "quadrant-switch-001",
+        "distinction_and_learner_action": "Repair accidental fallthrough; independently build an expressionless switch with origin/axis priority and all quadrants.",
+        "assessment": "Public category/axis/quadrant cases and respective defects.",
+        "evidence_paths": [
+          "tasks/ready/encoded-width-001/TASK.md",
+          "tasks/ready/encoded-width-001/task.yaml",
+          "tasks/ready/encoded-width-001/starter",
+          "tasks/ready/encoded-width-001/solution/reference",
+          "tasks/ready/encoded-width-001/tests/public",
+          "tasks/ready/encoded-width-001/solution/mutants",
+          "tasks/ready/quadrant-switch-001/TASK.md",
+          "tasks/ready/quadrant-switch-001/task.yaml",
+          "tasks/ready/quadrant-switch-001/starter",
+          "tasks/ready/quadrant-switch-001/solution/reference",
+          "tasks/ready/quadrant-switch-001/tests/public",
+          "tasks/ready/quadrant-switch-001/solution/mutants"
+        ]
+      },
+      {
+        "skill_id": "expressions.boolean-logic",
+        "status": "accepted",
+        "date": "2026-10-22",
+        "batch": "I1",
+        "reviewer": "/root/reviewer",
+        "source_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+        "first_task_id": "access-logic-001",
+        "independent_application_task_id": "lazy-probe-001",
+        "distinction_and_learner_action": "Compose three boolean conditions; independently control short-circuit operand evaluation and observable call counts. Supplied Probe only observes effects.",
+        "assessment": "Public true/false partitions and exact probe-call assertions.",
+        "evidence_paths": [
+          "tasks/ready/access-logic-001/TASK.md",
+          "tasks/ready/access-logic-001/task.yaml",
+          "tasks/ready/access-logic-001/starter",
+          "tasks/ready/access-logic-001/solution/reference",
+          "tasks/ready/access-logic-001/tests/public",
+          "tasks/ready/access-logic-001/solution/mutants",
+          "tasks/ready/lazy-probe-001/TASK.md",
+          "tasks/ready/lazy-probe-001/task.yaml",
+          "tasks/ready/lazy-probe-001/starter",
+          "tasks/ready/lazy-probe-001/solution/reference",
+          "tasks/ready/lazy-probe-001/tests/public",
+          "tasks/ready/lazy-probe-001/solution/mutants"
+        ]
+      },
+      {
+        "skill_id": "expressions.comparison",
+        "status": "accepted",
+        "date": "2026-10-22",
+        "batch": "I1",
+        "reviewer": "/root/reviewer",
+        "source_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+        "first_task_id": "bounded-value-001",
+        "independent_application_task_id": "lexical-choice-tests-001",
+        "distinction_and_learner_action": "Implement numeric bounds; independently test symmetric full-string comparison, case, equality, emptiness and whitespace beyond one supplied case.",
+        "assessment": "Public numeric boundaries plus learner reference tests/mutants for lexical decisions.",
+        "evidence_paths": [
+          "tasks/ready/bounded-value-001/TASK.md",
+          "tasks/ready/bounded-value-001/task.yaml",
+          "tasks/ready/bounded-value-001/starter",
+          "tasks/ready/bounded-value-001/solution/reference",
+          "tasks/ready/bounded-value-001/tests/public",
+          "tasks/ready/bounded-value-001/solution/mutants",
+          "tasks/ready/lexical-choice-tests-001/TASK.md",
+          "tasks/ready/lexical-choice-tests-001/task.yaml",
+          "tasks/ready/lexical-choice-tests-001/starter",
+          "tasks/ready/lexical-choice-tests-001/solution/reference",
+          "tasks/ready/lexical-choice-tests-001/verification/reference",
+          "tasks/ready/lexical-choice-tests-001/verification/mutants"
+        ]
+      },
+      {
+        "skill_id": "functions.signatures-results",
+        "status": "accepted",
+        "date": "2026-10-22",
+        "batch": "I1",
+        "reviewer": "/root/reviewer",
+        "source_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+        "first_task_id": "division-results-001",
+        "independent_application_task_id": "named-result-adjustment-001",
+        "distinction_and_learner_action": "Repair multiple result values/order; independently select named result as deferred modification target after return-expression evaluation while preserving caller data. Supplied signatures and defer scaffold earn no credit.",
+        "assessment": "Public result tuples and caller-preservation assertions.",
+        "evidence_paths": [
+          "tasks/ready/division-results-001/TASK.md",
+          "tasks/ready/division-results-001/task.yaml",
+          "tasks/ready/division-results-001/starter",
+          "tasks/ready/division-results-001/solution/reference",
+          "tasks/ready/division-results-001/tests/public",
+          "tasks/ready/division-results-001/solution/mutants",
+          "tasks/ready/named-result-adjustment-001/TASK.md",
+          "tasks/ready/named-result-adjustment-001/task.yaml",
+          "tasks/ready/named-result-adjustment-001/starter",
+          "tasks/ready/named-result-adjustment-001/solution/reference",
+          "tasks/ready/named-result-adjustment-001/tests/public",
+          "tasks/ready/named-result-adjustment-001/solution/mutants"
+        ]
+      },
+      {
+        "skill_id": "arrays.value-semantics",
+        "status": "needs-first-encounter-repair",
+        "date": "2026-10-22",
+        "batch": "I1",
+        "reviewer": "/root/reviewer",
+        "source_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+        "independent_application_task_id": "array-copy-address-tests-001",
+        "reason": "The named-block alias repair and array-copy index repair leave assignment/call copying supplied by wrapper/signature. Only array-copy-address-tests independently tests array independence and later changes. No second valid encounter in reviewed candidates.",
+        "rejected_candidates": [
+          "named-block-001",
+          "array-copy-001"
+        ],
+        "evidence_paths": [
+          "tasks/ready/named-block-001/TASK.md",
+          "tasks/ready/named-block-001/task.yaml",
+          "tasks/ready/named-block-001/starter",
+          "tasks/ready/named-block-001/solution/reference",
+          "tasks/ready/named-block-001/tests/public",
+          "tasks/ready/named-block-001/solution/mutants",
+          "tasks/ready/array-copy-001/TASK.md",
+          "tasks/ready/array-copy-001/task.yaml",
+          "tasks/ready/array-copy-001/starter",
+          "tasks/ready/array-copy-001/solution/reference",
+          "tasks/ready/array-copy-001/tests/public",
+          "tasks/ready/array-copy-001/solution/mutants",
+          "tasks/ready/array-copy-address-tests-001/TASK.md",
+          "tasks/ready/array-copy-address-tests-001/task.yaml",
+          "tasks/ready/array-copy-address-tests-001/starter",
+          "tasks/ready/array-copy-address-tests-001/solution/reference",
+          "tasks/ready/array-copy-address-tests-001/verification/reference",
+          "tasks/ready/array-copy-address-tests-001/verification/mutants"
+        ],
+        "planned_resolution": "One finite assignment/call snapshot prediction/debug exercise using existing workspace-tests, within the 302-unit ceiling; preserve the three existing tasks unchanged. No acceptance until actual contract/content/execution review."
+      }
+    ],
+    "pending_skill_ids": [
+      "channels.select",
+      "context.cancellation",
+      "errors.propagation-context",
+      "errors.sentinels-creation",
+      "errors.typed",
+      "generics.reusable-data-structures",
+      "generics.type-parameters-inference",
+      "goroutines.leak-prevention",
+      "interfaces.implicit-satisfaction",
+      "interfaces.small-contracts",
+      "interfaces.type-switches",
+      "io.files-cleanup",
+      "maps.iteration",
+      "maps.nil-delete-clear",
+      "maps.operations-comma-ok",
+      "methods.receiver-semantics",
+      "methods.values-expressions",
+      "pointers.address-deref-nil",
+      "slices.append-growth",
+      "slices.backing-array-aliasing",
+      "slices.len-cap-slicing",
+      "strings.building",
+      "strings.formatting",
+      "strings.immutable-bytes",
+      "strings.standard-library",
+      "structs.copy-equality",
+      "structs.literals-zero",
+      "testing.basics-diagnostics",
+      "time.parsing-zones",
+      "types.constants",
+      "types.declarations-inference",
+      "types.floating-point-semantics",
+      "types.numeric-conversions",
+      "unicode.invalid-utf8",
+      "unicode.range-decoding",
+      "unicode.rune-model",
+      "unicode.utf8-encoding"
+    ],
+    "repair_count": 1,
+    "repair_allocation": {
+      "skill_id": "arrays.value-semantics",
+      "maximum_units": 1,
+      "arithmetic": "194 automatic route units + 1 manual unit + 22 remaining original first slots + 77 applications + 6 components + 1 pair repair = 301 <= frozen ceiling 302.",
+      "source_of_room": "Unchanged worker reuse and one combined modules/build manual unit consumed six first slots with only four new learning units.",
+      "note": "The extra repair is tracked separately from the original 28-first-slot deadline and is not readiness credit."
+    }
+  }
 }

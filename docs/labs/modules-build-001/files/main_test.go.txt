@@ -1,0 +1,9 @@
+package main
+
+import "testing"
+
+func TestResult(t *testing.T) {
+	if got := result(); got != 14 {
+		t.Errorf("result()=%d; want 14", got)
+	}
+}

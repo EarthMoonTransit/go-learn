@@ -1,0 +1,50 @@
+schema_version: 2
+id: recursive-total-001
+title: Sum a finite slice by recursive decomposition
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: functions.recursion
+    secondary: []
+prerequisites:
+    - control-flow.if
+    - expressions.arithmetic
+    - functions.signatures-results
+    - slices.header-model
+    - slices.len-cap-slicing
+new_concepts:
+    - functions.recursion
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - empty-one
+        - single-zero
+        - left-only
+        - right-only
+        - subtract-right
+        - skip-middle
+        - erase-input
+        - absolute-elements
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

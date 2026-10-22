@@ -38,7 +38,13 @@
    `-coverage`; для infrastructure допустим `-phase1`.
 9. Никогда не запускать authored task code или task tests непосредственно из
    source checkout. Использовать `task-check`; legacy validation commands также
-   обязаны выполняться только в disposable copy.
+   обязаны выполняться только в disposable copy. По явному решению владельца
+   от 2026-10-22 manual units finite v1 вне `tasks/ready/` могут исполнять
+   заранее проверенные команды build/run, modules/workspaces и benchmarks без
+   `task-check` только по конечной процедуре `docs/plans/finite-v1.md`: свежие
+   disposable copies, чистое offline-окружение, максимум 60 секунд на команду,
+   сохранённые реальные результаты и независимое review. Это исключение не
+   разрешает новый runner, исполнение из checkout или automatic coverage.
 10. Не перемещать task packages между lifecycle-каталогами вручную. Использовать
     `task-promote`, не обходить review metadata и не перезаписывать ready id.
 11. Не коммитить и не пушить изменения напрямую в `master`. Каждый batch

@@ -4,9 +4,9 @@
 [ADR 0034](adr/0034-finite-v1-course.md) supersede the delivery priority below.
 Keep the 171 lessons; finish a frozen 141-skill route with independent application
 and six components using existing checks plus explicit checklist review.
-M0/M1, M2.1 and M2.2 are complete. The owner authorized one further five-task
-application batch, M2.3, then another pause and time/result report.
-P21 engine and further batches do not continue automatically. The larger bank
+M0/M1 and M2.1–M2.3 are complete. The owner authorized autonomous reviewed
+batches through finite-v1 readiness on 2026-10-22; historical pauses below are superseded.
+The P21 engine remains deferred. The larger bank
 and numeric minima remain visible deferred work; v1 is not full-bank release
 or learner mastery. Dated counts and earlier priorities below are historical.
 
@@ -340,3 +340,5 @@ Ten lessons add exact time parsing, caller-owned buffering, scanner error/line b
 ### C13 acceptance evidence
 
 Ten lessons add filesystem record parsing/cleanup, named and anonymous values, variadic aliasing, external test boundaries, assertion helpers, real subtests, scope-owned cleanup, a recording writer and asynchronous completion tests. Two exact source adaptations and eight originals were independently reviewed. The C11–C13 aggregate audit is recorded in `reports/content-audit-c11-c13.md`. Worker tests use controlled channels and testing/synctest without wall-clock scheduling assumptions.
+
+Current I1 preparation: three new automatic introductions, one unchanged reviewed reuse and one executed manual modules/build unit; final batch gates/merge pending. See [I1 report](../reports/v1-introductions-01.md). Manual preparation is linked in [learner start](LEARNER_START.md); it receives no automatic progress or coverage credit.

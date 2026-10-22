@@ -1,0 +1,941 @@
+[
+  {
+    "variant": "reference",
+    "started_at": "2026-10-22T12:01:54.658763+00:00",
+    "go_executable": "$LOCAL_GO",
+    "disposable_root": "$DISPOSABLE",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "init",
+          "finite.local/temporary"
+        ],
+        "cwd": "$DISPOSABLE/project/lib",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "go: creating new go.mod: module finite.local/temporary\ngo: to add module requirements and sums:\n\tgo mod tidy\n",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "edit",
+          "-module=finite.local/number"
+        ],
+        "cwd": "$DISPOSABLE/project/lib",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "init",
+          "finite.local/cmd"
+        ],
+        "cwd": "$DISPOSABLE/project/app",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "go: creating new go.mod: module finite.local/cmd\ngo: to add module requirements and sums:\n\tgo mod tidy\n",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "edit",
+          "-require=finite.local/number@v0.0.0"
+        ],
+        "cwd": "$DISPOSABLE/project/app",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "work",
+          "init",
+          "./app"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "work",
+          "use",
+          "./lib"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "test",
+          "-count=1",
+          "./lib/...",
+          "./app/..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/number\t0.184s\nok  \tfinite.local/cmd\t0.322s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "build",
+          "-o",
+          "bin/double",
+          "./app"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$DISPOSABLE/project/bin/double"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "14\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "run",
+          "./app"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "14\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "initial library module",
+        "files": {
+          "lib/go.mod": "module finite.local/temporary\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "corrected library module",
+        "files": {
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "workspace without library",
+        "files": {
+          "app/go.mod": "module finite.local/cmd\n\ngo 1.27.0\n\nrequire finite.local/number v0.0.0\n",
+          "go.work": "go 1.27.0\n\nuse ./app\n",
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "workspace with both modules",
+        "files": {
+          "app/go.mod": "module finite.local/cmd\n\ngo 1.27.0\n\nrequire finite.local/number v0.0.0\n",
+          "go.work": "go 1.27.0\n\nuse (\n\t./app\n\t./lib\n)\n",
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "final files",
+        "files": {
+          "app/go.mod": "module finite.local/cmd\n\ngo 1.27.0\n\nrequire finite.local/number v0.0.0\n",
+          "go.work": "go 1.27.0\n\nuse (\n\t./app\n\t./lib\n)\n",
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      }
+    ],
+    "ended_at": "2026-10-22T12:01:57.446900+00:00",
+    "disposable_root_removed": true,
+    "path_normalization": "Disposable absolute root and local Go executable replaced by stable placeholders; raw evidence retained in author workspace.",
+    "content_digest": "c2421d295ffd7e1087fffbb1e9ae9c0ad1c86812766f468b95eec7559b33ccea"
+  },
+  {
+    "variant": "missing-use",
+    "started_at": "2026-10-22T12:01:57.526031+00:00",
+    "go_executable": "$LOCAL_GO",
+    "disposable_root": "$DISPOSABLE",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "init",
+          "finite.local/temporary"
+        ],
+        "cwd": "$DISPOSABLE/project/lib",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "go: creating new go.mod: module finite.local/temporary\ngo: to add module requirements and sums:\n\tgo mod tidy\n",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "edit",
+          "-module=finite.local/number"
+        ],
+        "cwd": "$DISPOSABLE/project/lib",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "init",
+          "finite.local/cmd"
+        ],
+        "cwd": "$DISPOSABLE/project/app",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "go: creating new go.mod: module finite.local/cmd\ngo: to add module requirements and sums:\n\tgo mod tidy\n",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "edit",
+          "-require=finite.local/number@v0.0.0"
+        ],
+        "cwd": "$DISPOSABLE/project/app",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "work",
+          "init",
+          "./app"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "run",
+          "./app"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 1,
+        "stdout": "",
+        "stderr": "app/main.go:4:2: finite.local/number@v0.0.0: module lookup disabled by GOPROXY=off\n",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "work",
+          "use",
+          "./lib"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "test",
+          "-count=1",
+          "./lib/...",
+          "./app/..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/number\t0.163s\nok  \tfinite.local/cmd\t0.319s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "build",
+          "-o",
+          "bin/double",
+          "./app"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$DISPOSABLE/project/bin/double"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "14\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "run",
+          "./app"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "14\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "initial library module",
+        "files": {
+          "lib/go.mod": "module finite.local/temporary\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "corrected library module",
+        "files": {
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "workspace without library",
+        "files": {
+          "app/go.mod": "module finite.local/cmd\n\ngo 1.27.0\n\nrequire finite.local/number v0.0.0\n",
+          "go.work": "go 1.27.0\n\nuse ./app\n",
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "workspace with both modules",
+        "files": {
+          "app/go.mod": "module finite.local/cmd\n\ngo 1.27.0\n\nrequire finite.local/number v0.0.0\n",
+          "go.work": "go 1.27.0\n\nuse (\n\t./app\n\t./lib\n)\n",
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "final files",
+        "files": {
+          "app/go.mod": "module finite.local/cmd\n\ngo 1.27.0\n\nrequire finite.local/number v0.0.0\n",
+          "go.work": "go 1.27.0\n\nuse (\n\t./app\n\t./lib\n)\n",
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      }
+    ],
+    "ended_at": "2026-10-22T12:02:00.287532+00:00",
+    "disposable_root_removed": true,
+    "path_normalization": "Disposable absolute root and local Go executable replaced by stable placeholders; raw evidence retained in author workspace.",
+    "content_digest": "c2421d295ffd7e1087fffbb1e9ae9c0ad1c86812766f468b95eec7559b33ccea"
+  },
+  {
+    "variant": "wrong-module",
+    "started_at": "2026-10-22T12:02:00.366164+00:00",
+    "go_executable": "$LOCAL_GO",
+    "disposable_root": "$DISPOSABLE",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "init",
+          "finite.local/temporary"
+        ],
+        "cwd": "$DISPOSABLE/project/lib",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "go: creating new go.mod: module finite.local/temporary\ngo: to add module requirements and sums:\n\tgo mod tidy\n",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "edit",
+          "-module=finite.local/number"
+        ],
+        "cwd": "$DISPOSABLE/project/lib",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "init",
+          "finite.local/cmd"
+        ],
+        "cwd": "$DISPOSABLE/project/app",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "go: creating new go.mod: module finite.local/cmd\ngo: to add module requirements and sums:\n\tgo mod tidy\n",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "edit",
+          "-require=finite.local/number@v0.0.0"
+        ],
+        "cwd": "$DISPOSABLE/project/app",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "work",
+          "init",
+          "./app"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "work",
+          "use",
+          "./lib"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "edit",
+          "-module=finite.local/incorrect"
+        ],
+        "cwd": "$DISPOSABLE/project/lib",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "run",
+          "./app"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 1,
+        "stdout": "",
+        "stderr": "app/main.go:4:2: finite.local/number@v0.0.0: module lookup disabled by GOPROXY=off\n",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "edit",
+          "-module=finite.local/number"
+        ],
+        "cwd": "$DISPOSABLE/project/lib",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "test",
+          "-count=1",
+          "./lib/...",
+          "./app/..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/number\t0.167s\nok  \tfinite.local/cmd\t0.324s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "build",
+          "-o",
+          "bin/double",
+          "./app"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$DISPOSABLE/project/bin/double"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "14\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "run",
+          "./app"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "14\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "initial library module",
+        "files": {
+          "lib/go.mod": "module finite.local/temporary\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "corrected library module",
+        "files": {
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "workspace without library",
+        "files": {
+          "app/go.mod": "module finite.local/cmd\n\ngo 1.27.0\n\nrequire finite.local/number v0.0.0\n",
+          "go.work": "go 1.27.0\n\nuse ./app\n",
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "workspace with both modules",
+        "files": {
+          "app/go.mod": "module finite.local/cmd\n\ngo 1.27.0\n\nrequire finite.local/number v0.0.0\n",
+          "go.work": "go 1.27.0\n\nuse (\n\t./app\n\t./lib\n)\n",
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "wrong module declaration",
+        "files": {
+          "app/go.mod": "module finite.local/cmd\n\ngo 1.27.0\n\nrequire finite.local/number v0.0.0\n",
+          "go.work": "go 1.27.0\n\nuse (\n\t./app\n\t./lib\n)\n",
+          "lib/go.mod": "module finite.local/incorrect\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "repaired module declaration",
+        "files": {
+          "app/go.mod": "module finite.local/cmd\n\ngo 1.27.0\n\nrequire finite.local/number v0.0.0\n",
+          "go.work": "go 1.27.0\n\nuse (\n\t./app\n\t./lib\n)\n",
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "final files",
+        "files": {
+          "app/go.mod": "module finite.local/cmd\n\ngo 1.27.0\n\nrequire finite.local/number v0.0.0\n",
+          "go.work": "go 1.27.0\n\nuse (\n\t./app\n\t./lib\n)\n",
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      }
+    ],
+    "ended_at": "2026-10-22T12:02:03.134001+00:00",
+    "disposable_root_removed": true,
+    "path_normalization": "Disposable absolute root and local Go executable replaced by stable placeholders; raw evidence retained in author workspace.",
+    "content_digest": "c2421d295ffd7e1087fffbb1e9ae9c0ad1c86812766f468b95eec7559b33ccea"
+  },
+  {
+    "variant": "non-main",
+    "started_at": "2026-10-22T12:02:03.212351+00:00",
+    "go_executable": "$LOCAL_GO",
+    "disposable_root": "$DISPOSABLE",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "init",
+          "finite.local/temporary"
+        ],
+        "cwd": "$DISPOSABLE/project/lib",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "go: creating new go.mod: module finite.local/temporary\ngo: to add module requirements and sums:\n\tgo mod tidy\n",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "edit",
+          "-module=finite.local/number"
+        ],
+        "cwd": "$DISPOSABLE/project/lib",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "init",
+          "finite.local/cmd"
+        ],
+        "cwd": "$DISPOSABLE/project/app",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "go: creating new go.mod: module finite.local/cmd\ngo: to add module requirements and sums:\n\tgo mod tidy\n",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "mod",
+          "edit",
+          "-require=finite.local/number@v0.0.0"
+        ],
+        "cwd": "$DISPOSABLE/project/app",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "work",
+          "init",
+          "./app"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "off",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "work",
+          "use",
+          "./lib"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "run",
+          "./lib"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 1,
+        "stdout": "",
+        "stderr": "package finite.local/number is not a main package\n",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "test",
+          "-count=1",
+          "./lib/...",
+          "./app/..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/number\t0.324s\nok  \tfinite.local/cmd\t0.161s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "build",
+          "-o",
+          "bin/double",
+          "./app"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$DISPOSABLE/project/bin/double"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "14\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO",
+          "run",
+          "./app"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "gowork": "$DISPOSABLE/project/go.work",
+        "exit_status": 0,
+        "stdout": "14\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "initial library module",
+        "files": {
+          "lib/go.mod": "module finite.local/temporary\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "corrected library module",
+        "files": {
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "workspace without library",
+        "files": {
+          "app/go.mod": "module finite.local/cmd\n\ngo 1.27.0\n\nrequire finite.local/number v0.0.0\n",
+          "go.work": "go 1.27.0\n\nuse ./app\n",
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "workspace with both modules",
+        "files": {
+          "app/go.mod": "module finite.local/cmd\n\ngo 1.27.0\n\nrequire finite.local/number v0.0.0\n",
+          "go.work": "go 1.27.0\n\nuse (\n\t./app\n\t./lib\n)\n",
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      },
+      {
+        "label": "final files",
+        "files": {
+          "app/go.mod": "module finite.local/cmd\n\ngo 1.27.0\n\nrequire finite.local/number v0.0.0\n",
+          "go.work": "go 1.27.0\n\nuse (\n\t./app\n\t./lib\n)\n",
+          "lib/go.mod": "module finite.local/number\n\ngo 1.27.0\n"
+        }
+      }
+    ],
+    "ended_at": "2026-10-22T12:02:06.007711+00:00",
+    "disposable_root_removed": true,
+    "path_normalization": "Disposable absolute root and local Go executable replaced by stable placeholders; raw evidence retained in author workspace.",
+    "content_digest": "c2421d295ffd7e1087fffbb1e9ae9c0ad1c86812766f468b95eec7559b33ccea"
+  }
+]

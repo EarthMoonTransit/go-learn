@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-10-22"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-10-22"
+      actor: v1-introductions-01-author
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-10-22"
+      actor: root-reviewer
+      reason: Independent contract/content approval; disposable technical checks and public feedback pass; final batch acceptance remains required.
+    - from: in-review
+      to: ready
+      at: "2026-10-22"
+      actor: root-reviewer
+      reason: Independent contract/content approval; disposable technical checks and public feedback pass; final batch acceptance remains required.

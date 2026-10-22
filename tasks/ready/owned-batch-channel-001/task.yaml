@@ -1,0 +1,54 @@
+schema_version: 2
+id: owned-batch-channel-001
+title: Own the output channel of a finite producer
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: channels.ownership
+    secondary: []
+prerequisites:
+    - channels.close-semantics
+    - channels.operations-blocking
+    - control-flow.range
+    - functions.signatures-results
+    - goroutines.launch-lifecycle
+    - slices.header-model
+new_concepts:
+    - channels.ownership
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - nil-output
+        - ignore-gate
+        - never-close
+        - skip-last
+        - duplicate-values
+        - zero-ends-stream
+        - reverse-values
+        - erase-input
+        - wait-before-return
+        - shared-output
+        - shared-pending-values
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

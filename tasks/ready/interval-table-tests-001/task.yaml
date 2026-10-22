@@ -1,0 +1,51 @@
+schema_version: 2
+id: interval-table-tests-001
+title: Choose named boundary cases for an interval predicate
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: testing.table-driven
+    secondary: []
+prerequisites:
+    - control-flow.range
+    - expressions.comparison
+    - functions.signatures-results
+    - slices.header-model
+    - structs.literals-zero
+    - testing.basics-diagnostics
+new_concepts:
+    - testing.table-driven
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - exclude-lower
+        - include-upper
+        - swap-reversed
+        - empty-is-point
+        - nonnegative-only
+        - lower-only
+        - ignore-lower
+        - ignore-upper
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

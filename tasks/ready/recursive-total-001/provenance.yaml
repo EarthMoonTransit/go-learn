@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "ef8ff0cdfe5a338345ec05c41b3a75354e01a07432b58a6511071f3944cbbb7c"
+  },
+  "creation": {
+    "author": "v1-introductions-01-author",
+    "created_at": "2026-10-22",
+    "summary": "Original bounded finite-v1 introduction after independent contract/source review; no external code, tests or educational text."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/recursive-total-001.yaml"
+  }
+}
