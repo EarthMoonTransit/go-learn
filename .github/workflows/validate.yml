@@ -49,6 +49,13 @@ jobs:
       - name: Execute the task bank once
         shell: bash
         run: "$RUNNER_TEMP/go-practice-bank/bin/task-check -root . -all -output $RUNNER_TEMP/go-practice-bank/results/checks.yaml"
+      - name: Show failed task collection
+        if: failure()
+        shell: bash
+        run: |
+          if test -f "$RUNNER_TEMP/go-practice-bank/results/checks.yaml"; then
+            cat "$RUNNER_TEMP/go-practice-bank/results/checks.yaml"
+          fi
       - name: Reuse collection in repository validation
         shell: bash
         run: "$RUNNER_TEMP/go-practice-bank/bin/validate -root . -phase1 -checks $RUNNER_TEMP/go-practice-bank/results/checks.yaml"
