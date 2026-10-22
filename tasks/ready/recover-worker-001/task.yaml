@@ -1,0 +1,55 @@
+schema_version: 2
+id: recover-worker-001
+title: Publish an explicit outcome when a worker panics
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: goroutines.panic-boundaries
+    secondary:
+        - errors.panic-recover-boundaries
+prerequisites:
+    - channels.ownership
+    - errors.propagation-context
+    - functions.defer
+    - goroutines.launch-lifecycle
+    - goroutines.result-error-collection
+new_concepts:
+    - goroutines.panic-boundaries
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - inline-callback
+        - repeat-callback
+        - silence-panic
+        - drop-panic-flag
+        - drop-context
+        - wrong-panic-value
+        - duplicate-result
+        - never-close
+        - nil-output
+        - wrong-normal-value
+        - normal-error
+        - shared-panic-state
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

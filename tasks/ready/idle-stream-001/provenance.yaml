@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "e1ba2743449d92a43699830fd6594d3c33e322d17a51851257f36a802165008c"
+  },
+  "creation": {
+    "author": "v1-introductions-04-pipe-timer-author",
+    "created_at": "2026-10-22",
+    "summary": "Original finite-v1 pipe and timer content after independent contract review; no external material."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/idle-stream-001.yaml"
+  }
+}

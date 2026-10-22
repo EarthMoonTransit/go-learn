@@ -69,13 +69,22 @@
       "slot": "first-encounter:channels.cancellation",
       "skill_id": "channels.cancellation",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "cancelable-forward-001",
+      "delivery_batch": "I4",
+      "assessment": "unchanged automatic task plus separate actual cancellation method checklist; no added automatic coverage",
+      "review_evidence": "reports/v1-introductions-04.md",
+      "reuse_commit": "e9e9ca854de593047e2790565a83c53397d21ec9"
     },
     {
       "slot": "first-encounter:channels.fan-out-in",
       "skill_id": "channels.fan-out-in",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "bounded-job-pool-001",
+      "delivery_batch": "I4",
+      "assessment": "hybrid: automatic behavior plus actual method review; distinct learner action",
+      "review_evidence": "tasks/ready/bounded-job-pool-001/review/notes.md"
     },
     {
       "slot": "first-encounter:channels.ownership",
@@ -161,13 +170,21 @@
       "slot": "first-encounter:goroutines.panic-boundaries",
       "skill_id": "goroutines.panic-boundaries",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "recover-worker-001",
+      "delivery_batch": "I4",
+      "assessment": "hybrid: automatic behavior plus actual method review; distinct learner action",
+      "review_evidence": "tasks/ready/recover-worker-001/review/notes.md"
     },
     {
       "slot": "first-encounter:io.pipe-lifecycle",
       "skill_id": "io.pipe-lifecycle",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "pipe-exchange-001",
+      "delivery_batch": "I4",
+      "assessment": "hybrid: automatic behavior plus actual method review; distinct learner action",
+      "review_evidence": "tasks/ready/pipe-exchange-001/review/notes.md"
     },
     {
       "slot": "first-encounter:packages.import-cycles",
@@ -257,7 +274,11 @@
       "slot": "first-encounter:time.timers-tickers",
       "skill_id": "time.timers-tickers",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "idle-stream-001",
+      "delivery_batch": "I4",
+      "assessment": "hybrid: automatic behavior plus actual method review; distinct learner action",
+      "review_evidence": "tasks/ready/idle-stream-001/review/notes.md"
     },
     {
       "slot": "first-encounter:toolchain.build-run",
@@ -511,7 +532,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "capture-panic-001"
-      ]
+      ],
+      "delivered_task_id": "recover-worker-001",
+      "delivery_batch": "I4",
+      "assessment": "hybrid: automatic behavior plus actual method review; distinct learner action",
+      "review_evidence": "tasks/ready/recover-worker-001/review/notes.md"
     },
     {
       "slot": "independent-application:errors.wrapping",
@@ -620,7 +645,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "indexed-job-results-001"
-      ]
+      ],
+      "delivered_task_id": "bounded-job-pool-001",
+      "delivery_batch": "I4",
+      "assessment": "hybrid: automatic behavior plus actual method review; distinct learner action",
+      "review_evidence": "tasks/ready/bounded-job-pool-001/review/notes.md"
     },
     {
       "slot": "independent-application:goroutines.state-ownership",
@@ -876,7 +905,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "join-all-tests-001"
-      ]
+      ],
+      "delivered_task_id": "bounded-job-pool-001",
+      "delivery_batch": "I4",
+      "assessment": "hybrid: automatic behavior plus actual method review; distinct learner action",
+      "review_evidence": "tasks/ready/bounded-job-pool-001/review/notes.md"
     },
     {
       "slot": "independent-application:testing.cleanup",
@@ -1047,17 +1080,17 @@
     }
   ],
   "delivery": {
-    "batch": "I3",
-    "status": "actual content/method/native evidence; final gates and merge pending",
-    "route_lessons_after": 199,
-    "first_encounters_remaining": 10,
-    "independent_applications_remaining": 74,
+    "batch": "I4",
+    "status": "actual content/method accepted; final gates and dependency merges pending",
+    "route_lessons_after": 203,
+    "first_encounters_remaining": 5,
+    "independent_applications_remaining": 71,
     "component_slots_remaining": 5,
-    "new_automatic_packages": 3,
-    "reused_automatic_packages": 1,
-    "manual_units": 1,
-    "manual_first_slots": 1,
-    "note": "Five units close five original first slots plus three separately reviewed applications; unchanged buffer task credit includes manual rationale only, not new automatic taxonomy coverage."
+    "new_automatic_packages": 4,
+    "reused_automatic_packages": 2,
+    "manual_units": 0,
+    "manual_first_slots": 0,
+    "note": "Six units close five original firsts plus three separately reviewed applications and repair existing WG first without changing task bytes/old meaning. Manual supplements do not add automatic coverage."
   },
   "delivery_history": [
     {
@@ -1126,6 +1159,23 @@
       "merge_commit": "94dc30a5e149e674e7312a7059029b41dcc336e7",
       "validate_run": "https://github.com/EarthMoonTransit/go-learn/actions/runs/39793027318",
       "available_execution_seconds": 3707.53
+    },
+    {
+      "batch": "I3",
+      "status": "accepted after localgates/finalreview/exact-headvalidate and merge",
+      "route_lessons_after": 199,
+      "first_encounters_remaining": 10,
+      "independent_applications_remaining": 74,
+      "component_slots_remaining": 5,
+      "new_automatic_packages": 3,
+      "reused_automatic_packages": 1,
+      "manual_units": 1,
+      "manual_first_slots": 1,
+      "note": "Five units close five original first slots plus three separately reviewed applications; unchanged buffer task credit includes manual rationale only, not new automatic taxonomy coverage.",
+      "pr": 107,
+      "head": "e9e9ca854de593047e2790565a83c53397d21ec9",
+      "merge_commit": "2efeab7a05596a6591a35e649c332ba8e14153ac",
+      "validate_run": 39828282621
     }
   ],
   "existing_pair_reviews": {
@@ -2410,7 +2460,7 @@
       ],
       "maximum_additional_units": 3,
       "design": "Combined array/struct snapshot first encounter; one consumer-owned small-interface first encounter; at most one constants application. Typed-error and small-interface applications integrated into allocated IO/packages components with distinct actual actions. Constants may instead fit native build/run application.",
-      "arithmetic": "After accepted I3:199 automatic route +5 manual units +10 remaining original first slots +74 applications +5 remaining components +at most3 repair units =296 <=302. Buffer reuse and three combined applications save4 further units; unresolved semantic repairs earn no advance credit.",
+      "arithmetic": "After accepted I4:203 automatic route +5 manual units +5 remaining original firsts +71 applications +5 components +at most3 repair units =292 <=302.49baseline pair repairs stay explicit; separate WGfirst repair reused an existing unit.",
       "note": "All49 baseline pairs reviewed; five concrete repairs remain. No expanded ceiling or metadata-only credit; actual repair contracts/evidence are still required."
     }
   },
@@ -2419,7 +2469,7 @@
     "decisions": [
       {
         "skill_id": "sync.waitgroup-lifecycle",
-        "decision": "first-assessment repair needed before accepting application",
+        "decision": "first repaired by unchanged indexed-results plus actual WG method assessment",
         "candidate_task_id": "join-all-tests-001",
         "finding": "Learner authors black-box joining tests; Add/Done/Wait are supplied in verification/reference and TASK. Do not credit independently authored WG mechanism from that supplied code.",
         "reviewed_commit": "94dc30a5e149e674e7312a7059029b41dcc336e7",
@@ -2430,7 +2480,12 @@
         ],
         "planned_repair": "I4 unchanged indexed-job-results-001 reuse with actual learner-written Add-before-launch, Done at each worker exit and Wait-before-result-access checklist. Then RunPool may provide a distinct worker-registration/merged-close application. Contract/source approved; actual method/execution acceptance pending.",
         "new_file_allocation": 0,
-        "readiness_credit": false
+        "readiness_credit": true,
+        "delivered_task_id": "indexed-job-results-001",
+        "delivery_batch": "I4",
+        "review_evidence": "reports/v1-introductions-04.md",
+        "reuse_commit": "e9e9ca854de593047e2790565a83c53397d21ec9",
+        "assessment": "Actual Add-before-launch/Done-at-each-exit/Wait-before-complete-result review; unchanged original automatic alternatives remain valid; no automatic primitive claim. Final batch gates/merge separate."
       }
     ]
   }

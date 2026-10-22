@@ -1,0 +1,52 @@
+schema_version: 2
+id: pipe-exchange-001
+title: Complete a synchronous pipe exchange
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: io.pipe-lifecycle
+    secondary: []
+prerequisites:
+    - channels.close-semantics
+    - channels.operations-blocking
+    - errors.sentinels-creation
+    - functions.defer
+    - goroutines.launch-lifecycle
+    - io.reader-writer-contracts
+new_concepts:
+    - io.pipe-lifecycle
+difficulty: basic
+estimated_time_minutes:
+    min: 20
+    max: 35
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - drop-writer-close-error
+        - drop-reader-close-error
+        - missing-writer-close
+        - missing-reader-close
+        - drop-producer-result
+        - drop-consumer-result
+        - return-before-join
+        - duplicate-producer
+        - duplicate-consumer
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

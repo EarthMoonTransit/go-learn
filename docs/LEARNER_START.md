@@ -65,6 +65,43 @@ errors and an explicit non-reset lifecycle. `trace-context-001` requires a priva
 comparable key, safe typed accessor and request-scoped metadata. Submit the actual
 code with these explanations; behavior-only success does not establish method.
 
+For the finite-v1 cancellation first at `cancelable-forward-001`, submit a
+checklist identifying the cancellation path at both blocking operations. Explain
+which already queued or winning sends may still deliver, how output closes, why
+no input receiver remains, and why closing the data input cannot release a stage
+blocked sending to an abandoned downstream consumer. This is a single-stage
+first; a whole-chain cancellation application follows separately.
+
+For the finite-v1 WaitGroup first at `indexed-job-results-001`, submit your actual
+WaitGroup-based implementation. Explain registration before launching each worker,
+Done on every worker exit including error results, Wait before accessing the
+complete result, and per-call state ownership. `join-all-tests-001` supplies the
+mechanism and serves as guided preparation. Other correct synchronization choices
+remain valid for the original automatic task; this additional manual method
+assessment requires inspecting the actual Add/Done/Wait lifecycle. Existing
+13-mutant/race behavior evidence does not automatically establish that primitive.
+These supplements add no automatic progress or coverage.
+
+`bounded-job-pool-001` also requires an actual bounded worker pool: identify the
+shared job queue, result producers, the single result closer, and the draining
+consumer. Explain how worker registration and completion prevent closing results
+while a producer can still send, and how each indexed result survives an error.
+Result arrival order is unspecified. This applies the earlier collection and
+WaitGroup actions to a different bounded queue and channel lifecycle.
+
+For `recover-worker-001`, inspect the actual deferred recovery inside the worker
+and the published outcome after both normal return and panic. Explain why recovery
+in the caller cannot catch that worker's panic and how one result and closure
+remain guaranteed. The finite contract excludes panic(nil), Goexit and cancellation.
+
+For `pipe-exchange-001`, show the actual synchronous Pipe, producer join and both
+close paths. Explain which error each callback returns, how the consumer observes
+a producer error, and how an early consumer return releases a blocked writer.
+For `idle-stream-001`, show the owned Timer, each Reset and every return's Stop;
+explain the interval start and input ownership without imposing select priority
+when events are simultaneously ready. Ticker use remains a later application.
+These actual-code checklists supplement the automatic behavioral checks.
+
 ## Your first workspace
 
 Run learn next, then the printed learn start command. In the local UI, click

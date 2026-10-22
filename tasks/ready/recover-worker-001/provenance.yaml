@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "1ab5e1ed6e7ae07077388223c310ff21e87c171f5a8e4412ab35b19ba3945061"
+  },
+  "creation": {
+    "author": "v1-introductions-04-pool-recovery-author",
+    "created_at": "2026-10-22",
+    "summary": "Original finite-v1 worker pool and panic-boundary contracts; original implementation, tests and educational text."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/recover-worker-001.yaml"
+  }
+}
