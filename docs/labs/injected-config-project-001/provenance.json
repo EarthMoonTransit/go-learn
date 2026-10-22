@@ -1,0 +1,42 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-repairs-06-author",
+    "created_at": "2026-10-22",
+    "summary": "Original finite native contract, source assets and context controls; no external material."
+  },
+  "sources": [],
+  "content_digest": "cdf0426ae1668263f18cae52ae001328287464a5a1ec38ff7f0f35ee8a4b133a",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "96592f6d51457b4784ebe6e85909773cd3435dcded8c1b7452ea68e62c86da57",
+    "TASK.md": "ee8cd5a75e5e692bb6c057504ec8fbd4ef593c74813bef5d42245e341e16e547",
+    "files/client/accept_test.go.txt": "ef88bfcdb796b88da2d9393be3be34b0ebe25de9e040c4278ea64c33286a46da",
+    "files/client/go.mod.txt": "ea4fc63efdf9971f298281380d07ff137014bd1f29099e9a5dd087b92114ff5c",
+    "files/client/source.go.txt": "49c51351a2d2852aa6991eb018ea5b573e10e75635f0e750dcc21847af63e308",
+    "files/project/cmd/snapshot/main.go.txt": "a0d46d6934238e411d9222322abef1dc0055eedc58e559380ed5206b593a2549",
+    "files/project/processenv/source.go.txt": "9aa3bbca572fdfbb9955eef953041e256080bd40c9a083d119590152b2bf333a",
+    "files/project/snapshot/collect.go.txt": "c811bfd22a7dfb33000d07fe8cbe65cf74d15c1cd11741812fa24c77ac92287f",
+    "files/project/snapshot/contract_test.go.txt": "dec3d6491cffe158a2ea592759a9e63885c7cec431f897ac83abf1eb59079459",
+    "files/project/snapshot/internal/row/format.go.txt": "eb02c9757efdbc31ccadc5f920d543f3a74debeff1b138bd17dd7ac8310a5807",
+    "files/project/snapshot/internal/row/format_test.go.txt": "c956098418a312f7bb4237b8f6dfd549d53c860f94f14cde97cde23049aada5a",
+    "files/project/snapshot/learner_test.go.txt": "ade70e6e29f099b3bddca56ffe63541c3891587c5ad369139d6e104e484e6159",
+    "manifest.json": "2799cab0c9bfebafaeb72f8a38075a141137735813e79a5589bdbbb97bc4e3b9",
+    "reference/project/cmd/snapshot/main.go.txt": "05a24138ebc8d615492e1bd9572457b4941c86098f47de15660386cb2d316285",
+    "reference/project/go.mod.txt": "54cc73c28fd0e2b3a74d6a0671af11ba91eb4938a8ee1ce971bf9a7bc5036552",
+    "reference/project/snapshot/collect.go.txt": "006e586a1bab6c8fb71990a7c42705f367f43825cd9f1b407060c3645647fa2d",
+    "reference/project/snapshot/internal/row/format.go.txt": "457e823ed16b2552ee7e158925f0445e78e30dfde9eb36becf24b7f96188fd27",
+    "reference/project/snapshot/learner_test.go.txt": "f3881b6f5eaab6b7eda4bbe9399c51fad2030467c066ec1fcaf5a2c803a014ce",
+    "wrong/any/project/snapshot/collect.go.txt": "1ed10371f5855d508ce377108043050292b27e265e2376daa1b451283f824027",
+    "wrong/bypass/project/snapshot/collect.go.txt": "6f494fae8448c4ad30ed483ca1472eb1cfe1abe4575e85aa6bfbc286a85226c3",
+    "wrong/concrete/project/snapshot/collect.go.txt": "399b1715070d670aaaaae465228895683f16cb2a55f71adc316c25d5cdb7e349",
+    "wrong/empty/project/snapshot/collect.go.txt": "8da2e48a115659453f0da31f62fd7dcaccf1a6670f9761ee320411ea62dbf3a3",
+    "wrong/internal/client/forbidden/probe_test.go.txt": "9bfed1f7fd411e7d5645a7e6e463a0c1b7f36e97a6aeb4d8913809b0eba2c447",
+    "wrong/module/project/go.mod.txt": "d9a74c7636ac878337de42888a3d65b9e6c5b5eb3057f0127e43a01930d544c3",
+    "wrong/overbroad/project/snapshot/collect.go.txt": "98f9870e6c13cb413578586e9b6f48a8b80f02b05167c40bdc0b2f46bade144b",
+    "wrong/twice/project/snapshot/collect.go.txt": "03ef32b78e61761d58a5bc68ed4b4c7501053fd8373119ccaa2975b300e74df0"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

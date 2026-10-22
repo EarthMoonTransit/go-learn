@@ -1,4 +1,4 @@
-# Finite-v1 introduction batch I5 — in progress
+# Finite-v1 introduction batch I5 — accepted
 
 Started2026-10-22T18:32:29UTC on separate `codex/v1-introductions-05`, initially
 based on reviewed I3 HEAD `e9e9ca854de593047e2790565a83c53397d21ec9`. Owner permits
@@ -73,3 +73,7 @@ Final sequence check places the repaired consumer-interface first immediately
 after formatter-contract and before greeter-dispatch or later dependent lessons.
 writer-double is not a prerequisite of this manual first; requiring it would
 reverse the small-contract dependency. No old automatic order/address changes.
+
+## Accepted delivery
+
+PR110 merged2026-10-22T19:39:56UTC as`a1bd31ed7a1a8b87cca24d2a2dc987aa2902bb58`, after accepted I4dependency, all8own local gates, sole independent exactHEAD`1992244d26dfcb64840afae95d5f448b863313a7` review and successful validate39836802152. Automatic inputs were unchanged and all fresh consumers used the accepted213collection; five manual labs retained19copies66actualcommands and separate method review. Available time at merge67.45min, infrastructure0, no productive overlap deducted. All28original first slots are accepted by batch5; remainder71applications,3components and explicit old-pair repairs.203route/206ready/213checked/10manual. No claim of old full-bank minima or human mastery.

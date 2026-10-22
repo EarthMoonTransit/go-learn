@@ -1,0 +1,5 @@
+package probe
+
+import "finite.local/constant-contexts/limits"
+
+var _ uint8 = limits.Mask + 1

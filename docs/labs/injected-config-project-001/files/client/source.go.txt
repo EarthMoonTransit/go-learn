@@ -1,0 +1,5 @@
+package client
+
+type Third struct{}
+
+func (Third) Lookup(key string) (string, bool) { return "third:" + key, true }

@@ -575,6 +575,14 @@
           "skills": [
             "functions.recursion"
           ]
+        },
+        {
+          "number": 41,
+          "task_id": "array-copy-stages-001",
+          "role": "introduction",
+          "skills": [
+            "arrays.value-semantics"
+          ]
         }
       ],
       "number": 3
@@ -1240,6 +1248,14 @@
           "skills": [
             "pointers.mutation-sharing"
           ]
+        },
+        {
+          "number": 56,
+          "task_id": "struct-copy-comparability-001",
+          "role": "introduction",
+          "skills": [
+            "structs.copy-equality"
+          ]
         }
       ],
       "number": 6
@@ -1426,6 +1442,16 @@
           "role": "practice",
           "skills": [
             "generics.type-parameters-inference"
+          ]
+        },
+        {
+          "number": 23,
+          "task_id": "bounded-record-read-001",
+          "role": "transfer",
+          "skills": [
+            "errors.typed",
+            "io.reader-writer-contracts",
+            "encoding.streaming-strictness"
           ]
         }
       ],

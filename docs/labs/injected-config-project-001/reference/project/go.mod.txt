@@ -1,0 +1,2 @@
+module finite.local/configkit
+go 1.27

@@ -1,4 +1,4 @@
-# Finite-v1 introduction batch I4 — in progress
+# Finite-v1 introduction batch I4 — accepted
 
 Started2026-10-22T18:10:42UTC on `codex/v1-introductions-04`, base
 `e9e9ca854de593047e2790565a83c53397d21ec9`. Owner authorized parallel authoring
@@ -81,3 +81,7 @@ acceptance. No infrastructure work was added in I4. Four-hour clock18:10:42UTC
 continues through local gates/review and productive overlap, with no CI-only idle
 exclusion. This report records the state at content freeze; final acceptance is
 recorded in the PR and next postmerge checkpoint.
+
+## Accepted delivery
+
+PR109 merged2026-10-22T19:37:47UTC as`2e1710a42381db9d60e5d3bc251c2702c7951804`, after all12local steps, sole independent exactHEAD`0241dbcdd56c1aefe63f7ab9ef66e308b92006b7` review and successful validate39836444522. The one stable213collection fed every local consumer. Available time at merge87.07min, with no productive overlap deducted as CI idle; infrastructure diagnosis remained at most4min. Accepted remainder:5originalfirsts,71applications,5components plus explicit old-pair repairs.203route/206ready/213checked/5manual. Full-bank minima and human mastery remain separate.

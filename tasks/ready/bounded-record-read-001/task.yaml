@@ -1,0 +1,70 @@
+schema_version: 2
+id: bounded-record-read-001
+title: Read bounded records
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: errors.typed
+    secondary:
+        - io.reader-writer-contracts
+        - encoding.streaming-strictness
+prerequisites:
+    - control-flow.for
+    - encoding.json-shape-tags
+    - errors.propagation-context
+    - errors.sentinels-creation
+    - interfaces.implicit-satisfaction
+    - methods.receiver-semantics
+    - slices.header-model
+    - slices.len-cap-slicing
+    - structs.literals-zero
+new_concepts:
+    - errors.typed
+difficulty: intermediate
+estimated_time_minutes:
+    min: 25
+    max: 45
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - reads-on-zero
+        - assumes-full-read
+        - discards-bytes-with-error
+        - publishes-partial
+        - early-eof-success
+        - final-eof-failure
+        - drops-error-at-count
+        - format-before-reader-error
+        - accepts-version
+        - little-endian
+        - wide-frame-read
+        - closes-input
+        - fixed-index
+        - no-unwrap
+        - unstructured-error
+        - shared-error-state
+        - typed-nil-success
+        - wrong-error-text
+        - drops-prefix
+        - probes-after-count
+        - reads-after-error
+        - unwraps-reader-cause
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

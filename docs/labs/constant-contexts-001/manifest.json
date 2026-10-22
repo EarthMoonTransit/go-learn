@@ -1,0 +1,44 @@
+{
+  "unit": "constant-contexts-001",
+  "go_version": "1.27",
+  "files": {
+    "files/project/go.mod.txt": "project/go.mod",
+    "files/project/limits/constants.go.txt": "project/limits/constants.go",
+    "files/project/accept/accept_test.go.txt": "project/accept/accept_test.go",
+    "files/project/cmd/values/main.go.txt": "project/cmd/values/main.go"
+  },
+  "reference": {
+    "reference/project/limits/constants.go.txt": "project/limits/constants.go"
+  },
+  "editable_paths": [
+    "project/limits/constants.go"
+  ],
+  "wrong": {
+    "default": {
+      "wrong/default/project/probe/probe.go.txt": "project/probe/probe.go"
+    },
+    "signed": {
+      "wrong/signed/project/probe/probe.go.txt": "project/probe/probe.go"
+    },
+    "overflow": {
+      "wrong/overflow/project/probe/probe.go.txt": "project/probe/probe.go"
+    },
+    "typed-target": {
+      "wrong/typed-target/project/probe/probe.go.txt": "project/probe/probe.go"
+    },
+    "wrong-mask-type": {
+      "wrong/wrong-mask-type/project/limits/constants.go.txt": "project/limits/constants.go"
+    },
+    "wrong-marker-kind": {
+      "wrong/wrong-marker-kind/project/limits/constants.go.txt": "project/limits/constants.go",
+      "wrong/wrong-marker-kind/project/probe/probe.go.txt": "project/probe/probe.go"
+    },
+    "wrong-scale-type": {
+      "wrong/wrong-scale-type/project/limits/constants.go.txt": "project/limits/constants.go"
+    },
+    "wrong-variable": {
+      "wrong/wrong-variable/project/limits/constants.go.txt": "project/limits/constants.go"
+    }
+  },
+  "timeout_seconds": 60
+}

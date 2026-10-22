@@ -1,0 +1,10 @@
+package row
+
+import "fmt"
+
+func Format(key, value string, present bool) string {
+	if !present {
+		return key + "=<missing>"
+	}
+	return fmt.Sprintf("%s=%q", key, value)
+}

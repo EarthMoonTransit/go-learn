@@ -1,0 +1,25 @@
+{
+  "decision": "approve",
+  "reviewer": "sole-independent-reviewer",
+  "reviewed_at": "2026-10-22T19:15:19.900895+00:00",
+  "script_sha256": "70205c5e21b4d706297bdc268cbfa70979f341864ea486d0896b1ac1d2902ed1",
+  "content_digests": {
+    "injected-config-project-001": "cdf0426ae1668263f18cae52ae001328287464a5a1ec38ff7f0f35ee8a4b133a",
+    "constant-contexts-001": "4005a8601aea76c83db84a3d20cce99e2ed4237ebd13f76f5832127107011660"
+  },
+  "scope": "Exact preexecution source/command review only; no authored code was executed by reviewer. Actual evidence and independent acceptance remain required.",
+  "findings": [],
+  "verified": [
+    "All 26 project and 17 constants content files match complete provenance inventories and recomputed aggregate digests; original ADR0008 creation records and empty external sources preserved.",
+    "Literal 18 fresh specimens / 45 commands match both manifests and procedures; local pinned Go 1.27 darwin/arm64, canonical disposable roots, private clean offline environment, readonly modules, 60-second outer limits and own-root cleanup.",
+    "Project starters leave module, consumer interface, Collect, formatter, composition root, recording double and test assertions learner-owned; supplied public/client checks earn no authorship credit.",
+    "Reference owns minimal Lookup interface, exactly one ordered call per requested key, duplicate/presence/current-response behavior, internal formatter and independent client. Learner-only probes test injection, missing versus empty and duplicated interaction history.",
+    "Constants reference genuinely selects untyped exact 2^80 and derived untyped 255, plus typed uint8 Marker; positive and negative contexts isolate representability, defaulting, constant-expression and assignability distinctions.",
+    "Runtime-any project control and untyped-Marker forbidden-context success remain method/contract rejections, not claimed runtime test failures."
+  ],
+  "acceptance_boundaries": [
+    "Approve only this immutable script/content pair for execution under the authorized finite native procedure.",
+    "Retain actual argv/cwd/environment/source snapshots/status/output/cleanup and inspect actual named failures; unrelated build failures/timeouts do not satisfy evidence.",
+    "No automatic coverage, mastery, extra package/toolchain application or iota credit. Project component and two proposed applications; constants independent application require later actual acceptance."
+  ]
+}

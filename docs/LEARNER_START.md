@@ -39,6 +39,8 @@ files/results for checklist review. They do not create automatic completion:
 | After named-cases-001 and launch-provided-job-001 | [Parallel subtests](labs/parallel-subtests-001/TASK.md) | Author private fixtures and verify the parent/subtest/Cleanup partial order |
 | After parallel-subtests and concurrent-counter-read-001 | [Native race evidence](labs/native-race-001/TASK.md) | Map real conflicting stacks, repair both accesses and distinguish exercised paths from untested branches |
 | After hex-seed-classes-001 and hex-wire-invariants-001 | [Retained fuzz regression](labs/fuzz-regression-001/TASK.md) | Reproduce the supplied seed, author a meaningful ordinary regression before repair, retain actual failure/pass and explain the cause |
+| After consumer-text-contract, package-boundaries, package-inventory, external-window-tests and writer-double | [Injected configuration project](labs/injected-config-project-001/TASK.md) | Organize module/internal boundaries, author a consumer dependency contract and recording tests, then verify actual build/run/import behavior |
+| After constant-kinds-001, numeric conversions and fixed-width-shifts-001 | [Constant contexts](labs/constant-contexts-001/TASK.md) | Choose actual typed/untyped declarations and explain native defaulting, representability and assignment outcomes |
 
 The automatic `bounded-lru-cache-001` at its existing 07.20 address also serves
 as the finite-v1 generic-container assessment after maps, callbacks, methods and
@@ -149,3 +151,16 @@ hidden material never needs to be opened in GoLand.
 
 An earlier completion remains completed even when it appears later in the route.
 Read-only commands do not start a lesson, consume a hint or change your timer.
+
+The repaired firsts at array-copy-stages-001 and struct-copy-comparability-001
+require real copy operations and learner-owned prediction assertions. Inspect the
+actual array helper/call and every struct field's copying/comparability role; a
+formula producing the right snapshots alone does not pass the method checklist.
+Their placement precedes dependent lessons while every old address/order remains.
+
+The bounded-record-read-001 IO assessment follows binary/JSON preparation. Inspect
+actual private recovery state, independently constructed failures and parsing
+boundaries; supplied error signatures and harness calls earn no design credit.
+The injected-config-project manual unit is the packages/toolchain assessment and
+also requires actual minimal consumer contract, explicit injection and authored
+recording tests. Neither manual unit changes automatic completion or progress.

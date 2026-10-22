@@ -1,0 +1,49 @@
+schema_version: 2
+id: array-copy-stages-001
+title: Observe array assignment and value-call stages
+activity: implementation
+submission:
+    kind: workspace-patch
+    editable_paths:
+        - subject/stages.go
+        - subject/predictions_test.go
+    workspace_skeleton:
+        - subject/doc.go
+skills:
+    primary: arrays.value-semantics
+    secondary: []
+prerequisites:
+    - functions.signatures-results
+    - testing.basics-diagnostics
+    - types.named-underlying
+new_concepts:
+    - arrays.value-semantics
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: workspace-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - alias-original
+        - snapshot-before-update
+        - pointer-call
+        - callee-wrong-index
+        - two-element-model
+        - discard-callee-result
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

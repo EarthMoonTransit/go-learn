@@ -1,0 +1,59 @@
+schema_version: 2
+id: struct-copy-comparability-001
+title: Observe shallow struct copies and field comparability
+activity: implementation
+submission:
+    kind: workspace-patch
+    editable_paths:
+        - subject/stages.go
+        - subject/predictions_test.go
+    workspace_skeleton:
+        - subject/api.go
+skills:
+    primary: structs.copy-equality
+    secondary: []
+prerequisites:
+    - arrays.value-semantics
+    - functions.signatures-results
+    - pointers.address-deref-nil
+    - structs.literals-zero
+    - testing.basics-diagnostics
+    - types.named-underlying
+new_concepts:
+    - structs.copy-equality
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: workspace-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - alias-record
+        - deep-copy-target
+        - detach-target
+        - skip-inline-update
+        - skip-count-update
+        - skip-pointee-update
+        - equality-ignore-inline-last
+        - equality-ignore-inline-first
+        - equality-ignore-count
+        - equality-pointee-values
+        - nil-records-unequal
+        - all-structs-comparable
+        - pointers-not-comparable
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

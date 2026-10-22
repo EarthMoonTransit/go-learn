@@ -1,0 +1,12 @@
+package main
+
+import (
+	"finite.local/constant-contexts/limits"
+	"fmt"
+)
+
+func main() {
+	var a uint8 = limits.Mask
+	var b uint16 = limits.Mask
+	fmt.Printf("%d %d %d\n", a, b, limits.Scale>>79)
+}

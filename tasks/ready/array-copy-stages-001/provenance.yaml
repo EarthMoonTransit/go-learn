@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "e389fa965c83e6b810eb4095cfad17840ec50a65176f424d2e226ea91cd4492f"
+  },
+  "creation": {
+    "author": "v1-repairs-06-copies-author",
+    "created_at": "2026-10-22",
+    "summary": "Original finite copy-stage and comparability exercise; source, predictions, public/grader checks, wrong implementations and technical educational text authored from independently approved I6 contract."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/array-copy-stages-001.yaml"
+  }
+}
