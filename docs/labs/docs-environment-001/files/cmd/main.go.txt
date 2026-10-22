@@ -1,0 +1,15 @@
+package main
+
+import (
+ "fmt"
+ "finite.local/docs/parse"
+)
+
+func Render(text string, n int) string {
+ _ = parse.Segment
+ return "TODO"
+}
+
+func main() {
+ fmt.Printf("%s|%s|%s|%s\n", Platform(), Render("/α//tail/", 1), Render("/α//tail/", 2), Render("/α//tail/", 6))
+}

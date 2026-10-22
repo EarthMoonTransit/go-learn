@@ -1,0 +1,14 @@
+package main
+
+import "testing"
+
+func TestRenderFromDocumentedContract(t *testing.T) {
+ for _, c := range []struct{text string; n int; want string}{
+  {"/α//tail/",1,"α:true"},{"/α//tail/",0,":true"},
+  {"/α//tail/",2,":true"},{"/α//tail/",4,":true"},
+  {"/α//tail/",5,":false"},{"/α//tail/",-1,":false"},
+  {"",0,":true"},
+ } {
+  if got:=Render(c.text,c.n);got!=c.want {t.Errorf("Render(%q,%d)=%q; want %q from zero-based segments and presence",c.text,c.n,got,c.want)}
+ }
+}

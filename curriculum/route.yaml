@@ -1658,6 +1658,33 @@
           "skills": [
             "channels.range-drain"
           ]
+        },
+        {
+          "number": 19,
+          "task_id": "two-stage-stream-001",
+          "role": "introduction",
+          "skills": [
+            "channels.pipeline",
+            "channels.range-drain",
+            "channels.ownership"
+          ]
+        },
+        {
+          "number": 20,
+          "task_id": "once-result-001",
+          "role": "introduction",
+          "skills": [
+            "sync.once-initialization"
+          ]
+        },
+        {
+          "number": 21,
+          "task_id": "trace-context-001",
+          "role": "introduction",
+          "skills": [
+            "context.values-boundaries",
+            "interfaces.type-assertions"
+          ]
         }
       ],
       "number": 9

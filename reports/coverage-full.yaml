@@ -1,6 +1,6 @@
 schema_version: 1
 report_contract: numeric-coverage/v1
-input_identity: bdcf33b5ae5f9fb6971eda70c06da0fa5bedc87e94274e7326bdac70addd78f8
+input_identity: e972493d1f662c1702d237e626b303052e8b46d821a864351675b62197881b55
 selected_scope: full
 selected_skill_ids:
     - arrays.indexing-iteration
@@ -266,19 +266,10 @@ numeric:
           actual_primary: 1
           required_primary: 4
           primary_deficit: 3
-          actual_total: 1
+          actual_total: 2
           required_total: 6
-          total_deficit: 5
+          total_deficit: 4
         - skill_id: channels.pipeline
-          domain_id: channels
-          scope: foundation
-          actual_primary: 0
-          required_primary: 3
-          primary_deficit: 3
-          actual_total: 0
-          required_total: 5
-          total_deficit: 5
-        - skill_id: channels.range-drain
           domain_id: channels
           scope: foundation
           actual_primary: 1
@@ -287,6 +278,15 @@ numeric:
           actual_total: 1
           required_total: 5
           total_deficit: 4
+        - skill_id: channels.range-drain
+          domain_id: channels
+          scope: foundation
+          actual_primary: 1
+          required_primary: 3
+          primary_deficit: 2
+          actual_total: 2
+          required_total: 5
+          total_deficit: 3
         - skill_id: channels.select
           domain_id: channels
           scope: foundation
@@ -344,12 +344,12 @@ numeric:
         - skill_id: context.values-boundaries
           domain_id: context
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 2
-          primary_deficit: 2
-          actual_total: 0
+          primary_deficit: 1
+          actual_total: 1
           required_total: 4
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: control-flow.for
           domain_id: control-flow
           scope: foundation
@@ -761,9 +761,9 @@ numeric:
           actual_primary: 1
           required_primary: 3
           primary_deficit: 2
-          actual_total: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: interfaces.type-switches
           domain_id: interfaces
           scope: foundation
@@ -1163,12 +1163,12 @@ numeric:
         - skill_id: sync.once-initialization
           domain_id: sync
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 2
-          primary_deficit: 2
-          actual_total: 0
+          primary_deficit: 1
+          actual_total: 1
           required_total: 4
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: sync.pool
           domain_id: sync
           scope: specialist
@@ -1600,12 +1600,12 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 199
+        actual_primary: 202
         required_primary: 410
-        primary_deficit: 218
-        actual_total: 223
+        primary_deficit: 215
+        actual_total: 229
         required_total: 692
-        total_deficit: 469
+        total_deficit: 463
         minima_met: false
     specialist:
         skill_ids:
@@ -1767,15 +1767,15 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 199
+        actual_primary: 202
         required_primary: 418
-        primary_deficit: 226
-        actual_total: 223
+        primary_deficit: 223
+        actual_total: 229
         required_total: 708
-        total_deficit: 485
+        total_deficit: 479
         minima_met: false
     ready_target:
-        actual: 199
+        actual: 202
         min: 350
         max: 500
         met: false

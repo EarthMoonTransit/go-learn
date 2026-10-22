@@ -2,7 +2,9 @@
 
 Base: `50412ef271c439cb8c7508341578a6ad03342353` (PR105 merge).
 Branch: `codex/v1-introductions-02`. Sole independent reviewer: `/root/reviewer`.
-Content/method/native reviews accepted 2026-10-22; final batch gates/merge pending.
+Accepted and merged 2026-10-22 as [PR106](https://github.com/EarthMoonTransit/go-learn/pull/106).
+Final HEAD `fc0e996cacf53c92d88cf2b302940cb0bb5a760d`; merge `94dc30a5e149e674e7312a7059029b41dcc336e7`.
+Independent final review and exact-head [validate39793027318](https://github.com/EarthMoonTransit/go-learn/actions/runs/39793027318) passed.
 
 | Unit | Actual evidence | Finite-v1 role |
 | --- | --- | --- |
@@ -92,15 +94,8 @@ notice remain intact. No new borrowing or extra container package.
 
 ## Acceptance and accounting
 
-I2 starts13:14UTC (16:14MSK),2026-10-22. One stable206-package CheckCollection passed206/206 in18m01s
-(13:36:49–13:54:51UTC; childCPU34m09s). Quality and both numeric coverage reports
-reuse it. Fast passed2m06s, race6m46s and vet0.24s. Integration and the final
-validator/report-check consumers are running; final HEAD review and exact-head
-validate/merge remain. Local checks/content/review
-count toward the four-hour checkpoint; overlapping time is counted once.
+I2 ran13:14–14:51:59UTC (16:14–17:51:59MSK),2026-10-22. The single stable206-package collection passed206/206 in18m01s; all consumers reused it. Fast2m06s, race6m46s, vet0.24s, integration8m54s, validator and both report checks passed. Total local acceptance36m11s. Numeric full/foundation minima remain honestly unsatisfied; finite-v1 preparation uses ADR0022/0034 phase1.
 
-Recipe diagnosis is conservatively≤3minutes in I2; rolling infrastructure≤13m03
-including I1. No production tooling fixes. No sleep/user-wait/CI-only idle exclusions
-claimed so far. After this second merge, update observed ordinary/manual/component
-work estimates from these timestamps; do not project learner mastery or full-bank
-minima from finite-v1 readiness. Next batch retains introduction priority.
+Wall time97m59s. Documented CI-only idle:14:15:02.947–14:41:08 and14:41:52.582–14:51:58.879UTC, totaling36m11s. Available execution61m47s includes local checks, content and review with overlap counted once. No sleep/user-wait exclusions. A transient reviewer-capacity failure succeeded on the single permitted retry.
+
+Recipe diagnosis≤3minutes; rolling infrastructure I1+I2≤13m03, no production tooling. The four-hour checkpoint was not reached. The next branch records the updated two-batch forecast and retains introduction priority.

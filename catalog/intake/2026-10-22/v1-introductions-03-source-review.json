@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-22",
+  "batch": "I3",
+  "reviewer": "/root/reviewer",
+  "contract_decision": "Contract approved before authoring; actual automatic content/method accepted2026-10-22; finalbatch gates separate",
+  "base": "94dc30a5e149e674e7312a7059029b41dcc336e7",
+  "external_sources": [],
+  "tasks": [
+    {
+      "id": "two-stage-stream-001",
+      "contract_path": "tasks/ready/two-stage-stream-001/TASK.md",
+      "source_decision": "original under ADR0008"
+    },
+    {
+      "id": "once-result-001",
+      "contract_path": "tasks/ready/once-result-001/TASK.md",
+      "source_decision": "original under ADR0008"
+    },
+    {
+      "id": "trace-context-001",
+      "contract_path": "tasks/ready/trace-context-001/TASK.md",
+      "source_decision": "original under ADR0008"
+    }
+  ],
+  "manual_unit": "docs-environment-001",
+  "reuse": {
+    "task_id": "owned-values-001",
+    "commit": "94dc30a5e149e674e7312a7059029b41dcc336e7",
+    "paths": [
+      "tasks/ready/owned-values-001/TASK.md",
+      "tasks/ready/owned-values-001/starter/subject.go",
+      "tasks/ready/owned-values-001/solution/reference/subject.go",
+      "tasks/ready/owned-values-001/tests/public/public_test.go",
+      "tasks/ready/owned-values-001/tests/grader/grader_test.go",
+      "tasks/ready/owned-values-001/provenance.yaml",
+      "tasks/ready/owned-values-001/review/notes.md"
+    ],
+    "decision": "Bounded buffering first accepted by independent reviewer; unchanged task bytes/provenance. Learner capacity>=n reasoning published in docs/LEARNER_START.md; no new automatic defect or taxonomy coverage claim.",
+    "provenance": "Preserve existing original creation/digest/release binding; this pin identifies reviewed existing artifacts, not an invented creation commit."
+  }
+}

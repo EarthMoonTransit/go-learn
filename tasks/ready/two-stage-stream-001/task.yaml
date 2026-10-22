@@ -1,0 +1,52 @@
+schema_version: 2
+id: two-stage-stream-001
+title: Compose a finite two-stage stream
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: channels.pipeline
+    secondary:
+        - channels.range-drain
+        - channels.ownership
+prerequisites:
+    - channels.close-semantics
+    - channels.directional
+    - control-flow.if
+    - control-flow.range
+    - expressions.arithmetic
+    - goroutines.result-error-collection
+new_concepts:
+    - channels.pipeline
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - wrong-delta
+        - filter-before-transform
+        - drop-zero
+        - deduplicate
+        - collect-until-eof
+        - reverse-order
+        - never-close-output
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
