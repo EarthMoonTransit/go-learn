@@ -3,8 +3,9 @@
 Started2026-10-22T18:10:42UTC on `codex/v1-introductions-04`, base
 `e9e9ca854de593047e2790565a83c53397d21ec9`. Owner authorized parallel authoring
 while I3 CI runs. Dependency PR108 passed all gates and merged as `0aeef21b1dd6dd28ebf97ac59614b63e5715ea47`; PR107 also passed exact-head validate39828282621 and merged as `2efeab7a05596a6591a35e649c332ba8e14153ac`;
-Actual method/content review is accepted. I4 still needs one stable collection, all gates,
-independent final review and exact-head green validate. No readiness credit yet.
+Actual method/content review is accepted; the stable213/213collection and current
+reports passed. Remaining repository gates/fresh consumers, independent final
+review and exact-head green validate still gate merge and delivery credit.
 
 Six units: four original automatic drafts (bounded-job-pool, recover-worker,
 pipe-exchange, idle-stream) and two unchanged reuses (cancelable-forward,

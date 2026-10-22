@@ -2478,7 +2478,7 @@
           "tasks/ready/join-all-tests-001/solution/reference/subject_test.go",
           "tasks/ready/join-all-tests-001/verification/reference/subject.go"
         ],
-        "planned_repair": "I4 unchanged indexed-job-results-001 reuse with actual learner-written Add-before-launch, Done at each worker exit and Wait-before-result-access checklist. Then RunPool may provide a distinct worker-registration/merged-close application. Contract/source approved; actual method/execution acceptance pending.",
+        "planned_repair": "I4 unchanged indexed-job-results-001 reuse with actual learner-written Add-before-launch, Done at each worker exit and Wait-before-result-access checklist. RunPool provides a distinct worker-registration/merged-close application with actual accepted method/execution evidence. Both finite method decisions are approved; final batch gates and merge remain pending.",
         "new_file_allocation": 0,
         "readiness_credit": true,
         "delivered_task_id": "indexed-job-results-001",
