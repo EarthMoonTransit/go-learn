@@ -304,3 +304,20 @@ nil-success result/release and earlier-parent child ownership. Every experiment
 failed the outer row on `Passed:true`. The cleanup-join row instead requires its
 named join diagnostic alongside other result assertions; no join-only
 false-accept claim is made. Keep these proof boundaries when modifying fixtures.
+
+## Failed CI collection visibility (2026-10-22)
+
+Named blocker CI-EVIDENCE-01: run39817066682 passed fast/race/vet/integration
+but its full-bank step exited1 after13m58s. With task-check -output, the quality
+diagnostics were written only into a temporary YAML file; no artifact was
+retained and the job log contained only the exit code. Local209/209 success
+cannot identify or dismiss the CI failure.
+
+The workflow now prints that already-created collection after a failure, if the
+file exists. The original checker command, exit status, one-run collection,
+isolation, timeouts and subsequent gates are unchanged. Printing diagnostics
+does not turn failure into success and does not rerun authored code. This fix
+provides evidence for the next failing run; it does not claim to repair the
+unknown underlying task failure. No new runner, profile or runtime is added.
+
+Source: https://github.com/EarthMoonTransit/go-learn/actions/runs/39817066682.
