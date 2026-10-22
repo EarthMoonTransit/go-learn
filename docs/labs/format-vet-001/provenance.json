@@ -1,0 +1,20 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-introductions-02-author",
+    "created_at": "2026-10-22",
+    "summary": "Original finite specimen after bounded contract/source review; no external donor content."
+  },
+  "sources": [],
+  "content_digest": "9cd4708b3ec44386a85ba48db225b40986d018909abae5ddb75ed766165f50b9",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "495abc6a0b96368cd184c55e3fa2268319f7a75e5e2def4cc12894774c491234",
+    "TASK.md": "ec92eb9c48247a7d8f13b1a99912b4d3111cf09022673e1150e4aae5fd7bc8dd",
+    "files/subject.go.txt": "9514289ba3d97b6b1c682b7e830e9ba2be0995ab546a9f61809d6abf80112adb",
+    "files/subject_test.go.txt": "4c70e08b0b1ae03defd6e723d4a399819d56232f19605084b95fb423955dafdb"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

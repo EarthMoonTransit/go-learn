@@ -2,7 +2,7 @@
 
 Base: `ab880dea6f344f1e90ed777df16ed330dbd0303f` (PR104 merge).
 Branch: `codex/v1-introductions-01`. Independent reviewer: `/root/reviewer`.
-Content/method/native reviews accepted 2026-10-22; final batch gates and merge pending.
+Accepted and merged 2026-10-22: [PR105](https://github.com/EarthMoonTransit/go-learn/pull/105), HEAD `d2d8eb988d5b0063b9ef60148024d8c359e1d1a0`, merge `50412ef271c439cb8c7508341578a6ad03342353`. Independent final review approved that HEAD; [validate 39779096922](https://github.com/EarthMoonTransit/go-learn/actions/runs/39779096922) passed every step.
 
 | Unit | Readiness evidence | Finite-v1 credit |
 | --- | --- | --- |
@@ -72,9 +72,7 @@ Lifecycle transitions use task-promote. The stable-input full CheckCollection
 passed 204/204 packages (12:09:23–12:27:03 UTC, 17m40s; child CPU 33m51s).
 Quality and both numeric coverage reports were generated from that same file;
 all later validator/report consumers must reuse it. Fast tests passed in 1m50s.
-Mandatory race/vet and
-integration, independent final review and exact-head green validate remain gates.
-PR/HEAD/CI and final command intervals will be recorded before completion.
+Race passed in 6m23s, vet in 0.44s and integration in 8m14s. All validator/report consumers passed using the same collection. Local acceptance ran 12:09:23–12:43:53 UTC (34m30s). CI and local review overlapped; CI passed before the merge at approximately 13:14 UTC. No repeated full local collection was needed.
 
 Startup 14:32:40–14:37:43 MSK (5m03s) is conservatively charged to NATIVE-01
 diagnosis. Owner wait is excluded; work resumed at 14:48 MSK. Native recipe
@@ -86,3 +84,5 @@ four-hour batch checkpoint; overlapping CI/reviewer intervals are not added twic
 Next batch must retain introduction priority, include range-drain after ownership,
 and execute a benchmark reference with the agreed finite evidence criteria.
 No full-bank minima, complete 141-row acceptance or learner mastery is claimed.
+
+Post-merge checkpoint: I1 available-time upper bound <=1h32 (resume 11:48 UTC through merge ~13:14 UTC, plus startup 5m03); owner wait excluded, no CI-only idle or sleep exclusion claimed. Infrastructure remains <=10m03. Later old-pair decisions are recorded with I2, preserving this report’s twelve-row snapshot. Next branch: codex/v1-introductions-02.

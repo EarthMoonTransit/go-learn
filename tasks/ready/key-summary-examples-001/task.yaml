@@ -1,0 +1,49 @@
+schema_version: 2
+id: key-summary-examples-001
+title: Document deterministic summaries with executable examples
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: testing.examples
+    secondary: []
+prerequisites:
+    - functions.signatures-results
+    - maps.operations-comma-ok
+    - strings.formatting
+    - testing.basics-diagnostics
+new_concepts:
+    - testing.examples
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - reverse-order
+        - first-only
+        - drop-zero
+        - absolute-negative
+        - lowercase-keys
+        - semicolon-separator
+        - missing-key
+        - wrong-empty
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

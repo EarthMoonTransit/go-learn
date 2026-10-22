@@ -1,0 +1,8 @@
+package subject
+import("fmt";"strings")
+func Report() string {
+ var out strings.Builder
+ out.WriteString("RECORDS v1\n")
+ for i:=0;i<32;i++ {fmt.Fprintf(&out,"%02d | item-%02d | %d\n",i,i,i*i)}
+ return out.String()
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-introductions-02-author",
+    "created_at": "2026-10-22",
+    "summary": "Original finite specimen after bounded contract/source review; no external donor content."
+  },
+  "sources": [],
+  "content_digest": "9e3e24f86f6325f89eff4765f2f1e8667641c2a33674fda42250fda9aa8cd8c4",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "8144cdf40c8e2545d8f4f43be38c0d6039776d5c45af49b23e6e1dc1f322da21",
+    "TASK.md": "4c27ddb4a12c06130daa0a7a8367a02c0f7274baffc7c704923c55860ce50a3f",
+    "files/starter_benchmark_test.go.txt": "bd36129b940dc0ed7a359eb7b03c10a46d1a4e77b94ec2056c7dd01478dd5185",
+    "files/subject.go.txt": "de762221c56817a93720f53462f63eb5678e4cdf132d8df9772267e713a8b389",
+    "files/subject_test.go.txt": "dd0020195373491cdc713534d1fc20041f19d47177e2f89ed1baa2d4b7ad918a",
+    "reference/benchmark_test.go.txt": "7025b0d3198d6d3133bc214985f1898e52164cfc969b6f8059bc7502df67e010",
+    "wrong/setup_inside_test.go.txt": "8b0162f4976bc1e48d4ad4b87e2cad8532194a0e084ee1d18e1ab136bf1ac499",
+    "wrong/single_tiny_test.go.txt": "151741adcecb9b3c39cb2b342a11928afe1992bb61a6f1164daee7c7d33b30e4"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

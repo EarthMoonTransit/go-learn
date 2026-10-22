@@ -1,0 +1,10 @@
+package subject
+import "strings"
+func Concat(values []string) string {
+ out:="";for i,v:=range values {if i>0 {out+="/"};out+=v};return out
+}
+func Builder(values []string) string {
+ var out strings.Builder
+ for i,v:=range values {if i>0 {out.WriteString("/")};out.WriteString(v)}
+ return out.String()
+}

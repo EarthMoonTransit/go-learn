@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-10-22"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-10-22"
+      actor: v1-introductions-02-author
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-10-22"
+      actor: independent-reviewer-root-reviewer
+      reason: Independent bounded content/method approval and passing disposable evidence; batch route/final gates remain separate.
+    - from: in-review
+      to: ready
+      at: "2026-10-22"
+      actor: independent-reviewer-root-reviewer
+      reason: Independent bounded content/method approval and passing disposable evidence; batch route/final gates remain separate.

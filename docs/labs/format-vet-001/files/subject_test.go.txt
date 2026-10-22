@@ -1,0 +1,8 @@
+package subject
+import "testing"
+func TestLabel(t *testing.T) {
+ for _,label:=range []string{"", "Go", "a b", "Ж"} {
+  want:="item:"+label
+  if got:=Label(label);got!=want {t.Errorf("Label(%q)=%q; want %q",label,got,want)}
+ }
+}

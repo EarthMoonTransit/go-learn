@@ -1490,6 +1490,14 @@
           "skills": [
             "testing.table-driven"
           ]
+        },
+        {
+          "number": 8,
+          "task_id": "key-summary-examples-001",
+          "role": "introduction",
+          "skills": [
+            "testing.examples"
+          ]
         }
       ],
       "number": 8
@@ -1641,6 +1649,14 @@
           "role": "introduction",
           "skills": [
             "channels.ownership"
+          ]
+        },
+        {
+          "number": 18,
+          "task_id": "drain-values-001",
+          "role": "introduction",
+          "skills": [
+            "channels.range-drain"
           ]
         }
       ],

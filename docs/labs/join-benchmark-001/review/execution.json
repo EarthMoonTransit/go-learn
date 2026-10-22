@@ -1,0 +1,343 @@
+[
+  {
+    "lab": "join-benchmark-001",
+    "variant": "reference",
+    "started_at": "2026-10-22T13:30:45.040198+00:00",
+    "disposable_root": "$DISPOSABLE",
+    "go_executable": "$LOCAL_GO_BIN/go",
+    "environment": {
+      "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:45.040539+00:00",
+        "ended_at": "2026-10-22T13:30:45.046958+00:00",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:45.047188+00:00",
+        "ended_at": "2026-10-22T13:30:47.104198+00:00",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/subject\t0.164s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-run=^$",
+          "-bench=BenchmarkJoin",
+          "-benchmem",
+          "-count=3",
+          "-benchtime=20ms",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:47.104576+00:00",
+        "ended_at": "2026-10-22T13:30:48.066997+00:00",
+        "exit_status": 0,
+        "stdout": "goos: darwin\ngoarch: arm64\npkg: finite.local/subject\ncpu: Apple M4 Max\nBenchmarkJoin/empty/Concat-14         \t15213549\t         1.348 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkJoin/empty/Concat-14         \t15346494\t         1.390 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkJoin/empty/Concat-14         \t17928844\t         1.299 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkJoin/empty/Builder-14        \t15492615\t         1.653 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkJoin/empty/Builder-14        \t15943315\t         1.684 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkJoin/empty/Builder-14        \t15369422\t         1.697 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkJoin/shortASCII/Concat-14    \t  408612\t        61.07 ns/op\t      24 B/op\t       4 allocs/op\nBenchmarkJoin/shortASCII/Concat-14    \t  416877\t        59.17 ns/op\t      24 B/op\t       4 allocs/op\nBenchmarkJoin/shortASCII/Concat-14    \t  406491\t        59.73 ns/op\t      24 B/op\t       4 allocs/op\nBenchmarkJoin/shortASCII/Builder-14   \t 1488764\t        15.73 ns/op\t       8 B/op\t       1 allocs/op\nBenchmarkJoin/shortASCII/Builder-14   \t 1518258\t        15.88 ns/op\t       8 B/op\t       1 allocs/op\nBenchmarkJoin/shortASCII/Builder-14   \t 1530632\t        15.94 ns/op\t       8 B/op\t       1 allocs/op\nBenchmarkJoin/longASCII/Concat-14     \t   81427\t       296.8 ns/op\t    3488 B/op\t       4 allocs/op\nBenchmarkJoin/longASCII/Concat-14     \t   80869\t       310.4 ns/op\t    3488 B/op\t       4 allocs/op\nBenchmarkJoin/longASCII/Concat-14     \t   76174\t       309.2 ns/op\t    3488 B/op\t       4 allocs/op\nBenchmarkJoin/longASCII/Builder-14    \t   75488\t       323.1 ns/op\t    4032 B/op\t       4 allocs/op\nBenchmarkJoin/longASCII/Builder-14    \t   76783\t       330.9 ns/op\t    4032 B/op\t       4 allocs/op\nBenchmarkJoin/longASCII/Builder-14    \t   72330\t       323.9 ns/op\t    4032 B/op\t       4 allocs/op\nBenchmarkJoin/multibyte/Concat-14     \t  282920\t        80.72 ns/op\t     435 B/op\t       4 allocs/op\nBenchmarkJoin/multibyte/Concat-14     \t  291069\t        80.10 ns/op\t     435 B/op\t       4 allocs/op\nBenchmarkJoin/multibyte/Concat-14     \t  308251\t        79.33 ns/op\t     435 B/op\t       4 allocs/op\nBenchmarkJoin/multibyte/Builder-14    \t  824034\t        31.55 ns/op\t     152 B/op\t       2 allocs/op\nBenchmarkJoin/multibyte/Builder-14    \t  849307\t        31.12 ns/op\t     152 B/op\t       2 allocs/op\nBenchmarkJoin/multibyte/Builder-14    \t  805592\t        31.36 ns/op\t     152 B/op\t       2 allocs/op\nPASS\nok  \tfinite.local/subject\t0.827s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "executed specimen",
+        "files": {
+          "benchmark_test.go": "package subject\nimport(\"testing\";\"strings\")\nvar Result string\nfunc BenchmarkJoin(b *testing.B) {\n cases:=[]struct{name string;values []string}{\n {\"empty\",nil},{\"shortASCII\",[]string{\"a\",\"bb\",\"ccc\"}},\n {\"longASCII\",[]string{strings.Repeat(\"abc\",128),strings.Repeat(\"def\",128),strings.Repeat(\"ghi\",128)}},\n {\"multibyte\",[]string{\"\u0416\",strings.Repeat(\"\ud83d\ude42\",32),\"e\\u0301\"}},\n }\n for _,c:=range cases {\n  for _,impl:=range []struct{name string;join func([]string)string}{{\"Concat\",Concat},{\"Builder\",Builder}} {\n   b.Run(c.name+\"/\"+impl.name,func(b *testing.B){\n    want:=strings.Join(c.values,\"/\")\n    if got:=impl.join(c.values);got!=want {b.Fatalf(\"%s=%q; want %q\",impl.name,got,want)}\n    b.ReportAllocs();b.ResetTimer()\n    for i:=0;i<b.N;i++ {Result=impl.join(c.values)}\n   })\n  }\n }\n}\n",
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport \"strings\"\nfunc Concat(values []string) string {\n out:=\"\";for i,v:=range values {if i>0 {out+=\"/\"};out+=v};return out\n}\nfunc Builder(values []string) string {\n var out strings.Builder\n for i,v:=range values {if i>0 {out.WriteString(\"/\")};out.WriteString(v)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"testing\";\"strings\";\"slices\")\nfunc TestEquivalentJoins(t *testing.T) {\n for _,values:=range [][]string{nil,{}, {\"\"},{\"a\",\"b\"},{\"a/b\",\"\",\"\u0416\",\"\ud83d\ude42\"},{strings.Repeat(\"ab\",64),\"end\"}} {\n  want:=strings.Join(values,\"/\");before:=append([]string(nil),values...)\n  for _,impl:=range []struct{name string;join func([]string)string}{{\"Concat\",Concat},{\"Builder\",Builder}} {\n   if got:=impl.join(values);got!=want {t.Errorf(\"%s(%q)=%q; want %q\",impl.name,values,got,want)}\n   if !slices.Equal(values,before) {t.Errorf(\"%s changed input: %q; want %q\",impl.name,values,before)}\n  }\n }\n}\n"
+        }
+      }
+    ],
+    "content_digest": "9e3e24f86f6325f89eff4765f2f1e8667641c2a33674fda42250fda9aa8cd8c4",
+    "disposable_root_removed": true,
+    "ended_at": "2026-10-22T13:30:48.125145+00:00"
+  },
+  {
+    "lab": "join-benchmark-001",
+    "variant": "setup-inside",
+    "started_at": "2026-10-22T13:30:48.126459+00:00",
+    "disposable_root": "$DISPOSABLE",
+    "go_executable": "$LOCAL_GO_BIN/go",
+    "environment": {
+      "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:48.126842+00:00",
+        "ended_at": "2026-10-22T13:30:48.133162+00:00",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:48.133422+00:00",
+        "ended_at": "2026-10-22T13:30:50.169930+00:00",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/subject\t0.164s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-run=^$",
+          "-bench=BenchmarkJoin",
+          "-benchmem",
+          "-count=3",
+          "-benchtime=20ms",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:50.170335+00:00",
+        "ended_at": "2026-10-22T13:30:51.090159+00:00",
+        "exit_status": 0,
+        "stdout": "goos: darwin\ngoarch: arm64\npkg: finite.local/subject\ncpu: Apple M4 Max\nBenchmarkJoin/empty/Concat-14         \t 6958790\t         3.014 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkJoin/empty/Concat-14         \t 9127356\t         2.460 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkJoin/empty/Concat-14         \t10415161\t         2.234 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkJoin/empty/Builder-14        \t 9185283\t         2.616 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkJoin/empty/Builder-14        \t 9848509\t         2.594 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkJoin/empty/Builder-14        \t 9962986\t         2.624 ns/op\t       0 B/op\t       0 allocs/op\nBenchmarkJoin/shortASCII/Concat-14    \t  316917\t        72.52 ns/op\t      72 B/op\t       5 allocs/op\nBenchmarkJoin/shortASCII/Concat-14    \t  342856\t        70.76 ns/op\t      72 B/op\t       5 allocs/op\nBenchmarkJoin/shortASCII/Concat-14    \t  353330\t        70.75 ns/op\t      72 B/op\t       5 allocs/op\nBenchmarkJoin/shortASCII/Builder-14   \t  812641\t        28.30 ns/op\t      56 B/op\t       2 allocs/op\nBenchmarkJoin/shortASCII/Builder-14   \t  841860\t        28.26 ns/op\t      56 B/op\t       2 allocs/op\nBenchmarkJoin/shortASCII/Builder-14   \t  928131\t        29.05 ns/op\t      56 B/op\t       2 allocs/op\nBenchmarkJoin/longASCII/Concat-14     \t   82256\t       310.1 ns/op\t    3536 B/op\t       5 allocs/op\nBenchmarkJoin/longASCII/Concat-14     \t   78607\t       325.6 ns/op\t    3536 B/op\t       5 allocs/op\nBenchmarkJoin/longASCII/Concat-14     \t   72976\t       317.5 ns/op\t    3536 B/op\t       5 allocs/op\nBenchmarkJoin/longASCII/Builder-14    \t   70153\t       341.7 ns/op\t    4080 B/op\t       5 allocs/op\nBenchmarkJoin/longASCII/Builder-14    \t   72008\t       341.8 ns/op\t    4080 B/op\t       5 allocs/op\nBenchmarkJoin/longASCII/Builder-14    \t   68194\t       338.8 ns/op\t    4080 B/op\t       5 allocs/op\nBenchmarkJoin/multibyte/Concat-14     \t  256159\t        93.21 ns/op\t     483 B/op\t       5 allocs/op\nBenchmarkJoin/multibyte/Concat-14     \t  254764\t        93.12 ns/op\t     483 B/op\t       5 allocs/op\nBenchmarkJoin/multibyte/Concat-14     \t  243674\t        91.42 ns/op\t     483 B/op\t       5 allocs/op\nBenchmarkJoin/multibyte/Builder-14    \t  615778\t        43.99 ns/op\t     200 B/op\t       3 allocs/op\nBenchmarkJoin/multibyte/Builder-14    \t  617097\t        43.62 ns/op\t     200 B/op\t       3 allocs/op\nBenchmarkJoin/multibyte/Builder-14    \t  627724\t        43.40 ns/op\t     200 B/op\t       3 allocs/op\nPASS\nok  \tfinite.local/subject\t0.787s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "executed specimen",
+        "files": {
+          "benchmark_test.go": "package subject\nimport(\"testing\";\"strings\")\nvar Result string\nfunc BenchmarkJoin(b *testing.B) {\n cases:=[]struct{name string;values []string}{\n {\"empty\",nil},{\"shortASCII\",[]string{\"a\",\"bb\",\"ccc\"}},\n {\"longASCII\",[]string{strings.Repeat(\"abc\",128),strings.Repeat(\"def\",128),strings.Repeat(\"ghi\",128)}},\n {\"multibyte\",[]string{\"\u0416\",strings.Repeat(\"\ud83d\ude42\",32),\"e\\u0301\"}},\n }\n for _,c:=range cases {\n  for _,impl:=range []struct{name string;join func([]string)string}{{\"Concat\",Concat},{\"Builder\",Builder}} {\n   b.Run(c.name+\"/\"+impl.name,func(b *testing.B){\n    want:=strings.Join(c.values,\"/\")\n    if got:=impl.join(c.values);got!=want {b.Fatalf(\"%s=%q; want %q\",impl.name,got,want)}\n    b.ReportAllocs();b.ResetTimer()\n    for i:=0;i<b.N;i++ {prepared:=append([]string(nil),c.values...);Result=impl.join(prepared)}\n   })\n  }\n }\n}\n",
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport \"strings\"\nfunc Concat(values []string) string {\n out:=\"\";for i,v:=range values {if i>0 {out+=\"/\"};out+=v};return out\n}\nfunc Builder(values []string) string {\n var out strings.Builder\n for i,v:=range values {if i>0 {out.WriteString(\"/\")};out.WriteString(v)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"testing\";\"strings\";\"slices\")\nfunc TestEquivalentJoins(t *testing.T) {\n for _,values:=range [][]string{nil,{}, {\"\"},{\"a\",\"b\"},{\"a/b\",\"\",\"\u0416\",\"\ud83d\ude42\"},{strings.Repeat(\"ab\",64),\"end\"}} {\n  want:=strings.Join(values,\"/\");before:=append([]string(nil),values...)\n  for _,impl:=range []struct{name string;join func([]string)string}{{\"Concat\",Concat},{\"Builder\",Builder}} {\n   if got:=impl.join(values);got!=want {t.Errorf(\"%s(%q)=%q; want %q\",impl.name,values,got,want)}\n   if !slices.Equal(values,before) {t.Errorf(\"%s changed input: %q; want %q\",impl.name,values,before)}\n  }\n }\n}\n"
+        }
+      }
+    ],
+    "content_digest": "9e3e24f86f6325f89eff4765f2f1e8667641c2a33674fda42250fda9aa8cd8c4",
+    "disposable_root_removed": true,
+    "ended_at": "2026-10-22T13:30:51.149883+00:00"
+  },
+  {
+    "lab": "join-benchmark-001",
+    "variant": "missing-separator",
+    "started_at": "2026-10-22T13:30:51.151158+00:00",
+    "disposable_root": "$DISPOSABLE",
+    "go_executable": "$LOCAL_GO_BIN/go",
+    "environment": {
+      "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:51.151592+00:00",
+        "ended_at": "2026-10-22T13:30:51.158147+00:00",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:51.158456+00:00",
+        "ended_at": "2026-10-22T13:30:53.201420+00:00",
+        "exit_status": 1,
+        "stdout": "--- FAIL: TestEquivalentJoins (0.00s)\n    subject_test.go:7: Builder([\"a\" \"b\"])=\"ab\"; want \"a/b\"\n    subject_test.go:7: Builder([\"a/b\" \"\" \"\u0416\" \"\ud83d\ude42\"])=\"a/b\u0416\ud83d\ude42\"; want \"a/b//\u0416/\ud83d\ude42\"\n    subject_test.go:7: Builder([\"abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab\" \"end\"])=\"ababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababend\"; want \"abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab/end\"\nFAIL\nFAIL\tfinite.local/subject\t0.165s\nFAIL\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:53.202541+00:00",
+        "ended_at": "2026-10-22T13:30:53.523550+00:00",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/subject\t0.163s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "executed specimen",
+        "files": {
+          "benchmark_test.go": "package subject\nimport(\"testing\";\"strings\")\nvar Result string\nfunc BenchmarkJoin(b *testing.B) {\n cases:=[]struct{name string;values []string}{\n {\"empty\",nil},{\"shortASCII\",[]string{\"a\",\"bb\",\"ccc\"}},\n {\"longASCII\",[]string{strings.Repeat(\"abc\",128),strings.Repeat(\"def\",128),strings.Repeat(\"ghi\",128)}},\n {\"multibyte\",[]string{\"\u0416\",strings.Repeat(\"\ud83d\ude42\",32),\"e\\u0301\"}},\n }\n for _,c:=range cases {\n  for _,impl:=range []struct{name string;join func([]string)string}{{\"Concat\",Concat},{\"Builder\",Builder}} {\n   b.Run(c.name+\"/\"+impl.name,func(b *testing.B){\n    want:=strings.Join(c.values,\"/\")\n    if got:=impl.join(c.values);got!=want {b.Fatalf(\"%s=%q; want %q\",impl.name,got,want)}\n    b.ReportAllocs();b.ResetTimer()\n    for i:=0;i<b.N;i++ {Result=impl.join(c.values)}\n   })\n  }\n }\n}\n",
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport \"strings\"\nfunc Concat(values []string) string {\n out:=\"\";for i,v:=range values {if i>0 {out+=\"/\"};out+=v};return out\n}\nfunc Builder(values []string) string {\n var out strings.Builder\n for i,v:=range values {if i>0 {out.WriteString(\"\")};out.WriteString(v)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"testing\";\"strings\";\"slices\")\nfunc TestEquivalentJoins(t *testing.T) {\n for _,values:=range [][]string{nil,{}, {\"\"},{\"a\",\"b\"},{\"a/b\",\"\",\"\u0416\",\"\ud83d\ude42\"},{strings.Repeat(\"ab\",64),\"end\"}} {\n  want:=strings.Join(values,\"/\");before:=append([]string(nil),values...)\n  for _,impl:=range []struct{name string;join func([]string)string}{{\"Concat\",Concat},{\"Builder\",Builder}} {\n   if got:=impl.join(values);got!=want {t.Errorf(\"%s(%q)=%q; want %q\",impl.name,values,got,want)}\n   if !slices.Equal(values,before) {t.Errorf(\"%s changed input: %q; want %q\",impl.name,values,before)}\n  }\n }\n}\n"
+        }
+      },
+      {
+        "label": "restored separator",
+        "files": {
+          "benchmark_test.go": "package subject\nimport(\"testing\";\"strings\")\nvar Result string\nfunc BenchmarkJoin(b *testing.B) {\n cases:=[]struct{name string;values []string}{\n {\"empty\",nil},{\"shortASCII\",[]string{\"a\",\"bb\",\"ccc\"}},\n {\"longASCII\",[]string{strings.Repeat(\"abc\",128),strings.Repeat(\"def\",128),strings.Repeat(\"ghi\",128)}},\n {\"multibyte\",[]string{\"\u0416\",strings.Repeat(\"\ud83d\ude42\",32),\"e\\u0301\"}},\n }\n for _,c:=range cases {\n  for _,impl:=range []struct{name string;join func([]string)string}{{\"Concat\",Concat},{\"Builder\",Builder}} {\n   b.Run(c.name+\"/\"+impl.name,func(b *testing.B){\n    want:=strings.Join(c.values,\"/\")\n    if got:=impl.join(c.values);got!=want {b.Fatalf(\"%s=%q; want %q\",impl.name,got,want)}\n    b.ReportAllocs();b.ResetTimer()\n    for i:=0;i<b.N;i++ {Result=impl.join(c.values)}\n   })\n  }\n }\n}\n",
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport \"strings\"\nfunc Concat(values []string) string {\n out:=\"\";for i,v:=range values {if i>0 {out+=\"/\"};out+=v};return out\n}\nfunc Builder(values []string) string {\n var out strings.Builder\n for i,v:=range values {if i>0 {out.WriteString(\"/\")};out.WriteString(v)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"testing\";\"strings\";\"slices\")\nfunc TestEquivalentJoins(t *testing.T) {\n for _,values:=range [][]string{nil,{}, {\"\"},{\"a\",\"b\"},{\"a/b\",\"\",\"\u0416\",\"\ud83d\ude42\"},{strings.Repeat(\"ab\",64),\"end\"}} {\n  want:=strings.Join(values,\"/\");before:=append([]string(nil),values...)\n  for _,impl:=range []struct{name string;join func([]string)string}{{\"Concat\",Concat},{\"Builder\",Builder}} {\n   if got:=impl.join(values);got!=want {t.Errorf(\"%s(%q)=%q; want %q\",impl.name,values,got,want)}\n   if !slices.Equal(values,before) {t.Errorf(\"%s changed input: %q; want %q\",impl.name,values,before)}\n  }\n }\n}\n"
+        }
+      }
+    ],
+    "content_digest": "9e3e24f86f6325f89eff4765f2f1e8667641c2a33674fda42250fda9aa8cd8c4",
+    "disposable_root_removed": true,
+    "ended_at": "2026-10-22T13:30:53.593045+00:00"
+  },
+  {
+    "lab": "join-benchmark-001",
+    "variant": "single-tiny",
+    "started_at": "2026-10-22T13:30:53.594528+00:00",
+    "disposable_root": "$DISPOSABLE",
+    "go_executable": "$LOCAL_GO_BIN/go",
+    "environment": {
+      "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:53.594954+00:00",
+        "ended_at": "2026-10-22T13:30:53.601309+00:00",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:53.601653+00:00",
+        "ended_at": "2026-10-22T13:30:55.659271+00:00",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/subject\t0.178s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-run=^$",
+          "-bench=BenchmarkJoin",
+          "-benchmem",
+          "-count=1",
+          "-benchtime=20ms",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:55.659729+00:00",
+        "ended_at": "2026-10-22T13:30:55.989690+00:00",
+        "exit_status": 0,
+        "stdout": "goos: darwin\ngoarch: arm64\npkg: finite.local/subject\ncpu: Apple M4 Max\nBenchmarkJoin/Concat-14         \t  435176\t        49.53 ns/op\t       6 B/op\t       2 allocs/op\nBenchmarkJoin/Builder-14        \t 1503684\t        14.74 ns/op\t       8 B/op\t       1 allocs/op\nPASS\nok  \tfinite.local/subject\t0.203s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "executed specimen",
+        "files": {
+          "benchmark_test.go": "package subject\nimport(\"testing\";\"strings\")\nvar Result string\nfunc BenchmarkJoin(b *testing.B) {\n values:=[]string{\"a\",\"b\"};want:=strings.Join(values,\"/\")\n for _,impl:=range []struct{name string;join func([]string)string}{{\"Concat\",Concat},{\"Builder\",Builder}} {\n  b.Run(impl.name,func(b *testing.B){\n   if got:=impl.join(values);got!=want {b.Fatalf(\"got %q; want %q\",got,want)}\n   b.ReportAllocs();b.ResetTimer();for i:=0;i<b.N;i++ {Result=impl.join(values)}\n  })\n }\n}\n",
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport \"strings\"\nfunc Concat(values []string) string {\n out:=\"\";for i,v:=range values {if i>0 {out+=\"/\"};out+=v};return out\n}\nfunc Builder(values []string) string {\n var out strings.Builder\n for i,v:=range values {if i>0 {out.WriteString(\"/\")};out.WriteString(v)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"testing\";\"strings\";\"slices\")\nfunc TestEquivalentJoins(t *testing.T) {\n for _,values:=range [][]string{nil,{}, {\"\"},{\"a\",\"b\"},{\"a/b\",\"\",\"\u0416\",\"\ud83d\ude42\"},{strings.Repeat(\"ab\",64),\"end\"}} {\n  want:=strings.Join(values,\"/\");before:=append([]string(nil),values...)\n  for _,impl:=range []struct{name string;join func([]string)string}{{\"Concat\",Concat},{\"Builder\",Builder}} {\n   if got:=impl.join(values);got!=want {t.Errorf(\"%s(%q)=%q; want %q\",impl.name,values,got,want)}\n   if !slices.Equal(values,before) {t.Errorf(\"%s changed input: %q; want %q\",impl.name,values,before)}\n  }\n }\n}\n"
+        }
+      }
+    ],
+    "content_digest": "9e3e24f86f6325f89eff4765f2f1e8667641c2a33674fda42250fda9aa8cd8c4",
+    "disposable_root_removed": true,
+    "ended_at": "2026-10-22T13:30:56.050866+00:00"
+  }
+]

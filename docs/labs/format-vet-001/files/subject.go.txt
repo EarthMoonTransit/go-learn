@@ -1,0 +1,3 @@
+package subject
+import "fmt"
+func Label(label string)string{return fmt.Sprintf("item:%d",label)}

@@ -25,10 +25,26 @@ disposable procedure and submit real files/command evidence for checklist review
 The supplied program is preparation; it does not earn code-writing credit.
 This manual result is recorded separately and does not change automatic progress.
 
+Continue these manual first encounters at their stated positions; submit actual
+files/results for checklist review. They do not create automatic completion:
+
+| Position | Manual unit | Assessed action |
+| --- | --- | --- |
+| After modules-build, before benchmark work | [Format and vet](labs/format-vet-001/TASK.md) | Apply stable formatting, interpret a vet finding, distinguish vet from correctness |
+| After diagnostic-helper-001 and format-vet | [Native join benchmark](labs/join-benchmark-001/TASK.md) | First author timing boundaries, then analyze allocations, then choose representative repeated comparisons |
+| After resource-finalize-001 and filesystem-record-tests-001 | [Reviewed golden file](labs/report-golden-001/TASK.md) | Author file comparison/diagnostics, preserve normal-run expectations and explicitly review a local update |
+
+The automatic `bounded-lru-cache-001` at its existing 07.20 address also serves
+as the finite-v1 generic-container assessment after maps, callbacks, methods and
+generics. Its sequential API and existing tests define the accepted scope.
+
 Later hybrid introductions also require their published method checklist:
 `recursive-total-001` needs actual recursive decomposition, and
 `interval-table-tests-001` needs learner-selected named data cases, and
-`owned-batch-channel-001` needs a private output with one producer/closer. A behavioral
+`owned-batch-channel-001` needs a private output with one producer/closer.
+`drain-values-001` requires an actual channel range with a defined producer close
+path; `key-summary-examples-001` requires discoverable, useful executable examples
+with intentional output. A behavioral
 pass alone does not establish those methods. Their placement in the existing
 route follows the required automatic prerequisites.
 
