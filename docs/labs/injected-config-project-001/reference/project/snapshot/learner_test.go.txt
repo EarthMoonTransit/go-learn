@@ -1,0 +1,55 @@
+package snapshot_test
+
+import (
+	"finite.local/configkit/snapshot"
+	"reflect"
+	"testing"
+)
+
+type recordingSource struct {
+	replies map[string]string
+	keys    []string
+}
+
+func (s *recordingSource) Lookup(key string) (string, bool) {
+	s.keys = append(s.keys, key)
+	v, ok := s.replies[key]
+	return v, ok
+}
+func TestLearnerInjectedSnapshot(t *testing.T) {
+	s := &recordingSource{replies: map[string]string{"A": "injected", "B": " second "}}
+	keys := []string{"A", "B", "A"}
+	got := snapshot.Collect(s, keys)
+	want := []string{`A="injected"`, `B=" second "`, `A="injected"`}
+	if !reflect.DeepEqual(got, want) {
+		t.Fatalf("learner injected rows got %q, want %q", got, want)
+	}
+	if !reflect.DeepEqual(s.keys, keys) {
+		t.Fatalf("learner ordered lookup history got %q, want %q (one lookup per requested key)", s.keys, keys)
+	}
+	s.replies["A"] = "next"
+	s.keys = nil
+	if got := snapshot.Collect(s, []string{"A"}); !reflect.DeepEqual(got, []string{`A="next"`}) {
+		t.Fatalf("learner changed response got %q, want A=next", got)
+	}
+	if !reflect.DeepEqual(s.keys, []string{"A"}) {
+		t.Fatalf("learner next invocation history=%q, want [A]", s.keys)
+	}
+}
+func TestLearnerMissingAndEmpty(t *testing.T) {
+	s := &recordingSource{replies: map[string]string{"EMPTY": ""}}
+	got := snapshot.Collect(s, []string{"EMPTY", "ABSENT"})
+	want := []string{`EMPTY=""`, `ABSENT=<missing>`}
+	if !reflect.DeepEqual(got, want) {
+		t.Fatalf("learner present empty versus missing got %q, want %q", got, want)
+	}
+	if !reflect.DeepEqual(s.keys, []string{"EMPTY", "ABSENT"}) {
+		t.Fatalf("learner presence lookup history=%q, want [EMPTY ABSENT]", s.keys)
+	}
+	for _, keys := range [][]string{nil, {}} {
+		s.keys = nil
+		if got := snapshot.Collect(s, keys); got != nil || len(s.keys) != 0 {
+			t.Fatalf("learner empty request got %v history=%q, want nil/no calls", got, s.keys)
+		}
+	}
+}

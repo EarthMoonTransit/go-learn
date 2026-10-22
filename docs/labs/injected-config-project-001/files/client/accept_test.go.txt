@@ -1,0 +1,16 @@
+package client_test
+
+import (
+	"finite.local/configclient"
+	"finite.local/configkit/snapshot"
+	"reflect"
+	"testing"
+)
+
+func TestForeignProvider(t *testing.T) {
+	got := snapshot.Collect(client.Third{}, []string{"A", "Z"})
+	want := []string{`A="third:A"`, `Z="third:Z"`}
+	if !reflect.DeepEqual(got, want) {
+		t.Fatalf("foreign provider got %q, want %q", got, want)
+	}
+}

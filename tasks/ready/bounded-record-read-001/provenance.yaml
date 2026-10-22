@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "29954a30e95f1405d4e5159d93925604f0a6d6d14d4d06a57ec23a16e58bfbd1"
+  },
+  "creation": {
+    "author": "v1-repairs-06-io-author",
+    "created_at": "2026-10-22",
+    "summary": "Original bounded versioned record parser and structured recovery exercise after independent I6 contract review. Existing tasks used only as unchanged preparation; no external material copied or adapted."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/bounded-record-read-001.yaml"
+  }
+}

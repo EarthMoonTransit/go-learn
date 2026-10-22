@@ -1,0 +1,2 @@
+module finite.local/mistyped
+go 1.27

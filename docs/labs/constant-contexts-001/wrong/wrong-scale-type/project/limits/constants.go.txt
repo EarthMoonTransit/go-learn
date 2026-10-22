@@ -1,0 +1,5 @@
+package limits
+
+const Scale uint64 = 1 << 80
+const Mask = (Scale >> 72) - 1
+const Marker uint8 = Mask

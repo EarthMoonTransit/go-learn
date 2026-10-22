@@ -1,0 +1,967 @@
+[
+  {
+    "unit": "constant-contexts-001",
+    "variant": "reference",
+    "started_at": "2026-10-22T19:16:07.520609+00:00",
+    "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-reference-97q1gm4_",
+    "content_digest": "4005a8601aea76c83db84a3d20cce99e2ed4237ebd13f76f5832127107011660",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "GOWORK": "off",
+      "GOFLAGS": "-mod=readonly",
+      "CGO_ENABLED": "0",
+      "GOTELEMETRY": "off",
+      "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-reference-97q1gm4_/home",
+      "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-reference-97q1gm4_/cache",
+      "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-reference-97q1gm4_/modcache",
+      "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-reference-97q1gm4_/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-reference-97q1gm4_/project",
+        "started_at": "2026-10-22T19:16:07.525486+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 0,
+        "expected_diagnostic": "go1.27.0 darwin/arm64",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "seconds": 0.01,
+        "ended_at": "2026-10-22T19:16:07.536942+00:00"
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "build",
+          "./..."
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-reference-97q1gm4_/project",
+        "started_at": "2026-10-22T19:16:07.538433+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 0,
+        "expected_diagnostic": null,
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "seconds": 2.579,
+        "ended_at": "2026-10-22T19:16:10.119069+00:00"
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-count=1",
+          "-timeout=20s",
+          "./..."
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-reference-97q1gm4_/project",
+        "started_at": "2026-10-22T19:16:10.121846+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 0,
+        "expected_diagnostic": null,
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/constant-contexts/accept\t0.171s\n?   \tfinite.local/constant-contexts/cmd/values\t[no test files]\n?   \tfinite.local/constant-contexts/limits\t[no test files]\n",
+        "stderr": "",
+        "seconds": 2.416,
+        "ended_at": "2026-10-22T19:16:12.539104+00:00"
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "run",
+          "./cmd/values"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-reference-97q1gm4_/project",
+        "started_at": "2026-10-22T19:16:12.540934+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 0,
+        "expected_diagnostic": null,
+        "exit_status": 0,
+        "stdout": "255 255 2\n",
+        "stderr": "",
+        "seconds": 0.34,
+        "ended_at": "2026-10-22T19:16:12.882954+00:00"
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "supplied initial files; editable bodies/declarations absent",
+        "at": "2026-10-22T19:16:07.522042+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\n// Author Scale, Mask and Marker.\n"
+        }
+      },
+      {
+        "label": "learner reference edits including actual declarations and tests",
+        "at": "2026-10-22T19:16:07.523953+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n"
+        }
+      },
+      {
+        "label": "final actual source after command observations",
+        "at": "2026-10-22T19:16:12.884446+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n"
+        }
+      }
+    ],
+    "interpretations": [
+      "Learner selected exact untyped wide Scale, derived untyped Mask and typed uint8 Marker; positive constant, assignment, default-int and explicit conversion contexts pass."
+    ],
+    "ended_at": "2026-10-22T19:16:12.983126+00:00",
+    "disposable_root_removed": true
+  },
+  {
+    "unit": "constant-contexts-001",
+    "variant": "default",
+    "started_at": "2026-10-22T19:16:12.985346+00:00",
+    "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-default-dxhw74b7",
+    "content_digest": "4005a8601aea76c83db84a3d20cce99e2ed4237ebd13f76f5832127107011660",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "GOWORK": "off",
+      "GOFLAGS": "-mod=readonly",
+      "CGO_ENABLED": "0",
+      "GOTELEMETRY": "off",
+      "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-default-dxhw74b7/home",
+      "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-default-dxhw74b7/cache",
+      "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-default-dxhw74b7/modcache",
+      "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-default-dxhw74b7/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-default-dxhw74b7/project",
+        "started_at": "2026-10-22T19:16:12.992051+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 0,
+        "expected_diagnostic": "go1.27.0 darwin/arm64",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "seconds": 0.009,
+        "ended_at": "2026-10-22T19:16:13.002206+00:00"
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "build",
+          "./probe"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-default-dxhw74b7/project",
+        "started_at": "2026-10-22T19:16:13.003625+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 1,
+        "expected_diagnostic": "overflows int",
+        "exit_status": 1,
+        "stdout": "",
+        "stderr": "# finite.local/constant-contexts/probe\nprobe/probe.go:5:9: cannot use limits.Scale (untyped int constant 1208925819614629174706176) as int value in variable declaration (overflows)\n",
+        "seconds": 0.048,
+        "ended_at": "2026-10-22T19:16:13.052593+00:00"
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "supplied initial files; editable bodies/declarations absent",
+        "at": "2026-10-22T19:16:12.986644+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\n// Author Scale, Mask and Marker.\n"
+        }
+      },
+      {
+        "label": "learner reference edits including actual declarations and tests",
+        "at": "2026-10-22T19:16:12.988399+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n"
+        }
+      },
+      {
+        "label": "one named wrong overlay: default",
+        "at": "2026-10-22T19:16:12.990465+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n",
+          "project/probe/probe.go": "package probe\n\nimport \"finite.local/constant-contexts/limits\"\n\nvar _ = limits.Scale\n"
+        }
+      }
+    ],
+    "interpretations": [],
+    "ended_at": "2026-10-22T19:16:13.073383+00:00",
+    "disposable_root_removed": true
+  },
+  {
+    "unit": "constant-contexts-001",
+    "variant": "signed",
+    "started_at": "2026-10-22T19:18:31.572300+00:00",
+    "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-signed-g2d8t2ql",
+    "content_digest": "4005a8601aea76c83db84a3d20cce99e2ed4237ebd13f76f5832127107011660",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "GOWORK": "off",
+      "GOFLAGS": "-mod=readonly",
+      "CGO_ENABLED": "0",
+      "GOTELEMETRY": "off",
+      "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-signed-g2d8t2ql/home",
+      "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-signed-g2d8t2ql/cache",
+      "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-signed-g2d8t2ql/modcache",
+      "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-signed-g2d8t2ql/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-signed-g2d8t2ql/project",
+        "started_at": "2026-10-22T19:18:31.576803+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 0,
+        "expected_diagnostic": "go1.27.0 darwin/arm64",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "seconds": 0.034,
+        "ended_at": "2026-10-22T19:18:31.611360+00:00"
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "build",
+          "./probe"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-signed-g2d8t2ql/project",
+        "started_at": "2026-10-22T19:18:31.612412+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 1,
+        "expected_diagnostic": "as int8 value",
+        "exit_status": 1,
+        "stdout": "",
+        "stderr": "# finite.local/constant-contexts/probe\nprobe/probe.go:5:14: cannot use limits.Mask (untyped int constant 255) as int8 value in variable declaration (overflows)\n",
+        "seconds": 0.089,
+        "ended_at": "2026-10-22T19:18:31.702633+00:00"
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "supplied initial files; editable bodies/declarations absent",
+        "at": "2026-10-22T19:18:31.573243+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\n// Author Scale, Mask and Marker.\n"
+        }
+      },
+      {
+        "label": "learner reference edits including actual declarations and tests",
+        "at": "2026-10-22T19:18:31.574616+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n"
+        }
+      },
+      {
+        "label": "one named wrong overlay: signed",
+        "at": "2026-10-22T19:18:31.575785+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n",
+          "project/probe/probe.go": "package probe\n\nimport \"finite.local/constant-contexts/limits\"\n\nvar _ int8 = limits.Mask\n"
+        }
+      },
+      {
+        "label": "final actual source after command observations",
+        "at": "2026-10-22T19:18:31.703773+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n",
+          "project/probe/probe.go": "package probe\n\nimport \"finite.local/constant-contexts/limits\"\n\nvar _ int8 = limits.Mask\n"
+        }
+      }
+    ],
+    "interpretations": [
+      "255 cannot be represented by signed8-bit int."
+    ],
+    "ended_at": "2026-10-22T19:18:31.720474+00:00",
+    "disposable_root_removed": true
+  },
+  {
+    "unit": "constant-contexts-001",
+    "variant": "overflow",
+    "started_at": "2026-10-22T19:18:31.721977+00:00",
+    "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-overflow-35xzh5wi",
+    "content_digest": "4005a8601aea76c83db84a3d20cce99e2ed4237ebd13f76f5832127107011660",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "GOWORK": "off",
+      "GOFLAGS": "-mod=readonly",
+      "CGO_ENABLED": "0",
+      "GOTELEMETRY": "off",
+      "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-overflow-35xzh5wi/home",
+      "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-overflow-35xzh5wi/cache",
+      "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-overflow-35xzh5wi/modcache",
+      "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-overflow-35xzh5wi/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-overflow-35xzh5wi/project",
+        "started_at": "2026-10-22T19:18:31.726797+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 0,
+        "expected_diagnostic": "go1.27.0 darwin/arm64",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "seconds": 0.007,
+        "ended_at": "2026-10-22T19:18:31.734753+00:00"
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "build",
+          "./probe"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-overflow-35xzh5wi/project",
+        "started_at": "2026-10-22T19:18:31.735743+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 1,
+        "expected_diagnostic": "as uint8 value",
+        "exit_status": 1,
+        "stdout": "",
+        "stderr": "# finite.local/constant-contexts/probe\nprobe/probe.go:5:15: cannot use limits.Mask + 1 (untyped int constant 256) as uint8 value in variable declaration (overflows)\n",
+        "seconds": 0.04,
+        "ended_at": "2026-10-22T19:18:31.776530+00:00"
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "supplied initial files; editable bodies/declarations absent",
+        "at": "2026-10-22T19:18:31.722768+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\n// Author Scale, Mask and Marker.\n"
+        }
+      },
+      {
+        "label": "learner reference edits including actual declarations and tests",
+        "at": "2026-10-22T19:18:31.724057+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n"
+        }
+      },
+      {
+        "label": "one named wrong overlay: overflow",
+        "at": "2026-10-22T19:18:31.725306+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n",
+          "project/probe/probe.go": "package probe\n\nimport \"finite.local/constant-contexts/limits\"\n\nvar _ uint8 = limits.Mask + 1\n"
+        }
+      },
+      {
+        "label": "final actual source after command observations",
+        "at": "2026-10-22T19:18:31.777650+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n",
+          "project/probe/probe.go": "package probe\n\nimport \"finite.local/constant-contexts/limits\"\n\nvar _ uint8 = limits.Mask + 1\n"
+        }
+      }
+    ],
+    "interpretations": [
+      "Exact constant256 cannot be assigned to uint8; constant arithmetic is not runtime wraparound."
+    ],
+    "ended_at": "2026-10-22T19:18:31.793967+00:00",
+    "disposable_root_removed": true
+  },
+  {
+    "unit": "constant-contexts-001",
+    "variant": "typed-target",
+    "started_at": "2026-10-22T19:18:31.795724+00:00",
+    "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-typed-target-fd5zzic4",
+    "content_digest": "4005a8601aea76c83db84a3d20cce99e2ed4237ebd13f76f5832127107011660",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "GOWORK": "off",
+      "GOFLAGS": "-mod=readonly",
+      "CGO_ENABLED": "0",
+      "GOTELEMETRY": "off",
+      "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-typed-target-fd5zzic4/home",
+      "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-typed-target-fd5zzic4/cache",
+      "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-typed-target-fd5zzic4/modcache",
+      "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-typed-target-fd5zzic4/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-typed-target-fd5zzic4/project",
+        "started_at": "2026-10-22T19:18:31.801042+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 0,
+        "expected_diagnostic": "go1.27.0 darwin/arm64",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "seconds": 0.007,
+        "ended_at": "2026-10-22T19:18:31.808885+00:00"
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "build",
+          "./probe"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-typed-target-fd5zzic4/project",
+        "started_at": "2026-10-22T19:18:31.809940+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 1,
+        "expected_diagnostic": "as uint16 value",
+        "exit_status": 1,
+        "stdout": "",
+        "stderr": "# finite.local/constant-contexts/probe\nprobe/probe.go:5:16: cannot use limits.Marker (constant 255 of type uint8) as uint16 value in variable declaration\n",
+        "seconds": 0.042,
+        "ended_at": "2026-10-22T19:18:31.852708+00:00"
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "supplied initial files; editable bodies/declarations absent",
+        "at": "2026-10-22T19:18:31.796713+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\n// Author Scale, Mask and Marker.\n"
+        }
+      },
+      {
+        "label": "learner reference edits including actual declarations and tests",
+        "at": "2026-10-22T19:18:31.798433+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n"
+        }
+      },
+      {
+        "label": "one named wrong overlay: typed-target",
+        "at": "2026-10-22T19:18:31.799850+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n",
+          "project/probe/probe.go": "package probe\n\nimport \"finite.local/constant-contexts/limits\"\n\nvar _ uint16 = limits.Marker\n"
+        }
+      },
+      {
+        "label": "final actual source after command observations",
+        "at": "2026-10-22T19:18:31.853799+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n",
+          "project/probe/probe.go": "package probe\n\nimport \"finite.local/constant-contexts/limits\"\n\nvar _ uint16 = limits.Marker\n"
+        }
+      }
+    ],
+    "interpretations": [
+      "Typed uint8 Marker is not implicitly assignable to uint16 despite numeric representability; explicit conversion is a separate permitted context."
+    ],
+    "ended_at": "2026-10-22T19:18:31.869412+00:00",
+    "disposable_root_removed": true
+  },
+  {
+    "unit": "constant-contexts-001",
+    "variant": "wrong-mask-type",
+    "started_at": "2026-10-22T19:18:31.871267+00:00",
+    "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-mask-type-0m903y_n",
+    "content_digest": "4005a8601aea76c83db84a3d20cce99e2ed4237ebd13f76f5832127107011660",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "GOWORK": "off",
+      "GOFLAGS": "-mod=readonly",
+      "CGO_ENABLED": "0",
+      "GOTELEMETRY": "off",
+      "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-mask-type-0m903y_n/home",
+      "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-mask-type-0m903y_n/cache",
+      "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-mask-type-0m903y_n/modcache",
+      "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-mask-type-0m903y_n/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-mask-type-0m903y_n/project",
+        "started_at": "2026-10-22T19:18:31.875791+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 0,
+        "expected_diagnostic": "go1.27.0 darwin/arm64",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "seconds": 0.007,
+        "ended_at": "2026-10-22T19:18:31.883790+00:00"
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-count=1",
+          "-timeout=20s",
+          "./accept"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-mask-type-0m903y_n/project",
+        "started_at": "2026-10-22T19:18:31.884891+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 1,
+        "expected_diagnostic": "as uint16 value",
+        "exit_status": 1,
+        "stdout": "FAIL\tfinite.local/constant-contexts/accept [build failed]\nFAIL\n",
+        "stderr": "# finite.local/constant-contexts/accept_test [finite.local/constant-contexts/accept.test]\naccept/accept_test.go:12:19: cannot use limits.Mask (constant 255 of type uint8) as uint16 value in variable declaration\naccept/accept_test.go:18:23: cannot use m (variable of type uint8) as int value in argument to requireInt\n",
+        "seconds": 2.732,
+        "ended_at": "2026-10-22T19:18:34.617887+00:00"
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "supplied initial files; editable bodies/declarations absent",
+        "at": "2026-10-22T19:18:31.872191+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\n// Author Scale, Mask and Marker.\n"
+        }
+      },
+      {
+        "label": "learner reference edits including actual declarations and tests",
+        "at": "2026-10-22T19:18:31.873506+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n"
+        }
+      },
+      {
+        "label": "one named wrong overlay: wrong-mask-type",
+        "at": "2026-10-22T19:18:31.874693+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask uint8 = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n"
+        }
+      },
+      {
+        "label": "final actual source after command observations",
+        "at": "2026-10-22T19:18:34.621163+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask uint8 = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n"
+        }
+      }
+    ],
+    "interpretations": [
+      "Premature uint8 typing removes Mask compatibility with a different typed target."
+    ],
+    "ended_at": "2026-10-22T19:18:34.760087+00:00",
+    "disposable_root_removed": true
+  },
+  {
+    "unit": "constant-contexts-001",
+    "variant": "wrong-marker-kind",
+    "started_at": "2026-10-22T19:18:34.761985+00:00",
+    "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-marker-kind-mk933jy8",
+    "content_digest": "4005a8601aea76c83db84a3d20cce99e2ed4237ebd13f76f5832127107011660",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "GOWORK": "off",
+      "GOFLAGS": "-mod=readonly",
+      "CGO_ENABLED": "0",
+      "GOTELEMETRY": "off",
+      "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-marker-kind-mk933jy8/home",
+      "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-marker-kind-mk933jy8/cache",
+      "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-marker-kind-mk933jy8/modcache",
+      "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-marker-kind-mk933jy8/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-marker-kind-mk933jy8/project",
+        "started_at": "2026-10-22T19:18:34.771732+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 0,
+        "expected_diagnostic": "go1.27.0 darwin/arm64",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "seconds": 0.022,
+        "ended_at": "2026-10-22T19:18:34.796294+00:00"
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "build",
+          "./probe"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-marker-kind-mk933jy8/project",
+        "started_at": "2026-10-22T19:18:34.797704+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 0,
+        "expected_diagnostic": null,
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "seconds": 0.053,
+        "ended_at": "2026-10-22T19:18:34.851894+00:00"
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "supplied initial files; editable bodies/declarations absent",
+        "at": "2026-10-22T19:18:34.763240+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\n// Author Scale, Mask and Marker.\n"
+        }
+      },
+      {
+        "label": "learner reference edits including actual declarations and tests",
+        "at": "2026-10-22T19:18:34.765035+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n"
+        }
+      },
+      {
+        "label": "one named wrong overlay: wrong-marker-kind",
+        "at": "2026-10-22T19:18:34.768979+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker = Mask\n",
+          "project/probe/probe.go": "package probe\n\nimport \"finite.local/constant-contexts/limits\"\n\nvar _ uint16 = limits.Marker\n"
+        }
+      },
+      {
+        "label": "final actual source after command observations",
+        "at": "2026-10-22T19:18:34.853263+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker = Mask\n",
+          "project/probe/probe.go": "package probe\n\nimport \"finite.local/constant-contexts/limits\"\n\nvar _ uint16 = limits.Marker\n"
+        }
+      }
+    ],
+    "interpretations": [
+      "This command succeeds: untyped Marker incorrectly permits implicit uint16 assignment. Required negative context is lost; method/contract rejected, not called an assertion failure."
+    ],
+    "ended_at": "2026-10-22T19:18:34.872633+00:00",
+    "disposable_root_removed": true
+  },
+  {
+    "unit": "constant-contexts-001",
+    "variant": "wrong-scale-type",
+    "started_at": "2026-10-22T19:18:34.874345+00:00",
+    "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-scale-type-uvxz0rf6",
+    "content_digest": "4005a8601aea76c83db84a3d20cce99e2ed4237ebd13f76f5832127107011660",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "GOWORK": "off",
+      "GOFLAGS": "-mod=readonly",
+      "CGO_ENABLED": "0",
+      "GOTELEMETRY": "off",
+      "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-scale-type-uvxz0rf6/home",
+      "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-scale-type-uvxz0rf6/cache",
+      "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-scale-type-uvxz0rf6/modcache",
+      "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-scale-type-uvxz0rf6/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-scale-type-uvxz0rf6/project",
+        "started_at": "2026-10-22T19:18:34.880410+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 0,
+        "expected_diagnostic": "go1.27.0 darwin/arm64",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "seconds": 0.009,
+        "ended_at": "2026-10-22T19:18:34.890179+00:00"
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-count=1",
+          "-timeout=20s",
+          "./accept"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-scale-type-uvxz0rf6/project",
+        "started_at": "2026-10-22T19:18:34.891623+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 1,
+        "expected_diagnostic": "as uint64 value",
+        "exit_status": 1,
+        "stdout": "FAIL\tfinite.local/constant-contexts/accept [build failed]\nFAIL\n",
+        "stderr": "# finite.local/constant-contexts/limits\nlimits/constants.go:3:22: cannot use 1 << 80 (untyped int constant 1208925819614629174706176) as uint64 value in constant declaration (overflows)\nlimits/constants.go:5:22: cannot use Mask (constant unknown of type uint64) as uint8 value in constant declaration\n",
+        "seconds": 2.3,
+        "ended_at": "2026-10-22T19:18:37.192304+00:00"
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "supplied initial files; editable bodies/declarations absent",
+        "at": "2026-10-22T19:18:34.875332+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\n// Author Scale, Mask and Marker.\n"
+        }
+      },
+      {
+        "label": "learner reference edits including actual declarations and tests",
+        "at": "2026-10-22T19:18:34.876916+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n"
+        }
+      },
+      {
+        "label": "one named wrong overlay: wrong-scale-type",
+        "at": "2026-10-22T19:18:34.878871+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale uint64 = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n"
+        }
+      },
+      {
+        "label": "final actual source after command observations",
+        "at": "2026-10-22T19:18:37.193805+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale uint64 = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n"
+        }
+      }
+    ],
+    "interpretations": [
+      "Choosing uint64 at declaration prematurely requires representation of2^80 and fails."
+    ],
+    "ended_at": "2026-10-22T19:18:37.304718+00:00",
+    "disposable_root_removed": true
+  },
+  {
+    "unit": "constant-contexts-001",
+    "variant": "wrong-variable",
+    "started_at": "2026-10-22T19:18:37.306509+00:00",
+    "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-variable-eqyfdxwv",
+    "content_digest": "4005a8601aea76c83db84a3d20cce99e2ed4237ebd13f76f5832127107011660",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "GOWORK": "off",
+      "GOFLAGS": "-mod=readonly",
+      "CGO_ENABLED": "0",
+      "GOTELEMETRY": "off",
+      "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-variable-eqyfdxwv/home",
+      "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-variable-eqyfdxwv/cache",
+      "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-variable-eqyfdxwv/modcache",
+      "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-variable-eqyfdxwv/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-variable-eqyfdxwv/project",
+        "started_at": "2026-10-22T19:18:37.311831+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 0,
+        "expected_diagnostic": "go1.27.0 darwin/arm64",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "seconds": 0.009,
+        "ended_at": "2026-10-22T19:18:37.321335+00:00"
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-count=1",
+          "-timeout=20s",
+          "./accept"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I6-constant-contexts-001-wrong-variable-eqyfdxwv/project",
+        "started_at": "2026-10-22T19:18:37.322908+00:00",
+        "timeout_seconds": 60,
+        "expected_exit": 1,
+        "expected_diagnostic": "is not constant",
+        "exit_status": 1,
+        "stdout": "FAIL\tfinite.local/constant-contexts/accept [build failed]\nFAIL\n",
+        "stderr": "# finite.local/constant-contexts/accept_test [finite.local/constant-contexts/accept.test]\naccept/accept_test.go:9:16: limits.Marker (variable of type uint8) is not constant\n",
+        "seconds": 2.316,
+        "ended_at": "2026-10-22T19:18:39.639763+00:00"
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "supplied initial files; editable bodies/declarations absent",
+        "at": "2026-10-22T19:18:37.307304+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\n// Author Scale, Mask and Marker.\n"
+        }
+      },
+      {
+        "label": "learner reference edits including actual declarations and tests",
+        "at": "2026-10-22T19:18:37.308696+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\nconst Marker uint8 = Mask\n"
+        }
+      },
+      {
+        "label": "one named wrong overlay: wrong-variable",
+        "at": "2026-10-22T19:18:37.310423+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\n\nvar Marker uint8 = Mask\n"
+        }
+      },
+      {
+        "label": "final actual source after command observations",
+        "at": "2026-10-22T19:18:39.641110+00:00",
+        "files": {
+          "project/accept/accept_test.go": "package accept_test\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"testing\"\n)\n\nconst half = limits.Scale >> 79\nconst marker = limits.Marker\n\nvar small uint8 = limits.Mask\nvar wide uint16 = limits.Mask\nvar storage [limits.Mask]byte\n\nfunc requireInt(x int) int { return x }\nfunc TestPublicConstantContexts(t *testing.T) {\n\tm := limits.Mask\n\tif got := requireInt(m); got != 255 {\n\t\tt.Errorf(\"default Mask=%d, want int255\", got)\n\t}\n\tif small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {\n\t\tt.Fatalf(\"constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255\", small, wide, len(storage), half, marker)\n\t}\n}\n",
+          "project/cmd/values/main.go": "package main\n\nimport (\n\t\"finite.local/constant-contexts/limits\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar a uint8 = limits.Mask\n\tvar b uint16 = limits.Mask\n\tfmt.Printf(\"%d %d %d\\n\", a, b, limits.Scale>>79)\n}\n",
+          "project/go.mod": "module finite.local/constant-contexts\ngo 1.27\n",
+          "project/limits/constants.go": "package limits\n\nconst Scale = 1 << 80\nconst Mask = (Scale >> 72) - 1\n\nvar Marker uint8 = Mask\n"
+        }
+      }
+    ],
+    "interpretations": [
+      "A value of the same runtime numeric type cannot replace a constant expression."
+    ],
+    "ended_at": "2026-10-22T19:18:39.710340+00:00",
+    "disposable_root_removed": true
+  }
+]

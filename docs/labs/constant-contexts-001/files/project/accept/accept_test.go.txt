@@ -1,0 +1,24 @@
+package accept_test
+
+import (
+	"finite.local/constant-contexts/limits"
+	"testing"
+)
+
+const half = limits.Scale >> 79
+const marker = limits.Marker
+
+var small uint8 = limits.Mask
+var wide uint16 = limits.Mask
+var storage [limits.Mask]byte
+
+func requireInt(x int) int { return x }
+func TestPublicConstantContexts(t *testing.T) {
+	m := limits.Mask
+	if got := requireInt(m); got != 255 {
+		t.Errorf("default Mask=%d, want int255", got)
+	}
+	if small != 255 || wide != 255 || len(storage) != 255 || half != 2 || marker != 255 || uint16(limits.Marker) != 255 {
+		t.Fatalf("constant contexts got small=%d wide=%d length=%d half=%d marker=%d, want 255/255/255/2/255", small, wide, len(storage), half, marker)
+	}
+}

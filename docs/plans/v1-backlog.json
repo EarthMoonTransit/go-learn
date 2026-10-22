@@ -520,7 +520,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "single-json-value-001"
-      ]
+      ],
+      "delivery_batch": "I6",
+      "assessment": "Actual independently reviewed learner action, behavior and finite method; finalbatch gates separate",
+      "review_evidence": "tasks/ready/bounded-record-read-001/review/notes.md",
+      "delivered_task_id": "bounded-record-read-001"
     },
     {
       "slot": "independent-application:encoding.text-marshaling",
@@ -743,7 +747,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "writer-greeting-001"
-      ]
+      ],
+      "delivery_batch": "I6",
+      "assessment": "Actual independently reviewed learner action, behavior and finite method; finalbatch gates separate",
+      "review_evidence": "tasks/ready/bounded-record-read-001/review/notes.md",
+      "delivered_task_id": "bounded-record-read-001"
     },
     {
       "slot": "independent-application:io.scanning",
@@ -983,7 +991,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "writer-double-001"
-      ]
+      ],
+      "delivery_batch": "I6",
+      "assessment": "Actual independently reviewed learner action, behavior and finite method; finalbatch gates separate",
+      "review_evidence": "docs/labs/injected-config-project-001/review/independent-review.json",
+      "delivered_unit_path": "docs/labs/injected-config-project-001/TASK.md"
     },
     {
       "slot": "independent-application:testing.subtests",
@@ -1071,7 +1083,11 @@
   "components": [
     {
       "slot": "component-io-encoding",
-      "outcome": "Process a bounded record stream with explicit partial-read, malformed-input and error contracts."
+      "outcome": "Process a bounded record stream with explicit partial-read, malformed-input and error contracts.",
+      "delivery_batch": "I6",
+      "review_evidence": "reports/v1-repairs-06.md",
+      "scope": "Actual integrated behavior/method independently accepted; finalbatch gates separate",
+      "delivered_task_id": "bounded-record-read-001"
     },
     {
       "slot": "component-generic-container",
@@ -1084,7 +1100,11 @@
     },
     {
       "slot": "component-packages-toolchain",
-      "outcome": "Organize and verify a small multi-package project with intentional module, import and internal boundaries."
+      "outcome": "Organize and verify a small multi-package project with intentional module, import and internal boundaries.",
+      "delivery_batch": "I6",
+      "review_evidence": "reports/v1-repairs-06.md",
+      "scope": "Actual integrated behavior/method independently accepted; finalbatch gates separate",
+      "delivered_unit_path": "docs/labs/injected-config-project-001/TASK.md"
     },
     {
       "slot": "component-concurrent-lifecycle",
@@ -1109,19 +1129,16 @@
     }
   ],
   "delivery": {
-    "batch": "I5",
-    "status": "actual native/content/method/component accepted; final dependency/local/CI gates and merge pending",
-    "route_lessons_after": 203,
+    "batch": "I6",
+    "status": "all5actual content/native/method and integration accepted; dependencies merged; localgates running; final exactHEADreview blocked by reviewer usage-limit",
+    "route_lessons_after": 206,
     "first_encounters_remaining": 0,
-    "independent_applications_remaining": 71,
-    "component_slots_remaining": 3,
-    "new_automatic_packages": 0,
-    "reused_automatic_packages": 0,
-    "manual_units": 5,
-    "reused_manual_components": 1,
-    "combined_new_manual_components": 1,
-    "manual_first_slots": 5,
-    "note": "Six units close all5remainingoriginalfirsts plus small-contract first repair and two components. Original28firsts complete by batch5 only after accepted merge. No extra applications, automatic coverage or learner mastery."
+    "independent_applications_remaining": 68,
+    "component_slots_remaining": 1,
+    "new_automatic_packages": 3,
+    "manual_units": 2,
+    "existing_pair_repairs_closed": 5,
+    "note": "Two repairedfirsts, typederror/smallinterface/constants applications and two components. Three original application slots closed; original49historical decisions preserved. No automatic credit from manual units or supplied mechanisms."
   },
   "delivery_history": [
     {
@@ -1210,7 +1227,7 @@
     },
     {
       "batch": "I4",
-      "status": "actual content/method accepted; final gates and dependency merges pending",
+      "status": "accepted after all12localgates, sole exactHEADreview and greenvalidate; PR109 merged",
       "route_lessons_after": 203,
       "first_encounters_remaining": 5,
       "independent_applications_remaining": 71,
@@ -1219,7 +1236,30 @@
       "reused_automatic_packages": 2,
       "manual_units": 0,
       "manual_first_slots": 0,
-      "note": "Six units close five original firsts plus three separately reviewed applications and repair existing WG first without changing task bytes/old meaning. Manual supplements do not add automatic coverage."
+      "note": "Six units close five original firsts plus three separately reviewed applications and repair existing WG first without changing task bytes/old meaning. Manual supplements do not add automatic coverage.",
+      "final_head": "0241dbcdd56c1aefe63f7ab9ef66e308b92006b7",
+      "merge_commit": "2e1710a42381db9d60e5d3bc251c2702c7951804",
+      "merged_at": "2026-10-22T19:37:47+00:00",
+      "validate_run": 39836444522
+    },
+    {
+      "batch": "I5",
+      "status": "accepted after I4dependency, all8localgates, sole exactHEADreview and greenvalidate; PR110 merged",
+      "route_lessons_after": 203,
+      "first_encounters_remaining": 0,
+      "independent_applications_remaining": 71,
+      "component_slots_remaining": 3,
+      "new_automatic_packages": 0,
+      "reused_automatic_packages": 0,
+      "manual_units": 5,
+      "reused_manual_components": 1,
+      "combined_new_manual_components": 1,
+      "manual_first_slots": 5,
+      "note": "Six units close all5remainingoriginalfirsts plus small-contract first repair and two components. Original28firsts complete by batch5 only after accepted merge. No extra applications, automatic coverage or learner mastery.",
+      "final_head": "1992244d26dfcb64840afae95d5f448b863313a7",
+      "merge_commit": "a1bd31ed7a1a8b87cca24d2a2dc987aa2902bb58",
+      "merged_at": "2026-10-22T19:39:56+00:00",
+      "validate_run": 39836802152
     }
   ],
   "existing_pair_reviews": {
@@ -1555,7 +1595,15 @@
           "tasks/ready/array-copy-address-tests-001/verification/reference",
           "tasks/ready/array-copy-address-tests-001/verification/mutants"
         ],
-        "planned_resolution": "One finite assignment/call snapshot prediction/debug exercise using existing workspace-tests, within the 302-unit ceiling; preserve the three existing tasks unchanged. No acceptance until actual contract/content/execution review."
+        "planned_resolution": "One finite assignment/call snapshot prediction/debug exercise using existing workspace-tests, within the 302-unit ceiling; preserve the three existing tasks unchanged. No acceptance until actual contract/content/execution review.",
+        "repair_acceptance": {
+          "batch": "I6",
+          "unit": "array-copy-stages-001",
+          "action": "first repaired; original array-copy-address-tests independent application preserved",
+          "assessment": "actual source/execution/method independently accepted; final delivery gates pending",
+          "evidence": "tasks/ready/array-copy-stages-001/review/notes.md"
+        },
+        "historical_fields_note": "The dated status/assessment/planned_resolution above describe the original baseline review, including its then-open gap. Current actual repair resolution is recorded below in repair_acceptance; delivery still requires batch gates and merge."
       },
       {
         "skill_id": "strings.building",
@@ -1900,7 +1948,15 @@
           "tasks/ready/reset-selected-state-001/tests/public/public_test.go",
           "tasks/ready/reset-selected-state-001/tests/grader/grader_test.go",
           "tasks/ready/reset-selected-state-001/solution/mutants"
-        ]
+        ],
+        "repair_acceptance": {
+          "batch": "I6",
+          "unit": "struct-copy-comparability-001",
+          "action": "first repaired; original reset-selected-state independent application preserved",
+          "assessment": "actual source/execution/method independently accepted; final delivery gates pending",
+          "evidence": "tasks/ready/struct-copy-comparability-001/review/notes.md"
+        },
+        "historical_fields_note": "The dated status/assessment/planned_resolution above describe the original baseline review, including its then-open gap. Current actual repair resolution is recorded below in repair_acceptance; delivery still requires batch gates and merge."
       },
       {
         "skill_id": "errors.propagation-context",
@@ -2028,7 +2084,15 @@
           "tasks/ready/error-detail-tests-001/solution/reference/subject_test.go",
           "tasks/ready/error-detail-tests-001/verification/reference/subject.go",
           "tasks/ready/error-detail-tests-001/verification/mutants"
-        ]
+        ],
+        "repair_acceptance": {
+          "batch": "I6",
+          "unit": "bounded-record-read-001",
+          "action": "independent typed-error construction/recovery application repaired",
+          "assessment": "actual source/execution/method independently accepted; final delivery gates pending",
+          "evidence": "tasks/ready/bounded-record-read-001/review/notes.md"
+        },
+        "historical_fields_note": "The dated status/assessment/planned_resolution above describe the original baseline review, including its then-open gap. Current actual repair resolution is recorded below in repair_acceptance; delivery still requires batch gates and merge."
       },
       {
         "skill_id": "interfaces.small-contracts",
@@ -2078,7 +2142,15 @@
           "batch": "I5",
           "review_evidence": "docs/labs/consumer-text-contract-001/review/independent-review.json",
           "decision": "Actual minimal named consumer contract first repaired; independent application remains open"
-        }
+        },
+        "repair_acceptance": {
+          "batch": "I6",
+          "unit": "injected-config-project-001",
+          "action": "independent consumer-owned dependency design and authored recording tests; I5consumer first separately preserved",
+          "assessment": "actual source/execution/method independently accepted; final delivery gates pending",
+          "evidence": "docs/labs/injected-config-project-001/review/independent-review.json"
+        },
+        "historical_fields_note": "The dated status/assessment/planned_resolution above describe the original baseline review, including its then-open gap. Current actual repair resolution is recorded below in repair_acceptance; delivery still requires batch gates and merge."
       },
       {
         "skill_id": "generics.type-parameters-inference",
@@ -2356,7 +2428,15 @@
           "tasks/ready/constant-value-tests-001/starter/subject_test.go",
           "tasks/ready/constant-value-tests-001/solution/reference/subject_test.go",
           "tasks/ready/constant-value-tests-001/verification/reference/subject.go"
-        ]
+        ],
+        "repair_acceptance": {
+          "batch": "I6",
+          "unit": "constant-contexts-001",
+          "action": "independent declarations and native representability/defaulting/typed-assignment contexts repaired",
+          "assessment": "actual source/execution/method independently accepted; final delivery gates pending",
+          "evidence": "docs/labs/constant-contexts-001/review/independent-review.json"
+        },
+        "historical_fields_note": "The dated status/assessment/planned_resolution above describe the original baseline review, including its then-open gap. Current actual repair resolution is recorded below in repair_acceptance; delivery still requires batch gates and merge."
       },
       {
         "skill_id": "channels.select",
@@ -2500,7 +2580,7 @@
     "pending_skill_ids": [],
     "repair_count": 5,
     "repair_allocation": {
-      "status": "planning; no readiness credit",
+      "status": "All five actual repair decisions accepted; final I6 delivery gates pending",
       "skill_ids": [
         "arrays.value-semantics",
         "structs.copy-equality",
@@ -2510,9 +2590,18 @@
       ],
       "maximum_additional_units": 4,
       "design": "Two separate array and struct first repairs at their actual early prerequisite positions; one consumer-owned small-interface first (delivered I5); at most one constants application. Typed-error and small-interface applications integrated into allocated IO/packages components with distinct actual actions. The combined array/struct first was split after independent prerequisite review to preserve existing relative order and avoid a dependency cycle; global302 and141skills unchanged.",
-      "arithmetic": "After accepted I5:203automatic route +10manual units +0remainingoriginalfirsts +71applications +3components +at most3remainingrepair units (arrayfirst,structfirst,constantsapplication) =290 <=302. The historical extra repair allowance is4 including the already delivered consumer first. Independent review accepted the split; no new readiness or application credit.",
-      "note": "All49 baseline pairs reviewed; five concrete repairs remain. No expanded ceiling or metadata-only credit; actual repair contracts/evidence are still required.",
+      "arithmetic": "After accepted I6:206automatic route +12manual units +0originalfirsts +68independentapplications +1component +0remainingrepairunits =287 <=302. Three combined component/application outcomes reduce the prior290planning upper bound; only actual independently accepted outcomes count.",
+      "note": "All49 baseline decisions are preserved. Five identified semantic repairs now have actual independently accepted evidence; zero repair pairs remain after accepted I6 delivery. Historical extra allowance4 is not four future units. No expanded ceiling, metadata-only credit or learner mastery.",
       "allocation_review": "Sole reviewer accepted separate early array/struct placement on2026-10-22; see reports/v1-introductions-05.md. Original49pair decisions preserved."
+    },
+    "current_resolution": {
+      "batch": "I6",
+      "baseline_accepted_pairs": 44,
+      "baseline_repair_pairs": 5,
+      "repairs_actual_accepted": 5,
+      "repair_pairs_remaining": 0,
+      "historical_decisions_preserved": true,
+      "note": "Current repair evidence supplements original dated49pair decisions; finalbatch gates/merge still required. No repeated audit or learner mastery claim."
     }
   },
   "existing_single_encounter_reviews": {

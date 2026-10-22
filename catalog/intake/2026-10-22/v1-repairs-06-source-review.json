@@ -1,0 +1,189 @@
+{
+  "date": "2026-10-22",
+  "batch": "I6",
+  "base": "1992244d26dfcb64840afae95d5f448b863313a7",
+  "branch": "codex/v1-repairs-06",
+  "reviewer": "/root/reviewer",
+  "status": "All5actual source/execution/method independently accepted; finalbatch/dependency/gates pending",
+  "external_sources": [],
+  "tasks": [
+    {
+      "id": "array-copy-stages-001",
+      "path": "tasks/ready/array-copy-stages-001",
+      "primary": "arrays.value-semantics",
+      "purpose": "first repair",
+      "source_decision": "Original ADR0008 task-init creation/digest and sources[]; no invented commit; prior tasks remain unchanged preparation.",
+      "actual_review_evidence": "tasks/ready/array-copy-stages-001/review/notes.md"
+    },
+    {
+      "id": "struct-copy-comparability-001",
+      "path": "tasks/ready/struct-copy-comparability-001",
+      "primary": "structs.copy-equality",
+      "purpose": "first repair",
+      "source_decision": "Original ADR0008 task-init creation/digest and sources[]; no invented commit; prior tasks remain unchanged preparation.",
+      "actual_review_evidence": "tasks/ready/struct-copy-comparability-001/review/notes.md"
+    },
+    {
+      "id": "bounded-record-read-001",
+      "path": "tasks/ready/bounded-record-read-001",
+      "primary": "errors.typed",
+      "purpose": "IO component, typed-error repair; reader-contract and streaming-strictness applications",
+      "source_decision": "Original ADR0008 task-init creation/digest and sources[]; no invented commit; prior tasks remain unchanged preparation.",
+      "actual_review_evidence": "tasks/ready/bounded-record-read-001/review/notes.md"
+    }
+  ],
+  "manual_units": [
+    {
+      "id": "injected-config-project-001",
+      "path": "docs/labs/injected-config-project-001",
+      "source_decision": "Original ADR0008 manual creation/digest, empty sources; exact preexecution and actual review required.",
+      "content_digest": "cdf0426ae1668263f18cae52ae001328287464a5a1ec38ff7f0f35ee8a4b133a",
+      "actual_review_evidence": "docs/labs/injected-config-project-001/review/independent-review.json"
+    },
+    {
+      "id": "constant-contexts-001",
+      "path": "docs/labs/constant-contexts-001",
+      "source_decision": "Original ADR0008 manual creation/digest, empty sources; exact preexecution and actual review required.",
+      "content_digest": "4005a8601aea76c83db84a3d20cce99e2ed4237ebd13f76f5832127107011660",
+      "actual_review_evidence": "docs/labs/constant-contexts-001/review/independent-review.json"
+    }
+  ],
+  "contract_reviews": {
+    "i6-split-review.json": {
+      "reviewer": "/root/reviewer",
+      "recorded_at_utc": "2026-10-22T19:01:43.369093+00:00",
+      "findings": [],
+      "decision": "approve-contract-and-allocation",
+      "scope": "Read-only planning review of i6-array-struct-first-proposal.md; no source/execution/readiness acceptance.",
+      "proposal_sha256": "21d92e95ccfc62319c8ba4e02138bbbd8a2d04a314a1720c77c05f866a11151a",
+      "split_rationale": "Array first must precede array-copy/slice introductions near C03. Struct first requires later struct-literal and pointer preparation near C06. Combining at either position would assume missing prerequisites or reorder old material; two separate units preserve the route.",
+      "placements": {
+        "array-copy-stages-001": "after named-step-conversion-001, before array-copy-001; independent array application remains later array-copy-address-tests-001",
+        "struct-copy-comparability-001": "after rectangle-perimeter-001, before struct-transition-tests-001 and pointer mutation-sharing; independent reset-selected-state-001 application remains unchanged"
+      },
+      "contracts": [
+        "Array: learner owns literal length choice, real assignment, separate [3]int helper and call, stage snapshots and two prediction assertions. Supplied exported return type alone earns no copy/length credit. Fixed public behavior plus actual method review correctly rejects fabricated-stage-only solutions.",
+        "Struct: learner owns assignment, independent scalar/inline values versus shared pointee, whole-record equality including pointer identity, all-field comparability analysis and prediction assertions. The nil/empty slice field remains noncomparable as a type. No invalid comparison compilation or nil panic is evidence.",
+        "Existing workspace-tests and fixed public/grader ordinary diagnostics are sufficient. Public-only probes exclude submitted tests; method review separately checks learner assertions. Correct private naming/layout alternatives remain valid. No new checker."
+      ],
+      "allocation": {
+        "current_conservative_total": 290,
+        "ceiling": 302,
+        "remaining_extra_units": 3,
+        "historical_extra_allowance": 4,
+        "includes_completed_consumer_first": true
+      },
+      "readiness_credit": false,
+      "next": "Actual TASK/source/public/error-matrix/provenance review and task-check disposable evidence required after authoring."
+    },
+    "i6-io-contract-review.json": {
+      "reviewer": "/root/reviewer",
+      "recorded_at_utc": "2026-10-22T19:01:43.369093+00:00",
+      "findings": [],
+      "decision": "approve-bounded-contract",
+      "scope": "Planning review of i6-io-component-proposal.md and concise i6-io-task-draft.md; no actual source/evidence/readiness acceptance.",
+      "proposal_sha256": "3ea3ec56accff07deced6bdc707df9e36014176a6e5ab639686fd832e14794d6",
+      "task_draft_sha256": "e1837713930895f9b45c1b2bee0ec1524d31416bef500f205702fafc78a930f7",
+      "component_candidate": "component-io-encoding",
+      "accepted_application_contracts": [
+        "errors.typed",
+        "io.reader-writer-contracts",
+        "encoding.streaming-strictness"
+      ],
+      "contract_reasoning": [
+        "Three-byte versioned frames and count0..8 produce a bounded integrated parser. The explicit per-frame read bound, no trailing probe, accepted-prefix/index definition and error precedence make behavior determinate across permitted read chunking. Smaller reads remain valid; no exact call-count requirement beyond count0.",
+        "Append complete valid bytes before classifying their non-EOF error; preserve that exact error even at count. Otherwise complete bad version precedes exact EOF; short/boundary EOF before requested count is UnexpectedEOF. Index=len(prefix) can equal count and is explicitly explained. The concise142-word TASK retains these decisions.",
+        "errors.typed repair is genuine learner work in choosing useful private index/cause storage, constructing independent failures at parsing boundaries, implementing methods and preserving nil/error lifetime. Existing structured-error first separately exercises pointer form and fields. Supplied private receiver/method signatures do not earn authorship or receiver-form-selection credit; actual method review must inspect meaningful chosen storage and why those fields serve recovery rather than incidental parser state.",
+        "Reader-side application differs from earlier writer operation: learner must accumulate fragments and process positive n independently of error while retaining valid records. Supplied readers/test doubles and supplied errors.As/Is calls earn no separate skills.",
+        "Streaming-strictness application is explicit bounded-prefix consumption with trailing bytes untouched and no invalid/partial record published, distinct from single-json-value rejecting all trailing values. Existing JSON first already assesses unknown-field rejection. This new unit does not claim a new unknown-field/JSON-schema action. Add the actual encoding.json-shape-tags prerequisite and place after existing JSON preparation if this secondary is assigned."
+      ],
+      "preserved_open": [
+        "encoding.binary-marshaling",
+        "errors.as",
+        "errors.is",
+        "testing.seams-doubles",
+        "io.copy-limit-composition",
+        "io.buffered",
+        "io.scanning",
+        "io.files-cleanup",
+        "io.pipe-lifecycle"
+      ],
+      "source_decision": "Original local bounded contract with creation/digest/sources[]; earlier unchanged tasks are preparation/comparison only and retain their existing pinned original/adapted provenance. No new external code/text borrowing.",
+      "actual_authoring_gates": [
+        "Every basic terminal-policy row must retain useful public diagnostics. Ordinary compiling/terminating wrong variants, no timeout/spin/panic/compile-error detection.",
+        "Typed-nil failure must be inspected safely before methods; check real nil on success.",
+        "Correct alternate private field layout and smaller-read strategy must pass public/full; method acceptance must not depend on private spellings.",
+        "Verify real authored private fields/error construction, parser decisions and retained independent failures. Interface/signature presence alone earns no credit.",
+        "Existing task-check-only disposable checks, public-only evidence, task-promote, one stable collection and final review/gates apply. Any different source contract requires focused review."
+      ],
+      "readiness_credit": false
+    },
+    "packages-constants-contract-review.json": {
+      "decision": "approve-bounded-contract",
+      "reviewer": "/root/reviewer",
+      "recorded_at_utc": "2026-10-22T19:08:53.596244+00:00",
+      "proposal_path": "/Users/egor/.codex/worktrees/v1-introductions-05/go-learn/.tmp/v1-introductions-05/i6-packages-constants-proposal.md",
+      "proposal_sha256": "a5ee4a023b55acedfcc4758e395263fcae71d818849395be9320e47253fd8950",
+      "findings": [],
+      "scope": "Independent planning/source-boundary review before native source authoring. Exact actual sources and command manifests require subsequent preexecution review; no execution/readiness credit.",
+      "units": [
+        {
+          "unit": "injected-config-project-001",
+          "decision": "approve-contract",
+          "component_candidate": "component-packages-toolchain",
+          "independent_application_candidates": [
+            "interfaces.small-contracts",
+            "testing.seams-doubles"
+          ],
+          "copies": 9,
+          "commands": 25,
+          "reasoning": [
+            "Learner creates the module, consumer-owned minimal Source.Lookup contract, Collect implementation, narrow internal formatter, command composition root and external recording tests. A separate replace-bound local client uses only public API and a third Lookup-only provider. These are integrated module/import/internal actions rather than supplied graph credit.",
+            "Compared with I5 TextSource first, the dependency now replaces process-state access in a multi-request present/missing/empty protocol with explicit injection, repeated keys and changing source state. The learner owns the actual compile-time seam and dependency composition, not merely a renamed interface.",
+            "Compared with writer-double first, learner selects/implements the consumer seam and authors both recording double and assertions. Three learner-only defect probes check bypass, presence confusion and duplicate lookup; fixed public fixtures do not earn learner test-writing credit.",
+            "Nine finite specimens separate reference graph/output/foreign-provider success, concrete/overbroad compiler rejection, ordinary bypass/empty assertions, recording-history failure, behavior-valid any method rejection, independent illegal internal import and incorrect module-path diagnosis. Expected failure types must match actual sources.",
+            "Exact value semantics are bounded:0..4 valid keys, one lookup per key including duplicates, Go quoted present values, explicit missing, nil on empty, no caching/environment fallback. Narrow internal boundary and real delegation are method-reviewed; no private spelling assumptions."
+          ],
+          "placement": "After accepted modules-build, consumer-text-contract, package-boundaries, package-inventory, external-window-tests and writer-double. Consumer first must retain corrected placement before its dependent lessons.",
+          "no_extra_credit": [
+            "No import-cycle/module/build/internal independent application is inferred from component participation alone.",
+            "No fixed adapter/public fixtures or merely executing commands earn learner-owned seam/testing credit."
+          ]
+        },
+        {
+          "unit": "constant-contexts-001",
+          "decision": "approve-contract",
+          "independent_application_candidate": "types.constants",
+          "copies": 9,
+          "commands": 20,
+          "reasoning": [
+            "Package-only starter supplies no declarations. Learner chooses an exact untyped2^80 Scale, derived untyped Mask255 and typed uint8 Marker. This differs materially from the old fractional-division first and covers the missing declaration/defaulting/representability actions.",
+            "Native positive contexts require constant expression use, array length, default int Mask, implicit uint8/uint16 Mask assignments and explicit uint16(Marker). Values-only/runtime conversions cannot substitute for these compile-time uses.",
+            "Native negative contexts distinguish Scale default-int overflow,255-to-int8 overflow,256-to-uint8 overflow and typed uint8 Marker nonassignability to uint16. Wrong-mask-type, wrong-scale-type and variable-instead-of-const specimens fail the declared constant contexts.",
+            "The untyped wrong Marker intentionally makes the same uint16 negative probe succeed. That actual success is rejected by the typed-constant contract/method; it must never be reported as a compiler failure.",
+            "2^80 is representable as a constant but not in the pinned native machine int/uint64. (Scale>>72)-1=255 and Scale>>79=2; command stdout255 255 2 newline is consistent. No iota or all-constant-facets claim."
+          ],
+          "placement": "After constant-kinds, types.numeric-conversions and fixed-width-shifts; modules/build preparation is already before the route."
+        }
+      ],
+      "execution_boundary": [
+        "18 fresh canonical disposable copies /45 commands total, installed local Go1.27, private clean offline environment and telemetry off; no execution from source checkout.",
+        "Packages command environment supplies only reviewed A=ambient, EMPTY empty and absent ABSENT along with isolation variables; inherited process state cannot become a test dependency.",
+        "Every actual source/overlay/runtime file and literal command must be allowlisted before execution; created output directory/binary belongs to the private disposable root. No arbitrary command API.",
+        "Every command<=60s, Go tests timeout20s. Preserve exact version/argv/cwd/environment/status/stdout/stderr/source snapshots, then remove owned roots. No retries/stress or unexpected-output success credit.",
+        "Native compile/race observations remain separate from automatic quality reports. Actual code, learner predictions/assertions and outputs require sole reviewer acceptance afterward."
+      ],
+      "allocation": "These fill the existing packages-component and constants-repair allocations in the five-unit I6 batch; global ceiling302 and141meanings unchanged. The conservative290 upper bound earns no advance application/component credit.",
+      "source_decision": "Original local designs, own creation/digests and sources[]; preserve earlier comparison/task provenance and pin real existing paths. No external donor/reference-only copying.",
+      "readiness_credit": false,
+      "pending": [
+        "Exact source/command preexecution approval",
+        "Actual isolated execution and source/method review",
+        "Final integration/HEAD review and all applicable local/exact-head CI gates",
+        "Four-hour and infrastructure limits remain in force"
+      ]
+    }
+  },
+  "preservation": "All original IDs, meanings, taskbytes, provenance, route addresses and relative order retained. New early array/struct firsts repair identified gaps; no repeated baseline49audit.",
+  "scope": "Five units; existing141skills/302unitceiling; no newmechanism. Two remaining introductions are both included, with required concrete downstream component/repair work. No ahead-of-evidence application credit."
+}

@@ -1,0 +1,13 @@
+package main
+
+import (
+	"finite.local/configkit/processenv"
+	"finite.local/configkit/snapshot"
+	"fmt"
+)
+
+func main() {
+	for _, line := range snapshot.Collect(processenv.Source{}, []string{"A", "EMPTY", "ABSENT", "A"}) {
+		fmt.Println(line)
+	}
+}

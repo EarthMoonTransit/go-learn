@@ -1,0 +1,45 @@
+package snapshot_test
+
+import (
+	"finite.local/configkit/snapshot"
+	"reflect"
+	"testing"
+)
+
+type publicSource struct {
+	values map[string]string
+	calls  int
+}
+
+func (p *publicSource) Lookup(key string) (string, bool) {
+	p.calls++
+	v, ok := p.values[key]
+	return v, ok
+}
+func TestPublicValues(t *testing.T) {
+	p := &publicSource{values: map[string]string{"A": "public", "EMPTY": "", "QUOTE": "a\"\n界"}}
+	got := snapshot.Collect(p, []string{"A", "EMPTY", "ABSENT", "A"})
+	want := []string{`A="public"`, `EMPTY=""`, `ABSENT=<missing>`, `A="public"`}
+	if !reflect.DeepEqual(got, want) {
+		t.Fatalf("public injected/presence rows got %q, want %q", got, want)
+	}
+	got = snapshot.Collect(p, []string{"QUOTE"})
+	want = []string{`QUOTE="a\"\n界"`}
+	if !reflect.DeepEqual(got, want) {
+		t.Fatalf("public quoted row got %q, want %q", got, want)
+	}
+	p.values["A"] = "changed"
+	got = snapshot.Collect(p, []string{"A"})
+	want = []string{`A="changed"`}
+	if !reflect.DeepEqual(got, want) {
+		t.Fatalf("public current source got %q, want %q", got, want)
+	}
+}
+func TestPublicEmpty(t *testing.T) {
+	for _, keys := range [][]string{nil, {}} {
+		p := &publicSource{values: map[string]string{"A": "public"}}
+		if got := snapshot.Collect(p, keys); got != nil || p.calls != 0 {
+			t.Fatalf("empty request got %v calls=%d, want nil and zero calls", got, p.calls)
+		}
+	}
+}

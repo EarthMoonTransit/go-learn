@@ -1,0 +1,5 @@
+package forbidden
+
+import "finite.local/configkit/snapshot/internal/row"
+
+var _ = row.Format("A", "x", true)

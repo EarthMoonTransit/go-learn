@@ -1,0 +1,57 @@
+{
+  "unit": "injected-config-project-001",
+  "go_version": "1.27",
+  "files": {
+    "files/project/snapshot/collect.go.txt": "project/snapshot/collect.go",
+    "files/project/snapshot/internal/row/format.go.txt": "project/snapshot/internal/row/format.go",
+    "files/project/snapshot/learner_test.go.txt": "project/snapshot/learner_test.go",
+    "files/project/cmd/snapshot/main.go.txt": "project/cmd/snapshot/main.go",
+    "files/project/processenv/source.go.txt": "project/processenv/source.go",
+    "files/project/snapshot/contract_test.go.txt": "project/snapshot/contract_test.go",
+    "files/project/snapshot/internal/row/format_test.go.txt": "project/snapshot/internal/row/format_test.go",
+    "files/client/go.mod.txt": "client/go.mod",
+    "files/client/source.go.txt": "client/source.go",
+    "files/client/accept_test.go.txt": "client/accept_test.go"
+  },
+  "reference": {
+    "reference/project/go.mod.txt": "project/go.mod",
+    "reference/project/snapshot/collect.go.txt": "project/snapshot/collect.go",
+    "reference/project/snapshot/learner_test.go.txt": "project/snapshot/learner_test.go",
+    "reference/project/snapshot/internal/row/format.go.txt": "project/snapshot/internal/row/format.go",
+    "reference/project/cmd/snapshot/main.go.txt": "project/cmd/snapshot/main.go"
+  },
+  "editable_paths": [
+    "project/go.mod",
+    "project/snapshot/collect.go",
+    "project/snapshot/learner_test.go",
+    "project/snapshot/internal/row/format.go",
+    "project/cmd/snapshot/main.go"
+  ],
+  "wrong": {
+    "concrete": {
+      "wrong/concrete/project/snapshot/collect.go.txt": "project/snapshot/collect.go"
+    },
+    "overbroad": {
+      "wrong/overbroad/project/snapshot/collect.go.txt": "project/snapshot/collect.go"
+    },
+    "bypass": {
+      "wrong/bypass/project/snapshot/collect.go.txt": "project/snapshot/collect.go"
+    },
+    "empty": {
+      "wrong/empty/project/snapshot/collect.go.txt": "project/snapshot/collect.go"
+    },
+    "twice": {
+      "wrong/twice/project/snapshot/collect.go.txt": "project/snapshot/collect.go"
+    },
+    "any": {
+      "wrong/any/project/snapshot/collect.go.txt": "project/snapshot/collect.go"
+    },
+    "internal": {
+      "wrong/internal/client/forbidden/probe_test.go.txt": "client/forbidden/probe_test.go"
+    },
+    "module": {
+      "wrong/module/project/go.mod.txt": "project/go.mod"
+    }
+  },
+  "timeout_seconds": 60
+}

@@ -1,0 +1,20 @@
+package snapshot
+
+import (
+	"finite.local/configkit/snapshot/internal/row"
+	"os"
+)
+
+type Source interface{ Lookup(string) (string, bool) }
+
+func Collect(source Source, keys []string) []string {
+	if len(keys) == 0 {
+		return nil
+	}
+	result := make([]string, 0, len(keys))
+	for _, key := range keys {
+		value, present := os.LookupEnv(key)
+		result = append(result, row.Format(key, value, present))
+	}
+	return result
+}

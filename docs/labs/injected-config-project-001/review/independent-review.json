@@ -1,0 +1,66 @@
+{
+  "decision": "approve",
+  "reviewer": "sole-independent-reviewer",
+  "reviewed_at": "2026-10-22T19:20:29.922702+00:00",
+  "findings": [],
+  "content_digests": {
+    "injected-config-project-001": "cdf0426ae1668263f18cae52ae001328287464a5a1ec38ff7f0f35ee8a4b133a",
+    "constant-contexts-001": "4005a8601aea76c83db84a3d20cce99e2ed4237ebd13f76f5832127107011660"
+  },
+  "execution": {
+    "fresh_disposable_copies": 18,
+    "actual_commands": 45,
+    "expected_nonzero": 16,
+    "project_nonzero": "5 ordinary assertion failures and4 intended compiler/module/internal failures",
+    "constants_nonzero": "7 intended compiler failures",
+    "max_command_seconds": 4.917,
+    "all_roots_removed": true,
+    "no_timeouts_or_panics": true,
+    "raw_sha256": "1f2b7c52525535033b65f96d1292ae2bb361f93486b6974e8c7153d8784aa829",
+    "published_evidence": "Each per-unit review/execution.json equals the exact filtered raw list; both preexecution receipts preserved. Approved source digests and every installed/source snapshot checked."
+  },
+  "units": [
+    {
+      "unit": "injected-config-project-001",
+      "decision": "accept-actual-method-and-native-evidence",
+      "accepted_outcomes": [
+        "component-packages-toolchain",
+        "independent-application:interfaces.small-contracts (repair)",
+        "independent-application:testing.seams-doubles"
+      ],
+      "actual_learner_actions": [
+        "Own module identity/imports, minimal consumer-owned Lookup contract, Collect and narrow internal row formatter delegation, production composition root and separate Lookup-only client. Actual list output proves intended graph; wrong identity/internal/concrete/overbroad controls fail at named boundaries.",
+        "Own external-package recording double and two assertion tests distinguish supplied dependency, missing versus empty, repeated key order/exact count, empty request, changed responses across calls. Bypass/empty/twice are actually rejected by learner-only tests with useful diagnostics.",
+        "Reference tests/build/binary/client pass; exact quoted output and current-value behavior verified. Runtime-any control passes behavior and is explicitly method-rejected for missing named compile-time consumer boundary."
+      ],
+      "distinctness": "First consumer-text-contract supplied Text provider roles around a minimal formatting seam; this independent project selects environment Lookup dependency and owns interaction-recording tests plus production/package composition. writer-double first implements a fixed writer role; this application also owns the dependency boundary and deterministic history assertions. Supplied adapter, public/client fixtures and signatures are not authorship credit."
+    },
+    {
+      "unit": "constant-contexts-001",
+      "decision": "accept-actual-method-and-native-evidence",
+      "accepted_outcomes": [
+        "independent-application:types.constants (repair)"
+      ],
+      "actual_learner_actions": [
+        "Own exact untyped Scale=2^80, derived untyped Mask=255 and typed uint8 Marker. Positive consumers prove constant-expression/default-int/multiple target contexts; explicit uint16 conversion succeeds.",
+        "Actual compiler outputs distinguish unrepresentable default int, signed int8, uint8 overflow, incompatible typed uint8-to-uint16, premature Mask typing, uint64 Scale overflow and variable replacement.",
+        "Wrong untyped Marker actually permits the forbidden uint16 assignment and is rejected as contract/method failure despite command success."
+      ],
+      "distinctness": "Independent declarations preserve exact wide arithmetic and deliberately choose typing across several contexts, rather than repeating the existing constant-kinds first fix. No iota or supplied-consumer authorship credit."
+    }
+  ],
+  "preserved_guard_event": "Initial script stopped after saving the correct C-default compiler rejection because its diagnostic substring expected overflows int contiguously. Actual output is as int value in variable declaration (overflows); semantically accepted from preserved11-copy/31-command prefix. Initial script/log/prefix retained; no command repeated. C-default has an installed-source snapshot before its build, and no post-command final snapshot or script interpretation; neither is invented. Reviewed continuation executes only remaining7copies/14commands.",
+  "excluded_credit": [
+    "Automatic coverage or learner mastery",
+    "Extra module/build/internal applications beyond the accepted component",
+    "Supplied adapter/client/test implementation",
+    "Iota, test/consumer authorship in constants",
+    "New checker/profile/runner machinery"
+  ],
+  "conditions": [
+    "Root records finite learner-visible method checklist and final accepted receipt.",
+    "Final route/prerequisites/integration and exact-HEAD review still required.",
+    "Mandatory local batch gates and exact-HEAD green validate remain merge requirements."
+  ],
+  "reviewer_execution": "No authored code executed by reviewer; source/manifest and actual receipts inspected."
+}

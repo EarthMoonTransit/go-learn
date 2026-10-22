@@ -1,0 +1,2 @@
+module finite.local/constant-contexts
+go 1.27

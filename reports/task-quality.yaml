@@ -128,6 +128,24 @@ tasks:
         detected: 5
         survived: []
       legacy: false
+    - id: array-copy-stages-001
+      state: ready
+      input_digest: 4fef2bee403b4bb9ae3bfd95abba3cd8498c48d96a63088775dad99b07ae7f95
+      task_type: implement
+      primary_skill: arrays.value-semantics
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 6
+        total: 6
+        detected: 6
+        survived: []
+      legacy: false
     - id: array-window-update-001
       state: ready
       input_digest: 770e30425fd5cf869270dc72dfb1f5a07d206cdc51591ec67c75225d43f29ce2
@@ -234,6 +252,24 @@ tasks:
         required: 20
         total: 20
         detected: 20
+        survived: []
+      legacy: false
+    - id: bounded-record-read-001
+      state: ready
+      input_digest: 33dd4e1981a059845c03223358451f3905ab4546c8da330a8c6cb5021de09c21
+      task_type: implement
+      primary_skill: errors.typed
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 22
+        total: 22
+        detected: 22
         survived: []
       legacy: false
     - id: bounded-slice-view-001
@@ -3229,6 +3265,24 @@ tasks:
         detected: 4
         survived: []
       legacy: false
+    - id: struct-copy-comparability-001
+      state: ready
+      input_digest: 0c1202c23ca241cc77602a0c7cd944ae3118fe054e4101d548cd0cd35bcb9881
+      task_type: implement
+      primary_skill: structs.copy-equality
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 13
+        total: 13
+        detected: 13
+        survived: []
+      legacy: false
     - id: struct-copy-tests-001
       state: ready
       input_digest: 853777690b1f3c8bcaca2845a600fd2cd685a9b98b77f59055fb3ecc81f21be4
@@ -3848,7 +3902,7 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 206
+      count: 209
     - state: rejected
       count: 1
     - state: retired
@@ -3857,7 +3911,7 @@ task_types:
     - task_type: debug
       count: 50
     - task_type: implement
-      count: 110
+      count: 113
     - task_type: refactor
       count: 3
     - task_type: test-writing

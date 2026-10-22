@@ -1,0 +1,20 @@
+package row_test
+
+import (
+	"finite.local/configkit/snapshot/internal/row"
+	"testing"
+)
+
+func TestPublicFormat(t *testing.T) {
+	for _, c := range []struct {
+		k, v string
+		p    bool
+		want string
+	}{
+		{"A", "", true, `A=""`}, {"A", "ignored", false, `A=<missing>`}, {"UNDER_SCORE", "a\t\"界", true, `UNDER_SCORE="a\t\"界"`},
+	} {
+		if got := row.Format(c.k, c.v, c.p); got != c.want {
+			t.Errorf("Format(%q,%q,%t)=%q, want %q", c.k, c.v, c.p, got, c.want)
+		}
+	}
+}

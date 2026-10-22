@@ -1,0 +1,8 @@
+package processenv
+
+import "os"
+
+type Source struct{}
+
+func (Source) Lookup(key string) (string, bool) { return os.LookupEnv(key) }
+func (Source) Environ() []string                { return os.Environ() }
