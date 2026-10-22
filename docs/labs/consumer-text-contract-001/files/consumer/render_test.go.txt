@@ -1,0 +1,22 @@
+package consumer_test
+
+import (
+	"finite.local/consumer-contract/consumer"
+	"finite.local/consumer-contract/providers/fixed"
+	"finite.local/consumer-contract/providers/mutable"
+	"testing"
+)
+
+func TestConcreteProviders(t *testing.T) {
+	if got := consumer.Render(fixed.Value{Content: " a "}); got != "[ a ]" {
+		t.Errorf("fixed result=%q; want %q", got, "[ a ]")
+	}
+	value := &mutable.Value{Content: "λ"}
+	if got := consumer.Render(value); got != "[λ]" {
+		t.Errorf("mutable result=%q; want %q", got, "[λ]")
+	}
+	value.SetText("")
+	if got := consumer.Render(value); got != "[]" {
+		t.Errorf("empty result=%q; want %q", got, "[]")
+	}
+}

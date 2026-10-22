@@ -1,0 +1,5 @@
+package consumer
+
+type Source interface{ Read() string }
+
+func Render(source Source) string { return "[" + source.Read() + "]" }

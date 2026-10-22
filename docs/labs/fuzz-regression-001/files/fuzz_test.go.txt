@@ -1,0 +1,26 @@
+package fuzzregression
+
+import "testing"
+
+func FuzzSplitPair(f *testing.F) {
+	f.Add("")
+	f.Add(":")
+	f.Add("α: β")
+	f.Fuzz(func(t *testing.T, s string) {
+		count, position := 0, 0
+		for i := 0; i < len(s); i++ {
+			if s[i] == ':' {
+				count++
+				position = i
+			}
+		}
+		wantLeft, wantRight, wantOK := "", "", false
+		if count == 1 {
+			wantLeft, wantRight, wantOK = s[:position], s[position+1:], true
+		}
+		left, right, ok := SplitPair(s)
+		if left != wantLeft || right != wantRight || ok != wantOK {
+			t.Errorf("SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t), separator count=%d", s, left, right, ok, wantLeft, wantRight, wantOK, count)
+		}
+	})
+}

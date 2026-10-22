@@ -1,0 +1,56 @@
+{
+  "decision": "approve",
+  "reviewer": "/root/reviewer",
+  "recorded_at_utc": "2026-10-22T18:46:13.788948+00:00",
+  "findings": [],
+  "script_sha256": "6b30c93902b8279316e0b41dde8873233842b22ff5059201e719814aaa14e390",
+  "actual_evidence": {
+    "fresh_copies": 8,
+    "commands": 33,
+    "expected_nonzero_results": 6,
+    "maximum_seconds": 2.810401,
+    "go_version": "go1.27.0 darwin/arm64",
+    "all_cleanup_roots_absent": true,
+    "all_source_snapshots_match_reviewed_copy_events_and_hashes": true,
+    "normalized_public_records_exactly_match_raw_records": true,
+    "all_provenance_file_hashes_and_aggregate_digests_match_preexecution_approval": true
+  },
+  "units": [
+    {
+      "unit": "consumer-text-contract-001",
+      "content_digest": "39e334be4ea517d9daec2c69ab7109ef2e5b020b58cad7e3af74896b88344842",
+      "accepted_first_repair": "interfaces.small-contracts",
+      "assessment": [
+        "Starter lacks a named interface. Actual reference independently supplies consumer.TextSource with only Text() string and Render invokes it exactly once; empty, space and Unicode values pass unchanged tests.",
+        "Fixed, mutable pointer and third-party providers are preserved. Native go list confirms no production imports between consumer and providers.",
+        "Overbroad Width requirement and concrete fixed.Value coupling each fail the independent caller with the predicted concrete compiler diagnostic; correcting the consumer alone makes the same caller and all packages pass.",
+        "Runtime assertion through any passes behavior but is method-rejected; named consumer-owned contract is accepted through actual source review, not claimed automatic detection."
+      ],
+      "copies": 4,
+      "commands": 15
+    },
+    {
+      "unit": "package-boundaries-001",
+      "content_digest": "28adc141dc61aa27d0f92a93cdba77e487c42b5d85f69fad48681161f586f441",
+      "accepted_first_slots": [
+        "packages.import-cycles",
+        "packages.internal-boundaries"
+      ],
+      "assessment": [
+        "Original and alias-only consumer/producer cycles each produce native import-cycle diagnostics before repair. Reference removes both concrete back-dependencies through consumer-owned Source.Read() string; target tests and cmd/cycle then pass with [alpha] newline.",
+        "Independent domain/probe and internal formatter targets pass while cmd/outside is rejected specifically for its internal import; this failure is isolated from the unresolved cycle.",
+        "Reference public domain.Format delegates to the unchanged internal formatter; cmd/outside uses public facade. Domain tests and the identical caller command pass with <beta> newline.",
+        "Combined actual project passes all tests; native import graph agrees with prior prediction and both command outputs remain exact. Module, tests, caller fixtures and internal implementation are unchanged."
+      ],
+      "copies": 4,
+      "commands": 18
+    }
+  ],
+  "boundaries": [
+    "Manual evidence only: no automatic coverage/progress or learner mastery.",
+    "Small-contract first repair accepted before package dependency; independent small-contract application remains open.",
+    "Import-cycle and internal-boundary first encounters are assessed separately; no application or packages/toolchain component credit is added.",
+    "Actual snapshots change only reviewed editable paths. Exact source, commands, installed Go version, statuses, stdout/stderr and private-offline cleanup were inspected without reviewer execution.",
+    "Final route/diff review and mandatory delivery gates remain separate."
+  ]
+}

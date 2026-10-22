@@ -1,0 +1,52 @@
+{
+  "decision": "approve",
+  "reviewer": "/root/reviewer",
+  "recorded_at_utc": "2026-10-22T18:45:12.480562+00:00",
+  "unit": "fuzz-regression-001",
+  "content_digest": "b182d206be5b6855a532f737ac0fd3fd07621fe495c98d5d2b1d1eaaa75e43fb",
+  "script_sha256": "e304189b13d36860285e171c99e2379d6f74ed520bf4f8b02e1f322d6ab6de9b",
+  "findings": [],
+  "actual_evidence": {
+    "copies": 3,
+    "commands": 13,
+    "expected_ordinary_assertion_failures": 3,
+    "maximum_command_seconds": 2.767,
+    "all_roots_removed_and_absent": true,
+    "go_version": "go1.27.0 darwin/arm64",
+    "source_digest_and_all_10_file_hashes_match": true,
+    "raw_and_public_execution_records_equal": true
+  },
+  "method_acceptance": [
+    "Named double-colon native seed reproduces SplitPair accepting :: as empty/:/true; unchanged oracle reports expected empty/empty/false and separator count 2.",
+    "Meaningful ordinary TestSplitPairRegression is absent initially, installed while implementation is still broken, produces its own useful failure, then remains byte-identical while only split.go is repaired and the same command passes.",
+    "All snapshots preserve go.mod, supplied baseline tests, byte-oriented independent oracle and exact corpus bytes; only the two authorized learner files change. Final source contains the retained ordinary regression.",
+    "IndexByte repair rejects zero or multiple ASCII colons and preserves arbitrary byte substrings including empty sides. Explanation identifies SplitN limit 2 as the causal defect; fewer than two bytes cannot violate the multiple-colon condition.",
+    "Log-only ordinary Test passes broken code but unchanged oracle still fails; repaired code without retained Test passes behavior but is method-rejected. These are not claimed automatic method detectors.",
+    "All tests/native seeds pass after repair. Bounded -fuzztime=1x output reports baseline 0/4 then 1/4 and PASS only; no mutation phase, discovery or executed minimization is demonstrated."
+  ],
+  "accepted_first_slots": [
+    "fuzzing.reproduction"
+  ],
+  "automatic_credit": false,
+  "independent_application_credit": [],
+  "component_review": {
+    "slot": "component-regression-testing",
+    "decision": "approve",
+    "frozen_outcome": "Repair a defect and retain a meaningful regression; exercise public behavior and review the causal explanation.",
+    "basis": "This actual work combines public API contract diagnosis, authored ordinary assertion, implementation repair, unchanged-test before/after execution, preserved independent corpus/oracle and reviewed causal explanation. It meets the explicit regression component criterion in the owner document section 5. A supplied defect/seed does not claim independent discovery and does not prevent this stated repair-and-regression outcome. No VCS outcome is part of this component contract.",
+    "evidence_paths": [
+      "docs/labs/fuzz-regression-001/TASK.md",
+      "docs/labs/fuzz-regression-001/PROCEDURE.md",
+      "docs/labs/fuzz-regression-001/reference/regression_test.go.txt",
+      "docs/labs/fuzz-regression-001/reference/split.go.txt",
+      "docs/labs/fuzz-regression-001/review/execution.json",
+      "docs/plans/v1-backlog.json"
+    ],
+    "additional_skill_applications": []
+  },
+  "limits": [
+    "Manual material readiness only; no learner mastery or automatic task coverage.",
+    "First reproduction and component assessment reuse the same work; they are not two encounters for fuzzing.reproduction.",
+    "Batch final route/diff review, mandatory local gates and exact-HEAD green CI remain separate delivery requirements."
+  ]
+}

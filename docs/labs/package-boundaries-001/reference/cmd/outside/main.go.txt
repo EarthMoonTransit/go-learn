@@ -1,0 +1,8 @@
+package main
+
+import (
+	"finite.local/boundaries/domain"
+	"fmt"
+)
+
+func main() { fmt.Println(domain.Format("beta")) }

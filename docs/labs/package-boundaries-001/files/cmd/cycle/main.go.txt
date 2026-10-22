@@ -1,0 +1,9 @@
+package main
+
+import (
+	"finite.local/boundaries/cycle/consumer"
+	"finite.local/boundaries/cycle/producer"
+	"fmt"
+)
+
+func main() { fmt.Println(consumer.Render(producer.Source{Value: "alpha"})) }

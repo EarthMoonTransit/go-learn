@@ -1,0 +1,15 @@
+package caller_test
+
+import (
+	"finite.local/consumer-contract/consumer"
+	"finite.local/consumer-contract/external"
+	"testing"
+)
+
+func TestForeignProvider(t *testing.T) {
+	source := &external.Source{Content: " Ω "}
+	got := consumer.Render(source)
+	if got != "[ Ω ]" || source.Reads != 1 {
+		t.Errorf("foreign result=%q calls=%d; want %q calls=1", got, source.Reads, "[ Ω ]")
+	}
+}

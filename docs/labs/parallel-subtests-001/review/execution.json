@@ -1,0 +1,523 @@
+{
+  "status": "actual execution only; independent acceptance pending",
+  "source_manifest_sha256": "ea774d45088a47d42bb5a864169810436ccd8d6612c419a2f4980b8d723b02e9",
+  "execution_script_sha256": "0b8f8554f48a80b978e4ea866a9ee371ad9015a9b190fa223c9b76682c06e993",
+  "specimens": [
+    {
+      "lab": "parallel-subtests-001",
+      "specimen": "reference",
+      "content_digest": "7e7841b3984ea8e0a776b6e100924c744afe8707d75666f85fc323e2836aaf6e",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54",
+      "started_at": "2026-10-22T18:46:14.842239+00:00",
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/tmp",
+            "CGO_ENABLED": "0"
+          },
+          "timeout_seconds": 10,
+          "started_at": "2026-10-22T18:46:14.844696+00:00",
+          "expected_observation": "version",
+          "ended_at": "2026-10-22T18:46:14.855409+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-parallel=2",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^TestParallelTable$",
+            "."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/tmp",
+            "CGO_ENABLED": "0"
+          },
+          "timeout_seconds": 60,
+          "started_at": "2026-10-22T18:46:14.855896+00:00",
+          "expected_observation": "parallel-pass",
+          "ended_at": "2026-10-22T18:46:17.184802+00:00",
+          "exit_status": 0,
+          "stdout": "=== RUN   TestParallelTable\n=== RUN   TestParallelTable/alpha\n=== PAUSE TestParallelTable/alpha\n=== RUN   TestParallelTable/beta\n=== PAUSE TestParallelTable/beta\n=== RUN   TestParallelTable/gamma\n=== PAUSE TestParallelTable/gamma\n=== NAME  TestParallelTable\n    parallel_test.go:43: parent body end\n=== CONT  TestParallelTable/alpha\n    parallel_test.go:34: child alpha resumed\n=== CONT  TestParallelTable/gamma\n    parallel_test.go:34: child gamma resumed\n=== CONT  TestParallelTable/beta\n    parallel_test.go:34: child beta resumed\n=== NAME  TestParallelTable\n    parallel_test.go:25: parent cleanup: completed=3\n--- PASS: TestParallelTable (0.00s)\n    --- PASS: TestParallelTable/alpha (0.00s)\n    --- PASS: TestParallelTable/gamma (0.00s)\n    --- PASS: TestParallelTable/beta (0.00s)\nPASS\nok  \tfinite.local/parallelsubtests\t0.187s\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-parallel=1",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^TestParallelTable$",
+            "."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-iq0hhd54/tmp",
+            "CGO_ENABLED": "0"
+          },
+          "timeout_seconds": 60,
+          "started_at": "2026-10-22T18:46:17.185526+00:00",
+          "expected_observation": "parallel-pass",
+          "ended_at": "2026-10-22T18:46:17.431443+00:00",
+          "exit_status": 0,
+          "stdout": "=== RUN   TestParallelTable\n=== RUN   TestParallelTable/alpha\n=== PAUSE TestParallelTable/alpha\n=== RUN   TestParallelTable/beta\n=== PAUSE TestParallelTable/beta\n=== RUN   TestParallelTable/gamma\n=== PAUSE TestParallelTable/gamma\n=== NAME  TestParallelTable\n    parallel_test.go:43: parent body end\n=== CONT  TestParallelTable/alpha\n    parallel_test.go:34: child alpha resumed\n=== CONT  TestParallelTable/gamma\n    parallel_test.go:34: child gamma resumed\n=== CONT  TestParallelTable/beta\n    parallel_test.go:34: child beta resumed\n=== NAME  TestParallelTable\n    parallel_test.go:25: parent cleanup: completed=3\n--- PASS: TestParallelTable (0.00s)\n    --- PASS: TestParallelTable/alpha (0.00s)\n    --- PASS: TestParallelTable/gamma (0.00s)\n    --- PASS: TestParallelTable/beta (0.00s)\nPASS\nok  \tfinite.local/parallelsubtests\t0.112s\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        }
+      ],
+      "status": "expected finite observations recorded; independent acceptance pending",
+      "file_bindings": [
+        {
+          "source": "docs/labs/parallel-subtests-001/files/go.mod.txt",
+          "destination": "go.mod"
+        },
+        {
+          "source": "docs/labs/parallel-subtests-001/files/fixture_test.go.txt",
+          "destination": "fixture_test.go"
+        },
+        {
+          "source": "docs/labs/parallel-subtests-001/reference/parallel_test.go.txt",
+          "destination": "parallel_test.go"
+        }
+      ],
+      "source_snapshot_before": {
+        "fixture_test.go": {
+          "sha256": "f1f0c387e3d1460537a171d5731fe8eb36f643840f57e2da3cd6b8bcdffe0f12",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync\"\n\t\"testing\"\n)\n\ntype fixture struct {\n\tmu     sync.Mutex\n\tvalues map[string]int\n}\n\nfunc newFixture() *fixture {\n\treturn &fixture{values: make(map[string]int)}\n}\n\nfunc checkFixture(t *testing.T, state *fixture, key string, value int) {\n\tt.Helper()\n\tstate.mu.Lock()\n\tdefer state.mu.Unlock()\n\tstate.values[key] = value\n\tif got := len(state.values); got != 1 {\n\t\tt.Errorf(\"fixture size=%d; want 1 for case %q\", got, key)\n\t}\n\tif got := state.values[key]; got != value {\n\t\tt.Errorf(\"fixture value=%d; want %d for case %q\", got, value, key)\n\t}\n}\n"
+        },
+        "go.mod": {
+          "sha256": "1c14d77cd3a0859101395c33d1da4f910863f4d694864804dcc74a2f44910826",
+          "text": "module finite.local/parallelsubtests\n\ngo 1.27.0\n"
+        },
+        "parallel_test.go": {
+          "sha256": "9bfb7913b696264267cf99ae223c3ba8ce676a411e4a66af7f95b69e3177e408",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync/atomic\"\n\t\"testing\"\n)\n\nfunc TestParallelTable(t *testing.T) {\n\tcases := []struct {\n\t\tname  string\n\t\tvalue int\n\t}{\n\t\t{\"alpha\", 11},\n\t\t{\"beta\", -2},\n\t\t{\"gamma\", 0},\n\t}\n\tvar bodyEnded atomic.Bool\n\tvar completed atomic.Int32\n\tt.Cleanup(func() {\n\t\tgot := completed.Load()\n\t\tif got != int32(len(cases)) {\n\t\t\tt.Errorf(\"parent cleanup completed=%d; want 3\", got)\n\t\t\treturn\n\t\t}\n\t\tt.Logf(\"parent cleanup: completed=%d\", got)\n\t})\n\tfor _, tc := range cases {\n\t\tt.Run(tc.name, func(t *testing.T) {\n\t\t\tt.Parallel()\n\t\t\tdefer completed.Add(1)\n\t\t\tif !bodyEnded.Load() {\n\t\t\t\tt.Errorf(\"child %q resumed before parent body end\", tc.name)\n\t\t\t}\n\t\t\tt.Logf(\"child %s resumed\", tc.name)\n\t\t\tstate := newFixture()\n\t\t\tcheckFixture(t, state, tc.name, tc.value)\n\t\t})\n\t}\n\tif got := completed.Load(); got != 0 {\n\t\tt.Errorf(\"parent body completed=%d; want 0 before returning\", got)\n\t}\n\tbodyEnded.Store(true)\n\tt.Log(\"parent body end\")\n}\n"
+        }
+      },
+      "source_snapshot_after": {
+        "fixture_test.go": {
+          "sha256": "f1f0c387e3d1460537a171d5731fe8eb36f643840f57e2da3cd6b8bcdffe0f12",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync\"\n\t\"testing\"\n)\n\ntype fixture struct {\n\tmu     sync.Mutex\n\tvalues map[string]int\n}\n\nfunc newFixture() *fixture {\n\treturn &fixture{values: make(map[string]int)}\n}\n\nfunc checkFixture(t *testing.T, state *fixture, key string, value int) {\n\tt.Helper()\n\tstate.mu.Lock()\n\tdefer state.mu.Unlock()\n\tstate.values[key] = value\n\tif got := len(state.values); got != 1 {\n\t\tt.Errorf(\"fixture size=%d; want 1 for case %q\", got, key)\n\t}\n\tif got := state.values[key]; got != value {\n\t\tt.Errorf(\"fixture value=%d; want %d for case %q\", got, value, key)\n\t}\n}\n"
+        },
+        "go.mod": {
+          "sha256": "1c14d77cd3a0859101395c33d1da4f910863f4d694864804dcc74a2f44910826",
+          "text": "module finite.local/parallelsubtests\n\ngo 1.27.0\n"
+        },
+        "parallel_test.go": {
+          "sha256": "9bfb7913b696264267cf99ae223c3ba8ce676a411e4a66af7f95b69e3177e408",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync/atomic\"\n\t\"testing\"\n)\n\nfunc TestParallelTable(t *testing.T) {\n\tcases := []struct {\n\t\tname  string\n\t\tvalue int\n\t}{\n\t\t{\"alpha\", 11},\n\t\t{\"beta\", -2},\n\t\t{\"gamma\", 0},\n\t}\n\tvar bodyEnded atomic.Bool\n\tvar completed atomic.Int32\n\tt.Cleanup(func() {\n\t\tgot := completed.Load()\n\t\tif got != int32(len(cases)) {\n\t\t\tt.Errorf(\"parent cleanup completed=%d; want 3\", got)\n\t\t\treturn\n\t\t}\n\t\tt.Logf(\"parent cleanup: completed=%d\", got)\n\t})\n\tfor _, tc := range cases {\n\t\tt.Run(tc.name, func(t *testing.T) {\n\t\t\tt.Parallel()\n\t\t\tdefer completed.Add(1)\n\t\t\tif !bodyEnded.Load() {\n\t\t\t\tt.Errorf(\"child %q resumed before parent body end\", tc.name)\n\t\t\t}\n\t\t\tt.Logf(\"child %s resumed\", tc.name)\n\t\t\tstate := newFixture()\n\t\t\tcheckFixture(t, state, tc.name, tc.value)\n\t\t})\n\t}\n\tif got := completed.Load(); got != 0 {\n\t\tt.Errorf(\"parent body completed=%d; want 0 before returning\", got)\n\t}\n\tbodyEnded.Store(true)\n\tt.Log(\"parent body end\")\n}\n"
+        }
+      },
+      "ended_at": "2026-10-22T18:46:17.500072+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "lab": "parallel-subtests-001",
+      "specimen": "parent-read",
+      "content_digest": "7e7841b3984ea8e0a776b6e100924c744afe8707d75666f85fc323e2836aaf6e",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-parent-read-1szy3gof",
+      "started_at": "2026-10-22T18:46:17.500917+00:00",
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-parent-read-1szy3gof/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-parent-read-1szy3gof/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-parent-read-1szy3gof/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-parent-read-1szy3gof/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-parent-read-1szy3gof/tmp",
+            "CGO_ENABLED": "0"
+          },
+          "timeout_seconds": 10,
+          "started_at": "2026-10-22T18:46:17.502832+00:00",
+          "expected_observation": "version",
+          "ended_at": "2026-10-22T18:46:17.508960+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-parallel=2",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^TestParallelTable$",
+            "."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-parent-read-1szy3gof/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-parent-read-1szy3gof/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-parent-read-1szy3gof/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-parent-read-1szy3gof/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-parent-read-1szy3gof/tmp",
+            "CGO_ENABLED": "0"
+          },
+          "timeout_seconds": 60,
+          "started_at": "2026-10-22T18:46:17.509271+00:00",
+          "expected_observation": "parent-read",
+          "ended_at": "2026-10-22T18:46:19.929855+00:00",
+          "exit_status": 1,
+          "stdout": "=== RUN   TestParallelTable\n=== RUN   TestParallelTable/alpha\n=== PAUSE TestParallelTable/alpha\n=== RUN   TestParallelTable/beta\n=== PAUSE TestParallelTable/beta\n=== RUN   TestParallelTable/gamma\n=== PAUSE TestParallelTable/gamma\n=== NAME  TestParallelTable\n    parallel_test.go:40: parent body completed=0; want 3 before returning\n    parallel_test.go:43: parent body end\n=== CONT  TestParallelTable/alpha\n    parallel_test.go:34: child alpha resumed\n=== CONT  TestParallelTable/beta\n=== CONT  TestParallelTable/gamma\n    parallel_test.go:34: child gamma resumed\n=== NAME  TestParallelTable/beta\n    parallel_test.go:34: child beta resumed\n=== NAME  TestParallelTable\n    parallel_test.go:25: parent cleanup: completed=3\n--- FAIL: TestParallelTable (0.00s)\n    --- PASS: TestParallelTable/alpha (0.00s)\n    --- PASS: TestParallelTable/gamma (0.00s)\n    --- PASS: TestParallelTable/beta (0.00s)\nFAIL\nFAIL\tfinite.local/parallelsubtests\t0.227s\nFAIL\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        }
+      ],
+      "status": "expected finite observations recorded; independent acceptance pending",
+      "file_bindings": [
+        {
+          "source": "docs/labs/parallel-subtests-001/files/go.mod.txt",
+          "destination": "go.mod"
+        },
+        {
+          "source": "docs/labs/parallel-subtests-001/files/fixture_test.go.txt",
+          "destination": "fixture_test.go"
+        },
+        {
+          "source": "docs/labs/parallel-subtests-001/wrong/parent_read_parallel_test.go.txt",
+          "destination": "parallel_test.go"
+        }
+      ],
+      "source_snapshot_before": {
+        "fixture_test.go": {
+          "sha256": "f1f0c387e3d1460537a171d5731fe8eb36f643840f57e2da3cd6b8bcdffe0f12",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync\"\n\t\"testing\"\n)\n\ntype fixture struct {\n\tmu     sync.Mutex\n\tvalues map[string]int\n}\n\nfunc newFixture() *fixture {\n\treturn &fixture{values: make(map[string]int)}\n}\n\nfunc checkFixture(t *testing.T, state *fixture, key string, value int) {\n\tt.Helper()\n\tstate.mu.Lock()\n\tdefer state.mu.Unlock()\n\tstate.values[key] = value\n\tif got := len(state.values); got != 1 {\n\t\tt.Errorf(\"fixture size=%d; want 1 for case %q\", got, key)\n\t}\n\tif got := state.values[key]; got != value {\n\t\tt.Errorf(\"fixture value=%d; want %d for case %q\", got, value, key)\n\t}\n}\n"
+        },
+        "go.mod": {
+          "sha256": "1c14d77cd3a0859101395c33d1da4f910863f4d694864804dcc74a2f44910826",
+          "text": "module finite.local/parallelsubtests\n\ngo 1.27.0\n"
+        },
+        "parallel_test.go": {
+          "sha256": "57670c5d24e9813a375e7b0de0286f4113ca2631d6d28c84be5108d76b8a9a57",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync/atomic\"\n\t\"testing\"\n)\n\nfunc TestParallelTable(t *testing.T) {\n\tcases := []struct {\n\t\tname  string\n\t\tvalue int\n\t}{\n\t\t{\"alpha\", 11},\n\t\t{\"beta\", -2},\n\t\t{\"gamma\", 0},\n\t}\n\tvar bodyEnded atomic.Bool\n\tvar completed atomic.Int32\n\tt.Cleanup(func() {\n\t\tgot := completed.Load()\n\t\tif got != int32(len(cases)) {\n\t\t\tt.Errorf(\"parent cleanup completed=%d; want 3\", got)\n\t\t\treturn\n\t\t}\n\t\tt.Logf(\"parent cleanup: completed=%d\", got)\n\t})\n\tfor _, tc := range cases {\n\t\tt.Run(tc.name, func(t *testing.T) {\n\t\t\tt.Parallel()\n\t\t\tdefer completed.Add(1)\n\t\t\tif !bodyEnded.Load() {\n\t\t\t\tt.Errorf(\"child %q resumed before parent body end\", tc.name)\n\t\t\t}\n\t\t\tt.Logf(\"child %s resumed\", tc.name)\n\t\t\tstate := newFixture()\n\t\t\tcheckFixture(t, state, tc.name, tc.value)\n\t\t})\n\t}\n\tif got := completed.Load(); got != 3 {\n\t\tt.Errorf(\"parent body completed=%d; want 3 before returning\", got)\n\t}\n\tbodyEnded.Store(true)\n\tt.Log(\"parent body end\")\n}\n"
+        }
+      },
+      "source_snapshot_after": {
+        "fixture_test.go": {
+          "sha256": "f1f0c387e3d1460537a171d5731fe8eb36f643840f57e2da3cd6b8bcdffe0f12",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync\"\n\t\"testing\"\n)\n\ntype fixture struct {\n\tmu     sync.Mutex\n\tvalues map[string]int\n}\n\nfunc newFixture() *fixture {\n\treturn &fixture{values: make(map[string]int)}\n}\n\nfunc checkFixture(t *testing.T, state *fixture, key string, value int) {\n\tt.Helper()\n\tstate.mu.Lock()\n\tdefer state.mu.Unlock()\n\tstate.values[key] = value\n\tif got := len(state.values); got != 1 {\n\t\tt.Errorf(\"fixture size=%d; want 1 for case %q\", got, key)\n\t}\n\tif got := state.values[key]; got != value {\n\t\tt.Errorf(\"fixture value=%d; want %d for case %q\", got, value, key)\n\t}\n}\n"
+        },
+        "go.mod": {
+          "sha256": "1c14d77cd3a0859101395c33d1da4f910863f4d694864804dcc74a2f44910826",
+          "text": "module finite.local/parallelsubtests\n\ngo 1.27.0\n"
+        },
+        "parallel_test.go": {
+          "sha256": "57670c5d24e9813a375e7b0de0286f4113ca2631d6d28c84be5108d76b8a9a57",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync/atomic\"\n\t\"testing\"\n)\n\nfunc TestParallelTable(t *testing.T) {\n\tcases := []struct {\n\t\tname  string\n\t\tvalue int\n\t}{\n\t\t{\"alpha\", 11},\n\t\t{\"beta\", -2},\n\t\t{\"gamma\", 0},\n\t}\n\tvar bodyEnded atomic.Bool\n\tvar completed atomic.Int32\n\tt.Cleanup(func() {\n\t\tgot := completed.Load()\n\t\tif got != int32(len(cases)) {\n\t\t\tt.Errorf(\"parent cleanup completed=%d; want 3\", got)\n\t\t\treturn\n\t\t}\n\t\tt.Logf(\"parent cleanup: completed=%d\", got)\n\t})\n\tfor _, tc := range cases {\n\t\tt.Run(tc.name, func(t *testing.T) {\n\t\t\tt.Parallel()\n\t\t\tdefer completed.Add(1)\n\t\t\tif !bodyEnded.Load() {\n\t\t\t\tt.Errorf(\"child %q resumed before parent body end\", tc.name)\n\t\t\t}\n\t\t\tt.Logf(\"child %s resumed\", tc.name)\n\t\t\tstate := newFixture()\n\t\t\tcheckFixture(t, state, tc.name, tc.value)\n\t\t})\n\t}\n\tif got := completed.Load(); got != 3 {\n\t\tt.Errorf(\"parent body completed=%d; want 3 before returning\", got)\n\t}\n\tbodyEnded.Store(true)\n\tt.Log(\"parent body end\")\n}\n"
+        }
+      },
+      "ended_at": "2026-10-22T18:46:19.998480+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "lab": "parallel-subtests-001",
+      "specimen": "shared-fixture",
+      "content_digest": "7e7841b3984ea8e0a776b6e100924c744afe8707d75666f85fc323e2836aaf6e",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-shared-fixture-1rnfhe8g",
+      "started_at": "2026-10-22T18:46:19.999061+00:00",
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-shared-fixture-1rnfhe8g/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-shared-fixture-1rnfhe8g/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-shared-fixture-1rnfhe8g/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-shared-fixture-1rnfhe8g/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-shared-fixture-1rnfhe8g/tmp",
+            "CGO_ENABLED": "0"
+          },
+          "timeout_seconds": 10,
+          "started_at": "2026-10-22T18:46:20.000845+00:00",
+          "expected_observation": "version",
+          "ended_at": "2026-10-22T18:46:20.007169+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-parallel=2",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^TestParallelTable$",
+            "."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-shared-fixture-1rnfhe8g/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-shared-fixture-1rnfhe8g/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-shared-fixture-1rnfhe8g/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-shared-fixture-1rnfhe8g/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-shared-fixture-1rnfhe8g/tmp",
+            "CGO_ENABLED": "0"
+          },
+          "timeout_seconds": 60,
+          "started_at": "2026-10-22T18:46:20.007510+00:00",
+          "expected_observation": "shared-fixture",
+          "ended_at": "2026-10-22T18:46:22.325125+00:00",
+          "exit_status": 1,
+          "stdout": "=== RUN   TestParallelTable\n=== RUN   TestParallelTable/alpha\n=== PAUSE TestParallelTable/alpha\n=== RUN   TestParallelTable/beta\n=== PAUSE TestParallelTable/beta\n=== RUN   TestParallelTable/gamma\n=== PAUSE TestParallelTable/gamma\n=== NAME  TestParallelTable\n    parallel_test.go:43: parent body end\n=== CONT  TestParallelTable/alpha\n    parallel_test.go:35: child alpha resumed\n=== CONT  TestParallelTable/beta\n    parallel_test.go:35: child beta resumed\n    parallel_test.go:36: fixture size=2; want 1 for case \"beta\"\n=== CONT  TestParallelTable/gamma\n    parallel_test.go:35: child gamma resumed\n    parallel_test.go:36: fixture size=3; want 1 for case \"gamma\"\n=== NAME  TestParallelTable\n    parallel_test.go:25: parent cleanup: completed=3\n--- FAIL: TestParallelTable (0.00s)\n    --- PASS: TestParallelTable/alpha (0.00s)\n    --- FAIL: TestParallelTable/beta (0.00s)\n    --- FAIL: TestParallelTable/gamma (0.00s)\nFAIL\nFAIL\tfinite.local/parallelsubtests\t0.156s\nFAIL\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        }
+      ],
+      "status": "expected finite observations recorded; independent acceptance pending",
+      "file_bindings": [
+        {
+          "source": "docs/labs/parallel-subtests-001/files/go.mod.txt",
+          "destination": "go.mod"
+        },
+        {
+          "source": "docs/labs/parallel-subtests-001/files/fixture_test.go.txt",
+          "destination": "fixture_test.go"
+        },
+        {
+          "source": "docs/labs/parallel-subtests-001/wrong/shared_fixture_parallel_test.go.txt",
+          "destination": "parallel_test.go"
+        }
+      ],
+      "source_snapshot_before": {
+        "fixture_test.go": {
+          "sha256": "f1f0c387e3d1460537a171d5731fe8eb36f643840f57e2da3cd6b8bcdffe0f12",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync\"\n\t\"testing\"\n)\n\ntype fixture struct {\n\tmu     sync.Mutex\n\tvalues map[string]int\n}\n\nfunc newFixture() *fixture {\n\treturn &fixture{values: make(map[string]int)}\n}\n\nfunc checkFixture(t *testing.T, state *fixture, key string, value int) {\n\tt.Helper()\n\tstate.mu.Lock()\n\tdefer state.mu.Unlock()\n\tstate.values[key] = value\n\tif got := len(state.values); got != 1 {\n\t\tt.Errorf(\"fixture size=%d; want 1 for case %q\", got, key)\n\t}\n\tif got := state.values[key]; got != value {\n\t\tt.Errorf(\"fixture value=%d; want %d for case %q\", got, value, key)\n\t}\n}\n"
+        },
+        "go.mod": {
+          "sha256": "1c14d77cd3a0859101395c33d1da4f910863f4d694864804dcc74a2f44910826",
+          "text": "module finite.local/parallelsubtests\n\ngo 1.27.0\n"
+        },
+        "parallel_test.go": {
+          "sha256": "335985f1022cb9cce4b613049221c9e2d6ed179338fe684827afe252cf10b785",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync/atomic\"\n\t\"testing\"\n)\n\nfunc TestParallelTable(t *testing.T) {\n\tcases := []struct {\n\t\tname  string\n\t\tvalue int\n\t}{\n\t\t{\"alpha\", 11},\n\t\t{\"beta\", -2},\n\t\t{\"gamma\", 0},\n\t}\n\tvar bodyEnded atomic.Bool\n\tvar completed atomic.Int32\n\tt.Cleanup(func() {\n\t\tgot := completed.Load()\n\t\tif got != int32(len(cases)) {\n\t\t\tt.Errorf(\"parent cleanup completed=%d; want 3\", got)\n\t\t\treturn\n\t\t}\n\t\tt.Logf(\"parent cleanup: completed=%d\", got)\n\t})\n\tstate := newFixture()\n\tfor _, tc := range cases {\n\t\tt.Run(tc.name, func(t *testing.T) {\n\t\t\tt.Parallel()\n\t\t\tdefer completed.Add(1)\n\t\t\tif !bodyEnded.Load() {\n\t\t\t\tt.Errorf(\"child %q resumed before parent body end\", tc.name)\n\t\t\t}\n\t\t\tt.Logf(\"child %s resumed\", tc.name)\n\t\t\tcheckFixture(t, state, tc.name, tc.value)\n\t\t})\n\t}\n\tif got := completed.Load(); got != 0 {\n\t\tt.Errorf(\"parent body completed=%d; want 0 before returning\", got)\n\t}\n\tbodyEnded.Store(true)\n\tt.Log(\"parent body end\")\n}\n"
+        }
+      },
+      "source_snapshot_after": {
+        "fixture_test.go": {
+          "sha256": "f1f0c387e3d1460537a171d5731fe8eb36f643840f57e2da3cd6b8bcdffe0f12",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync\"\n\t\"testing\"\n)\n\ntype fixture struct {\n\tmu     sync.Mutex\n\tvalues map[string]int\n}\n\nfunc newFixture() *fixture {\n\treturn &fixture{values: make(map[string]int)}\n}\n\nfunc checkFixture(t *testing.T, state *fixture, key string, value int) {\n\tt.Helper()\n\tstate.mu.Lock()\n\tdefer state.mu.Unlock()\n\tstate.values[key] = value\n\tif got := len(state.values); got != 1 {\n\t\tt.Errorf(\"fixture size=%d; want 1 for case %q\", got, key)\n\t}\n\tif got := state.values[key]; got != value {\n\t\tt.Errorf(\"fixture value=%d; want %d for case %q\", got, value, key)\n\t}\n}\n"
+        },
+        "go.mod": {
+          "sha256": "1c14d77cd3a0859101395c33d1da4f910863f4d694864804dcc74a2f44910826",
+          "text": "module finite.local/parallelsubtests\n\ngo 1.27.0\n"
+        },
+        "parallel_test.go": {
+          "sha256": "335985f1022cb9cce4b613049221c9e2d6ed179338fe684827afe252cf10b785",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync/atomic\"\n\t\"testing\"\n)\n\nfunc TestParallelTable(t *testing.T) {\n\tcases := []struct {\n\t\tname  string\n\t\tvalue int\n\t}{\n\t\t{\"alpha\", 11},\n\t\t{\"beta\", -2},\n\t\t{\"gamma\", 0},\n\t}\n\tvar bodyEnded atomic.Bool\n\tvar completed atomic.Int32\n\tt.Cleanup(func() {\n\t\tgot := completed.Load()\n\t\tif got != int32(len(cases)) {\n\t\t\tt.Errorf(\"parent cleanup completed=%d; want 3\", got)\n\t\t\treturn\n\t\t}\n\t\tt.Logf(\"parent cleanup: completed=%d\", got)\n\t})\n\tstate := newFixture()\n\tfor _, tc := range cases {\n\t\tt.Run(tc.name, func(t *testing.T) {\n\t\t\tt.Parallel()\n\t\t\tdefer completed.Add(1)\n\t\t\tif !bodyEnded.Load() {\n\t\t\t\tt.Errorf(\"child %q resumed before parent body end\", tc.name)\n\t\t\t}\n\t\t\tt.Logf(\"child %s resumed\", tc.name)\n\t\t\tcheckFixture(t, state, tc.name, tc.value)\n\t\t})\n\t}\n\tif got := completed.Load(); got != 0 {\n\t\tt.Errorf(\"parent body completed=%d; want 0 before returning\", got)\n\t}\n\tbodyEnded.Store(true)\n\tt.Log(\"parent body end\")\n}\n"
+        }
+      },
+      "ended_at": "2026-10-22T18:46:22.390575+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "lab": "parallel-subtests-001",
+      "specimen": "no-parallel",
+      "content_digest": "7e7841b3984ea8e0a776b6e100924c744afe8707d75666f85fc323e2836aaf6e",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-no-parallel-_djz9ng8",
+      "started_at": "2026-10-22T18:46:22.391145+00:00",
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-no-parallel-_djz9ng8/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-no-parallel-_djz9ng8/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-no-parallel-_djz9ng8/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-no-parallel-_djz9ng8/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-no-parallel-_djz9ng8/tmp",
+            "CGO_ENABLED": "0"
+          },
+          "timeout_seconds": 10,
+          "started_at": "2026-10-22T18:46:22.393202+00:00",
+          "expected_observation": "version",
+          "ended_at": "2026-10-22T18:46:22.399836+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-parallel=2",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^TestParallelTable$",
+            "."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-no-parallel-_djz9ng8/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-no-parallel-_djz9ng8/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-no-parallel-_djz9ng8/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-no-parallel-_djz9ng8/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-no-parallel-_djz9ng8/tmp",
+            "CGO_ENABLED": "0"
+          },
+          "timeout_seconds": 60,
+          "started_at": "2026-10-22T18:46:22.400309+00:00",
+          "expected_observation": "no-parallel",
+          "ended_at": "2026-10-22T18:46:24.757985+00:00",
+          "exit_status": 1,
+          "stdout": "=== RUN   TestParallelTable\n=== RUN   TestParallelTable/alpha\n    parallel_test.go:31: child \"alpha\" resumed before parent body end\n    parallel_test.go:33: child alpha resumed\n=== RUN   TestParallelTable/beta\n    parallel_test.go:31: child \"beta\" resumed before parent body end\n    parallel_test.go:33: child beta resumed\n=== RUN   TestParallelTable/gamma\n    parallel_test.go:31: child \"gamma\" resumed before parent body end\n    parallel_test.go:33: child gamma resumed\n=== NAME  TestParallelTable\n    parallel_test.go:39: parent body completed=3; want 0 before returning\n    parallel_test.go:42: parent body end\n    parallel_test.go:25: parent cleanup: completed=3\n--- FAIL: TestParallelTable (0.00s)\n    --- FAIL: TestParallelTable/alpha (0.00s)\n    --- FAIL: TestParallelTable/beta (0.00s)\n    --- FAIL: TestParallelTable/gamma (0.00s)\nFAIL\nFAIL\tfinite.local/parallelsubtests\t0.212s\nFAIL\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        }
+      ],
+      "status": "expected finite observations recorded; independent acceptance pending",
+      "file_bindings": [
+        {
+          "source": "docs/labs/parallel-subtests-001/files/go.mod.txt",
+          "destination": "go.mod"
+        },
+        {
+          "source": "docs/labs/parallel-subtests-001/files/fixture_test.go.txt",
+          "destination": "fixture_test.go"
+        },
+        {
+          "source": "docs/labs/parallel-subtests-001/wrong/no_parallel_test.go.txt",
+          "destination": "parallel_test.go"
+        }
+      ],
+      "source_snapshot_before": {
+        "fixture_test.go": {
+          "sha256": "f1f0c387e3d1460537a171d5731fe8eb36f643840f57e2da3cd6b8bcdffe0f12",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync\"\n\t\"testing\"\n)\n\ntype fixture struct {\n\tmu     sync.Mutex\n\tvalues map[string]int\n}\n\nfunc newFixture() *fixture {\n\treturn &fixture{values: make(map[string]int)}\n}\n\nfunc checkFixture(t *testing.T, state *fixture, key string, value int) {\n\tt.Helper()\n\tstate.mu.Lock()\n\tdefer state.mu.Unlock()\n\tstate.values[key] = value\n\tif got := len(state.values); got != 1 {\n\t\tt.Errorf(\"fixture size=%d; want 1 for case %q\", got, key)\n\t}\n\tif got := state.values[key]; got != value {\n\t\tt.Errorf(\"fixture value=%d; want %d for case %q\", got, value, key)\n\t}\n}\n"
+        },
+        "go.mod": {
+          "sha256": "1c14d77cd3a0859101395c33d1da4f910863f4d694864804dcc74a2f44910826",
+          "text": "module finite.local/parallelsubtests\n\ngo 1.27.0\n"
+        },
+        "parallel_test.go": {
+          "sha256": "b3c7df1e89e3a11b4b65ceac7c411b8fa0bf942fe51d4300fdaa071693ca4a7b",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync/atomic\"\n\t\"testing\"\n)\n\nfunc TestParallelTable(t *testing.T) {\n\tcases := []struct {\n\t\tname  string\n\t\tvalue int\n\t}{\n\t\t{\"alpha\", 11},\n\t\t{\"beta\", -2},\n\t\t{\"gamma\", 0},\n\t}\n\tvar bodyEnded atomic.Bool\n\tvar completed atomic.Int32\n\tt.Cleanup(func() {\n\t\tgot := completed.Load()\n\t\tif got != int32(len(cases)) {\n\t\t\tt.Errorf(\"parent cleanup completed=%d; want 3\", got)\n\t\t\treturn\n\t\t}\n\t\tt.Logf(\"parent cleanup: completed=%d\", got)\n\t})\n\tfor _, tc := range cases {\n\t\tt.Run(tc.name, func(t *testing.T) {\n\t\t\tdefer completed.Add(1)\n\t\t\tif !bodyEnded.Load() {\n\t\t\t\tt.Errorf(\"child %q resumed before parent body end\", tc.name)\n\t\t\t}\n\t\t\tt.Logf(\"child %s resumed\", tc.name)\n\t\t\tstate := newFixture()\n\t\t\tcheckFixture(t, state, tc.name, tc.value)\n\t\t})\n\t}\n\tif got := completed.Load(); got != 0 {\n\t\tt.Errorf(\"parent body completed=%d; want 0 before returning\", got)\n\t}\n\tbodyEnded.Store(true)\n\tt.Log(\"parent body end\")\n}\n"
+        }
+      },
+      "source_snapshot_after": {
+        "fixture_test.go": {
+          "sha256": "f1f0c387e3d1460537a171d5731fe8eb36f643840f57e2da3cd6b8bcdffe0f12",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync\"\n\t\"testing\"\n)\n\ntype fixture struct {\n\tmu     sync.Mutex\n\tvalues map[string]int\n}\n\nfunc newFixture() *fixture {\n\treturn &fixture{values: make(map[string]int)}\n}\n\nfunc checkFixture(t *testing.T, state *fixture, key string, value int) {\n\tt.Helper()\n\tstate.mu.Lock()\n\tdefer state.mu.Unlock()\n\tstate.values[key] = value\n\tif got := len(state.values); got != 1 {\n\t\tt.Errorf(\"fixture size=%d; want 1 for case %q\", got, key)\n\t}\n\tif got := state.values[key]; got != value {\n\t\tt.Errorf(\"fixture value=%d; want %d for case %q\", got, value, key)\n\t}\n}\n"
+        },
+        "go.mod": {
+          "sha256": "1c14d77cd3a0859101395c33d1da4f910863f4d694864804dcc74a2f44910826",
+          "text": "module finite.local/parallelsubtests\n\ngo 1.27.0\n"
+        },
+        "parallel_test.go": {
+          "sha256": "b3c7df1e89e3a11b4b65ceac7c411b8fa0bf942fe51d4300fdaa071693ca4a7b",
+          "text": "package parallelsubtests\n\nimport (\n\t\"sync/atomic\"\n\t\"testing\"\n)\n\nfunc TestParallelTable(t *testing.T) {\n\tcases := []struct {\n\t\tname  string\n\t\tvalue int\n\t}{\n\t\t{\"alpha\", 11},\n\t\t{\"beta\", -2},\n\t\t{\"gamma\", 0},\n\t}\n\tvar bodyEnded atomic.Bool\n\tvar completed atomic.Int32\n\tt.Cleanup(func() {\n\t\tgot := completed.Load()\n\t\tif got != int32(len(cases)) {\n\t\t\tt.Errorf(\"parent cleanup completed=%d; want 3\", got)\n\t\t\treturn\n\t\t}\n\t\tt.Logf(\"parent cleanup: completed=%d\", got)\n\t})\n\tfor _, tc := range cases {\n\t\tt.Run(tc.name, func(t *testing.T) {\n\t\t\tdefer completed.Add(1)\n\t\t\tif !bodyEnded.Load() {\n\t\t\t\tt.Errorf(\"child %q resumed before parent body end\", tc.name)\n\t\t\t}\n\t\t\tt.Logf(\"child %s resumed\", tc.name)\n\t\t\tstate := newFixture()\n\t\t\tcheckFixture(t, state, tc.name, tc.value)\n\t\t})\n\t}\n\tif got := completed.Load(); got != 0 {\n\t\tt.Errorf(\"parent body completed=%d; want 0 before returning\", got)\n\t}\n\tbodyEnded.Store(true)\n\tt.Log(\"parent body end\")\n}\n"
+        }
+      },
+      "ended_at": "2026-10-22T18:46:24.823895+00:00",
+      "disposable_root_removed": true
+    }
+  ]
+}

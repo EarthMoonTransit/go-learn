@@ -1,0 +1,26 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-introductions-05-author",
+    "created_at": "2026-10-22",
+    "summary": "Original finite parser/corpus/oracle and retained-regression assessment; no external source material."
+  },
+  "sources": [],
+  "content_digest": "b182d206be5b6855a532f737ac0fd3fd07621fe495c98d5d2b1d1eaaa75e43fb",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "a05fbfab03ba806b58a51b056ea5183486dccccff34b25574fe226a39630ced6",
+    "TASK.md": "89f5f410a6c9fe9d880f7ccb82fde2dc3bd540cf7c9dcc9083fa651c57c3763e",
+    "files/fuzz_test.go.txt": "8c28105d798b02d9b870b4e58007b0e4cc7c572415373c9721780bcc47c69a5e",
+    "files/go.mod.txt": "da03d01c9b9a148e404b31553f63b702037b62a7d73836d42a41066ba6fff903",
+    "files/split.go.txt": "0f839838017294c847379f5d36de814938d130aac60f52c8fa529242899bb8ed",
+    "files/split_test.go.txt": "6a115024b74c6d778169663be0b3c6deef3e2eea6cfd91daa6eb62511d8f250a",
+    "files/testdata/fuzz/FuzzSplitPair/double-colon.txt": "c908d15e31b0b6890e437b7d9b33e407fba3b18415fcceb6cfbc724cca7ab8a7",
+    "reference/regression_test.go.txt": "2885bfa6a0a10fa0246b1598f387cbb6be4e78a6afcc08ac2933b1295cf156dc",
+    "reference/split.go.txt": "3594adca7de26531576581f3afe0b9fb2187f560eba9eb66b1bd6efc4e61df3c",
+    "wrong/weakened_regression_test.go.txt": "8a73a783e2e4eb1ec6a9b40f367528e7f40a82963d263f77c9557a6e526df717"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

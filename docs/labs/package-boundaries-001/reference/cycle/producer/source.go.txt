@@ -1,0 +1,5 @@
+package producer
+
+type Source struct{ Value string }
+
+func (s Source) Read() string { return s.Value }

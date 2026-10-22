@@ -1,0 +1,44 @@
+package parallelsubtests
+
+import (
+	"sync/atomic"
+	"testing"
+)
+
+func TestParallelTable(t *testing.T) {
+	cases := []struct {
+		name  string
+		value int
+	}{
+		{"alpha", 11},
+		{"beta", -2},
+		{"gamma", 0},
+	}
+	var bodyEnded atomic.Bool
+	var completed atomic.Int32
+	t.Cleanup(func() {
+		got := completed.Load()
+		if got != int32(len(cases)) {
+			t.Errorf("parent cleanup completed=%d; want 3", got)
+			return
+		}
+		t.Logf("parent cleanup: completed=%d", got)
+	})
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+			defer completed.Add(1)
+			if !bodyEnded.Load() {
+				t.Errorf("child %q resumed before parent body end", tc.name)
+			}
+			t.Logf("child %s resumed", tc.name)
+			state := newFixture()
+			checkFixture(t, state, tc.name, tc.value)
+		})
+	}
+	if got := completed.Load(); got != 0 {
+		t.Errorf("parent body completed=%d; want 0 before returning", got)
+	}
+	bodyEnded.Store(true)
+	t.Log("parent body end")
+}

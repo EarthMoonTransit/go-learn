@@ -1,0 +1,7 @@
+package parallelsubtests
+
+import "testing"
+
+func TestParallelTable(t *testing.T) {
+	t.Fatal("unfinished: author parallel cases, private fixtures and parent lifecycle assertions")
+}

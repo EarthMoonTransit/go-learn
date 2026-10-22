@@ -1,0 +1,28 @@
+package parallelsubtests
+
+import (
+	"sync"
+	"testing"
+)
+
+type fixture struct {
+	mu     sync.Mutex
+	values map[string]int
+}
+
+func newFixture() *fixture {
+	return &fixture{values: make(map[string]int)}
+}
+
+func checkFixture(t *testing.T, state *fixture, key string, value int) {
+	t.Helper()
+	state.mu.Lock()
+	defer state.mu.Unlock()
+	state.values[key] = value
+	if got := len(state.values); got != 1 {
+		t.Errorf("fixture size=%d; want 1 for case %q", got, key)
+	}
+	if got := state.values[key]; got != value {
+		t.Errorf("fixture value=%d; want %d for case %q", got, value, key)
+	}
+}

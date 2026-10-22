@@ -1,0 +1,36 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-introductions-05-interface-packages-author",
+    "created_at": "2026-10-22",
+    "summary": "Original finite consumer-interface or package-boundary specimen after approved I5 allocation; exact source and command review pending."
+  },
+  "sources": [],
+  "content_digest": "28adc141dc61aa27d0f92a93cdba77e487c42b5d85f69fad48681161f586f441",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "af62bc344dc7852f9e3f62ff7a391c00223e9ce44ab5c2413ea1973ae20d66ff",
+    "TASK.md": "abd0b5712fbc4089f306895c5b926f2f4d682e2bc534295038e0517162cee9b3",
+    "files/cmd/cycle/main.go.txt": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6",
+    "files/cmd/outside/main.go.txt": "c80ccfb56b619e8daae89a5141443c0d8a7d456d278653db5ef5a9a77422a78c",
+    "files/cycle/consumer/render.go.txt": "1beb88727210f9cbf101fe943015a3e9793914d9729b2ff9930d6254ec1b9fd8",
+    "files/cycle/consumer/render_test.go.txt": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d",
+    "files/cycle/producer/source.go.txt": "1eb802e20b4490b7a954f97dc552bc076803b441c79f35f16a91301b4ab8aa38",
+    "files/domain/facade.go.txt": "20277d173f0daff513ee59eec0467237637433a46483fee4fbb8daf468e131e3",
+    "files/domain/facade_test.go.txt": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d",
+    "files/domain/internal/format/format.go.txt": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1",
+    "files/domain/internal/format/format_test.go.txt": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0",
+    "files/domain/probe/probe.go.txt": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574",
+    "files/domain/probe/probe_test.go.txt": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649",
+    "files/go.mod.txt": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3",
+    "manifest.json": "2d838a2bcc05e23e7c8cd0fcf483e2f7bd4a66d4072a5f5027a09314880aa839",
+    "reference/cmd/outside/main.go.txt": "7f04c1e878cd4e07c7a9603147c6134839252e087a5342b4b166e99efe6b0ab8",
+    "reference/cycle/consumer/render.go.txt": "11b6e8220ee9210be66bd2f69a1e67ba8b32183869405e5355f1c90458461900",
+    "reference/cycle/producer/source.go.txt": "8b7d6fba4b6d89017afef5adf1ec700987d1562dd04eafea2b4bfdce63a3dee9",
+    "reference/domain/facade.go.txt": "50a9406022c40149d72f6296d40e14a99d7b95f1bf3b31a65dc1b1f3eb5dc0ed",
+    "wrong/alias-only/cycle/consumer/render.go.txt": "701beb8a69deb028db210b75134622f5f5e99ae0ed9eb6ee8996330630707e02"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

@@ -1,0 +1,8 @@
+package consumer
+
+type TextSource interface {
+	Text() string
+	Width() int
+}
+
+func Render(source TextSource) string { return "[" + source.Text() + "]" }

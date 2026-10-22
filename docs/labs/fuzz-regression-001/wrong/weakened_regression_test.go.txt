@@ -1,0 +1,8 @@
+package fuzzregression
+
+import "testing"
+
+func TestSplitPairRegression(t *testing.T) {
+	left, right, ok := SplitPair("::")
+	t.Logf("observed pair=(%q,%q,%t)", left, right, ok)
+}

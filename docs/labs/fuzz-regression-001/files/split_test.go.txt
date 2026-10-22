@@ -1,0 +1,19 @@
+package fuzzregression
+
+import "testing"
+
+func TestBaseline(t *testing.T) {
+	cases := []struct {
+		s, left, right string
+		ok             bool
+	}{
+		{"", "", "", false}, {"plain", "", "", false},
+		{":", "", "", true}, {" a :λ ", " a ", "λ ", true},
+	}
+	for _, c := range cases {
+		left, right, ok := SplitPair(c.s)
+		if left != c.left || right != c.right || ok != c.ok {
+			t.Errorf("SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t)", c.s, left, right, ok, c.left, c.right, c.ok)
+		}
+	}
+}

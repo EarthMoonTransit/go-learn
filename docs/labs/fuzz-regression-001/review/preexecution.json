@@ -1,0 +1,42 @@
+{
+  "decision": "approve",
+  "reviewer": "/root/reviewer",
+  "reviewed_at": "2026-10-22",
+  "recorded_at_utc": "2026-10-22T18:38:12.023551+00:00",
+  "unit": "fuzz-regression-001",
+  "content_digest": "b182d206be5b6855a532f737ac0fd3fd07621fe495c98d5d2b1d1eaaa75e43fb",
+  "script_sha256": "e304189b13d36860285e171c99e2379d6f74ed520bf4f8b02e1f322d6ab6de9b",
+  "findings": [],
+  "scope": "Exact preexecution approval for the reviewed ten inert content files and fixed fuzz-native.py only: three fresh copies,13 commands. No execution/readiness acceptance is asserted.",
+  "source_check": "All declared file hashes and aggregate digest match; exact file inventory verified, no source symlinks. Original ADR0008 creation/sources[] and deferred real release binding preserved.",
+  "contract_method": "Byte-oriented oracle differs from faulty SplitN implementation. Correct IndexByte repair rejects all additional colons while preserving substrings. Ordinary TestSplitPairRegression retains ::, fails before repair and remains unchanged after repair. Log-only and omitted-test specimens distinguish behavior from retained-regression method.",
+  "commands": {
+    "reference": [
+      "go version",
+      "broken named native corpus seed fails ordinary separator-count assertion",
+      "install retained ordinary Test; same broken implementation fails regression assertion",
+      "install repair; same Test passes",
+      "all ordinary tests/native seeds pass",
+      "native -fuzztime=1x -parallel=1 invocation passes; scope is recorded"
+    ],
+    "weakened": [
+      "go version",
+      "log-only Test on broken source passes but is method-rejected",
+      "unchanged named corpus/oracle rejects broken source",
+      "install meaningful Test and repaired source; all tests/seeds pass"
+    ],
+    "omitted": [
+      "go version",
+      "correct implementation without ordinary regression passes supplied tests/seeds but is method-rejected",
+      "install retained Test; ordinary regression passes"
+    ]
+  },
+  "isolation": "Reviewed script executes only explicit local Go argv in canonical fresh project copies; private HOME/cache/modcache/TMPDIR, clean offline environment, GOWORK off, local toolchain, CGO0, telemetry mode off. Each command <=60s and test timeout20s. On timeout kills its own process group; finally removes owned root after evidence retention. Authored Go never runs in the checkout.",
+  "boundaries": [
+    "Native seed filename is double-colon after stripping .txt; corpus header/type syntax and Go testing basename selection inspected.",
+    "Expected failures must remain named ordinary assertions; compilation errors, panic, timeout or unrelated failures do not count.",
+    "Source snapshots and exact outputs must confirm before-fix failure, same-Test after-fix pass, preserved corpus/oracle and cleanup.",
+    "Supplied seed/oracle/target earn no discovery, target-writing or executed-minimization credit; no automatic coverage/progress or independent-application credit.",
+    "No general runner/profile is authorized. Any source/script/command change needs a focused updated preexecution review; actual results still require independent review."
+  ]
+}

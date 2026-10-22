@@ -1,0 +1,21 @@
+package nativerace
+
+import "sync"
+
+type cell struct {
+	mu    sync.Mutex
+	value int
+}
+
+func (c *cell) load(fast bool) int {
+	if fast {
+		return c.value
+	}
+	return c.value
+}
+
+func (c *cell) store(value int, fast bool) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	c.value = value
+}

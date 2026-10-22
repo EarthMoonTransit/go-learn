@@ -1,0 +1,8 @@
+package main
+
+import (
+	"finite.local/boundaries/domain/internal/format"
+	"fmt"
+)
+
+func main() { fmt.Println(format.Record("beta")) }

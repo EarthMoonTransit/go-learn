@@ -1,0 +1,3 @@
+package consumer
+
+func Render(source any) string { return "[" + source.(interface{ Text() string }).Text() + "]" }

@@ -1,0 +1,29 @@
+{
+  "unit": "consumer-text-contract-001",
+  "status": "pending exact preexecution review; execution absent",
+  "initial_files": {
+    "files/go.mod.txt": "go.mod",
+    "files/providers/fixed/fixed.go.txt": "providers/fixed/fixed.go",
+    "files/providers/mutable/mutable.go.txt": "providers/mutable/mutable.go",
+    "files/external/source.go.txt": "external/source.go",
+    "files/consumer/render.go.txt": "consumer/render.go",
+    "files/consumer/render_test.go.txt": "consumer/render_test.go",
+    "files/caller/doc.go.txt": "caller/doc.go",
+    "files/caller/accept_test.go.txt": "caller/accept_test.go"
+  },
+  "correct_replacements": {
+    "reference/consumer/render.go.txt": "consumer/render.go"
+  },
+  "editable_paths": [
+    "consumer/render.go"
+  ],
+  "timeout_seconds": 60,
+  "module": "finite.local/consumer-contract",
+  "go_version": "1.27",
+  "specimens": [
+    "interface-reference",
+    "interface-overbroad",
+    "interface-concrete-coupling",
+    "interface-any-method-control"
+  ]
+}

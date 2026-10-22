@@ -1,0 +1,5 @@
+package consumer
+
+import "finite.local/consumer-contract/providers/fixed"
+
+func Render(source fixed.Value) string { return "[" + source.Text() + "]" }
