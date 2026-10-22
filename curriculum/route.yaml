@@ -67,6 +67,14 @@
           "skills": [
             "functions.function-values"
           ]
+        },
+        {
+          "number": 8,
+          "task_id": "reset-selected-state-001",
+          "role": "practice",
+          "skills": [
+            "types.zero-values"
+          ]
         }
       ],
       "number": 1
@@ -220,6 +228,22 @@
           "role": "practice",
           "skills": [
             "slices.full-slice-expressions"
+          ]
+        },
+        {
+          "number": 19,
+          "task_id": "named-step-conversion-001",
+          "role": "practice",
+          "skills": [
+            "types.named-underlying"
+          ]
+        },
+        {
+          "number": 20,
+          "task_id": "first-pair-positions-001",
+          "role": "practice",
+          "skills": [
+            "maps.key-comparability"
           ]
         }
       ],
@@ -535,6 +559,14 @@
           "skills": [
             "expressions.integer-shifts"
           ]
+        },
+        {
+          "number": 39,
+          "task_id": "iota-layout-tests-001",
+          "role": "practice",
+          "skills": [
+            "types.iota-enumeration"
+          ]
         }
       ],
       "number": 3
@@ -740,6 +772,14 @@
           "role": "practice",
           "skills": [
             "strings.standard-library"
+          ]
+        },
+        {
+          "number": 12,
+          "task_id": "replace-rune-range-001",
+          "role": "practice",
+          "skills": [
+            "strings.byte-rune-conversions"
           ]
         }
       ],

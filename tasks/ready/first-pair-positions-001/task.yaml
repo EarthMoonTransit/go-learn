@@ -1,0 +1,55 @@
+schema_version: 2
+id: first-pair-positions-001
+title: Find first positions of equal ordered pairs
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: maps.key-comparability
+    secondary: []
+prerequisites:
+    - arrays.value-semantics
+    - control-flow.range
+    - functions.signatures-results
+    - maps.nil-delete-clear
+    - maps.operations-comma-ok
+    - slices.header-model
+    - strings.immutable-bytes
+    - types.named-underlying
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - concatenated-key
+        - nul-delimited-key
+        - first-component-only
+        - second-component-only
+        - unordered-key
+        - latest-occurrence
+        - zero-position-is-missing
+        - address-key
+        - erase-input
+        - reuse-prior-call
+        - rune-normalized-key
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

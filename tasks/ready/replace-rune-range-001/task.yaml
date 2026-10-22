@@ -1,0 +1,52 @@
+schema_version: 2
+id: replace-rune-range-001
+title: Replace a half-open Unicode rune range
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: strings.byte-rune-conversions
+    secondary: []
+prerequisites:
+    - expressions.comparison
+    - functions.signatures-results
+    - slices.header-model
+    - slices.len-cap-slicing
+    - strings.immutable-bytes
+    - unicode.rune-model
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - byte-indices
+        - inclusive-upper-bound
+        - empty-range-no-insertion
+        - discard-replacement
+        - only-first-replacement-rune
+        - drop-suffix
+        - negative-clamped
+        - reversed-accepted
+        - invalid-empty-result
+        - reject-end-insertion
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

@@ -1,7 +1,7 @@
 # Finite Go Learn v1 delivery
 
 Owner-approved 2026-10-20; normative boundary: [ADR 0034](../adr/0034-finite-v1-course.md).
-M0, M1 and M2.1 are complete. The owner authorized one further five-task batch (M2.2),
+M0, M1, M2.1 and M2.2 are complete. The owner authorized one further five-task batch (M2.3),
 then another pause and result/time report; no subsequent batch is authorized.
 
 | Stage | Deliverable | Exit |
@@ -130,6 +130,29 @@ The route grows from 181 to 186, retaining all prior addresses and order.
 Remaining allocation: 28 first encounters, 82 applications, six components.
 Keep independent content/public-feedback/final-diff review, the single shared
 collection, required local gates and green exact-head validate before merge.
+Apply the same four-hour work checkpoint and separate overlapping local/CI
+intervals and host sleep. Stop after this batch and report results/time; no
+subsequent batch, P21 work or new checking engine is authorized.
+
+## M2.3 bounded application batch
+
+Owner-authorized on 2026-10-22, limited to five applications on existing profiles:
+`reset-selected-state-001`, `named-step-conversion-001`, `iota-layout-tests-001`,
+`replace-rune-range-001` and `first-pair-positions-001`. Independent source/design
+review precedes authoring. The selected-state task adds selective ownership and
+selection counting beyond the existing receiver reset. Named scalar conversions,
+paired iota declarations with a skipped position and a new block, variable rune
+splicing, and first-occurrence tuple classification change their introduction
+contracts. Supplied declarations/observation wrappers are not learner-authored
+mechanism evidence; acceptance covers the stated observable application.
+
+The route grows from 186 to 191, retaining all prior addresses and order.
+Remaining allocation: 28 first encounters, 77 applications, six components.
+All five applications follow their introductions and prerequisites. Keep the
+independent content/public-feedback/final-diff review, single shared collection,
+required local gates and green exact-head validate before merge. A corrected
+invalid-UTF-8 key distinction is protected by a tracked public assertion and
+mutant; the grader cannot mask removal of that assertion.
 Apply the same four-hour work checkpoint and separate overlapping local/CI
 intervals and host sleep. Stop after this batch and report results/time; no
 subsequent batch, P21 work or new checking engine is authorized.

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "reviewer": "independent-reviewer-m2_2_review",
+  "reviewed_at": "2026-10-22",
+  "decision": "approve",
+  "story_free": true,
+  "prompt_test_alignment": true,
+  "public_api_stable": true,
+  "provenance_verified": true,
+  "license_verified": true,
+  "reference_only_clean_room_verified": true,
+  "solution_leakage_checked": true,
+  "minimum_mutants": 11,
+  "notes": "Independent source/design and exact-content approval. Public requirement/defect matrix reviewed; disposable reference and required mutants pass. Fixed/workspace defects fail useful public assertions without grader. Named-type alternative accepted. Pair byte-normalization public regression is protected by its tracked mutant and verified omission survivor. Original ADR0008 provenance/digest verified. Route/final diff and repository/CI acceptance remain separate."
+}

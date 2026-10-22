@@ -1,0 +1,48 @@
+schema_version: 2
+id: iota-layout-tests-001
+title: Test paired iota expressions and block boundaries
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: types.iota-enumeration
+    secondary: []
+prerequisites:
+    - arrays.indexing-iteration
+    - expressions.integer-shifts
+    - testing.basics-diagnostics
+    - types.constants
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - offset-eleven
+        - blank-does-not-advance
+        - last-code-repeats-value
+        - mask-starts-at-two
+        - middle-mask-uses-index-one
+        - last-mask-repeats-value
+        - restart-keeps-prior-counter
+        - restart-second-stays-zero
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

@@ -1,0 +1,176 @@
+{
+  "format": "go-learn-bounded-source-decision/v1",
+  "date": "2026-10-22",
+  "baseline_commit": "459a94f9ea26dfad6b8e6a11487edcce1198c0b1",
+  "status": "source/design approved for bounded original authoring; task acceptance pending",
+  "coverage_eligible": false,
+  "new_ready_tasks": 0,
+  "external_sources": [],
+  "decision_boundary": "Original ADR0008 content. No external code/tests/educational text used. Existing local contracts establish distinct allocation. Current fixed-tests, workspace-tests and mutation-tests only; no tooling/taxonomy/schema changes.",
+  "tasks": [
+    {
+      "proposed_task_id": "reset-selected-state-001",
+      "primary_skill": "types.zero-values",
+      "activity": "debugging",
+      "profile": "fixed-tests",
+      "contract": "ResetSelected(states []State,selected []bool) int. State fields are Count int, Active bool, Name string, Values []int, Labels map[string]int, Target *int. Lengths are equal. Replace every selected State with its exact Go zero value, including nil slice/map/pointer fields; preserve every unselected State including container/header/pointer identity. Do not alter previous slice backing elements, map entries or pointees, even when shared across selected/unselected states or saved copies. Preserve selected. Return the number of true entries, including already-zero selected states; nil/empty inputs return zero. Repeated calls and repopulation obey the same contract. Input-domain boundary: every nonnil Target points to an integer outside the backing array of states; pointers into any State field in that backing array are excluded.",
+      "distinct_from": "zero-results-001 constructs fresh zeros; receiver-reset-001 resets one receiver. This operation selectively zeroes a slice of aggregates, preserves unselected owners and shared data, and counts selection rather than changed/nonzero states.",
+      "prerequisites": [
+        "control-flow.if",
+        "control-flow.range",
+        "functions.signatures-results",
+        "maps.operations-comma-ok",
+        "pointers.address-deref-nil",
+        "pointers.mutation-sharing",
+        "slices.header-model",
+        "structs.copy-equality",
+        "structs.literals-zero",
+        "types.declarations-inference"
+      ],
+      "slot": "independent-application:types.zero-values",
+      "scope": "Bounded distinct second encounter; no whole-skill, human-mastery or full-bank claim.",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-m2-3-author",
+        "creation_date": "2026-10-22",
+        "content_digest": "assigned after authoring under ADR0008",
+        "external_sources": []
+      },
+      "existing_task_evidence": {
+        "commit": "459a94f9ea26dfad6b8e6a11487edcce1198c0b1",
+        "path": "tasks/ready/zero-results-001/TASK.md"
+      },
+      "deduplication_evidence": [
+        {
+          "commit": "459a94f9ea26dfad6b8e6a11487edcce1198c0b1",
+          "path": "tasks/ready/receiver-reset-001/TASK.md"
+        }
+      ]
+    },
+    {
+      "proposed_task_id": "named-step-conversion-001",
+      "primary_skill": "types.named-underlying",
+      "activity": "debugging",
+      "profile": "workspace-tests",
+      "contract": "Edit subject/bindings.go: define distinct private types reading and step, both with underlying int16; neither an alias nor the same defined type. Implement shift(value reading,delta step) reading with the mathematical sum. Supplied Observe(raw,delta int16)(any,any,any,int16) constructs reading(raw), step(delta), calls shift and returns original reading, step, resulting reading and raw result. Both inputs are in [-1000,1000]. Preserve both signed input values and types; no overflow.",
+      "distinct_from": "Named-array declaration becomes conversion and arithmetic across two different defined scalar types, with their identities visible through a supplied observation wrapper.",
+      "prerequisites": [
+        "expressions.arithmetic",
+        "functions.signatures-results",
+        "types.declarations-inference",
+        "types.numeric-conversions"
+      ],
+      "slot": "independent-application:types.named-underlying",
+      "scope": "Bounded distinct second encounter; no whole-skill, human-mastery or full-bank claim.",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-m2-3-author",
+        "creation_date": "2026-10-22",
+        "content_digest": "assigned after authoring under ADR0008",
+        "external_sources": []
+      },
+      "existing_task_evidence": {
+        "commit": "459a94f9ea26dfad6b8e6a11487edcce1198c0b1",
+        "path": "tasks/ready/named-block-001/TASK.md"
+      }
+    },
+    {
+      "proposed_task_id": "iota-layout-tests-001",
+      "primary_skill": "types.iota-enumeration",
+      "activity": "test-writing",
+      "profile": "mutation-tests",
+      "contract": "Write tests of Layout()(codes [3]int,masks [3]uint8,restart [2]int). First const block begins code0,mask0=iota+10,uint8(1<<iota), then a repeated blank pair _,_, then repeated code2,mask2 and code3,mask3. Second const block begins restart0=iota, then repeated restart1. Layout returns code0/code2/code3, mask0/mask2/mask3, restart0/restart1 in those orders. All tuple positions and a fresh counter in the second block are required. No source/AST enforcement: supplied definitions are read to predict observable values.",
+      "distinct_from": "Sequential month introduction becomes tests for paired expressions, an omitted declaration position, repeated expressions and reset across blocks.",
+      "prerequisites": [
+        "arrays.indexing-iteration",
+        "expressions.integer-shifts",
+        "testing.basics-diagnostics",
+        "types.constants"
+      ],
+      "slot": "independent-application:types.iota-enumeration",
+      "scope": "Bounded distinct second encounter; no whole-skill, human-mastery or full-bank claim.",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-m2-3-author",
+        "creation_date": "2026-10-22",
+        "content_digest": "assigned after authoring under ADR0008",
+        "external_sources": []
+      },
+      "existing_task_evidence": {
+        "commit": "459a94f9ea26dfad6b8e6a11487edcce1198c0b1",
+        "path": "tasks/ready/month-enumeration-001/TASK.md"
+      }
+    },
+    {
+      "proposed_task_id": "replace-rune-range-001",
+      "primary_skill": "strings.byte-rune-conversions",
+      "activity": "implementation",
+      "profile": "fixed-tests",
+      "contract": "ReplaceRuneRange(s string,lo,hi int,replacement string)(string,bool): both strings are valid UTF-8. For 0<=lo<=hi<=rune count(s), replace the half-open rune range with replacement, preserving all other code points in order, and return true. Empty range inserts, including at end; empty replacement removes. Indices count code points, not bytes or grapheme clusters; combining code points count separately. Invalid bounds return the exact original s,false without panicking. Empty strings are valid.",
+      "distinct_from": "Replacing one rune becomes splicing a variable-size half-open rune range with a multi-rune string, including insertion, deletion and atomic invalid bounds.",
+      "prerequisites": [
+        "expressions.comparison",
+        "functions.signatures-results",
+        "slices.header-model",
+        "slices.len-cap-slicing",
+        "strings.immutable-bytes",
+        "unicode.rune-model"
+      ],
+      "slot": "independent-application:strings.byte-rune-conversions",
+      "scope": "Bounded distinct second encounter; no whole-skill, human-mastery or full-bank claim.",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-m2-3-author",
+        "creation_date": "2026-10-22",
+        "content_digest": "assigned after authoring under ADR0008",
+        "external_sources": []
+      },
+      "existing_task_evidence": {
+        "commit": "459a94f9ea26dfad6b8e6a11487edcce1198c0b1",
+        "path": "tasks/ready/edit-rune-copy-001/TASK.md"
+      }
+    },
+    {
+      "proposed_task_id": "first-pair-positions-001",
+      "primary_skill": "maps.key-comparability",
+      "activity": "implementation",
+      "profile": "fixed-tests",
+      "contract": "FirstPositions(pairs [][2]string) []int: output length equals input length; at each position return the smallest input index with exactly equal ordered pair values. Every byte in both strings participates, including empty strings, delimiters and NUL; swapped components are different except when equal. Equal values at separate addresses are the same key. Preserve input contents and order; calls are independent. Nil/empty input yields length zero; nil identity unspecified.",
+      "distinct_from": "Supplied table Put/Lookup becomes selecting a stable comparable representation to classify repeated ordered string tuples by first occurrence; lossy encodings and pointer identity are observable errors.",
+      "prerequisites": [
+        "arrays.value-semantics",
+        "control-flow.range",
+        "functions.signatures-results",
+        "maps.nil-delete-clear",
+        "maps.operations-comma-ok",
+        "slices.header-model",
+        "strings.immutable-bytes",
+        "types.named-underlying"
+      ],
+      "slot": "independent-application:maps.key-comparability",
+      "scope": "Bounded distinct second encounter; no whole-skill, human-mastery or full-bank claim.",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-m2-3-author",
+        "creation_date": "2026-10-22",
+        "content_digest": "assigned after authoring under ADR0008",
+        "external_sources": []
+      },
+      "existing_task_evidence": {
+        "commit": "459a94f9ea26dfad6b8e6a11487edcce1198c0b1",
+        "path": "tasks/ready/composite-key-table-001/TASK.md"
+      }
+    }
+  ],
+  "review": {
+    "reviewer": "/root/m2_2_review",
+    "date": "2026-10-22",
+    "decision": "approve",
+    "scope": "Bounded source/design and distinct application allocation; content/public/route/final review remains required.",
+    "findings_closed": [
+      "Canonical prerequisite IDs",
+      "Selective reset distinct from existing receiver reset",
+      "Target pointers outside State backing array"
+    ]
+  }
+}
