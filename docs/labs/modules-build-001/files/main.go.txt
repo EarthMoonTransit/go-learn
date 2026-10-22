@@ -1,0 +1,10 @@
+package main
+
+import (
+	"finite.local/number"
+	"fmt"
+)
+
+func result() int { return number.Twice(7) }
+
+func main() { fmt.Println(result()) }

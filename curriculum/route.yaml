@@ -567,6 +567,14 @@
           "skills": [
             "types.iota-enumeration"
           ]
+        },
+        {
+          "number": 40,
+          "task_id": "recursive-total-001",
+          "role": "introduction",
+          "skills": [
+            "functions.recursion"
+          ]
         }
       ],
       "number": 3
@@ -1474,6 +1482,14 @@
           "skills": [
             "fuzzing.invariants"
           ]
+        },
+        {
+          "number": 7,
+          "task_id": "interval-table-tests-001",
+          "role": "introduction",
+          "skills": [
+            "testing.table-driven"
+          ]
         }
       ],
       "number": 8
@@ -1617,6 +1633,14 @@
           "role": "introduction",
           "skills": [
             "goroutines.capture-arguments"
+          ]
+        },
+        {
+          "number": 17,
+          "task_id": "owned-batch-channel-001",
+          "role": "introduction",
+          "skills": [
+            "channels.ownership"
           ]
         }
       ],

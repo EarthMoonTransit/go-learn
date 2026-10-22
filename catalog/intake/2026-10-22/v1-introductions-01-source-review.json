@@ -1,0 +1,87 @@
+{
+  "format": "go-learn-bounded-source-decision/v1",
+  "date": "2026-10-22",
+  "baseline_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+  "status": "source/design approved; content acceptance pending",
+  "coverage_eligible": false,
+  "new_ready_tasks": 0,
+  "external_sources": [],
+  "decision_boundary": "Original ADR0008 content without external donor code/tests/text; unchanged existing task reused only with explicit semantic evidence. Narrow manual exception explicitly authorized by owner 2026-10-22.",
+  "tasks": [
+    {
+      "proposed_task_id": "recursive-total-001",
+      "primary_skill": "functions.recursion",
+      "profile": "fixed-tests",
+      "contract": "Total(values []int) int; len<=32, values in [-1000,1000]; exact sum and unchanged input. Learner-visible method checklist requires real recursive decomposition, shrinking length, terminal cases and contribution of all subresults. Behavioral pass alone is insufficient; no AST enforcement.",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-introductions-01-author",
+        "creation_date": "2026-10-22",
+        "external_sources": []
+      }
+    },
+    {
+      "proposed_task_id": "interval-table-tests-001",
+      "primary_skill": "testing.table-driven",
+      "profile": "mutation-tests",
+      "contract": "Contains(lo,hi,x int) bool exactly lo<=x && x<hi; reversed interval false. Learner builds named table for meaningful lower/interior/upper/empty/reversed/negative partitions with shared readable execution and actual/want assertions; method review separate from mutant detection.",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-introductions-01-author",
+        "creation_date": "2026-10-22",
+        "external_sources": []
+      }
+    },
+    {
+      "proposed_task_id": "worker-completion-tests-001",
+      "primary_skill": "testing.deterministic-boundaries",
+      "profile": "existing mutation-tests",
+      "contract": "Reuse unchanged existing prompt/starter/reference: learner-owned premature completion and overlapping-call assertions at controlled boundaries; supplied scheduler/helper earns no credit. First encounter only; future independent application must introduce/select a seam.",
+      "reuse_evidence": {
+        "commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+        "paths": [
+          "tasks/ready/worker-completion-tests-001/TASK.md",
+          "tasks/ready/worker-completion-tests-001/starter/subject_test.go",
+          "tasks/ready/worker-completion-tests-001/solution/reference/subject_test.go",
+          "tasks/ready/worker-completion-tests-001/task.yaml",
+          "tasks/ready/worker-completion-tests-001/provenance.yaml"
+        ],
+        "semantic_review_date": "2026-10-22",
+        "creation_identity": "unchanged; original provenance.yaml is authoritative"
+      }
+    },
+    {
+      "proposed_task_id": "owned-batch-channel-001",
+      "primary_skill": "channels.ownership",
+      "profile": "fixed-tests",
+      "contract": "Publish(values []int,ready <-chan struct{}) <-chan int returns private output without waiting for nonnil ready, one producer waits one receive (signal or close), sends all values in order then closes only its output. Caller preserves values until output closes, releases ready eventually, drains output; no cancellation. Input unchanged. Each call independent. Receive-only ready is supplied API safety, not assessed learner closure ownership.",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-introductions-01-author",
+        "creation_date": "2026-10-22",
+        "external_sources": []
+      }
+    },
+    {
+      "proposed_task_id": "modules-build-001",
+      "primary_skill": "toolchain.modules-workspaces + toolchain.build-run",
+      "profile": "manual",
+      "contract": "First create/edit go.mod and go.work for two local modules; then build, execute binary, go run and test intended packages. Separate assessed actions, actual bounded offline disposable execution reference and material wrong cases. No task-check profile or automatic coverage.",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-introductions-01-author",
+        "creation_date": "2026-10-22",
+        "external_sources": []
+      }
+    }
+  ],
+  "review": {
+    "reviewer": "/root/reviewer",
+    "date": "2026-10-22",
+    "decision": "approve",
+    "findings_closed": [
+      "Caller preserves values until output closes; receive-only gate is supplied mechanism, not ownership credit."
+    ],
+    "scope": "Early contracts/original decision; content/method/native evidence and final acceptance pending."
+  }
+}

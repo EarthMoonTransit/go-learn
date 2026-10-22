@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "4cdc5639fca50afa66b3fa3049cb1ea6121c07eb27a17e389e066cbd448db801"
+  },
+  "creation": {
+    "author": "v1-introductions-01-author",
+    "created_at": "2026-10-22",
+    "summary": "Original bounded finite-v1 introduction after independent contract/source review; no external code, tests or educational text."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/interval-table-tests-001.yaml"
+  }
+}

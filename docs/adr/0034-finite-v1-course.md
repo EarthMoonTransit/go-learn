@@ -10,9 +10,11 @@
 ## Owner decision and scope
 
 The owner approved automated tests plus checklist review in chat for outcomes
-where method or tool use matters. The immediate authorization is one
-documentation PR followed by five tasks on existing profiles, then a pause and
-time/result report. Do not continue P21 or another content batch automatically.
+where method or tool use matters. The 2026-10-22 owner authorization replaces the earlier pause-after-five limit:
+continue autonomous reviewed batches of normally 5–8 tasks (maximum 10) through
+finite-v1 readiness, with one independent reviewer and exact-head green validate
+before each merge. Follow the updated delivery plan's introduction priority,
+native evidence deadlines, budgets and stop conditions. P21 remains deferred.
 
 V1 is a learning-route readiness milestone for the frozen 141 foundation
 skills, distinct from the old 350–500-task full-bank release. Each skill needs
@@ -69,9 +71,14 @@ checks where applicable, realistic wrong examples, useful feedback, provenance
 and dated evidence review. Missing execution/review means unfinished work.
 Existing source-candidate `manual-artifact-review` keeps its original meaning.
 No new UI, scheduler or completion store is necessary for a checklist/chat review.
-Existing AGENTS execution/isolation rules remain binding. This decision neither
-permits source-checkout task execution nor invents a native-lab exception.
-A future lab needs a compliant finite procedure before acceptance; M1 needs none.
+Source-checkout task execution remains forbidden. On 2026-10-22 the owner
+explicitly authorized the finite manual procedure in the delivery plan and its
+narrow AGENTS rule 9 exception: reviewed build/run, modules/workspaces and
+benchmark commands may execute outside task-check only for manual units outside
+tasks/ready, in fresh disposable copies with clean offline environments, a
+60-second command limit, retained real results and independent review. This
+adds no runner, automatic coverage or acceptance without executed specimens.
+Automatic task profiles and all of their existing gates are unchanged.
 
 ## Compatibility and migration
 

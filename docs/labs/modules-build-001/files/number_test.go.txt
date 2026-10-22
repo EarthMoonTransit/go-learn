@@ -1,0 +1,11 @@
+package number
+
+import "testing"
+
+func TestTwice(t *testing.T) {
+	for _, c := range []struct{ in, want int }{{7, 14}, {-4, -8}, {0, 0}} {
+		if got := Twice(c.in); got != c.want {
+			t.Errorf("Twice(%d)=%d; want %d", c.in, got, c.want)
+		}
+	}
+}

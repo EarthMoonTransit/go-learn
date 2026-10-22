@@ -16,6 +16,22 @@ Before the first exercise, understand these two toolchain basics:
 This is guided preparation, not an automatically completed task or proof of
 toolchain mastery. Later toolchain exercises will assess these skills directly.
 
+## Required manual preparation
+
+Before the first automatic lesson, complete [local modules, workspace and
+build/run](labs/modules-build-001/TASK.md). It first assesses module/workspace
+edits, then actual target selection, build, execution and tests. Use its authorized
+disposable procedure and submit real files/command evidence for checklist review.
+The supplied program is preparation; it does not earn code-writing credit.
+This manual result is recorded separately and does not change automatic progress.
+
+Later hybrid introductions also require their published method checklist:
+`recursive-total-001` needs actual recursive decomposition, and
+`interval-table-tests-001` needs learner-selected named data cases, and
+`owned-batch-channel-001` needs a private output with one producer/closer. A behavioral
+pass alone does not establish those methods. Their placement in the existing
+route follows the required automatic prerequisites.
+
 ## Your first workspace
 
 Run learn next, then the printed learn start command. In the local UI, click

@@ -1,0 +1,22 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-introductions-01-author",
+    "created_at": "2026-10-22",
+    "summary": "Original finite two-module build/run specimen under explicitly authorized manual procedure."
+  },
+  "sources": [],
+  "content_digest": "c2421d295ffd7e1087fffbb1e9ae9c0ad1c86812766f468b95eec7559b33ccea",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "34846a7c203ae181d052c625ccf2a3eef73061bcd185bc73cac55ba665269bae",
+    "TASK.md": "efab37d3e206c081eb8fc8b9bbb1d45a2cba4c02173f82b05f877e2b3eb6dbc6",
+    "files/main.go.txt": "bc8b9dcfb0a671602599aabe640d5448acf42856c6b41ec15e95bae5a4cf8481",
+    "files/main_test.go.txt": "9ed1b4cf46bac1031c42af3ac5509d886af05db741a03b336156618c8d5a1fb3",
+    "files/number.go.txt": "aa1659876d40c5c9c15a835040a6e7f8fd7dae03f5c77f9b65cb45532d3efad3",
+    "files/number_test.go.txt": "e96ea6b64bc2a0d7c64b11737ee7c51227ca0ffea9a223efae8c58a538b5bc68"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}
