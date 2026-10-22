@@ -1,0 +1,5 @@
+package subject
+import "testing"
+func BenchmarkJoin(b *testing.B) {
+ // Choose fixtures, timed loop and result observation here.
+}

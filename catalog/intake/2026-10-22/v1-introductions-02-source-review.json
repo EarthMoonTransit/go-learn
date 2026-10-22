@@ -1,0 +1,108 @@
+{
+  "format": "go-learn-bounded-source-decision/v1",
+  "date": "2026-10-22",
+  "baseline_commit": "50412ef271c439cb8c7508341578a6ad03342353",
+  "status": "source/content/method/native review accepted; final batch gates and merge pending",
+  "coverage_eligible": false,
+  "external_sources": [],
+  "decision_boundary": "Original ADR0008 automatic/manual content. Existing LRU reuses unchanged admitted artifacts and provenance; no new source borrowing. No reference-only code/tests/text used.",
+  "tasks": [
+    {
+      "proposed_task_id": "drain-values-001",
+      "primary_skill": "channels.range-drain",
+      "profile": "fixed-tests + method",
+      "contract_path": "tasks/ready/drain-values-001/TASK.md",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-introductions-02-author",
+        "creation_date": "2026-10-22",
+        "external_sources": []
+      }
+    },
+    {
+      "proposed_task_id": "key-summary-examples-001",
+      "primary_skill": "testing.examples",
+      "profile": "mutation-tests + method",
+      "contract_path": "tasks/ready/key-summary-examples-001/TASK.md",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-introductions-02-author",
+        "creation_date": "2026-10-22",
+        "external_sources": []
+      }
+    },
+    {
+      "proposed_task_id": "format-vet-001",
+      "primary_skill": "toolchain.formatting-vetting",
+      "profile": "manual",
+      "contract_path": "docs/labs/format-vet-001/TASK.md",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-introductions-02-author",
+        "creation_date": "2026-10-22",
+        "external_sources": []
+      }
+    },
+    {
+      "proposed_task_id": "join-benchmark-001",
+      "primary_skill": "benchmarks.loops-timing / allocations / experimental-design",
+      "profile": "manual",
+      "contract_path": "docs/labs/join-benchmark-001/TASK.md",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-introductions-02-author",
+        "creation_date": "2026-10-22",
+        "external_sources": []
+      }
+    },
+    {
+      "proposed_task_id": "report-golden-001",
+      "primary_skill": "testing.golden",
+      "profile": "manual",
+      "contract_path": "docs/labs/report-golden-001/TASK.md",
+      "original_provenance": {
+        "identity_path": "config/project-identity.yaml",
+        "creation_author": "v1-introductions-02-author",
+        "creation_date": "2026-10-22",
+        "external_sources": []
+      }
+    },
+    {
+      "proposed_task_id": "bounded-lru-cache-001",
+      "profile": "unchanged existing fixed-tests",
+      "reuse_evidence": {
+        "slot": "component-generic-container",
+        "status": "accepted-content; I2 delivery pending",
+        "task_id": "bounded-lru-cache-001",
+        "reviewer": "/root/reviewer",
+        "date": "2026-10-22",
+        "source_commit": "ab880dea6f344f1e90ed777df16ed330dbd0303f",
+        "evidence_paths": [
+          "tasks/ready/bounded-lru-cache-001/TASK.md",
+          "tasks/ready/bounded-lru-cache-001/task.yaml",
+          "tasks/ready/bounded-lru-cache-001/starter/subject.go",
+          "tasks/ready/bounded-lru-cache-001/solution/reference/subject.go",
+          "tasks/ready/bounded-lru-cache-001/tests/public/public_test.go",
+          "tasks/ready/bounded-lru-cache-001/tests/public/generic_test.go",
+          "tasks/ready/bounded-lru-cache-001/tests/grader/grader_test.go",
+          "tasks/ready/bounded-lru-cache-001/solution/mutants",
+          "tasks/ready/bounded-lru-cache-001/review/notes.md",
+          "tasks/ready/bounded-lru-cache-001/provenance.yaml",
+          "tasks/ready/bounded-lru-cache-001/ATTRIBUTION.md",
+          "sources/registry.yaml",
+          "catalog/intake/2026-09-10/artifact-review.json"
+        ],
+        "integrated_outcomes": "Generic K/V, typed misses/present zeros, independent zero-state instances, recency/eviction, ordered stoppable callbacks and reusable Clear.",
+        "limits": "Sequential/non-reentrant; no O(1), concurrency, GC/retention or external resource cleanup claim.",
+        "provenance": "Existing SHAD adaptation at 6718601587ec77cfaa632bbd29a8ca0716fe81ec; four admitted lrucache artifacts and MIT notice preserved. No new borrowing.",
+        "execution": "Current I1 stable CheckCollection: reference/full pass,20/20 required mutants detected."
+      }
+    }
+  ],
+  "review": {
+    "reviewer": "/root/reviewer",
+    "date": "2026-10-22",
+    "decision": "approve",
+    "scope": "Actual two automatic references/methods, corrected public independence, all three native manifests/results and unchanged LRU reuse independently approved; final route/diff/collection/CI remain separate."
+  }
+}

@@ -1,0 +1,12 @@
+package subject
+import("testing";"strings")
+var Result string
+func BenchmarkJoin(b *testing.B) {
+ values:=[]string{"a","b"};want:=strings.Join(values,"/")
+ for _,impl:=range []struct{name string;join func([]string)string}{{"Concat",Concat},{"Builder",Builder}} {
+  b.Run(impl.name,func(b *testing.B){
+   if got:=impl.join(values);got!=want {b.Fatalf("got %q; want %q",got,want)}
+   b.ReportAllocs();b.ResetTimer();for i:=0;i<b.N;i++ {Result=impl.join(values)}
+  })
+ }
+}

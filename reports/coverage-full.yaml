@@ -1,6 +1,6 @@
 schema_version: 1
 report_contract: numeric-coverage/v1
-input_identity: da17c944104deddc19fbc5e5f655e252e4b59c0648f467b6863769e99739146d
+input_identity: bdcf33b5ae5f9fb6971eda70c06da0fa5bedc87e94274e7326bdac70addd78f8
 selected_scope: full
 selected_skill_ids:
     - arrays.indexing-iteration
@@ -281,12 +281,12 @@ numeric:
         - skill_id: channels.range-drain
           domain_id: channels
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 3
-          primary_deficit: 3
-          actual_total: 0
+          primary_deficit: 2
+          actual_total: 1
           required_total: 5
-          total_deficit: 5
+          total_deficit: 4
         - skill_id: channels.select
           domain_id: channels
           scope: foundation
@@ -1226,12 +1226,12 @@ numeric:
         - skill_id: testing.examples
           domain_id: testing
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 2
-          primary_deficit: 2
-          actual_total: 0
+          primary_deficit: 1
+          actual_total: 1
           required_total: 4
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: testing.golden
           domain_id: testing
           scope: foundation
@@ -1600,12 +1600,12 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 197
+        actual_primary: 199
         required_primary: 410
-        primary_deficit: 220
-        actual_total: 221
+        primary_deficit: 218
+        actual_total: 223
         required_total: 692
-        total_deficit: 471
+        total_deficit: 469
         minima_met: false
     specialist:
         skill_ids:
@@ -1767,15 +1767,15 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 197
+        actual_primary: 199
         required_primary: 418
-        primary_deficit: 228
-        actual_total: 221
+        primary_deficit: 226
+        actual_total: 223
         required_total: 708
-        total_deficit: 487
+        total_deficit: 485
         minima_met: false
     ready_target:
-        actual: 197
+        actual: 199
         min: 350
         max: 500
         met: false

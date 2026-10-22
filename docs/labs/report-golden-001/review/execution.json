@@ -1,0 +1,678 @@
+[
+  {
+    "lab": "report-golden-001",
+    "variant": "reference",
+    "started_at": "2026-10-22T13:30:56.052388+00:00",
+    "disposable_root": "$DISPOSABLE",
+    "go_executable": "$LOCAL_GO_BIN/go",
+    "environment": {
+      "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:56.052926+00:00",
+        "ended_at": "2026-10-22T13:30:56.059070+00:00",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:56.059379+00:00",
+        "ended_at": "2026-10-22T13:30:58.091973+00:00",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/subject\t0.168s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "executed specimen",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS v1\\n\")\n for i:=0;i<32;i++ {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS v1\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      },
+      {
+        "label": "final files",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS v1\\n\")\n for i:=0;i<32;i++ {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS v1\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      }
+    ],
+    "content_digest": "fc08c7c4a22b9f37805338f507f6325b40d27328860f610b881f7dc00e9ca3c9",
+    "normal_run_golden": {
+      "before_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+      "after_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+      "preserved": true
+    },
+    "disposable_root_removed": true,
+    "ended_at": "2026-10-22T13:30:58.154514+00:00"
+  },
+  {
+    "lab": "report-golden-001",
+    "variant": "header",
+    "started_at": "2026-10-22T13:30:58.155924+00:00",
+    "disposable_root": "$DISPOSABLE",
+    "go_executable": "$LOCAL_GO_BIN/go",
+    "environment": {
+      "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:58.156427+00:00",
+        "ended_at": "2026-10-22T13:30:58.162731+00:00",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:58.163056+00:00",
+        "ended_at": "2026-10-22T13:31:00.199797+00:00",
+        "exit_status": 1,
+        "stdout": "--- FAIL: TestReportGolden (0.00s)\n    subject_test.go:12: report.golden line 1: actual \"RECORDS bad\"; want \"RECORDS v1\" (ordinary runs never update)\nFAIL\nFAIL\tfinite.local/subject\t0.164s\nFAIL\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:00.200518+00:00",
+        "ended_at": "2026-10-22T13:31:00.526271+00:00",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/subject\t0.164s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "executed specimen",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS bad\\n\")\n for i:=0;i<32;i++ {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS v1\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      },
+      {
+        "label": "final files",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS v1\\n\")\n for i:=0;i<32;i++ {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS v1\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      }
+    ],
+    "content_digest": "fc08c7c4a22b9f37805338f507f6325b40d27328860f610b881f7dc00e9ca3c9",
+    "normal_run_golden": {
+      "before_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+      "after_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+      "preserved": true
+    },
+    "disposable_root_removed": true,
+    "ended_at": "2026-10-22T13:31:00.598115+00:00"
+  },
+  {
+    "lab": "report-golden-001",
+    "variant": "order",
+    "started_at": "2026-10-22T13:31:00.599602+00:00",
+    "disposable_root": "$DISPOSABLE",
+    "go_executable": "$LOCAL_GO_BIN/go",
+    "environment": {
+      "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:00.600152+00:00",
+        "ended_at": "2026-10-22T13:31:00.606498+00:00",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:00.606888+00:00",
+        "ended_at": "2026-10-22T13:31:02.665909+00:00",
+        "exit_status": 1,
+        "stdout": "--- FAIL: TestReportGolden (0.00s)\n    subject_test.go:12: report.golden line 2: actual \"31 | item-31 | 961\"; want \"00 | item-00 | 0\" (ordinary runs never update)\nFAIL\nFAIL\tfinite.local/subject\t0.166s\nFAIL\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:02.666639+00:00",
+        "ended_at": "2026-10-22T13:31:02.991419+00:00",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/subject\t0.167s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "executed specimen",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS v1\\n\")\n for i:=31;i>=0;i-- {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS v1\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      },
+      {
+        "label": "final files",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS v1\\n\")\n for i:=0;i<32;i++ {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS v1\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      }
+    ],
+    "content_digest": "fc08c7c4a22b9f37805338f507f6325b40d27328860f610b881f7dc00e9ca3c9",
+    "normal_run_golden": {
+      "before_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+      "after_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+      "preserved": true
+    },
+    "disposable_root_removed": true,
+    "ended_at": "2026-10-22T13:31:03.062131+00:00"
+  },
+  {
+    "lab": "report-golden-001",
+    "variant": "value",
+    "started_at": "2026-10-22T13:31:03.063634+00:00",
+    "disposable_root": "$DISPOSABLE",
+    "go_executable": "$LOCAL_GO_BIN/go",
+    "environment": {
+      "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:03.064199+00:00",
+        "ended_at": "2026-10-22T13:31:03.070459+00:00",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:03.070823+00:00",
+        "ended_at": "2026-10-22T13:31:05.147957+00:00",
+        "exit_status": 1,
+        "stdout": "--- FAIL: TestReportGolden (0.00s)\n    subject_test.go:12: report.golden line 2: actual \"00 | item-00 | 1\"; want \"00 | item-00 | 0\" (ordinary runs never update)\nFAIL\nFAIL\tfinite.local/subject\t0.167s\nFAIL\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:05.148692+00:00",
+        "ended_at": "2026-10-22T13:31:05.471732+00:00",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/subject\t0.164s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "executed specimen",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS v1\\n\")\n for i:=0;i<32;i++ {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i+1)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS v1\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      },
+      {
+        "label": "final files",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS v1\\n\")\n for i:=0;i<32;i++ {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS v1\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      }
+    ],
+    "content_digest": "fc08c7c4a22b9f37805338f507f6325b40d27328860f610b881f7dc00e9ca3c9",
+    "normal_run_golden": {
+      "before_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+      "after_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+      "preserved": true
+    },
+    "disposable_root_removed": true,
+    "ended_at": "2026-10-22T13:31:05.541315+00:00"
+  },
+  {
+    "lab": "report-golden-001",
+    "variant": "newline",
+    "started_at": "2026-10-22T13:31:05.542789+00:00",
+    "disposable_root": "$DISPOSABLE",
+    "go_executable": "$LOCAL_GO_BIN/go",
+    "environment": {
+      "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:05.543424+00:00",
+        "ended_at": "2026-10-22T13:31:05.549966+00:00",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:05.550366+00:00",
+        "ended_at": "2026-10-22T13:31:07.608584+00:00",
+        "exit_status": 1,
+        "stdout": "--- FAIL: TestReportGolden (0.00s)\n    subject_test.go:12: report.golden line 34: actual \"<EOF>\"; want \"\" (ordinary runs never update)\nFAIL\nFAIL\tfinite.local/subject\t0.165s\nFAIL\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:07.609370+00:00",
+        "ended_at": "2026-10-22T13:31:07.935596+00:00",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/subject\t0.165s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "executed specimen",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS v1\\n\")\n for i:=0;i<32;i++ {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i)}\n return strings.TrimSuffix(out.String(), \"\\n\")\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS v1\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      },
+      {
+        "label": "final files",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS v1\\n\")\n for i:=0;i<32;i++ {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS v1\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      }
+    ],
+    "content_digest": "fc08c7c4a22b9f37805338f507f6325b40d27328860f610b881f7dc00e9ca3c9",
+    "normal_run_golden": {
+      "before_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+      "after_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+      "preserved": true
+    },
+    "disposable_root_removed": true,
+    "ended_at": "2026-10-22T13:31:08.010531+00:00"
+  },
+  {
+    "lab": "report-golden-001",
+    "variant": "silent-auto-update",
+    "started_at": "2026-10-22T13:31:08.012378+00:00",
+    "disposable_root": "$DISPOSABLE",
+    "go_executable": "$LOCAL_GO_BIN/go",
+    "environment": {
+      "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:08.013033+00:00",
+        "ended_at": "2026-10-22T13:31:08.020674+00:00",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:08.021160+00:00",
+        "ended_at": "2026-10-22T13:31:10.048825+00:00",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/subject\t0.162s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "executed specimen",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS bad\\n\")\n for i:=0;i<32;i++ {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if true || *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS v1\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      },
+      {
+        "label": "final files",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS bad\\n\")\n for i:=0;i<32;i++ {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if true || *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS bad\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      }
+    ],
+    "content_digest": "fc08c7c4a22b9f37805338f507f6325b40d27328860f610b881f7dc00e9ca3c9",
+    "normal_run_golden": {
+      "before_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+      "after_sha256": "6503c237cd408a2ec68aee62dc1968d1629f58119340006014932615e98f8af2",
+      "preserved": false
+    },
+    "disposable_root_removed": true,
+    "ended_at": "2026-10-22T13:31:10.111378+00:00"
+  },
+  {
+    "lab": "report-golden-001",
+    "variant": "explicit-update",
+    "started_at": "2026-10-22T13:31:10.112914+00:00",
+    "disposable_root": "$DISPOSABLE",
+    "go_executable": "$LOCAL_GO_BIN/go",
+    "environment": {
+      "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:10.113485+00:00",
+        "ended_at": "2026-10-22T13:31:10.119852+00:00",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:10.120336+00:00",
+        "ended_at": "2026-10-22T13:31:12.182257+00:00",
+        "exit_status": 1,
+        "stdout": "--- FAIL: TestReportGolden (0.00s)\n    subject_test.go:12: report.golden line 1: actual \"RECORDS v2\"; want \"RECORDS v1\" (ordinary runs never update)\nFAIL\nFAIL\tfinite.local/subject\t0.165s\nFAIL\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "-run=^TestReportGolden$",
+          "-args",
+          "-update"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:31:12.182889+00:00",
+        "ended_at": "2026-10-22T13:31:12.449960+00:00",
+        "exit_status": 0,
+        "stdout": "PASS\nok  \tfinite.local/subject\t0.138s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:32:28.463265+00:00",
+        "ended_at": "2026-10-22T13:32:28.735338+00:00",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/subject\t0.140s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "executed specimen",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS v2\\n\")\n for i:=0;i<32;i++ {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS v1\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      },
+      {
+        "label": "updated golden awaiting review",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS v2\\n\")\n for i:=0;i<32;i++ {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS v2\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      },
+      {
+        "label": "pending final run",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport(\"fmt\";\"strings\")\nfunc Report() string {\n var out strings.Builder\n out.WriteString(\"RECORDS v2\\n\")\n for i:=0;i<32;i++ {fmt.Fprintf(&out,\"%02d | item-%02d | %d\\n\",i,i,i*i)}\n return out.String()\n}\n",
+          "subject_test.go": "package subject\nimport(\"bytes\";\"flag\";\"os\";\"strings\";\"testing\")\nvar update=flag.Bool(\"update\",false,\"explicit local approval candidate; review the diff\")\nfunc TestReportGolden(t *testing.T) {\n got:=[]byte(Report());path:=\"testdata/report.golden\"\n if *update {if err:=os.WriteFile(path,got,0600);err!=nil {t.Fatal(err)};return}\n want,err:=os.ReadFile(path);if err!=nil {t.Fatal(err)}\n if bytes.Equal(got,want) {return}\n actual,expected:=strings.Split(string(got),\"\\n\"),strings.Split(string(want),\"\\n\")\n for i:=0;i<len(actual)||i<len(expected);i++ {\n  a,e:=\"<EOF>\",\"<EOF>\";if i<len(actual) {a=actual[i]};if i<len(expected) {e=expected[i]}\n  if a!=e {t.Fatalf(\"report.golden line %d: actual %q; want %q (ordinary runs never update)\",i+1,a,e)}\n }\n t.Fatalf(\"report.golden differs: actual %d bytes; want %d\",len(got),len(want))\n}\n",
+          "testdata/report.golden": "RECORDS v2\n00 | item-00 | 0\n01 | item-01 | 1\n02 | item-02 | 4\n03 | item-03 | 9\n04 | item-04 | 16\n05 | item-05 | 25\n06 | item-06 | 36\n07 | item-07 | 49\n08 | item-08 | 64\n09 | item-09 | 81\n10 | item-10 | 100\n11 | item-11 | 121\n12 | item-12 | 144\n13 | item-13 | 169\n14 | item-14 | 196\n15 | item-15 | 225\n16 | item-16 | 256\n17 | item-17 | 289\n18 | item-18 | 324\n19 | item-19 | 361\n20 | item-20 | 400\n21 | item-21 | 441\n22 | item-22 | 484\n23 | item-23 | 529\n24 | item-24 | 576\n25 | item-25 | 625\n26 | item-26 | 676\n27 | item-27 | 729\n28 | item-28 | 784\n29 | item-29 | 841\n30 | item-30 | 900\n31 | item-31 | 961\n"
+        }
+      }
+    ],
+    "content_digest": "fc08c7c4a22b9f37805338f507f6325b40d27328860f610b881f7dc00e9ca3c9",
+    "update_diff": "--- before/report.golden\n+++ after/report.golden\n@@ -1,4 +1,4 @@\n-RECORDS v1\n+RECORDS v2\n 00 | item-00 | 0\n 01 | item-01 | 1\n 02 | item-02 | 4\n",
+    "before_golden_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+    "after_update_sha256": "9db925cbefab9c50e81d2ef52dc64060324d7b4b013109b86bfc89cfac9291cd",
+    "status": "executed; independent final review pending",
+    "normal_run_golden": {
+      "before_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+      "after_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+      "preserved": true,
+      "command": "first ordinary go test before explicit update; bytes equality asserted immediately after its expected line1 failure"
+    },
+    "explicit_update_review": {
+      "reviewer": "v1-introductions-02-author",
+      "at": "2026-10-22T13:32:28.462935+00:00",
+      "decision": "accept actual header-only v1\u2192v2 delta before final ordinary test",
+      "evidence": "Inspected saved unified diff: only line1 changed; all32 indexed rows and final newline identical to approved baseline. Byte comparison independently confirms that exact delta.",
+      "diff": "--- before/report.golden\n+++ after/report.golden\n@@ -1,4 +1,4 @@\n-RECORDS v1\n+RECORDS v2\n 00 | item-00 | 0\n 01 | item-01 | 1\n 02 | item-02 | 4\n"
+    },
+    "final_ordinary_run_golden": {
+      "before_sha256": "9db925cbefab9c50e81d2ef52dc64060324d7b4b013109b86bfc89cfac9291cd",
+      "after_sha256": "9db925cbefab9c50e81d2ef52dc64060324d7b4b013109b86bfc89cfac9291cd",
+      "preserved": true
+    },
+    "disposable_root_removed": true,
+    "ended_at": "2026-10-22T13:32:28.804144+00:00",
+    "explicit_update_golden": {
+      "before_sha256": "adbc562d13778432c9f6947c27558f604e766c5b4aae29c6b7aad48e3de0bddb",
+      "after_sha256": "9db925cbefab9c50e81d2ef52dc64060324d7b4b013109b86bfc89cfac9291cd",
+      "preserved": false
+    }
+  }
+]

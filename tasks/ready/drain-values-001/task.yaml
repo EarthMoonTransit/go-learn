@@ -1,0 +1,54 @@
+schema_version: 2
+id: drain-values-001
+title: Drain a finite producer until its close
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: channels.range-drain
+    secondary: []
+prerequisites:
+    - channels.close-semantics
+    - channels.operations-blocking
+    - channels.ownership
+    - control-flow.range
+    - functions.signatures-results
+    - goroutines.launch-lifecycle
+    - slices.append-growth
+    - slices.header-model
+new_concepts:
+    - channels.range-drain
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - immediate-empty
+        - first-only
+        - stop-on-zero
+        - sorted-values
+        - reverse-values
+        - deduplicate
+        - empty-is-done
+        - nil-empty
+        - shared-pending
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

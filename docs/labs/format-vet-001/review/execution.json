@@ -1,0 +1,455 @@
+[
+  {
+    "lab": "format-vet-001",
+    "variant": "reference",
+    "started_at": "2026-10-22T13:30:36.561870+00:00",
+    "disposable_root": "$DISPOSABLE",
+    "go_executable": "$LOCAL_GO_BIN/go",
+    "environment": {
+      "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:36.562338+00:00",
+        "ended_at": "2026-10-22T13:30:36.568254+00:00",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/gofmt",
+          "-d",
+          "subject.go"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:36.568441+00:00",
+        "ended_at": "2026-10-22T13:30:36.571047+00:00",
+        "exit_status": 1,
+        "stdout": "diff subject.go.orig subject.go\n--- subject.go.orig\n+++ subject.go\n@@ -1,3 +1,5 @@\n package subject\n+\n import \"fmt\"\n-func Label(label string)string{return fmt.Sprintf(\"item:%d\",label)}\n+\n+func Label(label string) string { return fmt.Sprintf(\"item:%d\", label) }\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/gofmt",
+          "-w",
+          "subject.go"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:36.571227+00:00",
+        "ended_at": "2026-10-22T13:30:36.574879+00:00",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/gofmt",
+          "-d",
+          "subject.go"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:36.575326+00:00",
+        "ended_at": "2026-10-22T13:30:36.577788+00:00",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "vet",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:36.578001+00:00",
+        "ended_at": "2026-10-22T13:30:38.074428+00:00",
+        "exit_status": 1,
+        "stdout": "",
+        "stderr": "subject.go:5:60: fmt.Sprintf format %d has arg label of wrong type string\n",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/gofmt",
+          "-w",
+          "subject.go"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:38.075154+00:00",
+        "ended_at": "2026-10-22T13:30:38.078300+00:00",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/gofmt",
+          "-d",
+          "subject.go"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:38.078551+00:00",
+        "ended_at": "2026-10-22T13:30:38.081260+00:00",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "vet",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:38.081465+00:00",
+        "ended_at": "2026-10-22T13:30:38.155087+00:00",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:38.155359+00:00",
+        "ended_at": "2026-10-22T13:30:39.541448+00:00",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/subject\t0.679s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "initial",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport \"fmt\"\nfunc Label(label string)string{return fmt.Sprintf(\"item:%d\",label)}\n",
+          "subject_test.go": "package subject\nimport \"testing\"\nfunc TestLabel(t *testing.T) {\n for _,label:=range []string{\"\", \"Go\", \"a b\", \"\u0416\"} {\n  want:=\"item:\"+label\n  if got:=Label(label);got!=want {t.Errorf(\"Label(%q)=%q; want %q\",label,got,want)}\n }\n}\n"
+        }
+      },
+      {
+        "label": "formatted only",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\n\nimport \"fmt\"\n\nfunc Label(label string) string { return fmt.Sprintf(\"item:%d\", label) }\n",
+          "subject_test.go": "package subject\nimport \"testing\"\nfunc TestLabel(t *testing.T) {\n for _,label:=range []string{\"\", \"Go\", \"a b\", \"\u0416\"} {\n  want:=\"item:\"+label\n  if got:=Label(label);got!=want {t.Errorf(\"Label(%q)=%q; want %q\",label,got,want)}\n }\n}\n"
+        }
+      },
+      {
+        "label": "semantic verb repair",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\n\nimport \"fmt\"\n\nfunc Label(label string) string { return fmt.Sprintf(\"item:%s\", label) }\n",
+          "subject_test.go": "package subject\nimport \"testing\"\nfunc TestLabel(t *testing.T) {\n for _,label:=range []string{\"\", \"Go\", \"a b\", \"\u0416\"} {\n  want:=\"item:\"+label\n  if got:=Label(label);got!=want {t.Errorf(\"Label(%q)=%q; want %q\",label,got,want)}\n }\n}\n"
+        }
+      },
+      {
+        "label": "final correct files",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\n\nimport \"fmt\"\n\nfunc Label(label string) string { return fmt.Sprintf(\"item:%s\", label) }\n",
+          "subject_test.go": "package subject\nimport \"testing\"\nfunc TestLabel(t *testing.T) {\n for _,label:=range []string{\"\", \"Go\", \"a b\", \"\u0416\"} {\n  want:=\"item:\"+label\n  if got:=Label(label);got!=want {t.Errorf(\"Label(%q)=%q; want %q\",label,got,want)}\n }\n}\n"
+        }
+      }
+    ],
+    "content_digest": "9cd4708b3ec44386a85ba48db225b40986d018909abae5ddb75ed766165f50b9",
+    "disposable_root_removed": true,
+    "ended_at": "2026-10-22T13:30:39.609489+00:00"
+  },
+  {
+    "lab": "format-vet-001",
+    "variant": "wrong-format",
+    "started_at": "2026-10-22T13:30:39.610758+00:00",
+    "disposable_root": "$DISPOSABLE",
+    "go_executable": "$LOCAL_GO_BIN/go",
+    "environment": {
+      "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:39.611032+00:00",
+        "ended_at": "2026-10-22T13:30:39.617321+00:00",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/gofmt",
+          "-w",
+          "subject.go"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:39.617568+00:00",
+        "ended_at": "2026-10-22T13:30:39.620366+00:00",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "vet",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:39.620572+00:00",
+        "ended_at": "2026-10-22T13:30:41.146243+00:00",
+        "exit_status": 1,
+        "stdout": "",
+        "stderr": "subject.go:5:60: fmt.Sprintf format %d has arg label of wrong type string\n",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "vet",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:41.146977+00:00",
+        "ended_at": "2026-10-22T13:30:41.218538+00:00",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:41.218880+00:00",
+        "ended_at": "2026-10-22T13:30:42.110768+00:00",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/subject\t0.168s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "initial",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport \"fmt\"\nfunc Label(label string)string{return fmt.Sprintf(\"item:%d\",label)}\n",
+          "subject_test.go": "package subject\nimport \"testing\"\nfunc TestLabel(t *testing.T) {\n for _,label:=range []string{\"\", \"Go\", \"a b\", \"\u0416\"} {\n  want:=\"item:\"+label\n  if got:=Label(label);got!=want {t.Errorf(\"Label(%q)=%q; want %q\",label,got,want)}\n }\n}\n"
+        }
+      },
+      {
+        "label": "verb repaired",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\n\nimport \"fmt\"\n\nfunc Label(label string) string { return fmt.Sprintf(\"item:%s\", label) }\n",
+          "subject_test.go": "package subject\nimport \"testing\"\nfunc TestLabel(t *testing.T) {\n for _,label:=range []string{\"\", \"Go\", \"a b\", \"\u0416\"} {\n  want:=\"item:\"+label\n  if got:=Label(label);got!=want {t.Errorf(\"Label(%q)=%q; want %q\",label,got,want)}\n }\n}\n"
+        }
+      },
+      {
+        "label": "final correct files",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\n\nimport \"fmt\"\n\nfunc Label(label string) string { return fmt.Sprintf(\"item:%s\", label) }\n",
+          "subject_test.go": "package subject\nimport \"testing\"\nfunc TestLabel(t *testing.T) {\n for _,label:=range []string{\"\", \"Go\", \"a b\", \"\u0416\"} {\n  want:=\"item:\"+label\n  if got:=Label(label);got!=want {t.Errorf(\"Label(%q)=%q; want %q\",label,got,want)}\n }\n}\n"
+        }
+      }
+    ],
+    "content_digest": "9cd4708b3ec44386a85ba48db225b40986d018909abae5ddb75ed766165f50b9",
+    "disposable_root_removed": true,
+    "ended_at": "2026-10-22T13:30:42.179703+00:00"
+  },
+  {
+    "lab": "format-vet-001",
+    "variant": "clean-vet-wrong-result",
+    "started_at": "2026-10-22T13:30:42.180893+00:00",
+    "disposable_root": "$DISPOSABLE",
+    "go_executable": "$LOCAL_GO_BIN/go",
+    "environment": {
+      "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "CGO_ENABLED": "0",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "HOME": "$DISPOSABLE/home",
+      "GOCACHE": "$DISPOSABLE/cache",
+      "GOMODCACHE": "$DISPOSABLE/modcache",
+      "TMPDIR": "$DISPOSABLE/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "version"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:42.181245+00:00",
+        "ended_at": "2026-10-22T13:30:42.187491+00:00",
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/gofmt",
+          "-w",
+          "subject.go"
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:42.187789+00:00",
+        "ended_at": "2026-10-22T13:30:42.190590+00:00",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "vet",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:42.190977+00:00",
+        "ended_at": "2026-10-22T13:30:43.683334+00:00",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:43.683641+00:00",
+        "ended_at": "2026-10-22T13:30:44.561454+00:00",
+        "exit_status": 1,
+        "stdout": "--- FAIL: TestLabel (0.00s)\n    subject_test.go:6: Label(\"\")=\"label:\"; want \"item:\"\n    subject_test.go:6: Label(\"Go\")=\"label:Go\"; want \"item:Go\"\n    subject_test.go:6: Label(\"a b\")=\"label:a b\"; want \"item:a b\"\n    subject_test.go:6: Label(\"\u0416\")=\"label:\u0416\"; want \"item:\u0416\"\nFAIL\nFAIL\tfinite.local/subject\t0.163s\nFAIL\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "vet",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:44.562477+00:00",
+        "ended_at": "2026-10-22T13:30:44.641223+00:00",
+        "exit_status": 0,
+        "stdout": "",
+        "stderr": "",
+        "timeout_seconds": 60
+      },
+      {
+        "argv": [
+          "$LOCAL_GO_BIN/go",
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        "cwd": "$DISPOSABLE/project",
+        "started_at": "2026-10-22T13:30:44.641528+00:00",
+        "ended_at": "2026-10-22T13:30:44.960146+00:00",
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/subject\t0.161s\n",
+        "stderr": "",
+        "timeout_seconds": 60
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "initial",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\nimport \"fmt\"\nfunc Label(label string)string{return fmt.Sprintf(\"item:%d\",label)}\n",
+          "subject_test.go": "package subject\nimport \"testing\"\nfunc TestLabel(t *testing.T) {\n for _,label:=range []string{\"\", \"Go\", \"a b\", \"\u0416\"} {\n  want:=\"item:\"+label\n  if got:=Label(label);got!=want {t.Errorf(\"Label(%q)=%q; want %q\",label,got,want)}\n }\n}\n"
+        }
+      },
+      {
+        "label": "wrong result with valid verb",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\n\nimport \"fmt\"\n\nfunc Label(label string) string { return fmt.Sprintf(\"label:%s\", label) }\n",
+          "subject_test.go": "package subject\nimport \"testing\"\nfunc TestLabel(t *testing.T) {\n for _,label:=range []string{\"\", \"Go\", \"a b\", \"\u0416\"} {\n  want:=\"item:\"+label\n  if got:=Label(label);got!=want {t.Errorf(\"Label(%q)=%q; want %q\",label,got,want)}\n }\n}\n"
+        }
+      },
+      {
+        "label": "prefix repaired",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\n\nimport \"fmt\"\n\nfunc Label(label string) string { return fmt.Sprintf(\"item:%s\", label) }\n",
+          "subject_test.go": "package subject\nimport \"testing\"\nfunc TestLabel(t *testing.T) {\n for _,label:=range []string{\"\", \"Go\", \"a b\", \"\u0416\"} {\n  want:=\"item:\"+label\n  if got:=Label(label);got!=want {t.Errorf(\"Label(%q)=%q; want %q\",label,got,want)}\n }\n}\n"
+        }
+      },
+      {
+        "label": "final correct files",
+        "files": {
+          "go.mod": "module finite.local/subject\n\ngo 1.27.0\n",
+          "subject.go": "package subject\n\nimport \"fmt\"\n\nfunc Label(label string) string { return fmt.Sprintf(\"item:%s\", label) }\n",
+          "subject_test.go": "package subject\nimport \"testing\"\nfunc TestLabel(t *testing.T) {\n for _,label:=range []string{\"\", \"Go\", \"a b\", \"\u0416\"} {\n  want:=\"item:\"+label\n  if got:=Label(label);got!=want {t.Errorf(\"Label(%q)=%q; want %q\",label,got,want)}\n }\n}\n"
+        }
+      }
+    ],
+    "content_digest": "9cd4708b3ec44386a85ba48db225b40986d018909abae5ddb75ed766165f50b9",
+    "disposable_root_removed": true,
+    "ended_at": "2026-10-22T13:30:45.038890+00:00"
+  }
+]

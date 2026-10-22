@@ -1,0 +1,11 @@
+package subject
+import("testing";"strings";"slices")
+func TestEquivalentJoins(t *testing.T) {
+ for _,values:=range [][]string{nil,{}, {""},{"a","b"},{"a/b","","Ж","🙂"},{strings.Repeat("ab",64),"end"}} {
+  want:=strings.Join(values,"/");before:=append([]string(nil),values...)
+  for _,impl:=range []struct{name string;join func([]string)string}{{"Concat",Concat},{"Builder",Builder}} {
+   if got:=impl.join(values);got!=want {t.Errorf("%s(%q)=%q; want %q",impl.name,values,got,want)}
+   if !slices.Equal(values,before) {t.Errorf("%s changed input: %q; want %q",impl.name,values,before)}
+  }
+ }
+}

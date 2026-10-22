@@ -1,0 +1,20 @@
+package subject
+import("testing";"strings")
+var Result string
+func BenchmarkJoin(b *testing.B) {
+ cases:=[]struct{name string;values []string}{
+ {"empty",nil},{"shortASCII",[]string{"a","bb","ccc"}},
+ {"longASCII",[]string{strings.Repeat("abc",128),strings.Repeat("def",128),strings.Repeat("ghi",128)}},
+ {"multibyte",[]string{"Ж",strings.Repeat("🙂",32),"e\u0301"}},
+ }
+ for _,c:=range cases {
+  for _,impl:=range []struct{name string;join func([]string)string}{{"Concat",Concat},{"Builder",Builder}} {
+   b.Run(c.name+"/"+impl.name,func(b *testing.B){
+    want:=strings.Join(c.values,"/")
+    if got:=impl.join(c.values);got!=want {b.Fatalf("%s=%q; want %q",impl.name,got,want)}
+    b.ReportAllocs();b.ResetTimer()
+    for i:=0;i<b.N;i++ {prepared:=append([]string(nil),c.values...);Result=impl.join(prepared)}
+   })
+  }
+ }
+}

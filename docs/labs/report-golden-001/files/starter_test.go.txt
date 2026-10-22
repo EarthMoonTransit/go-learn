@@ -1,0 +1,5 @@
+package subject
+import "testing"
+func TestReportGolden(t *testing.T) {
+ // Read the golden file and report a focused mismatch. Never update by default.
+}

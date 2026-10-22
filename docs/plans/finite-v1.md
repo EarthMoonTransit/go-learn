@@ -94,58 +94,40 @@ debugging or learner-test profiles only when they assess the intended outcome.
   external outage; the same repeated failure blocks. No new controller; handoff
   preserves the goal and does not mean completion.
 
-## Current checkpoint: first introduction batch
+## Current checkpoint: second introduction batch
 
-- Owner/controller: current finite-v1 goal, sole independent reviewer
-  `/root/reviewer`; repository `/Users/egor/Documents/ChatGPT/go-learn`.
-- Branch: `codex/v1-introductions-01`, base
-  `ab880dea6f344f1e90ed777df16ed330dbd0303f` (PR104 merge). PR104 validate
-  [39726118510](https://github.com/EarthMoonTransit/go-learn/actions/runs/39726118510)
-  succeeded on `5c38dcc84969cb41a6ff55574f00e3afea9a9801`. Current I1 content,
-  method, native and route reviews are accepted; final local gates, PR/HEAD review
-  and exact-head CI/merge remain pending. The stable full collection passed all
-  204 packages in 17m40s; generated quality/coverage reports reuse that collection.
-- Baseline reconciled: 191 routed lessons, 194 ready packages, 201 total checked
-  packages; 28 first slots, 77 applications and six components remain. Automatic
-  counts, manual acceptance and unknown learner mastery remain separate.
-- Selected first five: functions.recursion (behavior plus real decomposition,
-  base/progress/combine checklist); testing.table-driven (learner cases plus
-  mutation checks and method review); testing.deterministic-boundaries (controlled
-  seam/signals without sleep; first inspect worker-completion-tests-001 for reuse);
-  channels.ownership; toolchain.build-run (actual build/run/test evidence).
-  Reviewer confirmed that range-drain must follow its still-missing ownership
-  prerequisite, so ownership replaces it under the approved substitution rule;
-  range-drain remains a required later introduction. Build-run directly requires
-  modules-workspaces; the existing preparation text supplies context but earns
-  no finite-v1 evidence. Recursion/table-driven/deterministic-boundaries have
-  available direct prerequisites. Worker reuse has been accepted for the bounded
-  first encounter only; its future independent application remains open.
-- Resolved rule blocker NATIVE-01, independently confirmed 2026-10-22: the previous
-  AGENTS rule 9 required task-check without a native-lab exception.
-  `internal/tasking/runner.go` assembles fixed go.mod and test/vet commands;
-  `internal/isolation/legacy.go` rejects build/run and benchmark flags;
-  `internal/isolation/isolation.go` forces GOWORK=off; task contract validation
-  disallows editable go.mod/go.work. The reserved benchmark profile is not
-  executable. Calling the low-level isolation API or subprocesses from authored
-  tests would not establish an authorized assessment path.
-- The owner explicitly approved the proposed finite manual procedure on
-  2026-10-22; AGENTS rule 9 and ADR0034 now record that narrow exception.
-  The combined modules/workspaces then build/run lab has now been executed and
-  independently accepted with separate assessed actions. Next: finish the single
-  full collection, required local gates, final HEAD review and PR validate.
-  Content/method/native review has accepted the five units; final gates and merge
-  remain pending. Resume timestamp: 14:48 MSK.
-- Startup/diagnosis accounting: 14:32:40–14:37:43 MSK (5m03s); conservatively
-  charged entirely to NATIVE-01 diagnosis in this batch and rolling three-batch
-  infrastructure budget. Code/fix time is 0; never add that interval twice.
-  Owner-wait after the blocked response is excluded from the four-hour checkpoint.
-  Native recipe/path diagnosis adds a conservative 5-minute upper bound: cumulative
-  infrastructure <=10m03s, no production tooling changes. [I1 report](../../reports/v1-introductions-01.md)
-  records six proposed closed first slots, separate manual evidence and current gates.
-- Old-pair review: 12/49 rows inspected, 11 accepted, arrays.value-semantics
-  requires one first-encounter repair; 37 rows remain. The repair is allocated
-  within the frozen ceiling (conservative current total 301/302), separately
-  from the original 28-first-slot deadline. No supplied mechanism earns credit.
+- I1 is accepted and merged as [PR105](https://github.com/EarthMoonTransit/go-learn/pull/105),
+  final HEAD `d2d8eb988d5b0063b9ef60148024d8c359e1d1a0`, merge
+  `50412ef271c439cb8c7508341578a6ad03342353`; exact-head validate
+  [39779096922](https://github.com/EarthMoonTransit/go-learn/actions/runs/39779096922)
+  and all local gates passed. [I1 report](../../reports/v1-introductions-01.md)
+  separates automatic, method and actually executed manual results.
+- I1 delivered five units and six first slots: 22 of the original 28 remain,
+  77 applications and six components. Route 194, ready packages 197, checked
+  packages 204. Modules/workspaces procedure is already executed and accepted.
+- Current branch `codex/v1-introductions-02` starts from that merge; authoring
+  starts at approximately 13:14 UTC / 16:14 MSK on 2026-10-22. Same controller
+  and sole independent reviewer `/root/reviewer`; no replacement goal.
+- I2 content/method/native review accepted six units: range-drain; learner-written executable examples;
+  formatting/vet; native benchmark timing, allocations and experimental design
+  with separate actions; real golden-file review/update; unchanged LRU reuse as
+  generic-container component. Seven original first slots have accepted material evidence; final batch gates/merge remain.
+  Benchmark reference and all three method actions are actually executed/reviewed.
+  Expected post-merge remainder:15 original first slots,77 applications,5 components;
+ 196 automatic route units plus4 manual units. The stable206-package collection
+  passed in18m01s; generated reports reuse it. Fast/race/vet passed; integration,
+  final consumers, exact-HEAD review and validate/merge remain.
+- Old-pair review is now 49/49: 44 accepted, five concrete repair rows, none pending.
+  The backlog records actual actions and pinned paths. Supplied mechanisms earn
+  no credit. Array/struct and small-interface first repairs plus typed-error,
+  small-interface and constants applications remain explicit. Combined
+  I2 benchmark credit and LRU reuse keep the conservative repair allocation
+  <=300/302; repair designs remain plans, not readiness evidence.
+- I1 available-time upper bound <=1h32; infrastructure <=10m03, with no production
+  tooling fixes. Owner wait excluded; no CI-only idle/sleep exclusion claimed.
+  I2 four-hour checkpoint counts content, review and local checks without double
+  counting overlap. I2 gofmt-status recipe diagnosis is conservatively <=3m, without production
+  tooling changes; rolling infrastructure <=13m03.
 
 ### Authorized finite manual procedure (owner decision, 2026-10-22)
 
