@@ -1,8 +1,8 @@
 # Go Practice Bank
 
 
-Active roadmap: **196 ready Go lessons → finite v1 course**, using existing checks plus explicit checklist review. Autonomous reviewed batches are authorized; native manual units use the explicit isolated procedure. See [finite-v1](docs/plans/finite-v1.md) and [ROADMAP.md](docs/ROADMAP.md). Full-bank coverage and release remain separate.
-Кураторский банк практических задач по Go: **196 уроков в педагогическом порядке**,
+Active roadmap: **199 ready Go lessons → finite v1 course**, using existing checks plus explicit checklist review. Autonomous reviewed batches are authorized; native manual units use the explicit isolated procedure. See [finite-v1](docs/plans/finite-v1.md) and [ROADMAP.md](docs/ROADMAP.md). Full-bank coverage and release remain separate.
+Кураторский банк практических задач по Go: **199 уроков в педагогическом порядке**,
 со стабильными адресами в разделах 01–09, включая самостоятельное написание кода,
 тестов и debugging. Прежние адреса, прогресс и рабочие папки сохраняются.
 87 уроков содержательно адаптируют разрешённые материалы Exercism, Learn Go with

@@ -94,40 +94,21 @@ debugging or learner-test profiles only when they assess the intended outcome.
   external outage; the same repeated failure blocks. No new controller; handoff
   preserves the goal and does not mean completion.
 
-## Current checkpoint: second introduction batch
+## Current checkpoint: third introduction batch
 
-- I1 is accepted and merged as [PR105](https://github.com/EarthMoonTransit/go-learn/pull/105),
-  final HEAD `d2d8eb988d5b0063b9ef60148024d8c359e1d1a0`, merge
-  `50412ef271c439cb8c7508341578a6ad03342353`; exact-head validate
-  [39779096922](https://github.com/EarthMoonTransit/go-learn/actions/runs/39779096922)
-  and all local gates passed. [I1 report](../../reports/v1-introductions-01.md)
-  separates automatic, method and actually executed manual results.
-- I1 delivered five units and six first slots: 22 of the original 28 remain,
-  77 applications and six components. Route 194, ready packages 197, checked
-  packages 204. Modules/workspaces procedure is already executed and accepted.
-- Current branch `codex/v1-introductions-02` starts from that merge; authoring
-  starts at approximately 13:14 UTC / 16:14 MSK on 2026-10-22. Same controller
-  and sole independent reviewer `/root/reviewer`; no replacement goal.
-- I2 content/method/native review accepted six units: range-drain; learner-written executable examples;
-  formatting/vet; native benchmark timing, allocations and experimental design
-  with separate actions; real golden-file review/update; unchanged LRU reuse as
-  generic-container component. Seven original first slots have accepted material evidence; final batch gates/merge remain.
-  Benchmark reference and all three method actions are actually executed/reviewed.
-  Expected post-merge remainder:15 original first slots,77 applications,5 components;
- 196 automatic route units plus4 manual units. The stable206-package collection
-  passed in18m01s; generated reports reuse it. Fast/race/vet passed; integration,
-  final consumers, exact-HEAD review and validate/merge remain.
-- Old-pair review is now 49/49: 44 accepted, five concrete repair rows, none pending.
-  The backlog records actual actions and pinned paths. Supplied mechanisms earn
-  no credit. Array/struct and small-interface first repairs plus typed-error,
-  small-interface and constants applications remain explicit. Combined
-  I2 benchmark credit and LRU reuse keep the conservative repair allocation
-  <=300/302; repair designs remain plans, not readiness evidence.
-- I1 available-time upper bound <=1h32; infrastructure <=10m03, with no production
-  tooling fixes. Owner wait excluded; no CI-only idle/sleep exclusion claimed.
-  I2 four-hour checkpoint counts content, review and local checks without double
-  counting overlap. I2 gofmt-status recipe diagnosis is conservatively <=3m, without production
-  tooling changes; rolling infrastructure <=13m03.
+- I1 and I2 are accepted: [PR105](https://github.com/EarthMoonTransit/go-learn/pull/105), [PR106](https://github.com/EarthMoonTransit/go-learn/pull/106). Latest merge `94dc30a5e149e674e7312a7059029b41dcc336e7`, final HEAD `fc0e996cacf53c92d88cf2b302940cb0bb5a760d`, exact-head [validate39793027318](https://github.com/EarthMoonTransit/go-learn/actions/runs/39793027318) and all local gates passed. See short I1/I2 reports.
+- Original firsts:13/28 accepted,15 remain;77 applications and5 components remain. Route196, ready199, checked206, manual4. Modules/workspaces and benchmark specimens were actually executed and independently accepted by batch2. Manual evidence creates no automatic coverage/progress.
+- I3 uses `codex/v1-introductions-03`, the same controller and sole reviewer. Approved five-unit design: unchanged owned-values buffering first; two-stage-stream pipeline first plus distinct range-drain/ownership applications; once-result first; trace-context first plus safe type-assertion application; actual docs/environment lab. Placement follows prerequisites. All five units now have actual independent content/method/native acceptance; the stable209-package collection passed209/209 in18m27s; remaining local gates, final-HEAD review and CI/merge remain. Expected postmerge remainder10 original firsts,74 applications,5 components;199 automatic route units and5 manual units.
+- All49 old candidate pairs reviewed:44 accepted,5 concrete repair rows. Array/struct firsts, small-interface first/application, typed-error application and constants application remain explicit. At most3 extra repair units keep the current conservative allocation300/302. They are not replaced by convenient tasks.
+- I1 available execution≤1h32; I2=61m47s after documented36m11 CI-only idle, total≤2h34 for11 units. Local gates are included. Infrastructure I1≤10m03, I2≤3m, rolling I1+I2≤13m03; I3 Once-fixture diagnosis is conservatively bounded by15m, so rolling≤28m03; no production tooling. I3 four-hour checkpoint starts conservatively at14:51:59UTC immediately after I2 merge, including report/branch work; subsequent content/review/checks count, overlap once.
+
+- Next I4 contract/source plan is accepted for six units after I3 merge: cancellation reuse, bounded pool, worker recovery, Pipe exchange, timer lifecycle and unchanged indexed-results WG checklist. Five original firsts remain the priority. A separate single-encounter review found JoinAll supplies WG; the planned indexed-results method repair receives no advance credit. Existing49pair counts remain44/5, and this repair reuses an existing unit.
+
+### Estimate after two accepted batches
+
+These two mixed batches are a small sample, not a completion promise. Ordinary automatic work contributed five new packages plus two unchanged reuses; four manual units required actual isolated evidence. The only accepted component was existing LRU reuse, so new-component duration is still unmeasured. No separate measured authoring timer exists per unit; do not divide all elapsed time into a purported per-task rate.
+
+Planning envelopes for remaining work, including local gates and review but excluding documented CI-only idle: ordinary batches of5–8 units roughly1.5–3h; native/manual-heavy batches roughly2–4h; integrated components roughly2–4h per batch, still uncalibrated.15 first slots+77 applications+5 components+up to3 repair units mean roughly13–20 further batches before additional justified reuse/combined credit. A provisional25–60h available-execution envelope remains uncertain, especially for components and difficult topics. Re-estimate after native/component batches; never shorten quality or cross the4h checkpoint to meet the forecast. First-slot deadline remains batch10; dependency plan currently targets completion around I5 if accepted.
 
 ### Authorized finite manual procedure (owner decision, 2026-10-22)
 

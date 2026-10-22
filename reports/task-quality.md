@@ -12,7 +12,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | --- | ---: |
 | `draft` | 6 |
 | `in-review` | 0 |
-| `ready` | 199 |
+| `ready` | 202 |
 | `rejected` | 1 |
 | `retired` | 0 |
 
@@ -21,7 +21,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | Type | Count |
 | --- | ---: |
 | `debug` | 50 |
-| `implement` | 103 |
+| `implement` | 106 |
 | `refactor` | 3 |
 | `test-writing` | 50 |
 
@@ -153,6 +153,7 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | `nested-stringers-001` | `ready` | `7519698cbf9fa84b4a07c1703b280c2c9c2bdd5b5ff4e3be6ede6dc23e803506` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 7/7 | Phase 3A |
 | `nil-preserving-filter-001` | `ready` | `5c93a0ad99b4814e97aabc8660ffe22907d98a0b6c1b1a9c21deb024bef81197` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 8/8 | Phase 3A |
 | `number-box-tests-001` | `ready` | `318bfc498e072fd384425b7af9bc95cb54fafe75616eb9a75321bccd3049ffc9` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 5/5 | Phase 3A |
+| `once-result-001` | `ready` | `e10c7b12c5902376c18abda6792972edb53888e6ace157d9062d7208e5121156` | `pass` | `pass` | true | `pass` | `pass` | `pass` | 7/7 | Phase 3A |
 | `ordered-error-propagation-001` | `ready` | `7fad9bb59fe9ae8333b38d796440c7c35b18146081cf3e777425370351576590` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
 | `overlapping-shift-tests-001` | `ready` | `ea96ca44951eb82e4270c0d2a62edfb5665d0866088e94e14a30aa39a987ff8c` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
 | `owned-batch-channel-001` | `ready` | `fdaf577db6cdb7385e8dbea077eaec671c52752d675898651c52fd54777d0203` | `pass` | `pass` | true | `pass` | `pass` | `pass` | 11/11 | Phase 3A |
@@ -217,8 +218,10 @@ Toolchain policy digest: `51c9dce19825ed8c5cceccba7b81b0993be4f9213caa1571dd0a51
 | `timeout-operation-001` | `ready` | `315b015d79303a874db29e3b65dca50cc727a85dedb1b0604b2b90061c0ae79b` | `pass` | `pass` | true | `pass` | `pass` | `pass` | 13/13 | Phase 3A |
 | `token-values-001` | `ready` | `86cb8b87edecbb50a2fe8c45908ed90f75e35311dd908bc89593914cc607e3e5` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
 | `total-counts-tests-001` | `ready` | `4da2ea8e0e0a7afe0ac9bb9f5761d80e60c1778617cf088eba8e50290297a9d1` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
+| `trace-context-001` | `ready` | `17cf2559366b847eb45d8903ab8bdbf4c67e48802d5eb8c30bd743bb4cc7d410` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 8/8 | Phase 3A |
 | `transfer-shared-values-001` | `ready` | `7f66e94d7dc1a89a81e2e541a820f2420c04de78f89e2f0f740532263deb39d0` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 9/9 | Phase 3A |
 | `two-quantity-tests-001` | `ready` | `bbbace23b18e3926a4281165af99a7fd529f857685bea7a900981874100b3663` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 7/7 | Phase 3A |
+| `two-stage-stream-001` | `ready` | `96e968307bc8baee34c66180083c8359197f314e5798896973d1c589d4bd07dc` | `pass` | `pass` | true | `pass` | `pass` | `pass` | 7/7 | Phase 3A |
 | `type-switch-default-tests-001` | `ready` | `2a9cc26834b0d60c3462d5bf008cced52a69c9855917e88ce40d203959cfd1c1` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
 | `typed-line-001` | `ready` | `8901bf2c40974a9bffa0603e942b045be4f7add95fe766fc8beeae940dda6261` | `pass` | `pass` | true | `pass` | `pass` | `not-applicable` | 6/6 | Phase 3A |
 | `typed-nil-resource-001` | `rejected` | `ed2499f418474a615d3e20627e50e3f16ce3707605af4de8e26877f8610d8110` | `pass` | `not-applicable` | false | `not-applicable` | `not-applicable` | `not-applicable` | 0/0 | Phase 3A |

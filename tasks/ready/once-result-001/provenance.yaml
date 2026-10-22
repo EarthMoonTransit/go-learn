@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "7a2d7a4ff5d5ba9f8a887497d38da1c4a096551ec27de53ce33a20388038cbdc"
+  },
+  "creation": {
+    "author": "v1-introductions-03-author",
+    "created_at": "2026-10-22",
+    "summary": "Original finite-v1 content after independent contract review; no external material."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/once-result-001.yaml"
+  }
+}

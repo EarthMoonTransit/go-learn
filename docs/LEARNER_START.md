@@ -31,6 +31,7 @@ files/results for checklist review. They do not create automatic completion:
 | Position | Manual unit | Assessed action |
 | --- | --- | --- |
 | After modules-build, before benchmark work | [Format and vet](labs/format-vet-001/TASK.md) | Apply stable formatting, interpret a vet finding, distinguish vet from correctness |
+| After diagnostic-helper-001 and modules-build | [Documentation and target selection](labs/docs-environment-001/TASK.md) | Apply go doc, inspect go env and predict native/cross-target file selection before go list |
 | After diagnostic-helper-001 and format-vet | [Native join benchmark](labs/join-benchmark-001/TASK.md) | First author timing boundaries, then analyze allocations, then choose representative repeated comparisons |
 | After resource-finalize-001 and filesystem-record-tests-001 | [Reviewed golden file](labs/report-golden-001/TASK.md) | Author file comparison/diagnostics, preserve normal-run expectations and explicitly review a local update |
 
@@ -47,6 +48,22 @@ path; `key-summary-examples-001` requires discoverable, useful executable exampl
 with intentional output. A behavioral
 pass alone does not establish those methods. Their placement in the existing
 route follows the required automatic prerequisites.
+
+For `owned-values-001`, also submit the buffering checklist: if n values must
+be queued synchronously before any receiver exists, capacity must be at least n.
+Explain why the reference chooses len(values), why zero input still closes a
+non-nil channel, and why no producer remains blocked after return. This bounded
+capacity choice is separate from the existing leak-prevention action. The old
+six automatic mutants retain their scope; they do not promise useful automatic
+diagnostics for an insufficient synchronous buffer. The supplemental checklist
+is manual evidence, with no added automatic coverage or progress.
+
+`two-stage-stream-001` requires two actual communicating range stages, separate
+send/close owners and whole-chain termination under full draining. `once-result-001`
+requires actual Once initialization and completed result publication, with cached
+errors and an explicit non-reset lifecycle. `trace-context-001` requires a private
+comparable key, safe typed accessor and request-scoped metadata. Submit the actual
+code with these explanations; behavior-only success does not establish method.
 
 ## Your first workspace
 

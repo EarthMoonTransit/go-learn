@@ -58,7 +58,12 @@
       "slot": "first-encounter:channels.buffering-backpressure",
       "skill_id": "channels.buffering-backpressure",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "owned-values-001",
+      "delivery_batch": "I3",
+      "assessment": "unchanged automatic task plus separately reviewed manual capacity rationale; no new automatic coverage",
+      "review_evidence": "reports/v1-introductions-03.md",
+      "reuse_commit": "94dc30a5e149e674e7312a7059029b41dcc336e7"
     },
     {
       "slot": "first-encounter:channels.cancellation",
@@ -86,7 +91,11 @@
       "slot": "first-encounter:channels.pipeline",
       "skill_id": "channels.pipeline",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "two-stage-stream-001",
+      "delivery_batch": "I3",
+      "assessment": "hybrid: automatic behavior plus actual method review; distinct learner action",
+      "review_evidence": "tasks/ready/two-stage-stream-001/review/notes.md"
     },
     {
       "slot": "first-encounter:channels.range-drain",
@@ -102,7 +111,11 @@
       "slot": "first-encounter:context.values-boundaries",
       "skill_id": "context.values-boundaries",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "trace-context-001",
+      "delivery_batch": "I3",
+      "assessment": "hybrid: automatic behavior plus actual method review; distinct learner action",
+      "review_evidence": "tasks/ready/trace-context-001/review/notes.md"
     },
     {
       "slot": "first-encounter:embedding.field-promotion",
@@ -180,7 +193,11 @@
       "slot": "first-encounter:sync.once-initialization",
       "skill_id": "sync.once-initialization",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "once-result-001",
+      "delivery_batch": "I3",
+      "assessment": "hybrid: automatic behavior plus actual method review; distinct learner action",
+      "review_evidence": "tasks/ready/once-result-001/review/notes.md"
     },
     {
       "slot": "first-encounter:testing.deterministic-boundaries",
@@ -256,7 +273,11 @@
       "slot": "first-encounter:toolchain.docs-environment",
       "skill_id": "toolchain.docs-environment",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_unit_path": "docs/labs/docs-environment-001/TASK.md",
+      "delivery_batch": "I3",
+      "assessment": "manual; actual native documentation/environment/selection evidence; no automatic coverage/progress",
+      "review_evidence": "docs/labs/docs-environment-001/review/acceptance.md"
     },
     {
       "slot": "first-encounter:toolchain.formatting-vetting",
@@ -360,7 +381,11 @@
       "slot": "independent-application:channels.ownership",
       "skill_id": "channels.ownership",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "two-stage-stream-001",
+      "delivery_batch": "I3",
+      "assessment": "hybrid: automatic behavior plus actual method review; distinct learner action",
+      "review_evidence": "tasks/ready/two-stage-stream-001/review/notes.md"
     },
     {
       "slot": "independent-application:channels.pipeline",
@@ -372,7 +397,11 @@
       "slot": "independent-application:channels.range-drain",
       "skill_id": "channels.range-drain",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_task_id": "two-stage-stream-001",
+      "delivery_batch": "I3",
+      "assessment": "hybrid: automatic behavior plus actual method review; distinct learner action",
+      "review_evidence": "tasks/ready/two-stage-stream-001/review/notes.md"
     },
     {
       "slot": "independent-application:context.deadlines",
@@ -623,7 +652,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "exact-dynamic-number-001"
-      ]
+      ],
+      "delivered_task_id": "trace-context-001",
+      "delivery_batch": "I3",
+      "assessment": "hybrid: automatic behavior plus actual method review; distinct learner action",
+      "review_evidence": "tasks/ready/trace-context-001/review/notes.md"
     },
     {
       "slot": "independent-application:interfaces.typed-nil",
@@ -1014,17 +1047,17 @@
     }
   ],
   "delivery": {
-    "batch": "I2",
-    "status": "content/method/native review accepted; final batch gates and merge pending",
-    "route_lessons_after": 196,
-    "first_encounters_remaining": 15,
-    "independent_applications_remaining": 77,
+    "batch": "I3",
+    "status": "actual content/method/native evidence; final gates and merge pending",
+    "route_lessons_after": 199,
+    "first_encounters_remaining": 10,
+    "independent_applications_remaining": 74,
     "component_slots_remaining": 5,
-    "new_automatic_packages": 2,
+    "new_automatic_packages": 3,
     "reused_automatic_packages": 1,
-    "manual_units": 3,
-    "manual_first_slots": 5,
-    "note": "Six units close seven distinct first slots and reuse one accepted component. Benchmarks have separate timing/allocation/design actions. All49 old pairs reviewed44accepted/5repair. Automatic coverage and learner mastery remain separate."
+    "manual_units": 1,
+    "manual_first_slots": 1,
+    "note": "Five units close five original first slots plus three separately reviewed applications; unchanged buffer task credit includes manual rationale only, not new automatic taxonomy coverage."
   },
   "delivery_history": [
     {
@@ -1075,6 +1108,24 @@
       "head": "d2d8eb988d5b0063b9ef60148024d8c359e1d1a0",
       "merge_commit": "50412ef271c439cb8c7508341578a6ad03342353",
       "validate_run": "https://github.com/EarthMoonTransit/go-learn/actions/runs/39779096922"
+    },
+    {
+      "batch": "I2",
+      "status": "accepted and merged",
+      "route_lessons_after": 196,
+      "first_encounters_remaining": 15,
+      "independent_applications_remaining": 77,
+      "component_slots_remaining": 5,
+      "new_automatic_packages": 2,
+      "reused_automatic_packages": 1,
+      "manual_units": 3,
+      "manual_first_slots": 5,
+      "note": "Six units close seven distinct first slots and reuse one accepted component. Benchmarks have separate timing/allocation/design actions. All49 old pairs reviewed44accepted/5repair. Automatic coverage and learner mastery remain separate.",
+      "pr": "https://github.com/EarthMoonTransit/go-learn/pull/106",
+      "head": "fc0e996cacf53c92d88cf2b302940cb0bb5a760d",
+      "merge_commit": "94dc30a5e149e674e7312a7059029b41dcc336e7",
+      "validate_run": "https://github.com/EarthMoonTransit/go-learn/actions/runs/39793027318",
+      "available_execution_seconds": 3707.53
     }
   ],
   "existing_pair_reviews": {
@@ -2359,8 +2410,28 @@
       ],
       "maximum_additional_units": 3,
       "design": "Combined array/struct snapshot first encounter; one consumer-owned small-interface first encounter; at most one constants application. Typed-error and small-interface applications integrated into allocated IO/packages components with distinct actual actions. Constants may instead fit native build/run application.",
-      "arithmetic": "After accepted I2:196 automatic route +4 manual units +15 remaining original first slots +77 applications +5 remaining components +at most3 repair units =300 <=302. Combined benchmark actions save2 units and unchanged LRU component reuse saves1. No repair is counted accepted by this allocation.",
+      "arithmetic": "After accepted I3:199 automatic route +5 manual units +10 remaining original first slots +74 applications +5 remaining components +at most3 repair units =296 <=302. Buffer reuse and three combined applications save4 further units; unresolved semantic repairs earn no advance credit.",
       "note": "All49 baseline pairs reviewed; five concrete repairs remain. No expanded ceiling or metadata-only credit; actual repair contracts/evidence are still required."
     }
+  },
+  "existing_single_encounter_reviews": {
+    "assessment_scope": "Additional single-encounter validation when designing remaining applications; separate from the completed49candidate-pair review and original28first-slot deadline.",
+    "decisions": [
+      {
+        "skill_id": "sync.waitgroup-lifecycle",
+        "decision": "first-assessment repair needed before accepting application",
+        "candidate_task_id": "join-all-tests-001",
+        "finding": "Learner authors black-box joining tests; Add/Done/Wait are supplied in verification/reference and TASK. Do not credit independently authored WG mechanism from that supplied code.",
+        "reviewed_commit": "94dc30a5e149e674e7312a7059029b41dcc336e7",
+        "candidate_paths": [
+          "tasks/ready/join-all-tests-001/TASK.md",
+          "tasks/ready/join-all-tests-001/solution/reference/subject_test.go",
+          "tasks/ready/join-all-tests-001/verification/reference/subject.go"
+        ],
+        "planned_repair": "I4 unchanged indexed-job-results-001 reuse with actual learner-written Add-before-launch, Done at each worker exit and Wait-before-result-access checklist. Then RunPool may provide a distinct worker-registration/merged-close application. Contract/source approved; actual method/execution acceptance pending.",
+        "new_file_allocation": 0,
+        "readiness_credit": false
+      }
+    ]
   }
 }

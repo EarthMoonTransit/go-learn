@@ -1,0 +1,13 @@
+package parse
+
+import "strings"
+
+// Segment returns the zero-based nth slash-separated segment of text.
+// Leading, trailing and adjacent slashes produce present empty segments.
+// A negative or out-of-range n returns an empty string and false.
+// Text is preserved exactly within a segment, including non-ASCII characters.
+func Segment(text string, n int) (string, bool) {
+ parts := strings.Split(text, "/")
+ if n < 0 || n >= len(parts) { return "", false }
+ return parts[n], true
+}

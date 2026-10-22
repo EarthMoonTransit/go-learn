@@ -343,4 +343,6 @@ Ten lessons add filesystem record parsing/cleanup, named and anonymous values, v
 
 Current I1 preparation: three new automatic introductions, one unchanged reviewed reuse and one executed manual modules/build unit; accepted and merged in PR105. See [I1 report](../reports/v1-introductions-01.md). Manual preparation is linked in [learner start](LEARNER_START.md); it receives no automatic progress or coverage credit.
 
-I2 preparation: two automatic introductions, three actually executed manual labs (five separate first outcomes) and unchanged LRU component reuse. Content/method/native review accepted; final batch gates/merge pending. All 49 old pairs reviewed: 44 accepted, five explicit repairs. See [I2 report](../reports/v1-introductions-02.md).
+I2 preparation: two automatic introductions, three actually executed manual labs (five separate first outcomes) and unchanged LRU component reuse. Accepted and merged in PR106 after all local gates and exact-head green validate. All 49 old pairs reviewed: 44 accepted, five explicit repairs. See [I2 report](../reports/v1-introductions-02.md).
+
+I3 preparation: three automatic packages, unchanged buffering reuse with a separate manual capacity checklist, and an actually executed docs/environment lab. Five first outcomes plus three distinct applications have content/method acceptance; final gates/merge remain. Postmerge allocation:10 original firsts,74 applications,5 components; five semantic-repair rows remain separate. See [I3 report](../reports/v1-introductions-03.md).

@@ -1,0 +1,754 @@
+{
+  "normalization": "Only canonical disposable root and local Go binary path replaced; actual values/status/output/timestamps retained. Raw receipt in ignored batch evidence.",
+  "specimens": [
+    {
+      "lab": "docs-environment-001",
+      "variant": "reference",
+      "started_at": "2026-10-22T16:13:42.196671+00:00",
+      "disposable_root": "<DISPOSABLE_ROOT>",
+      "go_executable": "<LOCAL_GO_1.27>/bin/go",
+      "environment": {
+        "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOFLAGS": "-mod=readonly",
+        "GOWORK": "off",
+        "GOOS": "darwin",
+        "GOARCH": "arm64",
+        "HOME": "<DISPOSABLE_ROOT>/home",
+        "GOCACHE": "<DISPOSABLE_ROOT>/cache",
+        "GOMODCACHE": "<DISPOSABLE_ROOT>/modcache",
+        "TMPDIR": "<DISPOSABLE_ROOT>/tmp"
+      },
+      "commands": [
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "version"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:42.197616+00:00",
+          "ended_at": "2026-10-22T16:13:42.206046+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "doc",
+            "./parse",
+            "Segment"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:42.206372+00:00",
+          "ended_at": "2026-10-22T16:13:42.274300+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "package parse // import \"finite.local/docs/parse\"\n\nfunc Segment(text string, n int) (string, bool)\n    Segment returns the zero-based nth slash-separated segment of text. Leading,\n    trailing and adjacent slashes produce present empty segments. A negative or\n    out-of-range n returns an empty string and false. Text is preserved exactly\n    within a segment, including non-ASCII characters.\n\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "env",
+            "GOOS",
+            "GOARCH",
+            "GOMOD",
+            "GOWORK"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:42.275201+00:00",
+          "ended_at": "2026-10-22T16:13:42.281975+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "darwin\narm64\n<DISPOSABLE_ROOT>/project/go.mod\noff\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./cmd"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:42.282426+00:00",
+          "ended_at": "2026-10-22T16:13:42.310679+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "[main.go platform_other.go]\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:42.311083+00:00",
+          "ended_at": "2026-10-22T16:13:44.389961+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "ok  \tfinite.local/docs/cmd\t0.164s\n?   \tfinite.local/docs/parse\t[no test files]\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "build",
+            "-o",
+            "bin/segment",
+            "./cmd"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:44.390293+00:00",
+          "ended_at": "2026-10-22T16:13:44.490415+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<DISPOSABLE_ROOT>/project/bin/segment"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:44.490759+00:00",
+          "ended_at": "2026-10-22T16:13:44.650023+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "non-linux|α:true|:true|:false\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "env",
+            "GOOS",
+            "GOARCH",
+            "GOMOD",
+            "GOWORK"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:44.650585+00:00",
+          "ended_at": "2026-10-22T16:13:44.660303+00:00",
+          "target": "linux/arm64",
+          "exit_status": 0,
+          "stdout": "linux\narm64\n<DISPOSABLE_ROOT>/project/go.mod\noff\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./cmd"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:44.660879+00:00",
+          "ended_at": "2026-10-22T16:13:44.682581+00:00",
+          "target": "linux/arm64",
+          "exit_status": 0,
+          "stdout": "[main.go platform_linux.go]\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "build",
+            "-o",
+            "bin/segment-linux",
+            "./cmd"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:44.682918+00:00",
+          "ended_at": "2026-10-22T16:13:45.956481+00:00",
+          "target": "linux/arm64",
+          "exit_status": 0,
+          "stdout": "",
+          "stderr": "",
+          "timeout_seconds": 60
+        }
+      ],
+      "snapshots": [
+        {
+          "label": "original supplied files",
+          "at": "2026-10-22T16:13:42.196886+00:00",
+          "files": {
+            "cmd/main.go": "package main\n\nimport (\n \"fmt\"\n \"finite.local/docs/parse\"\n)\n\nfunc Render(text string, n int) string {\n _ = parse.Segment\n return \"TODO\"\n}\n\nfunc main() {\n fmt.Printf(\"%s|%s|%s|%s\\n\", Platform(), Render(\"/α//tail/\", 1), Render(\"/α//tail/\", 2), Render(\"/α//tail/\", 6))\n}\n",
+            "cmd/main_test.go": "package main\n\nimport \"testing\"\n\nfunc TestRenderFromDocumentedContract(t *testing.T) {\n for _, c := range []struct{text string; n int; want string}{\n  {\"/α//tail/\",1,\"α:true\"},{\"/α//tail/\",0,\":true\"},\n  {\"/α//tail/\",2,\":true\"},{\"/α//tail/\",4,\":true\"},\n  {\"/α//tail/\",5,\":false\"},{\"/α//tail/\",-1,\":false\"},\n  {\"\",0,\":true\"},\n } {\n  if got:=Render(c.text,c.n);got!=c.want {t.Errorf(\"Render(%q,%d)=%q; want %q from zero-based segments and presence\",c.text,c.n,got,c.want)}\n }\n}\n",
+            "cmd/platform_linux.go": "package main\nfunc Platform() string { return \"linux\" }\n",
+            "cmd/platform_other.go": "//go:build !linux\n\npackage main\nfunc Platform() string { return \"non-linux\" }\n",
+            "go.mod": "module finite.local/docs\n\ngo 1.27.0\n",
+            "parse/segment.go": "package parse\n\nimport \"strings\"\n\n// Segment returns the zero-based nth slash-separated segment of text.\n// Leading, trailing and adjacent slashes produce present empty segments.\n// A negative or out-of-range n returns an empty string and false.\n// Text is preserved exactly within a segment, including non-ASCII characters.\nfunc Segment(text string, n int) (string, bool) {\n parts := strings.Split(text, \"/\")\n if n < 0 || n >= len(parts) { return \"\", false }\n return parts[n], true\n}\n"
+          }
+        },
+        {
+          "label": "correct caller from documented facts",
+          "at": "2026-10-22T16:13:42.274773+00:00",
+          "files": {
+            "cmd/main.go": "package main\n\nimport (\n \"fmt\"\n \"finite.local/docs/parse\"\n)\n\nfunc Render(text string, n int) string {\n part, ok := parse.Segment(text, n)\n return fmt.Sprintf(\"%s:%t\", part, ok)\n}\n\nfunc main() {\n fmt.Printf(\"%s|%s|%s|%s\\n\", Platform(), Render(\"/α//tail/\", 1), Render(\"/α//tail/\", 2), Render(\"/α//tail/\", 6))\n}\n",
+            "cmd/main_test.go": "package main\n\nimport \"testing\"\n\nfunc TestRenderFromDocumentedContract(t *testing.T) {\n for _, c := range []struct{text string; n int; want string}{\n  {\"/α//tail/\",1,\"α:true\"},{\"/α//tail/\",0,\":true\"},\n  {\"/α//tail/\",2,\":true\"},{\"/α//tail/\",4,\":true\"},\n  {\"/α//tail/\",5,\":false\"},{\"/α//tail/\",-1,\":false\"},\n  {\"\",0,\":true\"},\n } {\n  if got:=Render(c.text,c.n);got!=c.want {t.Errorf(\"Render(%q,%d)=%q; want %q from zero-based segments and presence\",c.text,c.n,got,c.want)}\n }\n}\n",
+            "cmd/platform_linux.go": "package main\nfunc Platform() string { return \"linux\" }\n",
+            "cmd/platform_other.go": "//go:build !linux\n\npackage main\nfunc Platform() string { return \"non-linux\" }\n",
+            "go.mod": "module finite.local/docs\n\ngo 1.27.0\n",
+            "parse/segment.go": "package parse\n\nimport \"strings\"\n\n// Segment returns the zero-based nth slash-separated segment of text.\n// Leading, trailing and adjacent slashes produce present empty segments.\n// A negative or out-of-range n returns an empty string and false.\n// Text is preserved exactly within a segment, including non-ASCII characters.\nfunc Segment(text string, n int) (string, bool) {\n parts := strings.Split(text, \"/\")\n if n < 0 || n >= len(parts) { return \"\", false }\n return parts[n], true\n}\n"
+          }
+        },
+        {
+          "label": "final files",
+          "at": "2026-10-22T16:13:45.957473+00:00",
+          "files": {
+            "cmd/main.go": "package main\n\nimport (\n \"fmt\"\n \"finite.local/docs/parse\"\n)\n\nfunc Render(text string, n int) string {\n part, ok := parse.Segment(text, n)\n return fmt.Sprintf(\"%s:%t\", part, ok)\n}\n\nfunc main() {\n fmt.Printf(\"%s|%s|%s|%s\\n\", Platform(), Render(\"/α//tail/\", 1), Render(\"/α//tail/\", 2), Render(\"/α//tail/\", 6))\n}\n",
+            "cmd/main_test.go": "package main\n\nimport \"testing\"\n\nfunc TestRenderFromDocumentedContract(t *testing.T) {\n for _, c := range []struct{text string; n int; want string}{\n  {\"/α//tail/\",1,\"α:true\"},{\"/α//tail/\",0,\":true\"},\n  {\"/α//tail/\",2,\":true\"},{\"/α//tail/\",4,\":true\"},\n  {\"/α//tail/\",5,\":false\"},{\"/α//tail/\",-1,\":false\"},\n  {\"\",0,\":true\"},\n } {\n  if got:=Render(c.text,c.n);got!=c.want {t.Errorf(\"Render(%q,%d)=%q; want %q from zero-based segments and presence\",c.text,c.n,got,c.want)}\n }\n}\n",
+            "cmd/platform_linux.go": "package main\nfunc Platform() string { return \"linux\" }\n",
+            "cmd/platform_other.go": "//go:build !linux\n\npackage main\nfunc Platform() string { return \"non-linux\" }\n",
+            "go.mod": "module finite.local/docs\n\ngo 1.27.0\n",
+            "parse/segment.go": "package parse\n\nimport \"strings\"\n\n// Segment returns the zero-based nth slash-separated segment of text.\n// Leading, trailing and adjacent slashes produce present empty segments.\n// A negative or out-of-range n returns an empty string and false.\n// Text is preserved exactly within a segment, including non-ASCII characters.\nfunc Segment(text string, n int) (string, bool) {\n parts := strings.Split(text, \"/\")\n if n < 0 || n >= len(parts) { return \"\", false }\n return parts[n], true\n}\n"
+          }
+        }
+      ],
+      "predictions": [
+        {
+          "at": "2026-10-22T16:13:42.282296+00:00",
+          "target": "darwin/arm64",
+          "GoFiles": [
+            "main.go",
+            "platform_other.go"
+          ],
+          "reason": "darwin excludes _linux filename; !linux admits other; test file excluded from GoFiles"
+        },
+        {
+          "at": "2026-10-22T16:13:44.660714+00:00",
+          "target": "linux/arm64",
+          "GoFiles": [
+            "main.go",
+            "platform_linux.go"
+          ],
+          "reason": "linux filename included; !linux excludes other"
+        }
+      ],
+      "content_digest": "0b143eba392f7ca463ecfea0e3af27e489cb220d504e70da8cf387c4fcd5c71c",
+      "documentation_interpretation": {
+        "at": "2026-10-22T16:13:42.274568+00:00",
+        "zero_based": "n1 selects α after leading empty segment",
+        "presence": "empty at n2 is present; n6 is absent, so preserve bool",
+        "content": "retain Unicode text exactly"
+      },
+      "headers": {
+        "at": "2026-10-22T16:13:45.957308+00:00",
+        "native_hex": "cffaedfe0c000001000000000200000010000000",
+        "native_interpretation": "Mach-O64 little-endian",
+        "foreign_hex": "7f454c460201010000000000000000000200b700",
+        "foreign_interpretation": "ELF64 little-endian AArch64(183)",
+        "foreign_executed": false
+      },
+      "ended_at": "2026-10-22T16:13:46.029904+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "lab": "docs-environment-001",
+      "variant": "wrong-symbol",
+      "started_at": "2026-10-22T16:13:46.032569+00:00",
+      "disposable_root": "<DISPOSABLE_ROOT>",
+      "go_executable": "<LOCAL_GO_1.27>/bin/go",
+      "environment": {
+        "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOFLAGS": "-mod=readonly",
+        "GOWORK": "off",
+        "GOOS": "darwin",
+        "GOARCH": "arm64",
+        "HOME": "<DISPOSABLE_ROOT>/home",
+        "GOCACHE": "<DISPOSABLE_ROOT>/cache",
+        "GOMODCACHE": "<DISPOSABLE_ROOT>/modcache",
+        "TMPDIR": "<DISPOSABLE_ROOT>/tmp"
+      },
+      "commands": [
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "version"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:46.032987+00:00",
+          "ended_at": "2026-10-22T16:13:46.039466+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "doc",
+            "./parse",
+            "Segments"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:46.040196+00:00",
+          "ended_at": "2026-10-22T16:13:46.099790+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 1,
+          "stdout": "",
+          "stderr": "doc: no symbol Segments in package finite.local/docs/parse\n",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "doc",
+            "./parse",
+            "Segment"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:46.100074+00:00",
+          "ended_at": "2026-10-22T16:13:46.126260+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "package parse // import \"finite.local/docs/parse\"\n\nfunc Segment(text string, n int) (string, bool)\n    Segment returns the zero-based nth slash-separated segment of text. Leading,\n    trailing and adjacent slashes produce present empty segments. A negative or\n    out-of-range n returns an empty string and false. Text is preserved exactly\n    within a segment, including non-ASCII characters.\n\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        }
+      ],
+      "snapshots": [
+        {
+          "label": "original supplied files",
+          "at": "2026-10-22T16:13:46.032631+00:00",
+          "files": {
+            "cmd/main.go": "package main\n\nimport (\n \"fmt\"\n \"finite.local/docs/parse\"\n)\n\nfunc Render(text string, n int) string {\n _ = parse.Segment\n return \"TODO\"\n}\n\nfunc main() {\n fmt.Printf(\"%s|%s|%s|%s\\n\", Platform(), Render(\"/α//tail/\", 1), Render(\"/α//tail/\", 2), Render(\"/α//tail/\", 6))\n}\n",
+            "cmd/main_test.go": "package main\n\nimport \"testing\"\n\nfunc TestRenderFromDocumentedContract(t *testing.T) {\n for _, c := range []struct{text string; n int; want string}{\n  {\"/α//tail/\",1,\"α:true\"},{\"/α//tail/\",0,\":true\"},\n  {\"/α//tail/\",2,\":true\"},{\"/α//tail/\",4,\":true\"},\n  {\"/α//tail/\",5,\":false\"},{\"/α//tail/\",-1,\":false\"},\n  {\"\",0,\":true\"},\n } {\n  if got:=Render(c.text,c.n);got!=c.want {t.Errorf(\"Render(%q,%d)=%q; want %q from zero-based segments and presence\",c.text,c.n,got,c.want)}\n }\n}\n",
+            "cmd/platform_linux.go": "package main\nfunc Platform() string { return \"linux\" }\n",
+            "cmd/platform_other.go": "//go:build !linux\n\npackage main\nfunc Platform() string { return \"non-linux\" }\n",
+            "go.mod": "module finite.local/docs\n\ngo 1.27.0\n",
+            "parse/segment.go": "package parse\n\nimport \"strings\"\n\n// Segment returns the zero-based nth slash-separated segment of text.\n// Leading, trailing and adjacent slashes produce present empty segments.\n// A negative or out-of-range n returns an empty string and false.\n// Text is preserved exactly within a segment, including non-ASCII characters.\nfunc Segment(text string, n int) (string, bool) {\n parts := strings.Split(text, \"/\")\n if n < 0 || n >= len(parts) { return \"\", false }\n return parts[n], true\n}\n"
+          }
+        },
+        {
+          "label": "correct caller from documented facts",
+          "at": "2026-10-22T16:13:46.039808+00:00",
+          "files": {
+            "cmd/main.go": "package main\n\nimport (\n \"fmt\"\n \"finite.local/docs/parse\"\n)\n\nfunc Render(text string, n int) string {\n part, ok := parse.Segment(text, n)\n return fmt.Sprintf(\"%s:%t\", part, ok)\n}\n\nfunc main() {\n fmt.Printf(\"%s|%s|%s|%s\\n\", Platform(), Render(\"/α//tail/\", 1), Render(\"/α//tail/\", 2), Render(\"/α//tail/\", 6))\n}\n",
+            "cmd/main_test.go": "package main\n\nimport \"testing\"\n\nfunc TestRenderFromDocumentedContract(t *testing.T) {\n for _, c := range []struct{text string; n int; want string}{\n  {\"/α//tail/\",1,\"α:true\"},{\"/α//tail/\",0,\":true\"},\n  {\"/α//tail/\",2,\":true\"},{\"/α//tail/\",4,\":true\"},\n  {\"/α//tail/\",5,\":false\"},{\"/α//tail/\",-1,\":false\"},\n  {\"\",0,\":true\"},\n } {\n  if got:=Render(c.text,c.n);got!=c.want {t.Errorf(\"Render(%q,%d)=%q; want %q from zero-based segments and presence\",c.text,c.n,got,c.want)}\n }\n}\n",
+            "cmd/platform_linux.go": "package main\nfunc Platform() string { return \"linux\" }\n",
+            "cmd/platform_other.go": "//go:build !linux\n\npackage main\nfunc Platform() string { return \"non-linux\" }\n",
+            "go.mod": "module finite.local/docs\n\ngo 1.27.0\n",
+            "parse/segment.go": "package parse\n\nimport \"strings\"\n\n// Segment returns the zero-based nth slash-separated segment of text.\n// Leading, trailing and adjacent slashes produce present empty segments.\n// A negative or out-of-range n returns an empty string and false.\n// Text is preserved exactly within a segment, including non-ASCII characters.\nfunc Segment(text string, n int) (string, bool) {\n parts := strings.Split(text, \"/\")\n if n < 0 || n >= len(parts) { return \"\", false }\n return parts[n], true\n}\n"
+          }
+        },
+        {
+          "label": "final files",
+          "at": "2026-10-22T16:13:46.126736+00:00",
+          "files": {
+            "cmd/main.go": "package main\n\nimport (\n \"fmt\"\n \"finite.local/docs/parse\"\n)\n\nfunc Render(text string, n int) string {\n part, ok := parse.Segment(text, n)\n return fmt.Sprintf(\"%s:%t\", part, ok)\n}\n\nfunc main() {\n fmt.Printf(\"%s|%s|%s|%s\\n\", Platform(), Render(\"/α//tail/\", 1), Render(\"/α//tail/\", 2), Render(\"/α//tail/\", 6))\n}\n",
+            "cmd/main_test.go": "package main\n\nimport \"testing\"\n\nfunc TestRenderFromDocumentedContract(t *testing.T) {\n for _, c := range []struct{text string; n int; want string}{\n  {\"/α//tail/\",1,\"α:true\"},{\"/α//tail/\",0,\":true\"},\n  {\"/α//tail/\",2,\":true\"},{\"/α//tail/\",4,\":true\"},\n  {\"/α//tail/\",5,\":false\"},{\"/α//tail/\",-1,\":false\"},\n  {\"\",0,\":true\"},\n } {\n  if got:=Render(c.text,c.n);got!=c.want {t.Errorf(\"Render(%q,%d)=%q; want %q from zero-based segments and presence\",c.text,c.n,got,c.want)}\n }\n}\n",
+            "cmd/platform_linux.go": "package main\nfunc Platform() string { return \"linux\" }\n",
+            "cmd/platform_other.go": "//go:build !linux\n\npackage main\nfunc Platform() string { return \"non-linux\" }\n",
+            "go.mod": "module finite.local/docs\n\ngo 1.27.0\n",
+            "parse/segment.go": "package parse\n\nimport \"strings\"\n\n// Segment returns the zero-based nth slash-separated segment of text.\n// Leading, trailing and adjacent slashes produce present empty segments.\n// A negative or out-of-range n returns an empty string and false.\n// Text is preserved exactly within a segment, including non-ASCII characters.\nfunc Segment(text string, n int) (string, bool) {\n parts := strings.Split(text, \"/\")\n if n < 0 || n >= len(parts) { return \"\", false }\n return parts[n], true\n}\n"
+          }
+        }
+      ],
+      "predictions": [],
+      "content_digest": "0b143eba392f7ca463ecfea0e3af27e489cb220d504e70da8cf387c4fcd5c71c",
+      "repair_interpretation": "Use singular exported Segment; its zero-based/present-empty contract applies.",
+      "ended_at": "2026-10-22T16:13:46.144547+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "lab": "docs-environment-001",
+      "variant": "wrong-target",
+      "started_at": "2026-10-22T16:13:46.146431+00:00",
+      "disposable_root": "<DISPOSABLE_ROOT>",
+      "go_executable": "<LOCAL_GO_1.27>/bin/go",
+      "environment": {
+        "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOFLAGS": "-mod=readonly",
+        "GOWORK": "off",
+        "GOOS": "darwin",
+        "GOARCH": "arm64",
+        "HOME": "<DISPOSABLE_ROOT>/home",
+        "GOCACHE": "<DISPOSABLE_ROOT>/cache",
+        "GOMODCACHE": "<DISPOSABLE_ROOT>/modcache",
+        "TMPDIR": "<DISPOSABLE_ROOT>/tmp"
+      },
+      "commands": [
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "version"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:46.146922+00:00",
+          "ended_at": "2026-10-22T16:13:46.153060+00:00",
+          "target": "linux/arm64",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "env",
+            "GOOS",
+            "GOARCH",
+            "GOMOD",
+            "GOWORK"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:46.153905+00:00",
+          "ended_at": "2026-10-22T16:13:46.159427+00:00",
+          "target": "linux/arm64",
+          "exit_status": 0,
+          "stdout": "linux\narm64\n<DISPOSABLE_ROOT>/project/go.mod\noff\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./cmd"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:46.159870+00:00",
+          "ended_at": "2026-10-22T16:13:46.226142+00:00",
+          "target": "linux/arm64",
+          "exit_status": 0,
+          "stdout": "[main.go platform_linux.go]\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "env",
+            "GOOS",
+            "GOARCH",
+            "GOMOD",
+            "GOWORK"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:46.226497+00:00",
+          "ended_at": "2026-10-22T16:13:46.232787+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "darwin\narm64\n<DISPOSABLE_ROOT>/project/go.mod\noff\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./cmd"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:46.233222+00:00",
+          "ended_at": "2026-10-22T16:13:46.246316+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "[main.go platform_other.go]\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "build",
+            "-o",
+            "bin/segment",
+            "./cmd"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:46.246703+00:00",
+          "ended_at": "2026-10-22T16:13:47.670247+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<DISPOSABLE_ROOT>/project/bin/segment"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:47.670693+00:00",
+          "ended_at": "2026-10-22T16:13:47.831756+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "non-linux|α:true|:true|:false\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        }
+      ],
+      "snapshots": [
+        {
+          "label": "original supplied files",
+          "at": "2026-10-22T16:13:46.146483+00:00",
+          "files": {
+            "cmd/main.go": "package main\n\nimport (\n \"fmt\"\n \"finite.local/docs/parse\"\n)\n\nfunc Render(text string, n int) string {\n _ = parse.Segment\n return \"TODO\"\n}\n\nfunc main() {\n fmt.Printf(\"%s|%s|%s|%s\\n\", Platform(), Render(\"/α//tail/\", 1), Render(\"/α//tail/\", 2), Render(\"/α//tail/\", 6))\n}\n",
+            "cmd/main_test.go": "package main\n\nimport \"testing\"\n\nfunc TestRenderFromDocumentedContract(t *testing.T) {\n for _, c := range []struct{text string; n int; want string}{\n  {\"/α//tail/\",1,\"α:true\"},{\"/α//tail/\",0,\":true\"},\n  {\"/α//tail/\",2,\":true\"},{\"/α//tail/\",4,\":true\"},\n  {\"/α//tail/\",5,\":false\"},{\"/α//tail/\",-1,\":false\"},\n  {\"\",0,\":true\"},\n } {\n  if got:=Render(c.text,c.n);got!=c.want {t.Errorf(\"Render(%q,%d)=%q; want %q from zero-based segments and presence\",c.text,c.n,got,c.want)}\n }\n}\n",
+            "cmd/platform_linux.go": "package main\nfunc Platform() string { return \"linux\" }\n",
+            "cmd/platform_other.go": "//go:build !linux\n\npackage main\nfunc Platform() string { return \"non-linux\" }\n",
+            "go.mod": "module finite.local/docs\n\ngo 1.27.0\n",
+            "parse/segment.go": "package parse\n\nimport \"strings\"\n\n// Segment returns the zero-based nth slash-separated segment of text.\n// Leading, trailing and adjacent slashes produce present empty segments.\n// A negative or out-of-range n returns an empty string and false.\n// Text is preserved exactly within a segment, including non-ASCII characters.\nfunc Segment(text string, n int) (string, bool) {\n parts := strings.Split(text, \"/\")\n if n < 0 || n >= len(parts) { return \"\", false }\n return parts[n], true\n}\n"
+          }
+        },
+        {
+          "label": "correct caller from documented facts",
+          "at": "2026-10-22T16:13:46.153460+00:00",
+          "files": {
+            "cmd/main.go": "package main\n\nimport (\n \"fmt\"\n \"finite.local/docs/parse\"\n)\n\nfunc Render(text string, n int) string {\n part, ok := parse.Segment(text, n)\n return fmt.Sprintf(\"%s:%t\", part, ok)\n}\n\nfunc main() {\n fmt.Printf(\"%s|%s|%s|%s\\n\", Platform(), Render(\"/α//tail/\", 1), Render(\"/α//tail/\", 2), Render(\"/α//tail/\", 6))\n}\n",
+            "cmd/main_test.go": "package main\n\nimport \"testing\"\n\nfunc TestRenderFromDocumentedContract(t *testing.T) {\n for _, c := range []struct{text string; n int; want string}{\n  {\"/α//tail/\",1,\"α:true\"},{\"/α//tail/\",0,\":true\"},\n  {\"/α//tail/\",2,\":true\"},{\"/α//tail/\",4,\":true\"},\n  {\"/α//tail/\",5,\":false\"},{\"/α//tail/\",-1,\":false\"},\n  {\"\",0,\":true\"},\n } {\n  if got:=Render(c.text,c.n);got!=c.want {t.Errorf(\"Render(%q,%d)=%q; want %q from zero-based segments and presence\",c.text,c.n,got,c.want)}\n }\n}\n",
+            "cmd/platform_linux.go": "package main\nfunc Platform() string { return \"linux\" }\n",
+            "cmd/platform_other.go": "//go:build !linux\n\npackage main\nfunc Platform() string { return \"non-linux\" }\n",
+            "go.mod": "module finite.local/docs\n\ngo 1.27.0\n",
+            "parse/segment.go": "package parse\n\nimport \"strings\"\n\n// Segment returns the zero-based nth slash-separated segment of text.\n// Leading, trailing and adjacent slashes produce present empty segments.\n// A negative or out-of-range n returns an empty string and false.\n// Text is preserved exactly within a segment, including non-ASCII characters.\nfunc Segment(text string, n int) (string, bool) {\n parts := strings.Split(text, \"/\")\n if n < 0 || n >= len(parts) { return \"\", false }\n return parts[n], true\n}\n"
+          }
+        },
+        {
+          "label": "final files",
+          "at": "2026-10-22T16:13:47.832276+00:00",
+          "files": {
+            "cmd/main.go": "package main\n\nimport (\n \"fmt\"\n \"finite.local/docs/parse\"\n)\n\nfunc Render(text string, n int) string {\n part, ok := parse.Segment(text, n)\n return fmt.Sprintf(\"%s:%t\", part, ok)\n}\n\nfunc main() {\n fmt.Printf(\"%s|%s|%s|%s\\n\", Platform(), Render(\"/α//tail/\", 1), Render(\"/α//tail/\", 2), Render(\"/α//tail/\", 6))\n}\n",
+            "cmd/main_test.go": "package main\n\nimport \"testing\"\n\nfunc TestRenderFromDocumentedContract(t *testing.T) {\n for _, c := range []struct{text string; n int; want string}{\n  {\"/α//tail/\",1,\"α:true\"},{\"/α//tail/\",0,\":true\"},\n  {\"/α//tail/\",2,\":true\"},{\"/α//tail/\",4,\":true\"},\n  {\"/α//tail/\",5,\":false\"},{\"/α//tail/\",-1,\":false\"},\n  {\"\",0,\":true\"},\n } {\n  if got:=Render(c.text,c.n);got!=c.want {t.Errorf(\"Render(%q,%d)=%q; want %q from zero-based segments and presence\",c.text,c.n,got,c.want)}\n }\n}\n",
+            "cmd/platform_linux.go": "package main\nfunc Platform() string { return \"linux\" }\n",
+            "cmd/platform_other.go": "//go:build !linux\n\npackage main\nfunc Platform() string { return \"non-linux\" }\n",
+            "go.mod": "module finite.local/docs\n\ngo 1.27.0\n",
+            "parse/segment.go": "package parse\n\nimport \"strings\"\n\n// Segment returns the zero-based nth slash-separated segment of text.\n// Leading, trailing and adjacent slashes produce present empty segments.\n// A negative or out-of-range n returns an empty string and false.\n// Text is preserved exactly within a segment, including non-ASCII characters.\nfunc Segment(text string, n int) (string, bool) {\n parts := strings.Split(text, \"/\")\n if n < 0 || n >= len(parts) { return \"\", false }\n return parts[n], true\n}\n"
+          }
+        }
+      ],
+      "predictions": [
+        {
+          "at": "2026-10-22T16:13:46.159713+00:00",
+          "target": "linux/arm64",
+          "GoFiles": [
+            "main.go",
+            "platform_other.go"
+          ],
+          "reason": "incorrect native expectation; actual env is linux and disproves it"
+        },
+        {
+          "at": "2026-10-22T16:13:46.233073+00:00",
+          "target": "darwin/arm64",
+          "GoFiles": [
+            "main.go",
+            "platform_other.go"
+          ],
+          "reason": "corrected target darwin excludes linux filename and admits !linux"
+        }
+      ],
+      "content_digest": "0b143eba392f7ca463ecfea0e3af27e489cb220d504e70da8cf387c4fcd5c71c",
+      "repair_interpretation": "Explicit GOOS=linux selects Linux source/output even on Darwin; restore intended native target before execution.",
+      "ended_at": "2026-10-22T16:13:47.874992+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "lab": "docs-environment-001",
+      "variant": "wrong-caller",
+      "started_at": "2026-10-22T16:13:47.879456+00:00",
+      "disposable_root": "<DISPOSABLE_ROOT>",
+      "go_executable": "<LOCAL_GO_1.27>/bin/go",
+      "environment": {
+        "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOFLAGS": "-mod=readonly",
+        "GOWORK": "off",
+        "GOOS": "darwin",
+        "GOARCH": "arm64",
+        "HOME": "<DISPOSABLE_ROOT>/home",
+        "GOCACHE": "<DISPOSABLE_ROOT>/cache",
+        "GOMODCACHE": "<DISPOSABLE_ROOT>/modcache",
+        "TMPDIR": "<DISPOSABLE_ROOT>/tmp"
+      },
+      "commands": [
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "version"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:47.880142+00:00",
+          "ended_at": "2026-10-22T16:13:47.887223+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "doc",
+            "./parse",
+            "Segment"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:47.888159+00:00",
+          "ended_at": "2026-10-22T16:13:47.951026+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "package parse // import \"finite.local/docs/parse\"\n\nfunc Segment(text string, n int) (string, bool)\n    Segment returns the zero-based nth slash-separated segment of text. Leading,\n    trailing and adjacent slashes produce present empty segments. A negative or\n    out-of-range n returns an empty string and false. Text is preserved exactly\n    within a segment, including non-ASCII characters.\n\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:47.951363+00:00",
+          "ended_at": "2026-10-22T16:13:50.258611+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 1,
+          "stdout": "--- FAIL: TestRenderFromDocumentedContract (0.00s)\n    main_test.go:12: Render(\"/α//tail/\",1)=\":true\"; want \"α:true\" from zero-based segments and presence\n    main_test.go:12: Render(\"/α//tail/\",0)=\"α:true\"; want \":true\" from zero-based segments and presence\n    main_test.go:12: Render(\"/α//tail/\",2)=\"tail:true\"; want \":true\" from zero-based segments and presence\n    main_test.go:12: Render(\"/α//tail/\",4)=\":false\"; want \":true\" from zero-based segments and presence\n    main_test.go:12: Render(\"/α//tail/\",-1)=\":true\"; want \":false\" from zero-based segments and presence\n    main_test.go:12: Render(\"\",0)=\":false\"; want \":true\" from zero-based segments and presence\nFAIL\nFAIL\tfinite.local/docs/cmd\t0.172s\n?   \tfinite.local/docs/parse\t[no test files]\nFAIL\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:50.259856+00:00",
+          "ended_at": "2026-10-22T16:13:50.590705+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "ok  \tfinite.local/docs/cmd\t0.172s\n?   \tfinite.local/docs/parse\t[no test files]\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<LOCAL_GO_1.27>/bin/go",
+            "build",
+            "-o",
+            "bin/segment",
+            "./cmd"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:50.591219+00:00",
+          "ended_at": "2026-10-22T16:13:50.691779+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "",
+          "stderr": "",
+          "timeout_seconds": 60
+        },
+        {
+          "argv": [
+            "<DISPOSABLE_ROOT>/project/bin/segment"
+          ],
+          "cwd": "<DISPOSABLE_ROOT>/project",
+          "started_at": "2026-10-22T16:13:50.692225+00:00",
+          "ended_at": "2026-10-22T16:13:50.855602+00:00",
+          "target": "darwin/arm64",
+          "exit_status": 0,
+          "stdout": "non-linux|α:true|:true|:false\n",
+          "stderr": "",
+          "timeout_seconds": 60
+        }
+      ],
+      "snapshots": [
+        {
+          "label": "original supplied files",
+          "at": "2026-10-22T16:13:47.879512+00:00",
+          "files": {
+            "cmd/main.go": "package main\n\nimport (\n \"fmt\"\n \"finite.local/docs/parse\"\n)\n\nfunc Render(text string, n int) string {\n _ = parse.Segment\n return \"TODO\"\n}\n\nfunc main() {\n fmt.Printf(\"%s|%s|%s|%s\\n\", Platform(), Render(\"/α//tail/\", 1), Render(\"/α//tail/\", 2), Render(\"/α//tail/\", 6))\n}\n",
+            "cmd/main_test.go": "package main\n\nimport \"testing\"\n\nfunc TestRenderFromDocumentedContract(t *testing.T) {\n for _, c := range []struct{text string; n int; want string}{\n  {\"/α//tail/\",1,\"α:true\"},{\"/α//tail/\",0,\":true\"},\n  {\"/α//tail/\",2,\":true\"},{\"/α//tail/\",4,\":true\"},\n  {\"/α//tail/\",5,\":false\"},{\"/α//tail/\",-1,\":false\"},\n  {\"\",0,\":true\"},\n } {\n  if got:=Render(c.text,c.n);got!=c.want {t.Errorf(\"Render(%q,%d)=%q; want %q from zero-based segments and presence\",c.text,c.n,got,c.want)}\n }\n}\n",
+            "cmd/platform_linux.go": "package main\nfunc Platform() string { return \"linux\" }\n",
+            "cmd/platform_other.go": "//go:build !linux\n\npackage main\nfunc Platform() string { return \"non-linux\" }\n",
+            "go.mod": "module finite.local/docs\n\ngo 1.27.0\n",
+            "parse/segment.go": "package parse\n\nimport \"strings\"\n\n// Segment returns the zero-based nth slash-separated segment of text.\n// Leading, trailing and adjacent slashes produce present empty segments.\n// A negative or out-of-range n returns an empty string and false.\n// Text is preserved exactly within a segment, including non-ASCII characters.\nfunc Segment(text string, n int) (string, bool) {\n parts := strings.Split(text, \"/\")\n if n < 0 || n >= len(parts) { return \"\", false }\n return parts[n], true\n}\n"
+          }
+        },
+        {
+          "label": "wrong caller interpretation",
+          "at": "2026-10-22T16:13:47.887650+00:00",
+          "files": {
+            "cmd/main.go": "package main\n\nimport (\n \"fmt\"\n \"finite.local/docs/parse\"\n)\n\nfunc Render(text string, n int) string {\n part, ok := parse.Segment(text, n+1)\n return fmt.Sprintf(\"%s:%t\", part, ok)\n}\n\nfunc main() {\n fmt.Printf(\"%s|%s|%s|%s\\n\", Platform(), Render(\"/α//tail/\", 1), Render(\"/α//tail/\", 2), Render(\"/α//tail/\", 6))\n}\n",
+            "cmd/main_test.go": "package main\n\nimport \"testing\"\n\nfunc TestRenderFromDocumentedContract(t *testing.T) {\n for _, c := range []struct{text string; n int; want string}{\n  {\"/α//tail/\",1,\"α:true\"},{\"/α//tail/\",0,\":true\"},\n  {\"/α//tail/\",2,\":true\"},{\"/α//tail/\",4,\":true\"},\n  {\"/α//tail/\",5,\":false\"},{\"/α//tail/\",-1,\":false\"},\n  {\"\",0,\":true\"},\n } {\n  if got:=Render(c.text,c.n);got!=c.want {t.Errorf(\"Render(%q,%d)=%q; want %q from zero-based segments and presence\",c.text,c.n,got,c.want)}\n }\n}\n",
+            "cmd/platform_linux.go": "package main\nfunc Platform() string { return \"linux\" }\n",
+            "cmd/platform_other.go": "//go:build !linux\n\npackage main\nfunc Platform() string { return \"non-linux\" }\n",
+            "go.mod": "module finite.local/docs\n\ngo 1.27.0\n",
+            "parse/segment.go": "package parse\n\nimport \"strings\"\n\n// Segment returns the zero-based nth slash-separated segment of text.\n// Leading, trailing and adjacent slashes produce present empty segments.\n// A negative or out-of-range n returns an empty string and false.\n// Text is preserved exactly within a segment, including non-ASCII characters.\nfunc Segment(text string, n int) (string, bool) {\n parts := strings.Split(text, \"/\")\n if n < 0 || n >= len(parts) { return \"\", false }\n return parts[n], true\n}\n"
+          }
+        },
+        {
+          "label": "caller index repaired after actual assertion",
+          "at": "2026-10-22T16:13:50.259192+00:00",
+          "files": {
+            "cmd/main.go": "package main\n\nimport (\n \"fmt\"\n \"finite.local/docs/parse\"\n)\n\nfunc Render(text string, n int) string {\n part, ok := parse.Segment(text, n)\n return fmt.Sprintf(\"%s:%t\", part, ok)\n}\n\nfunc main() {\n fmt.Printf(\"%s|%s|%s|%s\\n\", Platform(), Render(\"/α//tail/\", 1), Render(\"/α//tail/\", 2), Render(\"/α//tail/\", 6))\n}\n",
+            "cmd/main_test.go": "package main\n\nimport \"testing\"\n\nfunc TestRenderFromDocumentedContract(t *testing.T) {\n for _, c := range []struct{text string; n int; want string}{\n  {\"/α//tail/\",1,\"α:true\"},{\"/α//tail/\",0,\":true\"},\n  {\"/α//tail/\",2,\":true\"},{\"/α//tail/\",4,\":true\"},\n  {\"/α//tail/\",5,\":false\"},{\"/α//tail/\",-1,\":false\"},\n  {\"\",0,\":true\"},\n } {\n  if got:=Render(c.text,c.n);got!=c.want {t.Errorf(\"Render(%q,%d)=%q; want %q from zero-based segments and presence\",c.text,c.n,got,c.want)}\n }\n}\n",
+            "cmd/platform_linux.go": "package main\nfunc Platform() string { return \"linux\" }\n",
+            "cmd/platform_other.go": "//go:build !linux\n\npackage main\nfunc Platform() string { return \"non-linux\" }\n",
+            "go.mod": "module finite.local/docs\n\ngo 1.27.0\n",
+            "parse/segment.go": "package parse\n\nimport \"strings\"\n\n// Segment returns the zero-based nth slash-separated segment of text.\n// Leading, trailing and adjacent slashes produce present empty segments.\n// A negative or out-of-range n returns an empty string and false.\n// Text is preserved exactly within a segment, including non-ASCII characters.\nfunc Segment(text string, n int) (string, bool) {\n parts := strings.Split(text, \"/\")\n if n < 0 || n >= len(parts) { return \"\", false }\n return parts[n], true\n}\n"
+          }
+        },
+        {
+          "label": "final files",
+          "at": "2026-10-22T16:13:50.856080+00:00",
+          "files": {
+            "cmd/main.go": "package main\n\nimport (\n \"fmt\"\n \"finite.local/docs/parse\"\n)\n\nfunc Render(text string, n int) string {\n part, ok := parse.Segment(text, n)\n return fmt.Sprintf(\"%s:%t\", part, ok)\n}\n\nfunc main() {\n fmt.Printf(\"%s|%s|%s|%s\\n\", Platform(), Render(\"/α//tail/\", 1), Render(\"/α//tail/\", 2), Render(\"/α//tail/\", 6))\n}\n",
+            "cmd/main_test.go": "package main\n\nimport \"testing\"\n\nfunc TestRenderFromDocumentedContract(t *testing.T) {\n for _, c := range []struct{text string; n int; want string}{\n  {\"/α//tail/\",1,\"α:true\"},{\"/α//tail/\",0,\":true\"},\n  {\"/α//tail/\",2,\":true\"},{\"/α//tail/\",4,\":true\"},\n  {\"/α//tail/\",5,\":false\"},{\"/α//tail/\",-1,\":false\"},\n  {\"\",0,\":true\"},\n } {\n  if got:=Render(c.text,c.n);got!=c.want {t.Errorf(\"Render(%q,%d)=%q; want %q from zero-based segments and presence\",c.text,c.n,got,c.want)}\n }\n}\n",
+            "cmd/platform_linux.go": "package main\nfunc Platform() string { return \"linux\" }\n",
+            "cmd/platform_other.go": "//go:build !linux\n\npackage main\nfunc Platform() string { return \"non-linux\" }\n",
+            "go.mod": "module finite.local/docs\n\ngo 1.27.0\n",
+            "parse/segment.go": "package parse\n\nimport \"strings\"\n\n// Segment returns the zero-based nth slash-separated segment of text.\n// Leading, trailing and adjacent slashes produce present empty segments.\n// A negative or out-of-range n returns an empty string and false.\n// Text is preserved exactly within a segment, including non-ASCII characters.\nfunc Segment(text string, n int) (string, bool) {\n parts := strings.Split(text, \"/\")\n if n < 0 || n >= len(parts) { return \"\", false }\n return parts[n], true\n}\n"
+          }
+        }
+      ],
+      "predictions": [],
+      "content_digest": "0b143eba392f7ca463ecfea0e3af27e489cb220d504e70da8cf387c4fcd5c71c",
+      "ended_at": "2026-10-22T16:13:50.930365+00:00",
+      "disposable_root_removed": true
+    }
+  ]
+}
