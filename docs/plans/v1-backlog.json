@@ -1130,7 +1130,7 @@
   ],
   "delivery": {
     "batch": "I6",
-    "status": "all5actual content/native/method and integration accepted; dependencies merged; localgates running; final exactHEADreview blocked by reviewer usage-limit",
+    "status": "all5actual content/native/method and integration accepted; dependencies merged; all12localgates passed; owner resumed same reviewer for final exactHEADreview; CI and merge pending",
     "route_lessons_after": 206,
     "first_encounters_remaining": 0,
     "independent_applications_remaining": 68,
