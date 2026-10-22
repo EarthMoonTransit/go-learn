@@ -1,0 +1,17 @@
+package consumer_test
+
+import (
+	"finite.local/boundaries/cycle/consumer"
+	"finite.local/boundaries/cycle/producer"
+	"testing"
+)
+
+func TestPreservedRender(t *testing.T) {
+	for _, value := range []string{"", " a ", "λ"} {
+		got := consumer.Render(producer.Source{Value: value})
+		want := "[" + value + "]"
+		if got != want {
+			t.Errorf("Render(%q)=%q; want %q", value, got, want)
+		}
+	}
+}

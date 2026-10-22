@@ -1,0 +1,24 @@
+package nativerace
+
+import "sync"
+
+func Exercise(fast bool) (observed int, final int) {
+	var shared cell
+	start := make(chan struct{})
+	sample := make(chan int, 1)
+	var workers sync.WaitGroup
+	workers.Add(2)
+	go func() {
+		defer workers.Done()
+		<-start
+		shared.store(42, fast)
+	}()
+	go func() {
+		defer workers.Done()
+		<-start
+		sample <- shared.load(fast)
+	}()
+	close(start)
+	workers.Wait()
+	return <-sample, shared.value
+}

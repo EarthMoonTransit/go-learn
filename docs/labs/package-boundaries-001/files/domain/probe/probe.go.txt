@@ -1,0 +1,5 @@
+package probe
+
+import "finite.local/boundaries/domain/internal/format"
+
+func Local(value string) string { return format.Record(value) }

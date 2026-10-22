@@ -1,0 +1,6 @@
+package fixed
+
+type Value struct{ Content string }
+
+func (v Value) Text() string { return v.Content }
+func (v Value) Width() int   { return len(v.Content) }

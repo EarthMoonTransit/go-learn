@@ -1,0 +1,466 @@
+[
+  {
+    "unit": "fuzz-regression-001",
+    "variant": "reference",
+    "started_at": "2026-10-22T18:38:29.212224+00:00",
+    "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-reference-jng1n5r9",
+    "content_digest": "b182d206be5b6855a532f737ac0fd3fd07621fe495c98d5d2b1d1eaaa75e43fb",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "CGO_ENABLED": "0",
+      "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-reference-jng1n5r9/home",
+      "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-reference-jng1n5r9/cache",
+      "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-reference-jng1n5r9/modcache",
+      "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-reference-jng1n5r9/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-reference-jng1n5r9/project",
+        "started_at": "2026-10-22T18:38:29.212797+00:00",
+        "timeout_seconds": 60,
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "ended_at": "2026-10-22T18:38:29.218605+00:00",
+        "seconds": 0.006
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-run",
+          "^FuzzSplitPair/double-colon$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-reference-jng1n5r9/project",
+        "started_at": "2026-10-22T18:38:29.219520+00:00",
+        "timeout_seconds": 60,
+        "exit_status": 1,
+        "stdout": "--- FAIL: FuzzSplitPair (0.00s)\n    --- FAIL: FuzzSplitPair/double-colon (0.00s)\n        fuzz_test.go:23: SplitPair(\"::\")=(\"\",\":\",true); want (\"\",\"\",false), separator count=2\nFAIL\nexit status 1\nFAIL\tfinite.local/fuzzregression\t0.165s\n",
+        "stderr": "",
+        "ended_at": "2026-10-22T18:38:31.585170+00:00",
+        "seconds": 2.365
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-run",
+          "^TestSplitPairRegression$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-reference-jng1n5r9/project",
+        "started_at": "2026-10-22T18:38:31.586593+00:00",
+        "timeout_seconds": 60,
+        "exit_status": 1,
+        "stdout": "--- FAIL: TestSplitPairRegression (0.00s)\n    regression_test.go:8: retained regression SplitPair(\"::\")=(\"\",\":\",true); want empty/empty/false\nFAIL\nexit status 1\nFAIL\tfinite.local/fuzzregression\t0.165s\n",
+        "stderr": "",
+        "ended_at": "2026-10-22T18:38:31.934850+00:00",
+        "seconds": 0.348
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-run",
+          "^TestSplitPairRegression$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-reference-jng1n5r9/project",
+        "started_at": "2026-10-22T18:38:31.936188+00:00",
+        "timeout_seconds": 60,
+        "exit_status": 0,
+        "stdout": "PASS\nok  \tfinite.local/fuzzregression\t0.162s\n",
+        "stderr": "",
+        "ended_at": "2026-10-22T18:38:32.280856+00:00",
+        "seconds": 0.345
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "./...",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-reference-jng1n5r9/project",
+        "started_at": "2026-10-22T18:38:32.281222+00:00",
+        "timeout_seconds": 60,
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/fuzzregression\t0.134s\n",
+        "stderr": "",
+        "ended_at": "2026-10-22T18:38:32.563536+00:00",
+        "seconds": 0.282
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-run",
+          "^$",
+          "-fuzz",
+          "^FuzzSplitPair$",
+          "-fuzztime=1x",
+          "-parallel=1",
+          "-timeout=20s"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-reference-jng1n5r9/project",
+        "started_at": "2026-10-22T18:38:32.563907+00:00",
+        "timeout_seconds": 60,
+        "exit_status": 0,
+        "stdout": "fuzz: elapsed: 0s, gathering baseline coverage: 0/4 completed\nfuzz: elapsed: 0s, gathering baseline coverage: 1/4 completed\nPASS\nok  \tfinite.local/fuzzregression\t0.246s\n",
+        "stderr": "",
+        "ended_at": "2026-10-22T18:38:35.331231+00:00",
+        "seconds": 2.767
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "supplied initial project",
+        "at": "2026-10-22T18:38:29.212334+00:00",
+        "files": {
+          "fuzz_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc FuzzSplitPair(f *testing.F) {\n\tf.Add(\"\")\n\tf.Add(\":\")\n\tf.Add(\"α: β\")\n\tf.Fuzz(func(t *testing.T, s string) {\n\t\tcount, position := 0, 0\n\t\tfor i := 0; i < len(s); i++ {\n\t\t\tif s[i] == ':' {\n\t\t\t\tcount++\n\t\t\t\tposition = i\n\t\t\t}\n\t\t}\n\t\twantLeft, wantRight, wantOK := \"\", \"\", false\n\t\tif count == 1 {\n\t\t\twantLeft, wantRight, wantOK = s[:position], s[position+1:], true\n\t\t}\n\t\tleft, right, ok := SplitPair(s)\n\t\tif left != wantLeft || right != wantRight || ok != wantOK {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t), separator count=%d\", s, left, right, ok, wantLeft, wantRight, wantOK, count)\n\t\t}\n\t})\n}\n",
+          "go.mod": "module finite.local/fuzzregression\n\ngo 1.27.0\n",
+          "split.go": "package fuzzregression\n\nimport \"strings\"\n\nfunc SplitPair(s string) (left, right string, ok bool) {\n\tparts := strings.SplitN(s, \":\", 2)\n\tif len(parts) != 2 {\n\t\treturn \"\", \"\", false\n\t}\n\treturn parts[0], parts[1], true\n}\n",
+          "split_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestBaseline(t *testing.T) {\n\tcases := []struct {\n\t\ts, left, right string\n\t\tok             bool\n\t}{\n\t\t{\"\", \"\", \"\", false}, {\"plain\", \"\", \"\", false},\n\t\t{\":\", \"\", \"\", true}, {\" a :λ \", \" a \", \"λ \", true},\n\t}\n\tfor _, c := range cases {\n\t\tleft, right, ok := SplitPair(c.s)\n\t\tif left != c.left || right != c.right || ok != c.ok {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t)\", c.s, left, right, ok, c.left, c.right, c.ok)\n\t\t}\n\t}\n}\n",
+          "testdata/fuzz/FuzzSplitPair/double-colon": "go test fuzz v1\nstring(\"::\")\n"
+        }
+      },
+      {
+        "label": "install reference/regression_test.go.txt as regression_test.go",
+        "at": "2026-10-22T18:38:31.585995+00:00",
+        "files": {
+          "fuzz_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc FuzzSplitPair(f *testing.F) {\n\tf.Add(\"\")\n\tf.Add(\":\")\n\tf.Add(\"α: β\")\n\tf.Fuzz(func(t *testing.T, s string) {\n\t\tcount, position := 0, 0\n\t\tfor i := 0; i < len(s); i++ {\n\t\t\tif s[i] == ':' {\n\t\t\t\tcount++\n\t\t\t\tposition = i\n\t\t\t}\n\t\t}\n\t\twantLeft, wantRight, wantOK := \"\", \"\", false\n\t\tif count == 1 {\n\t\t\twantLeft, wantRight, wantOK = s[:position], s[position+1:], true\n\t\t}\n\t\tleft, right, ok := SplitPair(s)\n\t\tif left != wantLeft || right != wantRight || ok != wantOK {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t), separator count=%d\", s, left, right, ok, wantLeft, wantRight, wantOK, count)\n\t\t}\n\t})\n}\n",
+          "go.mod": "module finite.local/fuzzregression\n\ngo 1.27.0\n",
+          "regression_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestSplitPairRegression(t *testing.T) {\n\tleft, right, ok := SplitPair(\"::\")\n\tif left != \"\" || right != \"\" || ok {\n\t\tt.Errorf(\"retained regression SplitPair(%q)=(%q,%q,%t); want empty/empty/false\", \"::\", left, right, ok)\n\t}\n}\n",
+          "split.go": "package fuzzregression\n\nimport \"strings\"\n\nfunc SplitPair(s string) (left, right string, ok bool) {\n\tparts := strings.SplitN(s, \":\", 2)\n\tif len(parts) != 2 {\n\t\treturn \"\", \"\", false\n\t}\n\treturn parts[0], parts[1], true\n}\n",
+          "split_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestBaseline(t *testing.T) {\n\tcases := []struct {\n\t\ts, left, right string\n\t\tok             bool\n\t}{\n\t\t{\"\", \"\", \"\", false}, {\"plain\", \"\", \"\", false},\n\t\t{\":\", \"\", \"\", true}, {\" a :λ \", \" a \", \"λ \", true},\n\t}\n\tfor _, c := range cases {\n\t\tleft, right, ok := SplitPair(c.s)\n\t\tif left != c.left || right != c.right || ok != c.ok {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t)\", c.s, left, right, ok, c.left, c.right, c.ok)\n\t\t}\n\t}\n}\n",
+          "testdata/fuzz/FuzzSplitPair/double-colon": "go test fuzz v1\nstring(\"::\")\n"
+        }
+      },
+      {
+        "label": "install reference/split.go.txt as split.go",
+        "at": "2026-10-22T18:38:31.935528+00:00",
+        "files": {
+          "fuzz_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc FuzzSplitPair(f *testing.F) {\n\tf.Add(\"\")\n\tf.Add(\":\")\n\tf.Add(\"α: β\")\n\tf.Fuzz(func(t *testing.T, s string) {\n\t\tcount, position := 0, 0\n\t\tfor i := 0; i < len(s); i++ {\n\t\t\tif s[i] == ':' {\n\t\t\t\tcount++\n\t\t\t\tposition = i\n\t\t\t}\n\t\t}\n\t\twantLeft, wantRight, wantOK := \"\", \"\", false\n\t\tif count == 1 {\n\t\t\twantLeft, wantRight, wantOK = s[:position], s[position+1:], true\n\t\t}\n\t\tleft, right, ok := SplitPair(s)\n\t\tif left != wantLeft || right != wantRight || ok != wantOK {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t), separator count=%d\", s, left, right, ok, wantLeft, wantRight, wantOK, count)\n\t\t}\n\t})\n}\n",
+          "go.mod": "module finite.local/fuzzregression\n\ngo 1.27.0\n",
+          "regression_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestSplitPairRegression(t *testing.T) {\n\tleft, right, ok := SplitPair(\"::\")\n\tif left != \"\" || right != \"\" || ok {\n\t\tt.Errorf(\"retained regression SplitPair(%q)=(%q,%q,%t); want empty/empty/false\", \"::\", left, right, ok)\n\t}\n}\n",
+          "split.go": "package fuzzregression\n\nimport \"strings\"\n\nfunc SplitPair(s string) (left, right string, ok bool) {\n\tindex := strings.IndexByte(s, ':')\n\tif index < 0 || strings.IndexByte(s[index+1:], ':') >= 0 {\n\t\treturn \"\", \"\", false\n\t}\n\treturn s[:index], s[index+1:], true\n}\n",
+          "split_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestBaseline(t *testing.T) {\n\tcases := []struct {\n\t\ts, left, right string\n\t\tok             bool\n\t}{\n\t\t{\"\", \"\", \"\", false}, {\"plain\", \"\", \"\", false},\n\t\t{\":\", \"\", \"\", true}, {\" a :λ \", \" a \", \"λ \", true},\n\t}\n\tfor _, c := range cases {\n\t\tleft, right, ok := SplitPair(c.s)\n\t\tif left != c.left || right != c.right || ok != c.ok {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t)\", c.s, left, right, ok, c.left, c.right, c.ok)\n\t\t}\n\t}\n}\n",
+          "testdata/fuzz/FuzzSplitPair/double-colon": "go test fuzz v1\nstring(\"::\")\n"
+        }
+      },
+      {
+        "label": "final accepted files",
+        "at": "2026-10-22T18:38:35.331728+00:00",
+        "files": {
+          "fuzz_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc FuzzSplitPair(f *testing.F) {\n\tf.Add(\"\")\n\tf.Add(\":\")\n\tf.Add(\"α: β\")\n\tf.Fuzz(func(t *testing.T, s string) {\n\t\tcount, position := 0, 0\n\t\tfor i := 0; i < len(s); i++ {\n\t\t\tif s[i] == ':' {\n\t\t\t\tcount++\n\t\t\t\tposition = i\n\t\t\t}\n\t\t}\n\t\twantLeft, wantRight, wantOK := \"\", \"\", false\n\t\tif count == 1 {\n\t\t\twantLeft, wantRight, wantOK = s[:position], s[position+1:], true\n\t\t}\n\t\tleft, right, ok := SplitPair(s)\n\t\tif left != wantLeft || right != wantRight || ok != wantOK {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t), separator count=%d\", s, left, right, ok, wantLeft, wantRight, wantOK, count)\n\t\t}\n\t})\n}\n",
+          "go.mod": "module finite.local/fuzzregression\n\ngo 1.27.0\n",
+          "regression_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestSplitPairRegression(t *testing.T) {\n\tleft, right, ok := SplitPair(\"::\")\n\tif left != \"\" || right != \"\" || ok {\n\t\tt.Errorf(\"retained regression SplitPair(%q)=(%q,%q,%t); want empty/empty/false\", \"::\", left, right, ok)\n\t}\n}\n",
+          "split.go": "package fuzzregression\n\nimport \"strings\"\n\nfunc SplitPair(s string) (left, right string, ok bool) {\n\tindex := strings.IndexByte(s, ':')\n\tif index < 0 || strings.IndexByte(s[index+1:], ':') >= 0 {\n\t\treturn \"\", \"\", false\n\t}\n\treturn s[:index], s[index+1:], true\n}\n",
+          "split_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestBaseline(t *testing.T) {\n\tcases := []struct {\n\t\ts, left, right string\n\t\tok             bool\n\t}{\n\t\t{\"\", \"\", \"\", false}, {\"plain\", \"\", \"\", false},\n\t\t{\":\", \"\", \"\", true}, {\" a :λ \", \" a \", \"λ \", true},\n\t}\n\tfor _, c := range cases {\n\t\tleft, right, ok := SplitPair(c.s)\n\t\tif left != c.left || right != c.right || ok != c.ok {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t)\", c.s, left, right, ok, c.left, c.right, c.ok)\n\t\t}\n\t}\n}\n",
+          "testdata/fuzz/FuzzSplitPair/double-colon": "go test fuzz v1\nstring(\"::\")\n"
+        }
+      }
+    ],
+    "interpretations": [
+      "Two supplied bytes are colons. SplitN accepts the remaining colon as right data; contract rejects more than one separator. No discovery/minimization campaign executed."
+    ],
+    "ended_at": "2026-10-22T18:38:35.432562+00:00",
+    "disposable_root_removed": true
+  },
+  {
+    "unit": "fuzz-regression-001",
+    "variant": "weakened",
+    "started_at": "2026-10-22T18:38:35.434611+00:00",
+    "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-weakened-1fob50wg",
+    "content_digest": "b182d206be5b6855a532f737ac0fd3fd07621fe495c98d5d2b1d1eaaa75e43fb",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "CGO_ENABLED": "0",
+      "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-weakened-1fob50wg/home",
+      "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-weakened-1fob50wg/cache",
+      "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-weakened-1fob50wg/modcache",
+      "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-weakened-1fob50wg/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-weakened-1fob50wg/project",
+        "started_at": "2026-10-22T18:38:35.435018+00:00",
+        "timeout_seconds": 60,
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "ended_at": "2026-10-22T18:38:35.442935+00:00",
+        "seconds": 0.008
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-run",
+          "^TestSplitPairRegression$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-weakened-1fob50wg/project",
+        "started_at": "2026-10-22T18:38:35.443989+00:00",
+        "timeout_seconds": 60,
+        "exit_status": 0,
+        "stdout": "PASS\nok  \tfinite.local/fuzzregression\t0.170s\n",
+        "stderr": "",
+        "ended_at": "2026-10-22T18:38:37.658611+00:00",
+        "seconds": 2.215
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-run",
+          "^FuzzSplitPair/double-colon$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-weakened-1fob50wg/project",
+        "started_at": "2026-10-22T18:38:37.658987+00:00",
+        "timeout_seconds": 60,
+        "exit_status": 1,
+        "stdout": "--- FAIL: FuzzSplitPair (0.00s)\n    --- FAIL: FuzzSplitPair/double-colon (0.00s)\n        fuzz_test.go:23: SplitPair(\"::\")=(\"\",\":\",true); want (\"\",\"\",false), separator count=2\nFAIL\nexit status 1\nFAIL\tfinite.local/fuzzregression\t0.147s\n",
+        "stderr": "",
+        "ended_at": "2026-10-22T18:38:37.948156+00:00",
+        "seconds": 0.289
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "./...",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-weakened-1fob50wg/project",
+        "started_at": "2026-10-22T18:38:37.950377+00:00",
+        "timeout_seconds": 60,
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/fuzzregression\t0.275s\n",
+        "stderr": "",
+        "ended_at": "2026-10-22T18:38:38.421429+00:00",
+        "seconds": 0.471
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "supplied initial project",
+        "at": "2026-10-22T18:38:35.434622+00:00",
+        "files": {
+          "fuzz_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc FuzzSplitPair(f *testing.F) {\n\tf.Add(\"\")\n\tf.Add(\":\")\n\tf.Add(\"α: β\")\n\tf.Fuzz(func(t *testing.T, s string) {\n\t\tcount, position := 0, 0\n\t\tfor i := 0; i < len(s); i++ {\n\t\t\tif s[i] == ':' {\n\t\t\t\tcount++\n\t\t\t\tposition = i\n\t\t\t}\n\t\t}\n\t\twantLeft, wantRight, wantOK := \"\", \"\", false\n\t\tif count == 1 {\n\t\t\twantLeft, wantRight, wantOK = s[:position], s[position+1:], true\n\t\t}\n\t\tleft, right, ok := SplitPair(s)\n\t\tif left != wantLeft || right != wantRight || ok != wantOK {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t), separator count=%d\", s, left, right, ok, wantLeft, wantRight, wantOK, count)\n\t\t}\n\t})\n}\n",
+          "go.mod": "module finite.local/fuzzregression\n\ngo 1.27.0\n",
+          "split.go": "package fuzzregression\n\nimport \"strings\"\n\nfunc SplitPair(s string) (left, right string, ok bool) {\n\tparts := strings.SplitN(s, \":\", 2)\n\tif len(parts) != 2 {\n\t\treturn \"\", \"\", false\n\t}\n\treturn parts[0], parts[1], true\n}\n",
+          "split_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestBaseline(t *testing.T) {\n\tcases := []struct {\n\t\ts, left, right string\n\t\tok             bool\n\t}{\n\t\t{\"\", \"\", \"\", false}, {\"plain\", \"\", \"\", false},\n\t\t{\":\", \"\", \"\", true}, {\" a :λ \", \" a \", \"λ \", true},\n\t}\n\tfor _, c := range cases {\n\t\tleft, right, ok := SplitPair(c.s)\n\t\tif left != c.left || right != c.right || ok != c.ok {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t)\", c.s, left, right, ok, c.left, c.right, c.ok)\n\t\t}\n\t}\n}\n",
+          "testdata/fuzz/FuzzSplitPair/double-colon": "go test fuzz v1\nstring(\"::\")\n"
+        }
+      },
+      {
+        "label": "install wrong/weakened_regression_test.go.txt as regression_test.go",
+        "at": "2026-10-22T18:38:35.443507+00:00",
+        "files": {
+          "fuzz_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc FuzzSplitPair(f *testing.F) {\n\tf.Add(\"\")\n\tf.Add(\":\")\n\tf.Add(\"α: β\")\n\tf.Fuzz(func(t *testing.T, s string) {\n\t\tcount, position := 0, 0\n\t\tfor i := 0; i < len(s); i++ {\n\t\t\tif s[i] == ':' {\n\t\t\t\tcount++\n\t\t\t\tposition = i\n\t\t\t}\n\t\t}\n\t\twantLeft, wantRight, wantOK := \"\", \"\", false\n\t\tif count == 1 {\n\t\t\twantLeft, wantRight, wantOK = s[:position], s[position+1:], true\n\t\t}\n\t\tleft, right, ok := SplitPair(s)\n\t\tif left != wantLeft || right != wantRight || ok != wantOK {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t), separator count=%d\", s, left, right, ok, wantLeft, wantRight, wantOK, count)\n\t\t}\n\t})\n}\n",
+          "go.mod": "module finite.local/fuzzregression\n\ngo 1.27.0\n",
+          "regression_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestSplitPairRegression(t *testing.T) {\n\tleft, right, ok := SplitPair(\"::\")\n\tt.Logf(\"observed pair=(%q,%q,%t)\", left, right, ok)\n}\n",
+          "split.go": "package fuzzregression\n\nimport \"strings\"\n\nfunc SplitPair(s string) (left, right string, ok bool) {\n\tparts := strings.SplitN(s, \":\", 2)\n\tif len(parts) != 2 {\n\t\treturn \"\", \"\", false\n\t}\n\treturn parts[0], parts[1], true\n}\n",
+          "split_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestBaseline(t *testing.T) {\n\tcases := []struct {\n\t\ts, left, right string\n\t\tok             bool\n\t}{\n\t\t{\"\", \"\", \"\", false}, {\"plain\", \"\", \"\", false},\n\t\t{\":\", \"\", \"\", true}, {\" a :λ \", \" a \", \"λ \", true},\n\t}\n\tfor _, c := range cases {\n\t\tleft, right, ok := SplitPair(c.s)\n\t\tif left != c.left || right != c.right || ok != c.ok {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t)\", c.s, left, right, ok, c.left, c.right, c.ok)\n\t\t}\n\t}\n}\n",
+          "testdata/fuzz/FuzzSplitPair/double-colon": "go test fuzz v1\nstring(\"::\")\n"
+        }
+      },
+      {
+        "label": "install reference/split.go.txt as split.go",
+        "at": "2026-10-22T18:38:37.948999+00:00",
+        "files": {
+          "fuzz_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc FuzzSplitPair(f *testing.F) {\n\tf.Add(\"\")\n\tf.Add(\":\")\n\tf.Add(\"α: β\")\n\tf.Fuzz(func(t *testing.T, s string) {\n\t\tcount, position := 0, 0\n\t\tfor i := 0; i < len(s); i++ {\n\t\t\tif s[i] == ':' {\n\t\t\t\tcount++\n\t\t\t\tposition = i\n\t\t\t}\n\t\t}\n\t\twantLeft, wantRight, wantOK := \"\", \"\", false\n\t\tif count == 1 {\n\t\t\twantLeft, wantRight, wantOK = s[:position], s[position+1:], true\n\t\t}\n\t\tleft, right, ok := SplitPair(s)\n\t\tif left != wantLeft || right != wantRight || ok != wantOK {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t), separator count=%d\", s, left, right, ok, wantLeft, wantRight, wantOK, count)\n\t\t}\n\t})\n}\n",
+          "go.mod": "module finite.local/fuzzregression\n\ngo 1.27.0\n",
+          "regression_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestSplitPairRegression(t *testing.T) {\n\tleft, right, ok := SplitPair(\"::\")\n\tt.Logf(\"observed pair=(%q,%q,%t)\", left, right, ok)\n}\n",
+          "split.go": "package fuzzregression\n\nimport \"strings\"\n\nfunc SplitPair(s string) (left, right string, ok bool) {\n\tindex := strings.IndexByte(s, ':')\n\tif index < 0 || strings.IndexByte(s[index+1:], ':') >= 0 {\n\t\treturn \"\", \"\", false\n\t}\n\treturn s[:index], s[index+1:], true\n}\n",
+          "split_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestBaseline(t *testing.T) {\n\tcases := []struct {\n\t\ts, left, right string\n\t\tok             bool\n\t}{\n\t\t{\"\", \"\", \"\", false}, {\"plain\", \"\", \"\", false},\n\t\t{\":\", \"\", \"\", true}, {\" a :λ \", \" a \", \"λ \", true},\n\t}\n\tfor _, c := range cases {\n\t\tleft, right, ok := SplitPair(c.s)\n\t\tif left != c.left || right != c.right || ok != c.ok {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t)\", c.s, left, right, ok, c.left, c.right, c.ok)\n\t\t}\n\t}\n}\n",
+          "testdata/fuzz/FuzzSplitPair/double-colon": "go test fuzz v1\nstring(\"::\")\n"
+        }
+      },
+      {
+        "label": "install reference/regression_test.go.txt as regression_test.go",
+        "at": "2026-10-22T18:38:37.949774+00:00",
+        "files": {
+          "fuzz_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc FuzzSplitPair(f *testing.F) {\n\tf.Add(\"\")\n\tf.Add(\":\")\n\tf.Add(\"α: β\")\n\tf.Fuzz(func(t *testing.T, s string) {\n\t\tcount, position := 0, 0\n\t\tfor i := 0; i < len(s); i++ {\n\t\t\tif s[i] == ':' {\n\t\t\t\tcount++\n\t\t\t\tposition = i\n\t\t\t}\n\t\t}\n\t\twantLeft, wantRight, wantOK := \"\", \"\", false\n\t\tif count == 1 {\n\t\t\twantLeft, wantRight, wantOK = s[:position], s[position+1:], true\n\t\t}\n\t\tleft, right, ok := SplitPair(s)\n\t\tif left != wantLeft || right != wantRight || ok != wantOK {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t), separator count=%d\", s, left, right, ok, wantLeft, wantRight, wantOK, count)\n\t\t}\n\t})\n}\n",
+          "go.mod": "module finite.local/fuzzregression\n\ngo 1.27.0\n",
+          "regression_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestSplitPairRegression(t *testing.T) {\n\tleft, right, ok := SplitPair(\"::\")\n\tif left != \"\" || right != \"\" || ok {\n\t\tt.Errorf(\"retained regression SplitPair(%q)=(%q,%q,%t); want empty/empty/false\", \"::\", left, right, ok)\n\t}\n}\n",
+          "split.go": "package fuzzregression\n\nimport \"strings\"\n\nfunc SplitPair(s string) (left, right string, ok bool) {\n\tindex := strings.IndexByte(s, ':')\n\tif index < 0 || strings.IndexByte(s[index+1:], ':') >= 0 {\n\t\treturn \"\", \"\", false\n\t}\n\treturn s[:index], s[index+1:], true\n}\n",
+          "split_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestBaseline(t *testing.T) {\n\tcases := []struct {\n\t\ts, left, right string\n\t\tok             bool\n\t}{\n\t\t{\"\", \"\", \"\", false}, {\"plain\", \"\", \"\", false},\n\t\t{\":\", \"\", \"\", true}, {\" a :λ \", \" a \", \"λ \", true},\n\t}\n\tfor _, c := range cases {\n\t\tleft, right, ok := SplitPair(c.s)\n\t\tif left != c.left || right != c.right || ok != c.ok {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t)\", c.s, left, right, ok, c.left, c.right, c.ok)\n\t\t}\n\t}\n}\n",
+          "testdata/fuzz/FuzzSplitPair/double-colon": "go test fuzz v1\nstring(\"::\")\n"
+        }
+      },
+      {
+        "label": "final accepted files",
+        "at": "2026-10-22T18:38:38.421871+00:00",
+        "files": {
+          "fuzz_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc FuzzSplitPair(f *testing.F) {\n\tf.Add(\"\")\n\tf.Add(\":\")\n\tf.Add(\"α: β\")\n\tf.Fuzz(func(t *testing.T, s string) {\n\t\tcount, position := 0, 0\n\t\tfor i := 0; i < len(s); i++ {\n\t\t\tif s[i] == ':' {\n\t\t\t\tcount++\n\t\t\t\tposition = i\n\t\t\t}\n\t\t}\n\t\twantLeft, wantRight, wantOK := \"\", \"\", false\n\t\tif count == 1 {\n\t\t\twantLeft, wantRight, wantOK = s[:position], s[position+1:], true\n\t\t}\n\t\tleft, right, ok := SplitPair(s)\n\t\tif left != wantLeft || right != wantRight || ok != wantOK {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t), separator count=%d\", s, left, right, ok, wantLeft, wantRight, wantOK, count)\n\t\t}\n\t})\n}\n",
+          "go.mod": "module finite.local/fuzzregression\n\ngo 1.27.0\n",
+          "regression_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestSplitPairRegression(t *testing.T) {\n\tleft, right, ok := SplitPair(\"::\")\n\tif left != \"\" || right != \"\" || ok {\n\t\tt.Errorf(\"retained regression SplitPair(%q)=(%q,%q,%t); want empty/empty/false\", \"::\", left, right, ok)\n\t}\n}\n",
+          "split.go": "package fuzzregression\n\nimport \"strings\"\n\nfunc SplitPair(s string) (left, right string, ok bool) {\n\tindex := strings.IndexByte(s, ':')\n\tif index < 0 || strings.IndexByte(s[index+1:], ':') >= 0 {\n\t\treturn \"\", \"\", false\n\t}\n\treturn s[:index], s[index+1:], true\n}\n",
+          "split_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestBaseline(t *testing.T) {\n\tcases := []struct {\n\t\ts, left, right string\n\t\tok             bool\n\t}{\n\t\t{\"\", \"\", \"\", false}, {\"plain\", \"\", \"\", false},\n\t\t{\":\", \"\", \"\", true}, {\" a :λ \", \" a \", \"λ \", true},\n\t}\n\tfor _, c := range cases {\n\t\tleft, right, ok := SplitPair(c.s)\n\t\tif left != c.left || right != c.right || ok != c.ok {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t)\", c.s, left, right, ok, c.left, c.right, c.ok)\n\t\t}\n\t}\n}\n",
+          "testdata/fuzz/FuzzSplitPair/double-colon": "go test fuzz v1\nstring(\"::\")\n"
+        }
+      }
+    ],
+    "interpretations": [
+      "The log-only ordinary Test passes the broken implementation but unchanged supplied oracle rejects it. A pass does not establish a retained assertion."
+    ],
+    "ended_at": "2026-10-22T18:38:38.514954+00:00",
+    "disposable_root_removed": true
+  },
+  {
+    "unit": "fuzz-regression-001",
+    "variant": "omitted",
+    "started_at": "2026-10-22T18:38:38.517001+00:00",
+    "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-omitted-dm5hhiqw",
+    "content_digest": "b182d206be5b6855a532f737ac0fd3fd07621fe495c98d5d2b1d1eaaa75e43fb",
+    "environment": {
+      "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+      "GOENV": "off",
+      "GOTOOLCHAIN": "local",
+      "GOPROXY": "off",
+      "GOSUMDB": "off",
+      "GOFLAGS": "-mod=readonly",
+      "GOWORK": "off",
+      "CGO_ENABLED": "0",
+      "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-omitted-dm5hhiqw/home",
+      "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-omitted-dm5hhiqw/cache",
+      "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-omitted-dm5hhiqw/modcache",
+      "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-omitted-dm5hhiqw/tmp"
+    },
+    "commands": [
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-omitted-dm5hhiqw/project",
+        "started_at": "2026-10-22T18:38:38.517505+00:00",
+        "timeout_seconds": 60,
+        "exit_status": 0,
+        "stdout": "go version go1.27.0 darwin/arm64\n",
+        "stderr": "",
+        "ended_at": "2026-10-22T18:38:38.523917+00:00",
+        "seconds": 0.006
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "./...",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-omitted-dm5hhiqw/project",
+        "started_at": "2026-10-22T18:38:38.524911+00:00",
+        "timeout_seconds": 60,
+        "exit_status": 0,
+        "stdout": "ok  \tfinite.local/fuzzregression\t0.166s\n",
+        "stderr": "",
+        "ended_at": "2026-10-22T18:38:40.761000+00:00",
+        "seconds": 2.236
+      },
+      {
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-run",
+          "^TestSplitPairRegression$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-fuzz-omitted-dm5hhiqw/project",
+        "started_at": "2026-10-22T18:38:40.762472+00:00",
+        "timeout_seconds": 60,
+        "exit_status": 0,
+        "stdout": "PASS\nok  \tfinite.local/fuzzregression\t0.161s\n",
+        "stderr": "",
+        "ended_at": "2026-10-22T18:38:41.096639+00:00",
+        "seconds": 0.334
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "supplied initial project",
+        "at": "2026-10-22T18:38:38.517013+00:00",
+        "files": {
+          "fuzz_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc FuzzSplitPair(f *testing.F) {\n\tf.Add(\"\")\n\tf.Add(\":\")\n\tf.Add(\"α: β\")\n\tf.Fuzz(func(t *testing.T, s string) {\n\t\tcount, position := 0, 0\n\t\tfor i := 0; i < len(s); i++ {\n\t\t\tif s[i] == ':' {\n\t\t\t\tcount++\n\t\t\t\tposition = i\n\t\t\t}\n\t\t}\n\t\twantLeft, wantRight, wantOK := \"\", \"\", false\n\t\tif count == 1 {\n\t\t\twantLeft, wantRight, wantOK = s[:position], s[position+1:], true\n\t\t}\n\t\tleft, right, ok := SplitPair(s)\n\t\tif left != wantLeft || right != wantRight || ok != wantOK {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t), separator count=%d\", s, left, right, ok, wantLeft, wantRight, wantOK, count)\n\t\t}\n\t})\n}\n",
+          "go.mod": "module finite.local/fuzzregression\n\ngo 1.27.0\n",
+          "split.go": "package fuzzregression\n\nimport \"strings\"\n\nfunc SplitPair(s string) (left, right string, ok bool) {\n\tparts := strings.SplitN(s, \":\", 2)\n\tif len(parts) != 2 {\n\t\treturn \"\", \"\", false\n\t}\n\treturn parts[0], parts[1], true\n}\n",
+          "split_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestBaseline(t *testing.T) {\n\tcases := []struct {\n\t\ts, left, right string\n\t\tok             bool\n\t}{\n\t\t{\"\", \"\", \"\", false}, {\"plain\", \"\", \"\", false},\n\t\t{\":\", \"\", \"\", true}, {\" a :λ \", \" a \", \"λ \", true},\n\t}\n\tfor _, c := range cases {\n\t\tleft, right, ok := SplitPair(c.s)\n\t\tif left != c.left || right != c.right || ok != c.ok {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t)\", c.s, left, right, ok, c.left, c.right, c.ok)\n\t\t}\n\t}\n}\n",
+          "testdata/fuzz/FuzzSplitPair/double-colon": "go test fuzz v1\nstring(\"::\")\n"
+        }
+      },
+      {
+        "label": "install reference/split.go.txt as split.go",
+        "at": "2026-10-22T18:38:38.524455+00:00",
+        "files": {
+          "fuzz_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc FuzzSplitPair(f *testing.F) {\n\tf.Add(\"\")\n\tf.Add(\":\")\n\tf.Add(\"α: β\")\n\tf.Fuzz(func(t *testing.T, s string) {\n\t\tcount, position := 0, 0\n\t\tfor i := 0; i < len(s); i++ {\n\t\t\tif s[i] == ':' {\n\t\t\t\tcount++\n\t\t\t\tposition = i\n\t\t\t}\n\t\t}\n\t\twantLeft, wantRight, wantOK := \"\", \"\", false\n\t\tif count == 1 {\n\t\t\twantLeft, wantRight, wantOK = s[:position], s[position+1:], true\n\t\t}\n\t\tleft, right, ok := SplitPair(s)\n\t\tif left != wantLeft || right != wantRight || ok != wantOK {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t), separator count=%d\", s, left, right, ok, wantLeft, wantRight, wantOK, count)\n\t\t}\n\t})\n}\n",
+          "go.mod": "module finite.local/fuzzregression\n\ngo 1.27.0\n",
+          "split.go": "package fuzzregression\n\nimport \"strings\"\n\nfunc SplitPair(s string) (left, right string, ok bool) {\n\tindex := strings.IndexByte(s, ':')\n\tif index < 0 || strings.IndexByte(s[index+1:], ':') >= 0 {\n\t\treturn \"\", \"\", false\n\t}\n\treturn s[:index], s[index+1:], true\n}\n",
+          "split_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestBaseline(t *testing.T) {\n\tcases := []struct {\n\t\ts, left, right string\n\t\tok             bool\n\t}{\n\t\t{\"\", \"\", \"\", false}, {\"plain\", \"\", \"\", false},\n\t\t{\":\", \"\", \"\", true}, {\" a :λ \", \" a \", \"λ \", true},\n\t}\n\tfor _, c := range cases {\n\t\tleft, right, ok := SplitPair(c.s)\n\t\tif left != c.left || right != c.right || ok != c.ok {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t)\", c.s, left, right, ok, c.left, c.right, c.ok)\n\t\t}\n\t}\n}\n",
+          "testdata/fuzz/FuzzSplitPair/double-colon": "go test fuzz v1\nstring(\"::\")\n"
+        }
+      },
+      {
+        "label": "install reference/regression_test.go.txt as regression_test.go",
+        "at": "2026-10-22T18:38:40.761877+00:00",
+        "files": {
+          "fuzz_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc FuzzSplitPair(f *testing.F) {\n\tf.Add(\"\")\n\tf.Add(\":\")\n\tf.Add(\"α: β\")\n\tf.Fuzz(func(t *testing.T, s string) {\n\t\tcount, position := 0, 0\n\t\tfor i := 0; i < len(s); i++ {\n\t\t\tif s[i] == ':' {\n\t\t\t\tcount++\n\t\t\t\tposition = i\n\t\t\t}\n\t\t}\n\t\twantLeft, wantRight, wantOK := \"\", \"\", false\n\t\tif count == 1 {\n\t\t\twantLeft, wantRight, wantOK = s[:position], s[position+1:], true\n\t\t}\n\t\tleft, right, ok := SplitPair(s)\n\t\tif left != wantLeft || right != wantRight || ok != wantOK {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t), separator count=%d\", s, left, right, ok, wantLeft, wantRight, wantOK, count)\n\t\t}\n\t})\n}\n",
+          "go.mod": "module finite.local/fuzzregression\n\ngo 1.27.0\n",
+          "regression_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestSplitPairRegression(t *testing.T) {\n\tleft, right, ok := SplitPair(\"::\")\n\tif left != \"\" || right != \"\" || ok {\n\t\tt.Errorf(\"retained regression SplitPair(%q)=(%q,%q,%t); want empty/empty/false\", \"::\", left, right, ok)\n\t}\n}\n",
+          "split.go": "package fuzzregression\n\nimport \"strings\"\n\nfunc SplitPair(s string) (left, right string, ok bool) {\n\tindex := strings.IndexByte(s, ':')\n\tif index < 0 || strings.IndexByte(s[index+1:], ':') >= 0 {\n\t\treturn \"\", \"\", false\n\t}\n\treturn s[:index], s[index+1:], true\n}\n",
+          "split_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestBaseline(t *testing.T) {\n\tcases := []struct {\n\t\ts, left, right string\n\t\tok             bool\n\t}{\n\t\t{\"\", \"\", \"\", false}, {\"plain\", \"\", \"\", false},\n\t\t{\":\", \"\", \"\", true}, {\" a :λ \", \" a \", \"λ \", true},\n\t}\n\tfor _, c := range cases {\n\t\tleft, right, ok := SplitPair(c.s)\n\t\tif left != c.left || right != c.right || ok != c.ok {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t)\", c.s, left, right, ok, c.left, c.right, c.ok)\n\t\t}\n\t}\n}\n",
+          "testdata/fuzz/FuzzSplitPair/double-colon": "go test fuzz v1\nstring(\"::\")\n"
+        }
+      },
+      {
+        "label": "final accepted files",
+        "at": "2026-10-22T18:38:41.097137+00:00",
+        "files": {
+          "fuzz_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc FuzzSplitPair(f *testing.F) {\n\tf.Add(\"\")\n\tf.Add(\":\")\n\tf.Add(\"α: β\")\n\tf.Fuzz(func(t *testing.T, s string) {\n\t\tcount, position := 0, 0\n\t\tfor i := 0; i < len(s); i++ {\n\t\t\tif s[i] == ':' {\n\t\t\t\tcount++\n\t\t\t\tposition = i\n\t\t\t}\n\t\t}\n\t\twantLeft, wantRight, wantOK := \"\", \"\", false\n\t\tif count == 1 {\n\t\t\twantLeft, wantRight, wantOK = s[:position], s[position+1:], true\n\t\t}\n\t\tleft, right, ok := SplitPair(s)\n\t\tif left != wantLeft || right != wantRight || ok != wantOK {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t), separator count=%d\", s, left, right, ok, wantLeft, wantRight, wantOK, count)\n\t\t}\n\t})\n}\n",
+          "go.mod": "module finite.local/fuzzregression\n\ngo 1.27.0\n",
+          "regression_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestSplitPairRegression(t *testing.T) {\n\tleft, right, ok := SplitPair(\"::\")\n\tif left != \"\" || right != \"\" || ok {\n\t\tt.Errorf(\"retained regression SplitPair(%q)=(%q,%q,%t); want empty/empty/false\", \"::\", left, right, ok)\n\t}\n}\n",
+          "split.go": "package fuzzregression\n\nimport \"strings\"\n\nfunc SplitPair(s string) (left, right string, ok bool) {\n\tindex := strings.IndexByte(s, ':')\n\tif index < 0 || strings.IndexByte(s[index+1:], ':') >= 0 {\n\t\treturn \"\", \"\", false\n\t}\n\treturn s[:index], s[index+1:], true\n}\n",
+          "split_test.go": "package fuzzregression\n\nimport \"testing\"\n\nfunc TestBaseline(t *testing.T) {\n\tcases := []struct {\n\t\ts, left, right string\n\t\tok             bool\n\t}{\n\t\t{\"\", \"\", \"\", false}, {\"plain\", \"\", \"\", false},\n\t\t{\":\", \"\", \"\", true}, {\" a :λ \", \" a \", \"λ \", true},\n\t}\n\tfor _, c := range cases {\n\t\tleft, right, ok := SplitPair(c.s)\n\t\tif left != c.left || right != c.right || ok != c.ok {\n\t\t\tt.Errorf(\"SplitPair(%q)=(%q,%q,%t); want (%q,%q,%t)\", c.s, left, right, ok, c.left, c.right, c.ok)\n\t\t}\n\t}\n}\n",
+          "testdata/fuzz/FuzzSplitPair/double-colon": "go test fuzz v1\nstring(\"::\")\n"
+        }
+      }
+    ],
+    "interpretations": [
+      "Correct code plus supplied seeds passes, but no ordinary retained regression exists; method rejected. Not claimed automatic detection."
+    ],
+    "ended_at": "2026-10-22T18:38:41.163626+00:00",
+    "disposable_root_removed": true
+  }
+]

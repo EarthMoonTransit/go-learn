@@ -1,0 +1,6 @@
+package mutable
+
+type Value struct{ Content string }
+
+func (v *Value) Text() string     { return v.Content }
+func (v *Value) SetText(s string) { v.Content = s }

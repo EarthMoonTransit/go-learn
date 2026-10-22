@@ -1,0 +1,11 @@
+package external
+
+type Source struct {
+	Content string
+	Reads   int
+}
+
+func (s *Source) Text() string {
+	s.Reads++
+	return s.Content
+}

@@ -1,0 +1,65 @@
+{
+  "decision": "approve",
+  "reviewer": "/root/reviewer",
+  "recorded_at_utc": "2026-10-22T18:48:32.222505+00:00",
+  "findings": [],
+  "source_manifest_sha256": "ea774d45088a47d42bb5a864169810436ccd8d6612c419a2f4980b8d723b02e9",
+  "execution_script_sha256": "0b8f8554f48a80b978e4ea866a9ee371ad9015a9b190fa223c9b76682c06e993",
+  "actual_evidence": {
+    "fresh_copies": 8,
+    "commands": 20,
+    "expected_parallel_assertion_failures": 3,
+    "expected_native_race_failures": 3,
+    "maximum_command_seconds": 5.212384,
+    "go_version": "go1.27.0 darwin/arm64",
+    "all_roots_removed_and_absent": true,
+    "source_before_after_identical_and_matches_exact_reviewed_bindings": true,
+    "public_specimens_equal_raw_records": true,
+    "both_provenance_digests_and_every_file_hash_match": true,
+    "script_and_manifest_unchanged": true,
+    "timeouts_crashes_or_unexpected_failures": 0
+  },
+  "units": [
+    {
+      "unit": "parallel-subtests-001",
+      "content_digest": "7e7841b3984ea8e0a776b6e100924c744afe8707d75666f85fc323e2836aaf6e",
+      "accepted_first_slot": "testing.parallel",
+      "copies": 4,
+      "commands": 9,
+      "actual_method_assessment": [
+        "Starter contains no parallel mechanism. Reference authors named table, t.Run/t.Parallel before fixture construction, parent-local atomic markers, one deferred completion per child and parent Cleanup. Each child allocates a distinct mutable fixture. Supplied helper locking/assertions earn no authored synchronization credit.",
+        "Actual reference outputs at parallelism 2 and 1 contain all three PAUSE/CONT pairs. Parent body records zero completions and end marker before any resumed child marker. Parent Cleanup sees all three completions. Actual sibling order is alpha/gamma/beta in these reference runs, but no total sibling order is required or inferred.",
+        "Parent-read wrong source fails an ordinary assertion with completed=0 versus expected3 before returning; all children and Cleanup still finish. This demonstrates why parent-body result reads are premature without adding a parent wait.",
+        "Shared-fixture wrong source reports protected map sizes2 and3 rather than1, so the diagnostic proves state sharing without relying on a data race, panic or deadlock.",
+        "No-parallel wrong source emits no PAUSE/CONT, reports each child before parent end and parent completed3 versus expected0. Every failure is ordinary useful feedback.",
+        "Reference has no sleep, parent-body wait, lock across t.Parallel or sibling barrier. Passing parallelism1 is consistent with those actual source facts."
+      ]
+    },
+    {
+      "unit": "native-race-001",
+      "content_digest": "78532c4270b2a194a6d7462fa691a93ffe48e4dcdde8847d3bf5bae73c718fff",
+      "accepted_first_slot": "testing.race-detector",
+      "copies": 4,
+      "commands": 11,
+      "actual_report_source_mapping": {
+        "unsafe-main": "Actual write cell.go:17 / Exercise.func1 exercise.go:14 conflicts with read cell.go:9 / Exercise.func2 exercise.go:19; goroutine creation exercise.go:11 and :16.",
+        "write-only-lock": "Actual bare read cell.go:14 conflicts with mutex-protected write cell.go:20; invocation lines exercise.go:19/:14 and creation :16/:11 match snapshot.",
+        "main-only-fixed": "R-main is clean; R-alt reports fast-branch write cell.go:21 versus read cell.go:12, with invocation exercise.go:14/:19 and creation :11/:16."
+      },
+      "actual_method_assessment": [
+        "Common close(start) happens before both workers proceed but provides no order between their accesses. The buffered sample and later Wait join the caller after work; they do not serialize the worker read/write. The final field read after Wait is safe.",
+        "Reference independently adds one per-cell mutex and locks both load and store. It removes the redundant bypass without changing the supplied harness, distinct false/true test inputs or observed0/42 and final42 contract. Supplied launches, WaitGroup and tests earn no learner authorship credit.",
+        "Three nonzero commands contain native WARNING: DATA RACE plus both conflicting access stacks and both goroutine origins. Value assertions are not their failure cause. No compile error, crash, timeout, retry or stress run supplies detection credit.",
+        "Writer-only locking lacks a common read/write synchronization edge. Main-only-fixed genuinely passes its restricted main command while the separate unchanged alternate-path command reports the remaining conflict. A clean subset leaves unexecuted paths dynamically unknown.",
+        "Correct reference passes the identical R-main command, both-path R-all and ordinary N-all. Acceptance combines this finite execution with actual source review; it makes no universal race-freedom claim."
+      ]
+    }
+  ],
+  "boundaries": [
+    "Two first encounters only; independent applications remain open.",
+    "Manual evidence does not increment automatic coverage/progress or establish learner mastery.",
+    "Preexecution authorization remains tied to these exact inert sources and fixed commands; no runner/profile/platform is added.",
+    "All source reads and receipt checks were read-only; reviewer did not execute authored Go.",
+    "Final route/diff review, current applicable local gates and exact-HEAD green CI remain separate delivery requirements."
+  ]
+}

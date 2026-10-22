@@ -34,10 +34,18 @@ files/results for checklist review. They do not create automatic completion:
 | After diagnostic-helper-001 and modules-build | [Documentation and target selection](labs/docs-environment-001/TASK.md) | Apply go doc, inspect go env and predict native/cross-target file selection before go list |
 | After diagnostic-helper-001 and format-vet | [Native join benchmark](labs/join-benchmark-001/TASK.md) | First author timing boundaries, then analyze allocations, then choose representative repeated comparisons |
 | After resource-finalize-001 and filesystem-record-tests-001 | [Reviewed golden file](labs/report-golden-001/TASK.md) | Author file comparison/diagnostics, preserve normal-run expectations and explicitly review a local update |
+| After formatter-contract-001 and writer-double-001; before package-boundaries | [Consumer-owned text contract](labs/consumer-text-contract-001/TASK.md) | Author the minimal named consumer interface; verify a foreign provider and interpret excessive-method/concrete-coupling failures |
+| After package-inventory-001, modules-build and consumer-text-contract | [Package boundaries](labs/package-boundaries-001/TASK.md) | Diagnose and remove the actual cycle; separately predict and repair internal parent-tree access |
+| After named-cases-001 and launch-provided-job-001 | [Parallel subtests](labs/parallel-subtests-001/TASK.md) | Author private fixtures and verify the parent/subtest/Cleanup partial order |
+| After parallel-subtests and concurrent-counter-read-001 | [Native race evidence](labs/native-race-001/TASK.md) | Map real conflicting stacks, repair both accesses and distinguish exercised paths from untested branches |
+| After hex-seed-classes-001 and hex-wire-invariants-001 | [Retained fuzz regression](labs/fuzz-regression-001/TASK.md) | Reproduce the supplied seed, author a meaningful ordinary regression before repair, retain actual failure/pass and explain the cause |
 
 The automatic `bounded-lru-cache-001` at its existing 07.20 address also serves
 as the finite-v1 generic-container assessment after maps, callbacks, methods and
 generics. Its sequential API and existing tests define the accepted scope.
+The native join-benchmark unit also serves as the performance assessment; the
+fuzz-regression unit serves as the regression assessment. Those component decisions
+do not create additional independent benchmark/fuzz skill encounters.
 
 Later hybrid introductions also require their published method checklist:
 `recursive-total-001` needs actual recursive decomposition, and

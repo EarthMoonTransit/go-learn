@@ -1,0 +1,39 @@
+{
+  "unit": "package-boundaries-001",
+  "status": "pending exact preexecution review; execution absent",
+  "initial_files": {
+    "files/go.mod.txt": "go.mod",
+    "files/cycle/producer/source.go.txt": "cycle/producer/source.go",
+    "files/cycle/consumer/render.go.txt": "cycle/consumer/render.go",
+    "files/cycle/consumer/render_test.go.txt": "cycle/consumer/render_test.go",
+    "files/cmd/cycle/main.go.txt": "cmd/cycle/main.go",
+    "files/domain/internal/format/format.go.txt": "domain/internal/format/format.go",
+    "files/domain/internal/format/format_test.go.txt": "domain/internal/format/format_test.go",
+    "files/domain/facade.go.txt": "domain/facade.go",
+    "files/domain/facade_test.go.txt": "domain/facade_test.go",
+    "files/domain/probe/probe.go.txt": "domain/probe/probe.go",
+    "files/domain/probe/probe_test.go.txt": "domain/probe/probe_test.go",
+    "files/cmd/outside/main.go.txt": "cmd/outside/main.go"
+  },
+  "correct_replacements": {
+    "reference/cycle/consumer/render.go.txt": "cycle/consumer/render.go",
+    "reference/cycle/producer/source.go.txt": "cycle/producer/source.go",
+    "reference/domain/facade.go.txt": "domain/facade.go",
+    "reference/cmd/outside/main.go.txt": "cmd/outside/main.go"
+  },
+  "editable_paths": [
+    "cycle/consumer/render.go",
+    "cycle/producer/source.go",
+    "domain/facade.go",
+    "cmd/outside/main.go"
+  ],
+  "timeout_seconds": 60,
+  "module": "finite.local/boundaries",
+  "go_version": "1.27",
+  "specimens": [
+    "cycle-original",
+    "cycle-alias-only",
+    "internal-outside",
+    "boundaries-reference"
+  ]
+}

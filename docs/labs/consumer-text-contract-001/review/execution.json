@@ -1,0 +1,1190 @@
+{
+  "normalization": "Actual disposable root and installed Go directory are replaced by $DISPOSABLE and $LOCAL_GO_BIN; raw evidence retained in batch .tmp.",
+  "records": [
+    {
+      "unit": "consumer-text-contract-001",
+      "specimen": "interface-reference",
+      "started_at": "2026-10-22T18:40:21.552869+00:00",
+      "content_digest": "39e334be4ea517d9daec2c69ab7109ef2e5b020b58cad7e3af74896b88344842",
+      "disposable_root": "$DISPOSABLE",
+      "events": [
+        {
+          "at": "2026-10-22T18:40:21.553485+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/go.mod.txt",
+          "destination": "go.mod",
+          "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920"
+        },
+        {
+          "at": "2026-10-22T18:40:21.553739+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/providers/fixed/fixed.go.txt",
+          "destination": "providers/fixed/fixed.go",
+          "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8"
+        },
+        {
+          "at": "2026-10-22T18:40:21.553943+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/providers/mutable/mutable.go.txt",
+          "destination": "providers/mutable/mutable.go",
+          "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192"
+        },
+        {
+          "at": "2026-10-22T18:40:21.554150+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/external/source.go.txt",
+          "destination": "external/source.go",
+          "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144"
+        },
+        {
+          "at": "2026-10-22T18:40:21.554348+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/consumer/render.go.txt",
+          "destination": "consumer/render.go",
+          "sha256": "465840c83a1813ca2f0c0aa75011027b0cd18ae46724d2b4e41d30e517ff6a02"
+        },
+        {
+          "at": "2026-10-22T18:40:21.554518+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/consumer/render_test.go.txt",
+          "destination": "consumer/render_test.go",
+          "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa"
+        },
+        {
+          "at": "2026-10-22T18:40:21.554720+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/caller/doc.go.txt",
+          "destination": "caller/doc.go",
+          "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b"
+        },
+        {
+          "at": "2026-10-22T18:40:21.554884+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/caller/accept_test.go.txt",
+          "destination": "caller/accept_test.go",
+          "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464"
+        },
+        {
+          "at": "2026-10-22T18:40:24.209084+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/consumer-text-contract-001/reference/consumer/render.go.txt",
+          "destination": "consumer/render.go",
+          "sha256": "fc4775fe263db5dbfa49e9d16e4f5f759c4442bb76c1ec1500d9aebc129a4a31"
+        },
+        {
+          "at": "2026-10-22T18:40:24.728185+00:00",
+          "kind": "reference prediction before command",
+          "text": "Each listed production package has no imports; structural satisfaction needs no provider-to-consumer dependency."
+        }
+      ],
+      "commands": [
+        {
+          "at": "2026-10-22T18:40:21.555474+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "version"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.006671,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:21.562787+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./consumer",
+            "./caller"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "nonzero",
+          "required_diagnostic_fragments": [
+            "fixed result=",
+            "foreign result="
+          ],
+          "expected_stdout": null,
+          "exit_status": 1,
+          "stdout": "--- FAIL: TestConcreteProviders (0.00s)\n    render_test.go:12: fixed result=\"TODO\"; want \"[ a ]\"\n    render_test.go:16: mutable result=\"TODO\"; want \"[λ]\"\n    render_test.go:20: empty result=\"TODO\"; want \"[]\"\nFAIL\nFAIL\tfinite.local/consumer-contract/consumer\t0.479s\n--- FAIL: TestForeignProvider (0.00s)\n    accept_test.go:13: foreign result=\"TODO\" calls=0; want \"[ Ω ]\" calls=1\nFAIL\nFAIL\tfinite.local/consumer-contract/caller\t0.310s\nFAIL\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 2.645449,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:24.209752+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "ok  \tfinite.local/consumer-contract/caller\t0.167s\nok  \tfinite.local/consumer-contract/consumer\t0.341s\n?   \tfinite.local/consumer-contract/external\t[no test files]\n?   \tfinite.local/consumer-contract/providers/fixed\t[no test files]\n?   \tfinite.local/consumer-contract/providers/mutable\t[no test files]\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.516864,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:24.728200+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "list",
+            "-f",
+            "{{.ImportPath}} {{.Imports}}",
+            "./consumer",
+            "./providers/fixed",
+            "./providers/mutable",
+            "./external"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "finite.local/consumer-contract/consumer []\nfinite.local/consumer-contract/providers/fixed []\nfinite.local/consumer-contract/providers/mutable []\nfinite.local/consumer-contract/external []\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.01286,
+          "expectation_met": true
+        }
+      ],
+      "snapshots": [
+        {
+          "at": "2026-10-22T18:40:21.555470+00:00",
+          "label": "initial",
+          "files": {
+            "caller/accept_test.go": {
+              "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464",
+              "text": "package caller_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/external\"\n\t\"testing\"\n)\n\nfunc TestForeignProvider(t *testing.T) {\n\tsource := &external.Source{Content: \" Ω \"}\n\tgot := consumer.Render(source)\n\tif got != \"[ Ω ]\" || source.Reads != 1 {\n\t\tt.Errorf(\"foreign result=%q calls=%d; want %q calls=1\", got, source.Reads, \"[ Ω ]\")\n\t}\n}\n"
+            },
+            "caller/doc.go": {
+              "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b",
+              "text": "package caller\n"
+            },
+            "consumer/render.go": {
+              "sha256": "465840c83a1813ca2f0c0aa75011027b0cd18ae46724d2b4e41d30e517ff6a02",
+              "text": "package consumer\n\nfunc Render(source any) string { return \"TODO\" }\n"
+            },
+            "consumer/render_test.go": {
+              "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/providers/fixed\"\n\t\"finite.local/consumer-contract/providers/mutable\"\n\t\"testing\"\n)\n\nfunc TestConcreteProviders(t *testing.T) {\n\tif got := consumer.Render(fixed.Value{Content: \" a \"}); got != \"[ a ]\" {\n\t\tt.Errorf(\"fixed result=%q; want %q\", got, \"[ a ]\")\n\t}\n\tvalue := &mutable.Value{Content: \"λ\"}\n\tif got := consumer.Render(value); got != \"[λ]\" {\n\t\tt.Errorf(\"mutable result=%q; want %q\", got, \"[λ]\")\n\t}\n\tvalue.SetText(\"\")\n\tif got := consumer.Render(value); got != \"[]\" {\n\t\tt.Errorf(\"empty result=%q; want %q\", got, \"[]\")\n\t}\n}\n"
+            },
+            "external/source.go": {
+              "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144",
+              "text": "package external\n\ntype Source struct {\n\tContent string\n\tReads   int\n}\n\nfunc (s *Source) Text() string {\n\ts.Reads++\n\treturn s.Content\n}\n"
+            },
+            "go.mod": {
+              "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920",
+              "text": "module finite.local/consumer-contract\n\ngo 1.27.0\n"
+            },
+            "providers/fixed/fixed.go": {
+              "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8",
+              "text": "package fixed\n\ntype Value struct{ Content string }\n\nfunc (v Value) Text() string { return v.Content }\nfunc (v Value) Width() int   { return len(v.Content) }\n"
+            },
+            "providers/mutable/mutable.go": {
+              "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192",
+              "text": "package mutable\n\ntype Value struct{ Content string }\n\nfunc (v *Value) Text() string     { return v.Content }\nfunc (v *Value) SetText(s string) { v.Content = s }\n"
+            }
+          }
+        },
+        {
+          "at": "2026-10-22T18:40:24.209748+00:00",
+          "label": "correct named consumer interface",
+          "files": {
+            "caller/accept_test.go": {
+              "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464",
+              "text": "package caller_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/external\"\n\t\"testing\"\n)\n\nfunc TestForeignProvider(t *testing.T) {\n\tsource := &external.Source{Content: \" Ω \"}\n\tgot := consumer.Render(source)\n\tif got != \"[ Ω ]\" || source.Reads != 1 {\n\t\tt.Errorf(\"foreign result=%q calls=%d; want %q calls=1\", got, source.Reads, \"[ Ω ]\")\n\t}\n}\n"
+            },
+            "caller/doc.go": {
+              "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b",
+              "text": "package caller\n"
+            },
+            "consumer/render.go": {
+              "sha256": "fc4775fe263db5dbfa49e9d16e4f5f759c4442bb76c1ec1500d9aebc129a4a31",
+              "text": "package consumer\n\ntype TextSource interface{ Text() string }\n\nfunc Render(source TextSource) string { return \"[\" + source.Text() + \"]\" }\n"
+            },
+            "consumer/render_test.go": {
+              "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/providers/fixed\"\n\t\"finite.local/consumer-contract/providers/mutable\"\n\t\"testing\"\n)\n\nfunc TestConcreteProviders(t *testing.T) {\n\tif got := consumer.Render(fixed.Value{Content: \" a \"}); got != \"[ a ]\" {\n\t\tt.Errorf(\"fixed result=%q; want %q\", got, \"[ a ]\")\n\t}\n\tvalue := &mutable.Value{Content: \"λ\"}\n\tif got := consumer.Render(value); got != \"[λ]\" {\n\t\tt.Errorf(\"mutable result=%q; want %q\", got, \"[λ]\")\n\t}\n\tvalue.SetText(\"\")\n\tif got := consumer.Render(value); got != \"[]\" {\n\t\tt.Errorf(\"empty result=%q; want %q\", got, \"[]\")\n\t}\n}\n"
+            },
+            "external/source.go": {
+              "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144",
+              "text": "package external\n\ntype Source struct {\n\tContent string\n\tReads   int\n}\n\nfunc (s *Source) Text() string {\n\ts.Reads++\n\treturn s.Content\n}\n"
+            },
+            "go.mod": {
+              "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920",
+              "text": "module finite.local/consumer-contract\n\ngo 1.27.0\n"
+            },
+            "providers/fixed/fixed.go": {
+              "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8",
+              "text": "package fixed\n\ntype Value struct{ Content string }\n\nfunc (v Value) Text() string { return v.Content }\nfunc (v Value) Width() int   { return len(v.Content) }\n"
+            },
+            "providers/mutable/mutable.go": {
+              "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192",
+              "text": "package mutable\n\ntype Value struct{ Content string }\n\nfunc (v *Value) Text() string     { return v.Content }\nfunc (v *Value) SetText(s string) { v.Content = s }\n"
+            }
+          }
+        }
+      ],
+      "cleanup": true,
+      "status": "expected observations recorded; method review pending",
+      "environment": {
+        "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+        "HOME": "$DISPOSABLE/home",
+        "GOCACHE": "$DISPOSABLE/cache",
+        "GOMODCACHE": "$DISPOSABLE/modcache",
+        "TMPDIR": "$DISPOSABLE/tmp",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "GOWORK": "off",
+        "GOFLAGS": "-mod=readonly",
+        "CGO_ENABLED": "0",
+        "GOTELEMETRY": "off"
+      },
+      "go_version": "go version go1.27.0 darwin/arm64",
+      "finished_at": "2026-10-22T18:40:24.742437+00:00"
+    },
+    {
+      "unit": "consumer-text-contract-001",
+      "specimen": "interface-overbroad",
+      "started_at": "2026-10-22T18:40:24.825483+00:00",
+      "content_digest": "39e334be4ea517d9daec2c69ab7109ef2e5b020b58cad7e3af74896b88344842",
+      "disposable_root": "$DISPOSABLE",
+      "events": [
+        {
+          "at": "2026-10-22T18:40:24.825898+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/go.mod.txt",
+          "destination": "go.mod",
+          "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920"
+        },
+        {
+          "at": "2026-10-22T18:40:24.826139+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/providers/fixed/fixed.go.txt",
+          "destination": "providers/fixed/fixed.go",
+          "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8"
+        },
+        {
+          "at": "2026-10-22T18:40:24.826329+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/providers/mutable/mutable.go.txt",
+          "destination": "providers/mutable/mutable.go",
+          "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192"
+        },
+        {
+          "at": "2026-10-22T18:40:24.826510+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/external/source.go.txt",
+          "destination": "external/source.go",
+          "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144"
+        },
+        {
+          "at": "2026-10-22T18:40:24.826679+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/consumer/render.go.txt",
+          "destination": "consumer/render.go",
+          "sha256": "465840c83a1813ca2f0c0aa75011027b0cd18ae46724d2b4e41d30e517ff6a02"
+        },
+        {
+          "at": "2026-10-22T18:40:24.826822+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/consumer/render_test.go.txt",
+          "destination": "consumer/render_test.go",
+          "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa"
+        },
+        {
+          "at": "2026-10-22T18:40:24.827012+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/caller/doc.go.txt",
+          "destination": "caller/doc.go",
+          "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b"
+        },
+        {
+          "at": "2026-10-22T18:40:24.827146+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/caller/accept_test.go.txt",
+          "destination": "caller/accept_test.go",
+          "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464"
+        },
+        {
+          "at": "2026-10-22T18:40:24.834939+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/consumer-text-contract-001/wrong/overbroad/consumer/render.go.txt",
+          "destination": "consumer/render.go",
+          "sha256": "3c107c274891f9219d83125096fa34ae07c8ffa09e71c4e287ef6708887b8781"
+        },
+        {
+          "at": "2026-10-22T18:40:24.835460+00:00",
+          "kind": "reference prediction before command",
+          "text": "Third provider has Text but lacks Width; caller compile should identify the extra required method."
+        },
+        {
+          "at": "2026-10-22T18:40:26.903689+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/consumer-text-contract-001/reference/consumer/render.go.txt",
+          "destination": "consumer/render.go",
+          "sha256": "fc4775fe263db5dbfa49e9d16e4f5f759c4442bb76c1ec1500d9aebc129a4a31"
+        }
+      ],
+      "commands": [
+        {
+          "at": "2026-10-22T18:40:24.827608+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "version"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.006585,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:24.835462+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./caller"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "nonzero",
+          "required_diagnostic_fragments": [
+            "external.Source",
+            "missing method Width"
+          ],
+          "expected_stdout": null,
+          "exit_status": 1,
+          "stdout": "FAIL\tfinite.local/consumer-contract/caller [build failed]\nFAIL\n",
+          "stderr": "# finite.local/consumer-contract/caller_test [finite.local/consumer-contract/caller.test]\ncaller/accept_test.go:11:25: cannot use source (variable of type *external.Source) as consumer.TextSource value in argument to consumer.Render: *external.Source does not implement consumer.TextSource (missing method Width)\n",
+          "timed_out": false,
+          "elapsed_seconds": 2.067286,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:26.904380+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./caller"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "ok  \tfinite.local/consumer-contract/caller\t0.171s\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.365383,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:27.270510+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "ok  \tfinite.local/consumer-contract/caller\t0.120s\nok  \tfinite.local/consumer-contract/consumer\t0.253s\n?   \tfinite.local/consumer-contract/external\t[no test files]\n?   \tfinite.local/consumer-contract/providers/fixed\t[no test files]\n?   \tfinite.local/consumer-contract/providers/mutable\t[no test files]\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.424778,
+          "expectation_met": true
+        }
+      ],
+      "snapshots": [
+        {
+          "at": "2026-10-22T18:40:24.827604+00:00",
+          "label": "initial",
+          "files": {
+            "caller/accept_test.go": {
+              "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464",
+              "text": "package caller_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/external\"\n\t\"testing\"\n)\n\nfunc TestForeignProvider(t *testing.T) {\n\tsource := &external.Source{Content: \" Ω \"}\n\tgot := consumer.Render(source)\n\tif got != \"[ Ω ]\" || source.Reads != 1 {\n\t\tt.Errorf(\"foreign result=%q calls=%d; want %q calls=1\", got, source.Reads, \"[ Ω ]\")\n\t}\n}\n"
+            },
+            "caller/doc.go": {
+              "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b",
+              "text": "package caller\n"
+            },
+            "consumer/render.go": {
+              "sha256": "465840c83a1813ca2f0c0aa75011027b0cd18ae46724d2b4e41d30e517ff6a02",
+              "text": "package consumer\n\nfunc Render(source any) string { return \"TODO\" }\n"
+            },
+            "consumer/render_test.go": {
+              "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/providers/fixed\"\n\t\"finite.local/consumer-contract/providers/mutable\"\n\t\"testing\"\n)\n\nfunc TestConcreteProviders(t *testing.T) {\n\tif got := consumer.Render(fixed.Value{Content: \" a \"}); got != \"[ a ]\" {\n\t\tt.Errorf(\"fixed result=%q; want %q\", got, \"[ a ]\")\n\t}\n\tvalue := &mutable.Value{Content: \"λ\"}\n\tif got := consumer.Render(value); got != \"[λ]\" {\n\t\tt.Errorf(\"mutable result=%q; want %q\", got, \"[λ]\")\n\t}\n\tvalue.SetText(\"\")\n\tif got := consumer.Render(value); got != \"[]\" {\n\t\tt.Errorf(\"empty result=%q; want %q\", got, \"[]\")\n\t}\n}\n"
+            },
+            "external/source.go": {
+              "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144",
+              "text": "package external\n\ntype Source struct {\n\tContent string\n\tReads   int\n}\n\nfunc (s *Source) Text() string {\n\ts.Reads++\n\treturn s.Content\n}\n"
+            },
+            "go.mod": {
+              "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920",
+              "text": "module finite.local/consumer-contract\n\ngo 1.27.0\n"
+            },
+            "providers/fixed/fixed.go": {
+              "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8",
+              "text": "package fixed\n\ntype Value struct{ Content string }\n\nfunc (v Value) Text() string { return v.Content }\nfunc (v Value) Width() int   { return len(v.Content) }\n"
+            },
+            "providers/mutable/mutable.go": {
+              "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192",
+              "text": "package mutable\n\ntype Value struct{ Content string }\n\nfunc (v *Value) Text() string     { return v.Content }\nfunc (v *Value) SetText(s string) { v.Content = s }\n"
+            }
+          }
+        },
+        {
+          "at": "2026-10-22T18:40:24.835457+00:00",
+          "label": "overbroad interface",
+          "files": {
+            "caller/accept_test.go": {
+              "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464",
+              "text": "package caller_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/external\"\n\t\"testing\"\n)\n\nfunc TestForeignProvider(t *testing.T) {\n\tsource := &external.Source{Content: \" Ω \"}\n\tgot := consumer.Render(source)\n\tif got != \"[ Ω ]\" || source.Reads != 1 {\n\t\tt.Errorf(\"foreign result=%q calls=%d; want %q calls=1\", got, source.Reads, \"[ Ω ]\")\n\t}\n}\n"
+            },
+            "caller/doc.go": {
+              "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b",
+              "text": "package caller\n"
+            },
+            "consumer/render.go": {
+              "sha256": "3c107c274891f9219d83125096fa34ae07c8ffa09e71c4e287ef6708887b8781",
+              "text": "package consumer\n\ntype TextSource interface {\n\tText() string\n\tWidth() int\n}\n\nfunc Render(source TextSource) string { return \"[\" + source.Text() + \"]\" }\n"
+            },
+            "consumer/render_test.go": {
+              "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/providers/fixed\"\n\t\"finite.local/consumer-contract/providers/mutable\"\n\t\"testing\"\n)\n\nfunc TestConcreteProviders(t *testing.T) {\n\tif got := consumer.Render(fixed.Value{Content: \" a \"}); got != \"[ a ]\" {\n\t\tt.Errorf(\"fixed result=%q; want %q\", got, \"[ a ]\")\n\t}\n\tvalue := &mutable.Value{Content: \"λ\"}\n\tif got := consumer.Render(value); got != \"[λ]\" {\n\t\tt.Errorf(\"mutable result=%q; want %q\", got, \"[λ]\")\n\t}\n\tvalue.SetText(\"\")\n\tif got := consumer.Render(value); got != \"[]\" {\n\t\tt.Errorf(\"empty result=%q; want %q\", got, \"[]\")\n\t}\n}\n"
+            },
+            "external/source.go": {
+              "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144",
+              "text": "package external\n\ntype Source struct {\n\tContent string\n\tReads   int\n}\n\nfunc (s *Source) Text() string {\n\ts.Reads++\n\treturn s.Content\n}\n"
+            },
+            "go.mod": {
+              "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920",
+              "text": "module finite.local/consumer-contract\n\ngo 1.27.0\n"
+            },
+            "providers/fixed/fixed.go": {
+              "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8",
+              "text": "package fixed\n\ntype Value struct{ Content string }\n\nfunc (v Value) Text() string { return v.Content }\nfunc (v Value) Width() int   { return len(v.Content) }\n"
+            },
+            "providers/mutable/mutable.go": {
+              "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192",
+              "text": "package mutable\n\ntype Value struct{ Content string }\n\nfunc (v *Value) Text() string     { return v.Content }\nfunc (v *Value) SetText(s string) { v.Content = s }\n"
+            }
+          }
+        },
+        {
+          "at": "2026-10-22T18:40:26.904376+00:00",
+          "label": "correct named consumer interface",
+          "files": {
+            "caller/accept_test.go": {
+              "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464",
+              "text": "package caller_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/external\"\n\t\"testing\"\n)\n\nfunc TestForeignProvider(t *testing.T) {\n\tsource := &external.Source{Content: \" Ω \"}\n\tgot := consumer.Render(source)\n\tif got != \"[ Ω ]\" || source.Reads != 1 {\n\t\tt.Errorf(\"foreign result=%q calls=%d; want %q calls=1\", got, source.Reads, \"[ Ω ]\")\n\t}\n}\n"
+            },
+            "caller/doc.go": {
+              "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b",
+              "text": "package caller\n"
+            },
+            "consumer/render.go": {
+              "sha256": "fc4775fe263db5dbfa49e9d16e4f5f759c4442bb76c1ec1500d9aebc129a4a31",
+              "text": "package consumer\n\ntype TextSource interface{ Text() string }\n\nfunc Render(source TextSource) string { return \"[\" + source.Text() + \"]\" }\n"
+            },
+            "consumer/render_test.go": {
+              "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/providers/fixed\"\n\t\"finite.local/consumer-contract/providers/mutable\"\n\t\"testing\"\n)\n\nfunc TestConcreteProviders(t *testing.T) {\n\tif got := consumer.Render(fixed.Value{Content: \" a \"}); got != \"[ a ]\" {\n\t\tt.Errorf(\"fixed result=%q; want %q\", got, \"[ a ]\")\n\t}\n\tvalue := &mutable.Value{Content: \"λ\"}\n\tif got := consumer.Render(value); got != \"[λ]\" {\n\t\tt.Errorf(\"mutable result=%q; want %q\", got, \"[λ]\")\n\t}\n\tvalue.SetText(\"\")\n\tif got := consumer.Render(value); got != \"[]\" {\n\t\tt.Errorf(\"empty result=%q; want %q\", got, \"[]\")\n\t}\n}\n"
+            },
+            "external/source.go": {
+              "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144",
+              "text": "package external\n\ntype Source struct {\n\tContent string\n\tReads   int\n}\n\nfunc (s *Source) Text() string {\n\ts.Reads++\n\treturn s.Content\n}\n"
+            },
+            "go.mod": {
+              "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920",
+              "text": "module finite.local/consumer-contract\n\ngo 1.27.0\n"
+            },
+            "providers/fixed/fixed.go": {
+              "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8",
+              "text": "package fixed\n\ntype Value struct{ Content string }\n\nfunc (v Value) Text() string { return v.Content }\nfunc (v Value) Width() int   { return len(v.Content) }\n"
+            },
+            "providers/mutable/mutable.go": {
+              "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192",
+              "text": "package mutable\n\ntype Value struct{ Content string }\n\nfunc (v *Value) Text() string     { return v.Content }\nfunc (v *Value) SetText(s string) { v.Content = s }\n"
+            }
+          }
+        }
+      ],
+      "cleanup": true,
+      "status": "expected observations recorded; method review pending",
+      "environment": {
+        "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+        "HOME": "$DISPOSABLE/home",
+        "GOCACHE": "$DISPOSABLE/cache",
+        "GOMODCACHE": "$DISPOSABLE/modcache",
+        "TMPDIR": "$DISPOSABLE/tmp",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "GOWORK": "off",
+        "GOFLAGS": "-mod=readonly",
+        "CGO_ENABLED": "0",
+        "GOTELEMETRY": "off"
+      },
+      "go_version": "go version go1.27.0 darwin/arm64",
+      "finished_at": "2026-10-22T18:40:27.696164+00:00"
+    },
+    {
+      "unit": "consumer-text-contract-001",
+      "specimen": "interface-concrete-coupling",
+      "started_at": "2026-10-22T18:40:27.768152+00:00",
+      "content_digest": "39e334be4ea517d9daec2c69ab7109ef2e5b020b58cad7e3af74896b88344842",
+      "disposable_root": "$DISPOSABLE",
+      "events": [
+        {
+          "at": "2026-10-22T18:40:27.768577+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/go.mod.txt",
+          "destination": "go.mod",
+          "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920"
+        },
+        {
+          "at": "2026-10-22T18:40:27.768833+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/providers/fixed/fixed.go.txt",
+          "destination": "providers/fixed/fixed.go",
+          "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8"
+        },
+        {
+          "at": "2026-10-22T18:40:27.769029+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/providers/mutable/mutable.go.txt",
+          "destination": "providers/mutable/mutable.go",
+          "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192"
+        },
+        {
+          "at": "2026-10-22T18:40:27.769212+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/external/source.go.txt",
+          "destination": "external/source.go",
+          "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144"
+        },
+        {
+          "at": "2026-10-22T18:40:27.769387+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/consumer/render.go.txt",
+          "destination": "consumer/render.go",
+          "sha256": "465840c83a1813ca2f0c0aa75011027b0cd18ae46724d2b4e41d30e517ff6a02"
+        },
+        {
+          "at": "2026-10-22T18:40:27.769541+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/consumer/render_test.go.txt",
+          "destination": "consumer/render_test.go",
+          "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa"
+        },
+        {
+          "at": "2026-10-22T18:40:27.769711+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/caller/doc.go.txt",
+          "destination": "caller/doc.go",
+          "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b"
+        },
+        {
+          "at": "2026-10-22T18:40:27.769861+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/caller/accept_test.go.txt",
+          "destination": "caller/accept_test.go",
+          "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464"
+        },
+        {
+          "at": "2026-10-22T18:40:27.777590+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/consumer-text-contract-001/wrong/concrete/consumer/render.go.txt",
+          "destination": "consumer/render.go",
+          "sha256": "d0420929e75d5970ac800b7e9dc82f4460b5797d60bee1f6ccf80f65f8081ffc"
+        },
+        {
+          "at": "2026-10-22T18:40:27.778117+00:00",
+          "kind": "reference prediction before command",
+          "text": "Caller external.Source cannot be passed as the unrelated concrete fixed.Value."
+        },
+        {
+          "at": "2026-10-22T18:40:29.939201+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/consumer-text-contract-001/reference/consumer/render.go.txt",
+          "destination": "consumer/render.go",
+          "sha256": "fc4775fe263db5dbfa49e9d16e4f5f759c4442bb76c1ec1500d9aebc129a4a31"
+        }
+      ],
+      "commands": [
+        {
+          "at": "2026-10-22T18:40:27.770349+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "version"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.006388,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:27.778120+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./caller"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "nonzero",
+          "required_diagnostic_fragments": [
+            "external.Source",
+            "fixed.Value",
+            "cannot use"
+          ],
+          "expected_stdout": null,
+          "exit_status": 1,
+          "stdout": "FAIL\tfinite.local/consumer-contract/caller [build failed]\nFAIL\n",
+          "stderr": "# finite.local/consumer-contract/caller_test [finite.local/consumer-contract/caller.test]\ncaller/accept_test.go:11:25: cannot use source (variable of type *external.Source) as fixed.Value value in argument to consumer.Render\n",
+          "timed_out": false,
+          "elapsed_seconds": 2.159967,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:29.939923+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./caller"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "ok  \tfinite.local/consumer-contract/caller\t0.166s\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.368778,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:30.309817+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "ok  \tfinite.local/consumer-contract/caller\t0.121s\nok  \tfinite.local/consumer-contract/consumer\t0.252s\n?   \tfinite.local/consumer-contract/external\t[no test files]\n?   \tfinite.local/consumer-contract/providers/fixed\t[no test files]\n?   \tfinite.local/consumer-contract/providers/mutable\t[no test files]\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.431203,
+          "expectation_met": true
+        }
+      ],
+      "snapshots": [
+        {
+          "at": "2026-10-22T18:40:27.770346+00:00",
+          "label": "initial",
+          "files": {
+            "caller/accept_test.go": {
+              "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464",
+              "text": "package caller_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/external\"\n\t\"testing\"\n)\n\nfunc TestForeignProvider(t *testing.T) {\n\tsource := &external.Source{Content: \" Ω \"}\n\tgot := consumer.Render(source)\n\tif got != \"[ Ω ]\" || source.Reads != 1 {\n\t\tt.Errorf(\"foreign result=%q calls=%d; want %q calls=1\", got, source.Reads, \"[ Ω ]\")\n\t}\n}\n"
+            },
+            "caller/doc.go": {
+              "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b",
+              "text": "package caller\n"
+            },
+            "consumer/render.go": {
+              "sha256": "465840c83a1813ca2f0c0aa75011027b0cd18ae46724d2b4e41d30e517ff6a02",
+              "text": "package consumer\n\nfunc Render(source any) string { return \"TODO\" }\n"
+            },
+            "consumer/render_test.go": {
+              "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/providers/fixed\"\n\t\"finite.local/consumer-contract/providers/mutable\"\n\t\"testing\"\n)\n\nfunc TestConcreteProviders(t *testing.T) {\n\tif got := consumer.Render(fixed.Value{Content: \" a \"}); got != \"[ a ]\" {\n\t\tt.Errorf(\"fixed result=%q; want %q\", got, \"[ a ]\")\n\t}\n\tvalue := &mutable.Value{Content: \"λ\"}\n\tif got := consumer.Render(value); got != \"[λ]\" {\n\t\tt.Errorf(\"mutable result=%q; want %q\", got, \"[λ]\")\n\t}\n\tvalue.SetText(\"\")\n\tif got := consumer.Render(value); got != \"[]\" {\n\t\tt.Errorf(\"empty result=%q; want %q\", got, \"[]\")\n\t}\n}\n"
+            },
+            "external/source.go": {
+              "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144",
+              "text": "package external\n\ntype Source struct {\n\tContent string\n\tReads   int\n}\n\nfunc (s *Source) Text() string {\n\ts.Reads++\n\treturn s.Content\n}\n"
+            },
+            "go.mod": {
+              "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920",
+              "text": "module finite.local/consumer-contract\n\ngo 1.27.0\n"
+            },
+            "providers/fixed/fixed.go": {
+              "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8",
+              "text": "package fixed\n\ntype Value struct{ Content string }\n\nfunc (v Value) Text() string { return v.Content }\nfunc (v Value) Width() int   { return len(v.Content) }\n"
+            },
+            "providers/mutable/mutable.go": {
+              "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192",
+              "text": "package mutable\n\ntype Value struct{ Content string }\n\nfunc (v *Value) Text() string     { return v.Content }\nfunc (v *Value) SetText(s string) { v.Content = s }\n"
+            }
+          }
+        },
+        {
+          "at": "2026-10-22T18:40:27.778113+00:00",
+          "label": "concrete consumer coupling",
+          "files": {
+            "caller/accept_test.go": {
+              "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464",
+              "text": "package caller_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/external\"\n\t\"testing\"\n)\n\nfunc TestForeignProvider(t *testing.T) {\n\tsource := &external.Source{Content: \" Ω \"}\n\tgot := consumer.Render(source)\n\tif got != \"[ Ω ]\" || source.Reads != 1 {\n\t\tt.Errorf(\"foreign result=%q calls=%d; want %q calls=1\", got, source.Reads, \"[ Ω ]\")\n\t}\n}\n"
+            },
+            "caller/doc.go": {
+              "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b",
+              "text": "package caller\n"
+            },
+            "consumer/render.go": {
+              "sha256": "d0420929e75d5970ac800b7e9dc82f4460b5797d60bee1f6ccf80f65f8081ffc",
+              "text": "package consumer\n\nimport \"finite.local/consumer-contract/providers/fixed\"\n\nfunc Render(source fixed.Value) string { return \"[\" + source.Text() + \"]\" }\n"
+            },
+            "consumer/render_test.go": {
+              "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/providers/fixed\"\n\t\"finite.local/consumer-contract/providers/mutable\"\n\t\"testing\"\n)\n\nfunc TestConcreteProviders(t *testing.T) {\n\tif got := consumer.Render(fixed.Value{Content: \" a \"}); got != \"[ a ]\" {\n\t\tt.Errorf(\"fixed result=%q; want %q\", got, \"[ a ]\")\n\t}\n\tvalue := &mutable.Value{Content: \"λ\"}\n\tif got := consumer.Render(value); got != \"[λ]\" {\n\t\tt.Errorf(\"mutable result=%q; want %q\", got, \"[λ]\")\n\t}\n\tvalue.SetText(\"\")\n\tif got := consumer.Render(value); got != \"[]\" {\n\t\tt.Errorf(\"empty result=%q; want %q\", got, \"[]\")\n\t}\n}\n"
+            },
+            "external/source.go": {
+              "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144",
+              "text": "package external\n\ntype Source struct {\n\tContent string\n\tReads   int\n}\n\nfunc (s *Source) Text() string {\n\ts.Reads++\n\treturn s.Content\n}\n"
+            },
+            "go.mod": {
+              "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920",
+              "text": "module finite.local/consumer-contract\n\ngo 1.27.0\n"
+            },
+            "providers/fixed/fixed.go": {
+              "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8",
+              "text": "package fixed\n\ntype Value struct{ Content string }\n\nfunc (v Value) Text() string { return v.Content }\nfunc (v Value) Width() int   { return len(v.Content) }\n"
+            },
+            "providers/mutable/mutable.go": {
+              "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192",
+              "text": "package mutable\n\ntype Value struct{ Content string }\n\nfunc (v *Value) Text() string     { return v.Content }\nfunc (v *Value) SetText(s string) { v.Content = s }\n"
+            }
+          }
+        },
+        {
+          "at": "2026-10-22T18:40:29.939919+00:00",
+          "label": "correct named consumer interface",
+          "files": {
+            "caller/accept_test.go": {
+              "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464",
+              "text": "package caller_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/external\"\n\t\"testing\"\n)\n\nfunc TestForeignProvider(t *testing.T) {\n\tsource := &external.Source{Content: \" Ω \"}\n\tgot := consumer.Render(source)\n\tif got != \"[ Ω ]\" || source.Reads != 1 {\n\t\tt.Errorf(\"foreign result=%q calls=%d; want %q calls=1\", got, source.Reads, \"[ Ω ]\")\n\t}\n}\n"
+            },
+            "caller/doc.go": {
+              "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b",
+              "text": "package caller\n"
+            },
+            "consumer/render.go": {
+              "sha256": "fc4775fe263db5dbfa49e9d16e4f5f759c4442bb76c1ec1500d9aebc129a4a31",
+              "text": "package consumer\n\ntype TextSource interface{ Text() string }\n\nfunc Render(source TextSource) string { return \"[\" + source.Text() + \"]\" }\n"
+            },
+            "consumer/render_test.go": {
+              "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/providers/fixed\"\n\t\"finite.local/consumer-contract/providers/mutable\"\n\t\"testing\"\n)\n\nfunc TestConcreteProviders(t *testing.T) {\n\tif got := consumer.Render(fixed.Value{Content: \" a \"}); got != \"[ a ]\" {\n\t\tt.Errorf(\"fixed result=%q; want %q\", got, \"[ a ]\")\n\t}\n\tvalue := &mutable.Value{Content: \"λ\"}\n\tif got := consumer.Render(value); got != \"[λ]\" {\n\t\tt.Errorf(\"mutable result=%q; want %q\", got, \"[λ]\")\n\t}\n\tvalue.SetText(\"\")\n\tif got := consumer.Render(value); got != \"[]\" {\n\t\tt.Errorf(\"empty result=%q; want %q\", got, \"[]\")\n\t}\n}\n"
+            },
+            "external/source.go": {
+              "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144",
+              "text": "package external\n\ntype Source struct {\n\tContent string\n\tReads   int\n}\n\nfunc (s *Source) Text() string {\n\ts.Reads++\n\treturn s.Content\n}\n"
+            },
+            "go.mod": {
+              "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920",
+              "text": "module finite.local/consumer-contract\n\ngo 1.27.0\n"
+            },
+            "providers/fixed/fixed.go": {
+              "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8",
+              "text": "package fixed\n\ntype Value struct{ Content string }\n\nfunc (v Value) Text() string { return v.Content }\nfunc (v Value) Width() int   { return len(v.Content) }\n"
+            },
+            "providers/mutable/mutable.go": {
+              "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192",
+              "text": "package mutable\n\ntype Value struct{ Content string }\n\nfunc (v *Value) Text() string     { return v.Content }\nfunc (v *Value) SetText(s string) { v.Content = s }\n"
+            }
+          }
+        }
+      ],
+      "cleanup": true,
+      "status": "expected observations recorded; method review pending",
+      "environment": {
+        "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+        "HOME": "$DISPOSABLE/home",
+        "GOCACHE": "$DISPOSABLE/cache",
+        "GOMODCACHE": "$DISPOSABLE/modcache",
+        "TMPDIR": "$DISPOSABLE/tmp",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "GOWORK": "off",
+        "GOFLAGS": "-mod=readonly",
+        "CGO_ENABLED": "0",
+        "GOTELEMETRY": "off"
+      },
+      "go_version": "go version go1.27.0 darwin/arm64",
+      "finished_at": "2026-10-22T18:40:30.741943+00:00"
+    },
+    {
+      "unit": "consumer-text-contract-001",
+      "specimen": "interface-any-method-control",
+      "started_at": "2026-10-22T18:40:30.815465+00:00",
+      "content_digest": "39e334be4ea517d9daec2c69ab7109ef2e5b020b58cad7e3af74896b88344842",
+      "disposable_root": "$DISPOSABLE",
+      "events": [
+        {
+          "at": "2026-10-22T18:40:30.815894+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/go.mod.txt",
+          "destination": "go.mod",
+          "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920"
+        },
+        {
+          "at": "2026-10-22T18:40:30.816137+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/providers/fixed/fixed.go.txt",
+          "destination": "providers/fixed/fixed.go",
+          "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8"
+        },
+        {
+          "at": "2026-10-22T18:40:30.816342+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/providers/mutable/mutable.go.txt",
+          "destination": "providers/mutable/mutable.go",
+          "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192"
+        },
+        {
+          "at": "2026-10-22T18:40:30.816566+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/external/source.go.txt",
+          "destination": "external/source.go",
+          "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144"
+        },
+        {
+          "at": "2026-10-22T18:40:30.816778+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/consumer/render.go.txt",
+          "destination": "consumer/render.go",
+          "sha256": "465840c83a1813ca2f0c0aa75011027b0cd18ae46724d2b4e41d30e517ff6a02"
+        },
+        {
+          "at": "2026-10-22T18:40:30.816955+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/consumer/render_test.go.txt",
+          "destination": "consumer/render_test.go",
+          "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa"
+        },
+        {
+          "at": "2026-10-22T18:40:30.817168+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/caller/doc.go.txt",
+          "destination": "caller/doc.go",
+          "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b"
+        },
+        {
+          "at": "2026-10-22T18:40:30.817349+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/consumer-text-contract-001/files/caller/accept_test.go.txt",
+          "destination": "caller/accept_test.go",
+          "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464"
+        },
+        {
+          "at": "2026-10-22T18:40:30.825443+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/consumer-text-contract-001/wrong/any/consumer/render.go.txt",
+          "destination": "consumer/render.go",
+          "sha256": "7591b5a67315bbaf80abb8142680f0aa6197d5fcefcf982ff567853d27e6290b"
+        },
+        {
+          "at": "2026-10-22T18:40:33.403732+00:00",
+          "kind": "method interpretation requiring independent review",
+          "text": "Behavior passes, but parameter any and runtime assertion do not constitute the required named consumer-owned contract. No automatic mutant claim."
+        },
+        {
+          "at": "2026-10-22T18:40:33.403957+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/consumer-text-contract-001/reference/consumer/render.go.txt",
+          "destination": "consumer/render.go",
+          "sha256": "fc4775fe263db5dbfa49e9d16e4f5f759c4442bb76c1ec1500d9aebc129a4a31"
+        }
+      ],
+      "commands": [
+        {
+          "at": "2026-10-22T18:40:30.817963+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "version"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.006479,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:30.825972+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "ok  \tfinite.local/consumer-contract/caller\t0.179s\nok  \tfinite.local/consumer-contract/consumer\t0.337s\n?   \tfinite.local/consumer-contract/external\t[no test files]\n?   \tfinite.local/consumer-contract/providers/fixed\t[no test files]\n?   \tfinite.local/consumer-contract/providers/mutable\t[no test files]\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 2.576791,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:33.404641+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "ok  \tfinite.local/consumer-contract/caller\t0.160s\nok  \tfinite.local/consumer-contract/consumer\t0.321s\n?   \tfinite.local/consumer-contract/external\t[no test files]\n?   \tfinite.local/consumer-contract/providers/fixed\t[no test files]\n?   \tfinite.local/consumer-contract/providers/mutable\t[no test files]\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.495128,
+          "expectation_met": true
+        }
+      ],
+      "snapshots": [
+        {
+          "at": "2026-10-22T18:40:30.817959+00:00",
+          "label": "initial",
+          "files": {
+            "caller/accept_test.go": {
+              "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464",
+              "text": "package caller_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/external\"\n\t\"testing\"\n)\n\nfunc TestForeignProvider(t *testing.T) {\n\tsource := &external.Source{Content: \" Ω \"}\n\tgot := consumer.Render(source)\n\tif got != \"[ Ω ]\" || source.Reads != 1 {\n\t\tt.Errorf(\"foreign result=%q calls=%d; want %q calls=1\", got, source.Reads, \"[ Ω ]\")\n\t}\n}\n"
+            },
+            "caller/doc.go": {
+              "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b",
+              "text": "package caller\n"
+            },
+            "consumer/render.go": {
+              "sha256": "465840c83a1813ca2f0c0aa75011027b0cd18ae46724d2b4e41d30e517ff6a02",
+              "text": "package consumer\n\nfunc Render(source any) string { return \"TODO\" }\n"
+            },
+            "consumer/render_test.go": {
+              "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/providers/fixed\"\n\t\"finite.local/consumer-contract/providers/mutable\"\n\t\"testing\"\n)\n\nfunc TestConcreteProviders(t *testing.T) {\n\tif got := consumer.Render(fixed.Value{Content: \" a \"}); got != \"[ a ]\" {\n\t\tt.Errorf(\"fixed result=%q; want %q\", got, \"[ a ]\")\n\t}\n\tvalue := &mutable.Value{Content: \"λ\"}\n\tif got := consumer.Render(value); got != \"[λ]\" {\n\t\tt.Errorf(\"mutable result=%q; want %q\", got, \"[λ]\")\n\t}\n\tvalue.SetText(\"\")\n\tif got := consumer.Render(value); got != \"[]\" {\n\t\tt.Errorf(\"empty result=%q; want %q\", got, \"[]\")\n\t}\n}\n"
+            },
+            "external/source.go": {
+              "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144",
+              "text": "package external\n\ntype Source struct {\n\tContent string\n\tReads   int\n}\n\nfunc (s *Source) Text() string {\n\ts.Reads++\n\treturn s.Content\n}\n"
+            },
+            "go.mod": {
+              "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920",
+              "text": "module finite.local/consumer-contract\n\ngo 1.27.0\n"
+            },
+            "providers/fixed/fixed.go": {
+              "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8",
+              "text": "package fixed\n\ntype Value struct{ Content string }\n\nfunc (v Value) Text() string { return v.Content }\nfunc (v Value) Width() int   { return len(v.Content) }\n"
+            },
+            "providers/mutable/mutable.go": {
+              "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192",
+              "text": "package mutable\n\ntype Value struct{ Content string }\n\nfunc (v *Value) Text() string     { return v.Content }\nfunc (v *Value) SetText(s string) { v.Content = s }\n"
+            }
+          }
+        },
+        {
+          "at": "2026-10-22T18:40:30.825968+00:00",
+          "label": "passing behavior, method-rejected any",
+          "files": {
+            "caller/accept_test.go": {
+              "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464",
+              "text": "package caller_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/external\"\n\t\"testing\"\n)\n\nfunc TestForeignProvider(t *testing.T) {\n\tsource := &external.Source{Content: \" Ω \"}\n\tgot := consumer.Render(source)\n\tif got != \"[ Ω ]\" || source.Reads != 1 {\n\t\tt.Errorf(\"foreign result=%q calls=%d; want %q calls=1\", got, source.Reads, \"[ Ω ]\")\n\t}\n}\n"
+            },
+            "caller/doc.go": {
+              "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b",
+              "text": "package caller\n"
+            },
+            "consumer/render.go": {
+              "sha256": "7591b5a67315bbaf80abb8142680f0aa6197d5fcefcf982ff567853d27e6290b",
+              "text": "package consumer\n\nfunc Render(source any) string { return \"[\" + source.(interface{ Text() string }).Text() + \"]\" }\n"
+            },
+            "consumer/render_test.go": {
+              "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/providers/fixed\"\n\t\"finite.local/consumer-contract/providers/mutable\"\n\t\"testing\"\n)\n\nfunc TestConcreteProviders(t *testing.T) {\n\tif got := consumer.Render(fixed.Value{Content: \" a \"}); got != \"[ a ]\" {\n\t\tt.Errorf(\"fixed result=%q; want %q\", got, \"[ a ]\")\n\t}\n\tvalue := &mutable.Value{Content: \"λ\"}\n\tif got := consumer.Render(value); got != \"[λ]\" {\n\t\tt.Errorf(\"mutable result=%q; want %q\", got, \"[λ]\")\n\t}\n\tvalue.SetText(\"\")\n\tif got := consumer.Render(value); got != \"[]\" {\n\t\tt.Errorf(\"empty result=%q; want %q\", got, \"[]\")\n\t}\n}\n"
+            },
+            "external/source.go": {
+              "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144",
+              "text": "package external\n\ntype Source struct {\n\tContent string\n\tReads   int\n}\n\nfunc (s *Source) Text() string {\n\ts.Reads++\n\treturn s.Content\n}\n"
+            },
+            "go.mod": {
+              "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920",
+              "text": "module finite.local/consumer-contract\n\ngo 1.27.0\n"
+            },
+            "providers/fixed/fixed.go": {
+              "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8",
+              "text": "package fixed\n\ntype Value struct{ Content string }\n\nfunc (v Value) Text() string { return v.Content }\nfunc (v Value) Width() int   { return len(v.Content) }\n"
+            },
+            "providers/mutable/mutable.go": {
+              "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192",
+              "text": "package mutable\n\ntype Value struct{ Content string }\n\nfunc (v *Value) Text() string     { return v.Content }\nfunc (v *Value) SetText(s string) { v.Content = s }\n"
+            }
+          }
+        },
+        {
+          "at": "2026-10-22T18:40:33.404634+00:00",
+          "label": "correct named consumer interface",
+          "files": {
+            "caller/accept_test.go": {
+              "sha256": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464",
+              "text": "package caller_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/external\"\n\t\"testing\"\n)\n\nfunc TestForeignProvider(t *testing.T) {\n\tsource := &external.Source{Content: \" Ω \"}\n\tgot := consumer.Render(source)\n\tif got != \"[ Ω ]\" || source.Reads != 1 {\n\t\tt.Errorf(\"foreign result=%q calls=%d; want %q calls=1\", got, source.Reads, \"[ Ω ]\")\n\t}\n}\n"
+            },
+            "caller/doc.go": {
+              "sha256": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b",
+              "text": "package caller\n"
+            },
+            "consumer/render.go": {
+              "sha256": "fc4775fe263db5dbfa49e9d16e4f5f759c4442bb76c1ec1500d9aebc129a4a31",
+              "text": "package consumer\n\ntype TextSource interface{ Text() string }\n\nfunc Render(source TextSource) string { return \"[\" + source.Text() + \"]\" }\n"
+            },
+            "consumer/render_test.go": {
+              "sha256": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/consumer-contract/consumer\"\n\t\"finite.local/consumer-contract/providers/fixed\"\n\t\"finite.local/consumer-contract/providers/mutable\"\n\t\"testing\"\n)\n\nfunc TestConcreteProviders(t *testing.T) {\n\tif got := consumer.Render(fixed.Value{Content: \" a \"}); got != \"[ a ]\" {\n\t\tt.Errorf(\"fixed result=%q; want %q\", got, \"[ a ]\")\n\t}\n\tvalue := &mutable.Value{Content: \"λ\"}\n\tif got := consumer.Render(value); got != \"[λ]\" {\n\t\tt.Errorf(\"mutable result=%q; want %q\", got, \"[λ]\")\n\t}\n\tvalue.SetText(\"\")\n\tif got := consumer.Render(value); got != \"[]\" {\n\t\tt.Errorf(\"empty result=%q; want %q\", got, \"[]\")\n\t}\n}\n"
+            },
+            "external/source.go": {
+              "sha256": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144",
+              "text": "package external\n\ntype Source struct {\n\tContent string\n\tReads   int\n}\n\nfunc (s *Source) Text() string {\n\ts.Reads++\n\treturn s.Content\n}\n"
+            },
+            "go.mod": {
+              "sha256": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920",
+              "text": "module finite.local/consumer-contract\n\ngo 1.27.0\n"
+            },
+            "providers/fixed/fixed.go": {
+              "sha256": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8",
+              "text": "package fixed\n\ntype Value struct{ Content string }\n\nfunc (v Value) Text() string { return v.Content }\nfunc (v Value) Width() int   { return len(v.Content) }\n"
+            },
+            "providers/mutable/mutable.go": {
+              "sha256": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192",
+              "text": "package mutable\n\ntype Value struct{ Content string }\n\nfunc (v *Value) Text() string     { return v.Content }\nfunc (v *Value) SetText(s string) { v.Content = s }\n"
+            }
+          }
+        }
+      ],
+      "cleanup": true,
+      "status": "expected observations recorded; method review pending",
+      "environment": {
+        "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+        "HOME": "$DISPOSABLE/home",
+        "GOCACHE": "$DISPOSABLE/cache",
+        "GOMODCACHE": "$DISPOSABLE/modcache",
+        "TMPDIR": "$DISPOSABLE/tmp",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "GOWORK": "off",
+        "GOFLAGS": "-mod=readonly",
+        "CGO_ENABLED": "0",
+        "GOTELEMETRY": "off"
+      },
+      "go_version": "go version go1.27.0 darwin/arm64",
+      "finished_at": "2026-10-22T18:40:33.900829+00:00"
+    }
+  ]
+}

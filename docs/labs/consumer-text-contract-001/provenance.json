@@ -1,0 +1,31 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-introductions-05-interface-packages-author",
+    "created_at": "2026-10-22",
+    "summary": "Original finite consumer-interface or package-boundary specimen after approved I5 allocation; exact source and command review pending."
+  },
+  "sources": [],
+  "content_digest": "39e334be4ea517d9daec2c69ab7109ef2e5b020b58cad7e3af74896b88344842",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "311c7a6836042903e2a80b3a1cbf1e01881a4c5d34f27535993c7a91d080baea",
+    "TASK.md": "dd6957e6f98835fb77a289520232ba753a57cec3859135d848e79493a7d79da2",
+    "files/caller/accept_test.go.txt": "03d9ee6ffbb34ee2b855f40b8df1db996e5198d8dc6c5912b7e74efc8ab18464",
+    "files/caller/doc.go.txt": "fdd726175a75ad10558002741d95a8cb85e33a307954e2f6a915e61b4cdd925b",
+    "files/consumer/render.go.txt": "465840c83a1813ca2f0c0aa75011027b0cd18ae46724d2b4e41d30e517ff6a02",
+    "files/consumer/render_test.go.txt": "9068d6da1a15f7583f71e39b9b65329aa91858e1b84c4adee0128c5dd0bdd4fa",
+    "files/external/source.go.txt": "0c211fdc7599565eacaa1f0012f3bfff8dc424fb27c8d2abcaa366a5be2b4144",
+    "files/go.mod.txt": "0e7ef552b5aef29ac3863dee68575ab93d1b002e4502ca85893c6762b0c70920",
+    "files/providers/fixed/fixed.go.txt": "07a4a68783eec00cf9a6a537cfd31723864ef2caff41132d43849b81916007a8",
+    "files/providers/mutable/mutable.go.txt": "60125d1065a5b0eb5345b8b4ba3a102e9d68af91b1b13a0a1b198ff2ab0a6192",
+    "manifest.json": "9e0309a73136f362870a1883f98ca1be78c7736f7916f0268801266b7e84b41c",
+    "reference/consumer/render.go.txt": "fc4775fe263db5dbfa49e9d16e4f5f759c4442bb76c1ec1500d9aebc129a4a31",
+    "wrong/any/consumer/render.go.txt": "7591b5a67315bbaf80abb8142680f0aa6197d5fcefcf982ff567853d27e6290b",
+    "wrong/concrete/consumer/render.go.txt": "d0420929e75d5970ac800b7e9dc82f4460b5797d60bee1f6ccf80f65f8081ffc",
+    "wrong/overbroad/consumer/render.go.txt": "3c107c274891f9219d83125096fa34ae07c8ffa09e71c4e287ef6708887b8781"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

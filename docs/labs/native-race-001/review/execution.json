@@ -1,0 +1,642 @@
+{
+  "status": "actual execution only; independent acceptance pending",
+  "source_manifest_sha256": "ea774d45088a47d42bb5a864169810436ccd8d6612c419a2f4980b8d723b02e9",
+  "execution_script_sha256": "0b8f8554f48a80b978e4ea866a9ee371ad9015a9b190fa223c9b76682c06e993",
+  "specimens": [
+    {
+      "lab": "native-race-001",
+      "specimen": "unsafe-main",
+      "content_digest": "78532c4270b2a194a6d7462fa691a93ffe48e4dcdde8847d3bf5bae73c718fff",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs",
+      "started_at": "2026-10-22T18:46:24.824497+00:00",
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/tmp",
+            "CGO_ENABLED": "0"
+          },
+          "timeout_seconds": 10,
+          "started_at": "2026-10-22T18:46:24.826580+00:00",
+          "expected_observation": "version",
+          "ended_at": "2026-10-22T18:46:24.833162+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-race",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^TestMainPath$",
+            "."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/tmp",
+            "CGO_ENABLED": "1"
+          },
+          "timeout_seconds": 60,
+          "started_at": "2026-10-22T18:46:24.833683+00:00",
+          "expected_observation": "race-report",
+          "ended_at": "2026-10-22T18:46:28.692397+00:00",
+          "exit_status": 1,
+          "stdout": "=== RUN   TestMainPath\n==================\nWARNING: DATA RACE\nWrite at 0x00c000012458 by goroutine 8:\n  finite.local/nativerace.(*cell).store()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/project/cell.go:17 +0xac\n  finite.local/nativerace.Exercise.func1()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/project/exercise.go:14 +0xa0\n\nPrevious read at 0x00c000012458 by goroutine 9:\n  finite.local/nativerace.(*cell).load()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/project/cell.go:9 +0xb0\n  finite.local/nativerace.Exercise.func2()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/project/exercise.go:19 +0xa4\n\nGoroutine 8 (running) created at:\n  finite.local/nativerace.Exercise()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/project/exercise.go:11 +0x174\n  finite.local/nativerace_test.checkExercise()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/project/exercise_test.go:10 +0x38\n  finite.local/nativerace_test.TestMainPath()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/project/exercise_test.go:20 +0x2c\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.(*T).Run.gowrap1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x34\n\nGoroutine 9 (finished) created at:\n  finite.local/nativerace.Exercise()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/project/exercise.go:16 +0x290\n  finite.local/nativerace_test.checkExercise()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/project/exercise_test.go:10 +0x38\n  finite.local/nativerace_test.TestMainPath()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-unsafe-main-7seznbjs/project/exercise_test.go:20 +0x2c\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.(*T).Run.gowrap1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x34\n==================\n    testing.go:1865: race detected during execution of test\n--- FAIL: TestMainPath (0.00s)\nFAIL\nFAIL\tfinite.local/nativerace\t0.173s\nFAIL\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        }
+      ],
+      "status": "expected finite observations recorded; independent acceptance pending",
+      "file_bindings": [
+        {
+          "source": "docs/labs/native-race-001/files/go.mod.txt",
+          "destination": "go.mod"
+        },
+        {
+          "source": "docs/labs/native-race-001/files/exercise.go.txt",
+          "destination": "exercise.go"
+        },
+        {
+          "source": "docs/labs/native-race-001/files/exercise_test.go.txt",
+          "destination": "exercise_test.go"
+        },
+        {
+          "source": "docs/labs/native-race-001/files/starter_cell.go.txt",
+          "destination": "cell.go"
+        }
+      ],
+      "source_snapshot_before": {
+        "cell.go": {
+          "sha256": "7b9022fa582cca539938dd337cfc244bb46acd2254213e336bed24ff01188156",
+          "text": "package nativerace\n\ntype cell struct{ value int }\n\nfunc (c *cell) load(fast bool) int {\n\tif fast {\n\t\treturn c.value\n\t}\n\treturn c.value\n}\n\nfunc (c *cell) store(value int, fast bool) {\n\tif fast {\n\t\tc.value = value\n\t\treturn\n\t}\n\tc.value = value\n}\n"
+        },
+        "exercise.go": {
+          "sha256": "f401c74b2e84d0d9bb513623ac07bb07fa5c34394697d4384a18aeadf38c1c6c",
+          "text": "package nativerace\n\nimport \"sync\"\n\nfunc Exercise(fast bool) (observed int, final int) {\n\tvar shared cell\n\tstart := make(chan struct{})\n\tsample := make(chan int, 1)\n\tvar workers sync.WaitGroup\n\tworkers.Add(2)\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tshared.store(42, fast)\n\t}()\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tsample <- shared.load(fast)\n\t}()\n\tclose(start)\n\tworkers.Wait()\n\treturn <-sample, shared.value\n}\n"
+        },
+        "exercise_test.go": {
+          "sha256": "0a060e1211c2f4ecb7934f4cbba4c22d3547a4653f6747a96eaef14845aaaa30",
+          "text": "package nativerace_test\n\nimport (\n\tsubject \"finite.local/nativerace\"\n\t\"testing\"\n)\n\nfunc checkExercise(t *testing.T, fast bool) {\n\tt.Helper()\n\tobserved, final := subject.Exercise(fast)\n\tif observed != 0 && observed != 42 {\n\t\tt.Errorf(\"observed=%d; want 0 or 42 for fast=%t\", observed, fast)\n\t}\n\tif final != 42 {\n\t\tt.Errorf(\"final=%d; want 42 for fast=%t\", final, fast)\n\t}\n}\n\nfunc TestMainPath(t *testing.T) {\n\tcheckExercise(t, false)\n}\n\nfunc TestAlternatePath(t *testing.T) {\n\tcheckExercise(t, true)\n}\n"
+        },
+        "go.mod": {
+          "sha256": "7e3bdc715523f1380eef527926180f8063c07305468a40e4ab64517746c8f0c6",
+          "text": "module finite.local/nativerace\n\ngo 1.27.0\n"
+        }
+      },
+      "source_snapshot_after": {
+        "cell.go": {
+          "sha256": "7b9022fa582cca539938dd337cfc244bb46acd2254213e336bed24ff01188156",
+          "text": "package nativerace\n\ntype cell struct{ value int }\n\nfunc (c *cell) load(fast bool) int {\n\tif fast {\n\t\treturn c.value\n\t}\n\treturn c.value\n}\n\nfunc (c *cell) store(value int, fast bool) {\n\tif fast {\n\t\tc.value = value\n\t\treturn\n\t}\n\tc.value = value\n}\n"
+        },
+        "exercise.go": {
+          "sha256": "f401c74b2e84d0d9bb513623ac07bb07fa5c34394697d4384a18aeadf38c1c6c",
+          "text": "package nativerace\n\nimport \"sync\"\n\nfunc Exercise(fast bool) (observed int, final int) {\n\tvar shared cell\n\tstart := make(chan struct{})\n\tsample := make(chan int, 1)\n\tvar workers sync.WaitGroup\n\tworkers.Add(2)\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tshared.store(42, fast)\n\t}()\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tsample <- shared.load(fast)\n\t}()\n\tclose(start)\n\tworkers.Wait()\n\treturn <-sample, shared.value\n}\n"
+        },
+        "exercise_test.go": {
+          "sha256": "0a060e1211c2f4ecb7934f4cbba4c22d3547a4653f6747a96eaef14845aaaa30",
+          "text": "package nativerace_test\n\nimport (\n\tsubject \"finite.local/nativerace\"\n\t\"testing\"\n)\n\nfunc checkExercise(t *testing.T, fast bool) {\n\tt.Helper()\n\tobserved, final := subject.Exercise(fast)\n\tif observed != 0 && observed != 42 {\n\t\tt.Errorf(\"observed=%d; want 0 or 42 for fast=%t\", observed, fast)\n\t}\n\tif final != 42 {\n\t\tt.Errorf(\"final=%d; want 42 for fast=%t\", final, fast)\n\t}\n}\n\nfunc TestMainPath(t *testing.T) {\n\tcheckExercise(t, false)\n}\n\nfunc TestAlternatePath(t *testing.T) {\n\tcheckExercise(t, true)\n}\n"
+        },
+        "go.mod": {
+          "sha256": "7e3bdc715523f1380eef527926180f8063c07305468a40e4ab64517746c8f0c6",
+          "text": "module finite.local/nativerace\n\ngo 1.27.0\n"
+        }
+      },
+      "ended_at": "2026-10-22T18:46:28.771541+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "lab": "native-race-001",
+      "specimen": "write-only-lock",
+      "content_digest": "78532c4270b2a194a6d7462fa691a93ffe48e4dcdde8847d3bf5bae73c718fff",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j",
+      "started_at": "2026-10-22T18:46:28.772207+00:00",
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/tmp",
+            "CGO_ENABLED": "0"
+          },
+          "timeout_seconds": 10,
+          "started_at": "2026-10-22T18:46:28.774706+00:00",
+          "expected_observation": "version",
+          "ended_at": "2026-10-22T18:46:28.781533+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-race",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^TestMainPath$",
+            "."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/tmp",
+            "CGO_ENABLED": "1"
+          },
+          "timeout_seconds": 60,
+          "started_at": "2026-10-22T18:46:28.782035+00:00",
+          "expected_observation": "race-report",
+          "ended_at": "2026-10-22T18:46:32.752683+00:00",
+          "exit_status": 1,
+          "stdout": "=== RUN   TestMainPath\n==================\nWARNING: DATA RACE\nRead at 0x00c000012458 by goroutine 9:\n  finite.local/nativerace.(*cell).load()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/project/cell.go:14 +0xb8\n  finite.local/nativerace.Exercise.func2()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/project/exercise.go:19 +0xa8\n\nPrevious write at 0x00c000012458 by goroutine 8:\n  finite.local/nativerace.(*cell).store()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/project/cell.go:20 +0x74\n  finite.local/nativerace.Exercise.func1()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/project/exercise.go:14 +0x90\n\nGoroutine 9 (running) created at:\n  finite.local/nativerace.Exercise()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/project/exercise.go:16 +0x29c\n  finite.local/nativerace_test.checkExercise()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/project/exercise_test.go:10 +0x38\n  finite.local/nativerace_test.TestMainPath()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/project/exercise_test.go:20 +0x2c\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.(*T).Run.gowrap1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x34\n\nGoroutine 8 (finished) created at:\n  finite.local/nativerace.Exercise()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/project/exercise.go:11 +0x178\n  finite.local/nativerace_test.checkExercise()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/project/exercise_test.go:10 +0x38\n  finite.local/nativerace_test.TestMainPath()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-write-only-lock-u5wgxd2j/project/exercise_test.go:20 +0x2c\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.(*T).Run.gowrap1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x34\n==================\n    testing.go:1865: race detected during execution of test\n--- FAIL: TestMainPath (0.00s)\nFAIL\nFAIL\tfinite.local/nativerace\t0.164s\nFAIL\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        }
+      ],
+      "status": "expected finite observations recorded; independent acceptance pending",
+      "file_bindings": [
+        {
+          "source": "docs/labs/native-race-001/files/go.mod.txt",
+          "destination": "go.mod"
+        },
+        {
+          "source": "docs/labs/native-race-001/files/exercise.go.txt",
+          "destination": "exercise.go"
+        },
+        {
+          "source": "docs/labs/native-race-001/files/exercise_test.go.txt",
+          "destination": "exercise_test.go"
+        },
+        {
+          "source": "docs/labs/native-race-001/wrong/write_only_lock_cell.go.txt",
+          "destination": "cell.go"
+        }
+      ],
+      "source_snapshot_before": {
+        "cell.go": {
+          "sha256": "ed02ebf2c397eda9e01c8e11c3a27b711d002614b322f8d1f823c67dd363a89b",
+          "text": "package nativerace\n\nimport \"sync\"\n\ntype cell struct {\n\tmu    sync.Mutex\n\tvalue int\n}\n\nfunc (c *cell) load(fast bool) int {\n\tif fast {\n\t\treturn c.value\n\t}\n\treturn c.value\n}\n\nfunc (c *cell) store(value int, fast bool) {\n\tc.mu.Lock()\n\tdefer c.mu.Unlock()\n\tc.value = value\n}\n"
+        },
+        "exercise.go": {
+          "sha256": "f401c74b2e84d0d9bb513623ac07bb07fa5c34394697d4384a18aeadf38c1c6c",
+          "text": "package nativerace\n\nimport \"sync\"\n\nfunc Exercise(fast bool) (observed int, final int) {\n\tvar shared cell\n\tstart := make(chan struct{})\n\tsample := make(chan int, 1)\n\tvar workers sync.WaitGroup\n\tworkers.Add(2)\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tshared.store(42, fast)\n\t}()\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tsample <- shared.load(fast)\n\t}()\n\tclose(start)\n\tworkers.Wait()\n\treturn <-sample, shared.value\n}\n"
+        },
+        "exercise_test.go": {
+          "sha256": "0a060e1211c2f4ecb7934f4cbba4c22d3547a4653f6747a96eaef14845aaaa30",
+          "text": "package nativerace_test\n\nimport (\n\tsubject \"finite.local/nativerace\"\n\t\"testing\"\n)\n\nfunc checkExercise(t *testing.T, fast bool) {\n\tt.Helper()\n\tobserved, final := subject.Exercise(fast)\n\tif observed != 0 && observed != 42 {\n\t\tt.Errorf(\"observed=%d; want 0 or 42 for fast=%t\", observed, fast)\n\t}\n\tif final != 42 {\n\t\tt.Errorf(\"final=%d; want 42 for fast=%t\", final, fast)\n\t}\n}\n\nfunc TestMainPath(t *testing.T) {\n\tcheckExercise(t, false)\n}\n\nfunc TestAlternatePath(t *testing.T) {\n\tcheckExercise(t, true)\n}\n"
+        },
+        "go.mod": {
+          "sha256": "7e3bdc715523f1380eef527926180f8063c07305468a40e4ab64517746c8f0c6",
+          "text": "module finite.local/nativerace\n\ngo 1.27.0\n"
+        }
+      },
+      "source_snapshot_after": {
+        "cell.go": {
+          "sha256": "ed02ebf2c397eda9e01c8e11c3a27b711d002614b322f8d1f823c67dd363a89b",
+          "text": "package nativerace\n\nimport \"sync\"\n\ntype cell struct {\n\tmu    sync.Mutex\n\tvalue int\n}\n\nfunc (c *cell) load(fast bool) int {\n\tif fast {\n\t\treturn c.value\n\t}\n\treturn c.value\n}\n\nfunc (c *cell) store(value int, fast bool) {\n\tc.mu.Lock()\n\tdefer c.mu.Unlock()\n\tc.value = value\n}\n"
+        },
+        "exercise.go": {
+          "sha256": "f401c74b2e84d0d9bb513623ac07bb07fa5c34394697d4384a18aeadf38c1c6c",
+          "text": "package nativerace\n\nimport \"sync\"\n\nfunc Exercise(fast bool) (observed int, final int) {\n\tvar shared cell\n\tstart := make(chan struct{})\n\tsample := make(chan int, 1)\n\tvar workers sync.WaitGroup\n\tworkers.Add(2)\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tshared.store(42, fast)\n\t}()\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tsample <- shared.load(fast)\n\t}()\n\tclose(start)\n\tworkers.Wait()\n\treturn <-sample, shared.value\n}\n"
+        },
+        "exercise_test.go": {
+          "sha256": "0a060e1211c2f4ecb7934f4cbba4c22d3547a4653f6747a96eaef14845aaaa30",
+          "text": "package nativerace_test\n\nimport (\n\tsubject \"finite.local/nativerace\"\n\t\"testing\"\n)\n\nfunc checkExercise(t *testing.T, fast bool) {\n\tt.Helper()\n\tobserved, final := subject.Exercise(fast)\n\tif observed != 0 && observed != 42 {\n\t\tt.Errorf(\"observed=%d; want 0 or 42 for fast=%t\", observed, fast)\n\t}\n\tif final != 42 {\n\t\tt.Errorf(\"final=%d; want 42 for fast=%t\", final, fast)\n\t}\n}\n\nfunc TestMainPath(t *testing.T) {\n\tcheckExercise(t, false)\n}\n\nfunc TestAlternatePath(t *testing.T) {\n\tcheckExercise(t, true)\n}\n"
+        },
+        "go.mod": {
+          "sha256": "7e3bdc715523f1380eef527926180f8063c07305468a40e4ab64517746c8f0c6",
+          "text": "module finite.local/nativerace\n\ngo 1.27.0\n"
+        }
+      },
+      "ended_at": "2026-10-22T18:46:32.819730+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "lab": "native-race-001",
+      "specimen": "main-only-fixed",
+      "content_digest": "78532c4270b2a194a6d7462fa691a93ffe48e4dcdde8847d3bf5bae73c718fff",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj",
+      "started_at": "2026-10-22T18:46:32.820357+00:00",
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/tmp",
+            "CGO_ENABLED": "0"
+          },
+          "timeout_seconds": 10,
+          "started_at": "2026-10-22T18:46:32.824971+00:00",
+          "expected_observation": "version",
+          "ended_at": "2026-10-22T18:46:32.832813+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-race",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^TestMainPath$",
+            "."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/tmp",
+            "CGO_ENABLED": "1"
+          },
+          "timeout_seconds": 60,
+          "started_at": "2026-10-22T18:46:32.835841+00:00",
+          "expected_observation": "race-pass",
+          "ended_at": "2026-10-22T18:46:38.048225+00:00",
+          "exit_status": 0,
+          "stdout": "=== RUN   TestMainPath\n--- PASS: TestMainPath (0.00s)\nPASS\nok  \tfinite.local/nativerace\t1.179s\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-race",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^TestAlternatePath$",
+            "."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/tmp",
+            "CGO_ENABLED": "1"
+          },
+          "timeout_seconds": 60,
+          "started_at": "2026-10-22T18:46:38.049305+00:00",
+          "expected_observation": "race-report",
+          "ended_at": "2026-10-22T18:46:38.483363+00:00",
+          "exit_status": 1,
+          "stdout": "=== RUN   TestAlternatePath\n==================\nWARNING: DATA RACE\nWrite at 0x00c0000124d8 by goroutine 8:\n  finite.local/nativerace.(*cell).store()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/project/cell.go:21 +0xc4\n  finite.local/nativerace.Exercise.func1()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/project/exercise.go:14 +0x90\n\nPrevious read at 0x00c0000124d8 by goroutine 9:\n  finite.local/nativerace.(*cell).load()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/project/cell.go:12 +0xdc\n  finite.local/nativerace.Exercise.func2()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/project/exercise.go:19 +0x90\n\nGoroutine 8 (running) created at:\n  finite.local/nativerace.Exercise()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/project/exercise.go:11 +0x178\n  finite.local/nativerace_test.checkExercise()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/project/exercise_test.go:10 +0x38\n  finite.local/nativerace_test.TestAlternatePath()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/project/exercise_test.go:24 +0x2c\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.(*T).Run.gowrap1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x34\n\nGoroutine 9 (finished) created at:\n  finite.local/nativerace.Exercise()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/project/exercise.go:16 +0x29c\n  finite.local/nativerace_test.checkExercise()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/project/exercise_test.go:10 +0x38\n  finite.local/nativerace_test.TestAlternatePath()\n      /private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-main-only-fixed-2tkr8imj/project/exercise_test.go:24 +0x2c\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.(*T).Run.gowrap1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x34\n==================\n    testing.go:1865: race detected during execution of test\n--- FAIL: TestAlternatePath (0.00s)\nFAIL\nFAIL\tfinite.local/nativerace\t0.264s\nFAIL\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        }
+      ],
+      "status": "expected finite observations recorded; independent acceptance pending",
+      "file_bindings": [
+        {
+          "source": "docs/labs/native-race-001/files/go.mod.txt",
+          "destination": "go.mod"
+        },
+        {
+          "source": "docs/labs/native-race-001/files/exercise.go.txt",
+          "destination": "exercise.go"
+        },
+        {
+          "source": "docs/labs/native-race-001/files/exercise_test.go.txt",
+          "destination": "exercise_test.go"
+        },
+        {
+          "source": "docs/labs/native-race-001/wrong/main_only_fixed_cell.go.txt",
+          "destination": "cell.go"
+        }
+      ],
+      "source_snapshot_before": {
+        "cell.go": {
+          "sha256": "734815b53b9b763bcdc3fe4b8fc90ef240638fa59087e25bb0f1127abffa42e3",
+          "text": "package nativerace\n\nimport \"sync\"\n\ntype cell struct {\n\tmu    sync.Mutex\n\tvalue int\n}\n\nfunc (c *cell) load(fast bool) int {\n\tif fast {\n\t\treturn c.value\n\t}\n\tc.mu.Lock()\n\tdefer c.mu.Unlock()\n\treturn c.value\n}\n\nfunc (c *cell) store(value int, fast bool) {\n\tif fast {\n\t\tc.value = value\n\t\treturn\n\t}\n\tc.mu.Lock()\n\tdefer c.mu.Unlock()\n\tc.value = value\n}\n"
+        },
+        "exercise.go": {
+          "sha256": "f401c74b2e84d0d9bb513623ac07bb07fa5c34394697d4384a18aeadf38c1c6c",
+          "text": "package nativerace\n\nimport \"sync\"\n\nfunc Exercise(fast bool) (observed int, final int) {\n\tvar shared cell\n\tstart := make(chan struct{})\n\tsample := make(chan int, 1)\n\tvar workers sync.WaitGroup\n\tworkers.Add(2)\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tshared.store(42, fast)\n\t}()\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tsample <- shared.load(fast)\n\t}()\n\tclose(start)\n\tworkers.Wait()\n\treturn <-sample, shared.value\n}\n"
+        },
+        "exercise_test.go": {
+          "sha256": "0a060e1211c2f4ecb7934f4cbba4c22d3547a4653f6747a96eaef14845aaaa30",
+          "text": "package nativerace_test\n\nimport (\n\tsubject \"finite.local/nativerace\"\n\t\"testing\"\n)\n\nfunc checkExercise(t *testing.T, fast bool) {\n\tt.Helper()\n\tobserved, final := subject.Exercise(fast)\n\tif observed != 0 && observed != 42 {\n\t\tt.Errorf(\"observed=%d; want 0 or 42 for fast=%t\", observed, fast)\n\t}\n\tif final != 42 {\n\t\tt.Errorf(\"final=%d; want 42 for fast=%t\", final, fast)\n\t}\n}\n\nfunc TestMainPath(t *testing.T) {\n\tcheckExercise(t, false)\n}\n\nfunc TestAlternatePath(t *testing.T) {\n\tcheckExercise(t, true)\n}\n"
+        },
+        "go.mod": {
+          "sha256": "7e3bdc715523f1380eef527926180f8063c07305468a40e4ab64517746c8f0c6",
+          "text": "module finite.local/nativerace\n\ngo 1.27.0\n"
+        }
+      },
+      "source_snapshot_after": {
+        "cell.go": {
+          "sha256": "734815b53b9b763bcdc3fe4b8fc90ef240638fa59087e25bb0f1127abffa42e3",
+          "text": "package nativerace\n\nimport \"sync\"\n\ntype cell struct {\n\tmu    sync.Mutex\n\tvalue int\n}\n\nfunc (c *cell) load(fast bool) int {\n\tif fast {\n\t\treturn c.value\n\t}\n\tc.mu.Lock()\n\tdefer c.mu.Unlock()\n\treturn c.value\n}\n\nfunc (c *cell) store(value int, fast bool) {\n\tif fast {\n\t\tc.value = value\n\t\treturn\n\t}\n\tc.mu.Lock()\n\tdefer c.mu.Unlock()\n\tc.value = value\n}\n"
+        },
+        "exercise.go": {
+          "sha256": "f401c74b2e84d0d9bb513623ac07bb07fa5c34394697d4384a18aeadf38c1c6c",
+          "text": "package nativerace\n\nimport \"sync\"\n\nfunc Exercise(fast bool) (observed int, final int) {\n\tvar shared cell\n\tstart := make(chan struct{})\n\tsample := make(chan int, 1)\n\tvar workers sync.WaitGroup\n\tworkers.Add(2)\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tshared.store(42, fast)\n\t}()\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tsample <- shared.load(fast)\n\t}()\n\tclose(start)\n\tworkers.Wait()\n\treturn <-sample, shared.value\n}\n"
+        },
+        "exercise_test.go": {
+          "sha256": "0a060e1211c2f4ecb7934f4cbba4c22d3547a4653f6747a96eaef14845aaaa30",
+          "text": "package nativerace_test\n\nimport (\n\tsubject \"finite.local/nativerace\"\n\t\"testing\"\n)\n\nfunc checkExercise(t *testing.T, fast bool) {\n\tt.Helper()\n\tobserved, final := subject.Exercise(fast)\n\tif observed != 0 && observed != 42 {\n\t\tt.Errorf(\"observed=%d; want 0 or 42 for fast=%t\", observed, fast)\n\t}\n\tif final != 42 {\n\t\tt.Errorf(\"final=%d; want 42 for fast=%t\", final, fast)\n\t}\n}\n\nfunc TestMainPath(t *testing.T) {\n\tcheckExercise(t, false)\n}\n\nfunc TestAlternatePath(t *testing.T) {\n\tcheckExercise(t, true)\n}\n"
+        },
+        "go.mod": {
+          "sha256": "7e3bdc715523f1380eef527926180f8063c07305468a40e4ab64517746c8f0c6",
+          "text": "module finite.local/nativerace\n\ngo 1.27.0\n"
+        }
+      },
+      "ended_at": "2026-10-22T18:46:38.553444+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "lab": "native-race-001",
+      "specimen": "reference",
+      "content_digest": "78532c4270b2a194a6d7462fa691a93ffe48e4dcdde8847d3bf5bae73c718fff",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f",
+      "started_at": "2026-10-22T18:46:38.554167+00:00",
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/tmp",
+            "CGO_ENABLED": "0"
+          },
+          "timeout_seconds": 10,
+          "started_at": "2026-10-22T18:46:38.556699+00:00",
+          "expected_observation": "version",
+          "ended_at": "2026-10-22T18:46:38.563377+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-race",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^TestMainPath$",
+            "."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/tmp",
+            "CGO_ENABLED": "1"
+          },
+          "timeout_seconds": 60,
+          "started_at": "2026-10-22T18:46:38.564131+00:00",
+          "expected_observation": "race-pass",
+          "ended_at": "2026-10-22T18:46:43.574175+00:00",
+          "exit_status": 0,
+          "stdout": "=== RUN   TestMainPath\n--- PASS: TestMainPath (0.00s)\nPASS\nok  \tfinite.local/nativerace\t1.175s\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-race",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^Test(Main|Alternate)Path$",
+            "."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/tmp",
+            "CGO_ENABLED": "1"
+          },
+          "timeout_seconds": 60,
+          "started_at": "2026-10-22T18:46:43.574847+00:00",
+          "expected_observation": "race-pass",
+          "ended_at": "2026-10-22T18:46:44.921034+00:00",
+          "exit_status": 0,
+          "stdout": "=== RUN   TestMainPath\n--- PASS: TestMainPath (0.00s)\n=== RUN   TestAlternatePath\n--- PASS: TestAlternatePath (0.00s)\nPASS\nok  \tfinite.local/nativerace\t1.165s\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^Test(Main|Alternate)Path$",
+            "."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOFLAGS": "-mod=readonly",
+            "GOWORK": "off",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/home",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I5-parallel-race-reference-krq1k5_f/tmp",
+            "CGO_ENABLED": "0"
+          },
+          "timeout_seconds": 60,
+          "started_at": "2026-10-22T18:46:44.921838+00:00",
+          "expected_observation": "ordinary-pass",
+          "ended_at": "2026-10-22T18:46:47.392924+00:00",
+          "exit_status": 0,
+          "stdout": "=== RUN   TestMainPath\n--- PASS: TestMainPath (0.00s)\n=== RUN   TestAlternatePath\n--- PASS: TestAlternatePath (0.00s)\nPASS\nok  \tfinite.local/nativerace\t0.179s\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected_observation": true
+        }
+      ],
+      "status": "expected finite observations recorded; independent acceptance pending",
+      "file_bindings": [
+        {
+          "source": "docs/labs/native-race-001/files/go.mod.txt",
+          "destination": "go.mod"
+        },
+        {
+          "source": "docs/labs/native-race-001/files/exercise.go.txt",
+          "destination": "exercise.go"
+        },
+        {
+          "source": "docs/labs/native-race-001/files/exercise_test.go.txt",
+          "destination": "exercise_test.go"
+        },
+        {
+          "source": "docs/labs/native-race-001/reference/cell.go.txt",
+          "destination": "cell.go"
+        }
+      ],
+      "source_snapshot_before": {
+        "cell.go": {
+          "sha256": "109d2323055c950ea73599a738df9e7905275fc73d7d3d3d7a55ae4c4d06e8e9",
+          "text": "package nativerace\n\nimport \"sync\"\n\ntype cell struct {\n\tmu    sync.Mutex\n\tvalue int\n}\n\nfunc (c *cell) load(fast bool) int {\n\tc.mu.Lock()\n\tdefer c.mu.Unlock()\n\treturn c.value\n}\n\nfunc (c *cell) store(value int, fast bool) {\n\tc.mu.Lock()\n\tdefer c.mu.Unlock()\n\tc.value = value\n}\n"
+        },
+        "exercise.go": {
+          "sha256": "f401c74b2e84d0d9bb513623ac07bb07fa5c34394697d4384a18aeadf38c1c6c",
+          "text": "package nativerace\n\nimport \"sync\"\n\nfunc Exercise(fast bool) (observed int, final int) {\n\tvar shared cell\n\tstart := make(chan struct{})\n\tsample := make(chan int, 1)\n\tvar workers sync.WaitGroup\n\tworkers.Add(2)\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tshared.store(42, fast)\n\t}()\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tsample <- shared.load(fast)\n\t}()\n\tclose(start)\n\tworkers.Wait()\n\treturn <-sample, shared.value\n}\n"
+        },
+        "exercise_test.go": {
+          "sha256": "0a060e1211c2f4ecb7934f4cbba4c22d3547a4653f6747a96eaef14845aaaa30",
+          "text": "package nativerace_test\n\nimport (\n\tsubject \"finite.local/nativerace\"\n\t\"testing\"\n)\n\nfunc checkExercise(t *testing.T, fast bool) {\n\tt.Helper()\n\tobserved, final := subject.Exercise(fast)\n\tif observed != 0 && observed != 42 {\n\t\tt.Errorf(\"observed=%d; want 0 or 42 for fast=%t\", observed, fast)\n\t}\n\tif final != 42 {\n\t\tt.Errorf(\"final=%d; want 42 for fast=%t\", final, fast)\n\t}\n}\n\nfunc TestMainPath(t *testing.T) {\n\tcheckExercise(t, false)\n}\n\nfunc TestAlternatePath(t *testing.T) {\n\tcheckExercise(t, true)\n}\n"
+        },
+        "go.mod": {
+          "sha256": "7e3bdc715523f1380eef527926180f8063c07305468a40e4ab64517746c8f0c6",
+          "text": "module finite.local/nativerace\n\ngo 1.27.0\n"
+        }
+      },
+      "source_snapshot_after": {
+        "cell.go": {
+          "sha256": "109d2323055c950ea73599a738df9e7905275fc73d7d3d3d7a55ae4c4d06e8e9",
+          "text": "package nativerace\n\nimport \"sync\"\n\ntype cell struct {\n\tmu    sync.Mutex\n\tvalue int\n}\n\nfunc (c *cell) load(fast bool) int {\n\tc.mu.Lock()\n\tdefer c.mu.Unlock()\n\treturn c.value\n}\n\nfunc (c *cell) store(value int, fast bool) {\n\tc.mu.Lock()\n\tdefer c.mu.Unlock()\n\tc.value = value\n}\n"
+        },
+        "exercise.go": {
+          "sha256": "f401c74b2e84d0d9bb513623ac07bb07fa5c34394697d4384a18aeadf38c1c6c",
+          "text": "package nativerace\n\nimport \"sync\"\n\nfunc Exercise(fast bool) (observed int, final int) {\n\tvar shared cell\n\tstart := make(chan struct{})\n\tsample := make(chan int, 1)\n\tvar workers sync.WaitGroup\n\tworkers.Add(2)\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tshared.store(42, fast)\n\t}()\n\tgo func() {\n\t\tdefer workers.Done()\n\t\t<-start\n\t\tsample <- shared.load(fast)\n\t}()\n\tclose(start)\n\tworkers.Wait()\n\treturn <-sample, shared.value\n}\n"
+        },
+        "exercise_test.go": {
+          "sha256": "0a060e1211c2f4ecb7934f4cbba4c22d3547a4653f6747a96eaef14845aaaa30",
+          "text": "package nativerace_test\n\nimport (\n\tsubject \"finite.local/nativerace\"\n\t\"testing\"\n)\n\nfunc checkExercise(t *testing.T, fast bool) {\n\tt.Helper()\n\tobserved, final := subject.Exercise(fast)\n\tif observed != 0 && observed != 42 {\n\t\tt.Errorf(\"observed=%d; want 0 or 42 for fast=%t\", observed, fast)\n\t}\n\tif final != 42 {\n\t\tt.Errorf(\"final=%d; want 42 for fast=%t\", final, fast)\n\t}\n}\n\nfunc TestMainPath(t *testing.T) {\n\tcheckExercise(t, false)\n}\n\nfunc TestAlternatePath(t *testing.T) {\n\tcheckExercise(t, true)\n}\n"
+        },
+        "go.mod": {
+          "sha256": "7e3bdc715523f1380eef527926180f8063c07305468a40e4ab64517746c8f0c6",
+          "text": "module finite.local/nativerace\n\ngo 1.27.0\n"
+        }
+      },
+      "ended_at": "2026-10-22T18:46:47.492216+00:00",
+      "disposable_root_removed": true
+    }
+  ]
+}

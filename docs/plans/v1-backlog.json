@@ -164,7 +164,11 @@
       "slot": "first-encounter:fuzzing.reproduction",
       "skill_id": "fuzzing.reproduction",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_unit_path": "docs/labs/fuzz-regression-001/TASK.md",
+      "delivery_batch": "I5",
+      "assessment": "manual; actual isolated native source/commands and finite method review; no automatic coverage or progress",
+      "review_evidence": "docs/labs/fuzz-regression-001/review/independent-review.json"
     },
     {
       "slot": "first-encounter:goroutines.panic-boundaries",
@@ -190,13 +194,21 @@
       "slot": "first-encounter:packages.import-cycles",
       "skill_id": "packages.import-cycles",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_unit_path": "docs/labs/package-boundaries-001/TASK.md",
+      "delivery_batch": "I5",
+      "assessment": "manual; actual isolated native source/commands and finite method review; no automatic coverage or progress",
+      "review_evidence": "docs/labs/package-boundaries-001/review/independent-review.json"
     },
     {
       "slot": "first-encounter:packages.internal-boundaries",
       "skill_id": "packages.internal-boundaries",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_unit_path": "docs/labs/package-boundaries-001/TASK.md",
+      "delivery_batch": "I5",
+      "assessment": "manual; actual isolated native source/commands and finite method review; no automatic coverage or progress",
+      "review_evidence": "docs/labs/package-boundaries-001/review/independent-review.json"
     },
     {
       "slot": "first-encounter:slices.nil-empty",
@@ -252,13 +264,21 @@
       "slot": "first-encounter:testing.parallel",
       "skill_id": "testing.parallel",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_unit_path": "docs/labs/parallel-subtests-001/TASK.md",
+      "delivery_batch": "I5",
+      "assessment": "manual; actual isolated native source/commands and finite method review; no automatic coverage or progress",
+      "review_evidence": "docs/labs/parallel-subtests-001/review/independent-review.json"
     },
     {
       "slot": "first-encounter:testing.race-detector",
       "skill_id": "testing.race-detector",
       "role": "first-encounter",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivered_unit_path": "docs/labs/native-race-001/TASK.md",
+      "delivery_batch": "I5",
+      "assessment": "manual; actual isolated native source/commands and finite method review; no automatic coverage or progress",
+      "review_evidence": "docs/labs/native-race-001/review/independent-review.json"
     },
     {
       "slot": "first-encounter:testing.table-driven",
@@ -1072,25 +1092,36 @@
     },
     {
       "slot": "component-regression-testing",
-      "outcome": "Repair a defect and retain a meaningful regression; exercise public behavior and review the causal explanation."
+      "outcome": "Repair a defect and retain a meaningful regression; exercise public behavior and review the causal explanation.",
+      "delivered_unit_path": "docs/labs/fuzz-regression-001/TASK.md",
+      "delivery_batch": "I5",
+      "review_evidence": "reports/v1-introductions-05.md",
+      "scope": "Actual integrated native component accepted by sole reviewer; no new independent skill applications or automatic coverage."
     },
     {
       "slot": "component-performance-experiment",
-      "outcome": "Measure equivalent implementations with representative inputs, repeated measurements and allocation interpretation."
+      "outcome": "Measure equivalent implementations with representative inputs, repeated measurements and allocation interpretation.",
+      "delivered_unit_path": "docs/labs/join-benchmark-001/TASK.md",
+      "delivery_batch": "I5",
+      "review_evidence": "reports/v1-introductions-05.md",
+      "scope": "Actual integrated native component accepted by sole reviewer; no new independent skill applications or automatic coverage.",
+      "reuse_commit": "e9e9ca854de593047e2790565a83c53397d21ec9"
     }
   ],
   "delivery": {
-    "batch": "I4",
-    "status": "actual content/method accepted; final gates and dependency merges pending",
+    "batch": "I5",
+    "status": "actual native/content/method/component accepted; final dependency/local/CI gates and merge pending",
     "route_lessons_after": 203,
-    "first_encounters_remaining": 5,
+    "first_encounters_remaining": 0,
     "independent_applications_remaining": 71,
-    "component_slots_remaining": 5,
-    "new_automatic_packages": 4,
-    "reused_automatic_packages": 2,
-    "manual_units": 0,
-    "manual_first_slots": 0,
-    "note": "Six units close five original firsts plus three separately reviewed applications and repair existing WG first without changing task bytes/old meaning. Manual supplements do not add automatic coverage."
+    "component_slots_remaining": 3,
+    "new_automatic_packages": 0,
+    "reused_automatic_packages": 0,
+    "manual_units": 5,
+    "reused_manual_components": 1,
+    "combined_new_manual_components": 1,
+    "manual_first_slots": 5,
+    "note": "Six units close all5remainingoriginalfirsts plus small-contract first repair and two components. Original28firsts complete by batch5 only after accepted merge. No extra applications, automatic coverage or learner mastery."
   },
   "delivery_history": [
     {
@@ -1176,6 +1207,19 @@
       "head": "e9e9ca854de593047e2790565a83c53397d21ec9",
       "merge_commit": "2efeab7a05596a6591a35e649c332ba8e14153ac",
       "validate_run": 39828282621
+    },
+    {
+      "batch": "I4",
+      "status": "actual content/method accepted; final gates and dependency merges pending",
+      "route_lessons_after": 203,
+      "first_encounters_remaining": 5,
+      "independent_applications_remaining": 71,
+      "component_slots_remaining": 5,
+      "new_automatic_packages": 4,
+      "reused_automatic_packages": 2,
+      "manual_units": 0,
+      "manual_first_slots": 0,
+      "note": "Six units close five original firsts plus three separately reviewed applications and repair existing WG first without changing task bytes/old meaning. Manual supplements do not add automatic coverage."
     }
   ],
   "existing_pair_reviews": {
@@ -2001,7 +2045,7 @@
           "diagnostic-helper-001",
           "writer-double-001"
         ],
-        "planned_resolution": "One new finite first encounter where learner extracts a minimal consumer-owned reader interface from required operations; distinct independent seam/consumer-interface design within planned regression or packages component. Existing profiles plus method review, no new engine. Requires concrete reviewed contracts; no current credit.",
+        "planned_resolution": "First repaired in I5 by actual minimal consumer-owned TextSource, third-provider compiler observations and method rejection of any control. Distinct independent seam/consumer-interface design still belongs in the allocated packages component; cycle repair repeats the pattern and earns no small-interface application.",
         "evidence_paths": [
           "tasks/ready/greeter-dispatch-tests-001/TASK.md",
           "tasks/ready/greeter-dispatch-tests-001/starter/subject_test.go",
@@ -2028,7 +2072,13 @@
           "tasks/ready/writer-double-001/solution/reference/subject.go",
           "tasks/ready/writer-double-001/tests/public/public_test.go",
           "tasks/ready/writer-double-001/solution/mutants"
-        ]
+        ],
+        "first_repair": {
+          "unit": "consumer-text-contract-001",
+          "batch": "I5",
+          "review_evidence": "docs/labs/consumer-text-contract-001/review/independent-review.json",
+          "decision": "Actual minimal named consumer contract first repaired; independent application remains open"
+        }
       },
       {
         "skill_id": "generics.type-parameters-inference",
@@ -2458,10 +2508,11 @@
         "interfaces.small-contracts",
         "types.constants"
       ],
-      "maximum_additional_units": 3,
-      "design": "Combined array/struct snapshot first encounter; one consumer-owned small-interface first encounter; at most one constants application. Typed-error and small-interface applications integrated into allocated IO/packages components with distinct actual actions. Constants may instead fit native build/run application.",
-      "arithmetic": "After accepted I4:203 automatic route +5 manual units +5 remaining original firsts +71 applications +5 components +at most3 repair units =292 <=302.49baseline pair repairs stay explicit; separate WGfirst repair reused an existing unit.",
-      "note": "All49 baseline pairs reviewed; five concrete repairs remain. No expanded ceiling or metadata-only credit; actual repair contracts/evidence are still required."
+      "maximum_additional_units": 4,
+      "design": "Two separate array and struct first repairs at their actual early prerequisite positions; one consumer-owned small-interface first (delivered I5); at most one constants application. Typed-error and small-interface applications integrated into allocated IO/packages components with distinct actual actions. The combined array/struct first was split after independent prerequisite review to preserve existing relative order and avoid a dependency cycle; global302 and141skills unchanged.",
+      "arithmetic": "After accepted I5:203automatic route +10manual units +0remainingoriginalfirsts +71applications +3components +at most3remainingrepair units (arrayfirst,structfirst,constantsapplication) =290 <=302. The historical extra repair allowance is4 including the already delivered consumer first. Independent review accepted the split; no new readiness or application credit.",
+      "note": "All49 baseline pairs reviewed; five concrete repairs remain. No expanded ceiling or metadata-only credit; actual repair contracts/evidence are still required.",
+      "allocation_review": "Sole reviewer accepted separate early array/struct placement on2026-10-22; see reports/v1-introductions-05.md. Original49pair decisions preserved."
     }
   },
   "existing_single_encounter_reviews": {

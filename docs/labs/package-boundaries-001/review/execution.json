@@ -1,0 +1,1588 @@
+{
+  "normalization": "Actual disposable root and installed Go directory are replaced by $DISPOSABLE and $LOCAL_GO_BIN; raw evidence retained in batch .tmp.",
+  "records": [
+    {
+      "unit": "package-boundaries-001",
+      "specimen": "cycle-original",
+      "started_at": "2026-10-22T18:40:33.975768+00:00",
+      "content_digest": "28adc141dc61aa27d0f92a93cdba77e487c42b5d85f69fad48681161f586f441",
+      "disposable_root": "$DISPOSABLE",
+      "events": [
+        {
+          "at": "2026-10-22T18:40:33.976214+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/go.mod.txt",
+          "destination": "go.mod",
+          "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3"
+        },
+        {
+          "at": "2026-10-22T18:40:33.976440+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cycle/producer/source.go.txt",
+          "destination": "cycle/producer/source.go",
+          "sha256": "1eb802e20b4490b7a954f97dc552bc076803b441c79f35f16a91301b4ab8aa38"
+        },
+        {
+          "at": "2026-10-22T18:40:33.976622+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cycle/consumer/render.go.txt",
+          "destination": "cycle/consumer/render.go",
+          "sha256": "1beb88727210f9cbf101fe943015a3e9793914d9729b2ff9930d6254ec1b9fd8"
+        },
+        {
+          "at": "2026-10-22T18:40:33.976775+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cycle/consumer/render_test.go.txt",
+          "destination": "cycle/consumer/render_test.go",
+          "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d"
+        },
+        {
+          "at": "2026-10-22T18:40:33.976990+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cmd/cycle/main.go.txt",
+          "destination": "cmd/cycle/main.go",
+          "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6"
+        },
+        {
+          "at": "2026-10-22T18:40:33.977258+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/internal/format/format.go.txt",
+          "destination": "domain/internal/format/format.go",
+          "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1"
+        },
+        {
+          "at": "2026-10-22T18:40:33.977419+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/internal/format/format_test.go.txt",
+          "destination": "domain/internal/format/format_test.go",
+          "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0"
+        },
+        {
+          "at": "2026-10-22T18:40:33.977563+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/facade.go.txt",
+          "destination": "domain/facade.go",
+          "sha256": "20277d173f0daff513ee59eec0467237637433a46483fee4fbb8daf468e131e3"
+        },
+        {
+          "at": "2026-10-22T18:40:33.977700+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/facade_test.go.txt",
+          "destination": "domain/facade_test.go",
+          "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d"
+        },
+        {
+          "at": "2026-10-22T18:40:33.977879+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/probe/probe.go.txt",
+          "destination": "domain/probe/probe.go",
+          "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574"
+        },
+        {
+          "at": "2026-10-22T18:40:33.978306+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/probe/probe_test.go.txt",
+          "destination": "domain/probe/probe_test.go",
+          "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649"
+        },
+        {
+          "at": "2026-10-22T18:40:33.978540+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cmd/outside/main.go.txt",
+          "destination": "cmd/outside/main.go",
+          "sha256": "c80ccfb56b619e8daae89a5141443c0d8a7d456d278653db5ef5a9a77422a78c"
+        },
+        {
+          "at": "2026-10-22T18:40:33.987403+00:00",
+          "kind": "reference prediction before command",
+          "text": "cycle/consumer -> cycle/producer -> cycle/consumer; domain subtree is not imported by this target."
+        },
+        {
+          "at": "2026-10-22T18:40:34.094078+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/package-boundaries-001/reference/cycle/consumer/render.go.txt",
+          "destination": "cycle/consumer/render.go",
+          "sha256": "11b6e8220ee9210be66bd2f69a1e67ba8b32183869405e5355f1c90458461900"
+        },
+        {
+          "at": "2026-10-22T18:40:34.095269+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/package-boundaries-001/reference/cycle/producer/source.go.txt",
+          "destination": "cycle/producer/source.go",
+          "sha256": "8b7d6fba4b6d89017afef5adf1ec700987d1562dd04eafea2b4bfdce63a3dee9"
+        }
+      ],
+      "commands": [
+        {
+          "at": "2026-10-22T18:40:33.979331+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "version"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.006807,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:33.987414+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./cycle/consumer"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "nonzero",
+          "required_diagnostic_fragments": [
+            "import cycle not allowed",
+            "cycle/consumer",
+            "cycle/producer"
+          ],
+          "expected_stdout": null,
+          "exit_status": 1,
+          "stdout": "FAIL\tfinite.local/boundaries/cycle/consumer [setup failed]\nFAIL\n",
+          "stderr": "# finite.local/boundaries/cycle/consumer\npackage finite.local/boundaries/cycle/consumer\n\timports finite.local/boundaries/cycle/producer from render.go\n\timports finite.local/boundaries/cycle/consumer from source.go: import cycle not allowed\n",
+          "timed_out": false,
+          "elapsed_seconds": 0.10365,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:34.100966+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./cycle/consumer",
+            "./cycle/producer"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "ok  \tfinite.local/boundaries/cycle/consumer\t0.202s\n?   \tfinite.local/boundaries/cycle/producer\t[no test files]\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 2.339089,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:36.441313+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "run",
+            "./cmd/cycle"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": "[alpha]\n",
+          "exit_status": 0,
+          "stdout": "[alpha]\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.276426,
+          "expectation_met": true
+        }
+      ],
+      "snapshots": [
+        {
+          "at": "2026-10-22T18:40:33.979327+00:00",
+          "label": "initial",
+          "files": {
+            "cmd/cycle/main.go": {
+              "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(consumer.Render(producer.Source{Value: \"alpha\"})) }\n"
+            },
+            "cmd/outside/main.go": {
+              "sha256": "c80ccfb56b619e8daae89a5141443c0d8a7d456d278653db5ef5a9a77422a78c",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(format.Record(\"beta\")) }\n"
+            },
+            "cycle/consumer/render.go": {
+              "sha256": "1beb88727210f9cbf101fe943015a3e9793914d9729b2ff9930d6254ec1b9fd8",
+              "text": "package consumer\n\nimport \"finite.local/boundaries/cycle/producer\"\n\ntype Record struct{ Value string }\n\nfunc Render(source producer.Source) string { return \"[\" + source.Read().Value + \"]\" }\n"
+            },
+            "cycle/consumer/render_test.go": {
+              "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"testing\"\n)\n\nfunc TestPreservedRender(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := consumer.Render(producer.Source{Value: value})\n\t\twant := \"[\" + value + \"]\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Render(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "cycle/producer/source.go": {
+              "sha256": "1eb802e20b4490b7a954f97dc552bc076803b441c79f35f16a91301b4ab8aa38",
+              "text": "package producer\n\nimport \"finite.local/boundaries/cycle/consumer\"\n\ntype Source struct{ Value string }\n\nfunc (s Source) Read() consumer.Record { return consumer.Record{Value: s.Value} }\n"
+            },
+            "domain/facade.go": {
+              "sha256": "20277d173f0daff513ee59eec0467237637433a46483fee4fbb8daf468e131e3",
+              "text": "package domain\n"
+            },
+            "domain/facade_test.go": {
+              "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d",
+              "text": "package domain_test\n\nimport (\n\t\"finite.local/boundaries/domain\"\n\t\"testing\"\n)\n\nfunc TestPublicFacade(t *testing.T) {\n\tif got := domain.Format(\" Ω \"); got != \"< Ω >\" {\n\t\tt.Errorf(\"public facade=%q; want %q\", got, \"< Ω >\")\n\t}\n}\n"
+            },
+            "domain/internal/format/format.go": {
+              "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1",
+              "text": "package format\n\nfunc Record(value string) string { return \"<\" + value + \">\" }\n"
+            },
+            "domain/internal/format/format_test.go": {
+              "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0",
+              "text": "package format_test\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"testing\"\n)\n\nfunc TestRecordBytes(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := format.Record(value)\n\t\twant := \"<\" + value + \">\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Record(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "domain/probe/probe.go": {
+              "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574",
+              "text": "package probe\n\nimport \"finite.local/boundaries/domain/internal/format\"\n\nfunc Local(value string) string { return format.Record(value) }\n"
+            },
+            "domain/probe/probe_test.go": {
+              "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649",
+              "text": "package probe_test\n\nimport (\n\t\"finite.local/boundaries/domain/probe\"\n\t\"testing\"\n)\n\nfunc TestInsideParent(t *testing.T) {\n\tif got := probe.Local(\"inside\"); got != \"<inside>\" {\n\t\tt.Errorf(\"inside caller=%q; want %q\", got, \"<inside>\")\n\t}\n}\n"
+            },
+            "go.mod": {
+              "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3",
+              "text": "module finite.local/boundaries\n\ngo 1.27.0\n"
+            }
+          }
+        },
+        {
+          "at": "2026-10-22T18:40:34.100962+00:00",
+          "label": "cycle repaired by consumer-owned contract",
+          "files": {
+            "cmd/cycle/main.go": {
+              "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(consumer.Render(producer.Source{Value: \"alpha\"})) }\n"
+            },
+            "cmd/outside/main.go": {
+              "sha256": "c80ccfb56b619e8daae89a5141443c0d8a7d456d278653db5ef5a9a77422a78c",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(format.Record(\"beta\")) }\n"
+            },
+            "cycle/consumer/render.go": {
+              "sha256": "11b6e8220ee9210be66bd2f69a1e67ba8b32183869405e5355f1c90458461900",
+              "text": "package consumer\n\ntype Source interface{ Read() string }\n\nfunc Render(source Source) string { return \"[\" + source.Read() + \"]\" }\n"
+            },
+            "cycle/consumer/render_test.go": {
+              "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"testing\"\n)\n\nfunc TestPreservedRender(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := consumer.Render(producer.Source{Value: value})\n\t\twant := \"[\" + value + \"]\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Render(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "cycle/producer/source.go": {
+              "sha256": "8b7d6fba4b6d89017afef5adf1ec700987d1562dd04eafea2b4bfdce63a3dee9",
+              "text": "package producer\n\ntype Source struct{ Value string }\n\nfunc (s Source) Read() string { return s.Value }\n"
+            },
+            "domain/facade.go": {
+              "sha256": "20277d173f0daff513ee59eec0467237637433a46483fee4fbb8daf468e131e3",
+              "text": "package domain\n"
+            },
+            "domain/facade_test.go": {
+              "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d",
+              "text": "package domain_test\n\nimport (\n\t\"finite.local/boundaries/domain\"\n\t\"testing\"\n)\n\nfunc TestPublicFacade(t *testing.T) {\n\tif got := domain.Format(\" Ω \"); got != \"< Ω >\" {\n\t\tt.Errorf(\"public facade=%q; want %q\", got, \"< Ω >\")\n\t}\n}\n"
+            },
+            "domain/internal/format/format.go": {
+              "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1",
+              "text": "package format\n\nfunc Record(value string) string { return \"<\" + value + \">\" }\n"
+            },
+            "domain/internal/format/format_test.go": {
+              "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0",
+              "text": "package format_test\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"testing\"\n)\n\nfunc TestRecordBytes(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := format.Record(value)\n\t\twant := \"<\" + value + \">\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Record(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "domain/probe/probe.go": {
+              "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574",
+              "text": "package probe\n\nimport \"finite.local/boundaries/domain/internal/format\"\n\nfunc Local(value string) string { return format.Record(value) }\n"
+            },
+            "domain/probe/probe_test.go": {
+              "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649",
+              "text": "package probe_test\n\nimport (\n\t\"finite.local/boundaries/domain/probe\"\n\t\"testing\"\n)\n\nfunc TestInsideParent(t *testing.T) {\n\tif got := probe.Local(\"inside\"); got != \"<inside>\" {\n\t\tt.Errorf(\"inside caller=%q; want %q\", got, \"<inside>\")\n\t}\n}\n"
+            },
+            "go.mod": {
+              "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3",
+              "text": "module finite.local/boundaries\n\ngo 1.27.0\n"
+            }
+          }
+        }
+      ],
+      "cleanup": true,
+      "status": "expected observations recorded; method review pending",
+      "environment": {
+        "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+        "HOME": "$DISPOSABLE/home",
+        "GOCACHE": "$DISPOSABLE/cache",
+        "GOMODCACHE": "$DISPOSABLE/modcache",
+        "TMPDIR": "$DISPOSABLE/tmp",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "GOWORK": "off",
+        "GOFLAGS": "-mod=readonly",
+        "CGO_ENABLED": "0",
+        "GOTELEMETRY": "off"
+      },
+      "go_version": "go version go1.27.0 darwin/arm64",
+      "finished_at": "2026-10-22T18:40:36.719032+00:00"
+    },
+    {
+      "unit": "package-boundaries-001",
+      "specimen": "cycle-alias-only",
+      "started_at": "2026-10-22T18:40:36.794598+00:00",
+      "content_digest": "28adc141dc61aa27d0f92a93cdba77e487c42b5d85f69fad48681161f586f441",
+      "disposable_root": "$DISPOSABLE",
+      "events": [
+        {
+          "at": "2026-10-22T18:40:36.795095+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/go.mod.txt",
+          "destination": "go.mod",
+          "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3"
+        },
+        {
+          "at": "2026-10-22T18:40:36.795357+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cycle/producer/source.go.txt",
+          "destination": "cycle/producer/source.go",
+          "sha256": "1eb802e20b4490b7a954f97dc552bc076803b441c79f35f16a91301b4ab8aa38"
+        },
+        {
+          "at": "2026-10-22T18:40:36.795555+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cycle/consumer/render.go.txt",
+          "destination": "cycle/consumer/render.go",
+          "sha256": "1beb88727210f9cbf101fe943015a3e9793914d9729b2ff9930d6254ec1b9fd8"
+        },
+        {
+          "at": "2026-10-22T18:40:36.795708+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cycle/consumer/render_test.go.txt",
+          "destination": "cycle/consumer/render_test.go",
+          "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d"
+        },
+        {
+          "at": "2026-10-22T18:40:36.795935+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cmd/cycle/main.go.txt",
+          "destination": "cmd/cycle/main.go",
+          "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6"
+        },
+        {
+          "at": "2026-10-22T18:40:36.796224+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/internal/format/format.go.txt",
+          "destination": "domain/internal/format/format.go",
+          "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1"
+        },
+        {
+          "at": "2026-10-22T18:40:36.796387+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/internal/format/format_test.go.txt",
+          "destination": "domain/internal/format/format_test.go",
+          "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0"
+        },
+        {
+          "at": "2026-10-22T18:40:36.796545+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/facade.go.txt",
+          "destination": "domain/facade.go",
+          "sha256": "20277d173f0daff513ee59eec0467237637433a46483fee4fbb8daf468e131e3"
+        },
+        {
+          "at": "2026-10-22T18:40:36.796687+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/facade_test.go.txt",
+          "destination": "domain/facade_test.go",
+          "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d"
+        },
+        {
+          "at": "2026-10-22T18:40:36.796883+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/probe/probe.go.txt",
+          "destination": "domain/probe/probe.go",
+          "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574"
+        },
+        {
+          "at": "2026-10-22T18:40:36.797033+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/probe/probe_test.go.txt",
+          "destination": "domain/probe/probe_test.go",
+          "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649"
+        },
+        {
+          "at": "2026-10-22T18:40:36.797214+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cmd/outside/main.go.txt",
+          "destination": "cmd/outside/main.go",
+          "sha256": "c80ccfb56b619e8daae89a5141443c0d8a7d456d278653db5ef5a9a77422a78c"
+        },
+        {
+          "at": "2026-10-22T18:40:36.806562+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/package-boundaries-001/wrong/alias-only/cycle/consumer/render.go.txt",
+          "destination": "cycle/consumer/render.go",
+          "sha256": "701beb8a69deb028db210b75134622f5f5e99ae0ed9eb6ee8996330630707e02"
+        },
+        {
+          "at": "2026-10-22T18:40:36.807355+00:00",
+          "kind": "reference prediction before command",
+          "text": "Type alias leaves the consumer import of producer and the producer import of consumer intact."
+        },
+        {
+          "at": "2026-10-22T18:40:36.898542+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/package-boundaries-001/reference/cycle/consumer/render.go.txt",
+          "destination": "cycle/consumer/render.go",
+          "sha256": "11b6e8220ee9210be66bd2f69a1e67ba8b32183869405e5355f1c90458461900"
+        },
+        {
+          "at": "2026-10-22T18:40:36.898725+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/package-boundaries-001/reference/cycle/producer/source.go.txt",
+          "destination": "cycle/producer/source.go",
+          "sha256": "8b7d6fba4b6d89017afef5adf1ec700987d1562dd04eafea2b4bfdce63a3dee9"
+        }
+      ],
+      "commands": [
+        {
+          "at": "2026-10-22T18:40:36.798108+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "version"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.006793,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:36.807357+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./cycle/consumer"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "nonzero",
+          "required_diagnostic_fragments": [
+            "import cycle not allowed",
+            "cycle/consumer",
+            "cycle/producer"
+          ],
+          "expected_stdout": null,
+          "exit_status": 1,
+          "stdout": "FAIL\tfinite.local/boundaries/cycle/consumer [setup failed]\nFAIL\n",
+          "stderr": "# finite.local/boundaries/cycle/consumer\npackage finite.local/boundaries/cycle/consumer\n\timports finite.local/boundaries/cycle/producer from render.go\n\timports finite.local/boundaries/cycle/consumer from source.go: import cycle not allowed\n",
+          "timed_out": false,
+          "elapsed_seconds": 0.089675,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:36.899727+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./cycle/consumer",
+            "./cycle/producer"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "ok  \tfinite.local/boundaries/cycle/consumer\t0.240s\n?   \tfinite.local/boundaries/cycle/producer\t[no test files]\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 2.318659,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:39.220025+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "run",
+            "./cmd/cycle"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": "[alpha]\n",
+          "exit_status": 0,
+          "stdout": "[alpha]\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.309088,
+          "expectation_met": true
+        }
+      ],
+      "snapshots": [
+        {
+          "at": "2026-10-22T18:40:36.798099+00:00",
+          "label": "initial",
+          "files": {
+            "cmd/cycle/main.go": {
+              "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(consumer.Render(producer.Source{Value: \"alpha\"})) }\n"
+            },
+            "cmd/outside/main.go": {
+              "sha256": "c80ccfb56b619e8daae89a5141443c0d8a7d456d278653db5ef5a9a77422a78c",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(format.Record(\"beta\")) }\n"
+            },
+            "cycle/consumer/render.go": {
+              "sha256": "1beb88727210f9cbf101fe943015a3e9793914d9729b2ff9930d6254ec1b9fd8",
+              "text": "package consumer\n\nimport \"finite.local/boundaries/cycle/producer\"\n\ntype Record struct{ Value string }\n\nfunc Render(source producer.Source) string { return \"[\" + source.Read().Value + \"]\" }\n"
+            },
+            "cycle/consumer/render_test.go": {
+              "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"testing\"\n)\n\nfunc TestPreservedRender(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := consumer.Render(producer.Source{Value: value})\n\t\twant := \"[\" + value + \"]\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Render(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "cycle/producer/source.go": {
+              "sha256": "1eb802e20b4490b7a954f97dc552bc076803b441c79f35f16a91301b4ab8aa38",
+              "text": "package producer\n\nimport \"finite.local/boundaries/cycle/consumer\"\n\ntype Source struct{ Value string }\n\nfunc (s Source) Read() consumer.Record { return consumer.Record{Value: s.Value} }\n"
+            },
+            "domain/facade.go": {
+              "sha256": "20277d173f0daff513ee59eec0467237637433a46483fee4fbb8daf468e131e3",
+              "text": "package domain\n"
+            },
+            "domain/facade_test.go": {
+              "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d",
+              "text": "package domain_test\n\nimport (\n\t\"finite.local/boundaries/domain\"\n\t\"testing\"\n)\n\nfunc TestPublicFacade(t *testing.T) {\n\tif got := domain.Format(\" Ω \"); got != \"< Ω >\" {\n\t\tt.Errorf(\"public facade=%q; want %q\", got, \"< Ω >\")\n\t}\n}\n"
+            },
+            "domain/internal/format/format.go": {
+              "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1",
+              "text": "package format\n\nfunc Record(value string) string { return \"<\" + value + \">\" }\n"
+            },
+            "domain/internal/format/format_test.go": {
+              "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0",
+              "text": "package format_test\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"testing\"\n)\n\nfunc TestRecordBytes(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := format.Record(value)\n\t\twant := \"<\" + value + \">\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Record(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "domain/probe/probe.go": {
+              "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574",
+              "text": "package probe\n\nimport \"finite.local/boundaries/domain/internal/format\"\n\nfunc Local(value string) string { return format.Record(value) }\n"
+            },
+            "domain/probe/probe_test.go": {
+              "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649",
+              "text": "package probe_test\n\nimport (\n\t\"finite.local/boundaries/domain/probe\"\n\t\"testing\"\n)\n\nfunc TestInsideParent(t *testing.T) {\n\tif got := probe.Local(\"inside\"); got != \"<inside>\" {\n\t\tt.Errorf(\"inside caller=%q; want %q\", got, \"<inside>\")\n\t}\n}\n"
+            },
+            "go.mod": {
+              "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3",
+              "text": "module finite.local/boundaries\n\ngo 1.27.0\n"
+            }
+          }
+        },
+        {
+          "at": "2026-10-22T18:40:36.807353+00:00",
+          "label": "alias-only cycle remains",
+          "files": {
+            "cmd/cycle/main.go": {
+              "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(consumer.Render(producer.Source{Value: \"alpha\"})) }\n"
+            },
+            "cmd/outside/main.go": {
+              "sha256": "c80ccfb56b619e8daae89a5141443c0d8a7d456d278653db5ef5a9a77422a78c",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(format.Record(\"beta\")) }\n"
+            },
+            "cycle/consumer/render.go": {
+              "sha256": "701beb8a69deb028db210b75134622f5f5e99ae0ed9eb6ee8996330630707e02",
+              "text": "package consumer\n\nimport \"finite.local/boundaries/cycle/producer\"\n\ntype Record struct{ Value string }\ntype Source = producer.Source\n\nfunc Render(source Source) string { return \"[\" + source.Read().Value + \"]\" }\n"
+            },
+            "cycle/consumer/render_test.go": {
+              "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"testing\"\n)\n\nfunc TestPreservedRender(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := consumer.Render(producer.Source{Value: value})\n\t\twant := \"[\" + value + \"]\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Render(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "cycle/producer/source.go": {
+              "sha256": "1eb802e20b4490b7a954f97dc552bc076803b441c79f35f16a91301b4ab8aa38",
+              "text": "package producer\n\nimport \"finite.local/boundaries/cycle/consumer\"\n\ntype Source struct{ Value string }\n\nfunc (s Source) Read() consumer.Record { return consumer.Record{Value: s.Value} }\n"
+            },
+            "domain/facade.go": {
+              "sha256": "20277d173f0daff513ee59eec0467237637433a46483fee4fbb8daf468e131e3",
+              "text": "package domain\n"
+            },
+            "domain/facade_test.go": {
+              "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d",
+              "text": "package domain_test\n\nimport (\n\t\"finite.local/boundaries/domain\"\n\t\"testing\"\n)\n\nfunc TestPublicFacade(t *testing.T) {\n\tif got := domain.Format(\" Ω \"); got != \"< Ω >\" {\n\t\tt.Errorf(\"public facade=%q; want %q\", got, \"< Ω >\")\n\t}\n}\n"
+            },
+            "domain/internal/format/format.go": {
+              "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1",
+              "text": "package format\n\nfunc Record(value string) string { return \"<\" + value + \">\" }\n"
+            },
+            "domain/internal/format/format_test.go": {
+              "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0",
+              "text": "package format_test\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"testing\"\n)\n\nfunc TestRecordBytes(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := format.Record(value)\n\t\twant := \"<\" + value + \">\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Record(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "domain/probe/probe.go": {
+              "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574",
+              "text": "package probe\n\nimport \"finite.local/boundaries/domain/internal/format\"\n\nfunc Local(value string) string { return format.Record(value) }\n"
+            },
+            "domain/probe/probe_test.go": {
+              "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649",
+              "text": "package probe_test\n\nimport (\n\t\"finite.local/boundaries/domain/probe\"\n\t\"testing\"\n)\n\nfunc TestInsideParent(t *testing.T) {\n\tif got := probe.Local(\"inside\"); got != \"<inside>\" {\n\t\tt.Errorf(\"inside caller=%q; want %q\", got, \"<inside>\")\n\t}\n}\n"
+            },
+            "go.mod": {
+              "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3",
+              "text": "module finite.local/boundaries\n\ngo 1.27.0\n"
+            }
+          }
+        },
+        {
+          "at": "2026-10-22T18:40:36.899722+00:00",
+          "label": "cycle repaired by consumer-owned contract",
+          "files": {
+            "cmd/cycle/main.go": {
+              "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(consumer.Render(producer.Source{Value: \"alpha\"})) }\n"
+            },
+            "cmd/outside/main.go": {
+              "sha256": "c80ccfb56b619e8daae89a5141443c0d8a7d456d278653db5ef5a9a77422a78c",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(format.Record(\"beta\")) }\n"
+            },
+            "cycle/consumer/render.go": {
+              "sha256": "11b6e8220ee9210be66bd2f69a1e67ba8b32183869405e5355f1c90458461900",
+              "text": "package consumer\n\ntype Source interface{ Read() string }\n\nfunc Render(source Source) string { return \"[\" + source.Read() + \"]\" }\n"
+            },
+            "cycle/consumer/render_test.go": {
+              "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"testing\"\n)\n\nfunc TestPreservedRender(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := consumer.Render(producer.Source{Value: value})\n\t\twant := \"[\" + value + \"]\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Render(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "cycle/producer/source.go": {
+              "sha256": "8b7d6fba4b6d89017afef5adf1ec700987d1562dd04eafea2b4bfdce63a3dee9",
+              "text": "package producer\n\ntype Source struct{ Value string }\n\nfunc (s Source) Read() string { return s.Value }\n"
+            },
+            "domain/facade.go": {
+              "sha256": "20277d173f0daff513ee59eec0467237637433a46483fee4fbb8daf468e131e3",
+              "text": "package domain\n"
+            },
+            "domain/facade_test.go": {
+              "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d",
+              "text": "package domain_test\n\nimport (\n\t\"finite.local/boundaries/domain\"\n\t\"testing\"\n)\n\nfunc TestPublicFacade(t *testing.T) {\n\tif got := domain.Format(\" Ω \"); got != \"< Ω >\" {\n\t\tt.Errorf(\"public facade=%q; want %q\", got, \"< Ω >\")\n\t}\n}\n"
+            },
+            "domain/internal/format/format.go": {
+              "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1",
+              "text": "package format\n\nfunc Record(value string) string { return \"<\" + value + \">\" }\n"
+            },
+            "domain/internal/format/format_test.go": {
+              "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0",
+              "text": "package format_test\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"testing\"\n)\n\nfunc TestRecordBytes(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := format.Record(value)\n\t\twant := \"<\" + value + \">\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Record(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "domain/probe/probe.go": {
+              "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574",
+              "text": "package probe\n\nimport \"finite.local/boundaries/domain/internal/format\"\n\nfunc Local(value string) string { return format.Record(value) }\n"
+            },
+            "domain/probe/probe_test.go": {
+              "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649",
+              "text": "package probe_test\n\nimport (\n\t\"finite.local/boundaries/domain/probe\"\n\t\"testing\"\n)\n\nfunc TestInsideParent(t *testing.T) {\n\tif got := probe.Local(\"inside\"); got != \"<inside>\" {\n\t\tt.Errorf(\"inside caller=%q; want %q\", got, \"<inside>\")\n\t}\n}\n"
+            },
+            "go.mod": {
+              "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3",
+              "text": "module finite.local/boundaries\n\ngo 1.27.0\n"
+            }
+          }
+        }
+      ],
+      "cleanup": true,
+      "status": "expected observations recorded; method review pending",
+      "environment": {
+        "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+        "HOME": "$DISPOSABLE/home",
+        "GOCACHE": "$DISPOSABLE/cache",
+        "GOMODCACHE": "$DISPOSABLE/modcache",
+        "TMPDIR": "$DISPOSABLE/tmp",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "GOWORK": "off",
+        "GOFLAGS": "-mod=readonly",
+        "CGO_ENABLED": "0",
+        "GOTELEMETRY": "off"
+      },
+      "go_version": "go version go1.27.0 darwin/arm64",
+      "finished_at": "2026-10-22T18:40:39.530547+00:00"
+    },
+    {
+      "unit": "package-boundaries-001",
+      "specimen": "internal-outside",
+      "started_at": "2026-10-22T18:40:39.605523+00:00",
+      "content_digest": "28adc141dc61aa27d0f92a93cdba77e487c42b5d85f69fad48681161f586f441",
+      "disposable_root": "$DISPOSABLE",
+      "events": [
+        {
+          "at": "2026-10-22T18:40:39.605998+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/go.mod.txt",
+          "destination": "go.mod",
+          "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3"
+        },
+        {
+          "at": "2026-10-22T18:40:39.606243+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cycle/producer/source.go.txt",
+          "destination": "cycle/producer/source.go",
+          "sha256": "1eb802e20b4490b7a954f97dc552bc076803b441c79f35f16a91301b4ab8aa38"
+        },
+        {
+          "at": "2026-10-22T18:40:39.606441+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cycle/consumer/render.go.txt",
+          "destination": "cycle/consumer/render.go",
+          "sha256": "1beb88727210f9cbf101fe943015a3e9793914d9729b2ff9930d6254ec1b9fd8"
+        },
+        {
+          "at": "2026-10-22T18:40:39.606607+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cycle/consumer/render_test.go.txt",
+          "destination": "cycle/consumer/render_test.go",
+          "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d"
+        },
+        {
+          "at": "2026-10-22T18:40:39.606883+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cmd/cycle/main.go.txt",
+          "destination": "cmd/cycle/main.go",
+          "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6"
+        },
+        {
+          "at": "2026-10-22T18:40:39.607209+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/internal/format/format.go.txt",
+          "destination": "domain/internal/format/format.go",
+          "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1"
+        },
+        {
+          "at": "2026-10-22T18:40:39.607397+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/internal/format/format_test.go.txt",
+          "destination": "domain/internal/format/format_test.go",
+          "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0"
+        },
+        {
+          "at": "2026-10-22T18:40:39.607564+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/facade.go.txt",
+          "destination": "domain/facade.go",
+          "sha256": "20277d173f0daff513ee59eec0467237637433a46483fee4fbb8daf468e131e3"
+        },
+        {
+          "at": "2026-10-22T18:40:39.607724+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/facade_test.go.txt",
+          "destination": "domain/facade_test.go",
+          "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d"
+        },
+        {
+          "at": "2026-10-22T18:40:39.607940+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/probe/probe.go.txt",
+          "destination": "domain/probe/probe.go",
+          "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574"
+        },
+        {
+          "at": "2026-10-22T18:40:39.608114+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/probe/probe_test.go.txt",
+          "destination": "domain/probe/probe_test.go",
+          "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649"
+        },
+        {
+          "at": "2026-10-22T18:40:39.608326+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cmd/outside/main.go.txt",
+          "destination": "cmd/outside/main.go",
+          "sha256": "c80ccfb56b619e8daae89a5141443c0d8a7d456d278653db5ef5a9a77422a78c"
+        },
+        {
+          "at": "2026-10-22T18:40:39.617626+00:00",
+          "kind": "reference prediction before command",
+          "text": "domain/probe is inside internal parent domain; cmd/outside is outside that tree despite its shared module. Neither target imports cycle packages."
+        },
+        {
+          "at": "2026-10-22T18:40:42.371529+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/package-boundaries-001/reference/domain/facade.go.txt",
+          "destination": "domain/facade.go",
+          "sha256": "50a9406022c40149d72f6296d40e14a99d7b95f1bf3b31a65dc1b1f3eb5dc0ed"
+        },
+        {
+          "at": "2026-10-22T18:40:42.371712+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/package-boundaries-001/reference/cmd/outside/main.go.txt",
+          "destination": "cmd/outside/main.go",
+          "sha256": "7f04c1e878cd4e07c7a9603147c6134839252e087a5342b4b166e99efe6b0ab8"
+        }
+      ],
+      "commands": [
+        {
+          "at": "2026-10-22T18:40:39.609147+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "version"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.007014,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:39.617637+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./domain/probe",
+            "./domain/internal/format"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "ok  \tfinite.local/boundaries/domain/probe\t0.321s\nok  \tfinite.local/boundaries/domain/internal/format\t0.166s\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 2.734494,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:42.353797+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "run",
+            "./cmd/outside"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "nonzero",
+          "required_diagnostic_fragments": [
+            "use of internal package",
+            "domain/internal/format",
+            "not allowed"
+          ],
+          "expected_stdout": null,
+          "exit_status": 1,
+          "stdout": "",
+          "stderr": "package finite.local/boundaries/cmd/outside\n\tcmd/outside/main.go:4:2: use of internal package finite.local/boundaries/domain/internal/format not allowed\n",
+          "timed_out": false,
+          "elapsed_seconds": 0.016044,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:42.372687+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./domain",
+            "./domain/probe",
+            "./domain/internal/format"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "ok  \tfinite.local/boundaries/domain\t0.159s\nok  \tfinite.local/boundaries/domain/probe\t0.375s\nok  \tfinite.local/boundaries/domain/internal/format\t0.267s\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.608469,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:42.983091+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "run",
+            "./cmd/outside"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": "<beta>\n",
+          "exit_status": 0,
+          "stdout": "<beta>\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.288401,
+          "expectation_met": true
+        }
+      ],
+      "snapshots": [
+        {
+          "at": "2026-10-22T18:40:39.609144+00:00",
+          "label": "initial",
+          "files": {
+            "cmd/cycle/main.go": {
+              "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(consumer.Render(producer.Source{Value: \"alpha\"})) }\n"
+            },
+            "cmd/outside/main.go": {
+              "sha256": "c80ccfb56b619e8daae89a5141443c0d8a7d456d278653db5ef5a9a77422a78c",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(format.Record(\"beta\")) }\n"
+            },
+            "cycle/consumer/render.go": {
+              "sha256": "1beb88727210f9cbf101fe943015a3e9793914d9729b2ff9930d6254ec1b9fd8",
+              "text": "package consumer\n\nimport \"finite.local/boundaries/cycle/producer\"\n\ntype Record struct{ Value string }\n\nfunc Render(source producer.Source) string { return \"[\" + source.Read().Value + \"]\" }\n"
+            },
+            "cycle/consumer/render_test.go": {
+              "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"testing\"\n)\n\nfunc TestPreservedRender(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := consumer.Render(producer.Source{Value: value})\n\t\twant := \"[\" + value + \"]\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Render(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "cycle/producer/source.go": {
+              "sha256": "1eb802e20b4490b7a954f97dc552bc076803b441c79f35f16a91301b4ab8aa38",
+              "text": "package producer\n\nimport \"finite.local/boundaries/cycle/consumer\"\n\ntype Source struct{ Value string }\n\nfunc (s Source) Read() consumer.Record { return consumer.Record{Value: s.Value} }\n"
+            },
+            "domain/facade.go": {
+              "sha256": "20277d173f0daff513ee59eec0467237637433a46483fee4fbb8daf468e131e3",
+              "text": "package domain\n"
+            },
+            "domain/facade_test.go": {
+              "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d",
+              "text": "package domain_test\n\nimport (\n\t\"finite.local/boundaries/domain\"\n\t\"testing\"\n)\n\nfunc TestPublicFacade(t *testing.T) {\n\tif got := domain.Format(\" Ω \"); got != \"< Ω >\" {\n\t\tt.Errorf(\"public facade=%q; want %q\", got, \"< Ω >\")\n\t}\n}\n"
+            },
+            "domain/internal/format/format.go": {
+              "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1",
+              "text": "package format\n\nfunc Record(value string) string { return \"<\" + value + \">\" }\n"
+            },
+            "domain/internal/format/format_test.go": {
+              "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0",
+              "text": "package format_test\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"testing\"\n)\n\nfunc TestRecordBytes(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := format.Record(value)\n\t\twant := \"<\" + value + \">\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Record(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "domain/probe/probe.go": {
+              "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574",
+              "text": "package probe\n\nimport \"finite.local/boundaries/domain/internal/format\"\n\nfunc Local(value string) string { return format.Record(value) }\n"
+            },
+            "domain/probe/probe_test.go": {
+              "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649",
+              "text": "package probe_test\n\nimport (\n\t\"finite.local/boundaries/domain/probe\"\n\t\"testing\"\n)\n\nfunc TestInsideParent(t *testing.T) {\n\tif got := probe.Local(\"inside\"); got != \"<inside>\" {\n\t\tt.Errorf(\"inside caller=%q; want %q\", got, \"<inside>\")\n\t}\n}\n"
+            },
+            "go.mod": {
+              "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3",
+              "text": "module finite.local/boundaries\n\ngo 1.27.0\n"
+            }
+          }
+        },
+        {
+          "at": "2026-10-22T18:40:42.372683+00:00",
+          "label": "public facade delegates to unchanged internal formatter",
+          "files": {
+            "cmd/cycle/main.go": {
+              "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(consumer.Render(producer.Source{Value: \"alpha\"})) }\n"
+            },
+            "cmd/outside/main.go": {
+              "sha256": "7f04c1e878cd4e07c7a9603147c6134839252e087a5342b4b166e99efe6b0ab8",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/domain\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(domain.Format(\"beta\")) }\n"
+            },
+            "cycle/consumer/render.go": {
+              "sha256": "1beb88727210f9cbf101fe943015a3e9793914d9729b2ff9930d6254ec1b9fd8",
+              "text": "package consumer\n\nimport \"finite.local/boundaries/cycle/producer\"\n\ntype Record struct{ Value string }\n\nfunc Render(source producer.Source) string { return \"[\" + source.Read().Value + \"]\" }\n"
+            },
+            "cycle/consumer/render_test.go": {
+              "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"testing\"\n)\n\nfunc TestPreservedRender(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := consumer.Render(producer.Source{Value: value})\n\t\twant := \"[\" + value + \"]\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Render(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "cycle/producer/source.go": {
+              "sha256": "1eb802e20b4490b7a954f97dc552bc076803b441c79f35f16a91301b4ab8aa38",
+              "text": "package producer\n\nimport \"finite.local/boundaries/cycle/consumer\"\n\ntype Source struct{ Value string }\n\nfunc (s Source) Read() consumer.Record { return consumer.Record{Value: s.Value} }\n"
+            },
+            "domain/facade.go": {
+              "sha256": "50a9406022c40149d72f6296d40e14a99d7b95f1bf3b31a65dc1b1f3eb5dc0ed",
+              "text": "package domain\n\nimport \"finite.local/boundaries/domain/internal/format\"\n\nfunc Format(value string) string { return format.Record(value) }\n"
+            },
+            "domain/facade_test.go": {
+              "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d",
+              "text": "package domain_test\n\nimport (\n\t\"finite.local/boundaries/domain\"\n\t\"testing\"\n)\n\nfunc TestPublicFacade(t *testing.T) {\n\tif got := domain.Format(\" Ω \"); got != \"< Ω >\" {\n\t\tt.Errorf(\"public facade=%q; want %q\", got, \"< Ω >\")\n\t}\n}\n"
+            },
+            "domain/internal/format/format.go": {
+              "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1",
+              "text": "package format\n\nfunc Record(value string) string { return \"<\" + value + \">\" }\n"
+            },
+            "domain/internal/format/format_test.go": {
+              "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0",
+              "text": "package format_test\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"testing\"\n)\n\nfunc TestRecordBytes(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := format.Record(value)\n\t\twant := \"<\" + value + \">\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Record(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "domain/probe/probe.go": {
+              "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574",
+              "text": "package probe\n\nimport \"finite.local/boundaries/domain/internal/format\"\n\nfunc Local(value string) string { return format.Record(value) }\n"
+            },
+            "domain/probe/probe_test.go": {
+              "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649",
+              "text": "package probe_test\n\nimport (\n\t\"finite.local/boundaries/domain/probe\"\n\t\"testing\"\n)\n\nfunc TestInsideParent(t *testing.T) {\n\tif got := probe.Local(\"inside\"); got != \"<inside>\" {\n\t\tt.Errorf(\"inside caller=%q; want %q\", got, \"<inside>\")\n\t}\n}\n"
+            },
+            "go.mod": {
+              "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3",
+              "text": "module finite.local/boundaries\n\ngo 1.27.0\n"
+            }
+          }
+        }
+      ],
+      "cleanup": true,
+      "status": "expected observations recorded; method review pending",
+      "environment": {
+        "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+        "HOME": "$DISPOSABLE/home",
+        "GOCACHE": "$DISPOSABLE/cache",
+        "GOMODCACHE": "$DISPOSABLE/modcache",
+        "TMPDIR": "$DISPOSABLE/tmp",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "GOWORK": "off",
+        "GOFLAGS": "-mod=readonly",
+        "CGO_ENABLED": "0",
+        "GOTELEMETRY": "off"
+      },
+      "go_version": "go version go1.27.0 darwin/arm64",
+      "finished_at": "2026-10-22T18:40:43.273094+00:00"
+    },
+    {
+      "unit": "package-boundaries-001",
+      "specimen": "boundaries-reference",
+      "started_at": "2026-10-22T18:40:43.349730+00:00",
+      "content_digest": "28adc141dc61aa27d0f92a93cdba77e487c42b5d85f69fad48681161f586f441",
+      "disposable_root": "$DISPOSABLE",
+      "events": [
+        {
+          "at": "2026-10-22T18:40:43.350185+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/go.mod.txt",
+          "destination": "go.mod",
+          "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3"
+        },
+        {
+          "at": "2026-10-22T18:40:43.350419+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cycle/producer/source.go.txt",
+          "destination": "cycle/producer/source.go",
+          "sha256": "1eb802e20b4490b7a954f97dc552bc076803b441c79f35f16a91301b4ab8aa38"
+        },
+        {
+          "at": "2026-10-22T18:40:43.350621+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cycle/consumer/render.go.txt",
+          "destination": "cycle/consumer/render.go",
+          "sha256": "1beb88727210f9cbf101fe943015a3e9793914d9729b2ff9930d6254ec1b9fd8"
+        },
+        {
+          "at": "2026-10-22T18:40:43.350799+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cycle/consumer/render_test.go.txt",
+          "destination": "cycle/consumer/render_test.go",
+          "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d"
+        },
+        {
+          "at": "2026-10-22T18:40:43.351059+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cmd/cycle/main.go.txt",
+          "destination": "cmd/cycle/main.go",
+          "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6"
+        },
+        {
+          "at": "2026-10-22T18:40:43.351371+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/internal/format/format.go.txt",
+          "destination": "domain/internal/format/format.go",
+          "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1"
+        },
+        {
+          "at": "2026-10-22T18:40:43.351565+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/internal/format/format_test.go.txt",
+          "destination": "domain/internal/format/format_test.go",
+          "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0"
+        },
+        {
+          "at": "2026-10-22T18:40:43.351738+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/facade.go.txt",
+          "destination": "domain/facade.go",
+          "sha256": "20277d173f0daff513ee59eec0467237637433a46483fee4fbb8daf468e131e3"
+        },
+        {
+          "at": "2026-10-22T18:40:43.351903+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/facade_test.go.txt",
+          "destination": "domain/facade_test.go",
+          "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d"
+        },
+        {
+          "at": "2026-10-22T18:40:43.352110+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/probe/probe.go.txt",
+          "destination": "domain/probe/probe.go",
+          "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574"
+        },
+        {
+          "at": "2026-10-22T18:40:43.352278+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/domain/probe/probe_test.go.txt",
+          "destination": "domain/probe/probe_test.go",
+          "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649"
+        },
+        {
+          "at": "2026-10-22T18:40:43.352498+00:00",
+          "kind": "copy",
+          "reason": "initial copy",
+          "source": "docs/labs/package-boundaries-001/files/cmd/outside/main.go.txt",
+          "destination": "cmd/outside/main.go",
+          "sha256": "c80ccfb56b619e8daae89a5141443c0d8a7d456d278653db5ef5a9a77422a78c"
+        },
+        {
+          "at": "2026-10-22T18:40:43.361732+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/package-boundaries-001/reference/cycle/consumer/render.go.txt",
+          "destination": "cycle/consumer/render.go",
+          "sha256": "11b6e8220ee9210be66bd2f69a1e67ba8b32183869405e5355f1c90458461900"
+        },
+        {
+          "at": "2026-10-22T18:40:43.361899+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/package-boundaries-001/reference/cycle/producer/source.go.txt",
+          "destination": "cycle/producer/source.go",
+          "sha256": "8b7d6fba4b6d89017afef5adf1ec700987d1562dd04eafea2b4bfdce63a3dee9"
+        },
+        {
+          "at": "2026-10-22T18:40:43.362818+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/package-boundaries-001/reference/domain/facade.go.txt",
+          "destination": "domain/facade.go",
+          "sha256": "50a9406022c40149d72f6296d40e14a99d7b95f1bf3b31a65dc1b1f3eb5dc0ed"
+        },
+        {
+          "at": "2026-10-22T18:40:43.362958+00:00",
+          "kind": "copy",
+          "reason": "reviewed source replacement",
+          "source": "docs/labs/package-boundaries-001/reference/cmd/outside/main.go.txt",
+          "destination": "cmd/outside/main.go",
+          "sha256": "7f04c1e878cd4e07c7a9603147c6134839252e087a5342b4b166e99efe6b0ab8"
+        },
+        {
+          "at": "2026-10-22T18:40:46.176556+00:00",
+          "kind": "reference prediction before command",
+          "text": "Independent consumer and producer; cmd/cycle composes them. Domain and its probe import internal formatter; cmd/outside imports public domain."
+        }
+      ],
+      "commands": [
+        {
+          "at": "2026-10-22T18:40:43.353233+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "version"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.00666,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:43.364365+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "?   \tfinite.local/boundaries/cmd/cycle\t[no test files]\n?   \tfinite.local/boundaries/cmd/outside\t[no test files]\nok  \tfinite.local/boundaries/cycle/consumer\t0.168s\n?   \tfinite.local/boundaries/cycle/producer\t[no test files]\nok  \tfinite.local/boundaries/domain\t0.316s\nok  \tfinite.local/boundaries/domain/internal/format\t0.477s\nok  \tfinite.local/boundaries/domain/probe\t0.627s\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 2.810401,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:46.176566+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "list",
+            "-f",
+            "{{.ImportPath}} {{.Imports}}",
+            "./cycle/consumer",
+            "./cycle/producer",
+            "./domain",
+            "./domain/probe",
+            "./cmd/cycle",
+            "./cmd/outside"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": null,
+          "exit_status": 0,
+          "stdout": "finite.local/boundaries/cycle/consumer []\nfinite.local/boundaries/cycle/producer []\nfinite.local/boundaries/domain [finite.local/boundaries/domain/internal/format]\nfinite.local/boundaries/domain/probe [finite.local/boundaries/domain/internal/format]\nfinite.local/boundaries/cmd/cycle [finite.local/boundaries/cycle/consumer finite.local/boundaries/cycle/producer fmt]\nfinite.local/boundaries/cmd/outside [finite.local/boundaries/domain fmt]\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.018558,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:46.196893+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "run",
+            "./cmd/cycle"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": "[alpha]\n",
+          "exit_status": 0,
+          "stdout": "[alpha]\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.23763,
+          "expectation_met": true
+        },
+        {
+          "at": "2026-10-22T18:40:46.436382+00:00",
+          "argv": [
+            "$LOCAL_GO_BIN/go",
+            "run",
+            "./cmd/outside"
+          ],
+          "cwd": "$DISPOSABLE/project",
+          "timeout_seconds": 60,
+          "expected_exit": "zero",
+          "required_diagnostic_fragments": [],
+          "expected_stdout": "<beta>\n",
+          "exit_status": 0,
+          "stdout": "<beta>\n",
+          "stderr": "",
+          "timed_out": false,
+          "elapsed_seconds": 0.340672,
+          "expectation_met": true
+        }
+      ],
+      "snapshots": [
+        {
+          "at": "2026-10-22T18:40:43.353229+00:00",
+          "label": "initial",
+          "files": {
+            "cmd/cycle/main.go": {
+              "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(consumer.Render(producer.Source{Value: \"alpha\"})) }\n"
+            },
+            "cmd/outside/main.go": {
+              "sha256": "c80ccfb56b619e8daae89a5141443c0d8a7d456d278653db5ef5a9a77422a78c",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(format.Record(\"beta\")) }\n"
+            },
+            "cycle/consumer/render.go": {
+              "sha256": "1beb88727210f9cbf101fe943015a3e9793914d9729b2ff9930d6254ec1b9fd8",
+              "text": "package consumer\n\nimport \"finite.local/boundaries/cycle/producer\"\n\ntype Record struct{ Value string }\n\nfunc Render(source producer.Source) string { return \"[\" + source.Read().Value + \"]\" }\n"
+            },
+            "cycle/consumer/render_test.go": {
+              "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"testing\"\n)\n\nfunc TestPreservedRender(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := consumer.Render(producer.Source{Value: value})\n\t\twant := \"[\" + value + \"]\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Render(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "cycle/producer/source.go": {
+              "sha256": "1eb802e20b4490b7a954f97dc552bc076803b441c79f35f16a91301b4ab8aa38",
+              "text": "package producer\n\nimport \"finite.local/boundaries/cycle/consumer\"\n\ntype Source struct{ Value string }\n\nfunc (s Source) Read() consumer.Record { return consumer.Record{Value: s.Value} }\n"
+            },
+            "domain/facade.go": {
+              "sha256": "20277d173f0daff513ee59eec0467237637433a46483fee4fbb8daf468e131e3",
+              "text": "package domain\n"
+            },
+            "domain/facade_test.go": {
+              "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d",
+              "text": "package domain_test\n\nimport (\n\t\"finite.local/boundaries/domain\"\n\t\"testing\"\n)\n\nfunc TestPublicFacade(t *testing.T) {\n\tif got := domain.Format(\" Ω \"); got != \"< Ω >\" {\n\t\tt.Errorf(\"public facade=%q; want %q\", got, \"< Ω >\")\n\t}\n}\n"
+            },
+            "domain/internal/format/format.go": {
+              "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1",
+              "text": "package format\n\nfunc Record(value string) string { return \"<\" + value + \">\" }\n"
+            },
+            "domain/internal/format/format_test.go": {
+              "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0",
+              "text": "package format_test\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"testing\"\n)\n\nfunc TestRecordBytes(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := format.Record(value)\n\t\twant := \"<\" + value + \">\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Record(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "domain/probe/probe.go": {
+              "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574",
+              "text": "package probe\n\nimport \"finite.local/boundaries/domain/internal/format\"\n\nfunc Local(value string) string { return format.Record(value) }\n"
+            },
+            "domain/probe/probe_test.go": {
+              "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649",
+              "text": "package probe_test\n\nimport (\n\t\"finite.local/boundaries/domain/probe\"\n\t\"testing\"\n)\n\nfunc TestInsideParent(t *testing.T) {\n\tif got := probe.Local(\"inside\"); got != \"<inside>\" {\n\t\tt.Errorf(\"inside caller=%q; want %q\", got, \"<inside>\")\n\t}\n}\n"
+            },
+            "go.mod": {
+              "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3",
+              "text": "module finite.local/boundaries\n\ngo 1.27.0\n"
+            }
+          }
+        },
+        {
+          "at": "2026-10-22T18:40:43.362689+00:00",
+          "label": "cycle repaired by consumer-owned contract",
+          "files": {
+            "cmd/cycle/main.go": {
+              "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(consumer.Render(producer.Source{Value: \"alpha\"})) }\n"
+            },
+            "cmd/outside/main.go": {
+              "sha256": "c80ccfb56b619e8daae89a5141443c0d8a7d456d278653db5ef5a9a77422a78c",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(format.Record(\"beta\")) }\n"
+            },
+            "cycle/consumer/render.go": {
+              "sha256": "11b6e8220ee9210be66bd2f69a1e67ba8b32183869405e5355f1c90458461900",
+              "text": "package consumer\n\ntype Source interface{ Read() string }\n\nfunc Render(source Source) string { return \"[\" + source.Read() + \"]\" }\n"
+            },
+            "cycle/consumer/render_test.go": {
+              "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"testing\"\n)\n\nfunc TestPreservedRender(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := consumer.Render(producer.Source{Value: value})\n\t\twant := \"[\" + value + \"]\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Render(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "cycle/producer/source.go": {
+              "sha256": "8b7d6fba4b6d89017afef5adf1ec700987d1562dd04eafea2b4bfdce63a3dee9",
+              "text": "package producer\n\ntype Source struct{ Value string }\n\nfunc (s Source) Read() string { return s.Value }\n"
+            },
+            "domain/facade.go": {
+              "sha256": "20277d173f0daff513ee59eec0467237637433a46483fee4fbb8daf468e131e3",
+              "text": "package domain\n"
+            },
+            "domain/facade_test.go": {
+              "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d",
+              "text": "package domain_test\n\nimport (\n\t\"finite.local/boundaries/domain\"\n\t\"testing\"\n)\n\nfunc TestPublicFacade(t *testing.T) {\n\tif got := domain.Format(\" Ω \"); got != \"< Ω >\" {\n\t\tt.Errorf(\"public facade=%q; want %q\", got, \"< Ω >\")\n\t}\n}\n"
+            },
+            "domain/internal/format/format.go": {
+              "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1",
+              "text": "package format\n\nfunc Record(value string) string { return \"<\" + value + \">\" }\n"
+            },
+            "domain/internal/format/format_test.go": {
+              "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0",
+              "text": "package format_test\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"testing\"\n)\n\nfunc TestRecordBytes(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := format.Record(value)\n\t\twant := \"<\" + value + \">\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Record(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "domain/probe/probe.go": {
+              "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574",
+              "text": "package probe\n\nimport \"finite.local/boundaries/domain/internal/format\"\n\nfunc Local(value string) string { return format.Record(value) }\n"
+            },
+            "domain/probe/probe_test.go": {
+              "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649",
+              "text": "package probe_test\n\nimport (\n\t\"finite.local/boundaries/domain/probe\"\n\t\"testing\"\n)\n\nfunc TestInsideParent(t *testing.T) {\n\tif got := probe.Local(\"inside\"); got != \"<inside>\" {\n\t\tt.Errorf(\"inside caller=%q; want %q\", got, \"<inside>\")\n\t}\n}\n"
+            },
+            "go.mod": {
+              "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3",
+              "text": "module finite.local/boundaries\n\ngo 1.27.0\n"
+            }
+          }
+        },
+        {
+          "at": "2026-10-22T18:40:43.363714+00:00",
+          "label": "public facade delegates to unchanged internal formatter",
+          "files": {
+            "cmd/cycle/main.go": {
+              "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(consumer.Render(producer.Source{Value: \"alpha\"})) }\n"
+            },
+            "cmd/outside/main.go": {
+              "sha256": "7f04c1e878cd4e07c7a9603147c6134839252e087a5342b4b166e99efe6b0ab8",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/domain\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(domain.Format(\"beta\")) }\n"
+            },
+            "cycle/consumer/render.go": {
+              "sha256": "11b6e8220ee9210be66bd2f69a1e67ba8b32183869405e5355f1c90458461900",
+              "text": "package consumer\n\ntype Source interface{ Read() string }\n\nfunc Render(source Source) string { return \"[\" + source.Read() + \"]\" }\n"
+            },
+            "cycle/consumer/render_test.go": {
+              "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"testing\"\n)\n\nfunc TestPreservedRender(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := consumer.Render(producer.Source{Value: value})\n\t\twant := \"[\" + value + \"]\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Render(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "cycle/producer/source.go": {
+              "sha256": "8b7d6fba4b6d89017afef5adf1ec700987d1562dd04eafea2b4bfdce63a3dee9",
+              "text": "package producer\n\ntype Source struct{ Value string }\n\nfunc (s Source) Read() string { return s.Value }\n"
+            },
+            "domain/facade.go": {
+              "sha256": "50a9406022c40149d72f6296d40e14a99d7b95f1bf3b31a65dc1b1f3eb5dc0ed",
+              "text": "package domain\n\nimport \"finite.local/boundaries/domain/internal/format\"\n\nfunc Format(value string) string { return format.Record(value) }\n"
+            },
+            "domain/facade_test.go": {
+              "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d",
+              "text": "package domain_test\n\nimport (\n\t\"finite.local/boundaries/domain\"\n\t\"testing\"\n)\n\nfunc TestPublicFacade(t *testing.T) {\n\tif got := domain.Format(\" Ω \"); got != \"< Ω >\" {\n\t\tt.Errorf(\"public facade=%q; want %q\", got, \"< Ω >\")\n\t}\n}\n"
+            },
+            "domain/internal/format/format.go": {
+              "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1",
+              "text": "package format\n\nfunc Record(value string) string { return \"<\" + value + \">\" }\n"
+            },
+            "domain/internal/format/format_test.go": {
+              "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0",
+              "text": "package format_test\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"testing\"\n)\n\nfunc TestRecordBytes(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := format.Record(value)\n\t\twant := \"<\" + value + \">\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Record(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "domain/probe/probe.go": {
+              "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574",
+              "text": "package probe\n\nimport \"finite.local/boundaries/domain/internal/format\"\n\nfunc Local(value string) string { return format.Record(value) }\n"
+            },
+            "domain/probe/probe_test.go": {
+              "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649",
+              "text": "package probe_test\n\nimport (\n\t\"finite.local/boundaries/domain/probe\"\n\t\"testing\"\n)\n\nfunc TestInsideParent(t *testing.T) {\n\tif got := probe.Local(\"inside\"); got != \"<inside>\" {\n\t\tt.Errorf(\"inside caller=%q; want %q\", got, \"<inside>\")\n\t}\n}\n"
+            },
+            "go.mod": {
+              "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3",
+              "text": "module finite.local/boundaries\n\ngo 1.27.0\n"
+            }
+          }
+        },
+        {
+          "at": "2026-10-22T18:40:43.364362+00:00",
+          "label": "combined reference",
+          "files": {
+            "cmd/cycle/main.go": {
+              "sha256": "5ac157cdc64cb46a27bf8f84372c18e93ebc996e951dc87b824c202479cb5ba6",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(consumer.Render(producer.Source{Value: \"alpha\"})) }\n"
+            },
+            "cmd/outside/main.go": {
+              "sha256": "7f04c1e878cd4e07c7a9603147c6134839252e087a5342b4b166e99efe6b0ab8",
+              "text": "package main\n\nimport (\n\t\"finite.local/boundaries/domain\"\n\t\"fmt\"\n)\n\nfunc main() { fmt.Println(domain.Format(\"beta\")) }\n"
+            },
+            "cycle/consumer/render.go": {
+              "sha256": "11b6e8220ee9210be66bd2f69a1e67ba8b32183869405e5355f1c90458461900",
+              "text": "package consumer\n\ntype Source interface{ Read() string }\n\nfunc Render(source Source) string { return \"[\" + source.Read() + \"]\" }\n"
+            },
+            "cycle/consumer/render_test.go": {
+              "sha256": "0e29c346696b52fd229cb389a9b6b7a504912f93b021287baf317ccd3f60161d",
+              "text": "package consumer_test\n\nimport (\n\t\"finite.local/boundaries/cycle/consumer\"\n\t\"finite.local/boundaries/cycle/producer\"\n\t\"testing\"\n)\n\nfunc TestPreservedRender(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := consumer.Render(producer.Source{Value: value})\n\t\twant := \"[\" + value + \"]\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Render(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "cycle/producer/source.go": {
+              "sha256": "8b7d6fba4b6d89017afef5adf1ec700987d1562dd04eafea2b4bfdce63a3dee9",
+              "text": "package producer\n\ntype Source struct{ Value string }\n\nfunc (s Source) Read() string { return s.Value }\n"
+            },
+            "domain/facade.go": {
+              "sha256": "50a9406022c40149d72f6296d40e14a99d7b95f1bf3b31a65dc1b1f3eb5dc0ed",
+              "text": "package domain\n\nimport \"finite.local/boundaries/domain/internal/format\"\n\nfunc Format(value string) string { return format.Record(value) }\n"
+            },
+            "domain/facade_test.go": {
+              "sha256": "d7b9f28dcac906dd0efbd3d8e10863ab45f81ab385bd067523d0546b75df087d",
+              "text": "package domain_test\n\nimport (\n\t\"finite.local/boundaries/domain\"\n\t\"testing\"\n)\n\nfunc TestPublicFacade(t *testing.T) {\n\tif got := domain.Format(\" Ω \"); got != \"< Ω >\" {\n\t\tt.Errorf(\"public facade=%q; want %q\", got, \"< Ω >\")\n\t}\n}\n"
+            },
+            "domain/internal/format/format.go": {
+              "sha256": "b79fe6c45a8e9890e6d70a81c4cbf6feb49e9d60fb8a303e7e16bcfe3e848bc1",
+              "text": "package format\n\nfunc Record(value string) string { return \"<\" + value + \">\" }\n"
+            },
+            "domain/internal/format/format_test.go": {
+              "sha256": "13a7b0f44140b9e6815ebb6dcfd8428bcf06e69881613a7b5f793777e5a6aaa0",
+              "text": "package format_test\n\nimport (\n\t\"finite.local/boundaries/domain/internal/format\"\n\t\"testing\"\n)\n\nfunc TestRecordBytes(t *testing.T) {\n\tfor _, value := range []string{\"\", \" a \", \"λ\"} {\n\t\tgot := format.Record(value)\n\t\twant := \"<\" + value + \">\"\n\t\tif got != want {\n\t\t\tt.Errorf(\"Record(%q)=%q; want %q\", value, got, want)\n\t\t}\n\t}\n}\n"
+            },
+            "domain/probe/probe.go": {
+              "sha256": "7e237a3944188e0572f7a885dbab7b739ae6360e2583ce04d6f91effdf88c574",
+              "text": "package probe\n\nimport \"finite.local/boundaries/domain/internal/format\"\n\nfunc Local(value string) string { return format.Record(value) }\n"
+            },
+            "domain/probe/probe_test.go": {
+              "sha256": "68d092ef0527db22d1dae32c83be14002a47a49de409be63d6b64abedadeb649",
+              "text": "package probe_test\n\nimport (\n\t\"finite.local/boundaries/domain/probe\"\n\t\"testing\"\n)\n\nfunc TestInsideParent(t *testing.T) {\n\tif got := probe.Local(\"inside\"); got != \"<inside>\" {\n\t\tt.Errorf(\"inside caller=%q; want %q\", got, \"<inside>\")\n\t}\n}\n"
+            },
+            "go.mod": {
+              "sha256": "89ab5657e66cc580682a00e14e7b7e082dd87b47c44bde2609c872a74ce710e3",
+              "text": "module finite.local/boundaries\n\ngo 1.27.0\n"
+            }
+          }
+        }
+      ],
+      "cleanup": true,
+      "status": "expected observations recorded; method review pending",
+      "environment": {
+        "PATH": "$LOCAL_GO_BIN:/usr/bin:/bin",
+        "HOME": "$DISPOSABLE/home",
+        "GOCACHE": "$DISPOSABLE/cache",
+        "GOMODCACHE": "$DISPOSABLE/modcache",
+        "TMPDIR": "$DISPOSABLE/tmp",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "GOWORK": "off",
+        "GOFLAGS": "-mod=readonly",
+        "CGO_ENABLED": "0",
+        "GOTELEMETRY": "off"
+      },
+      "go_version": "go version go1.27.0 darwin/arm64",
+      "finished_at": "2026-10-22T18:40:46.778936+00:00"
+    }
+  ]
+}

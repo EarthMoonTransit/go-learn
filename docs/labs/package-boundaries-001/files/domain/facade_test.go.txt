@@ -1,0 +1,12 @@
+package domain_test
+
+import (
+	"finite.local/boundaries/domain"
+	"testing"
+)
+
+func TestPublicFacade(t *testing.T) {
+	if got := domain.Format(" Ω "); got != "< Ω >" {
+		t.Errorf("public facade=%q; want %q", got, "< Ω >")
+	}
+}

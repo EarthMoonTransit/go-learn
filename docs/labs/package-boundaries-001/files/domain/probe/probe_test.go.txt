@@ -1,0 +1,12 @@
+package probe_test
+
+import (
+	"finite.local/boundaries/domain/probe"
+	"testing"
+)
+
+func TestInsideParent(t *testing.T) {
+	if got := probe.Local("inside"); got != "<inside>" {
+		t.Errorf("inside caller=%q; want %q", got, "<inside>")
+	}
+}

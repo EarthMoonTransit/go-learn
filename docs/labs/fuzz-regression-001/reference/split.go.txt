@@ -1,0 +1,11 @@
+package fuzzregression
+
+import "strings"
+
+func SplitPair(s string) (left, right string, ok bool) {
+	index := strings.IndexByte(s, ':')
+	if index < 0 || strings.IndexByte(s[index+1:], ':') >= 0 {
+		return "", "", false
+	}
+	return s[:index], s[index+1:], true
+}

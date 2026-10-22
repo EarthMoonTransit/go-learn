@@ -1,0 +1,25 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-introductions-05-parallel-race-author",
+    "created_at": "2026-10-22",
+    "summary": "Original finite parallel-scheduling and native-race specimens; no external donor code, tests or prose."
+  },
+  "sources": [],
+  "content_digest": "78532c4270b2a194a6d7462fa691a93ffe48e4dcdde8847d3bf5bae73c718fff",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "a2a63de15a33bef25b9bd800dba7acf85b38c081859fcf9fbfd5cb66f7d28331",
+    "TASK.md": "302324e69b6354dbfb5a41b9be93c28c4e3cceee5ab99a1bf9c10cda94a06cfc",
+    "files/exercise.go.txt": "f401c74b2e84d0d9bb513623ac07bb07fa5c34394697d4384a18aeadf38c1c6c",
+    "files/exercise_test.go.txt": "0a060e1211c2f4ecb7934f4cbba4c22d3547a4653f6747a96eaef14845aaaa30",
+    "files/go.mod.txt": "7e3bdc715523f1380eef527926180f8063c07305468a40e4ab64517746c8f0c6",
+    "files/starter_cell.go.txt": "7b9022fa582cca539938dd337cfc244bb46acd2254213e336bed24ff01188156",
+    "reference/cell.go.txt": "109d2323055c950ea73599a738df9e7905275fc73d7d3d3d7a55ae4c4d06e8e9",
+    "wrong/main_only_fixed_cell.go.txt": "734815b53b9b763bcdc3fe4b8fc90ef240638fa59087e25bb0f1127abffa42e3",
+    "wrong/write_only_lock_cell.go.txt": "ed02ebf2c397eda9e01c8e11c3a27b711d002614b322f8d1f823c67dd363a89b"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

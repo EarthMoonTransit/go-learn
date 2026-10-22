@@ -1,0 +1,16 @@
+package format_test
+
+import (
+	"finite.local/boundaries/domain/internal/format"
+	"testing"
+)
+
+func TestRecordBytes(t *testing.T) {
+	for _, value := range []string{"", " a ", "λ"} {
+		got := format.Record(value)
+		want := "<" + value + ">"
+		if got != want {
+			t.Errorf("Record(%q)=%q; want %q", value, got, want)
+		}
+	}
+}

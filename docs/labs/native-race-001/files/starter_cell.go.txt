@@ -1,0 +1,18 @@
+package nativerace
+
+type cell struct{ value int }
+
+func (c *cell) load(fast bool) int {
+	if fast {
+		return c.value
+	}
+	return c.value
+}
+
+func (c *cell) store(value int, fast bool) {
+	if fast {
+		c.value = value
+		return
+	}
+	c.value = value
+}

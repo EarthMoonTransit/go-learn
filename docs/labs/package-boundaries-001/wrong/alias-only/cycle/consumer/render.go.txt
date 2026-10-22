@@ -1,0 +1,8 @@
+package consumer
+
+import "finite.local/boundaries/cycle/producer"
+
+type Record struct{ Value string }
+type Source = producer.Source
+
+func Render(source Source) string { return "[" + source.Read().Value + "]" }

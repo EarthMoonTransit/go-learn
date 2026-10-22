@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-22",
+  "batch": "I5",
+  "base": "e9e9ca854de593047e2790565a83c53397d21ec9",
+  "reviewer": "/root/reviewer",
+  "contract_decision": "All5exact manual source/commands preapproved, actual19copies66commands and method independently accepted; two component decisions accepted separately. Final batch gates/merge pending.",
+  "external_sources": [],
+  "manual_units": [
+    {
+      "id": "consumer-text-contract-001",
+      "path": "docs/labs/consumer-text-contract-001",
+      "source_decision": "Original ADR0008 manual unit; actual creation/digest, empty external sources, later actual release-commit binding; no upstream copying.",
+      "content_digest": "39e334be4ea517d9daec2c69ab7109ef2e5b020b58cad7e3af74896b88344842",
+      "review_evidence": "docs/labs/consumer-text-contract-001/review/independent-review.json"
+    },
+    {
+      "id": "package-boundaries-001",
+      "path": "docs/labs/package-boundaries-001",
+      "source_decision": "Original ADR0008 manual unit; actual creation/digest, empty external sources, later actual release-commit binding; no upstream copying.",
+      "content_digest": "28adc141dc61aa27d0f92a93cdba77e487c42b5d85f69fad48681161f586f441",
+      "review_evidence": "docs/labs/package-boundaries-001/review/independent-review.json"
+    },
+    {
+      "id": "parallel-subtests-001",
+      "path": "docs/labs/parallel-subtests-001",
+      "source_decision": "Original ADR0008 manual unit; actual creation/digest, empty external sources, later actual release-commit binding; no upstream copying.",
+      "content_digest": "7e7841b3984ea8e0a776b6e100924c744afe8707d75666f85fc323e2836aaf6e",
+      "review_evidence": "docs/labs/parallel-subtests-001/review/independent-review.json"
+    },
+    {
+      "id": "native-race-001",
+      "path": "docs/labs/native-race-001",
+      "source_decision": "Original ADR0008 manual unit; actual creation/digest, empty external sources, later actual release-commit binding; no upstream copying.",
+      "content_digest": "78532c4270b2a194a6d7462fa691a93ffe48e4dcdde8847d3bf5bae73c718fff",
+      "review_evidence": "docs/labs/native-race-001/review/independent-review.json"
+    },
+    {
+      "id": "fuzz-regression-001",
+      "path": "docs/labs/fuzz-regression-001",
+      "source_decision": "Original ADR0008 manual unit; actual creation/digest, empty external sources, later actual release-commit binding; no upstream copying.",
+      "content_digest": "b182d206be5b6855a532f737ac0fd3fd07621fe495c98d5d2b1d1eaaa75e43fb",
+      "review_evidence": "docs/labs/fuzz-regression-001/review/independent-review.json"
+    }
+  ],
+  "reuse": {
+    "id": "join-benchmark-001",
+    "component": "component-performance-experiment",
+    "commit": "e9e9ca854de593047e2790565a83c53397d21ec9",
+    "paths": [
+      "docs/labs/join-benchmark-001/PROCEDURE.md",
+      "docs/labs/join-benchmark-001/TASK.md",
+      "docs/labs/join-benchmark-001/files/starter_benchmark_test.go.txt",
+      "docs/labs/join-benchmark-001/files/subject.go.txt",
+      "docs/labs/join-benchmark-001/files/subject_test.go.txt",
+      "docs/labs/join-benchmark-001/provenance.json",
+      "docs/labs/join-benchmark-001/reference/benchmark_test.go.txt",
+      "docs/labs/join-benchmark-001/review/acceptance.md",
+      "docs/labs/join-benchmark-001/review/execution.json",
+      "docs/labs/join-benchmark-001/wrong/setup_inside_test.go.txt",
+      "docs/labs/join-benchmark-001/wrong/single_tiny_test.go.txt"
+    ],
+    "sha256": {
+      "docs/labs/join-benchmark-001/PROCEDURE.md": "8144cdf40c8e2545d8f4f43be38c0d6039776d5c45af49b23e6e1dc1f322da21",
+      "docs/labs/join-benchmark-001/TASK.md": "4c27ddb4a12c06130daa0a7a8367a02c0f7274baffc7c704923c55860ce50a3f",
+      "docs/labs/join-benchmark-001/files/starter_benchmark_test.go.txt": "bd36129b940dc0ed7a359eb7b03c10a46d1a4e77b94ec2056c7dd01478dd5185",
+      "docs/labs/join-benchmark-001/files/subject.go.txt": "de762221c56817a93720f53462f63eb5678e4cdf132d8df9772267e713a8b389",
+      "docs/labs/join-benchmark-001/files/subject_test.go.txt": "dd0020195373491cdc713534d1fc20041f19d47177e2f89ed1baa2d4b7ad918a",
+      "docs/labs/join-benchmark-001/provenance.json": "9594c9e6d74afbafd14281545a304f0875d15d26616e19737a572e6c1d3e8c2b",
+      "docs/labs/join-benchmark-001/reference/benchmark_test.go.txt": "7025b0d3198d6d3133bc214985f1898e52164cfc969b6f8059bc7502df67e010",
+      "docs/labs/join-benchmark-001/review/acceptance.md": "570b2805905f1881dd49d12bac5f2f416d194fd043d910289b1a69822e627f07",
+      "docs/labs/join-benchmark-001/review/execution.json": "7a6a40e9c91d3dced9fe28d7ebaa58030aa4cd6bdc2519ccc1bfdf0011f4fb17",
+      "docs/labs/join-benchmark-001/wrong/setup_inside_test.go.txt": "8b0162f4976bc1e48d4ad4b87e2cad8532194a0e084ee1d18e1ab136bf1ac499",
+      "docs/labs/join-benchmark-001/wrong/single_tiny_test.go.txt": "151741adcecb9b3c39cb2b342a11928afe1992bb61a6f1164daee7c7d33b30e4"
+    },
+    "provenance": "Preserve existing original manual provenance, native source/execution and first-encounter-only benchmark skill decisions.",
+    "decision": "Sole independent reviewer accepted unchanged integrated component evidence from I2; no independent benchmark applications added. Final I5 gates and merge remain separate."
+  },
+  "combined_component": {
+    "unit": "fuzz-regression-001",
+    "component": "component-regression-testing",
+    "decision": "Sole reviewer accepted actual integrated public-contract repair, meaningful retained ordinary Test and causal explanation. Supplied failure not discovery; reproduction remains first encounter only; no extra application credit.",
+    "review_evidence": "docs/labs/fuzz-regression-001/review/independent-review.json"
+  },
+  "incorporated_i4_head": "0241dbcdd56c1aefe63f7ab9ef66e308b92006b7"
+}

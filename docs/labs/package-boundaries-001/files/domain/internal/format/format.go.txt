@@ -1,0 +1,3 @@
+package format
+
+func Record(value string) string { return "<" + value + ">" }
