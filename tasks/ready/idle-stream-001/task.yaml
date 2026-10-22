@@ -1,0 +1,51 @@
+schema_version: 2
+id: idle-stream-001
+title: Finish a stream after a quiet interval
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: time.timers-tickers
+    secondary: []
+prerequisites:
+    - channels.close-semantics
+    - channels.operations-blocking
+    - channels.select
+    - functions.defer
+    - time.duration-arithmetic
+new_concepts:
+    - time.timers-tickers
+difficulty: basic
+estimated_time_minutes:
+    min: 20
+    max: 35
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - no-reset
+        - half-interval
+        - double-interval
+        - drop-zero
+        - deduplicate
+        - reverse-order
+        - false-on-close
+        - true-on-idle
+        - wait-on-close
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

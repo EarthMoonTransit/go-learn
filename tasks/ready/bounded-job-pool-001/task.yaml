@@ -1,0 +1,54 @@
+schema_version: 2
+id: bounded-job-pool-001
+title: Collect complete results from a bounded worker pool
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: channels.fan-out-in
+    secondary:
+        - goroutines.result-error-collection
+        - sync.waitgroup-lifecycle
+prerequisites:
+    - channels.ownership
+    - channels.pipeline
+    - channels.range-drain
+    - errors.propagation-context
+    - goroutines.launch-lifecycle
+    - goroutines.state-ownership
+new_concepts:
+    - channels.fan-out-in
+difficulty: basic
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - serial-workers
+        - unbounded-workers
+        - drop-result
+        - duplicate-index
+        - drop-error
+        - drop-value-with-error
+        - failfast-workers
+        - repeat-callback
+        - return-before-join
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

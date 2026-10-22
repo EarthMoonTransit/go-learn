@@ -2,8 +2,9 @@
 
 Base `94dc30a5e149e674e7312a7059029b41dcc336e7` (PR106 merge).
 Branch `codex/v1-introductions-03`; sole independent reviewer `/root/reviewer`.
-Actual automatic content/method and manual evidence accepted2026-10-22;
-final batch gates, final HEAD review and CI/merge remain separate.
+Accepted2026-10-22 after all local gates, independent final review and exact-head
+validate39828282621. PR107 merged as `2efeab7a05596a6591a35e649c332ba8e14153ac`
+from HEAD `e9e9ca854de593047e2790565a83c53397d21ec9`.
 
 | Unit | Actual assessment | Finite-v1 credit |
 | --- | --- | --- |
@@ -84,16 +85,27 @@ source lists. No schema, profile, runner, taxonomy or learner-state changes.
 ## Gates and checkpoint
 
 Conservative I3 start14:51:59UTC includes post-I2 reporting and branch transition.
-Content, review, local checks and overlap count once toward the four-hour checkpoint.
-No CI-only idle, sleep or user-wait exclusion has yet been claimed. Once fixture
-diagnosis/repair was content work; infrastructure diagnosis is conservatively
-bounded by15min including process cleanup, without production tooling. Rolling
-I1+I2+I3 infrastructure≤28m03, below60min/batch and2h/three-batches.
+Closed documented CI-only idle totals34m28s. I4 authoring from18:10:42 and I5 from
+18:32:29 overlap active work, with no further CI-idle exclusion. Available time
+at merge is 204.19min, below the four-hour checkpoint; concurrent work is
+not added twice. Once fixture repair did not expand tooling. Named CI-EVIDENCE-01
+required separate PR108 after the first CI lost its temporary failure collection:
+it only prints that existing collection on failure. Tooling local gates/review and
+validate39824630223 passed; merge0aeef21b1dd6dd28ebf97ac59614b63e5715ea47 preceded
+I3. Conservative infrastructure upper bound≤43min including separately recorded
+required tooling checks; rolling I1+I2+I3≤56m03, under both limits.
 
-The one stable209-package collection passed209/209 in18m27s
-(16:28:25–16:46:52UTC; childCPU33m08s). Quality and both numeric reports
-reuse it. Required fast/race/vet/integration and final validator/report checks
-are running; final results/merge are recorded in the PR and next checkpoint. Numeric full/foundation minima remain distinct
-from finite-v1 preparation; final exact-head review and greenvalidate must precede
-merge. The next batch keeps original introduction priority and difficult topics;
-no ordinary owner confirmation is required after acceptance.
+Stable209-package collection passed209/209 in18m27s and fed every validator/report
+consumer. All12 local acceptance steps passed by17:05:24UTC; workflow-only
+dependency retained task/checker inputs and all4 fresh209consumers passed again.
+Independent final review accepted exacte9e9ca8. First CI39817066682 failed its bank
+step without retained diagnostics; its cause remains unassigned. A documented
+GitHub incident later left PR head metadata stale; one close/reopen restored the
+correct head. Final validate39828282621 passed every gate, including the bank
+(18:35:29–18:48:48UTC) and report consumers, before merge. Master tree equals
+reviewed final HEAD. No timeout/failure or outage assumption is counted as success.
+
+Numeric full/foundation minima remain incomplete and distinct from finite-v1
+readiness. Accepted remainder is10original firsts,74applications,5components plus
+explicit repairs; human mastery is unknown. I4/I5 continue autonomously in their
+own branches with all gates and independent review.

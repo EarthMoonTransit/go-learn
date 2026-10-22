@@ -1685,6 +1685,41 @@
             "context.values-boundaries",
             "interfaces.type-assertions"
           ]
+        },
+        {
+          "number": 22,
+          "task_id": "bounded-job-pool-001",
+          "role": "introduction",
+          "skills": [
+            "channels.fan-out-in",
+            "goroutines.result-error-collection",
+            "sync.waitgroup-lifecycle"
+          ]
+        },
+        {
+          "number": 23,
+          "task_id": "recover-worker-001",
+          "role": "introduction",
+          "skills": [
+            "goroutines.panic-boundaries",
+            "errors.panic-recover-boundaries"
+          ]
+        },
+        {
+          "number": 24,
+          "task_id": "pipe-exchange-001",
+          "role": "introduction",
+          "skills": [
+            "io.pipe-lifecycle"
+          ]
+        },
+        {
+          "number": 25,
+          "task_id": "idle-stream-001",
+          "role": "introduction",
+          "skills": [
+            "time.timers-tickers"
+          ]
         }
       ],
       "number": 9
