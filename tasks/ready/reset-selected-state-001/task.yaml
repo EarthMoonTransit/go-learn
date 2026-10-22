@@ -1,0 +1,57 @@
+schema_version: 2
+id: reset-selected-state-001
+title: Reset selected states to exact zero values
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: types.zero-values
+    secondary: []
+prerequisites:
+    - control-flow.if
+    - control-flow.range
+    - functions.signatures-results
+    - maps.operations-comma-ok
+    - pointers.address-deref-nil
+    - pointers.mutation-sharing
+    - slices.header-model
+    - structs.copy-equality
+    - structs.literals-zero
+    - types.declarations-inference
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - range-copy-only
+        - reset-unselected
+        - skip-final-state
+        - keep-active-name
+        - allocated-empty-containers
+        - keep-target
+        - clear-old-slice
+        - clear-old-map
+        - clear-old-pointee
+        - count-nonzero-only
+        - erase-selection
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

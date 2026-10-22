@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-10-22"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-10-22"
+      actor: v1-m2-3-author
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-10-22"
+      actor: independent-reviewer-m2_2_review
+      reason: Bounded M2.3 source/content/public-feedback approval; current task-check gates and original provenance verified
+    - from: in-review
+      to: ready
+      at: "2026-10-22"
+      actor: independent-reviewer-m2_2_review
+      reason: Bounded M2.3 source/content/public-feedback approval; current task-check gates and original provenance verified

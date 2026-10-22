@@ -1,0 +1,24 @@
+package subject
+
+type State struct {
+	Count  int
+	Active bool
+	Name   string
+	Values []int
+	Labels map[string]int
+	Target *int
+}
+
+func ResetSelected(states []State, selected []bool) int {
+	count := 0
+	for i, yes := range selected {
+		if yes {
+			if states[i].Target != nil {
+				*states[i].Target = 0
+			}
+			states[i] = State{}
+			count++
+		}
+	}
+	return count
+}

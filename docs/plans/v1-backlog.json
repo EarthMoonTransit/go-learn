@@ -623,7 +623,9 @@
       "role": "independent-application",
       "existing_task_ids": [
         "composite-key-table-001"
-      ]
+      ],
+      "delivered_task_id": "first-pair-positions-001",
+      "delivery_batch": "M2.3"
     },
     {
       "slot": "independent-application:methods.method-sets",
@@ -739,7 +741,9 @@
       "role": "independent-application",
       "existing_task_ids": [
         "edit-rune-copy-001"
-      ]
+      ],
+      "delivered_task_id": "replace-rune-range-001",
+      "delivery_batch": "M2.3"
     },
     {
       "slot": "independent-application:structs.field-visibility-tags",
@@ -899,7 +903,9 @@
       "role": "independent-application",
       "existing_task_ids": [
         "month-enumeration-001"
-      ]
+      ],
+      "delivered_task_id": "iota-layout-tests-001",
+      "delivery_batch": "M2.3"
     },
     {
       "slot": "independent-application:types.named-underlying",
@@ -907,7 +913,9 @@
       "role": "independent-application",
       "existing_task_ids": [
         "named-block-001"
-      ]
+      ],
+      "delivered_task_id": "named-step-conversion-001",
+      "delivery_batch": "M2.3"
     },
     {
       "slot": "independent-application:types.zero-values",
@@ -915,7 +923,9 @@
       "role": "independent-application",
       "existing_task_ids": [
         "zero-results-001"
-      ]
+      ],
+      "delivered_task_id": "reset-selected-state-001",
+      "delivery_batch": "M2.3"
     }
   ],
   "components": [
@@ -945,12 +955,12 @@
     }
   ],
   "delivery": {
-    "batch": "M2.2",
-    "route_lessons_after": 186,
+    "batch": "M2.3",
+    "route_lessons_after": 191,
     "first_encounters_remaining": 28,
-    "independent_applications_remaining": 82,
+    "independent_applications_remaining": 77,
     "component_slots_remaining": 6,
-    "note": "Five distinct independent applications on existing fixed/mutation profiles. Earlier deliveries retained; no full-bank or human-mastery claim."
+    "note": "Five distinct independent applications on existing fixed/workspace/mutation profiles. Earlier deliveries retained; no full-bank or human-mastery claim."
   },
   "delivery_history": [
     {
@@ -968,6 +978,14 @@
       "independent_applications_remaining": 87,
       "component_slots_remaining": 6,
       "note": "Five distinct independent-application tasks, not whole-skill/full-bank or human-mastery evidence. Prior M1 record retained in delivery_history."
+    },
+    {
+      "batch": "M2.2",
+      "route_lessons_after": 186,
+      "first_encounters_remaining": 28,
+      "independent_applications_remaining": 82,
+      "component_slots_remaining": 6,
+      "note": "Five distinct independent applications on existing fixed/mutation profiles. Earlier deliveries retained; no full-bank or human-mastery claim."
     }
   ]
 }

@@ -1,0 +1,51 @@
+schema_version: 2
+id: named-step-conversion-001
+title: Convert between distinct named scalar types
+activity: debugging
+submission:
+    kind: workspace-patch
+    editable_paths:
+        - subject/bindings.go
+    workspace_skeleton:
+        - subject/api.go
+skills:
+    primary: types.named-underlying
+    secondary: []
+prerequisites:
+    - expressions.arithmetic
+    - functions.signatures-results
+    - types.declarations-inference
+    - types.numeric-conversions
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 15
+    max: 30
+verification:
+    profile: workspace-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - reading-alias
+        - step-alias
+        - same-defined-type
+        - wide-reading
+        - wide-step
+        - ignore-step
+        - subtract-step
+        - unsigned-step
+        - result-is-step
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
