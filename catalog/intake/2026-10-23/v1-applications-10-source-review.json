@@ -1,0 +1,463 @@
+{
+  "batch": "I10",
+  "status": "Six actual units and integration accepted; stable230collection passed; final delivery pending",
+  "base": "8f671dd8619148a7f6b56842388a1fa22d912c74",
+  "new_automatic_tasks": [
+    {
+      "id": "classified-stage-errors-001",
+      "path": "tasks/ready/classified-stage-errors-001",
+      "content_digest": "6c695bfeb4522b91be25d15a34b94b4edecdfbe63ad2b8e9cf29b83050770dbd",
+      "source_decision": "Original task-init ADR0008 creation, empty external sources; release binding deferred."
+    },
+    {
+      "id": "buffered-word-stream-001",
+      "path": "tasks/ready/buffered-word-stream-001",
+      "content_digest": "5ffa425e217cad81baaeb0caaa9c3f2bd5627122ff504325f7ee8bea3d2f3217",
+      "source_decision": "Original task-init ADR0008 creation, empty external sources; release binding deferred."
+    },
+    {
+      "id": "json-record-patch-001",
+      "path": "tasks/ready/json-record-patch-001",
+      "content_digest": "3be68a65959f1fccc7cf5cfe72d5cbe35a4b9434a4fa20967ac120d65bdd1997",
+      "source_decision": "Original task-init ADR0008 creation, empty external sources; release binding deferred."
+    },
+    {
+      "id": "periodic-budget-001",
+      "path": "tasks/ready/periodic-budget-001",
+      "content_digest": "931d3c219d660a8256c40a8a25fbc070a49917a9bd571a0bab1af21d94edaabb",
+      "source_decision": "Original task-init ADR0008 creation, empty external sources; release binding deferred."
+    }
+  ],
+  "new_manual_units": [
+    {
+      "id": "workspace-artifact-consistency-001",
+      "path": "docs/labs/workspace-artifact-consistency-001",
+      "content_digest": "f415ff6b46e8420172a3e39f16ecdbc6799a3e856f8cf8ae16fc58c89147e1ac",
+      "automatic_coverage_credit": false
+    },
+    {
+      "id": "run-compaction-fuzz-001",
+      "path": "docs/labs/run-compaction-fuzz-001",
+      "content_digest": "a256a2f7db9f68b3c27578bc6da74a85d95a85574fa99d3e5200fb133bc04fa7",
+      "automatic_coverage_credit": false
+    }
+  ],
+  "actual_content_reviews": {
+    "timer-scanner-content-review.json": {
+      "decision": "approve",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T07:22:46.410959+00:00",
+      "scope": "actual source, public feedback, method and finite execution acceptance; promotion/integration/final gates remain separate",
+      "findings": [],
+      "reviewer_execution": "Read-only source and retained evidence review, no authored Go/tests executed.",
+      "units": {
+        "periodic-budget-001": {
+          "content_digest": "931d3c219d660a8256c40a8a25fbc070a49917a9bd571a0bab1af21d94edaabb",
+          "decision": "approve",
+          "canonical_sha256": "8567cc4571e776aec376c4bb9f33d0ab67cfdad8b4d0117ea9e163d5ae287d32",
+          "accepted_applications": [
+            "time.timers-tickers",
+            "time.duration-arithmetic"
+          ],
+          "method": [
+            "Own one Ticker and independent unreset budget Timer; current elapsed from entry origin and remaining subtraction, synchronous callbacks, no callback at expired budget, both Stop deferred on all returns.",
+            "Public synctest observations use owned timer advancement, record channels/atomics, release held callback before cleanup; finite wrong loops retain budget or callback-stop escape. No held mutex/Once, no fatal path bypasses release.",
+            "Delayed callback distinguishes actual entry time from tick count/timestamp; period>budget and held-beyond-budget exercise separate budget. No select priority or all missed ticks demanded.",
+            "Now.Sub and helper cleanup are valid controls. Omit-Stops passes finite behavior but fails actual ownership checklist; no automatic timer-leak/GC claim."
+          ]
+        },
+        "buffered-word-stream-001": {
+          "content_digest": "5ffa425e217cad81baaeb0caaa9c3f2bd5627122ff504325f7ee8bea3d2f3217",
+          "decision": "approve",
+          "canonical_sha256": "d7bab6402117231abc2d4166de9ef2a8651451f7341d803ee4bf669a92fff8ac",
+          "accepted_applications": [
+            "io.scanning",
+            "io.buffered"
+          ],
+          "method": [
+            "Learner configures Scanner/ScanWords and token bound, immediately writes each accepted token to a fresh own bufio.Writer, stops after Write error, always attempts own final Flush, and preserves write/flush-before-scan error identity.",
+            "Public cases exercise64-byte UTF8 tokens/1024 rejection, terminal bytes+error, partial accepted prefix, below16-byte buffered phase, nested caller buffer ownership, final short write, and reads only after actual destination failure. Streams remain open.",
+            "Zero Writer.Reset and writer-only wrapped32-byte/64KiB buffers are valid; Scanner128/512 alternatives pass. Tests impose no intermediate capacity-gap rule or read-ahead count.",
+            "Private bytes.Buffer staging passes finite behavior but fails required bufio.Writer streaming method; no method credit from API mentions alone."
+          ]
+        }
+      },
+      "author_receipt_sha256": "ce3947a3d257ce52ee1eca5c3a23ec45ca6efbc0c5bab72fe54f486a2ac07950",
+      "fixture_script_sha256": "98165be7367c540007fe21880f8448774d2ac5ff3f5f596d289bd8ab1d953105",
+      "counts": {
+        "canonical_pass": 2,
+        "public_reference_pass": 2,
+        "ordinary_public_wrong_assertions": 32,
+        "correct_public_and_full_pass": 8,
+        "method_wrong_behavior_public_and_full_pass": 4,
+        "fixtures_removed": 46,
+        "timeouts": 0,
+        "invalid_failure_credit": 0
+      },
+      "evidence_checks": [
+        "All58 task source hashes, six controls, two canonical report hashes and all46 fixture report hashes independently matched. All fixture roots removed.",
+        "32 copied public-only wrong references show required ordinary assertion text. Remaining14 reference/correct/method controls pass as declared. Scanned full retained reports for fatal/panic/DATA RACE/compile/timeout; none credited.",
+        "Canonical required mutants14/14 and18/18; timer race/vet/determinism pass, scanner vet/determinism pass with race not required."
+      ],
+      "boundaries": [
+        "Exactly four application actions across two tasks. No extra component/cancellation/ownership skill credit, automatic method proof or learner mastery.",
+        "Promotion, stable collection, final exact HEAD review and all mandatory local/CI gates remain required."
+      ]
+    },
+    "errors-content-review.json": {
+      "decision": "approve",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T07:22:46.410959+00:00",
+      "scope": "actual source, public feedback, method and finite execution acceptance; promotion/integration/final gates remain separate",
+      "findings": [],
+      "reviewer_execution": "Read-only source and retained evidence review, no authored Go/tests executed.",
+      "unit": "classified-stage-errors-001",
+      "content_digest": "6c695bfeb4522b91be25d15a34b94b4edecdfbe63ad2b8e9cf29b83050770dbd",
+      "author_receipt_sha256": "dfac321b4f7e728d184f487dae85345df28f3b00c5db668fef05d065f6be40ef",
+      "canonical_report_sha256": "a06749b87ba7007d092fc8bd741b952af81b23b188d3166db144d4b8d7e34159",
+      "counts": {
+        "source_files_verified": 33,
+        "controls_verified": 2,
+        "canonical_mutants_detected": 20,
+        "credited_fixtures": 25,
+        "ordinary_public_diagnostics": 20,
+        "passing_reference_controls": 5
+      },
+      "source_method_checks": [
+        "Own synchronous once/in-order stage loop stops at first error and preserves its value; empty/success remains zero error classification.",
+        "Learner implements context representation and methods from empty private stubs, selects direct exposed cause versus opaque boundary, constructs exact Error() text, then calls standard errors.Is/errors.As on returned error. Supplied sentinel and Detail do not earn authored-design credit.",
+        "Public cases independently cover literal context, Formatter-versus-Error distinction, direct cause identity, opaque classification, custom Is/As, later joined branch, first-match identity and typed-nil success. Grader extends bounded trees/stage positions.",
+        "Correct lazy context/helper alternative passes both scopes. Manual traversal handles finite behavior but is rejected against required standard Is/As method."
+      ],
+      "evidence_checks": [
+        "All 33 task files and two controls match frozen hashes. Canonical20/20 plus all25 credited report hashes, ordinary reference-full failure text, expected diagnostic and actual cleanup verified. No compile/panic/fatal/race/timeout detection credited.",
+        "Two original late opaque diagnostics were clipped; retained uncredited. Two disposable follow-ups move exactly the existing final TestOpaqueBoundary declaration before other tests, retaining every assertion/input; inspected fixed transform and successful ordinary diagnostics. Repository task bytes unchanged."
+      ],
+      "accepted_applications": [
+        "errors.wrapping",
+        "errors.is",
+        "errors.as"
+      ],
+      "boundaries": [
+        "Three application actions only; no supplied sentinel/Detail credit, automatic method proof or learner mastery.",
+        "Author precheck metadata does not replace this acceptance or final exact HEAD review."
+      ]
+    },
+    "json-content-review.json": {
+      "decision": "approve",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T07:23:38.356755+00:00",
+      "unit": "json-record-patch-001",
+      "scope": "actual final source/public feedback/method/evidence acceptance; final delivery gates separate",
+      "content_digest": "3be68a65959f1fccc7cf5cfe72d5cbe35a4b9434a4fa20967ac120d65bdd1997",
+      "author_receipt_sha256": "ec742ad3b96ccb413c0bb1ff47c7c683688f301194b8f0a33d6a1e9cb95e3564",
+      "canonical_report_sha256": "d4ad93f14d1fc8f04d54310810b67f1a6f378e86f817967be7760718185634e6",
+      "findings": [],
+      "counts": {
+        "verified_source_files": 50,
+        "verified_control_files": 4,
+        "canonical_required_mutants": 16,
+        "current_fixtures": 21,
+        "ordinary_public_diagnostics": 16,
+        "passing_reference_controls": 5
+      },
+      "source_method_checks": [
+        "Empty private recordState starter supplies no fields/tags. Learner declares exported Label/Quantity, private secret, New/accessors, and real subject consumer accesses model exports plus Secret/New across package boundary. Field visibility is not inferred from JSON tags alone.",
+        "Own typed optional pointer struct distinguishes absent/null from explicit empty/zero. Unmarshal failure returns original base before applying partial values; successful reconstruction preserves secret. Encode marshals declared model and never leaks secret.",
+        "Public guarded declaration tests assert concrete required export/tag/private shape without panic or compile-based detection. Wire tests compare parsed keys/values, preserving spelling/order freedom. Grader adds finite Unicode/number combinations.",
+        "Final harness uses external subject_test for all assertions and ./subject selectors, retaining imported model implementation and cross-package use. No assertion or implementation scope lost. Earlier multi-package order failure and superseded v1 fixtures retained without current credit.",
+        "Correct omitzero and anonymous-struct alternative passes public/full. Map-based consumer passes finite behavior but violates explicit learner-struct method and is method-rejected."
+      ],
+      "evidence_checks": [
+        "All50 final source hashes and four control hashes independently verified. Canonical-v5 all gates/16mutants and21 final-v2 report hashes verified. Each16 wrong variants produces required ordinary public reference failure, with no runtime/compile/timeout detection credit.",
+        "All21 disposable roots removed; two correct and two method controls plus public reference pass. Current acceptance uses only final single-test-package harness evidence."
+      ],
+      "accepted_applications": [
+        "encoding.json-shape-tags",
+        "structs.field-visibility-tags"
+      ],
+      "boundaries": [
+        "Exactly two application actions. No extra imported-package, interface, component, automatic method or learner mastery credit.",
+        "Promotion, stable collection, final exact HEAD review and mandatory local/CI gates remain required."
+      ],
+      "reviewer_execution": "Read-only source/evidence verification; no authored Go/test execution."
+    },
+    "workspace-actual-review.json": {
+      "decision": "approve",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T06:24:56.264590+00:00",
+      "unit": "workspace-artifact-consistency-001",
+      "scope": "actual manual source/method/execution acceptance; final batch gates separate",
+      "content_digest": "f415ff6b46e8420172a3e39f16ecdbc6799a3e856f8cf8ae16fc58c89147e1ac",
+      "script_sha256": "cd0cb15eb2de189364d0638ad8866788b063f37d0981e9d10833afec687ae08a",
+      "manifest_sha256": "53e9fb6d0ee0b12d83c2e9e75ec9d9c799b7c723d87d2e826c7753bdb9b13594",
+      "raw_execution_sha256": "183b64428ac768ac342a67101a8397a940a9a414d3a57f58dae8d58b70963d50",
+      "normalized_execution_sha256": "fe0edc5c973912892a3579b10b38624b787fc24572ee41900e38b0a934d281a4",
+      "findings": [],
+      "verified_counts": {
+        "unchanged_assets": 15,
+        "fresh_removed_copies": 5,
+        "commands": 60,
+        "snapshots": 73,
+        "ordinary_failures": 5,
+        "native_missing_local_module_failure": 1,
+        "timeouts": 0,
+        "runtime_failures": 0,
+        "max_command_seconds": 3.480459
+      },
+      "checked": [
+        "Source inventory/digest/script/manifest match exact preapproval, which precedes execution. All 60 argv/cwd/GOWORK bindings and private offline environments match the fixed recipe.",
+        "Independently replayed copied source and exact go.work/go.mod edits into all 73 snapshots. Only reviewed graph/label edits occurred; each generated binary hash stayed unchanged except at explicit builds. Raw/normalized evidence differs only by declared path substitutions.",
+        "Actual core/shadow module selection, workspace masking and GOWORK=off discrepancy precede relative replace repair; both modes then pass. Separate missing local directory fails natively and repair passes.",
+        "Reference, stale-artifact and valid alternate show identical old hash and before output after source label edit. go run prints after while retained artifact stays unchanged; explicit rebuild changes hash and output.",
+        "The ../core/. replacement and app-directory standalone build alternate pass without imposing one textual solution. Stale executable exit0 is rejected as a refreshed-artifact method claim, not as an imagined command failure."
+      ],
+      "accepted_manual_applications": {
+        "primary": "toolchain.modules-workspaces",
+        "secondary": [
+          "toolchain.build-run"
+        ]
+      },
+      "boundaries": [
+        "Exactly modules-workspaces and build-run applications; no automatic coverage, extra component or learner mastery.",
+        "No authored task execution by reviewer; read-only receipt/source checks only.",
+        "Integration, final exact HEAD review and mandatory local/CI gates remain required."
+      ]
+    },
+    "fuzz-actual-review.json": {
+      "decision": "approve",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T06:20:16.074330+00:00",
+      "unit": "run-compaction-fuzz-001",
+      "scope": "actual source, finite native execution and manual application method acceptance; final batch gates separate",
+      "content_digest": "a256a2f7db9f68b3c27578bc6da74a85d95a85574fa99d3e5200fb133bc04fa7",
+      "script_sha256": "c2ff46f4c899deadb4edeb8cee4c509636eb408da4bd5ab1461dc791d539aba8",
+      "manifest_sha256": "19c78dc2e62d0e5ce49fff6cf3d8f60fb7f17f6155ad47211be34714278a9c00",
+      "raw_execution_sha256": "5f88b8e1a757a0171cc94dd7e02dde501abf145f65c3eb2187844eb91ab1bdf6",
+      "normalized_execution_sha256": "7d93598fe7f573574f9db084383040fcad8b287840e0f4b3455d1e99f0cae618",
+      "findings": [],
+      "verified_counts": {
+        "unchanged_assets": 21,
+        "fresh_copies": 10,
+        "commands": 47,
+        "snapshots": 53,
+        "ordinary_nonzero": 13,
+        "roots_removed": 10,
+        "timeouts": 0,
+        "runtime_failures": 0,
+        "max_command_seconds": 2.68256
+      },
+      "checks": [
+        "All assets match preapproved provenance, script and manifest; actual approval hash precedes first execution. All 47 argv sequences equal the finite manifest, pinned Go1.27.0 darwin/arm64 and private/offline/readonly environment retained.",
+        "Independently replayed every copy event from exact source bytes into all 53 source snapshots; all states/hash/text match. Ten distinct roots are removed. Public normalized receipt is exactly raw observations with declared path substitutions only.",
+        "Observed aaabbba, aabba, aba fail with expected ab versus aba; ab/aa/ba pass. This finite manual reduction sequence and separate mathematical length argument support reproduction, without automatic minimization or random discovery.",
+        "Reference native corpus and ordinary Test are installed while compact.go remains broken; each isolated command fails. Only production is repaired, then the identical corpus and Test separately pass, followed by full tests.",
+        "Learner owns complete native byte target/seeds, original-input run-boundary oracle, preservation and supplemental idempotence. Reference uses last output comparison; alternative run-end oracle passes. Supplied fixed tests do not earn target authorship credit.",
+        "Five other concrete production defects each fail target-only ordinary assertions and pass after exact repair. Weak target and log-only regression succeed on broken code but unchanged stronger oracle/corpus exposes it; false global-uniqueness property rejects correct code and is explicitly invalid oracle evidence.",
+        "Both bounded native1x outputs report only baseline1/10 completed and PASS. Full ordinary test runs and individual seed/corpus commands are separate executed evidence; no mutation phase or exhaustive baseline claim is made."
+      ],
+      "accepted_manual_applications": {
+        "primary": "fuzzing.targets-seeds",
+        "secondary": [
+          "fuzzing.invariants",
+          "fuzzing.reproduction"
+        ]
+      },
+      "boundaries": [
+        "Exactly three fuzz application actions proposed by approved contract; no additional skill, component, automatic coverage or learner mastery credit.",
+        "Correct alternate starts from repaired production; generic before-repair helper label is not evidence of causal failure for that specimen. Causal before/after claim is established by reference specimen.",
+        "Thirteen nonzero results include invalid-oracle control; they are not thirteen distinct production defects.",
+        "Delivery remains conditional on integration, final diff/exact HEAD review and all mandatory local/CI gates."
+      ],
+      "reviewer_execution": "Read-only sources and data checks; no authored Go or native recipe executed."
+    }
+  },
+  "contract_reviews": {
+    "root-contract-review.json": {
+      "decision": "approve-bounded-contracts",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T06:03:02.678628+00:00",
+      "scope": "I10 two original manual contracts before authoring; no readiness credit",
+      "proposal_sha256": "1c1dc676e9180fb36b49f1c1fe59da3eecd2b2bd044bf8f7938b9dbd041d00b8",
+      "base_inspected": "8a34aa90fbf07387c79b849587973917d22c4d62",
+      "findings": [],
+      "units": {
+        "workspace-artifact-consistency-001": {
+          "decision": "approve",
+          "task_words": 142,
+          "proposed_applications": [
+            "toolchain.modules-workspaces",
+            "toolchain.build-run"
+          ],
+          "substantive_distinction": "First lab creates two modules/workspace and intended executable. This learner diagnoses selection disagreement hidden by a workspace override, repairs the standalone relative replace, then distinguishes retained binary from source rebuilt by go run and explicitly refreshes the intended executable. These are separate actual decisions beyond repeating first commands.",
+          "actual_agency": "Only learner edits go.work/app go.mod/permitted label and selects reviewed package/mode commands; supplied Double/app assertions/source layout earn no algorithm/test/package authorship credit. Workspace success alone cannot satisfy standalone correctness.",
+          "finite_evidence": "Require actual wrong result, workspace selection output/pass, GOWORK=off discrepancy/fail, same standalone repair pass and both modes. Retain before/after metadata. Build old-label executable/hash, change only source label, demonstrate old executable still old while go run new, explicitly rebuild and execute new. Successful stale-binary exit is evidence of stale state, not false process failure. Independent wrong workspace-only/replacement/stale controls and permitted layout equivalent remain bounded manifest cases.",
+          "placement": "After accepted docs/labs/modules-build-001 and earlier basic package/import preparation. Module-selection action precedes artifact comparison within unit; no new first or inferred package credit."
+        },
+        "run-compaction-fuzz-001": {
+          "decision": "approve",
+          "task_words": 149,
+          "proposed_applications": [
+            "fuzzing.targets-seeds",
+            "fuzzing.invariants",
+            "fuzzing.reproduction"
+          ],
+          "substantive_distinction": "Learner owns entire deterministic target and finite seed classes for a lossy operation, independent adjacent-input-boundary oracle and rejection of insufficient/false properties. Actual reduction of authored separated-repeat seed plus corpus and ordinary retained regression differs from supplied hex callbacks and already-minimized double-colon first. Three claims require these separate actual actions, not the same supplied seed counted three times.",
+          "actual_agency": "Build semantic expected runs from preserved original input; do not use production output/reapplication as sole oracle. Preserve original before calling, assert input unchanged, use idempotence as supplementary property. Repaired production may compare to last emitted byte; alternative oracle traverses input run ends. Source review must establish independence, not just matching output.",
+          "finite_evidence": "Execute aaabbba, aabba, aba failures under identical meaningful oracle before repair; execute shorter ab,aa,ba passing controls. Minimality for lengths<3 is separately explained, not claimed exhaustive from three cases. Retain native corpus aba and ordinary Test before source fix; separately replay both failure-before/pass-after with unchanged assertions/corpus. Weak idempotence/no-adjacent-only target passes broken global uniqueness and is method-rejected; false global-uniqueness property fails correct aba and is rejected; log-only Test passes but independent corpus still catches broken source. Other listed production defects must fail ordinary useful target/seed assertions; valid alternate target passes.",
+          "native_boundary": "Existing approved finite manual procedure permits analogous bounded native go test/fuzz recipe after exact source/argv/env review. -fuzztime=1x may exercise only baseline seeds; actual output must be reported honestly, with no random discovery, mutation coverage or automated minimizer claim. Corpus file and ordinary replay are explicit owned actions, not generated engine features.",
+          "placement": "After hex-seed-classes-001, hex-wire-invariants-001 and docs/labs/fuzz-regression-001; target/seed and invariant actions precede reproduction/reduction within unit. Existing basic slice/byte/test skills remain prerequisites, no additional implementation/testing component credit."
+        }
+      },
+      "source_decision": "Original local tasks, empty external sources and real creation/content digest. Earlier firsts are unchanged preparation/comparison; no donor copying or reference-only reuse. Exact inventory, permitted edits, source/script hashes and finite copy/argv counts still require separate preexecution review.",
+      "batch_boundary": "Two of six planned I10 units, five proposed manual applications only if actual source/evidence later accepted. No automatic coverage, new first, full-bank or learner mastery claim. Same conservative05:55:54.897979–09:55:54.897979UTC clock/no deductions; committed I9 integration and dependency delivery gates unchanged.",
+      "reviewer_execution": "Read-only planning/taxonomy/first-source inspection; no authored Go or native recipe executed; requested ignored receipt only."
+    },
+    "timer-scanner-contract-review.json": {
+      "decision": "approve-bounded-contracts",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T06:12:03.596533+00:00",
+      "proposal_sha256": "2c58b410cba6412ec3b9a8689637c1282c90290922b18cb6591d5450de21920c",
+      "findings": [],
+      "units": {
+        "periodic-budget-001": {
+          "decision": "approve",
+          "applications": [
+            "time.timers-tickers",
+            "time.duration-arithmetic"
+          ],
+          "distinctness": "One periodic Ticker plus independent total budget and actual elapsed/remaining measurements after delayed callbacks differ from inactivity reset and minute truncation firsts. Duration parameters alone are not credit.",
+          "finite_matrix": "Owned test NewTimers advance synctest time; held callback release independently precedes cleanup. Slow callback observation distinguishes time.Now/Since elapsed from tick count/timestamp without demanding every missed tick. Expired callback guard handles co-ready budget/tick without priority assumptions. Every wrong variant retains either original finite budget or callback-stop rescue; bounded cleanup must be verified in actual source/receipts.",
+          "method": "Actual one Ticker/one unreset budget Timer with synchronous callbacks and Stop on every exit; omitted stops are behavior-pass method-reject, not automated leak proof. Different elapsed expression/helper/cleanup layouts allowed.",
+          "placement": "After duration-rounding and idle-stream with select/constants/function/defer prerequisites; primary first is earlier preparation, not a self-prerequisite."
+        },
+        "buffered-word-stream-001": {
+          "decision": "approve",
+          "applications": [
+            "io.scanning",
+            "io.buffered"
+          ],
+          "distinctness": "Learner owns Scanner ScanWords/limit/error iteration and a fresh buffer layer, unlike supplied scanner tests and flushing caller-owned buffer first. Final accepted prefix plus scan/write/flush precedence and nested-buffer ownership are separate actual decisions.",
+          "finite_matrix": "Accept64-byte ASCII/UTF8 and reject1024-byte token;65..1023 behavior unspecified. Test actual terminal accepted word and original reader error. Short output<16 permits preflush phase observation; caller-buffer capacity is chosen large enough to distinguish fresh layer from reuse without forbidding natural downstream auto-flush. Stop-read assertion applies only after observed Write failure, so larger correct buffers passing through final Flush remain valid.",
+          "method": "Own fresh bufio.Writer even around buffered dst; Reset on zero writer or constructor over writer-only wrapper valid. Configure Scanner, do not collect all words, always final Flush, exact write/flush error before scanner error. Private bytes.Buffer staging can pass behavior but fails required buffering/streaming method; no AST/checker extension.",
+          "placement": "After buffered-flush, scan-lines-tests and I9IO transfers; active io/byte-rune/error/defer/loop prerequisites as proposed."
+        }
+      },
+      "source_pins": "All16 preparation path hashes independently match immutable8a34aa9 and current unchanged files. Facts from local Go source only, not donor content; original ADR0008 sources[] required.",
+      "remaining": "Authoring permitted; actual exact source/public-only diagnostics/canonical controls and method review required before promotion/readiness. Same six-unit scope and original I10clock; existing task-check disposable isolation and all final gates retained. No advance credit.",
+      "reviewer_execution": "Read-only contracts/taxonomy/first pins; requested ignored receipt only."
+    },
+    "errors-json-contract-review.json": {
+      "decision": "approve-bounded-contracts",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T06:12:03.596533+00:00",
+      "proposal_sha256": "adc8ca39ce1c413432ff7491ad01e604809764b298303716d65cab298a385ec4",
+      "findings": [],
+      "units": {
+        "classified-stage-errors-001": {
+          "decision": "approve",
+          "applications": [
+            "errors.wrapping",
+            "errors.is",
+            "errors.as"
+          ],
+          "distinctness": "Learner owns operation loop, direct exposed versus opaque cause boundary and classification of the returned error. This goes beyond one transparent wrapper/Is forwarding and supplied As implementation; opaque policy prevents raw-cause classification from earning false credit.",
+          "method_and_matrix": "Return exact failure value/text, expose direct cause only when policy permits, then standard errors.Is/errors.As on returned error. Ordinary finite matrix checks custom matching, joined left-first detail identity, typed-nil boolean success independent from nil pointer, same-message nonidentity and no-match/success. Nil-safe supplied Detail avoids panic evidence. Equivalent private transparent/opaque types and classification helper valid. Manual tree traversal may behavior-pass but is method-rejected for omitting required standard calls.",
+          "placement": "After three actual wrapping/Is/As firsts and supplied typed-error/propagation/struct/pointer/function preparation; no extra typed-design/sentinel/callback applications."
+        },
+        "json-record-patch-001": {
+          "decision": "approve",
+          "applications": [
+            "encoding.json-shape-tags",
+            "structs.field-visibility-tags"
+          ],
+          "distinctness": "Credit requires actual learner-owned exported Label/Quantity, private secret/tags and consumer package typed field selectors plus Secret accessor. Frozen field-visibility outcome is cross-package export use, not tags alone. Empty private recordState starter must not supply mechanism; if supplied during authoring, field-visibility credit remains open.",
+          "method_and_matrix": "Optional struct pointers preserve absent/null but allow explicit empty/zero; json.Unmarshal errors return original base atomically. Unknown/private input ignored, secret preserved; model tags keep label always and omit qty exactly zero. Reflect guards prevent missing/private-field mutants causing panic, and wrong subject overlays adapt via existing API to remain compilable. Public assertions compare parsed object semantics, not JSON spelling/order.",
+          "valid_controls": "Anonymous optional struct and omitzero versus omitempty on plain int accepted. Map-based decode/encode may behavior-pass while violating explicit struct-consumer method and is method-rejected. No invented null/absent internal representation or source checker.",
+          "placement": "After package-inventory and json-field-shape with struct/import/method/pointer/io prerequisites; no additional package-design/strict-streaming application."
+        }
+      },
+      "source_and_execution": "Original task-init/ADR0008 provenance with sources[]; firsts comparison only. Existing fixed-tests/workspace-tests, no new profiles/schema/AST/runner. Exact source and ordinary public diagnostics, correct controls, behavior-pass method-reject receipts and independent actual acceptance remain required.",
+      "batch_boundary": "Two of six I10 units, five proposed applications only after actual acceptance; no advance credits. Same I10clock/dependency/integration/final gates.",
+      "reviewer_execution": "Read-only proposals/frozen taxonomy; requested ignored receipt only."
+    }
+  },
+  "provenance_rule": "Original project identity/creation/digest and empty external sources; release manifest binds actual commit, never invented.",
+  "scope_boundary": "14applications, no extra skills/components/manualautomaticcoverage or mastery.",
+  "integration_review": {
+    "schema_version": 1,
+    "reviewer": "/root/reviewer",
+    "reviewed_at": "2026-10-23T07:39:03.190731+00:00",
+    "decision": "approve",
+    "scope": "I10 integrated content and route before the single stable collection; not final HEAD or delivery approval",
+    "base_commit": "8f671dd8619148a7f6b56842388a1fa22d912c74",
+    "findings": [],
+    "resolved_findings": [
+      "Ready review metadata now names sole independent reviewer/date/approve and exact immutable copied acceptance receipts; stale pending/no-promotion claims removed.",
+      "Current I9 dependency status records exact HEAD approval and observed completed gates, retaining historical checkpoints."
+    ],
+    "evidence": {
+      "prior_material_files_preserved": 4915,
+      "prior_route_objects_and_relative_order_preserved": 216,
+      "new_units": 6,
+      "automatic_tasks": 4,
+      "manual_units": 2,
+      "credited_applications": 14,
+      "remaining_applications_if_delivered": 26,
+      "route_lessons": 220,
+      "ready_tasks": 223,
+      "checked_tasks_expected": 230,
+      "manual_units_total": 18,
+      "copied_fixture_results": 92,
+      "ordinary_public_defect_diagnostics": 68,
+      "native_copies": 15,
+      "native_commands": 107,
+      "native_snapshots": 126,
+      "actual_review_receipts": [
+        "timer-scanner-content-review.json",
+        "errors-content-review.json",
+        "json-content-review.json",
+        "workspace-actual-review.json",
+        "fuzz-actual-review.json"
+      ],
+      "route_proof": ".tmp/v1-applications-10/route-proof.json",
+      "all_four_packaged_independent_receipts_byte_identical": true,
+      "git_diff_check": "pass"
+    },
+    "boundaries": [
+      "Manual results and finite method evidence remain separate from automatic coverage.",
+      "No supplied mechanism or extra skill credit; existing meanings, IDs, route objects, old task/material bytes and provenance preserved.",
+      "Source-only JSON harness correction retained cross-package model semantics and received fresh canonical/fixture evidence.",
+      "Generated reports intentionally remain previous collection until fresh 230 collection completes.",
+      "Current source is accepted for stable collection; final exact HEAD review, all mandatory local consumers/gates, accepted I9 dependency and green validate on final HEAD are still required.",
+      "No authored code executed by reviewer."
+    ],
+    "receipt_sha256": {
+      "timer-scanner-content-review.json": "80e5c2338942bf03939533a2d0d46870826e817c687d732c0644718845e983c7",
+      "errors-content-review.json": "764cb4ede011fc212f843c59b825235b8b0b0dab01243304c314cbbbcc8987c1",
+      "json-content-review.json": "8c060b0347386b19af88fe617d3a69d128df252c61273e96bd022d5e1d1d9111",
+      "workspace-actual-review.json": "41e152875af48299453c4f013986cbef2a91660fc057a0ef3efbd18804fe31c9",
+      "fuzz-actual-review.json": "e448518038b732bd7f91514aa4090b825a610997681b44e7a9f9c0b5e1f3da98"
+    }
+  },
+  "accepted_dependency": {
+    "batch": "I9",
+    "pr": 114,
+    "final_head": "8f671dd8619148a7f6b56842388a1fa22d912c74",
+    "validate_run": 39918086324,
+    "validate": "success",
+    "merge_commit": "1577a31c0943d2baeb60592f299b89e789160f25",
+    "merged_at": "2026-10-23T08:02:30Z",
+    "all12local_gates_passed": true,
+    "sole_exact_head_review": "approve",
+    "collection_sha256": "c6f25a5a071a717a46d6ed62a54d5f2616615463a6b3da39fd9c50ccc652bea6",
+    "remaining_applications": 40,
+    "route": 216,
+    "ready": 219,
+    "checked": 226,
+    "manual": 16,
+    "available_execution_upper_seconds": 9810.0,
+    "deductions_seconds": 0,
+    "infrastructure_seconds": 0
+  }
+}

@@ -1,0 +1,3 @@
+module finite.local/core
+
+go 1.27

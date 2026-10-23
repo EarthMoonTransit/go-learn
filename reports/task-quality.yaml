@@ -362,6 +362,24 @@ tasks:
         detected: 5
         survived: []
       legacy: false
+    - id: buffered-word-stream-001
+      state: ready
+      input_digest: 8f2015963ca5d7f657395a3c872d422c986efe6bab594bd4d5a092bbfbd0cd7b
+      task_type: implement
+      primary_skill: io.scanning
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 18
+        total: 18
+        detected: 18
+        survived: []
+      legacy: false
     - id: byte-window-tests-001
       state: ready
       input_digest: aecb2b3def2d5501d993ce2b4f903f1adca109fca3bf9f779277986f0ff23f75
@@ -558,6 +576,24 @@ tasks:
         required: 6
         total: 6
         detected: 6
+        survived: []
+      legacy: false
+    - id: classified-stage-errors-001
+      state: ready
+      input_digest: 3959eab8b7815a00179151a183ee9c9bffc7c6a09af452f14b1c3ff293f021d0
+      task_type: implement
+      primary_skill: errors.wrapping
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 20
+        total: 20
+        detected: 20
         survived: []
       legacy: false
     - id: cleanup-order-001
@@ -1877,6 +1913,24 @@ tasks:
         detected: 7
         survived: []
       legacy: false
+    - id: json-record-patch-001
+      state: ready
+      input_digest: 927730df2ee1acfed3539eecc178615d4789136d6eef076382042a1f9b92b8fd
+      task_type: implement
+      primary_skill: encoding.json-shape-tags
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 16
+        total: 16
+        detected: 16
+        survived: []
+      legacy: false
     - id: key-summary-examples-001
       state: ready
       input_digest: 347ecc0252790b7057e96edf5e0f711cd75251f8157cb6a51599102599ba4f39
@@ -2541,6 +2595,24 @@ tasks:
         required: 6
         total: 6
         detected: 6
+        survived: []
+      legacy: false
+    - id: periodic-budget-001
+      state: ready
+      input_digest: 091622129a2991fc1e9016da74de95b815281c5068dafcc7871e3d7cc4eb05e8
+      task_type: implement
+      primary_skill: time.timers-tickers
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 14
+        total: 14
+        detected: 14
         survived: []
       legacy: false
     - id: pipe-exchange-001
@@ -4082,7 +4154,7 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 219
+      count: 223
     - state: rejected
       count: 1
     - state: retired
@@ -4091,7 +4163,7 @@ task_types:
     - task_type: debug
       count: 51
     - task_type: implement
-      count: 122
+      count: 126
     - task_type: refactor
       count: 3
     - task_type: test-writing

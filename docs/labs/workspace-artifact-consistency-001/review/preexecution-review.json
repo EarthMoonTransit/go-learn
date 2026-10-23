@@ -1,0 +1,28 @@
+{
+  "reviewer": "sole-independent-reviewer",
+  "reviewed_at": "2026-10-23T06:18:47.716832+00:00",
+  "decision": "approve",
+  "scope": "exact finite preexecution source/command review only; actual outcomes and method acceptance remain required",
+  "unit": "workspace-artifact-consistency-001",
+  "content_digests": {
+    "workspace-artifact-consistency-001": "f415ff6b46e8420172a3e39f16ecdbc6799a3e856f8cf8ae16fc58c89147e1ac"
+  },
+  "script_sha256": "cd0cb15eb2de189364d0638ad8866788b063f37d0981e9d10833afec687ae08a",
+  "manifest_sha256": "53e9fb6d0ee0b12d83c2e9e75ec9d9c799b7c723d87d2e826c7753bdb9b13594",
+  "copies": 5,
+  "commands": 60,
+  "findings": [],
+  "checked": [
+    "All 15 inert content files match original provenance inventory/digest; external sources empty and no fabricated commit.",
+    "Literal five-specimen sequence and 60 command entries, per-command cwd/GOWORK, Go path and generated binary path inspected. No arbitrary command input.",
+    "Canonical fresh private disposable roots; private home/cache/config/modcache/tmp; local Go 1.27, readonly/offline/telemetry-off environment; 60-second own process-group bound; actual records retained before assertions and finally cleanup.",
+    "Initial app-only workspace selects shadow; adding core masks wrong replace; GOWORK=off exposes it; relative replacement repairs both modes. Absent replacement is an independent native error specimen.",
+    "Before/after label change retains exact binary hash and old output until explicit rebuild; go run reads changed source while named binary stays unchanged. The stale executable is a successful method-wrong observation, not a command failure.",
+    "Correct alternate ../core/. replacement and app-directory GOWORK=off builds remain permitted. Binary snapshots store hash/size rather than text decoding."
+  ],
+  "boundaries": [
+    "Only proposed modules-workspaces and build-run applications; no readiness or automatic credit before actual evidence review.",
+    "No general runner, checker profile, AST mechanism or new execution exception.",
+    "Execution must use this reviewed hash, manifest and content once; unexpected outcome requires retained evidence and bounded diagnosis."
+  ]
+}

@@ -1,0 +1,648 @@
+{
+  "unit": "workspace-artifact-consistency-001",
+  "status": "inert preexecution inputs; actual acceptance separate",
+  "copies": 5,
+  "commands": 60,
+  "command_timeout_seconds": 60,
+  "initial_files": {
+    "files/go.work.txt": "go.work",
+    "files/app/go.mod.txt": "app/go.mod",
+    "files/core/go.mod.txt": "core/go.mod",
+    "files/shadow/go.mod.txt": "shadow/go.mod",
+    "files/core/core.go.txt": "core/core.go",
+    "files/shadow/core.go.txt": "shadow/core.go",
+    "files/core/core_test.go.txt": "core/core_test.go",
+    "files/app/main.go.txt": "app/main.go",
+    "files/app/label.go.txt": "app/label.go",
+    "files/app/main_test.go.txt": "app/main_test.go",
+    "files/app/grader_test.go.txt": "app/grader_test.go"
+  },
+  "editable_paths": [
+    "go.work",
+    "app/go.mod",
+    "app/label.go"
+  ],
+  "label_replacement": "reference/app/label.go.txt",
+  "binary_path": "bin/inspect",
+  "specimens": [
+    {
+      "name": "reference",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./app/..."
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "work",
+            "use",
+            "./core"
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./app/...",
+            "./core/..."
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-m",
+            "-f",
+            "{{.Path}} => {{.Dir}}",
+            "finite.local/core"
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-m",
+            "-f",
+            "{{.Path}} => {{.Dir}}",
+            "finite.local/core"
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "mod",
+            "edit",
+            "-replace=finite.local/core=../core"
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-m",
+            "-f",
+            "{{.Path}} => {{.Dir}}",
+            "finite.local/core"
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./app/...",
+            "./core/..."
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "build",
+            "-o",
+            "bin/inspect",
+            "./app"
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "binary",
+          "argv": [],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "binary",
+          "argv": [],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./app"
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "build",
+            "-o",
+            "bin/inspect",
+            "./app"
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "binary",
+          "argv": [],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "."
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        }
+      ]
+    },
+    {
+      "name": "workspace-only",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "work",
+            "use",
+            "./core"
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./app/...",
+            "./core/..."
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "mod",
+            "edit",
+            "-replace=finite.local/core=../core"
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./app/...",
+            "./core/..."
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        }
+      ]
+    },
+    {
+      "name": "absent-replacement",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "work",
+            "use",
+            "./core"
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "mod",
+            "edit",
+            "-replace=finite.local/core=../absent"
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./app/...",
+            "./core/..."
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "mod",
+            "edit",
+            "-replace=finite.local/core=../core"
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        }
+      ]
+    },
+    {
+      "name": "stale-artifact",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "work",
+            "use",
+            "./core"
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "mod",
+            "edit",
+            "-replace=finite.local/core=../core"
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "build",
+            "-o",
+            "bin/inspect",
+            "./app"
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "binary",
+          "argv": [],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "binary",
+          "argv": [],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./app/...",
+            "./core/..."
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./app"
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "build",
+            "-o",
+            "bin/inspect",
+            "./app"
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "binary",
+          "argv": [],
+          "cwd": ".",
+          "gowork": "off"
+        }
+      ]
+    },
+    {
+      "name": "correct-alternate",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./app/..."
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "work",
+            "use",
+            "./core"
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./app/...",
+            "./core/..."
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-m",
+            "-f",
+            "{{.Path}} => {{.Dir}}",
+            "finite.local/core"
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-m",
+            "-f",
+            "{{.Path}} => {{.Dir}}",
+            "finite.local/core"
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "mod",
+            "edit",
+            "-replace=finite.local/core=../core/."
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-m",
+            "-f",
+            "{{.Path}} => {{.Dir}}",
+            "finite.local/core"
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./app/...",
+            "./core/..."
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "build",
+            "-o",
+            "../bin/inspect",
+            "."
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "binary",
+          "argv": [],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "binary",
+          "argv": [],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./app"
+          ],
+          "cwd": ".",
+          "gowork": "workspace"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "build",
+            "-o",
+            "../bin/inspect",
+            "."
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        },
+        {
+          "program": "binary",
+          "argv": [],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "."
+          ],
+          "cwd": "app",
+          "gowork": "off"
+        }
+      ]
+    }
+  ],
+  "ordinary_diagnostics": [
+    "selected dependency Double(3)=-6; want6"
+  ],
+  "missing_module_diagnostics": [
+    "../absent"
+  ],
+  "before_stdout": "6 before\n",
+  "after_stdout": "6 after\n",
+  "skills": {
+    "primary": "toolchain.modules-workspaces",
+    "secondary": [
+      "toolchain.build-run"
+    ]
+  },
+  "preparation_commit": "8a34aa90fbf07387c79b849587973917d22c4d62",
+  "preparation_paths": [
+    "docs/labs/modules-build-001"
+  ],
+  "execution_recipe": ".tmp/v1-applications-10/workspace-execute.py --approved-execution"
+}

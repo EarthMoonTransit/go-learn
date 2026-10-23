@@ -1,0 +1,60 @@
+schema_version: 2
+id: buffered-word-stream-001
+title: Buffered word stream
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: io.scanning
+    secondary:
+        - io.buffered
+prerequisites:
+    - io.reader-writer-contracts
+    - strings.byte-rune-conversions
+    - errors.propagation-context
+    - functions.defer
+    - control-flow.for
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 25
+    max: 40
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - default-line-split
+        - drop-terminal-words
+        - drop-repeated-word
+        - alter-word
+        - tiny-token-buffer
+        - unbounded-token
+        - ignore-scan-error
+        - return-before-flush-on-scan-error
+        - direct-unbuffered-writes
+        - reuse-caller-buffer
+        - flush-destination
+        - ignore-flush-error
+        - scan-error-wins
+        - ignore-short-write
+        - ignore-buffer-write-error
+        - close-source
+        - close-destination
+        - omit-final-flush
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

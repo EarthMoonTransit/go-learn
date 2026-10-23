@@ -1,0 +1,15 @@
+package compact
+
+import (
+	"bytes"
+	"testing"
+)
+
+func TestCompactRegression(t *testing.T) {
+	input := []byte("aba")
+	got := CompactRuns(input)
+	want := []byte("aba")
+	if !bytes.Equal(got, want) {
+		t.Errorf("retained regression input=%x got=%x want=%x", input, got, want)
+	}
+}

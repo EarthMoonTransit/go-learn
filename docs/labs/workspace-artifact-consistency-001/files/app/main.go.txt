@@ -1,0 +1,8 @@
+package main
+
+import (
+	"finite.local/core"
+	"fmt"
+)
+
+func main() { fmt.Printf("%d %s\n", core.Double(3), BuildLabel) }

@@ -1,6 +1,6 @@
 schema_version: 1
 report_contract: numeric-coverage/v1
-input_identity: c642c954a03fe7c6b3cadad01c12ddbe410b30cbcc3a5a17feda47bd32d6e3f9
+input_identity: 2a696ef045f7a8890b0feb3e5d2782a54c8a677a6c984dedebe369734237dcf3
 selected_scope: foundation
 selected_skill_ids:
     - arrays.indexing-iteration
@@ -412,12 +412,12 @@ numeric:
         - skill_id: encoding.json-shape-tags
           domain_id: encoding
           scope: foundation
-          actual_primary: 1
+          actual_primary: 2
           required_primary: 3
-          primary_deficit: 2
-          actual_total: 1
+          primary_deficit: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: encoding.streaming-strictness
           domain_id: encoding
           scope: foundation
@@ -442,18 +442,18 @@ numeric:
           actual_primary: 1
           required_primary: 3
           primary_deficit: 2
-          actual_total: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: errors.is
           domain_id: errors
           scope: foundation
           actual_primary: 1
           required_primary: 3
           primary_deficit: 2
-          actual_total: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: errors.panic-recover-boundaries
           domain_id: errors
           scope: foundation
@@ -493,12 +493,12 @@ numeric:
         - skill_id: errors.wrapping
           domain_id: errors
           scope: foundation
-          actual_primary: 1
+          actual_primary: 2
           required_primary: 3
-          primary_deficit: 2
-          actual_total: 1
+          primary_deficit: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: expressions.arithmetic
           domain_id: expressions
           scope: foundation
@@ -784,9 +784,9 @@ numeric:
           actual_primary: 1
           required_primary: 3
           primary_deficit: 2
-          actual_total: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: io.copy-limit-composition
           domain_id: io
           scope: foundation
@@ -826,12 +826,12 @@ numeric:
         - skill_id: io.scanning
           domain_id: io
           scope: foundation
-          actual_primary: 1
+          actual_primary: 2
           required_primary: 3
-          primary_deficit: 2
-          actual_total: 1
+          primary_deficit: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: maps.iteration
           domain_id: maps
           scope: foundation
@@ -1099,9 +1099,9 @@ numeric:
           actual_primary: 0
           required_primary: 3
           primary_deficit: 3
-          actual_total: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: structs.literals-zero
           domain_id: structs
           scope: foundation
@@ -1297,9 +1297,9 @@ numeric:
           actual_primary: 1
           required_primary: 3
           primary_deficit: 2
-          actual_total: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: time.parsing-zones
           domain_id: time
           scope: foundation
@@ -1312,12 +1312,12 @@ numeric:
         - skill_id: time.timers-tickers
           domain_id: time
           scope: foundation
-          actual_primary: 1
+          actual_primary: 2
           required_primary: 3
-          primary_deficit: 2
-          actual_total: 1
+          primary_deficit: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: toolchain.build-run
           domain_id: toolchain
           scope: foundation
@@ -1596,12 +1596,12 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 219
+        actual_primary: 223
         required_primary: 410
-        primary_deficit: 199
-        actual_total: 256
+        primary_deficit: 195
+        actual_total: 265
         required_total: 692
-        total_deficit: 436
+        total_deficit: 427
         minima_met: false
     specialist:
         skill_ids:
@@ -1763,15 +1763,15 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 219
+        actual_primary: 223
         required_primary: 418
-        primary_deficit: 207
-        actual_total: 256
+        primary_deficit: 203
+        actual_total: 265
         required_total: 708
-        total_deficit: 452
+        total_deficit: 443
         minima_met: false
     ready_target:
-        actual: 219
+        actual: 223
         min: 350
         max: 500
         met: false

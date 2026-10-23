@@ -1,0 +1,15 @@
+package compact
+
+import (
+	"bytes"
+	"testing"
+)
+
+func TestPublicBasicRuns(t *testing.T) {
+	for _, c := range []struct{ in, want []byte }{{nil, nil}, {[]byte("a"), []byte("a")}, {[]byte("zz"), []byte("z")}, {[]byte("zaa"), []byte("za")}} {
+		got := CompactRuns(c.in)
+		if !bytes.Equal(got, c.want) {
+			t.Errorf("basic runs(%x)=%x want%x", c.in, got, c.want)
+		}
+	}
+}

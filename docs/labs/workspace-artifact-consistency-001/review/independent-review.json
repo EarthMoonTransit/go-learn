@@ -1,0 +1,42 @@
+{
+  "decision": "approve",
+  "reviewer": "sole-independent-reviewer",
+  "reviewed_at": "2026-10-23T06:24:56.264590+00:00",
+  "unit": "workspace-artifact-consistency-001",
+  "scope": "actual manual source/method/execution acceptance; final batch gates separate",
+  "content_digest": "f415ff6b46e8420172a3e39f16ecdbc6799a3e856f8cf8ae16fc58c89147e1ac",
+  "script_sha256": "cd0cb15eb2de189364d0638ad8866788b063f37d0981e9d10833afec687ae08a",
+  "manifest_sha256": "53e9fb6d0ee0b12d83c2e9e75ec9d9c799b7c723d87d2e826c7753bdb9b13594",
+  "raw_execution_sha256": "183b64428ac768ac342a67101a8397a940a9a414d3a57f58dae8d58b70963d50",
+  "normalized_execution_sha256": "fe0edc5c973912892a3579b10b38624b787fc24572ee41900e38b0a934d281a4",
+  "findings": [],
+  "verified_counts": {
+    "unchanged_assets": 15,
+    "fresh_removed_copies": 5,
+    "commands": 60,
+    "snapshots": 73,
+    "ordinary_failures": 5,
+    "native_missing_local_module_failure": 1,
+    "timeouts": 0,
+    "runtime_failures": 0,
+    "max_command_seconds": 3.480459
+  },
+  "checked": [
+    "Source inventory/digest/script/manifest match exact preapproval, which precedes execution. All 60 argv/cwd/GOWORK bindings and private offline environments match the fixed recipe.",
+    "Independently replayed copied source and exact go.work/go.mod edits into all 73 snapshots. Only reviewed graph/label edits occurred; each generated binary hash stayed unchanged except at explicit builds. Raw/normalized evidence differs only by declared path substitutions.",
+    "Actual core/shadow module selection, workspace masking and GOWORK=off discrepancy precede relative replace repair; both modes then pass. Separate missing local directory fails natively and repair passes.",
+    "Reference, stale-artifact and valid alternate show identical old hash and before output after source label edit. go run prints after while retained artifact stays unchanged; explicit rebuild changes hash and output.",
+    "The ../core/. replacement and app-directory standalone build alternate pass without imposing one textual solution. Stale executable exit0 is rejected as a refreshed-artifact method claim, not as an imagined command failure."
+  ],
+  "accepted_manual_applications": {
+    "primary": "toolchain.modules-workspaces",
+    "secondary": [
+      "toolchain.build-run"
+    ]
+  },
+  "boundaries": [
+    "Exactly modules-workspaces and build-run applications; no automatic coverage, extra component or learner mastery.",
+    "No authored task execution by reviewer; read-only receipt/source checks only.",
+    "Integration, final exact HEAD review and mandatory local/CI gates remain required."
+  ]
+}

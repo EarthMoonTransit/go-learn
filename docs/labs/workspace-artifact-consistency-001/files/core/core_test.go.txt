@@ -1,0 +1,11 @@
+package core
+
+import "testing"
+
+func TestCoreValues(t *testing.T) {
+	for _, x := range []int{-3, 0, 3} {
+		if got := Double(x); got != 2*x {
+			t.Errorf("Double(%d)=%d; want%d", x, got, 2*x)
+		}
+	}
+}

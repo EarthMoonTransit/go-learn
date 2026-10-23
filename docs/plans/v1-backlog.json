@@ -579,7 +579,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "json-field-shape-001"
-      ]
+      ],
+      "delivery_batch": "I10",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-10.md",
+      "delivered_task_id": "json-record-patch-001"
     },
     {
       "slot": "independent-application:encoding.streaming-strictness",
@@ -607,7 +611,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "error-detail-tests-001"
-      ]
+      ],
+      "delivery_batch": "I10",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-10.md",
+      "delivered_task_id": "classified-stage-errors-001"
     },
     {
       "slot": "independent-application:errors.is",
@@ -615,7 +623,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "error-chain-match-001"
-      ]
+      ],
+      "delivery_batch": "I10",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-10.md",
+      "delivered_task_id": "classified-stage-errors-001"
     },
     {
       "slot": "independent-application:errors.panic-recover-boundaries",
@@ -635,7 +647,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "error-context-wrap-001"
-      ]
+      ],
+      "delivery_batch": "I10",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-10.md",
+      "delivered_task_id": "classified-stage-errors-001"
     },
     {
       "slot": "independent-application:expressions.bitwise-masks",
@@ -679,13 +695,23 @@
       "role": "independent-application",
       "existing_task_ids": [
         "hex-wire-invariants-001"
-      ]
+      ],
+      "delivery_batch": "I10",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-10.md",
+      "delivered_unit_path": "docs/labs/run-compaction-fuzz-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:fuzzing.reproduction",
       "skill_id": "fuzzing.reproduction",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I10",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-10.md",
+      "delivered_unit_path": "docs/labs/run-compaction-fuzz-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:fuzzing.targets-seeds",
@@ -693,7 +719,12 @@
       "role": "independent-application",
       "existing_task_ids": [
         "hex-seed-classes-001"
-      ]
+      ],
+      "delivery_batch": "I10",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-10.md",
+      "delivered_unit_path": "docs/labs/run-compaction-fuzz-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:generics.approximation-unions",
@@ -816,7 +847,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "buffered-flush-001"
-      ]
+      ],
+      "delivery_batch": "I10",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-10.md",
+      "delivered_task_id": "buffered-word-stream-001"
     },
     {
       "slot": "independent-application:io.copy-limit-composition",
@@ -858,7 +893,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "scan-lines-tests-001"
-      ]
+      ],
+      "delivery_batch": "I10",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-10.md",
+      "delivered_task_id": "buffered-word-stream-001"
     },
     {
       "slot": "independent-application:maps.key-comparability",
@@ -1018,7 +1057,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "package-inventory-001"
-      ]
+      ],
+      "delivery_batch": "I10",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-10.md",
+      "delivered_task_id": "json-record-patch-001"
     },
     {
       "slot": "independent-application:sync.data-races-happens-before",
@@ -1148,19 +1191,32 @@
       "role": "independent-application",
       "existing_task_ids": [
         "duration-rounding-001"
-      ]
+      ],
+      "delivery_batch": "I10",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-10.md",
+      "delivered_task_id": "periodic-budget-001"
     },
     {
       "slot": "independent-application:time.timers-tickers",
       "skill_id": "time.timers-tickers",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I10",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-10.md",
+      "delivered_task_id": "periodic-budget-001"
     },
     {
       "slot": "independent-application:toolchain.build-run",
       "skill_id": "toolchain.build-run",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I10",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-10.md",
+      "delivered_unit_path": "docs/labs/workspace-artifact-consistency-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:toolchain.docs-environment",
@@ -1178,7 +1234,12 @@
       "slot": "independent-application:toolchain.modules-workspaces",
       "skill_id": "toolchain.modules-workspaces",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I10",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-10.md",
+      "delivered_unit_path": "docs/labs/workspace-artifact-consistency-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:types.iota-enumeration",
@@ -1265,16 +1326,15 @@
     }
   ],
   "delivery": {
-    "batch": "I9",
-    "status": "six actual units and integration accepted; stable226collection/generated reports/fast passed; remaining local gates/finalHEADreview/CI/merge pending",
-    "route_lessons_after": 216,
+    "batch": "I10",
+    "status": "six actual content units and integration accepted; stable230collection and generated reports passed; remaining local gates/exactHEADreview/CI/merge pending",
+    "route_lessons_after": 220,
     "first_encounters_remaining": 0,
-    "independent_applications_remaining": 40,
+    "independent_applications_remaining": 26,
     "component_slots_remaining": 0,
     "new_automatic_packages": 4,
     "new_manual_units": 2,
-    "note": "Eleven independent applications; no supplied implementation, extra ownership or automatic method/manual credit. All49dated baseline decisions, fiveacceptedrepairs,28firsts and sixcomponents preserved.",
-    "one_collection_sha256": "c6f25a5a071a717a46d6ed62a54d5f2616615463a6b3da39fd9c50ccc652bea6"
+    "note": "Fourteen independent applications; no supplied implementation, extra ownership or automatic method/manual credit. All49dated baseline decisions, fiveacceptedrepairs,28firsts and sixcomponents preserved."
   },
   "delivery_history": [
     {
@@ -1465,6 +1525,28 @@
       "available_execution_seconds_upper_bound": 11170.904090999997,
       "infrastructure_seconds": 0,
       "clock_note": "Only previously independently verified27903seconds host sleep deducted. Later wall-clock/monotonic differences and productive overlap fully counted; no inferred deduction."
+    },
+    {
+      "batch": "I9",
+      "status": "accepted and merged",
+      "route_lessons_after": 216,
+      "first_encounters_remaining": 0,
+      "independent_applications_remaining": 40,
+      "component_slots_remaining": 0,
+      "new_automatic_packages": 4,
+      "new_manual_units": 2,
+      "note": "Eleven independent applications; no supplied implementation, extra ownership or automatic method/manual credit. All49dated baseline decisions, fiveacceptedrepairs,28firsts and sixcomponents preserved.",
+      "one_collection_sha256": "c6f25a5a071a717a46d6ed62a54d5f2616615463a6b3da39fd9c50ccc652bea6",
+      "pr": 114,
+      "url": "https://github.com/EarthMoonTransit/go-learn/pull/114",
+      "final_head": "8f671dd8619148a7f6b56842388a1fa22d912c74",
+      "independent_final_review": "approved exact8f671dd8619148a7f6b56842388a1fa22d912c74",
+      "final_commit": "8f671dd8619148a7f6b56842388a1fa22d912c74",
+      "merge_commit": "1577a31c0943d2baeb60592f299b89e789160f25",
+      "validate_run": 39918086324,
+      "merged_at": "2026-10-23T08:02:30Z",
+      "local_gates": "all12 passed; same226collection",
+      "final_review": "sole independent exact HEAD approved"
     }
   ],
   "existing_pair_reviews": {
@@ -2795,7 +2877,7 @@
       ],
       "maximum_additional_units": 4,
       "design": "Two separate array and struct first repairs at their actual early prerequisite positions; one consumer-owned small-interface first (delivered I5); at most one constants application. Typed-error and small-interface applications integrated into allocated IO/packages components with distinct actual actions. The combined array/struct first was split after independent prerequisite review to preserve existing relative order and avoid a dependency cycle; global302 and141skills unchanged.",
-      "arithmetic": "After accepted I9:216automatic route +16manual units +40remaining applications =272 <=302. Planning ceiling, not a new-file quota, full-bank completion or learner mastery.",
+      "arithmetic": "After accepted I10:220automatic route +18manual units +26remaining applications =264 <=302. Planning ceiling, not a new-file quota, full-bank completion or learner mastery.",
       "note": "All49 baseline decisions are preserved. Five identified semantic repairs now have actual independently accepted evidence; zero repair pairs remain after accepted I6 delivery. Historical extra allowance4 is not four future units. No expanded ceiling, metadata-only credit or learner mastery.",
       "allocation_review": "Sole reviewer accepted separate early array/struct placement on2026-10-22; see reports/v1-introductions-05.md. Original49pair decisions preserved."
     },

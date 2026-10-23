@@ -94,7 +94,7 @@ debugging or learner-test profiles only when they assess the intended outcome.
   external outage; the same repeated failure blocks. No new controller; handoff
   preserves the goal and does not mean completion.
 
-## Current checkpoint: I8 accepted; I9 final gates; I10 integration; I11 planning
+## Current checkpoint: I9 accepted; I10 local gates; I11 actual evidence; I12 contracts
 
 - I3 PR107 and diagnostic-only tooling PR108 are accepted. The sync.Once fixture was repaired without checker expansion. Modules/workspaces and native benchmarks met the batch-two deadline; all49original pair decisions remain preserved.
 - I4 PR109: final HEAD0241dbc, validate39836444522, merge2e1710a42381db9d60e5d3bc251c2702c7951804 at19:37:47UTC. All12local gates used one213collection; available87.07minutes, infrastructure≤4minutes.
@@ -289,3 +289,17 @@ At06:05UTC23Oct I8 all12local gates and sole exact8a34aa9 HEADreview have passed
 I8 PR113 final8a34aa9 passed validate39908133023 and merged6c14199a66fc5d52b4be08e4b2e6ae98551f64ea at07:26:53UTC. All12local gates and sole exact-HEAD review passed; accepted remainder51applications. Available execution upper bound186.18minutes, infrastructure0; only previously verified27903seconds of sleep deducted.
 
 I9 final integration accepted, all4752old material files/212route objects preserved, stable226collection and generated reports passed; fast passed, remaining gates and finalHEADreview/CI/merge required. Clock05:19→09:19UTC remains conservative with no deductions. I10 all six actual content units accepted and official promotions underway, no readiness/merge credit yet;14application credits proposed. I11 bounded six-unit planning began06:27:55.371190UTC in reused I6checkout/codex/v1-applications-11, deadline10:27:55.371190UTC with no deductions. Root two native contracts accepted; four other proposals in preparation, no I11 authored source/execution yet at this checkpoint. FFcommittedI9 before I10 integration/fullgates; FFcommittedI10 before I11 integration/fullgates. Each dependent merge waits accepted predecessors. No new controller/tooling/scope.
+
+### I10 integrated content checkpoint, 2026-10-23
+
+All six contracts and actual content/method reviews accepted; four automatic tasks completed eight official promotions. Ninety-two credited copied fixtures give68ordinary public diagnoses; native15copies/107commands/126snapshots remain separate. Source-only JSON test-event ordering repair preserved its real imported model and passed fresh affected checks; no tooling changes. Fourteen distinct application actions would leave26 after delivery. FFcommittedI9 head8f671dd8619148a7f6b56842388a1fa22d912c74 precedes integration;4915old material files and216route objects/order preserved. New inventory220route/223ready/230checked/18manual. Integration/finalHEADreview, one stable230collection/all mandatory gates and acceptedI9dependency are still required. Original I10 clock05:55:54.897979→09:55:54.897979UTC stays conservative with no deductions; infrastructure0.
+
+I9 exact8f671dd8619148a7f6b56842388a1fa22d912c74 HEADreview is now approved; fast/race/vet passed. Integration/finalconsumers and exact-head validate/merge remain pending. I10 uses that same committed dependency; no source/checker input changes follow this status update.
+
+### Current delivery checkpoint, 2026-10-23 08:03UTC
+
+I9 PR114 final8f671dd passed all12 local gates, sole exact-HEAD review and validate39918086324; merged1577a31c0943d2baeb60592f299b89e789160f25 at08:02:30UTC23Oct. Accepted inventory216route/219ready/226checked/16manual,40applications remain. Available execution upper bound163.50minutes with no deductions and infrastructure0. All28firsts,49historical pair decisions/five repairs and six components remain accepted. Native evidence remains separate from automatic coverage; learner mastery unknown.
+
+I10 sole integration accepted; one230-task collection is running from5132frozen checker inputs. I11 six contracts accepted, two root native units actually accepted, two author native units executing their exact reviewed recipes and two automatic units in targeted validation. I12 final13-application planning began07:50:22.220556UTC; six units allocated, root two contracts awaiting review, no new source or readiness credited. Conservative deadlines remain I10 09:55:54.897979UTC, I11 10:27:55.371190UTC and I12 11:50:22.220556UTC with no deductions. Dependencies must be committed before shared integration and merged before dependent merge.
+
+I10 stable230collection completed08:03:02UTC with all checks passing; all5132frozen inputs remain unchanged and all generated reports reuse SHA256 b8dc8417f6cea6651b18d6f59c3dcf62990d4951fe24edb7864a615e99b63b70. Fast/race/vet/integration, final consumers, exactHEADreview and greenvalidate remain mandatory. No scope, checker or tooling change.

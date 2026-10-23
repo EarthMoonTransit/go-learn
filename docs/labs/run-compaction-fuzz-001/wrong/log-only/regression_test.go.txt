@@ -1,0 +1,5 @@
+package compact
+
+import "testing"
+
+func TestCompactRegression(t *testing.T) { t.Logf("run output %x", CompactRuns([]byte("aba"))) }

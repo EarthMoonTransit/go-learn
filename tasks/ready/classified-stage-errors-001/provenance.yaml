@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "6c695bfeb4522b91be25d15a34b94b4edecdfbe63ad2b8e9cf29b83050770dbd"
+  },
+  "creation": {
+    "author": "codex",
+    "created_at": "2026-10-23",
+    "summary": "Original I10 stage-boundary error policy and returned-error classification under independently approved contract; official task-init creation."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/classified-stage-errors-001.yaml"
+  }
+}

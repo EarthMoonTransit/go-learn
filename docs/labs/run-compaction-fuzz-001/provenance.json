@@ -1,0 +1,37 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-applications-10-root",
+    "created_at": "2026-10-23",
+    "summary": "Original run-compaction target/seeds, independent lossy oracle, finite reduction and corpus/ordinary regression after sole contract approval. No external source material."
+  },
+  "sources": [],
+  "content_digest": "a256a2f7db9f68b3c27578bc6da74a85d95a85574fa99d3e5200fb133bc04fa7",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "4d1d2ea3749a8b437b23d2ac6f556c97046aa577281ead8713dcf2de82872413",
+    "TASK.md": "0e33dd6e429672eab1dd68965af355f878289813f6daafe7cebca2da63444325",
+    "correct-alternate/fuzz_test.go.txt": "3297b740237f5a664e344e371cfc3a317b64310514ea542e3492094793e88593",
+    "files/compact.go.txt": "e089c8ff7fc7de67ede2acd37236a7a5b7b52b7f8433399c9bae63bd38052720",
+    "files/go.mod.txt": "e500a4a2b16d643ae75ee1a081d8cdd1ed031f2f194257a7912d62d3f5279adc",
+    "files/grader_test.go.txt": "198180401f788b1df73d6b8a8196eed8d0d6a904869848550cc3825e562cdebd",
+    "files/public_test.go.txt": "f393e146ad8a3511c7acfb2455767f35e7d3733fa4073e7ed62067e3763e7f79",
+    "manifest.json": "19c78dc2e62d0e5ce49fff6cf3d8f60fb7f17f6155ad47211be34714278a9c00",
+    "reference/compact.go.txt": "f3bab08c2070ee926f75d9c8d602c53a99d04ed5d7e8daf2fa342516ce2a7e20",
+    "reference/fuzz_test.go.txt": "33b17a9d46ccf2c515d8742dc55b1758e3b48aa1e56ef42f4d7a3039548e5f06",
+    "reference/regression_test.go.txt": "40259cc52499913e48b90bd7810150ac2bd43424ee6ee18d2def1789ffa5eaf7",
+    "reference/testdata/fuzz/FuzzCompact/separated-repeat.txt": "54e5e70cc98e9c3f19f3e43f660f167332c6aaf07fa02eda098cc6b211e37b79",
+    "templates/fuzz_test.go.txt": "0cb79f7aaf3a98e35289d1967e4b92070e2712e863b86bb23cb1d346be7d5514",
+    "wrong/constant-empty/compact.go.txt": "17d9ed2ee106f3ed68bc442744f5097ee1bbe8fe75c3bd186d71ad04d841d8c7",
+    "wrong/drop-final/compact.go.txt": "329fbb4484aecec889221c8c37989bff76c733d6718cf52219d002db9adde241",
+    "wrong/false-property/fuzz_test.go.txt": "c23465e6b5603288999a7820486de14e3754589187a0813dc0f19b33c5364f5b",
+    "wrong/keep-duplicates/compact.go.txt": "11f5a2ee43ec07dbd45026f1fe21fef1a7ba7b630d306e76efa20b3e15551222",
+    "wrong/log-only/regression_test.go.txt": "e40ff3bc2a20b73d6ddff0ed86ff219a14e19711de426e83d8a7120141f30c60",
+    "wrong/mutate-input/compact.go.txt": "b1074bab1de3b00473669595f338c28b7da9cbc1b4afc1281feb7379cfbcbfe7",
+    "wrong/reverse/compact.go.txt": "b830285066a23c4be2acd7ab0016cfb0f915527af141487eaf467a0561136552",
+    "wrong/weak-target/fuzz_test.go.txt": "1eb1dd004c0c011c5a716e0b324d73721561540bb79126f6cff05da7294e5315"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

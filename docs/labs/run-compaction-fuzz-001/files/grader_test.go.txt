@@ -1,0 +1,19 @@
+package compact
+
+import (
+	"bytes"
+	"testing"
+)
+
+func TestGraderSeparatedRuns(t *testing.T) {
+	for _, c := range []struct{ in, want []byte }{{[]byte("010"), []byte("010")}, {[]byte{0, 0, 255, 255, 0}, []byte{0, 255, 0}}} {
+		before := append([]byte(nil), c.in...)
+		got := CompactRuns(c.in)
+		if !bytes.Equal(got, c.want) {
+			t.Errorf("separated runs input=%x got=%x want=%x", before, got, c.want)
+		}
+		if !bytes.Equal(c.in, before) {
+			t.Error("input mutated")
+		}
+	}
+}

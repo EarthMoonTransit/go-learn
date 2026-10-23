@@ -94,3 +94,7 @@ quota, whole-bank completion or learner mastery claim.
 ## Delivery checkpoint
 
 I8 dependency PR113 is accepted at final8a34aa9, validate39908133023, merge6c14199a66fc5d52b4be08e4b2e6ae98551f64ea (07:26:53UTC23Oct). The I9 collection completed06:48:07UTC, generated reports and fast tests passed; race/vet/integration and final consumers are still required. Collection SHA256 c6f25a5a071a717a46d6ed62a54d5f2616615463a6b3da39fd9c50ccc652bea6. Source/hash freeze permits reuse; no bank rerun is planned absent changed inputs. All elapsed wall time remains counted; no new sleep, CI or productive-overlap deduction is claimed.
+
+## Delivery acceptance, 2026-10-23
+
+I9 PR114 final8f671dd passed all12 local gates, sole exact-HEAD review and validate39918086324; merged1577a31c0943d2baeb60592f299b89e789160f25 at08:02:30UTC23Oct. Accepted inventory216route/219ready/226checked/16manual,40applications remain. Available execution upper bound163.50minutes with no deductions and infrastructure0. All28firsts,49historical pair decisions/five repairs and six components remain accepted. Native evidence remains separate from automatic coverage; learner mastery unknown.

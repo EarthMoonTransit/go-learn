@@ -1,0 +1,3 @@
+module task.local/buffered-word-stream-001
+
+go 1.27
