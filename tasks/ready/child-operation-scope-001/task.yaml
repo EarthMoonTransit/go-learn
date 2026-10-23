@@ -1,0 +1,64 @@
+schema_version: 2
+id: child-operation-scope-001
+title: Run independent operation scopes
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: context.derivation
+    secondary:
+        - context.propagation-api
+prerequisites:
+    - channels.select
+    - context.cancellation
+    - functions.function-values
+    - functions.signatures-results
+    - functions.defer
+    - control-flow.range
+    - slices.len-cap-slicing
+    - structs.literals-zero
+    - packages.imports-exports-naming
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 20
+    max: 35
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - phantom-empty
+        - stop-after-error
+        - skip-canceled
+        - double-call
+        - reverse-order
+        - drop-value
+        - replace-error
+        - background-parent
+        - nil-child
+        - return-parent
+        - no-release
+        - release-only-on-error
+        - cancel-before-call
+        - skip-first
+        - reuse-child
+        - chain-scopes
+        - defer-batch-cancels
+        - return-before-cleanup
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

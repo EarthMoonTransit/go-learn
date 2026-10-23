@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-10-22"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-10-22"
+      actor: v1-applications-07-author
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-10-22"
+      actor: independent-reviewer-root-reviewer
+      reason: Independent actual source/method/public/full acceptance; final batch gates remain separate.
+    - from: in-review
+      to: ready
+      at: "2026-10-22"
+      actor: independent-reviewer-root-reviewer
+      reason: Independent actual source/method/public/full acceptance; final batch gates remain separate.

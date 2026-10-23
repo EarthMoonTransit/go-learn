@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "9aebc77b5a918004731a3ec0822142321fb21ad4390f8d0b8f8d489bec9b5a85"
+  },
+  "creation": {
+    "author": "v1-applications-07-child-author",
+    "created_at": "2026-10-22",
+    "summary": "Original sequential sibling context scopes and learner-written context-first helper application after independent I7 contract approval. Earlier tasks are unchanged preparation only; no external text or code used."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/child-operation-scope-001.yaml"
+  }
+}

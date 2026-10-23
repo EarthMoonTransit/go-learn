@@ -1,0 +1,69 @@
+schema_version: 2
+id: deadline-capped-batch-001
+title: Compose one shared relative budget with absolute deadline caps
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: context.deadlines
+    secondary:
+        - context.timeouts
+prerequisites:
+    - context.cancellation
+    - context.derivation
+    - context.propagation-api
+    - time.duration-arithmetic
+    - functions.function-values
+    - functions.signatures-results
+    - functions.defer
+    - control-flow.range
+    - slices.len-cap-slicing
+    - structs.literals-zero
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 25
+    max: 40
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - phantom-empty
+        - skip-last
+        - repeat-operation
+        - reverse-order
+        - stop-on-error
+        - drop-error-value
+        - replace-error
+        - return-context-error
+        - omit-budget
+        - double-budget
+        - zero-is-cap
+        - ignore-ceiling
+        - ceiling-extends-budget
+        - detached-parent
+        - later-parent
+        - skip-expired
+        - positive-default
+        - cancel-before-work
+        - no-release
+        - release-only-error
+        - renew-budget
+        - return-before-cleanup
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

@@ -308,6 +308,24 @@ tasks:
         detected: 4
         survived: []
       legacy: false
+    - id: buffer-window-stream-001
+      state: ready
+      input_digest: 208ec9922c2d0c7fb7c291863e615b17a2db52803c63751f22b5681d2e566f7e
+      task_type: implement
+      primary_skill: channels.buffering-backpressure
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 10
+        total: 10
+        detected: 10
+        survived: []
+      legacy: false
     - id: buffered-flush-001
       state: ready
       input_digest: 7376fcaeaa25c38786be3291e8d46ef579855d0d725aa73e99736d8a356d9fad
@@ -342,6 +360,24 @@ tasks:
         required: 6
         total: 6
         detected: 6
+        survived: []
+      legacy: false
+    - id: cancel-error-pipeline-001
+      state: ready
+      input_digest: b4a7958276ce2f89616c8946fa8c491b0019d9e552096ace46429fc6e794e97c
+      task_type: implement
+      primary_skill: channels.cancellation
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 18
+        total: 18
+        detected: 18
         survived: []
       legacy: false
     - id: cancel-worker-001
@@ -468,6 +504,24 @@ tasks:
         required: 7
         total: 7
         detected: 7
+        survived: []
+      legacy: false
+    - id: child-operation-scope-001
+      state: ready
+      input_digest: a37213996c40ec0bd34eaf367bc3880a30c9f406a740461cc6d1379cb99af926
+      task_type: implement
+      primary_skill: context.derivation
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 18
+        total: 18
+        detected: 18
         survived: []
       legacy: false
     - id: clamp-tests-001
@@ -703,6 +757,24 @@ tasks:
         required: 4
         total: 4
         detected: 4
+        survived: []
+      legacy: false
+    - id: deadline-capped-batch-001
+      state: ready
+      input_digest: 0f11e6c78fe46c56baa44dba3742cb9429accc15a762fa66d3ea599514af9092
+      task_type: implement
+      primary_skill: context.deadlines
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 22
+        total: 22
+        detected: 22
         survived: []
       legacy: false
     - id: decision-table-tests-001
@@ -3902,7 +3974,7 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 209
+      count: 213
     - state: rejected
       count: 1
     - state: retired
@@ -3911,7 +3983,7 @@ task_types:
     - task_type: debug
       count: 50
     - task_type: implement
-      count: 113
+      count: 117
     - task_type: refactor
       count: 3
     - task_type: test-writing
