@@ -1,0 +1,1984 @@
+{
+  "unit": "acknowledged-snapshot-race-001",
+  "approval_sha256": "e268dc4e8690f8b3fa344014865bfeababc7dc19747604094e1731d14b79d9c0",
+  "execution_script_sha256": "c99f301518544f9afbda79d2a64601b81cd95337c2c6cafaf5aec2f45d19d71a",
+  "content_digest": "631b9916ea1b10cfb3159570d67b6a3d76fff62dff018f4f5b70a6202c4ba2cc",
+  "status": "all16commands matched; actual source/method acceptance pending",
+  "records": [
+    {
+      "specimen": "unsafe-publication",
+      "root": "<DISPOSABLE_unsafe-publication>",
+      "started_at": "2026-10-23T08:18:11.417676+00:00",
+      "copies": [
+        {
+          "source": "files/go.mod.txt",
+          "destination": "go.mod",
+          "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945"
+        },
+        {
+          "source": "files/packet.go.txt",
+          "destination": "packet.go",
+          "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f"
+        },
+        {
+          "source": "files/probe_test.go.txt",
+          "destination": "probe_test.go",
+          "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb"
+        },
+        {
+          "source": "files/grader_test.go.txt",
+          "destination": "grader_test.go",
+          "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857"
+        },
+        {
+          "source": "files/starter_exchange.go.txt",
+          "destination": "exchange.go",
+          "sha256": "0d181e822cbbc179b64c7a6b182f4062651f84c4f0bbab07817385272c7d001b"
+        },
+        {
+          "source": "reference/learner_test.go.txt",
+          "destination": "learner_test.go",
+          "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8"
+        }
+      ],
+      "snapshots": [
+        {
+          "at": "2026-10-23T08:18:11.420050+00:00",
+          "files": {
+            "exchange.go": {
+              "sha256": "0d181e822cbbc179b64c7a6b182f4062651f84c4f0bbab07817385272c7d001b",
+              "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tout <- &packet\n\t\tpacket.Value = value\n\t\tpacket.Twice = 2 * value\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+            },
+            "go.mod": {
+              "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+              "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+            },
+            "grader_test.go": {
+              "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+              "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+            },
+            "learner_test.go": {
+              "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+              "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+            },
+            "packet.go": {
+              "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+              "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+            },
+            "probe_test.go": {
+              "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+              "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+            }
+          }
+        }
+      ],
+      "commands": [
+        {
+          "at": "2026-10-23T08:18:11.420646+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "version"
+          ],
+          "cwd": "<DISPOSABLE_unsafe-publication>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_unsafe-publication>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_unsafe-publication>/config",
+            "GOCACHE": "<DISPOSABLE_unsafe-publication>/cache",
+            "GOMODCACHE": "<DISPOSABLE_unsafe-publication>/modcache",
+            "TMPDIR": "<DISPOSABLE_unsafe-publication>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "0",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "zero",
+          "before": {
+            "at": "2026-10-23T08:18:11.420642+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "0d181e822cbbc179b64c7a6b182f4062651f84c4f0bbab07817385272c7d001b",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tout <- &packet\n\t\tpacket.Value = value\n\t\tpacket.Twice = 2 * value\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 0.006799,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:11.427836+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "0d181e822cbbc179b64c7a6b182f4062651f84c4f0bbab07817385272c7d001b",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tout <- &packet\n\t\tpacket.Value = value\n\t\tpacket.Twice = 2 * value\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        },
+        {
+          "at": "2026-10-23T08:18:11.428540+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "test",
+            "-race",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^TestNativeProbe$",
+            "."
+          ],
+          "cwd": "<DISPOSABLE_unsafe-publication>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_unsafe-publication>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_unsafe-publication>/config",
+            "GOCACHE": "<DISPOSABLE_unsafe-publication>/cache",
+            "GOMODCACHE": "<DISPOSABLE_unsafe-publication>/modcache",
+            "TMPDIR": "<DISPOSABLE_unsafe-publication>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "1",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "native-race",
+          "before": {
+            "at": "2026-10-23T08:18:11.428535+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "0d181e822cbbc179b64c7a6b182f4062651f84c4f0bbab07817385272c7d001b",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tout <- &packet\n\t\tpacket.Value = value\n\t\tpacket.Twice = 2 * value\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 1,
+          "stdout": "=== RUN   TestNativeProbe\n==================\nWARNING: DATA RACE\nRead at 0x00c0000124d0 by goroutine 7:\n  finite.local/acknowledged.TestNativeProbe()\n      <DISPOSABLE_unsafe-publication>/project/probe_test.go:12 +0x1bc\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.(*T).Run.gowrap1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x34\n\nPrevious write at 0x00c0000124d0 by goroutine 8:\n  finite.local/acknowledged.Exchange()\n      <DISPOSABLE_unsafe-publication>/project/exchange.go:7 +0xc0\n  finite.local/acknowledged.TestNativeProbe.func1()\n      <DISPOSABLE_unsafe-publication>/project/probe_test.go:9 +0x18\n\nGoroutine 7 (running) created at:\n  testing.(*T).Run()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x7bc\n  testing.runTests.func1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2742 +0x74\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.runTests()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2740 +0x7a0\n  testing.(*M).Run()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2600 +0xb38\n  main.main()\n      _testmain.go:50 +0x100\n\nGoroutine 8 (running) created at:\n  finite.local/acknowledged.TestNativeProbe()\n      <DISPOSABLE_unsafe-publication>/project/probe_test.go:9 +0x130\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.(*T).Run.gowrap1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x34\n==================\n==================\nWARNING: DATA RACE\nRead at 0x00c0000124d8 by goroutine 7:\n  finite.local/acknowledged.TestNativeProbe()\n      <DISPOSABLE_unsafe-publication>/project/probe_test.go:12 +0x1dc\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.(*T).Run.gowrap1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x34\n\nPrevious write at 0x00c0000124d8 by goroutine 8:\n  finite.local/acknowledged.Exchange()\n      <DISPOSABLE_unsafe-publication>/project/exchange.go:8 +0xd4\n  finite.local/acknowledged.TestNativeProbe.func1()\n      <DISPOSABLE_unsafe-publication>/project/probe_test.go:9 +0x18\n\nGoroutine 7 (running) created at:\n  testing.(*T).Run()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x7bc\n  testing.runTests.func1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2742 +0x74\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.runTests()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2740 +0x7a0\n  testing.(*M).Run()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2600 +0xb38\n  main.main()\n      _testmain.go:50 +0x100\n\nGoroutine 8 (running) created at:\n  finite.local/acknowledged.TestNativeProbe()\n      <DISPOSABLE_unsafe-publication>/project/probe_test.go:9 +0x130\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.(*T).Run.gowrap1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x34\n==================\n    probe_test.go:16: observed finite packets: [{Value:17 Twice:34} {Value:-4 Twice:-8}]\n    testing.go:1865: race detected during execution of test\n--- FAIL: TestNativeProbe (0.00s)\nFAIL\nFAIL\tfinite.local/acknowledged\t0.166s\nFAIL\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 4.098649,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:15.527628+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "0d181e822cbbc179b64c7a6b182f4062651f84c4f0bbab07817385272c7d001b",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tout <- &packet\n\t\tpacket.Value = value\n\t\tpacket.Twice = 2 * value\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        }
+      ],
+      "cleanup": true,
+      "status": "all exact expected observations recorded; independent actual method review pending",
+      "finished_at": "2026-10-23T08:18:15.598810+00:00"
+    },
+    {
+      "specimen": "unsafe-reuse",
+      "root": "<DISPOSABLE_unsafe-reuse>",
+      "started_at": "2026-10-23T08:18:15.599594+00:00",
+      "copies": [
+        {
+          "source": "files/go.mod.txt",
+          "destination": "go.mod",
+          "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945"
+        },
+        {
+          "source": "files/packet.go.txt",
+          "destination": "packet.go",
+          "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f"
+        },
+        {
+          "source": "files/probe_test.go.txt",
+          "destination": "probe_test.go",
+          "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb"
+        },
+        {
+          "source": "files/grader_test.go.txt",
+          "destination": "grader_test.go",
+          "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857"
+        },
+        {
+          "source": "wrong/reuse-before-ack.go.txt",
+          "destination": "exchange.go",
+          "sha256": "af9b143c63a1bc7c321adb1754a9ff486a5076c703a23cb1ef10dc54184d45e4"
+        },
+        {
+          "source": "reference/learner_test.go.txt",
+          "destination": "learner_test.go",
+          "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8"
+        }
+      ],
+      "snapshots": [
+        {
+          "at": "2026-10-23T08:18:15.601571+00:00",
+          "files": {
+            "exchange.go": {
+              "sha256": "af9b143c63a1bc7c321adb1754a9ff486a5076c703a23cb1ef10dc54184d45e4",
+              "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tif len(values) != 0 {\n\t\tpacket = Packet{values[0], 2 * values[0]}\n\t}\n\tfor i := range values {\n\t\tout <- &packet\n\t\tif i+1 < len(values) {\n\t\t\tpacket = Packet{values[i+1], 2 * values[i+1]}\n\t\t}\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+            },
+            "go.mod": {
+              "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+              "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+            },
+            "grader_test.go": {
+              "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+              "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+            },
+            "learner_test.go": {
+              "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+              "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+            },
+            "packet.go": {
+              "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+              "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+            },
+            "probe_test.go": {
+              "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+              "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+            }
+          }
+        }
+      ],
+      "commands": [
+        {
+          "at": "2026-10-23T08:18:15.602123+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "version"
+          ],
+          "cwd": "<DISPOSABLE_unsafe-reuse>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_unsafe-reuse>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_unsafe-reuse>/config",
+            "GOCACHE": "<DISPOSABLE_unsafe-reuse>/cache",
+            "GOMODCACHE": "<DISPOSABLE_unsafe-reuse>/modcache",
+            "TMPDIR": "<DISPOSABLE_unsafe-reuse>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "0",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "zero",
+          "before": {
+            "at": "2026-10-23T08:18:15.602120+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "af9b143c63a1bc7c321adb1754a9ff486a5076c703a23cb1ef10dc54184d45e4",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tif len(values) != 0 {\n\t\tpacket = Packet{values[0], 2 * values[0]}\n\t}\n\tfor i := range values {\n\t\tout <- &packet\n\t\tif i+1 < len(values) {\n\t\t\tpacket = Packet{values[i+1], 2 * values[i+1]}\n\t\t}\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 0.006293,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:15.608821+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "af9b143c63a1bc7c321adb1754a9ff486a5076c703a23cb1ef10dc54184d45e4",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tif len(values) != 0 {\n\t\tpacket = Packet{values[0], 2 * values[0]}\n\t}\n\tfor i := range values {\n\t\tout <- &packet\n\t\tif i+1 < len(values) {\n\t\t\tpacket = Packet{values[i+1], 2 * values[i+1]}\n\t\t}\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        },
+        {
+          "at": "2026-10-23T08:18:15.609534+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "test",
+            "-race",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^TestNativeProbe$",
+            "."
+          ],
+          "cwd": "<DISPOSABLE_unsafe-reuse>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_unsafe-reuse>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_unsafe-reuse>/config",
+            "GOCACHE": "<DISPOSABLE_unsafe-reuse>/cache",
+            "GOMODCACHE": "<DISPOSABLE_unsafe-reuse>/modcache",
+            "TMPDIR": "<DISPOSABLE_unsafe-reuse>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "1",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "native-race",
+          "before": {
+            "at": "2026-10-23T08:18:15.609531+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "af9b143c63a1bc7c321adb1754a9ff486a5076c703a23cb1ef10dc54184d45e4",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tif len(values) != 0 {\n\t\tpacket = Packet{values[0], 2 * values[0]}\n\t}\n\tfor i := range values {\n\t\tout <- &packet\n\t\tif i+1 < len(values) {\n\t\t\tpacket = Packet{values[i+1], 2 * values[i+1]}\n\t\t}\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 1,
+          "stdout": "=== RUN   TestNativeProbe\n==================\nWARNING: DATA RACE\nRead at 0x00c0001963f0 by goroutine 7:\n  finite.local/acknowledged.TestNativeProbe()\n      <DISPOSABLE_unsafe-reuse>/project/probe_test.go:12 +0x1bc\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.(*T).Run.gowrap1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x34\n\nPrevious write at 0x00c0001963f0 by goroutine 8:\n  finite.local/acknowledged.Exchange()\n      <DISPOSABLE_unsafe-reuse>/project/exchange.go:11 +0x12c\n  finite.local/acknowledged.TestNativeProbe.func1()\n      <DISPOSABLE_unsafe-reuse>/project/probe_test.go:9 +0x18\n\nGoroutine 7 (running) created at:\n  testing.(*T).Run()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x7bc\n  testing.runTests.func1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2742 +0x74\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.runTests()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2740 +0x7a0\n  testing.(*M).Run()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2600 +0xb38\n  main.main()\n      _testmain.go:50 +0x100\n\nGoroutine 8 (running) created at:\n  finite.local/acknowledged.TestNativeProbe()\n      <DISPOSABLE_unsafe-reuse>/project/probe_test.go:9 +0x130\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.(*T).Run.gowrap1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x34\n==================\n==================\nWARNING: DATA RACE\nRead at 0x00c0001963f8 by goroutine 7:\n  finite.local/acknowledged.TestNativeProbe()\n      <DISPOSABLE_unsafe-reuse>/project/probe_test.go:12 +0x1dc\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.(*T).Run.gowrap1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x34\n\nPrevious write at 0x00c0001963f8 by goroutine 8:\n  finite.local/acknowledged.Exchange()\n      <DISPOSABLE_unsafe-reuse>/project/exchange.go:11 +0x12c\n  finite.local/acknowledged.TestNativeProbe.func1()\n      <DISPOSABLE_unsafe-reuse>/project/probe_test.go:9 +0x18\n\nGoroutine 7 (running) created at:\n  testing.(*T).Run()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x7bc\n  testing.runTests.func1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2742 +0x74\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.runTests()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2740 +0x7a0\n  testing.(*M).Run()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2600 +0xb38\n  main.main()\n      _testmain.go:50 +0x100\n\nGoroutine 8 (running) created at:\n  finite.local/acknowledged.TestNativeProbe()\n      <DISPOSABLE_unsafe-reuse>/project/probe_test.go:9 +0x130\n  testing.tRunner()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2193 +0x164\n  testing.(*T).Run.gowrap1()\n      /Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/src/testing/testing.go:2258 +0x34\n==================\n    probe_test.go:16: observed finite packets: [{Value:-4 Twice:-8} {Value:-4 Twice:-8}]\n    testing.go:1865: race detected during execution of test\n--- FAIL: TestNativeProbe (0.00s)\nFAIL\nFAIL\tfinite.local/acknowledged\t0.165s\nFAIL\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 4.633191,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:20.243319+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "af9b143c63a1bc7c321adb1754a9ff486a5076c703a23cb1ef10dc54184d45e4",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tif len(values) != 0 {\n\t\tpacket = Packet{values[0], 2 * values[0]}\n\t}\n\tfor i := range values {\n\t\tout <- &packet\n\t\tif i+1 < len(values) {\n\t\t\tpacket = Packet{values[i+1], 2 * values[i+1]}\n\t\t}\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        }
+      ],
+      "cleanup": true,
+      "status": "all exact expected observations recorded; independent actual method review pending",
+      "finished_at": "2026-10-23T08:18:20.348786+00:00"
+    },
+    {
+      "specimen": "reference",
+      "root": "<DISPOSABLE_reference>",
+      "started_at": "2026-10-23T08:18:20.349986+00:00",
+      "copies": [
+        {
+          "source": "files/go.mod.txt",
+          "destination": "go.mod",
+          "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945"
+        },
+        {
+          "source": "files/packet.go.txt",
+          "destination": "packet.go",
+          "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f"
+        },
+        {
+          "source": "files/probe_test.go.txt",
+          "destination": "probe_test.go",
+          "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb"
+        },
+        {
+          "source": "files/grader_test.go.txt",
+          "destination": "grader_test.go",
+          "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857"
+        },
+        {
+          "source": "reference/exchange.go.txt",
+          "destination": "exchange.go",
+          "sha256": "2c3752410ae4edea1742b34bc53afab89ee77dfae12e1edc582e72535d42c969"
+        },
+        {
+          "source": "reference/learner_test.go.txt",
+          "destination": "learner_test.go",
+          "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8"
+        }
+      ],
+      "snapshots": [
+        {
+          "at": "2026-10-23T08:18:20.353674+00:00",
+          "files": {
+            "exchange.go": {
+              "sha256": "2c3752410ae4edea1742b34bc53afab89ee77dfae12e1edc582e72535d42c969",
+              "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = 2 * value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+            },
+            "go.mod": {
+              "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+              "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+            },
+            "grader_test.go": {
+              "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+              "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+            },
+            "learner_test.go": {
+              "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+              "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+            },
+            "packet.go": {
+              "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+              "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+            },
+            "probe_test.go": {
+              "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+              "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+            }
+          }
+        }
+      ],
+      "commands": [
+        {
+          "at": "2026-10-23T08:18:20.354585+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "version"
+          ],
+          "cwd": "<DISPOSABLE_reference>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_reference>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_reference>/config",
+            "GOCACHE": "<DISPOSABLE_reference>/cache",
+            "GOMODCACHE": "<DISPOSABLE_reference>/modcache",
+            "TMPDIR": "<DISPOSABLE_reference>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "0",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "zero",
+          "before": {
+            "at": "2026-10-23T08:18:20.354581+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "2c3752410ae4edea1742b34bc53afab89ee77dfae12e1edc582e72535d42c969",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = 2 * value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 0.006661,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:20.361627+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "2c3752410ae4edea1742b34bc53afab89ee77dfae12e1edc582e72535d42c969",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = 2 * value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        },
+        {
+          "at": "2026-10-23T08:18:20.365800+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "./..."
+          ],
+          "cwd": "<DISPOSABLE_reference>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_reference>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_reference>/config",
+            "GOCACHE": "<DISPOSABLE_reference>/cache",
+            "GOMODCACHE": "<DISPOSABLE_reference>/modcache",
+            "TMPDIR": "<DISPOSABLE_reference>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "0",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "zero",
+          "before": {
+            "at": "2026-10-23T08:18:20.365795+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "2c3752410ae4edea1742b34bc53afab89ee77dfae12e1edc582e72535d42c969",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = 2 * value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 0,
+          "stdout": "=== RUN   TestProtocolBoundary\n--- PASS: TestProtocolBoundary (0.00s)\n=== RUN   TestSnapshots\n--- PASS: TestSnapshots (0.00s)\n=== RUN   TestNativeProbe\n    probe_test.go:16: observed finite packets: [{Value:17 Twice:34} {Value:-4 Twice:-8}]\n--- PASS: TestNativeProbe (0.00s)\nPASS\nok  \tfinite.local/acknowledged\t0.196s\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 2.555088,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:22.921462+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "2c3752410ae4edea1742b34bc53afab89ee77dfae12e1edc582e72535d42c969",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = 2 * value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        },
+        {
+          "at": "2026-10-23T08:18:22.922646+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "test",
+            "-race",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "./..."
+          ],
+          "cwd": "<DISPOSABLE_reference>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_reference>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_reference>/config",
+            "GOCACHE": "<DISPOSABLE_reference>/cache",
+            "GOMODCACHE": "<DISPOSABLE_reference>/modcache",
+            "TMPDIR": "<DISPOSABLE_reference>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "1",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "zero",
+          "before": {
+            "at": "2026-10-23T08:18:22.922641+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "2c3752410ae4edea1742b34bc53afab89ee77dfae12e1edc582e72535d42c969",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = 2 * value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 0,
+          "stdout": "=== RUN   TestProtocolBoundary\n--- PASS: TestProtocolBoundary (0.00s)\n=== RUN   TestSnapshots\n--- PASS: TestSnapshots (0.00s)\n=== RUN   TestNativeProbe\n    probe_test.go:16: observed finite packets: [{Value:17 Twice:34} {Value:-4 Twice:-8}]\n--- PASS: TestNativeProbe (0.00s)\nPASS\nok  \tfinite.local/acknowledged\t1.171s\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 5.404244,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:28.327426+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "2c3752410ae4edea1742b34bc53afab89ee77dfae12e1edc582e72535d42c969",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = 2 * value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        }
+      ],
+      "cleanup": true,
+      "status": "all exact expected observations recorded; independent actual method review pending",
+      "finished_at": "2026-10-23T08:18:28.432587+00:00"
+    },
+    {
+      "specimen": "alternate",
+      "root": "<DISPOSABLE_alternate>",
+      "started_at": "2026-10-23T08:18:28.433737+00:00",
+      "copies": [
+        {
+          "source": "files/go.mod.txt",
+          "destination": "go.mod",
+          "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945"
+        },
+        {
+          "source": "files/packet.go.txt",
+          "destination": "packet.go",
+          "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f"
+        },
+        {
+          "source": "files/probe_test.go.txt",
+          "destination": "probe_test.go",
+          "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb"
+        },
+        {
+          "source": "files/grader_test.go.txt",
+          "destination": "grader_test.go",
+          "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857"
+        },
+        {
+          "source": "alternative/exchange.go.txt",
+          "destination": "exchange.go",
+          "sha256": "32a93a72a78ba740b9a65d92ef31370663b931f1b4f8ebe27916473bfba3dcbe"
+        },
+        {
+          "source": "alternative/learner_test.go.txt",
+          "destination": "learner_test.go",
+          "sha256": "9cce9da6263d71e8f00403d757757ccedcdc6ff428e6eaf25482b022bb20ed83"
+        }
+      ],
+      "snapshots": [
+        {
+          "at": "2026-10-23T08:18:28.436082+00:00",
+          "files": {
+            "exchange.go": {
+              "sha256": "32a93a72a78ba740b9a65d92ef31370663b931f1b4f8ebe27916473bfba3dcbe",
+              "text": "package snapshot\n\nfunc fill(packet *Packet, value int) { *packet = Packet{Value: value, Twice: value + value} }\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tpacket := new(Packet)\n\tfor i := range values {\n\t\tfill(packet, values[i])\n\t\tout <- packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+            },
+            "go.mod": {
+              "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+              "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+            },
+            "grader_test.go": {
+              "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+              "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+            },
+            "learner_test.go": {
+              "sha256": "9cce9da6263d71e8f00403d757757ccedcdc6ff428e6eaf25482b022bb20ed83",
+              "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tinputs := []int{-5, 0, 9, 2}\n\toutput, acknowledgements := make(chan *Packet), make(chan struct{})\n\tjoined := make(chan struct{})\n\tgo func() { Exchange(inputs, output, acknowledgements); close(joined) }()\n\tgot := make([]Packet, 0, len(inputs))\n\tpointers := make([]*Packet, 0, len(inputs))\n\tfor packet := range output {\n\t\tgot = append(got, *packet)\n\t\tpointers = append(pointers, packet)\n\t\tacknowledgements <- struct{}{}\n\t}\n\t<-joined\n\tif len(got) != len(inputs) {\n\t\tt.Fatalf(\"snapshot count=%d want=%d\", len(got), len(inputs))\n\t}\n\tfor i, value := range inputs {\n\t\tif got[i].Value != value || got[i].Twice != value+value {\n\t\t\tt.Errorf(\"snapshot case=%d got=%+v want=(%d,%d)\", i, got[i], value, value+value)\n\t\t}\n\t\tif pointers[i] != pointers[0] {\n\t\t\tt.Errorf(\"stable packet changed at %d\", i)\n\t\t}\n\t}\n}\n"
+            },
+            "packet.go": {
+              "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+              "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+            },
+            "probe_test.go": {
+              "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+              "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+            }
+          }
+        }
+      ],
+      "commands": [
+        {
+          "at": "2026-10-23T08:18:28.436946+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "version"
+          ],
+          "cwd": "<DISPOSABLE_alternate>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_alternate>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_alternate>/config",
+            "GOCACHE": "<DISPOSABLE_alternate>/cache",
+            "GOMODCACHE": "<DISPOSABLE_alternate>/modcache",
+            "TMPDIR": "<DISPOSABLE_alternate>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "0",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "zero",
+          "before": {
+            "at": "2026-10-23T08:18:28.436942+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "32a93a72a78ba740b9a65d92ef31370663b931f1b4f8ebe27916473bfba3dcbe",
+                "text": "package snapshot\n\nfunc fill(packet *Packet, value int) { *packet = Packet{Value: value, Twice: value + value} }\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tpacket := new(Packet)\n\tfor i := range values {\n\t\tfill(packet, values[i])\n\t\tout <- packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "9cce9da6263d71e8f00403d757757ccedcdc6ff428e6eaf25482b022bb20ed83",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tinputs := []int{-5, 0, 9, 2}\n\toutput, acknowledgements := make(chan *Packet), make(chan struct{})\n\tjoined := make(chan struct{})\n\tgo func() { Exchange(inputs, output, acknowledgements); close(joined) }()\n\tgot := make([]Packet, 0, len(inputs))\n\tpointers := make([]*Packet, 0, len(inputs))\n\tfor packet := range output {\n\t\tgot = append(got, *packet)\n\t\tpointers = append(pointers, packet)\n\t\tacknowledgements <- struct{}{}\n\t}\n\t<-joined\n\tif len(got) != len(inputs) {\n\t\tt.Fatalf(\"snapshot count=%d want=%d\", len(got), len(inputs))\n\t}\n\tfor i, value := range inputs {\n\t\tif got[i].Value != value || got[i].Twice != value+value {\n\t\t\tt.Errorf(\"snapshot case=%d got=%+v want=(%d,%d)\", i, got[i], value, value+value)\n\t\t}\n\t\tif pointers[i] != pointers[0] {\n\t\t\tt.Errorf(\"stable packet changed at %d\", i)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 0.006575,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:28.444095+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "32a93a72a78ba740b9a65d92ef31370663b931f1b4f8ebe27916473bfba3dcbe",
+                "text": "package snapshot\n\nfunc fill(packet *Packet, value int) { *packet = Packet{Value: value, Twice: value + value} }\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tpacket := new(Packet)\n\tfor i := range values {\n\t\tfill(packet, values[i])\n\t\tout <- packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "9cce9da6263d71e8f00403d757757ccedcdc6ff428e6eaf25482b022bb20ed83",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tinputs := []int{-5, 0, 9, 2}\n\toutput, acknowledgements := make(chan *Packet), make(chan struct{})\n\tjoined := make(chan struct{})\n\tgo func() { Exchange(inputs, output, acknowledgements); close(joined) }()\n\tgot := make([]Packet, 0, len(inputs))\n\tpointers := make([]*Packet, 0, len(inputs))\n\tfor packet := range output {\n\t\tgot = append(got, *packet)\n\t\tpointers = append(pointers, packet)\n\t\tacknowledgements <- struct{}{}\n\t}\n\t<-joined\n\tif len(got) != len(inputs) {\n\t\tt.Fatalf(\"snapshot count=%d want=%d\", len(got), len(inputs))\n\t}\n\tfor i, value := range inputs {\n\t\tif got[i].Value != value || got[i].Twice != value+value {\n\t\t\tt.Errorf(\"snapshot case=%d got=%+v want=(%d,%d)\", i, got[i], value, value+value)\n\t\t}\n\t\tif pointers[i] != pointers[0] {\n\t\t\tt.Errorf(\"stable packet changed at %d\", i)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        },
+        {
+          "at": "2026-10-23T08:18:28.445763+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "./..."
+          ],
+          "cwd": "<DISPOSABLE_alternate>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_alternate>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_alternate>/config",
+            "GOCACHE": "<DISPOSABLE_alternate>/cache",
+            "GOMODCACHE": "<DISPOSABLE_alternate>/modcache",
+            "TMPDIR": "<DISPOSABLE_alternate>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "0",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "zero",
+          "before": {
+            "at": "2026-10-23T08:18:28.445756+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "32a93a72a78ba740b9a65d92ef31370663b931f1b4f8ebe27916473bfba3dcbe",
+                "text": "package snapshot\n\nfunc fill(packet *Packet, value int) { *packet = Packet{Value: value, Twice: value + value} }\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tpacket := new(Packet)\n\tfor i := range values {\n\t\tfill(packet, values[i])\n\t\tout <- packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "9cce9da6263d71e8f00403d757757ccedcdc6ff428e6eaf25482b022bb20ed83",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tinputs := []int{-5, 0, 9, 2}\n\toutput, acknowledgements := make(chan *Packet), make(chan struct{})\n\tjoined := make(chan struct{})\n\tgo func() { Exchange(inputs, output, acknowledgements); close(joined) }()\n\tgot := make([]Packet, 0, len(inputs))\n\tpointers := make([]*Packet, 0, len(inputs))\n\tfor packet := range output {\n\t\tgot = append(got, *packet)\n\t\tpointers = append(pointers, packet)\n\t\tacknowledgements <- struct{}{}\n\t}\n\t<-joined\n\tif len(got) != len(inputs) {\n\t\tt.Fatalf(\"snapshot count=%d want=%d\", len(got), len(inputs))\n\t}\n\tfor i, value := range inputs {\n\t\tif got[i].Value != value || got[i].Twice != value+value {\n\t\t\tt.Errorf(\"snapshot case=%d got=%+v want=(%d,%d)\", i, got[i], value, value+value)\n\t\t}\n\t\tif pointers[i] != pointers[0] {\n\t\t\tt.Errorf(\"stable packet changed at %d\", i)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 0,
+          "stdout": "=== RUN   TestProtocolBoundary\n--- PASS: TestProtocolBoundary (0.00s)\n=== RUN   TestSnapshots\n--- PASS: TestSnapshots (0.00s)\n=== RUN   TestNativeProbe\n    probe_test.go:16: observed finite packets: [{Value:17 Twice:34} {Value:-4 Twice:-8}]\n--- PASS: TestNativeProbe (0.00s)\nPASS\nok  \tfinite.local/acknowledged\t0.202s\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 2.28416,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:30.730484+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "32a93a72a78ba740b9a65d92ef31370663b931f1b4f8ebe27916473bfba3dcbe",
+                "text": "package snapshot\n\nfunc fill(packet *Packet, value int) { *packet = Packet{Value: value, Twice: value + value} }\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tpacket := new(Packet)\n\tfor i := range values {\n\t\tfill(packet, values[i])\n\t\tout <- packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "9cce9da6263d71e8f00403d757757ccedcdc6ff428e6eaf25482b022bb20ed83",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tinputs := []int{-5, 0, 9, 2}\n\toutput, acknowledgements := make(chan *Packet), make(chan struct{})\n\tjoined := make(chan struct{})\n\tgo func() { Exchange(inputs, output, acknowledgements); close(joined) }()\n\tgot := make([]Packet, 0, len(inputs))\n\tpointers := make([]*Packet, 0, len(inputs))\n\tfor packet := range output {\n\t\tgot = append(got, *packet)\n\t\tpointers = append(pointers, packet)\n\t\tacknowledgements <- struct{}{}\n\t}\n\t<-joined\n\tif len(got) != len(inputs) {\n\t\tt.Fatalf(\"snapshot count=%d want=%d\", len(got), len(inputs))\n\t}\n\tfor i, value := range inputs {\n\t\tif got[i].Value != value || got[i].Twice != value+value {\n\t\t\tt.Errorf(\"snapshot case=%d got=%+v want=(%d,%d)\", i, got[i], value, value+value)\n\t\t}\n\t\tif pointers[i] != pointers[0] {\n\t\t\tt.Errorf(\"stable packet changed at %d\", i)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        },
+        {
+          "at": "2026-10-23T08:18:30.731775+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "test",
+            "-race",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "./..."
+          ],
+          "cwd": "<DISPOSABLE_alternate>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_alternate>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_alternate>/config",
+            "GOCACHE": "<DISPOSABLE_alternate>/cache",
+            "GOMODCACHE": "<DISPOSABLE_alternate>/modcache",
+            "TMPDIR": "<DISPOSABLE_alternate>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "1",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "zero",
+          "before": {
+            "at": "2026-10-23T08:18:30.731770+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "32a93a72a78ba740b9a65d92ef31370663b931f1b4f8ebe27916473bfba3dcbe",
+                "text": "package snapshot\n\nfunc fill(packet *Packet, value int) { *packet = Packet{Value: value, Twice: value + value} }\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tpacket := new(Packet)\n\tfor i := range values {\n\t\tfill(packet, values[i])\n\t\tout <- packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "9cce9da6263d71e8f00403d757757ccedcdc6ff428e6eaf25482b022bb20ed83",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tinputs := []int{-5, 0, 9, 2}\n\toutput, acknowledgements := make(chan *Packet), make(chan struct{})\n\tjoined := make(chan struct{})\n\tgo func() { Exchange(inputs, output, acknowledgements); close(joined) }()\n\tgot := make([]Packet, 0, len(inputs))\n\tpointers := make([]*Packet, 0, len(inputs))\n\tfor packet := range output {\n\t\tgot = append(got, *packet)\n\t\tpointers = append(pointers, packet)\n\t\tacknowledgements <- struct{}{}\n\t}\n\t<-joined\n\tif len(got) != len(inputs) {\n\t\tt.Fatalf(\"snapshot count=%d want=%d\", len(got), len(inputs))\n\t}\n\tfor i, value := range inputs {\n\t\tif got[i].Value != value || got[i].Twice != value+value {\n\t\t\tt.Errorf(\"snapshot case=%d got=%+v want=(%d,%d)\", i, got[i], value, value+value)\n\t\t}\n\t\tif pointers[i] != pointers[0] {\n\t\t\tt.Errorf(\"stable packet changed at %d\", i)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 0,
+          "stdout": "=== RUN   TestProtocolBoundary\n--- PASS: TestProtocolBoundary (0.00s)\n=== RUN   TestSnapshots\n--- PASS: TestSnapshots (0.00s)\n=== RUN   TestNativeProbe\n    probe_test.go:16: observed finite packets: [{Value:17 Twice:34} {Value:-4 Twice:-8}]\n--- PASS: TestNativeProbe (0.00s)\nPASS\nok  \tfinite.local/acknowledged\t1.429s\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 4.91869,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:35.651000+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "32a93a72a78ba740b9a65d92ef31370663b931f1b4f8ebe27916473bfba3dcbe",
+                "text": "package snapshot\n\nfunc fill(packet *Packet, value int) { *packet = Packet{Value: value, Twice: value + value} }\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tpacket := new(Packet)\n\tfor i := range values {\n\t\tfill(packet, values[i])\n\t\tout <- packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "9cce9da6263d71e8f00403d757757ccedcdc6ff428e6eaf25482b022bb20ed83",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tinputs := []int{-5, 0, 9, 2}\n\toutput, acknowledgements := make(chan *Packet), make(chan struct{})\n\tjoined := make(chan struct{})\n\tgo func() { Exchange(inputs, output, acknowledgements); close(joined) }()\n\tgot := make([]Packet, 0, len(inputs))\n\tpointers := make([]*Packet, 0, len(inputs))\n\tfor packet := range output {\n\t\tgot = append(got, *packet)\n\t\tpointers = append(pointers, packet)\n\t\tacknowledgements <- struct{}{}\n\t}\n\t<-joined\n\tif len(got) != len(inputs) {\n\t\tt.Fatalf(\"snapshot count=%d want=%d\", len(got), len(inputs))\n\t}\n\tfor i, value := range inputs {\n\t\tif got[i].Value != value || got[i].Twice != value+value {\n\t\t\tt.Errorf(\"snapshot case=%d got=%+v want=(%d,%d)\", i, got[i], value, value+value)\n\t\t}\n\t\tif pointers[i] != pointers[0] {\n\t\t\tt.Errorf(\"stable packet changed at %d\", i)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        }
+      ],
+      "cleanup": true,
+      "status": "all exact expected observations recorded; independent actual method review pending",
+      "finished_at": "2026-10-23T08:18:35.827721+00:00"
+    },
+    {
+      "specimen": "wrong-value",
+      "root": "<DISPOSABLE_wrong-value>",
+      "started_at": "2026-10-23T08:18:35.829018+00:00",
+      "copies": [
+        {
+          "source": "files/go.mod.txt",
+          "destination": "go.mod",
+          "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945"
+        },
+        {
+          "source": "files/packet.go.txt",
+          "destination": "packet.go",
+          "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f"
+        },
+        {
+          "source": "files/probe_test.go.txt",
+          "destination": "probe_test.go",
+          "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb"
+        },
+        {
+          "source": "files/grader_test.go.txt",
+          "destination": "grader_test.go",
+          "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857"
+        },
+        {
+          "source": "wrong/incorrect-twice.go.txt",
+          "destination": "exchange.go",
+          "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1"
+        },
+        {
+          "source": "reference/learner_test.go.txt",
+          "destination": "learner_test.go",
+          "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8"
+        }
+      ],
+      "snapshots": [
+        {
+          "at": "2026-10-23T08:18:35.831678+00:00",
+          "files": {
+            "exchange.go": {
+              "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+              "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+            },
+            "go.mod": {
+              "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+              "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+            },
+            "grader_test.go": {
+              "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+              "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+            },
+            "learner_test.go": {
+              "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+              "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+            },
+            "packet.go": {
+              "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+              "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+            },
+            "probe_test.go": {
+              "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+              "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+            }
+          }
+        }
+      ],
+      "commands": [
+        {
+          "at": "2026-10-23T08:18:35.832729+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "version"
+          ],
+          "cwd": "<DISPOSABLE_wrong-value>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_wrong-value>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_wrong-value>/config",
+            "GOCACHE": "<DISPOSABLE_wrong-value>/cache",
+            "GOMODCACHE": "<DISPOSABLE_wrong-value>/modcache",
+            "TMPDIR": "<DISPOSABLE_wrong-value>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "0",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "zero",
+          "before": {
+            "at": "2026-10-23T08:18:35.832725+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 0.006406,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:35.839532+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        },
+        {
+          "at": "2026-10-23T08:18:35.840785+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "test",
+            "-race",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "-run=^TestNativeProbe$",
+            "."
+          ],
+          "cwd": "<DISPOSABLE_wrong-value>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_wrong-value>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_wrong-value>/config",
+            "GOCACHE": "<DISPOSABLE_wrong-value>/cache",
+            "GOMODCACHE": "<DISPOSABLE_wrong-value>/modcache",
+            "TMPDIR": "<DISPOSABLE_wrong-value>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "1",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "zero",
+          "before": {
+            "at": "2026-10-23T08:18:35.840780+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 0,
+          "stdout": "=== RUN   TestNativeProbe\n    probe_test.go:16: observed finite packets: [{Value:17 Twice:17} {Value:-4 Twice:-4}]\n--- PASS: TestNativeProbe (0.00s)\nPASS\nok  \tfinite.local/acknowledged\t1.171s\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 4.720432,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:40.561775+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        },
+        {
+          "at": "2026-10-23T08:18:40.563288+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "./..."
+          ],
+          "cwd": "<DISPOSABLE_wrong-value>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_wrong-value>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_wrong-value>/config",
+            "GOCACHE": "<DISPOSABLE_wrong-value>/cache",
+            "GOMODCACHE": "<DISPOSABLE_wrong-value>/modcache",
+            "TMPDIR": "<DISPOSABLE_wrong-value>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "0",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "ordinary-failure",
+          "before": {
+            "at": "2026-10-23T08:18:40.563284+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 1,
+          "stdout": "=== RUN   TestProtocolBoundary\n--- PASS: TestProtocolBoundary (0.00s)\n=== RUN   TestSnapshots\n    learner_test.go:32: snapshot case=1 input=-7 got={Value:-7 Twice:-7}; want={Value:-7 Twice:-14}\n    learner_test.go:32: snapshot case=2 input=12 got={Value:12 Twice:12}; want={Value:12 Twice:24}\n    learner_test.go:32: snapshot case=3 input=-1 got={Value:-1 Twice:-1}; want={Value:-1 Twice:-2}\n    learner_test.go:32: snapshot case=4 input=4 got={Value:4 Twice:4}; want={Value:4 Twice:8}\n--- FAIL: TestSnapshots (0.00s)\n=== RUN   TestNativeProbe\n    probe_test.go:16: observed finite packets: [{Value:17 Twice:17} {Value:-4 Twice:-4}]\n--- PASS: TestNativeProbe (0.00s)\nFAIL\nFAIL\tfinite.local/acknowledged\t0.248s\nFAIL\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 2.203854,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:42.767697+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tvalues := []int{0, -7, 12, -1, 4}\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange(values, out, ack); close(done) }()\n\tvar snapshots []Packet\n\tvar first *Packet\n\tdifferent := false\n\tfor packet := range out {\n\t\tif first == nil {\n\t\t\tfirst = packet\n\t\t} else if packet != first {\n\t\t\tdifferent = true\n\t\t}\n\t\tsnapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tif different {\n\t\tt.Error(\"sender replaced the stable packet\")\n\t}\n\tif len(snapshots) != len(values) {\n\t\tt.Fatalf(\"snapshot count=%d; want %d\", len(snapshots), len(values))\n\t}\n\tfor i, value := range values {\n\t\twant := Packet{Value: value, Twice: value * 2}\n\t\tif snapshots[i] != want {\n\t\t\tt.Errorf(\"snapshot case=%d input=%d got=%+v; want=%+v\", i, value, snapshots[i], want)\n\t\t}\n\t}\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        }
+      ],
+      "cleanup": true,
+      "status": "all exact expected observations recorded; independent actual method review pending",
+      "finished_at": "2026-10-23T08:18:42.860626+00:00"
+    },
+    {
+      "specimen": "weak-test",
+      "root": "<DISPOSABLE_weak-test>",
+      "started_at": "2026-10-23T08:18:42.861918+00:00",
+      "copies": [
+        {
+          "source": "files/go.mod.txt",
+          "destination": "go.mod",
+          "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945"
+        },
+        {
+          "source": "files/packet.go.txt",
+          "destination": "packet.go",
+          "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f"
+        },
+        {
+          "source": "files/probe_test.go.txt",
+          "destination": "probe_test.go",
+          "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb"
+        },
+        {
+          "source": "files/grader_test.go.txt",
+          "destination": "grader_test.go",
+          "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857"
+        },
+        {
+          "source": "wrong/incorrect-twice.go.txt",
+          "destination": "exchange.go",
+          "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1"
+        },
+        {
+          "source": "controls/weak_test.go.txt",
+          "destination": "learner_test.go",
+          "sha256": "e6480077159b0e1e6a5fce6c04f9cb1b742b535c76d1f4fcf49dd1b4840573c6"
+        }
+      ],
+      "snapshots": [
+        {
+          "at": "2026-10-23T08:18:42.864502+00:00",
+          "files": {
+            "exchange.go": {
+              "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+              "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+            },
+            "go.mod": {
+              "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+              "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+            },
+            "grader_test.go": {
+              "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+              "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+            },
+            "learner_test.go": {
+              "sha256": "e6480077159b0e1e6a5fce6c04f9cb1b742b535c76d1f4fcf49dd1b4840573c6",
+              "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{0, -7, 12}, out, ack); close(done) }()\n\tfor range out {\n\t\tack <- struct{}{}\n\t}\n\t<-done\n}\n"
+            },
+            "packet.go": {
+              "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+              "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+            },
+            "probe_test.go": {
+              "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+              "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+            }
+          }
+        }
+      ],
+      "commands": [
+        {
+          "at": "2026-10-23T08:18:42.865703+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "version"
+          ],
+          "cwd": "<DISPOSABLE_weak-test>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_weak-test>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_weak-test>/config",
+            "GOCACHE": "<DISPOSABLE_weak-test>/cache",
+            "GOMODCACHE": "<DISPOSABLE_weak-test>/modcache",
+            "TMPDIR": "<DISPOSABLE_weak-test>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "0",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "zero",
+          "before": {
+            "at": "2026-10-23T08:18:42.865700+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "e6480077159b0e1e6a5fce6c04f9cb1b742b535c76d1f4fcf49dd1b4840573c6",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{0, -7, 12}, out, ack); close(done) }()\n\tfor range out {\n\t\tack <- struct{}{}\n\t}\n\t<-done\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 0.006353,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:42.872428+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "e6480077159b0e1e6a5fce6c04f9cb1b742b535c76d1f4fcf49dd1b4840573c6",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{0, -7, 12}, out, ack); close(done) }()\n\tfor range out {\n\t\tack <- struct{}{}\n\t}\n\t<-done\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        },
+        {
+          "at": "2026-10-23T08:18:42.873835+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "./..."
+          ],
+          "cwd": "<DISPOSABLE_weak-test>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_weak-test>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_weak-test>/config",
+            "GOCACHE": "<DISPOSABLE_weak-test>/cache",
+            "GOMODCACHE": "<DISPOSABLE_weak-test>/modcache",
+            "TMPDIR": "<DISPOSABLE_weak-test>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "0",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "zero",
+          "before": {
+            "at": "2026-10-23T08:18:42.873832+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "e6480077159b0e1e6a5fce6c04f9cb1b742b535c76d1f4fcf49dd1b4840573c6",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{0, -7, 12}, out, ack); close(done) }()\n\tfor range out {\n\t\tack <- struct{}{}\n\t}\n\t<-done\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 0,
+          "stdout": "=== RUN   TestProtocolBoundary\n--- PASS: TestProtocolBoundary (0.00s)\n=== RUN   TestSnapshots\n--- PASS: TestSnapshots (0.00s)\n=== RUN   TestNativeProbe\n    probe_test.go:16: observed finite packets: [{Value:17 Twice:17} {Value:-4 Twice:-4}]\n--- PASS: TestNativeProbe (0.00s)\nPASS\nok  \tfinite.local/acknowledged\t0.165s\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 2.228451,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:45.102821+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "e6480077159b0e1e6a5fce6c04f9cb1b742b535c76d1f4fcf49dd1b4840573c6",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{0, -7, 12}, out, ack); close(done) }()\n\tfor range out {\n\t\tack <- struct{}{}\n\t}\n\t<-done\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        },
+        {
+          "at": "2026-10-23T08:18:45.104546+00:00",
+          "argv": [
+            "<LOCAL_GO_BIN>/go",
+            "test",
+            "-race",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "./..."
+          ],
+          "cwd": "<DISPOSABLE_weak-test>/project",
+          "environment": {
+            "PATH": "<LOCAL_GO_BIN>:/usr/bin:/bin",
+            "HOME": "<DISPOSABLE_weak-test>/home",
+            "XDG_CONFIG_HOME": "<DISPOSABLE_weak-test>/config",
+            "GOCACHE": "<DISPOSABLE_weak-test>/cache",
+            "GOMODCACHE": "<DISPOSABLE_weak-test>/modcache",
+            "TMPDIR": "<DISPOSABLE_weak-test>/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "GOFLAGS": "-mod=readonly",
+            "CGO_ENABLED": "1",
+            "GOTELEMETRY": "off",
+            "GOOS": "darwin",
+            "GOARCH": "arm64"
+          },
+          "outer_timeout_seconds": 60,
+          "expected": "zero",
+          "before": {
+            "at": "2026-10-23T08:18:45.104542+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "e6480077159b0e1e6a5fce6c04f9cb1b742b535c76d1f4fcf49dd1b4840573c6",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{0, -7, 12}, out, ack); close(done) }()\n\tfor range out {\n\t\tack <- struct{}{}\n\t}\n\t<-done\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          },
+          "exit_status": 0,
+          "stdout": "=== RUN   TestProtocolBoundary\n--- PASS: TestProtocolBoundary (0.00s)\n=== RUN   TestSnapshots\n--- PASS: TestSnapshots (0.00s)\n=== RUN   TestNativeProbe\n    probe_test.go:16: observed finite packets: [{Value:17 Twice:17} {Value:-4 Twice:-4}]\n--- PASS: TestNativeProbe (0.00s)\nPASS\nok  \tfinite.local/acknowledged\t1.333s\n",
+          "stderr": "",
+          "timed_out": false,
+          "runtime_failure": false,
+          "elapsed_seconds": 4.772892,
+          "expectation_met": true,
+          "after": {
+            "at": "2026-10-23T08:18:49.878047+00:00",
+            "files": {
+              "exchange.go": {
+                "sha256": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+                "text": "package snapshot\n\nfunc Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {\n\tvar packet Packet\n\tfor _, value := range values {\n\t\tpacket.Value = value\n\t\tpacket.Twice = value\n\t\tout <- &packet\n\t\t<-ack\n\t}\n\tclose(out)\n}\n"
+              },
+              "go.mod": {
+                "sha256": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+                "text": "module finite.local/acknowledged\n\ngo 1.27.0\n"
+              },
+              "grader_test.go": {
+                "sha256": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestProtocolBoundary(t *testing.T) {\n\tfor _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {\n\t\toriginal := append([]int(nil), values...)\n\t\tout, ack := make(chan *Packet), make(chan struct{})\n\t\tdone := make(chan struct{})\n\t\tgo func() { Exchange(values, out, ack); close(done) }()\n\t\tvar first *Packet\n\t\tcount, different := 0, false\n\t\tfor packet := range out {\n\t\t\tif first == nil {\n\t\t\t\tfirst = packet\n\t\t\t} else if packet != first {\n\t\t\t\tdifferent = true\n\t\t\t}\n\t\t\tcount++\n\t\t\tack <- struct{}{}\n\t\t}\n\t\t<-done\n\t\tif count != len(values) {\n\t\t\tt.Errorf(\"protocol count=%d; want %d\", count, len(values))\n\t\t}\n\t\tif different {\n\t\t\tt.Error(\"protocol must reuse one stable packet after acknowledgement\")\n\t\t}\n\t\tfor i := range values {\n\t\t\tif values[i] != original[i] {\n\t\t\t\tt.Errorf(\"input changed at %d\", i)\n\t\t\t}\n\t\t}\n\t}\n}\n"
+              },
+              "learner_test.go": {
+                "sha256": "e6480077159b0e1e6a5fce6c04f9cb1b742b535c76d1f4fcf49dd1b4840573c6",
+                "text": "package snapshot\n\nimport \"testing\"\n\nfunc TestSnapshots(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{0, -7, 12}, out, ack); close(done) }()\n\tfor range out {\n\t\tack <- struct{}{}\n\t}\n\t<-done\n}\n"
+              },
+              "packet.go": {
+                "sha256": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+                "text": "package snapshot\n\ntype Packet struct{ Value, Twice int }\n"
+              },
+              "probe_test.go": {
+                "sha256": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+                "text": "package snapshot\n\nimport \"testing\"\n\n// This finite probe observes accesses, not value correctness.\nfunc TestNativeProbe(t *testing.T) {\n\tout, ack := make(chan *Packet), make(chan struct{})\n\tdone := make(chan struct{})\n\tgo func() { Exchange([]int{17, -4}, out, ack); close(done) }()\n\tvar observed []Packet\n\tfor packet := range out {\n\t\tobserved = append(observed, Packet{packet.Value, packet.Twice})\n\t\tack <- struct{}{}\n\t}\n\t<-done\n\tt.Logf(\"observed finite packets: %+v\", observed)\n}\n"
+              }
+            }
+          }
+        }
+      ],
+      "cleanup": true,
+      "status": "all exact expected observations recorded; independent actual method review pending",
+      "finished_at": "2026-10-23T08:18:49.975238+00:00"
+    }
+  ]
+}

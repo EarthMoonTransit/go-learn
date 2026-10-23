@@ -1,0 +1,38 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-applications-12-root",
+    "created_at": "2026-10-23",
+    "summary": "Original embedded method-set probes, live interface aliasing and explicit ambiguous-label resolution after sole contract approval."
+  },
+  "sources": [],
+  "content_digest": "9514afe81cf6bd74a02d0312a703391de93e47c4238f937f22859a3635c6ca2c",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "680d7a7172798baa40e8c24296ba3782e0a803f7d37bd1a18078f5690ac175c6",
+    "TASK.md": "8c1aa12d541434888e5c9e4b405ee497c97d1c43ee8d47a39d921f203005dc4c",
+    "alternative/binding.go.txt": "64d95b46b40fdff615bdb580d484cad63bde0956cda842f4c4b7c86af43d1f15",
+    "files/go.mod.txt": "6e66e3ece46f5280849094462d8e09502f018b13d185dc164982aa2fd244913d",
+    "files/grader_test.go.txt": "58296483810272bf6459b9777c4a129efda30fe78fa5b11e3005af6ea2ff106b",
+    "files/public_test.go.txt": "bca28d8592f7f024088609a7b01077bf46da5b9aa7694542648a22ae03060a33",
+    "files/starter_binding.go.txt": "698a222698431863dd7361e0aa67c5f330656f9323cb8064a9d1225a192af02e",
+    "files/types.go.txt": "44c7ad3126f18640b797159d40180a223d30b61f42447b73d89dbe7eacb13117",
+    "manifest.json": "b13639b5259b7eeaeff690eb6e276fc70989b2acfc577461a829c0fba071c278",
+    "probes/addressable-call.go.txt": "0ffc7dcf0d065a06d26ed1493f836793e22c6a2b746fb23c11682b98e200614e",
+    "probes/ambiguous-label.go.txt": "7c785062c4a1b8c69052527ae3897888c11c6498030ce12851de17f84d3461c1",
+    "probes/embedded-pointer-adder.go.txt": "4bbc8b8deea438c5be855c81209f681d8f56e3fdd1b62bee4da280cd9e0446de",
+    "probes/explicit-label.go.txt": "cc23192e90ce37ba71f09c9d1452a18d6615a93cf21ec2a72ddc0f9546208ee5",
+    "probes/pointer-adder.go.txt": "e87d8087395f32db2d9fe36a16eae821195db455fdb8a6c0303dc9f576128ab6",
+    "probes/resolved-label.go.txt": "7c785062c4a1b8c69052527ae3897888c11c6498030ce12851de17f84d3461c1",
+    "probes/value-adder.go.txt": "edfd682a309f627984c83bfd918ec6d36051744098ccd49b226cf86ca4ce1592",
+    "probes/value-method-expression.go.txt": "af4b270fee17a6f8f2d1013c7e126cb45fb37011ccf16c34972786e7a66d2784",
+    "reference/binding.go.txt": "4684227b677a4116c1d6d9fe807f60e824a006f7f8ec037d255347bdef755797",
+    "wrong/copied-adder.go.txt": "e7f985540bb76698a0aef9d93d6f5a3ed2a62f0e2fe1360f84c8510e91ba58b2",
+    "wrong/copied-reader.go.txt": "2e281d0bd432f580ad6b12155bdaf9f27584a10c1abb46dfcb99941fb0ab661c",
+    "wrong/left-label.go.txt": "4bf24c4c8b41382ecbd389bcfc8c035873180bbbbd0adaff64de5adae6456dbb",
+    "wrong/reversed-label.go.txt": "ce04bb7a76d18c9b08ea8b8cddb016e1fd3091694c66df7c9cd39544092bf7ce"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

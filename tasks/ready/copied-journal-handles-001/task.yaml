@@ -1,0 +1,63 @@
+schema_version: 2
+id: copied-journal-handles-001
+title: Share an append journal through copied handles
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: goroutines.state-ownership
+    secondary:
+        - sync.mutex-ownership
+prerequisites:
+    - goroutines.launch-lifecycle
+    - pointers.mutation-sharing
+    - pointers.address-deref-nil
+    - methods.receiver-semantics
+    - structs.literals-zero
+    - structs.copy-equality
+    - structs.field-visibility-tags
+    - slices.append-growth
+    - slices.backing-array-aliasing
+    - slices.copy-overlap
+    - slices.nil-empty
+    - functions.defer
+    - sync.mutex-critical-sections
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 25
+    max: 45
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - initial-value
+        - shared-constructor-state
+        - omit-append
+        - double-append
+        - reset-on-append
+        - one-based-index
+        - constant-index
+        - receiver-detaches-state
+        - expose-storage
+        - reuse-snapshot-buffer
+        - snapshot-drains
+        - reverse-snapshot
+        - omit-last-snapshot
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

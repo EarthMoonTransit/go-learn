@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/reviewer",
+  "reviewed_at": "2026-10-23T08:17:51.655320+00:00",
+  "decision": "approve",
+  "scope": "Exact inert source and finite native preexecution review; no actual outcome/coverage acceptance",
+  "unit": "embedded-method-binding-001",
+  "content_digest": "9514afe81cf6bd74a02d0312a703391de93e47c4238f937f22859a3635c6ca2c",
+  "script_sha256": "ed01088957e63ff5ee2d7bc83b022072a5a9573baf9714240f5173790da50727",
+  "manifest_sha256": "b13639b5259b7eeaeff690eb6e276fc70989b2acfc577461a829c0fba071c278",
+  "copies": 6,
+  "commands": 28,
+  "source_files_verified": 22,
+  "findings": [],
+  "isolation_review": [
+    "Only pinned local Go1.27.0 darwin/arm64 at closed fixed argv; script/provenance/manifest/source hashes verified. Original stdlib/local files, sources=[], no external donor code.",
+    "Each specimen starts a fresh canonical private disposable project; regular-file/path/symlink guards, clean HOME/config/cache/temp/offline environment and telemetry-off; source-checkout execution forbidden.",
+    "60second own-process-group outer bound plus20second tests; argv/cwd/env/version/status/stdout/stderr/timing and before/after source snapshots retained; own-root cleanup in finally.",
+    "No generalized executor, new checker/profile, AST/trace or platform changes. No prior execution receipt exists; script refuses replay."
+  ],
+  "method_review": [
+    "First seven probes execute go build with no own Joined.Label declaration, so real ambiguity is preserved despite test files referring to resolved Labeler.",
+    "Native compiler probes distinguish ValueBox,*ValueBox,PointerBox,method expression and addressable call; before-probe predictions recorded. Eighth installs exact reference/alternate and resolved probe.",
+    "Reference Bind returns live v/v/p/p; alternate embedded Counter pointers also preserve originals. Four finite wrong copies produce live state/label ordinary failures after repair implementation selection.",
+    "Only methods.method-sets and embedding.method-promotion-ambiguity manual candidates; actual evidence/review still required."
+  ],
+  "remaining": [
+    "Execute only approved exact recipe once, preserve unexpected outcomes and stop for review; no retries or modified commands without new review.",
+    "Independently review actual source/outcomes/method explanations after execution; final integration and all local/CI gates remain separate."
+  ],
+  "reviewer_executed_authored_code": false,
+  "resolved_findings": [
+    "BINDING-PROMPT-01: TASK shortened162→159words by removing only The supplied/listed; all behavioral clauses, source bytes, manifest and recipe unchanged."
+  ]
+}

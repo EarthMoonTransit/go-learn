@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/reviewer",
+  "reviewed_at": "2026-10-23T08:26:58.465937+00:00",
+  "decision": "approve",
+  "scope": "Actual independent source/method/native evidence acceptance; finite manual applications only, final batch gates remain separate",
+  "unit": "embedded-method-binding-001",
+  "content_digest": "9514afe81cf6bd74a02d0312a703391de93e47c4238f937f22859a3635c6ca2c",
+  "author_evidence_sha256": "b596c62b71720263db2af1cd190ac9a6e2310c2362d1e23675163cbb636a7b4e",
+  "raw_execution_sha256": "f763acd26cc1106a16f3ccf0994693034d32cbcae1bb6c5702f4975233a6eb39",
+  "normalized_execution_sha256": "ade7b1defc2c23ee58d0f94fec7e7e5f17ed61ebc9b45d6859c9fc44e73f3bb8",
+  "acceptance_notes_sha256": "48c016e47ab4d4a752056ec6a2151c67a180149684f6d62c3720fcc1e0bbc4a6",
+  "eligible_manual_applications": [
+    "methods.method-sets",
+    "embedding.method-promotion-ambiguity"
+  ],
+  "automatic_coverage_credit": false,
+  "findings": [],
+  "verified": {
+    "source_assets": 22,
+    "copies": 6,
+    "commands": 28,
+    "snapshots": 62,
+    "native_race_failures": 0,
+    "native_compiler_rejections": 6,
+    "ordinary_failure_commands": 4,
+    "max_command_seconds": 2.787452
+  },
+  "execution_assessment": [
+    "Actual approval preceded all executions; exact pinned script/manifest/source digests unchanged. Every argv/cwd/environment/version and expected status agrees with reviewed recipe.",
+    "Independently reconstructed every source snapshot from approved assets and recorded copy/replace events; all before/after hashes/text match. Public normalized receipt exactly equals raw except declared root/localbin substitution.",
+    "Fresh independent private offline roots removed; no retries, timeout, crash or unreviewed command. Ordinary failures separated from intentional native race/compiler observations."
+  ],
+  "method_assessment": [
+    "Predictions precede actual probes. ValueBox fails Adder; *ValueBox and PointerBox pass. ValueBox.Add expression rejected while addressable local selector call compiles; explanation correctly separates methodsets from implicit address adjustment.",
+    "Starter truly lacks own Joined.Label: ambiguous Labeler rejection is real, explicit Left selection compiles; installing own method resolves same interface requirement. No supplied stub masks ambiguity.",
+    "Both reference v/v/p/p and direct embedded Counter pointer alternate pass unchanged public/grader live aliases/external mutation checks. Copied reader/adder and left-only/reversedlabels fail useful ordinary assertions.",
+    "Six compiler commands are method evidence and four ordinary failures are behavioral evidence, not automatic mutant scores. Two manual applications only; supplied types/tests/probes earn no additional authorship credit."
+  ],
+  "boundaries": [
+    "No automatic progress or coverage changes; readiness of materials is not learner mastery.",
+    "Integrate explicit prerequisites, actual receipt and provenance; independent final diff/HEAD review, local gates and green exactHEAD validate remain required."
+  ],
+  "reviewer_executed_authored_code": false
+}

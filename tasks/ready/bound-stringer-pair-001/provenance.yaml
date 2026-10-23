@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "ba812576a2f1ab421d7e440791f9e1a78ebdc9ae1faa493fdc00e6b40cde4260"
+  },
+  "creation": {
+    "author": "codex",
+    "created_at": "2026-10-23",
+    "summary": "Original I12 independent application under approved contract; official task-init creation, no external donor content."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/bound-stringer-pair-001.yaml"
+  }
+}

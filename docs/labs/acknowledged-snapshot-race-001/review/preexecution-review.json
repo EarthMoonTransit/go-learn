@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/reviewer",
+  "reviewed_at": "2026-10-23T08:17:51.654219+00:00",
+  "decision": "approve",
+  "scope": "Exact inert source and finite native preexecution review; no actual outcome/coverage acceptance",
+  "unit": "acknowledged-snapshot-race-001",
+  "content_digest": "631b9916ea1b10cfb3159570d67b6a3d76fff62dff018f4f5b70a6202c4ba2cc",
+  "script_sha256": "c99f301518544f9afbda79d2a64601b81cd95337c2c6cafaf5aec2f45d19d71a",
+  "manifest_sha256": "816acf240f2ecb0d9f805e96a710a9009b83182d6ccaa50d41132de730c03d96",
+  "copies": 6,
+  "commands": 16,
+  "source_files_verified": 16,
+  "findings": [],
+  "isolation_review": [
+    "Only pinned local Go1.27.0 darwin/arm64 at closed fixed argv; script/provenance/manifest/source hashes verified. Original stdlib/local files, sources=[], no external donor code.",
+    "Each specimen starts a fresh canonical private disposable project; regular-file/path/symlink guards, clean HOME/config/cache/temp/offline environment and telemetry-off; source-checkout execution forbidden.",
+    "60second own-process-group outer bound plus20second tests; argv/cwd/env/version/status/stdout/stderr/timing and before/after source snapshots retained; own-root cleanup in finally.",
+    "No generalized executor, new checker/profile, AST/trace or platform changes. No prior execution receipt exists; script refuses replay."
+  ],
+  "method_review": [
+    "Reference writes fields before publishing; native unbuffered out publishes to receiver, copy-before-ack then ackreceive orders next writes. All finite loops acknowledge/drain/join before assertions; no sleep/stress/retry.",
+    "Unsafe-publication and unsafe-reuse use finite supplied native observation-only probe and must produce actual conflicting stacks+origins. Missing report stops; no expectation substituted for actual evidence.",
+    "Correct helper/iteration and snapshot alternate accepted. WrongTwice synchronized detector probe passes but strong learner-owned snapshot test fails; weak drain-only test actually has no fixed value oracle and is honestly behavior-pass/method-reject.",
+    "Only sync.data-races-happens-before and testing.race-detector manual application candidates; no automatic/suppliedtest/channelcredit."
+  ],
+  "remaining": [
+    "Execute only approved exact recipe once, preserve unexpected outcomes and stop for review; no retries or modified commands without new review.",
+    "Independently review actual source/outcomes/method explanations after execution; final integration and all local/CI gates remain separate."
+  ],
+  "reviewer_executed_authored_code": false
+}

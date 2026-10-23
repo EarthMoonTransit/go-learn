@@ -1,0 +1,12 @@
+package snapshot
+
+func Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {
+	var packet Packet
+	for _, value := range values {
+		packet.Value = value
+		packet.Twice = value
+		out <- &packet
+		<-ack
+	}
+	close(out)
+}

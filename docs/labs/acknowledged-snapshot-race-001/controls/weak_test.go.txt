@@ -1,0 +1,13 @@
+package snapshot
+
+import "testing"
+
+func TestSnapshots(t *testing.T) {
+	out, ack := make(chan *Packet), make(chan struct{})
+	done := make(chan struct{})
+	go func() { Exchange([]int{0, -7, 12}, out, ack); close(done) }()
+	for range out {
+		ack <- struct{}{}
+	}
+	<-done
+}

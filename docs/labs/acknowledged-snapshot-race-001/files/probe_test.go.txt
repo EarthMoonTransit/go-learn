@@ -1,0 +1,17 @@
+package snapshot
+
+import "testing"
+
+// This finite probe observes accesses, not value correctness.
+func TestNativeProbe(t *testing.T) {
+	out, ack := make(chan *Packet), make(chan struct{})
+	done := make(chan struct{})
+	go func() { Exchange([]int{17, -4}, out, ack); close(done) }()
+	var observed []Packet
+	for packet := range out {
+		observed = append(observed, Packet{packet.Value, packet.Twice})
+		ack <- struct{}{}
+	}
+	<-done
+	t.Logf("observed finite packets: %+v", observed)
+}

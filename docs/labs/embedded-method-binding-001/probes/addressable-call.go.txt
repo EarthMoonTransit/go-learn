@@ -1,0 +1,3 @@
+package binding
+
+func addressableProbe() { var value ValueBox; value.Add(3) }

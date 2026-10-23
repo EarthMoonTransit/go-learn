@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-10-23"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-10-23"
+      actor: codex
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-10-23"
+      actor: codex-finite-v1
+      reason: Sole contract and actual source/method/evidence accepted; finite-v1 I12
+    - from: in-review
+      to: ready
+      at: "2026-10-23"
+      actor: codex-finite-v1
+      reason: Independent actual evidence accepted; final I12 delivery gates remain

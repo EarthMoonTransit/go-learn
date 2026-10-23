@@ -1,0 +1,16 @@
+package snapshot
+
+func Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {
+	var packet Packet
+	if len(values) != 0 {
+		packet = Packet{values[0], 2 * values[0]}
+	}
+	for i := range values {
+		out <- &packet
+		if i+1 < len(values) {
+			packet = Packet{values[i+1], 2 * values[i+1]}
+		}
+		<-ack
+	}
+	close(out)
+}

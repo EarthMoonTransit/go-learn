@@ -1,0 +1,24 @@
+package binding
+
+type Reader interface{ Read() int }
+type Adder interface{ Add(int) }
+type Labeler interface{ Label() string }
+type Counter struct{ Value int }
+
+func (c Counter) Read() int  { return c.Value }
+func (c *Counter) Add(n int) { c.Value += n }
+
+type ValueBox struct{ Counter }
+type PointerBox struct{ *Counter }
+type Left struct{ Name string }
+
+func (x Left) Label() string { return x.Name }
+
+type Right struct{ Name string }
+
+func (x Right) Label() string { return x.Name }
+
+type Joined struct {
+	Left
+	Right
+}

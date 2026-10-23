@@ -1,0 +1,9 @@
+package binding
+
+func Bind(v *ValueBox, p PointerBox) (Reader, Adder, Reader, Adder) {
+	return &v.Counter, &v.Counter, p.Counter, p.Counter
+}
+func (j Joined) Label() string {
+	left, right := j.Left.Label(), j.Right.Label()
+	return left + "|" + right
+}

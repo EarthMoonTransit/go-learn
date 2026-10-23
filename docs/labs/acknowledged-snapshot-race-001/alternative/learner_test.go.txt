@@ -1,0 +1,29 @@
+package snapshot
+
+import "testing"
+
+func TestSnapshots(t *testing.T) {
+	inputs := []int{-5, 0, 9, 2}
+	output, acknowledgements := make(chan *Packet), make(chan struct{})
+	joined := make(chan struct{})
+	go func() { Exchange(inputs, output, acknowledgements); close(joined) }()
+	got := make([]Packet, 0, len(inputs))
+	pointers := make([]*Packet, 0, len(inputs))
+	for packet := range output {
+		got = append(got, *packet)
+		pointers = append(pointers, packet)
+		acknowledgements <- struct{}{}
+	}
+	<-joined
+	if len(got) != len(inputs) {
+		t.Fatalf("snapshot count=%d want=%d", len(got), len(inputs))
+	}
+	for i, value := range inputs {
+		if got[i].Value != value || got[i].Twice != value+value {
+			t.Errorf("snapshot case=%d got=%+v want=(%d,%d)", i, got[i], value, value+value)
+		}
+		if pointers[i] != pointers[0] {
+			t.Errorf("stable packet changed at %d", i)
+		}
+	}
+}

@@ -1,0 +1,315 @@
+{
+  "unit": "embedded-method-binding-001",
+  "copies": 6,
+  "commands": 28,
+  "initial_files": {
+    "files/go.mod.txt": "go.mod",
+    "files/types.go.txt": "types.go",
+    "files/public_test.go.txt": "public_test.go",
+    "files/grader_test.go.txt": "grader_test.go",
+    "files/starter_binding.go.txt": "binding.go"
+  },
+  "specimens": [
+    {
+      "name": "reference",
+      "steps": [
+        {
+          "argv": [
+            "version"
+          ],
+          "expected": "zero"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/value-adder.go.txt",
+          "expected": "compiler-rejection",
+          "diagnostic": "does not implement Adder",
+          "prediction": "value-adder: rejected"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/pointer-adder.go.txt",
+          "expected": "zero",
+          "diagnostic": "",
+          "prediction": "pointer-adder: compiles"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/embedded-pointer-adder.go.txt",
+          "expected": "zero",
+          "diagnostic": "",
+          "prediction": "embedded-pointer-adder: compiles"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/value-method-expression.go.txt",
+          "expected": "compiler-rejection",
+          "diagnostic": "invalid method expression",
+          "prediction": "value-method-expression: rejected"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/addressable-call.go.txt",
+          "expected": "zero",
+          "diagnostic": "",
+          "prediction": "addressable-call: compiles"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/ambiguous-label.go.txt",
+          "expected": "compiler-rejection",
+          "diagnostic": "ambiguous selector",
+          "prediction": "ambiguous-label: rejected"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/explicit-label.go.txt",
+          "expected": "zero",
+          "diagnostic": "",
+          "prediction": "explicit-label: compiles"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/resolved-label.go.txt",
+          "expected": "zero",
+          "diagnostic": "",
+          "prediction": "resolved-label: compiles",
+          "install_binding": "reference/binding.go.txt"
+        },
+        {
+          "argv": [
+            "test",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected": "zero"
+        }
+      ]
+    },
+    {
+      "name": "alternate",
+      "steps": [
+        {
+          "argv": [
+            "version"
+          ],
+          "expected": "zero"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/value-adder.go.txt",
+          "expected": "compiler-rejection",
+          "diagnostic": "does not implement Adder",
+          "prediction": "value-adder: rejected"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/pointer-adder.go.txt",
+          "expected": "zero",
+          "diagnostic": "",
+          "prediction": "pointer-adder: compiles"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/embedded-pointer-adder.go.txt",
+          "expected": "zero",
+          "diagnostic": "",
+          "prediction": "embedded-pointer-adder: compiles"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/value-method-expression.go.txt",
+          "expected": "compiler-rejection",
+          "diagnostic": "invalid method expression",
+          "prediction": "value-method-expression: rejected"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/addressable-call.go.txt",
+          "expected": "zero",
+          "diagnostic": "",
+          "prediction": "addressable-call: compiles"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/ambiguous-label.go.txt",
+          "expected": "compiler-rejection",
+          "diagnostic": "ambiguous selector",
+          "prediction": "ambiguous-label: rejected"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/explicit-label.go.txt",
+          "expected": "zero",
+          "diagnostic": "",
+          "prediction": "explicit-label: compiles"
+        },
+        {
+          "argv": [
+            "build",
+            "./..."
+          ],
+          "probe": "probes/resolved-label.go.txt",
+          "expected": "zero",
+          "diagnostic": "",
+          "prediction": "resolved-label: compiles",
+          "install_binding": "alternative/binding.go.txt"
+        },
+        {
+          "argv": [
+            "test",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected": "zero"
+        }
+      ]
+    },
+    {
+      "name": "copied-reader",
+      "initial_binding": "wrong/copied-reader.go.txt",
+      "steps": [
+        {
+          "argv": [
+            "version"
+          ],
+          "expected": "zero"
+        },
+        {
+          "argv": [
+            "test",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected": "ordinary-failure",
+          "diagnostic": "live value binding"
+        }
+      ]
+    },
+    {
+      "name": "copied-adder",
+      "initial_binding": "wrong/copied-adder.go.txt",
+      "steps": [
+        {
+          "argv": [
+            "version"
+          ],
+          "expected": "zero"
+        },
+        {
+          "argv": [
+            "test",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected": "ordinary-failure",
+          "diagnostic": "live value binding"
+        }
+      ]
+    },
+    {
+      "name": "left-label",
+      "initial_binding": "wrong/left-label.go.txt",
+      "steps": [
+        {
+          "argv": [
+            "version"
+          ],
+          "expected": "zero"
+        },
+        {
+          "argv": [
+            "test",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected": "ordinary-failure",
+          "diagnostic": "label parts="
+        }
+      ]
+    },
+    {
+      "name": "reversed-label",
+      "initial_binding": "wrong/reversed-label.go.txt",
+      "steps": [
+        {
+          "argv": [
+            "version"
+          ],
+          "expected": "zero"
+        },
+        {
+          "argv": [
+            "test",
+            "-v",
+            "-count=1",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected": "ordinary-failure",
+          "diagnostic": "label parts="
+        }
+      ]
+    }
+  ],
+  "learner_owned": [
+    "binding.go"
+  ],
+  "fixed_probe_destination": "probe.go",
+  "outer_timeout_seconds": 60
+}

@@ -1,0 +1,32 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-applications-12-root",
+    "created_at": "2026-10-23",
+    "summary": "Original acknowledged-publication implementation and authored regression/native race application after sole contract approval."
+  },
+  "sources": [],
+  "content_digest": "631b9916ea1b10cfb3159570d67b6a3d76fff62dff018f4f5b70a6202c4ba2cc",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "7fa5a82d27b94a6fd71f92c1388bc4f82ad06191e2d7fb5501cf48b7f62dfa1d",
+    "TASK.md": "2c0e70ce731d0b87391ea8f80166b2032f418f095e3c6cd60338d0ea0d213081",
+    "alternative/exchange.go.txt": "32a93a72a78ba740b9a65d92ef31370663b931f1b4f8ebe27916473bfba3dcbe",
+    "alternative/learner_test.go.txt": "9cce9da6263d71e8f00403d757757ccedcdc6ff428e6eaf25482b022bb20ed83",
+    "controls/weak_test.go.txt": "e6480077159b0e1e6a5fce6c04f9cb1b742b535c76d1f4fcf49dd1b4840573c6",
+    "files/go.mod.txt": "9d3e6231e03952dc7ba956b8c86438401a594abc3d34294789f54a566095c945",
+    "files/grader_test.go.txt": "5060c0146b8899e167abe11a4e555b41d82dbdb80d4359d1cf4cc86f8c8a0857",
+    "files/packet.go.txt": "cc8e0f3f8bb4d033eae47dabb08e40bf899e34514c857758210f08e39f6ee58f",
+    "files/probe_test.go.txt": "00a1e80e7b1eb0ea775523ab13c520fd952e46709d7963b87b4024b418a109eb",
+    "files/starter_exchange.go.txt": "0d181e822cbbc179b64c7a6b182f4062651f84c4f0bbab07817385272c7d001b",
+    "files/starter_test.go.txt": "082e9f5ade713d5db1b850717cf59463c1b3ca2b79c3842608b70bd473bf065d",
+    "manifest.json": "816acf240f2ecb0d9f805e96a710a9009b83182d6ccaa50d41132de730c03d96",
+    "reference/exchange.go.txt": "2c3752410ae4edea1742b34bc53afab89ee77dfae12e1edc582e72535d42c969",
+    "reference/learner_test.go.txt": "cc6f280e98172ec60c79d138ef61789cf1744cff8c3441d304978928b20be0d8",
+    "wrong/incorrect-twice.go.txt": "64254f6aa0e23872bf15a5d785e94d979b89a524791de27532e9698b0489ffc1",
+    "wrong/reuse-before-ack.go.txt": "af9b143c63a1bc7c321adb1754a9ff486a5076c703a23cb1ef10dc54184d45e4"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}
