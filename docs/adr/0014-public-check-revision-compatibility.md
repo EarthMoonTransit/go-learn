@@ -46,3 +46,36 @@ public diagnostics and full completion with the existing disposable checker.
 The UI hidden-failure workspace-patch fixture uses named-block-001, whose existing
 wrong-element-type variant still passes public checks and fails full checking.
 It no longer depends on preserving the reported opening-lesson defect.
+
+## Counter public race workload (2026-10-23)
+
+COUNTER-WORKSPACE-REVISION-01 applies this same bounded policy to
+`concurrent-counter-read-001`. The reviewed content correction adds a finite
+common-start reader/writer public workload after CI retained an
+`unlock-before-read` survivor. It changes no learner-exported material:
+TASK.md, go.mod, starter implementation, paths and editable flags stay identical.
+Permit only this additional directional pair:
+
+- Stored: abff4eff554adc02cda1c3179cbd49291414e4e665f801c07d32844e3ad3f41a
+- Current: 0896d577d779512d5e773cd92130702056624033e3f3b138ab23e2cd49319c03
+
+The pinned old public fixture comes from accepted `c7a178b8` material; the new
+fixture is the independently accepted I12 common-start public source. Both are
+inert testdata. Tests reconstruct the exact historical content digest in a
+private repository before creating workspaces, then project the new public bytes
+only into that disposable repository. Full learner-export path/content/editable
+comparisons must be equal. The canonical task is never edited by this tooling
+change or by its tests.
+
+Legacy and generation markers, in-progress and completed histories, solution
+bytes, hints, feedback, accumulated time and existing completion evidence remain
+intact on read/compatibility. Resume and real disposable Check/Complete retain
+their ordinary selection, session, attempt and completion effects; a repeated
+Complete stays rejected. The old marker is never upgraded implicitly. Exact-pair
+unit cases reject rollback, unknown source/target and another task ID. Existing
+schema, identity, fixed-file, confinement and symlink guards are unchanged.
+
+This is an application of ADR0014, not a general content migration or a new
+verification mechanism. The source adaptation pins and the dynamic race workload's
+finite observation limits belong to the separate content decision. Separate
+review, local gates and exact-head green validate remain required for delivery.

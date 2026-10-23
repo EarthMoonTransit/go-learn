@@ -3,6 +3,8 @@ package learner
 // ADRs 0014, 0026, 0027 and 0028: exact, directional compatibility pairs preserve existing
 // learner work. Unknown revisions still require explicit reconciliation.
 const (
+	counterBeforeCommonStart    = "abff4eff554adc02cda1c3179cbd49291414e4e665f801c07d32844e3ad3f41a"
+	counterWithCommonStart      = "0896d577d779512d5e773cd92130702056624033e3f3b138ab23e2cd49319c03"
 	boundedBeforeNilCheck       = "0e8e493addf0119352a834748e66ea26da49ef61b44db5a4e39f2bbf1212f963"
 	boundedWithNilCheck         = "960ba2896fb8d14d5911f0e3e0564aea05f5b22b129c5cb5b5c54c56df1ddbf8"
 	bindingsBeforePublicChecks  = "f427ca2b6b99603eab0f689a70e9955066c974f5b91d1521b795e5a14292947b"
@@ -18,6 +20,9 @@ const (
 func compatibleContentRevision(taskID, stored, current string) bool {
 	if stored == current {
 		return true
+	}
+	if taskID == "concurrent-counter-read-001" {
+		return stored == counterBeforeCommonStart && current == counterWithCommonStart
 	}
 	if taskID == "bounded-slice-view-001" {
 		return stored == boundedBeforeNilCheck && current == boundedWithNilCheck
