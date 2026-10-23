@@ -1,0 +1,17 @@
+package format_test
+
+import (
+	"finite.local/selected-tools/format"
+	"testing"
+)
+
+func TestQueryValues(t *testing.T) {
+	cases := []struct{ in, want string }{
+		{"", ""}, {"a b", "a+b"}, {"+", "%2B"}, {"a/b", "a%2Fb"}, {"λ", "%CE%BB"}, {"a+b c", "a%2Bb+c"},
+	}
+	for _, c := range cases {
+		if got := format.RenderQuery(c.in); got != c.want {
+			t.Errorf("query input=%q got=%q; want=%q", c.in, got, c.want)
+		}
+	}
+}

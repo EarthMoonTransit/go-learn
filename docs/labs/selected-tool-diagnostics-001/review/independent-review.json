@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/reviewer",
+  "reviewed_at": "2026-10-23T08:01:34.395812+00:00",
+  "decision": "approve",
+  "unit": "selected-tool-diagnostics-001",
+  "content_digest": "12fe80ff2d9348a6f509d19178a3b65c48ad12d6ed4c2680eed958aa07e0f4c9",
+  "script_sha256": "7197bb6019d886332c147489509ec9ce1d37266d0be0798083cf1bf1d35e4864",
+  "manifest_sha256": "0ef2924dbeb3b34093205a3cb68f507c562c3de7e3d2411461b8483090cf54a2",
+  "raw_execution_sha256": "e10a80631123036468d6f09f96e47b386246e6457c3e36425064cb6662a70c63",
+  "normalized_execution_sha256": "a107d2eb3bdd2fb472d0abb62cde0b25b1acb7cccaf3a62f338de3af93f14e66",
+  "findings": [],
+  "actual_evidence": {
+    "copies": 6,
+    "commands": 69,
+    "snapshots_independently_replayed": 91,
+    "unchanged_inert_assets": 12,
+    "format_diff_exit1_observations": 3,
+    "vet_unreachable_findings": 4,
+    "ordinary_behavior_assertion_failures": 4,
+    "max_command_seconds": 2.395668,
+    "all_expectations_met": true,
+    "all_roots_removed": true,
+    "no_runtime_or_compiler_failure_credit": true
+  },
+  "accepted_manual_applications": [
+    "toolchain.docs-environment",
+    "toolchain.formatting-vetting"
+  ],
+  "method_and_observations": [
+    "Actual GOFLAGS default versus preview and before-list predictions select intended source files. Default success is shown insufficient for preview.",
+    "Native initial nonempty format diff exits1, application changes only preview layout, second diff empty/zero. All91 snapshots reconstructed from source-copy events plus this exact inspected native formatting result.",
+    "Well-typed preview produces native unreachable vet finding. Removing unreachable code leaves clean vet while public query assertions still fail with actual/expected escaping diagnostics.",
+    "Actual QueryEscape/PathEscape documentation and recorded interpretation precede correct call repair. Reference and alias/result alternate pass supplied tests/vet in both modes.",
+    "Exact version/argv/cwd/clean environment/status/output/time and preapproval chronology verified; normalized receipt differs only by declared path replacements."
+  ],
+  "boundaries": [
+    "Formatting and vet findings are separated from ordinary behavior defect evidence. Unreachable-only and wrong-API share one wrong implementation and do not constitute two distinct bugs.",
+    "Manual/method evidence only: no automatic coverage, supplied test-writing credit or learner mastery.",
+    "Preexecution expected-status correction retained; source/recipe unchanged during actual run.",
+    "No authored execution/rerun by reviewer. Final integration, exact HEAD, local/CI gates remain required."
+  ]
+}

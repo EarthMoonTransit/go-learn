@@ -1,0 +1,4 @@
+=== RUN   TestLogGolden
+--- PASS: TestLogGolden (0.00s)
+PASS
+ok  	finite.local/logview	0.422s

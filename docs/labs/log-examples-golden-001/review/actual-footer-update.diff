@@ -1,0 +1,7 @@
+--- before/log.golden
++++ proposed/log.golden
+@@ -22,3 +22,4 @@
+ 21 info "tail-a"
+ 22 warn "tail-b"
+ 23 error "end"
++TOTAL info=8 warn=8 error=8

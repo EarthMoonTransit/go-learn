@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/reviewer",
+  "reviewed_at": "2026-10-23T08:04:51.953740+00:00",
+  "decision": "approve",
+  "scope": "Two complete native manual units, five independent applications; no automatic coverage",
+  "author_receipt_sha256": "2a64b617e0c3a1186aef75ef0d8f3a7be34d4c1cfd1013f3ee1947b4540bd2a1",
+  "findings": [],
+  "source_files_unchanged_including_provenance": 43,
+  "evidence_files_hash_verified": 252,
+  "copies": 22,
+  "commands": 61,
+  "all_roots_removed": true,
+  "units": [
+    {
+      "id": "isolated-stamp-tests-001",
+      "content_digest": "73dd8fc284361f6c028e891c283343ed2f151c2e82d69024162d634e3ddebc05",
+      "execution_sha256": "17ab1f7b6e478ee569ecfae5a3773f5b9e3bf301dd5945675c0b5349f5910781",
+      "manual_applications": [
+        "testing.parallel",
+        "testing.cleanup",
+        "testing.deterministic-boundaries"
+      ],
+      "copies": 9,
+      "commands": 20,
+      "ordinary_wrong_outcomes": 5,
+      "method_acceptance": "Actual learner-introduced private clock seam preserves real-clock public default; independent case-owned dirs/cleanup, serialized setup then native parallel cases/readback descendants, full fixed-time output and one-call assertions, ancestor absence audit. Correct function dependency and private-interface/helper alternatives pass twice at parallel1/3.",
+      "boundaries": [
+        "No-parallel and weak-clock-oracle executable passes remain method rejected.",
+        "Duplicate-path diagnostic, not incidental shared-file contents, detects shared fixture. Ancestor/defer cleanup and wrong fixed clocks produce ordinary finite assertions and cleanup.",
+        "No sibling order, wall-clock, race-detector or supplied I/O implementation credit."
+      ]
+    },
+    {
+      "id": "log-examples-golden-001",
+      "content_digest": "ea154fa4a4a145e6b4ea38c2f99ec4266ff5b16edfff53fe5b341923e0b4dc9f",
+      "execution_sha256": "0fea43a35c375997b626e56238ed1e7aabc2a63c10d9d798644aa14e33f3e53f",
+      "manual_applications": [
+        "testing.examples",
+        "testing.golden"
+      ],
+      "copies": 13,
+      "commands": 41,
+      "ordinary_wrong_outcomes": 6,
+      "intentional_v2_mismatch_before_update": 1,
+      "method_acceptance": "Actual API stateful/rejection/Counts examples with discoverable native names and intentional unordered/sorted-exact policies; two independent24-row complete baselines recomputed from fixture/spec. Full-byte differences including EOF diagnosed, ordinary baseline preserved.",
+      "boundaries": [
+        "Missing-output, constant-print, prefix-only and silent-auto-update controls pass behavior and remain method rejected.",
+        "Drop-middle update rejected without -update, baseline unchanged.",
+        "V2 initial40-command receipt preserved; sole actual diff approval precedes final41st command. Only footer8/8/8 added, all24oldrows retained; final ordinary G passes and preserves updated baseline.",
+        "V1 examples are not claimed to pass v2 footer behavior."
+      ]
+    }
+  ],
+  "verified": [
+    "Exact preapproved sources/manifests/scripts, all61 command definitions/statuses/output hashes/before-after snapshots and22 cleanup records checked.",
+    "Final golden continuation adds only pre-enumerated G; current pending source matched reviewed snapshot and final snapshots remained identical.",
+    "All expected wrong failures are ordinary assertions; no panic, compilation, timeout or runtime failures credited.",
+    "Original provenance sources=[] preserved; methods assessed from actual source and executed specimens rather than supplied mechanism mentions."
+  ],
+  "remaining": "Final integration/prerequisites/route/exact HEAD and every mandatory local/CI gate still required. No authored code executed by reviewer."
+}

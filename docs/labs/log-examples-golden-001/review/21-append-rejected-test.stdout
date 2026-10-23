@@ -1,0 +1,18 @@
+=== RUN   TestLogGolden
+--- PASS: TestLogGolden (0.00s)
+=== RUN   ExampleLog
+--- PASS: ExampleLog (0.00s)
+=== RUN   ExampleLog_Append_rejected
+--- FAIL: ExampleLog_Append_rejected (0.00s)
+got:
+rejected: true
+00 info "kept"
+01 debug "must not appear"
+want:
+rejected: true
+00 info "kept"
+=== RUN   ExampleLog_Counts
+--- PASS: ExampleLog_Counts (0.00s)
+FAIL
+FAIL	finite.local/logview	0.343s
+FAIL

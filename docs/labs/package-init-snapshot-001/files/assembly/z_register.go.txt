@@ -1,0 +1,7 @@
+package assembly
+
+import "finite.local/init-snapshot/seed"
+
+func init() {
+ Ports["port"] = seed.Base * 2
+}

@@ -571,7 +571,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "binary-record-tests-001"
-      ]
+      ],
+      "delivery_batch": "I11",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-11.md",
+      "delivered_task_id": "dual-frame-codec-001"
     },
     {
       "slot": "independent-application:encoding.json-shape-tags",
@@ -603,7 +607,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "text-level-001"
-      ]
+      ],
+      "delivery_batch": "I11",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-11.md",
+      "delivered_task_id": "dual-frame-codec-001"
     },
     {
       "slot": "independent-application:errors.as",
@@ -949,7 +957,12 @@
       "role": "independent-application",
       "existing_task_ids": [
         "initialization-values-001"
-      ]
+      ],
+      "delivery_batch": "I11",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-11.md",
+      "delivered_unit_path": "docs/labs/package-init-snapshot-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:packages.internal-boundaries",
@@ -1119,25 +1132,45 @@
       "role": "independent-application",
       "existing_task_ids": [
         "cleanup-order-001"
-      ]
+      ],
+      "delivery_batch": "I11",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-11.md",
+      "delivered_unit_path": "docs/labs/isolated-stamp-tests-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:testing.deterministic-boundaries",
       "skill_id": "testing.deterministic-boundaries",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I11",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-11.md",
+      "delivered_unit_path": "docs/labs/isolated-stamp-tests-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:testing.examples",
       "skill_id": "testing.examples",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I11",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-11.md",
+      "delivered_unit_path": "docs/labs/log-examples-golden-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:testing.golden",
       "skill_id": "testing.golden",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I11",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-11.md",
+      "delivered_unit_path": "docs/labs/log-examples-golden-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:testing.helpers",
@@ -1145,13 +1178,22 @@
       "role": "independent-application",
       "existing_task_ids": [
         "diagnostic-helper-001"
-      ]
+      ],
+      "delivery_batch": "I11",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-11.md",
+      "delivered_task_id": "atomic-count-tests-001"
     },
     {
       "slot": "independent-application:testing.parallel",
       "skill_id": "testing.parallel",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I11",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-11.md",
+      "delivered_unit_path": "docs/labs/isolated-stamp-tests-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:testing.race-detector",
@@ -1177,13 +1219,21 @@
       "role": "independent-application",
       "existing_task_ids": [
         "named-cases-001"
-      ]
+      ],
+      "delivery_batch": "I11",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-11.md",
+      "delivered_task_id": "atomic-count-tests-001"
     },
     {
       "slot": "independent-application:testing.table-driven",
       "skill_id": "testing.table-driven",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I11",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-11.md",
+      "delivered_task_id": "atomic-count-tests-001"
     },
     {
       "slot": "independent-application:time.duration-arithmetic",
@@ -1222,13 +1272,23 @@
       "slot": "independent-application:toolchain.docs-environment",
       "skill_id": "toolchain.docs-environment",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I11",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-11.md",
+      "delivered_unit_path": "docs/labs/selected-tool-diagnostics-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:toolchain.formatting-vetting",
       "skill_id": "toolchain.formatting-vetting",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I11",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-11.md",
+      "delivered_unit_path": "docs/labs/selected-tool-diagnostics-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:toolchain.modules-workspaces",
@@ -1326,15 +1386,17 @@
     }
   ],
   "delivery": {
-    "batch": "I10",
-    "status": "six actual content units and integration accepted; stable230collection and generated reports passed; remaining local gates/exactHEADreview/CI/merge pending",
-    "route_lessons_after": 220,
+    "batch": "I11",
+    "status": "six actual units and integration accepted; stable232 collection/reports passed; remaining local gates, exact HEAD review, CI and merge required",
+    "route_lessons_after": 222,
     "first_encounters_remaining": 0,
-    "independent_applications_remaining": 26,
+    "independent_applications_remaining": 13,
     "component_slots_remaining": 0,
-    "new_automatic_packages": 4,
-    "new_manual_units": 2,
-    "note": "Fourteen independent applications; no supplied implementation, extra ownership or automatic method/manual credit. All49dated baseline decisions, fiveacceptedrepairs,28firsts and sixcomponents preserved."
+    "new_automatic_packages": 2,
+    "new_manual_units": 4,
+    "note": "Thirteen independent applications; no supplied implementation, extra ownership or automatic method/manual credit. All49dated baseline decisions, fiveacceptedrepairs,28firsts and sixcomponents preserved.",
+    "collection_sha256": "e0024874d887c6188b73a08c90484e2efe634d7aa8abcafdb7ffb3f346715844",
+    "checker_inputs": 5193
   },
   "delivery_history": [
     {
@@ -1547,6 +1609,22 @@
       "merged_at": "2026-10-23T08:02:30Z",
       "local_gates": "all12 passed; same226collection",
       "final_review": "sole independent exact HEAD approved"
+    },
+    {
+      "batch": "I10",
+      "status": "Six actual units, integration, all12localgates and sole exactHEAD860aa128 review passed; PR115validate39922234082/merge pending",
+      "route_lessons_after": 220,
+      "first_encounters_remaining": 0,
+      "independent_applications_remaining": 26,
+      "component_slots_remaining": 0,
+      "new_automatic_packages": 4,
+      "new_manual_units": 2,
+      "note": "Fourteen independent applications; no supplied implementation, extra ownership or automatic method/manual credit. All49dated baseline decisions, fiveacceptedrepairs,28firsts and sixcomponents preserved.",
+      "final_commit": "860aa12875abb5e6872f57753c6d09719c1b9cba",
+      "final_review": "sole independent exact HEAD approved",
+      "pr": 115,
+      "validate_run": 39922234082,
+      "local_gates": "all12 passed with unchanged230collection"
     }
   ],
   "existing_pair_reviews": {
@@ -2877,7 +2955,7 @@
       ],
       "maximum_additional_units": 4,
       "design": "Two separate array and struct first repairs at their actual early prerequisite positions; one consumer-owned small-interface first (delivered I5); at most one constants application. Typed-error and small-interface applications integrated into allocated IO/packages components with distinct actual actions. The combined array/struct first was split after independent prerequisite review to preserve existing relative order and avoid a dependency cycle; global302 and141skills unchanged.",
-      "arithmetic": "After accepted I10:220automatic route +18manual units +26remaining applications =264 <=302. Planning ceiling, not a new-file quota, full-bank completion or learner mastery.",
+      "arithmetic": "After accepted I11:222automatic route +22manual units +13remaining applications =257 <=302. Planning ceiling, not a new-file quota, full-bank completion or learner mastery.",
       "note": "All49 baseline decisions are preserved. Five identified semantic repairs now have actual independently accepted evidence; zero repair pairs remain after accepted I6 delivery. Historical extra allowance4 is not four future units. No expanded ceiling, metadata-only credit or learner mastery.",
       "allocation_review": "Sole reviewer accepted separate early array/struct placement on2026-10-22; see reports/v1-introductions-05.md. Original49pair decisions preserved."
     },

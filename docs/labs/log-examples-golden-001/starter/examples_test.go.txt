@@ -1,0 +1,3 @@
+package logview_test
+
+// Author discoverable examples that call the documented API.

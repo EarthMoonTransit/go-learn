@@ -1,0 +1,76 @@
+package stamp
+
+import (
+	"fmt"
+	"os"
+	"path/filepath"
+	"testing"
+	"time"
+)
+
+func TestIsolatedStamps(t *testing.T) {
+	t.Run("cases", func(group *testing.T) {
+		var paths []string
+		for _, tc := range []struct {
+			name string
+			label string
+			seconds int64
+		}{
+			{"first", "alpha", 11},
+			{"second", "beta", 29},
+			{"third", "gamma", 47},
+		} {
+			group.Run(tc.name, func(t *testing.T) {
+				dir, err := os.MkdirTemp("", "stamp-case-")
+				if err != nil {
+					t.Fatalf("acquire private fixture: %v", err)
+				}
+				t.Cleanup(func() {
+					if err := os.RemoveAll(dir); err != nil {
+						t.Errorf("remove owning fixture: %v", err)
+					}
+				})
+				defer os.RemoveAll(dir)
+				paths = append(paths, dir)
+				t.Parallel()
+				calls := 0
+				now := func() time.Time {
+					calls++
+					return time.Unix(tc.seconds, 0)
+				}
+				if err := writeStamp(dir, tc.label, now); err != nil {
+					t.Errorf("write stamp: %v", err)
+				}
+				if calls != 1 {
+					t.Errorf("clock calls: got %d, want 1", calls)
+				}
+				t.Run("readback", func(t *testing.T) {
+					t.Parallel()
+					body, err := os.ReadFile(filepath.Join(dir, "stamp.txt"))
+					if err != nil {
+						t.Errorf("fixture missing before descendant completed: %v", err)
+						return
+					}
+					want := fmt.Sprintf("%s\n%d\n", tc.label, tc.seconds)
+					if string(body) != want {
+						t.Errorf("stamp contents: got %q, want %q", body, want)
+					}
+				})
+			})
+		}
+		group.Cleanup(func() {
+			seen := make(map[string]bool)
+			for _, dir := range paths {
+				if seen[dir] {
+					group.Errorf("fixture paths must be distinct: repeated %q", dir)
+				}
+				seen[dir] = true
+				if _, err := os.Stat(dir); err == nil {
+					group.Errorf("case fixture remains after descendants: %q", dir)
+				} else if !os.IsNotExist(err) {
+					group.Errorf("inspect removed fixture: %v", err)
+				}
+			}
+		})
+	})
+}

@@ -1,0 +1,41 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-applications-11-parallel-golden-author",
+    "created_at": "2026-10-23",
+    "summary": "Original stateful executable examples, chosen complete log baseline and reviewed footer evolution; no external donor code, tests or prose."
+  },
+  "sources": [],
+  "content_digest": "ea154fa4a4a145e6b4ea38c2f99ec4266ff5b16edfff53fe5b341923e0b4dc9f",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "a7843db58476a33769300435224d119fe66d1b961bff404f78808f166c44e880",
+    "TASK.md": "d829a03ddd32e3804d7896cac9e510d8696d033c8367a3e28a6b02a31d2704b6",
+    "alternative/examples_test.go.txt": "56d644623eec5249e3185e9c09df78958b8622ef65424b54aca69c8375c7ae6a",
+    "alternative/golden_test.go.txt": "6cf15cb12ecb25d2db970dff25f73ee2c51d6b5047c59dbe14c88ea0376c3e27",
+    "alternative/testdata/log.golden": "f7a7a2093e3ea3581ff4abae660d686229bcb3ef9d4c9ed1b68ded09b3b483a4",
+    "controls/auto-update_golden_test.go.txt": "53769cecc4d5a45d7092dc9fd021e5cc8b123f97a1ef34bd5177b89daf5f6e97",
+    "controls/constant-print_examples_test.go.txt": "efdce8e783bae09b577d9151a747707175cafb535f77b216bfe28cf7b168161d",
+    "controls/missing-output_examples_test.go.txt": "446ec3cd4bc554932acfd9091365d5b1c60a6392be6e734638e80975b755cd58",
+    "controls/prefix-only_golden_test.go.txt": "7d1842064f1b53c8df3248e7b315987d2a369ed960e1f878b7d1127f16e2eacf",
+    "files/go.mod.txt": "144168e958e24f54fa0fd0b217098730f50cd7867e27784d35a2cfffd8dea12c",
+    "files/log.go.txt": "064c34cecf42f772ae1da14e39209b26d16dedf1351ee82f4b20196ca22f01af",
+    "reference/examples_test.go.txt": "e5caed5c2ec4b4396bac740dd335918d684c3aa3db92697abe2e6f0ef3c68bc0",
+    "reference/golden_test.go.txt": "fbbec42f8f136444d2c302a2ba93889713c3b60d475dfe17f616c8d55f72e38e",
+    "reference/testdata/log.golden": "fd836deeb26dceea43e52a3917f6ca5d17add5aae5254eb83ca8000c197598f8",
+    "starter/examples_test.go.txt": "02f9e281bd1838742337350ba5961c615b8b065657330bf92498ebc704110449",
+    "starter/golden_test.go.txt": "6c8f25aee4c191688a3ece6c6f665672875409647d2e500ab4233a99c7269d2b",
+    "starter/testdata/log.golden": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "update/footer.go.txt": "8e5f2f1b0f72670958f84b0cc75f5dfc4f4027517d8d22bcb04aec72fd0c15d2",
+    "update/log-v2.golden": "db8935cd52b537f9ce88784b186776d25379802357b803bece7f40f127e1a223",
+    "wrong/append-rejected.go.txt": "c2d849c816f07e5ca73c562bbd675ddeb07af3b712b04d55b53db2ac94e5af7b",
+    "wrong/counts.go.txt": "b1fc7616899e2fa0c26c4bff2f1f12b8fb2bde295b57f1a49d5ee31f9606dd5f",
+    "wrong/drop-middle.go.txt": "fb18b096c88091b91341d13171af346618667692eaff72ba7a7e02f86a7a9b83",
+    "wrong/final-newline.go.txt": "33342a9a51a0c20955bdbf512ea0de627764fe91e47b6c9b02e23f335327869e",
+    "wrong/output_examples_test.go.txt": "afe08c821ba687e214eb9a49863e5e0f6e2be74ce884e020753438b81ced1397",
+    "wrong/reorder.go.txt": "6c3fe379df1156c91c05b2d695af1b85806a55ab49839df21ee83eb28c801f42"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

@@ -1,0 +1,34 @@
+=== RUN   TestIsolatedStamps
+=== RUN   TestIsolatedStamps/cases
+=== RUN   TestIsolatedStamps/cases/first
+=== RUN   TestIsolatedStamps/cases/first/readback
+=== RUN   TestIsolatedStamps/cases/second
+=== RUN   TestIsolatedStamps/cases/second/readback
+=== RUN   TestIsolatedStamps/cases/third
+=== RUN   TestIsolatedStamps/cases/third/readback
+--- PASS: TestIsolatedStamps (0.00s)
+    --- PASS: TestIsolatedStamps/cases (0.00s)
+        --- PASS: TestIsolatedStamps/cases/first (0.00s)
+            --- PASS: TestIsolatedStamps/cases/first/readback (0.00s)
+        --- PASS: TestIsolatedStamps/cases/second (0.00s)
+            --- PASS: TestIsolatedStamps/cases/second/readback (0.00s)
+        --- PASS: TestIsolatedStamps/cases/third (0.00s)
+            --- PASS: TestIsolatedStamps/cases/third/readback (0.00s)
+=== RUN   TestIsolatedStamps
+=== RUN   TestIsolatedStamps/cases
+=== RUN   TestIsolatedStamps/cases/first
+=== RUN   TestIsolatedStamps/cases/first/readback
+=== RUN   TestIsolatedStamps/cases/second
+=== RUN   TestIsolatedStamps/cases/second/readback
+=== RUN   TestIsolatedStamps/cases/third
+=== RUN   TestIsolatedStamps/cases/third/readback
+--- PASS: TestIsolatedStamps (0.00s)
+    --- PASS: TestIsolatedStamps/cases (0.00s)
+        --- PASS: TestIsolatedStamps/cases/first (0.00s)
+            --- PASS: TestIsolatedStamps/cases/first/readback (0.00s)
+        --- PASS: TestIsolatedStamps/cases/second (0.00s)
+            --- PASS: TestIsolatedStamps/cases/second/readback (0.00s)
+        --- PASS: TestIsolatedStamps/cases/third (0.00s)
+            --- PASS: TestIsolatedStamps/cases/third/readback (0.00s)
+PASS
+ok  	finite.local/stamp	0.434s

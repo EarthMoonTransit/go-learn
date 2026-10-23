@@ -1,0 +1,28 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-applications-11-root",
+    "created_at": "2026-10-23",
+    "summary": "Original build-selection/docs/formatting/vet application after sole contract approval. No external source material."
+  },
+  "sources": [],
+  "content_digest": "12fe80ff2d9348a6f509d19178a3b65c48ad12d6ed4c2680eed958aa07e0f4c9",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "175439ef66c9d2a49690e52aa2c9548d21c2bf480ef67c5a17afcd4a23b6a7c7",
+    "TASK.md": "fb6038f65230c87cd97fb418379445b6977e59ce3ffd9344490245d09c5a5c4a",
+    "correct-alternate/format/preview.go.txt": "d99894b30b3c317ef2b09281b9439e0fc34f81b0df9e24e84213910a4229291a",
+    "files/cmd/preview/main.go.txt": "3487e84378e86d6e535c679c2fb973b32e56127660d850f4ca38b90eadd5ca00",
+    "files/format/default.go.txt": "5ad1846c03add0ec0d1edfe18b953c5def4d095107974e353f34d8979006d396",
+    "files/format/grader_test.go.txt": "fd477ecf243c3b123f7d51975d3f5d6bbbd6bb25db011f191f1265651f9bfa39",
+    "files/format/preview.go.txt": "4266fae167dfdb8ee242c89b47f81e6c6d83d238968914c7b6c919d3fab0bfc2",
+    "files/format/public_test.go.txt": "0db455d93d71c410f83d44d53baa2d2b23c25fa4e1aab9bda7a5b9707db47b02",
+    "files/go.mod.txt": "99aee77804af7cd0bcc481d6450a96d2b0487cb3ee09ceaea4b23487e67aa49e",
+    "manifest.json": "0ef2924dbeb3b34093205a3cb68f507c562c3de7e3d2411461b8483090cf54a2",
+    "reference/format/preview.go.txt": "70002d2cd2b5b5da6a838d7f8a39900bd3af1b682f5e305c004510a730e3449b",
+    "wrong/api-only/format/preview.go.txt": "1dcc41c6bc5fbf57387ac9f3bb93ebcf12df0cc35a42c30ca3267abbb33ba67c"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

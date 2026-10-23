@@ -1,0 +1,23 @@
+package stamp
+
+import (
+	"fmt"
+	"os"
+	"path/filepath"
+	"time"
+)
+
+// WriteStamp writes one label and one Unix timestamp to stamp.txt.
+func WriteStamp(dir, label string) error {
+	return writeStamp(dir, label, systemClock{})
+}
+
+type clock interface { Now() time.Time }
+
+type systemClock struct{}
+func (systemClock) Now() time.Time { return time.Now() }
+
+func writeStamp(dir, label string, source clock) error {
+	body := fmt.Sprintf("%s\n%d\n", label, source.Now().Unix())
+	return os.WriteFile(filepath.Join(dir, "stamp.txt"), []byte(body), 0600)
+}

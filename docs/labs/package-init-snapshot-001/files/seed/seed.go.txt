@@ -1,0 +1,9 @@
+package seed
+
+var Base = 3
+var InitCalls int
+
+func init() {
+ Base++
+ InitCalls++
+}

@@ -1,0 +1,887 @@
+{
+  "unit": "isolated-stamp-tests-001",
+  "status": "completed",
+  "started_at": "2026-10-23T07:59:56.268186+00:00",
+  "manifest_sha256": "eb4286bd739e0d2b904440c4ffbcd9b1ad56c0829ec67b26e5ee16afd1ec0388",
+  "script_sha256": "eb935fa827afecffdd6d9c15a0c285530e9ff7335f390cec4e14da2f0624f6dc",
+  "source_hashes": {
+    "PROCEDURE.md": "0bc86c063ad0fada20ffd69f81c69badbac94c72f06b769fa7a0b87383212136",
+    "TASK.md": "b689d7117765dd4141020a6fb6726faffb57bc549b93bb4e207a4da17da4a59a",
+    "alternative/stamp.go.txt": "1cfea2cfd9fef7894d33431c45bb41751dd3aac20113e555066d57c99b9cc06c",
+    "alternative/stamp_test.go.txt": "30755f3e5dc0d5e2fbceb9c259d66602787624dfc30d415ab1bb3da5b65bf9d4",
+    "controls/no-parallel_test.go.txt": "1bdcd4c48eeeb55965d491f8cb4d56f6bbdb81e1f273dde84e27dbdd4282020b",
+    "controls/weak-clock-oracle_test.go.txt": "5d4a2bd1a7a3d7fe7038d61896b5301bc3402d52840cab73ed688b6827df3be7",
+    "files/go.mod.txt": "8ae011f749ec70eec7d03e125198ca60f84e85fbb7beb882eb50cf8d645e3cb5",
+    "files/stamp.go.txt": "07a5aedb060050301bc4a56510ccd940cbe247d5286cd4ee9bff26d7e25176f6",
+    "files/starter_test.go.txt": "aed17d254389807a94349cda31ff6819a8bd767f600d38ba307d63708f345788",
+    "provenance.json": "8ef0780e6bc742e996f71930047f2d842b5f598a3adfd0c0dc98cd0ee09afa04",
+    "reference/stamp.go.txt": "fb83d51c641691bd52b8e28de660bf664e11cf319723b64fd56db81f3fe03501",
+    "reference/stamp_test.go.txt": "ecab6c7a8f251ed7befa6c7a781ff49c17ae02fdaa37bfd4c768a270ca63a894",
+    "wrong/ancestor-cleanup_test.go.txt": "c0b7a38ab4897da6dbe00cb352f8e8af536263ca2eaf8627e7247bacfb9531ec",
+    "wrong/defer-cleanup_test.go.txt": "11231cf3e53259c6f3e84a4e218215d0ee19e3277280e428359285c1bab60163",
+    "wrong/ignore-clock.go.txt": "5d9ac3f33ffa9c5be2283791d4705bc1029c076017bceecb0333ed1bd88c9075",
+    "wrong/shared-clock_test.go.txt": "0b23cd4a461d6098879412e7467789887d41b28ec11dbe379b19223777aef78f",
+    "wrong/shared-directory_test.go.txt": "ec8a0d4ab57866b20e005e61ae4c71124caa64a7cc8e6522a8dbcfbc5c2dd6de"
+  },
+  "specimen_count": 9,
+  "planned_commands": 20,
+  "commands": [
+    {
+      "serial": 1,
+      "specimen": "reference",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-heh7m6uk/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-heh7m6uk",
+      "started_at": "2026-10-23T07:59:56.270004+00:00",
+      "finished_at": "2026-10-23T07:59:56.278256+00:00",
+      "duration_seconds": 0.008264375035651028,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "01-reference-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "01-reference-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "01-reference-version-before.json",
+      "before_snapshot_sha256": "b1be4e0ddb1c68e20b51af3a2b90cffee0d30f459d3f94e619b1954c685fb505",
+      "after_snapshot": "01-reference-version-after.json",
+      "after_snapshot_sha256": "b1be4e0ddb1c68e20b51af3a2b90cffee0d30f459d3f94e619b1954c685fb505",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 2,
+      "specimen": "reference",
+      "command": {
+        "name": "parallel-1",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=2",
+          "-parallel=1",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "PASS",
+          "=== PAUSE",
+          "=== CONT"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-heh7m6uk/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-heh7m6uk",
+      "started_at": "2026-10-23T07:59:56.278840+00:00",
+      "finished_at": "2026-10-23T08:00:00.175476+00:00",
+      "duration_seconds": 3.8966617500409484,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "02-reference-parallel-1.stdout",
+      "stdout_sha256": "330a7045e405374dd592cf4e875c336a7d536f7faa8f30499723b04f9cd0afc0",
+      "stderr": "02-reference-parallel-1.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "02-reference-parallel-1-before.json",
+      "before_snapshot_sha256": "b1be4e0ddb1c68e20b51af3a2b90cffee0d30f459d3f94e619b1954c685fb505",
+      "after_snapshot": "02-reference-parallel-1-after.json",
+      "after_snapshot_sha256": "b1be4e0ddb1c68e20b51af3a2b90cffee0d30f459d3f94e619b1954c685fb505",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 3,
+      "specimen": "reference",
+      "command": {
+        "name": "parallel-3",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=2",
+          "-parallel=3",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "PASS",
+          "=== PAUSE",
+          "=== CONT"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-heh7m6uk/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-heh7m6uk",
+      "started_at": "2026-10-23T08:00:00.176011+00:00",
+      "finished_at": "2026-10-23T08:00:00.728132+00:00",
+      "duration_seconds": 0.5521324580768123,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "03-reference-parallel-3.stdout",
+      "stdout_sha256": "910f811353a381089b60b47dfaaae6a3c782cb9ef4b877ee1c258477a298ac4d",
+      "stderr": "03-reference-parallel-3.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "03-reference-parallel-3-before.json",
+      "before_snapshot_sha256": "b1be4e0ddb1c68e20b51af3a2b90cffee0d30f459d3f94e619b1954c685fb505",
+      "after_snapshot": "03-reference-parallel-3-after.json",
+      "after_snapshot_sha256": "b1be4e0ddb1c68e20b51af3a2b90cffee0d30f459d3f94e619b1954c685fb505",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 4,
+      "specimen": "alternative",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-xtk4vz53/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-xtk4vz53",
+      "started_at": "2026-10-23T08:00:00.881541+00:00",
+      "finished_at": "2026-10-23T08:00:00.890709+00:00",
+      "duration_seconds": 0.00916466605849564,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "04-alternative-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "04-alternative-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "04-alternative-version-before.json",
+      "before_snapshot_sha256": "3bf6ad5f8399bf620965df9f2ee9e8f061d1e6b049ab079516f676856d555c42",
+      "after_snapshot": "04-alternative-version-after.json",
+      "after_snapshot_sha256": "3bf6ad5f8399bf620965df9f2ee9e8f061d1e6b049ab079516f676856d555c42",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 5,
+      "specimen": "alternative",
+      "command": {
+        "name": "parallel-1",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=2",
+          "-parallel=1",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "PASS",
+          "=== PAUSE",
+          "=== CONT"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-xtk4vz53/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-xtk4vz53",
+      "started_at": "2026-10-23T08:00:00.891274+00:00",
+      "finished_at": "2026-10-23T08:00:05.188715+00:00",
+      "duration_seconds": 4.297474040999077,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "05-alternative-parallel-1.stdout",
+      "stdout_sha256": "edb2a5d3ef49315710f4d947eb2b6ae1459511a8635f4d4833c02056bea7e647",
+      "stderr": "05-alternative-parallel-1.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "05-alternative-parallel-1-before.json",
+      "before_snapshot_sha256": "3bf6ad5f8399bf620965df9f2ee9e8f061d1e6b049ab079516f676856d555c42",
+      "after_snapshot": "05-alternative-parallel-1-after.json",
+      "after_snapshot_sha256": "3bf6ad5f8399bf620965df9f2ee9e8f061d1e6b049ab079516f676856d555c42",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 6,
+      "specimen": "alternative",
+      "command": {
+        "name": "parallel-3",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=2",
+          "-parallel=3",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "PASS",
+          "=== PAUSE",
+          "=== CONT"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-xtk4vz53/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-xtk4vz53",
+      "started_at": "2026-10-23T08:00:05.189236+00:00",
+      "finished_at": "2026-10-23T08:00:05.753998+00:00",
+      "duration_seconds": 0.5647725419839844,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "06-alternative-parallel-3.stdout",
+      "stdout_sha256": "84aaa0dc4d7f9102cfde1035aa38b29cb32daee06f22eef465fd7732f7d1955f",
+      "stderr": "06-alternative-parallel-3.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "06-alternative-parallel-3-before.json",
+      "before_snapshot_sha256": "3bf6ad5f8399bf620965df9f2ee9e8f061d1e6b049ab079516f676856d555c42",
+      "after_snapshot": "06-alternative-parallel-3-after.json",
+      "after_snapshot_sha256": "3bf6ad5f8399bf620965df9f2ee9e8f061d1e6b049ab079516f676856d555c42",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 7,
+      "specimen": "shared-directory",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-2ig29uvb/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-2ig29uvb",
+      "started_at": "2026-10-23T08:00:05.836598+00:00",
+      "finished_at": "2026-10-23T08:00:05.857025+00:00",
+      "duration_seconds": 0.02044045797083527,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "07-shared-directory-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "07-shared-directory-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "07-shared-directory-version-before.json",
+      "before_snapshot_sha256": "a10b7ddb5e3a7c09314cbd090fade81c9eea226808b5dc0734fe57f937709e6a",
+      "after_snapshot": "07-shared-directory-version-after.json",
+      "after_snapshot_sha256": "a10b7ddb5e3a7c09314cbd090fade81c9eea226808b5dc0734fe57f937709e6a",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 8,
+      "specimen": "shared-directory",
+      "command": {
+        "name": "parallel-3",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=2",
+          "-parallel=3",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 1,
+        "required_output": [
+          "fixture paths must be distinct",
+          "=== PAUSE",
+          "=== CONT"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-2ig29uvb/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-2ig29uvb",
+      "started_at": "2026-10-23T08:00:05.858456+00:00",
+      "finished_at": "2026-10-23T08:00:09.756969+00:00",
+      "duration_seconds": 3.898539291927591,
+      "exit_status": 1,
+      "timed_out": false,
+      "stdout": "08-shared-directory-parallel-3.stdout",
+      "stdout_sha256": "2ca7944e8ac271958ff9b005fc950f74ec44042e1ef62cac099ccb17deeb10d2",
+      "stderr": "08-shared-directory-parallel-3.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "08-shared-directory-parallel-3-before.json",
+      "before_snapshot_sha256": "a10b7ddb5e3a7c09314cbd090fade81c9eea226808b5dc0734fe57f937709e6a",
+      "after_snapshot": "08-shared-directory-parallel-3-after.json",
+      "after_snapshot_sha256": "a10b7ddb5e3a7c09314cbd090fade81c9eea226808b5dc0734fe57f937709e6a",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 9,
+      "specimen": "ancestor-cleanup",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-dbkah4qa/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-dbkah4qa",
+      "started_at": "2026-10-23T08:00:09.870932+00:00",
+      "finished_at": "2026-10-23T08:00:09.885946+00:00",
+      "duration_seconds": 0.015015708049759269,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "09-ancestor-cleanup-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "09-ancestor-cleanup-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "09-ancestor-cleanup-version-before.json",
+      "before_snapshot_sha256": "8b7e025d82f64359a6070145f9efa2e6d714c9ffff14a8a2b45f14cbe11ff991",
+      "after_snapshot": "09-ancestor-cleanup-version-after.json",
+      "after_snapshot_sha256": "8b7e025d82f64359a6070145f9efa2e6d714c9ffff14a8a2b45f14cbe11ff991",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 10,
+      "specimen": "ancestor-cleanup",
+      "command": {
+        "name": "parallel-3",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=2",
+          "-parallel=3",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 1,
+        "required_output": [
+          "case fixture remains after descendants",
+          "=== PAUSE",
+          "=== CONT"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-dbkah4qa/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-dbkah4qa",
+      "started_at": "2026-10-23T08:00:09.886615+00:00",
+      "finished_at": "2026-10-23T08:00:13.019431+00:00",
+      "duration_seconds": 3.1328434159513563,
+      "exit_status": 1,
+      "timed_out": false,
+      "stdout": "10-ancestor-cleanup-parallel-3.stdout",
+      "stdout_sha256": "e867fa1b1b86e03638055d10b098bdaa371b923e4152bd8ca07756df5e2ddf9b",
+      "stderr": "10-ancestor-cleanup-parallel-3.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "10-ancestor-cleanup-parallel-3-before.json",
+      "before_snapshot_sha256": "8b7e025d82f64359a6070145f9efa2e6d714c9ffff14a8a2b45f14cbe11ff991",
+      "after_snapshot": "10-ancestor-cleanup-parallel-3-after.json",
+      "after_snapshot_sha256": "8b7e025d82f64359a6070145f9efa2e6d714c9ffff14a8a2b45f14cbe11ff991",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 11,
+      "specimen": "defer-cleanup",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-grq70u7o/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-grq70u7o",
+      "started_at": "2026-10-23T08:00:13.101889+00:00",
+      "finished_at": "2026-10-23T08:00:13.129213+00:00",
+      "duration_seconds": 0.027326749986968935,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "11-defer-cleanup-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "11-defer-cleanup-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "11-defer-cleanup-version-before.json",
+      "before_snapshot_sha256": "5827077362b4f356e8758e9ca2d447738bf660cb397e53576b3982d7baa3dda4",
+      "after_snapshot": "11-defer-cleanup-version-after.json",
+      "after_snapshot_sha256": "5827077362b4f356e8758e9ca2d447738bf660cb397e53576b3982d7baa3dda4",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 12,
+      "specimen": "defer-cleanup",
+      "command": {
+        "name": "parallel-3",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=2",
+          "-parallel=3",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 1,
+        "required_output": [
+          "fixture missing before descendant completed",
+          "=== PAUSE",
+          "=== CONT"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-grq70u7o/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-grq70u7o",
+      "started_at": "2026-10-23T08:00:13.135910+00:00",
+      "finished_at": "2026-10-23T08:00:16.205974+00:00",
+      "duration_seconds": 3.0700683330651373,
+      "exit_status": 1,
+      "timed_out": false,
+      "stdout": "12-defer-cleanup-parallel-3.stdout",
+      "stdout_sha256": "bd4e40d8bc238d8245f2ef7102ee7a65a3eb01ddd85d738e9df2df74ce305721",
+      "stderr": "12-defer-cleanup-parallel-3.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "12-defer-cleanup-parallel-3-before.json",
+      "before_snapshot_sha256": "5827077362b4f356e8758e9ca2d447738bf660cb397e53576b3982d7baa3dda4",
+      "after_snapshot": "12-defer-cleanup-parallel-3-after.json",
+      "after_snapshot_sha256": "5827077362b4f356e8758e9ca2d447738bf660cb397e53576b3982d7baa3dda4",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 13,
+      "specimen": "ignore-clock",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-jb5s0a11/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-jb5s0a11",
+      "started_at": "2026-10-23T08:00:16.279975+00:00",
+      "finished_at": "2026-10-23T08:00:16.288494+00:00",
+      "duration_seconds": 0.008520083036273718,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "13-ignore-clock-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "13-ignore-clock-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "13-ignore-clock-version-before.json",
+      "before_snapshot_sha256": "eb0c53b032d7f29f7d4c12452a45c2a877e02c037b64e0b2fb5e947d606cce85",
+      "after_snapshot": "13-ignore-clock-version-after.json",
+      "after_snapshot_sha256": "eb0c53b032d7f29f7d4c12452a45c2a877e02c037b64e0b2fb5e947d606cce85",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 14,
+      "specimen": "ignore-clock",
+      "command": {
+        "name": "parallel-3",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=2",
+          "-parallel=3",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 1,
+        "required_output": [
+          "stamp contents",
+          "=== PAUSE",
+          "=== CONT"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-jb5s0a11/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-jb5s0a11",
+      "started_at": "2026-10-23T08:00:16.289113+00:00",
+      "finished_at": "2026-10-23T08:00:19.726553+00:00",
+      "duration_seconds": 3.4374695000005886,
+      "exit_status": 1,
+      "timed_out": false,
+      "stdout": "14-ignore-clock-parallel-3.stdout",
+      "stdout_sha256": "4c9559f0edd598dfb8b1840d3fbd7c99917a4ff78b05467fe628b39d5ac902d1",
+      "stderr": "14-ignore-clock-parallel-3.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "14-ignore-clock-parallel-3-before.json",
+      "before_snapshot_sha256": "eb0c53b032d7f29f7d4c12452a45c2a877e02c037b64e0b2fb5e947d606cce85",
+      "after_snapshot": "14-ignore-clock-parallel-3-after.json",
+      "after_snapshot_sha256": "eb0c53b032d7f29f7d4c12452a45c2a877e02c037b64e0b2fb5e947d606cce85",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 15,
+      "specimen": "shared-clock",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-nb8719ec/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-nb8719ec",
+      "started_at": "2026-10-23T08:00:19.799929+00:00",
+      "finished_at": "2026-10-23T08:00:19.808067+00:00",
+      "duration_seconds": 0.008136416901834309,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "15-shared-clock-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "15-shared-clock-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "15-shared-clock-version-before.json",
+      "before_snapshot_sha256": "5f1426ccfe67eabc278be0364944d052918bfedc457fa9c8d1c429913152b8b4",
+      "after_snapshot": "15-shared-clock-version-after.json",
+      "after_snapshot_sha256": "5f1426ccfe67eabc278be0364944d052918bfedc457fa9c8d1c429913152b8b4",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 16,
+      "specimen": "shared-clock",
+      "command": {
+        "name": "parallel-3",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=2",
+          "-parallel=3",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 1,
+        "required_output": [
+          "stamp contents",
+          "=== PAUSE",
+          "=== CONT"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-nb8719ec/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-nb8719ec",
+      "started_at": "2026-10-23T08:00:19.808692+00:00",
+      "finished_at": "2026-10-23T08:00:24.236649+00:00",
+      "duration_seconds": 4.427992624929175,
+      "exit_status": 1,
+      "timed_out": false,
+      "stdout": "16-shared-clock-parallel-3.stdout",
+      "stdout_sha256": "d4eb5bdbb2142c184ef67927626771f264f2fe373aaf355ca70059803969ddf7",
+      "stderr": "16-shared-clock-parallel-3.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "16-shared-clock-parallel-3-before.json",
+      "before_snapshot_sha256": "5f1426ccfe67eabc278be0364944d052918bfedc457fa9c8d1c429913152b8b4",
+      "after_snapshot": "16-shared-clock-parallel-3-after.json",
+      "after_snapshot_sha256": "5f1426ccfe67eabc278be0364944d052918bfedc457fa9c8d1c429913152b8b4",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 17,
+      "specimen": "no-parallel",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-ek24yzez/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-ek24yzez",
+      "started_at": "2026-10-23T08:00:24.331356+00:00",
+      "finished_at": "2026-10-23T08:00:24.339213+00:00",
+      "duration_seconds": 0.007857333053834736,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "17-no-parallel-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "17-no-parallel-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "17-no-parallel-version-before.json",
+      "before_snapshot_sha256": "0cee52e1dba4737a5e74b04ff51702d9b937b877b363f299ce391effe20f89b7",
+      "after_snapshot": "17-no-parallel-version-after.json",
+      "after_snapshot_sha256": "0cee52e1dba4737a5e74b04ff51702d9b937b877b363f299ce391effe20f89b7",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 18,
+      "specimen": "no-parallel",
+      "command": {
+        "name": "parallel-3",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=2",
+          "-parallel=3",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "PASS"
+        ],
+        "forbidden_output": [
+          "=== PAUSE",
+          "=== CONT"
+        ],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-ek24yzez/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-ek24yzez",
+      "started_at": "2026-10-23T08:00:24.339685+00:00",
+      "finished_at": "2026-10-23T08:00:28.434501+00:00",
+      "duration_seconds": 4.094849708024412,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "18-no-parallel-parallel-3.stdout",
+      "stdout_sha256": "b738fdf9905726f1dec6a7bcea8d9eca77ef9da6976fe8b413ec8002b649a3cc",
+      "stderr": "18-no-parallel-parallel-3.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "18-no-parallel-parallel-3-before.json",
+      "before_snapshot_sha256": "0cee52e1dba4737a5e74b04ff51702d9b937b877b363f299ce391effe20f89b7",
+      "after_snapshot": "18-no-parallel-parallel-3-after.json",
+      "after_snapshot_sha256": "0cee52e1dba4737a5e74b04ff51702d9b937b877b363f299ce391effe20f89b7",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 19,
+      "specimen": "weak-clock-oracle",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-v_a1fxao/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-v_a1fxao",
+      "started_at": "2026-10-23T08:00:28.580580+00:00",
+      "finished_at": "2026-10-23T08:00:28.589223+00:00",
+      "duration_seconds": 0.008644208079203963,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "19-weak-clock-oracle-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "19-weak-clock-oracle-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "19-weak-clock-oracle-version-before.json",
+      "before_snapshot_sha256": "ce4bd39cc3ed5b455454c1380db85c3a593f330e3e1fdacbeebde7e39d1345e6",
+      "after_snapshot": "19-weak-clock-oracle-version-after.json",
+      "after_snapshot_sha256": "ce4bd39cc3ed5b455454c1380db85c3a593f330e3e1fdacbeebde7e39d1345e6",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 20,
+      "specimen": "weak-clock-oracle",
+      "command": {
+        "name": "parallel-3",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=2",
+          "-parallel=3",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "PASS",
+          "=== PAUSE",
+          "=== CONT"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-v_a1fxao/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-v_a1fxao",
+      "started_at": "2026-10-23T08:00:28.589741+00:00",
+      "finished_at": "2026-10-23T08:00:32.196331+00:00",
+      "duration_seconds": 3.6066064999904484,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "20-weak-clock-oracle-parallel-3.stdout",
+      "stdout_sha256": "124e7d6f87a5b61ac8873bb1e63e406c0baa368a6a0332ea42c12fcfd866e891",
+      "stderr": "20-weak-clock-oracle-parallel-3.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "20-weak-clock-oracle-parallel-3-before.json",
+      "before_snapshot_sha256": "ce4bd39cc3ed5b455454c1380db85c3a593f330e3e1fdacbeebde7e39d1345e6",
+      "after_snapshot": "20-weak-clock-oracle-parallel-3-after.json",
+      "after_snapshot_sha256": "ce4bd39cc3ed5b455454c1380db85c3a593f330e3e1fdacbeebde7e39d1345e6",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    }
+  ],
+  "cleanup": [
+    {
+      "specimen": "reference",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-heh7m6uk",
+      "removed": true
+    },
+    {
+      "specimen": "alternative",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-xtk4vz53",
+      "removed": true
+    },
+    {
+      "specimen": "shared-directory",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-2ig29uvb",
+      "removed": true
+    },
+    {
+      "specimen": "ancestor-cleanup",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-dbkah4qa",
+      "removed": true
+    },
+    {
+      "specimen": "defer-cleanup",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-grq70u7o",
+      "removed": true
+    },
+    {
+      "specimen": "ignore-clock",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-jb5s0a11",
+      "removed": true
+    },
+    {
+      "specimen": "shared-clock",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-nb8719ec",
+      "removed": true
+    },
+    {
+      "specimen": "no-parallel",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-ek24yzez",
+      "removed": true
+    },
+    {
+      "specimen": "weak-clock-oracle",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-parallel-v_a1fxao",
+      "removed": true
+    }
+  ],
+  "method_controls": [
+    {
+      "specimen": "no-parallel",
+      "rejection": "Passing assertions do not demonstrate any Parallel call or native pause/continue."
+    },
+    {
+      "specimen": "weak-clock-oracle",
+      "rejection": "Label-only oracle omits timestamp and clock-call assertions; wrong zero-clock implementation passes."
+    }
+  ],
+  "update_decisions": [],
+  "finished_at": "2026-10-23T08:00:32.262515+00:00"
+}

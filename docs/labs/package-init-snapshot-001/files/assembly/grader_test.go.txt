@@ -1,0 +1,15 @@
+package assembly_test
+
+import (
+ "testing"
+ "finite.local/init-snapshot/assembly"
+)
+
+func TestManyReadsPreserveSnapshot(t *testing.T) {
+ for i:=0;i<7;i++ {
+  base, port, snapshot, seedCalls, captures := assembly.ReadValues()
+  if base != 4 || port != 8 || snapshot != 8 || seedCalls != 1 || captures != 1 {
+   t.Errorf("read%d values=(%d,%d,%d,%d,%d); want (4,8,8,1,1)", i,base,port,snapshot,seedCalls,captures)
+  }
+ }
+}

@@ -1,0 +1,723 @@
+{
+  "unit": "selected-tool-diagnostics-001",
+  "copies": 6,
+  "commands": 69,
+  "initial_files": {
+    "files/cmd/preview/main.go.txt": "cmd/preview/main.go",
+    "files/format/default.go.txt": "format/default.go",
+    "files/format/grader_test.go.txt": "format/grader_test.go",
+    "files/format/preview.go.txt": "format/preview.go",
+    "files/format/public_test.go.txt": "format/public_test.go",
+    "files/go.mod.txt": "go.mod"
+  },
+  "specimens": [
+    {
+      "name": "reference",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "env",
+            "GOFLAGS"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./format"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "env",
+            "GOFLAGS"
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./format"
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "gofmt",
+          "argv": [
+            "-d",
+            "format/preview.go"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "gofmt",
+          "argv": [
+            "-w",
+            "format/preview.go"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "gofmt",
+          "argv": [
+            "-d",
+            "format/preview.go"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "doc",
+            "net/url",
+            "QueryEscape"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "doc",
+            "net/url",
+            "PathEscape"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "default"
+        }
+      ]
+    },
+    {
+      "name": "wrong-mode",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "env",
+            "GOFLAGS"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./format"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "env",
+            "GOFLAGS"
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./format"
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        }
+      ]
+    },
+    {
+      "name": "format-only",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "gofmt",
+          "argv": [
+            "-d",
+            "format/preview.go"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "gofmt",
+          "argv": [
+            "-w",
+            "format/preview.go"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "gofmt",
+          "argv": [
+            "-d",
+            "format/preview.go"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        }
+      ]
+    },
+    {
+      "name": "unreachable-only",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "doc",
+            "net/url",
+            "QueryEscape"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "doc",
+            "net/url",
+            "PathEscape"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        }
+      ]
+    },
+    {
+      "name": "wrong-api",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "doc",
+            "net/url",
+            "QueryEscape"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "doc",
+            "net/url",
+            "PathEscape"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        }
+      ]
+    },
+    {
+      "name": "correct-alternate",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "env",
+            "GOFLAGS"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./format"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "env",
+            "GOFLAGS"
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./format"
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "gofmt",
+          "argv": [
+            "-d",
+            "format/preview.go"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "gofmt",
+          "argv": [
+            "-w",
+            "format/preview.go"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "gofmt",
+          "argv": [
+            "-d",
+            "format/preview.go"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "doc",
+            "net/url",
+            "QueryEscape"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "doc",
+            "net/url",
+            "PathEscape"
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "preview"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "default"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "mode": "default"
+        }
+      ]
+    }
+  ],
+  "default_flags": "-mod=readonly\n",
+  "preview_flags": "-mod=readonly -tags=preview\n",
+  "default_files": "[default.go]\n",
+  "preview_files": "[preview.go]\n",
+  "vet_diagnostics": [
+    "unreachable code"
+  ],
+  "ordinary_diagnostics": [
+    "query input=\"a b\" got=\"a%20b\"; want=\"a+b\""
+  ],
+  "allowed_edits": [
+    "format/preview.go"
+  ]
+}

@@ -1,0 +1,59 @@
+schema_version: 2
+id: atomic-count-tests-001
+title: Atomic count tests
+activity: test-writing
+submission:
+    kind: tests
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: testing.table-driven
+    secondary:
+        - testing.subtests
+        - testing.helpers
+prerequisites:
+    - testing.basics-diagnostics
+    - slices.header-model
+    - structs.literals-zero
+    - maps.operations-comma-ok
+    - maps.iteration
+    - control-flow.range
+    - functions.signatures-results
+    - errors.propagation-context
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 25
+    max: 45
+verification:
+    profile: mutation-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - empty-clears-map
+        - ignore-missing
+        - drop-unrelated
+        - wrong-sign
+        - overwrite-repeat
+        - reverse-order
+        - reject-zero
+        - delete-zero
+        - fresh-error
+        - accept-negative
+        - commit-as-you-go
+        - check-final-only
+        - mutate-deltas
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

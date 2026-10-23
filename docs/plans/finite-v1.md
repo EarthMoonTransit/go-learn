@@ -94,7 +94,7 @@ debugging or learner-test profiles only when they assess the intended outcome.
   external outage; the same repeated failure blocks. No new controller; handoff
   preserves the goal and does not mean completion.
 
-## Current checkpoint: I9 accepted; I10 local gates; I11 actual evidence; I12 contracts
+## Current checkpoint: I9 accepted; I10 CI; I11 final gates; I12 final content
 
 - I3 PR107 and diagnostic-only tooling PR108 are accepted. The sync.Once fixture was repaired without checker expansion. Modules/workspaces and native benchmarks met the batch-two deadline; all49original pair decisions remain preserved.
 - I4 PR109: final HEAD0241dbc, validate39836444522, merge2e1710a42381db9d60e5d3bc251c2702c7951804 at19:37:47UTC. All12local gates used one213collection; available87.07minutes, infrastructure≤4minutes.
@@ -303,3 +303,15 @@ I9 PR114 final8f671dd passed all12 local gates, sole exact-HEAD review and valid
 I10 sole integration accepted; one230-task collection is running from5132frozen checker inputs. I11 six contracts accepted, two root native units actually accepted, two author native units executing their exact reviewed recipes and two automatic units in targeted validation. I12 final13-application planning began07:50:22.220556UTC; six units allocated, root two contracts awaiting review, no new source or readiness credited. Conservative deadlines remain I10 09:55:54.897979UTC, I11 10:27:55.371190UTC and I12 11:50:22.220556UTC with no deductions. Dependencies must be committed before shared integration and merged before dependent merge.
 
 I10 stable230collection completed08:03:02UTC with all checks passing; all5132frozen inputs remain unchanged and all generated reports reuse SHA256 b8dc8417f6cea6651b18d6f59c3dcf62990d4951fe24edb7864a615e99b63b70. Fast/race/vet/integration, final consumers, exactHEADreview and greenvalidate remain mandatory. No scope, checker or tooling change.
+
+### I11 integration checkpoint, 2026-10-23
+
+All six contracts and actual source/method/native evidence are accepted. Two official ready additions and four native units address13applications, leaving13after delivery. Inventory222route/225ready/232checked/22manual; 5106old material files and220route objects/order preserved. Shared integration follows committed I10 860aa128; independent integration review, one232collection, mandatory local gates, finalHEADreview and exactgreenvalidate remain. I10 dependency PR115 must merge first. Deadline10:27:55.371190UTC unchanged with no deductions/infrastructure. I12 six-unit final-topic work proceeds on unique paths, with no unaccepted delivery credit.
+
+I11 integration review corrected atomic-count placement to follow interval-table-tests, as well as named cases and diagnostic helpers; existing relative order remains unchanged. I10 exactHEAD860aa128 review and local fast/race/vet have passed; integration/finalconsumers and PR115validate39922234082 remain pending at this checkpoint.
+
+I10 all12local gates and exactHEAD860aa128 independent review have passed; all5132inputs remain unchanged and finalconsumers share the same230collection. PR115validate39922234082/merge remain pending; no rerun or delivery credit yet.
+
+### I11 stable collection checkpoint, 2026-10-23 08:50UTC
+
+Six actual units and integration are independently approved. All5193 frozen inputs remain unchanged; one232 collection passed08:50:09UTC, SHA256 e0024874d887c6188b73a08c90484e2efe634d7aa8abcafdb7ffb3f346715844, and generated all current reports. Remaining fast/race/vet/integration/current consumers, exactHEADreview and greenvalidate remain mandatory. I10 PR115 all12local gates/exactHEADreview are approved with CI running; accepted delivery still ends atI9 and40remaining applications. I12 four actual units are approved; the final channel/state pair is completing copied public/method evidence, including a reviewed receive-before-start regression. No deadline reset, infrastructure change, manual automatic coverage or mastery claim.

@@ -1,0 +1,15 @@
+package format_test
+
+import (
+	"finite.local/selected-tools/format"
+	"testing"
+)
+
+func TestExactQueryOctets(t *testing.T) {
+	cases := []struct{ in, want string }{{" /+", "+%2F%2B"}, {"x&y=z", "x%26y%3Dz"}, {"%20", "%2520"}, {"\x00	", "%00%09"}}
+	for _, c := range cases {
+		if got := format.RenderQuery(c.in); got != c.want {
+			t.Errorf("query octets=%q got=%q; want=%q", c.in, got, c.want)
+		}
+	}
+}

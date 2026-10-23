@@ -1,0 +1,13 @@
+package main
+
+import (
+ "fmt"
+ "finite.local/init-snapshot/assembly"
+)
+
+func main() {
+ for i := 0; i < 2; i++ {
+  base, port, snapshot, seedCalls, captures := assembly.ReadValues()
+  fmt.Printf("seed=%d port=%d snapshot=%d seedInits=%d captures=%d\n", base, port, snapshot, seedCalls, captures)
+ }
+}

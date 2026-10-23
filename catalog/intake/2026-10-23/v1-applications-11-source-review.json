@@ -1,0 +1,494 @@
+{
+  "batch": "I11",
+  "status": "Six actual content units accepted/integrated; delivery pending",
+  "base": "860aa12875abb5e6872f57753c6d09719c1b9cba",
+  "new_automatic_tasks": [
+    {
+      "id": "atomic-count-tests-001",
+      "path": "tasks/ready/atomic-count-tests-001",
+      "content_digest": "6080d7b6adbeb2f90edd0f8031ff2aaec29a7f7c171974600b033f2610200878",
+      "source_decision": "Original task-init ADR0008 creation, empty external sources; release binding deferred."
+    },
+    {
+      "id": "dual-frame-codec-001",
+      "path": "tasks/ready/dual-frame-codec-001",
+      "content_digest": "d778f6f6154080e3c8a41fe47564cb13ebe8c818cf7f3e99743d4ed5deee1fba",
+      "source_decision": "Original task-init ADR0008 creation, empty external sources; release binding deferred."
+    }
+  ],
+  "new_manual_units": [
+    {
+      "id": "package-init-snapshot-001",
+      "path": "docs/labs/package-init-snapshot-001",
+      "content_digest": "de6c3d9e98f0da7c9ca781d4791d800f765dd5e73c0bb2f15d01cee4c8a29215",
+      "automatic_coverage_credit": false
+    },
+    {
+      "id": "selected-tool-diagnostics-001",
+      "path": "docs/labs/selected-tool-diagnostics-001",
+      "content_digest": "12fe80ff2d9348a6f509d19178a3b65c48ad12d6ed4c2680eed958aa07e0f4c9",
+      "automatic_coverage_credit": false
+    },
+    {
+      "id": "isolated-stamp-tests-001",
+      "path": "docs/labs/isolated-stamp-tests-001",
+      "content_digest": "73dd8fc284361f6c028e891c283343ed2f151c2e82d69024162d634e3ddebc05",
+      "automatic_coverage_credit": false
+    },
+    {
+      "id": "log-examples-golden-001",
+      "path": "docs/labs/log-examples-golden-001",
+      "content_digest": "ea154fa4a4a145e6b4ea38c2f99ec4266ff5b16edfff53fe5b341923e0b4dc9f",
+      "automatic_coverage_credit": false
+    }
+  ],
+  "actual_content_reviews": {
+    "test-content-review.json": {
+      "schema_version": 1,
+      "reviewer": "/root/reviewer",
+      "reviewed_at": "2026-10-23T08:07:36.591256+00:00",
+      "decision": "approve",
+      "task_id": "atomic-count-tests-001",
+      "content_digest": "6080d7b6adbeb2f90edd0f8031ff2aaec29a7f7c171974600b033f2610200878",
+      "author_evidence_sha256": "7f741c1e44a40e7c07001360fb7c9225c70ee81799f5862f66e28c7a83c62aee",
+      "canonical_report": "test-canonical.yaml",
+      "canonical_report_sha256": "aeb1c42241213d4dfb95d2af95fffa3471ae9ce1db5cacc8367484ae7b06e6fb",
+      "findings": [],
+      "actual_evidence": {
+        "canonical_required_detected": 13,
+        "source_files_verified": 25,
+        "control_files_verified": 7,
+        "copied_fixtures": 20,
+        "ordinary_named_public_pairing_failures": 13,
+        "correct_operation_or_suite_controls": 3,
+        "behavior_pass_method_rejections": 4,
+        "all_roots_removed": true,
+        "timeouts": 0
+      },
+      "accepted_applications": [
+        "testing.table-driven",
+        "testing.subtests",
+        "testing.helpers"
+      ],
+      "method_review": [
+        "Learner chooses12 meaningful stateful sequence partitions, clones mutable map and delta input within each serial t.Run child, and calls shared assertion helper with the actual child t.",
+        "Helper registers t.Helper before nonfatal exact-error, complete map/key-presence and input assertions. Useful diagnostics are attributed to caller line59 and named child paths.",
+        "Reference supplied operation is atomic and input preserving;13 finite wrong operation bodies violate declared behavior and actual suite rejects each ordinarily. Reverse-order is exposed by positive-before-subtraction/negative-then-recovery, not merely commutative repeated positive sums.",
+        "Correct pending-only operation and split-helper/reordered-row suites pass compatibility and full defect sufficiency; particular helper shape/order/count is not imposed.",
+        "Unrolled no-table, flat-loop, missing Helper and parent-t controls pass behavioral checks but are separately method rejected; no automatic source-method inference."
+      ],
+      "public_full_boundary": "Existing mutation-tests public pairing runs submitted suite against verification/reference; full separately challenges required operation variants. Copied diagnostic fixtures replace only verification/reference with each wrong operation and show named ordinary reference-suite test failures; compatibility alone is not sufficiency. No duplicate identical public/full copies are counted.",
+      "preservation_and_provenance": "Original ADR0008 creation/project/digest with empty external sources; old firsts are unchanged preparation only. Supplied operation/API receives no implementation or cleanup credit.",
+      "remaining": [
+        "Root must synchronize actual independent review metadata/notes and retain receipt before official task-promote.",
+        "Batch collection, route/prerequisites integration, final exact HEAD and all local/CI gates remain required.",
+        "Reviewer executed no authored code."
+      ]
+    },
+    "marshaling-content-review.json": {
+      "schema_version": 1,
+      "reviewer": "/root/reviewer",
+      "reviewed_at": "2026-10-23T08:15:09.545113+00:00",
+      "decision": "approve",
+      "scope": "Actual source, method, public/grader, finite error specimens, correct controls and authored execution evidence for dual-frame-codec-001; promotion and batch delivery gates remain separate",
+      "task_id": "dual-frame-codec-001",
+      "content_digest": "d778f6f6154080e3c8a41fe47564cb13ebe8c818cf7f3e99743d4ed5deee1fba",
+      "author_evidence_sha256": "2af9034bb948679a92b850843bf64474041b538baccd15ebae77ba6944bb578b",
+      "canonical_report_sha256": "b4be0c7234a023c179bd57c0943ef70b7d97690d0bd1cb4163110784e9a48a80",
+      "findings": [],
+      "evidence": {
+        "current_source_hashes_verified": 34,
+        "controls_hashes_verified": 3,
+        "canonical_mutants_detected": 21,
+        "current_fixture_reports_hash_verified": 28,
+        "ordinary_public_diagnostics": 21,
+        "public_reference_pass": 1,
+        "correct_controls_public_full_pass": 4,
+        "method_wrong_controls_public_full_pass": 2,
+        "current_fixture_roots_removed": 28,
+        "runtime_failure_credit": 0,
+        "old_fixture_attempts_retained_without_current_credit": 28
+      },
+      "method_assessment": [
+        "Learner implements all four marshaling methods from stubs. Reference validates header/version/bound/full encoded length before payload allocation; text nibble validation occurs before receiver commit, preserving prior backing storage and caller input on errors.",
+        "Both encodings have literal independent wire expectations and exact-input rejection, populated-receiver replacement, nil/empty equivalence, oversize nil/error, output independence and decoded storage ownership. Grader varies tag/length/octet patterns and every proper prefix without constraining a valid representation strategy.",
+        "Correct standard-hex/append and explicit-copy/nil-empty alternatives pass both scopes. Early bounded allocation passes behavior but violates the separately reviewed source ordering requirement; no automatic allocation-order proof is claimed.",
+        "Compared with the first binary-record test-writing and single-value text-level tasks, this is learner-owned implementation of both directions and full frame payload/state/ownership. Accept only encoding.binary-marshaling and encoding.text-marshaling applications, no supplied struct/interface/type credit."
+      ],
+      "feedback_assessment": "All21 frozen wrong references have ordinary public test assertion receipts containing the intended useful diagnostic; no panic/compile/race/timeout evidence is credited. Flattening vector/rejection subtest grouping preserved every assertion/case and named failures, verified against old snapshot.",
+      "provenance": "Original ADR0008 creation record, project identity, exact content digest and empty external sources preserved; prior tasks are preparation only.",
+      "boundaries": [
+        "Earlier static review-minimum schema rejection ran no authored code and earns no credit; required matrix remains21 with allowed metadata minimum20.",
+        "Old clipped-diagnostic fixture series remains historical zero-current-credit.",
+        "Root must synchronize truthful accepted review metadata and use official task-promote; one stable final collection/all gates/exact HEAD review/green validate still required."
+      ],
+      "reviewer_executed_authored_code": false
+    },
+    "init-actual-review.json": {
+      "schema_version": 1,
+      "reviewer": "/root/reviewer",
+      "reviewed_at": "2026-10-23T07:48:13.718701+00:00",
+      "decision": "approve",
+      "unit": "package-init-snapshot-001",
+      "content_digest": "de6c3d9e98f0da7c9ca781d4791d800f765dd5e73c0bb2f15d01cee4c8a29215",
+      "script_sha256": "3d19c4d59baebbb29cfe67aa5e9bf30c0945902b7264718deea8c924023e201e",
+      "manifest_sha256": "0bde11550ffd775f093831358ec66a16e283724cdca64862cb326c24eecb4da1",
+      "raw_execution_sha256": "43ff9588ddcb0113821e832e742967d7d61d2e69a19295a4bd588a3673f1907e",
+      "normalized_execution_sha256": "002c86a30e221e8277793e0e452c8cf303bab99cb01d7e8941900f742ea9f076",
+      "findings": [],
+      "actual_evidence": {
+        "copies": 7,
+        "commands": 62,
+        "snapshots_independently_replayed_from_source_copy_and_rename_events": 99,
+        "ordinary_TestSnapshot_failures": 7,
+        "source_assets_unchanged": 18,
+        "max_command_seconds": 2.257147,
+        "all_disposable_roots_removed": true,
+        "actual_go": "go version go1.27.0 darwin/arm64",
+        "exact_preapproved_recipe": true,
+        "normalized_receipt_matches_raw_except_declared_paths": true
+      },
+      "accepted_action": "One manual packages.initialization-order application: diagnose a cross-package initialization/file-order snapshot defect and repair with explicit variable initialization independent of observed assembly file order.",
+      "method_and_observations": [
+        "Actual original order observes seed4/port8/snapshot0, unchanged public failure; controlled later snapshot filename yields8, but restoring original name rejects rename-only.",
+        "Reviewed reference map initializer and helper-initializer alternative use seed.Base after its imported package completes and before assembly init; both actual file orders pass unchanged tests and native values.",
+        "Repeated reads preserve one seed init and one capture. Constant-three, late registration, lazy accessor masking and repeated capture produce named ordinary value/count assertions, then pass fixed repairs.",
+        "Only two allowed learner files change, apart from controlled filename; every retained snapshot independently reconstructed from exact inert sources/events.",
+        "Exact command arguments, environments, working directories, expected statuses and outputs, predictions, local version and actual cleanup verified against manifest and preapproval."
+      ],
+      "boundaries": [
+        "Finite manual/method evidence only, separate from automatic coverage. No arbitrary toolchain file-order guarantee or tracing mechanism.",
+        "No credit for supplied seed/snapshot/tests, no new first/component or extra skills.",
+        "No reviewer authored-code execution or rerun; final integration/exact HEAD/all gates/CI remain required."
+      ]
+    },
+    "diagnostics-actual-review.json": {
+      "schema_version": 1,
+      "reviewer": "/root/reviewer",
+      "reviewed_at": "2026-10-23T08:01:34.395812+00:00",
+      "decision": "approve",
+      "unit": "selected-tool-diagnostics-001",
+      "content_digest": "12fe80ff2d9348a6f509d19178a3b65c48ad12d6ed4c2680eed958aa07e0f4c9",
+      "script_sha256": "7197bb6019d886332c147489509ec9ce1d37266d0be0798083cf1bf1d35e4864",
+      "manifest_sha256": "0ef2924dbeb3b34093205a3cb68f507c562c3de7e3d2411461b8483090cf54a2",
+      "raw_execution_sha256": "e10a80631123036468d6f09f96e47b386246e6457c3e36425064cb6662a70c63",
+      "normalized_execution_sha256": "a107d2eb3bdd2fb472d0abb62cde0b25b1acb7cccaf3a62f338de3af93f14e66",
+      "findings": [],
+      "actual_evidence": {
+        "copies": 6,
+        "commands": 69,
+        "snapshots_independently_replayed": 91,
+        "unchanged_inert_assets": 12,
+        "format_diff_exit1_observations": 3,
+        "vet_unreachable_findings": 4,
+        "ordinary_behavior_assertion_failures": 4,
+        "max_command_seconds": 2.395668,
+        "all_expectations_met": true,
+        "all_roots_removed": true,
+        "no_runtime_or_compiler_failure_credit": true
+      },
+      "accepted_manual_applications": [
+        "toolchain.docs-environment",
+        "toolchain.formatting-vetting"
+      ],
+      "method_and_observations": [
+        "Actual GOFLAGS default versus preview and before-list predictions select intended source files. Default success is shown insufficient for preview.",
+        "Native initial nonempty format diff exits1, application changes only preview layout, second diff empty/zero. All91 snapshots reconstructed from source-copy events plus this exact inspected native formatting result.",
+        "Well-typed preview produces native unreachable vet finding. Removing unreachable code leaves clean vet while public query assertions still fail with actual/expected escaping diagnostics.",
+        "Actual QueryEscape/PathEscape documentation and recorded interpretation precede correct call repair. Reference and alias/result alternate pass supplied tests/vet in both modes.",
+        "Exact version/argv/cwd/clean environment/status/output/time and preapproval chronology verified; normalized receipt differs only by declared path replacements."
+      ],
+      "boundaries": [
+        "Formatting and vet findings are separated from ordinary behavior defect evidence. Unreachable-only and wrong-API share one wrong implementation and do not constitute two distinct bugs.",
+        "Manual/method evidence only: no automatic coverage, supplied test-writing credit or learner mastery.",
+        "Preexecution expected-status correction retained; source/recipe unchanged during actual run.",
+        "No authored execution/rerun by reviewer. Final integration, exact HEAD, local/CI gates remain required."
+      ]
+    },
+    "parallel-golden-actual-review.json": {
+      "schema_version": 1,
+      "reviewer": "/root/reviewer",
+      "reviewed_at": "2026-10-23T08:04:51.953740+00:00",
+      "decision": "approve",
+      "scope": "Two complete native manual units, five independent applications; no automatic coverage",
+      "author_receipt_sha256": "2a64b617e0c3a1186aef75ef0d8f3a7be34d4c1cfd1013f3ee1947b4540bd2a1",
+      "findings": [],
+      "source_files_unchanged_including_provenance": 43,
+      "evidence_files_hash_verified": 252,
+      "copies": 22,
+      "commands": 61,
+      "all_roots_removed": true,
+      "units": [
+        {
+          "id": "isolated-stamp-tests-001",
+          "content_digest": "73dd8fc284361f6c028e891c283343ed2f151c2e82d69024162d634e3ddebc05",
+          "execution_sha256": "17ab1f7b6e478ee569ecfae5a3773f5b9e3bf301dd5945675c0b5349f5910781",
+          "manual_applications": [
+            "testing.parallel",
+            "testing.cleanup",
+            "testing.deterministic-boundaries"
+          ],
+          "copies": 9,
+          "commands": 20,
+          "ordinary_wrong_outcomes": 5,
+          "method_acceptance": "Actual learner-introduced private clock seam preserves real-clock public default; independent case-owned dirs/cleanup, serialized setup then native parallel cases/readback descendants, full fixed-time output and one-call assertions, ancestor absence audit. Correct function dependency and private-interface/helper alternatives pass twice at parallel1/3.",
+          "boundaries": [
+            "No-parallel and weak-clock-oracle executable passes remain method rejected.",
+            "Duplicate-path diagnostic, not incidental shared-file contents, detects shared fixture. Ancestor/defer cleanup and wrong fixed clocks produce ordinary finite assertions and cleanup.",
+            "No sibling order, wall-clock, race-detector or supplied I/O implementation credit."
+          ]
+        },
+        {
+          "id": "log-examples-golden-001",
+          "content_digest": "ea154fa4a4a145e6b4ea38c2f99ec4266ff5b16edfff53fe5b341923e0b4dc9f",
+          "execution_sha256": "0fea43a35c375997b626e56238ed1e7aabc2a63c10d9d798644aa14e33f3e53f",
+          "manual_applications": [
+            "testing.examples",
+            "testing.golden"
+          ],
+          "copies": 13,
+          "commands": 41,
+          "ordinary_wrong_outcomes": 6,
+          "intentional_v2_mismatch_before_update": 1,
+          "method_acceptance": "Actual API stateful/rejection/Counts examples with discoverable native names and intentional unordered/sorted-exact policies; two independent24-row complete baselines recomputed from fixture/spec. Full-byte differences including EOF diagnosed, ordinary baseline preserved.",
+          "boundaries": [
+            "Missing-output, constant-print, prefix-only and silent-auto-update controls pass behavior and remain method rejected.",
+            "Drop-middle update rejected without -update, baseline unchanged.",
+            "V2 initial40-command receipt preserved; sole actual diff approval precedes final41st command. Only footer8/8/8 added, all24oldrows retained; final ordinary G passes and preserves updated baseline.",
+            "V1 examples are not claimed to pass v2 footer behavior."
+          ]
+        }
+      ],
+      "verified": [
+        "Exact preapproved sources/manifests/scripts, all61 command definitions/statuses/output hashes/before-after snapshots and22 cleanup records checked.",
+        "Final golden continuation adds only pre-enumerated G; current pending source matched reviewed snapshot and final snapshots remained identical.",
+        "All expected wrong failures are ordinary assertions; no panic, compilation, timeout or runtime failures credited.",
+        "Original provenance sources=[] preserved; methods assessed from actual source and executed specimens rather than supplied mechanism mentions."
+      ],
+      "remaining": "Final integration/prerequisites/route/exact HEAD and every mandatory local/CI gate still required. No authored code executed by reviewer."
+    }
+  },
+  "contract_reviews": {
+    "root-contract-review.json": {
+      "decision": "approve",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T07:25:31.774946+00:00",
+      "scope": "I11 two bounded native contracts and preparation/source decisions only; no source execution authorization or readiness credit",
+      "proposal_sha256": "d161ad1584de9fead24f573420f7d3a81948b3670bebd12fcb4c370fb9608a4e",
+      "preparation_pins_sha256": "ec87b9f0c86b6de9377e05299bcb487dfc126a6718416d4fc7b40c1c39c41f5f",
+      "preparation_commit": "8a34aa90fbf07387c79b849587973917d22c4d62",
+      "verified_preparation_files": 9,
+      "findings": [],
+      "units": {
+        "selected-tool-diagnostics-001": {
+          "decision": "approve",
+          "task_words": 145,
+          "proposed_manual_applications": [
+            "toolchain.docs-environment",
+            "toolchain.formatting-vetting"
+          ],
+          "independent_actions": [
+            "Read actual GOFLAGS and predict default/preview GoFiles before each list; locate nondefault selected implementation. This differs from first OS/architecture file selection and local parser symbol interpretation.",
+            "Find QueryEscape versus PathEscape documentation, record actual interpretation before semantic edit, then repair the selected source.",
+            "Separate initial gofmt diff/idempotence, unreachable-code analyzer finding, and actual query behavior; default or clean-vet success cannot substitute for preview assertions. First formatting lab had unconditional printf repair."
+          ],
+          "finite_contract": [
+            "Only preview.go editable; immutable default/module/command/tests. Default/preview modes use exact GOFLAGS and selected source files.",
+            "Reference formatting-only edit precedes vet interpretation; remove unreachable cause before wrong-query assertion, then API repair passes both modes. Wrong-mode, format-only, clean-vet/wrong-query and wrong-API controls retained separately.",
+            "Correct import alias/local-result variant must remain accepted. Native gofmt formatting alone is the only layout requirement."
+          ],
+          "preexecution_requirements": [
+            "Exact assets/argv/copy counts, all native output guards and source edits require separate review before execution.",
+            "The intentionally unreachable preview specimen must still compile so native vet can diagnose it: a value-returning function cannot end with merely a nonterminating unreachable statement after return. Preserve a terminating final statement or another well-typed unreachable shape; prove this on exact source review rather than treating a compiler rejection as the vet finding.",
+            "Native gofmt -d nonempty exit behavior must match the pinned Go1.27 toolchain; separate -vet=off test assertions from explicit vet. GOFLAGS/GOOS/GOARCH outputs and doc interpretation must be actual."
+          ]
+        },
+        "package-init-snapshot-001": {
+          "decision": "approve",
+          "task_words": 150,
+          "proposed_manual_applications": [
+            "packages.initialization-order"
+          ],
+          "independent_actions": [
+            "Predict imported seed complete initialization, then assembly variable initialization and init execution; first task only wired same-package variables and one init using supplied recorder.",
+            "Reproduce canonical-order snapshot0 and alternate-name snapshot8; diagnose hidden registration-order assumption and replace it with explicit variable dependency, retaining the supplied snapshot observer.",
+            "Show repaired port8/snapshot8 and counters1 in both observed file orders, with repeated ordinary reads unchanged."
+          ],
+          "finite_contract": [
+            "Only registry.go/z_register.go repaired; seed, snapshot and command/tests immutable except controlled snapshot filename order experiment.",
+            "Explicit Ports initializer uses initialized seed.Base, removes late registration dependence; helper initializer with explicit seed reference is a valid alternative.",
+            "Rename-only, constant3, late-registration, lazy-live-value and repeated-work controls retain finite ordinary failures/repairs and separate method limits.",
+            "GoFiles receipts establish observed Go-command presentation. No arbitrary build-system/sibling package tie-order promise or new tracing mechanism."
+          ],
+          "preexecution_requirements": [
+            "Exact compiled assets, GoFiles/predictions before runs, fixed renames/restoration and argv counts require independent preexecution review.",
+            "Each fresh native process initializes independently; repeat-read claim must be demonstrated within one process, not inferred from separate go run commands.",
+            "Actual source review must establish dependency and absence of late writes; successful constants/counters alone cannot prove method."
+          ]
+        }
+      },
+      "prerequisites_and_placement": [
+        "Both toolchain applications follow modules-build, format-vet and docs-environment firsts; active direct prerequisite toolchain.build-run.",
+        "Initialization application follows packages imports/exports and initialization-values plus modules-build; active direct prerequisite packages.imports-exports-naming.",
+        "All nine pinned first-material files independently match exact git commit and current checkout; preservation expected."
+      ],
+      "source_boundary": "New inert assets must carry original ADR0008 creation/project identity/content digest and sources[]. Existing firsts are preparation/comparison only; no external source or copying claim created by this review.",
+      "budget_and_sequence": "Two of exactly six planned I11 units, clock06:27:55.371190–10:27:55.371190UTC includes overlap without deductions. Shared integration/full gates require final committed I9/I10 inputs; prerequisite merges before I11 delivery.",
+      "readiness_boundary": "No authored code or native command executed by reviewer. Three proposed manual applications remain zero credit until exact source/command approval, actual finite execution, actual independent acceptance and final batch gates."
+    },
+    "test-marshaling-contract-review.json": {
+      "schema_version": 1,
+      "reviewer": "/root/reviewer",
+      "reviewed_at": "2026-10-23T07:40:00.553003+00:00",
+      "decision": "approve-bounded-contracts",
+      "proposal": "test-marshaling-proposals.md",
+      "proposal_sha256": "43ba75b0be355a0aae94e1420cb7db8071557d494a6a12d5cbdce18cca62715e",
+      "preparation_base": "8a34aa90fbf07387c79b849587973917d22c4d62",
+      "preparation_pins_verified_current_and_git": 41,
+      "findings": [],
+      "units": [
+        {
+          "id": "atomic-count-tests-001",
+          "decision": "approve-bounded-contract",
+          "eligible_applications": [
+            "testing.table-driven",
+            "testing.subtests",
+            "testing.helpers"
+          ],
+          "distinctness": "Learner owns meaningful ordered atomic-update sequence partitions, fresh child-local mutable fixtures, serial t.Run scopes and shared attributed invariant helpers. Prior interval table is a stateless flat loop; named-cases and diagnostic-helper implement supplied wrappers/contracts.",
+          "assessment": "Thirteen finite operation defects require actual ordinary diagnostic evidence. Public compatibility alone is not mutation sufficiency. Actual table/subtest/child-t/helper attribution remains separately reviewed with four behavior-passing method controls. No supplied operation or cleanup credit.",
+          "boundaries": [
+            "Do not require particular helper signatures/count, row count, setup layout or map iteration order.",
+            "Include negative-intermediate/later-recovery sequence to prove order; positive repeated deltas alone cannot detect reversal.",
+            "All independent rows continue after nonfatal invariant reports; exact map key presence/error identity/input preservation remain visible."
+          ]
+        },
+        {
+          "id": "dual-frame-codec-001",
+          "decision": "approve-bounded-contract",
+          "eligible_applications": [
+            "encoding.binary-marshaling",
+            "encoding.text-marshaling"
+          ],
+          "distinctness": "Learner implements both variable-length versioned representations, complete validation, transactional receiver replacement and storage ownership. Prior text first handles one digit; binary first writes tests for a supplied fixed-size codec.",
+          "assessment": "Twenty-one finite ordinary defects, literal vectors in both directions, malformed boundaries and ownership mutations. Correct encoding/hex and explicit nibble/copy alternatives are allowed. Preallocation validation order is finite source/method review, not claimed automatically.",
+          "boundaries": [
+            "Nil and nonnil empty payloads equivalent; arbitrary tags/octets valid.",
+            "Input and receiver remain unchanged on rejected input; exact ErrFrame and nil oversize marshal output.",
+            "Bounded early-allocation behavior-pass control is method-rejected, with no AST/allocation checker or extra interface/type-design credit."
+          ]
+        }
+      ],
+      "remaining_requirements": [
+        "Official task-init/provenance original sources=[]; preparation pins are comparison only, not donor content.",
+        "Actual source, public/grader/reference/mutant results, valid alternatives and method controls require sole independent acceptance before promotion.",
+        "FF accepted committed dependency before shared integration/full gates; final HEAD/mandatory gates/CI remain separate.",
+        "No readiness or application credit granted by this planning approval; no authored code executed by reviewer."
+      ]
+    },
+    "parallel-golden-contract-review.json": {
+      "schema_version": 1,
+      "reviewer": "/root/reviewer",
+      "reviewed_at": "2026-10-23T07:44:37.770604+00:00",
+      "decision": "approve-bounded-contracts",
+      "proposal_sha256": "0b54010b6ecb8fff09f7c9782f7851a878b9e1668772deade4a0cac473312423",
+      "preparation_pins_sha256": "55a84ba8ad3930311b9e9b8e78c9f54aa9f54f3102f561b25e0689a3b163b128",
+      "preparation_base": "8a34aa90fbf07387c79b849587973917d22c4d62",
+      "repository_pins_verified_current_and_git": 33,
+      "local_go_fact_pins_verified": 2,
+      "findings": [],
+      "units": [
+        {
+          "id": "isolated-stamp-tests-001",
+          "decision": "approve-bounded-contract",
+          "eligible_manual_applications": [
+            "testing.parallel",
+            "testing.cleanup",
+            "testing.deterministic-boundaries"
+          ],
+          "distinctness": "Learner introduces a private clock seam and fixed doubles, owns three private resource fixtures, and registers real native case Cleanup across parallel descendants. This is distinct from supplied fixture/marker parallel first, Scope-shaped cleanup helper and gated completion test first.",
+          "copies": 9,
+          "commands": 20,
+          "boundaries": [
+            "Acquire/register/record path serially before each case Parallel; no shared mutation after resumption, sibling barrier, parent-body wait or lock across Parallel.",
+            "Case directory survives body return through parallel readback descendant; group audit executes after case teardown and asserts unique paths/absence. No sibling order claim.",
+            "Native PAUSE/CONT and actual source prove parallel method separately from passing assertions; weak oracle and no-parallel controls remain behavior-pass/method-reject.",
+            "Wrong shared directory, ancestor cleanup, defer cleanup, ignored clock and fixed shared clock require ordinary finite diagnostics and complete cleanup. No ambient clock, timing, race or timeout defect credit.",
+            "Public default real time is preserved and inspected; no unsupported wall-clock assertion claim."
+          ]
+        },
+        {
+          "id": "log-examples-golden-001",
+          "decision": "approve-bounded-contract",
+          "eligible_manual_applications": [
+            "testing.examples",
+            "testing.golden"
+          ],
+          "distinctness": "Learner writes stateful multi-call and rejected-append examples, intentionally handles unordered Counts output, selects representative full fixture and authors independent complete golden. This differs from pure Summary examples and supplied canonical report/header-only first.",
+          "copies": 13,
+          "commands": 41,
+          "boundaries": [
+            "Examples must be discoverable, exercise real API and choose unordered policy or sorted exact output; missing-output discovery and constant prints are separate method controls.",
+            "Full golden derives independently from documented rows and learner-selected fixture, not Render; complete bytes/final newline and unchanged ordinary baseline hashes must be checked.",
+            "Interior drop/reorder and final-newline defects require useful ordinary assertions; prefix-only/auto-update controls deliberately remain executable passes but method rejected.",
+            "Drop-middle candidate is rejected without update and preserves original golden hash.",
+            "Proposed v2 preserves every existing entry byte and adds independently computed TOTAL footer only. After explicit update, pause before the last enumerated ordinary G command for sole review of actual full diff and expected independent v2 baseline.",
+            "V2 sequence intentionally tests golden only; existing v1 examples are neither silently rewritten nor credited as passing against incompatible v2 behavior."
+          ]
+        }
+      ],
+      "requirements_before_execution": [
+        "Original inert assets/provenance sources=[] and fixed exact file inventory/commands/scripts require separate sole preexecution approval.",
+        "Fresh private offline regular-file disposable copies; local Go1.27; per-command outer60s and native test20s; exact observations, snapshots, normal/update hashes and cleanup retained.",
+        "No generic runner/profile/AST/platform expansion or automatic coverage.",
+        "Actual evidence/method acceptance, final HEAD, mandatory gates/CI and dependency delivery remain separate; no present application/readiness credit.",
+        "Reviewer executed no authored code."
+      ]
+    }
+  },
+  "provenance_rule": "Original project identity/creation/digest and empty external sources; release manifest binds actual commit, never invented.",
+  "scope_boundary": "13applications, no extra skills/components/manualautomaticcoverage or mastery.",
+  "integration_review": {
+    "schema_version": 1,
+    "reviewer": "/root/reviewer",
+    "reviewed_at": "2026-10-23T08:26:11.635758+00:00",
+    "decision": "approve",
+    "scope": "I11 integrated content and route before single stable232collection; final HEAD and delivery remain separate",
+    "base_commit": "860aa12875abb5e6872f57753c6d09719c1b9cba",
+    "findings": [],
+    "resolved_findings": [
+      "ATOMIC-ORDER-01: named-cases156, interval-table157, atomic-count158; old relative order and fields preserved, learner index names interval preparation.",
+      "I10-CURRENT-STATUS-01: current history/checkpoint record exactHEAD860aa approval and observed fast/race/vet pass; historical text retained."
+    ],
+    "evidence": {
+      "prior_material_files_preserved": 5106,
+      "prior_route_objects_and_relative_order_preserved": 220,
+      "prior_csv_fields_except_order_and_relative_order_preserved": true,
+      "copied_actual_review_receipts_match": 5,
+      "automatic_source_files_unchanged_excluding_official_metadata": 49,
+      "manual_content_asset_hashes_unchanged": true,
+      "inventory": "222route/225ready/232checked/22manual",
+      "applications_remaining_if_delivered": 13,
+      "allocation_bound": 257
+    },
+    "assessments": [
+      "Six independently accepted units carry thirteen separate substantive applications: five automatic and eight manual; no supplied mechanisms, extra components or automatic manual coverage.",
+      "All5106old material files and220route objects/order preserved; all5 actual review receipts exactly embedded and both ready packages retain exact independent receipts/truthful reviewer metadata.",
+      "49approved executable/TASK source files and71manual content assets unchanged through integration; official lifecycle transitions alone changed package state.",
+      "Dual-frame follows binary-record/text-level; atomic now follows all three firsts; four manual placements explicitly follow their listed first/prerequisite units.",
+      "All49dated prior pair decisions and accepted repairs/components preserved; only planning arithmetic advances to222+22+13=257<=302.",
+      "I10 committed base is present; I10 merge remains prerequisite to I11 merge. Current I11 is pending gates, not delivered course readiness."
+    ],
+    "conditions": [
+      "Freeze final checker inputs, run one232task collection with-output and reuse it for all current validator/report consumers.",
+      "Complete mandatory fast/race/vet/integration, final exactHEAD review and green validate; no waiver for content approval."
+    ],
+    "reviewer_executed_authored_code": false
+  },
+  "single_collection": {
+    "sha256": "e0024874d887c6188b73a08c90484e2efe634d7aa8abcafdb7ffb3f346715844",
+    "checker_input_count": 5193,
+    "completed_at": "2026-10-23T08:50:09.695332+00:00",
+    "consumer_rule": "Every current validator/report consumer reuses this unchanged collection; all remaining mandatory gates and delivery remain required."
+  }
+}

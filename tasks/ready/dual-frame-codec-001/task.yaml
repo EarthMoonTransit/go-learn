@@ -1,0 +1,65 @@
+schema_version: 2
+id: dual-frame-codec-001
+title: Dual frame codec
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: encoding.binary-marshaling
+    secondary:
+        - encoding.text-marshaling
+prerequisites:
+    - methods.method-sets
+    - errors.propagation-context
+    - slices.len-cap-slicing
+    - slices.backing-array-aliasing
+    - slices.copy-overlap
+    - structs.literals-zero
+    - strings.byte-rune-conversions
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 25
+    max: 45
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - binary-version-out
+        - binary-tag-zero
+        - binary-length-minus-one
+        - binary-drop-tail
+        - binary-accept-version
+        - binary-accept-trailing
+        - binary-accept-truncated
+        - binary-retain-input
+        - text-uppercase-output
+        - text-accept-version
+        - text-accept-uppercase
+        - text-ignore-length
+        - text-ignore-tail
+        - text-bad-nibble-zero
+        - accept-oversize
+        - merge-old-payload
+        - clear-receiver-on-error
+        - fresh-error
+        - shared-output
+        - mutate-input
+        - marshal-reuses-payload
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
