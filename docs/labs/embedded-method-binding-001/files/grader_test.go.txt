@@ -1,0 +1,24 @@
+package binding
+
+import "testing"
+
+func TestExtendedBindings(t *testing.T) {
+	for _, seed := range []int{-17, 0, 23} {
+		v := &ValueBox{Counter{seed}}
+		p := PointerBox{&Counter{seed + 9}}
+		vr, va, pr, pa := Bind(v, p)
+		if vr == nil || va == nil || pr == nil || pa == nil {
+			t.Fatal("missing live interface")
+		}
+		v.Add(2)
+		p.Add(-3)
+		if vr.Read() != seed+2 || pr.Read() != seed+6 {
+			t.Errorf("binding lost external updates for seed=%d", seed)
+		}
+		va.Add(7)
+		pa.Add(-8)
+		if v.Read() != seed+9 || p.Read() != seed-2 {
+			t.Errorf("binding mutated a copy for seed=%d", seed)
+		}
+	}
+}

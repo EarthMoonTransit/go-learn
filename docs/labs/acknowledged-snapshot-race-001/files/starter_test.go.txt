@@ -1,0 +1,7 @@
+package snapshot
+
+import "testing"
+
+func TestSnapshots(t *testing.T) {
+	t.Fatal("write independent snapshot and acknowledgement regression")
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/reviewer",
+  "reviewed_at": "2026-10-23T08:41:54.014628+00:00",
+  "decision": "approve",
+  "scope": "I12 two automatic units actual source/method/public/grader/finite-error/control evidence; official promotion and final delivery gates separate",
+  "author_receipt_sha256": "3faea4eef859ca2ca254fc721ee05bb15b73162d50b5ff3975a227f007e31a6b",
+  "findings": [],
+  "verified": {
+    "frozen_task_source_hashes": 40,
+    "control_source_hashes": 5,
+    "artifact_hashes": 97,
+    "canonical_reports": 2,
+    "required_mutants_each": 7,
+    "current_fixtures": 26,
+    "ordinary_public_diagnostics": 14,
+    "public_references": 2,
+    "correct_alternative_public_full_scopes": 4,
+    "method_wrong_public_full_scopes": 6,
+    "roots_removed": 26,
+    "panic_compile_timeout_race_credit": 0
+  },
+  "units": [
+    {
+      "id": "bound-stringer-pair-001",
+      "content_digest": "ba812576a2f1ab421d7e440791f9e1a78ebdc9ae1faa493fdc00e6b40cde4260",
+      "decision": "approve",
+      "applications": [
+        "interfaces.dynamic-type-value",
+        "interfaces.stringer-contract",
+        "interfaces.typed-nil"
+      ],
+      "assessment": [
+        "Learner owns two real Stringer methods and interface return conversions: exactLabel snapshot, originalCounter live pointer, nilinterface for absentcounter. Actual mutations/types/identity separately verified.",
+        "Nil and wrongtypes guarded beforedependentdispatch; typednil ordinarydiagnostic uses%T only and nevercalls nilreceiver. Stable signed/textoutput and repeatedstate checked direct/Sprint/%s, no permissive formatting assumption.",
+        "Correctstrconv/localnilinterface alternative passesbothscopes. Finite guardedreentry behaviorandexistingvet pass; source genuinelyrecurses and is methodrejected. No unboundedrecursion orruntimefailurecredit.",
+        "Distinct from suppliedGreeter testauthorship/staticnestedvalueStringers/consumingtypednil; no suppliedfields/testcredit."
+      ]
+    },
+    {
+      "id": "selected-window-copies-001",
+      "content_digest": "ed9a1f3d2545cf7d36f6fb77304c71506be382ce6cc76c5e9764acd46430508f",
+      "decision": "approve",
+      "applications": [
+        "slices.preallocation",
+        "slices.subslice-retention"
+      ],
+      "assessment": [
+        "Reference countsnonemptywindows before zero-lengthcapallocation, then copiesonlyeach selectedspan; independentoverlap/duplicate storage, inputpreservation, exactcount/caps and guardedvalues actuallychecked.",
+        "Correctfinal-length/indexedwrites withappendfromselectedspan+captrim passesbothscopes; allocatorrounding remainspermitted.",
+        "Wholeinput-perwindowclone+captrim andgrowthenfinalcopy controls passbothscopes; source rejects oversizedretention andunplannedoutergrowth. Observablecap/alias alone neverproves thesemethods; noGC/time/allocationthreshold.",
+        "Distinct selectedfilteredcollection andmultipleindependentowners beyond oldwholecopy/prefixrepair; no extraaliasing/fullslice/rangecredit."
+      ]
+    }
+  ],
+  "provenance": "OriginalADR0008 projectidentity/creation/digest/sources=[] verified, previousfirsts remain unchangedpreparation, no externalsourcecopy.",
+  "evidence_boundaries": [
+    "All14wrongreference public-only copiedfixtures retain namedordinaryreference-full testfailures plus selectedmutantdetection; graderblank, no compile/panic/race/timeoutcounts.",
+    "Both canonical7/7/vet/determinism pass; all26roots removed and reports/source/controls/artifacts matchfrozenhashes.",
+    "Initialempty-scaffold staticrejections andinclude-empty unusedvariablecompilerejection retainedzero-credit; correctedwrongloop preceded allcurrentcanonical/fixtureevidence."
+  ],
+  "remaining": [
+    "Synchronize truthful independentreviewmetadata/notes andretain exactreceipt; officialtask-promote only.",
+    "Finalroute/integration, single stablecollection/consumers, all mandatory localgates, exactHEADreview andgreenvalidate remain; no learner mastery established."
+  ],
+  "reviewer_executed_authored_code": false
+}

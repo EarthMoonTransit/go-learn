@@ -1,0 +1,12 @@
+package snapshot
+
+func fill(packet *Packet, value int) { *packet = Packet{Value: value, Twice: value + value} }
+func Exchange(values []int, out chan<- *Packet, ack <-chan struct{}) {
+	packet := new(Packet)
+	for i := range values {
+		fill(packet, values[i])
+		out <- packet
+		<-ack
+	}
+	close(out)
+}

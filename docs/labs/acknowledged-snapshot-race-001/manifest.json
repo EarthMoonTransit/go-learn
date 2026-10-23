@@ -1,0 +1,194 @@
+{
+  "unit": "acknowledged-snapshot-race-001",
+  "copies": 6,
+  "commands": 16,
+  "initial_files": {
+    "files/go.mod.txt": "go.mod",
+    "files/packet.go.txt": "packet.go",
+    "files/probe_test.go.txt": "probe_test.go",
+    "files/grader_test.go.txt": "grader_test.go"
+  },
+  "specimens": [
+    {
+      "name": "unsafe-publication",
+      "implementation": "files/starter_exchange.go.txt",
+      "learner_tests": "reference/learner_test.go.txt",
+      "commands": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-race",
+          "-v",
+          "-count=1",
+          "-timeout=20s",
+          "-run=^TestNativeProbe$",
+          "."
+        ]
+      ],
+      "expected": [
+        "zero",
+        "native-race"
+      ]
+    },
+    {
+      "name": "unsafe-reuse",
+      "implementation": "wrong/reuse-before-ack.go.txt",
+      "learner_tests": "reference/learner_test.go.txt",
+      "commands": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-race",
+          "-v",
+          "-count=1",
+          "-timeout=20s",
+          "-run=^TestNativeProbe$",
+          "."
+        ]
+      ],
+      "expected": [
+        "zero",
+        "native-race"
+      ]
+    },
+    {
+      "name": "reference",
+      "implementation": "reference/exchange.go.txt",
+      "learner_tests": "reference/learner_test.go.txt",
+      "commands": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-v",
+          "-count=1",
+          "-timeout=20s",
+          "./..."
+        ],
+        [
+          "test",
+          "-race",
+          "-v",
+          "-count=1",
+          "-timeout=20s",
+          "./..."
+        ]
+      ],
+      "expected": [
+        "zero",
+        "zero",
+        "zero"
+      ]
+    },
+    {
+      "name": "alternate",
+      "implementation": "alternative/exchange.go.txt",
+      "learner_tests": "alternative/learner_test.go.txt",
+      "commands": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-v",
+          "-count=1",
+          "-timeout=20s",
+          "./..."
+        ],
+        [
+          "test",
+          "-race",
+          "-v",
+          "-count=1",
+          "-timeout=20s",
+          "./..."
+        ]
+      ],
+      "expected": [
+        "zero",
+        "zero",
+        "zero"
+      ]
+    },
+    {
+      "name": "wrong-value",
+      "implementation": "wrong/incorrect-twice.go.txt",
+      "learner_tests": "reference/learner_test.go.txt",
+      "commands": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-race",
+          "-v",
+          "-count=1",
+          "-timeout=20s",
+          "-run=^TestNativeProbe$",
+          "."
+        ],
+        [
+          "test",
+          "-v",
+          "-count=1",
+          "-timeout=20s",
+          "./..."
+        ]
+      ],
+      "expected": [
+        "zero",
+        "zero",
+        "ordinary-failure"
+      ]
+    },
+    {
+      "name": "weak-test",
+      "implementation": "wrong/incorrect-twice.go.txt",
+      "learner_tests": "controls/weak_test.go.txt",
+      "commands": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-v",
+          "-count=1",
+          "-timeout=20s",
+          "./..."
+        ],
+        [
+          "test",
+          "-race",
+          "-v",
+          "-count=1",
+          "-timeout=20s",
+          "./..."
+        ]
+      ],
+      "expected": [
+        "zero",
+        "zero",
+        "zero"
+      ]
+    }
+  ],
+  "allowed_learner_files": [
+    "exchange.go",
+    "learner_test.go"
+  ],
+  "expected_ordinary_diagnostic": "snapshot case=",
+  "native_race_requirements": [
+    "WARNING: DATA RACE",
+    "Previous",
+    "Goroutine",
+    "Exchange",
+    "TestNativeProbe"
+  ],
+  "go_test_timeout_seconds": 20,
+  "outer_timeout_seconds": 60
+}

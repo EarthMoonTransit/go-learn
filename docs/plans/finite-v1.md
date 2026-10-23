@@ -94,7 +94,31 @@ debugging or learner-test profiles only when they assess the intended outcome.
   external outage; the same repeated failure blocks. No new controller; handoff
   preserves the goal and does not mean completion.
 
-## Current checkpoint: I9 accepted; I10 CI; I11 final gates; I12 final content
+## Current checkpoint: I11 accepted; I12 saved-workspace compatibility and final gates
+
+Current accepted delivery is I11 PR116. The final 141-row substantive consistency,
+all six new I12 units and all six component scopes are accepted. CI then exposed
+COUNTER-RACE-OVERLAP-01 in an existing counter first encounter. Its narrow public
+regression and fixed 16-scope actual evidence are now independently approved.
+The seven-unit batch retains every existing TASK, API, solution, mutant, address,
+relative order and external source pin. Four named old content/review files change;
+all other 5,502 old material files remain byte-identical.
+
+Repaired inputs froze at 10:40:49 UTC with 5,296 files. The fresh 236-package
+collection passed at 11:03:26 UTC; one collection feeds all consumers. The original
+collection and ba919937 approval remain historical evidence. A final preservation
+check exposed COUNTER-WORKSPACE-REVISION-01: old saved workspace markers reject
+the changed counter content digest before Check/Complete. A separate narrow
+tooling PR must add only the exact approved directional revision using the
+existing ADR0014 mechanism, with preserved solutions/history and actual disposable
+Check/Complete regressions. No reset, new runner or generic compatibility. Fresh
+affected repository gates, renewed exact-HEAD review and green validate followed
+by ordered dependency/content merges remain required. Infrastructure diagnosis
+and repair started conservatively at 10:59 UTC; the original four-hour checkpoint
+and rolling limits remain in force.
+Manual evidence, old full-bank minima and unknown learner mastery stay separate.
+
+The dated records below retain their original checkpoints.
 
 - I3 PR107 and diagnostic-only tooling PR108 are accepted. The sync.Once fixture was repaired without checker expansion. Modules/workspaces and native benchmarks met the batch-two deadline; all49original pair decisions remain preserved.
 - I4 PR109: final HEAD0241dbc, validate39836444522, merge2e1710a42381db9d60e5d3bc251c2702c7951804 at19:37:47UTC. All12local gates used one213collection; available87.07minutes, infrastructure≤4minutes.
@@ -315,3 +339,55 @@ I10 all12local gates and exactHEAD860aa128 independent review have passed; all51
 ### I11 stable collection checkpoint, 2026-10-23 08:50UTC
 
 Six actual units and integration are independently approved. All5193 frozen inputs remain unchanged; one232 collection passed08:50:09UTC, SHA256 e0024874d887c6188b73a08c90484e2efe634d7aa8abcafdb7ffb3f346715844, and generated all current reports. Remaining fast/race/vet/integration/current consumers, exactHEADreview and greenvalidate remain mandatory. I10 PR115 all12local gates/exactHEADreview are approved with CI running; accepted delivery still ends atI9 and40remaining applications. I12 four actual units are approved; the final channel/state pair is completing copied public/method evidence, including a reviewed receive-before-start regression. No deadline reset, infrastructure change, manual automatic coverage or mastery claim.
+
+### Current delivery checkpoint, 2026-10-23 08:54UTC
+
+I10 PR115 final860aa12875abb5e6872f57753c6d09719c1b9cba passed all12local gates, sole exact-HEAD review and validate39922234082, then merged b9e8e3b5328bc10cbe995ba2ed0e6e356f60a564 at08:54:14UTC23Oct. Accepted inventory220route/223ready/230checked/18manual;26applications remain. Available execution upper bound178.32minutes, no deductions/reset and infrastructure0.
+
+I11 finalc78a475d4afad55eb2a6715745571b9e56f513c2 is published as PR116, validate39927810390 running. One232collection/all reports and fast pass; remaining local gates and exact-HEAD review continue. I12 is fast-forwarded to committedI11 before shared integration; four units actually accepted, channel/state current evidence completes. The final141-row evidence assembly supplements existing decisions without repeating M0. Deadlines I11 10:27:55.371190UTC and I12 11:50:22.220556UTC remain unchanged.
+
+### I12 final content integration checkpoint, 2026-10-23
+
+All six actual source/method/evidence units are independently accepted. Four automatic tasks completed eight official promotions, preserving 5506 old material files and222route objects/order. Current74automatic fixtures give46ordinary public diagnoses;25superseded transfer fixtures earn no credit. Native12copies44commands100snapshots remain separate. Thirteen applications would leave zero finite slots after delivery. Final141-row substantive consistency review, one236collection, all mandatory local gates, exactHEADreview and greenvalidate/merge remain required; accepted delivery still ends atI10 with26applications remaining. I11 committedc78a475 precedes shared integration and its merge must precedeI12merge. Original I12 clock07:50:22.220556→11:50:22.220556UTC stays conservative with no deductions or infrastructure work. No new mechanism, scope or mastery claim.
+
+I11 exactc78a475d4afad55eb2a6715745571b9e56f513c2 final review was approved08:59:13UTC. PR116validate39927810390 continues; local collection/reports/fast/race/vet pass, integration/current consumers remain mandatory. I10 dependency is accepted. These current facts supersede only pending status, preserving all dated checkpoints. I12 integration correction moves only selected-window after initial-structs for its declared struct-literal prerequisite; old addresses/order and source remain unchanged before the first236collection.
+
+### Final substantive readiness checkpoint, 2026-10-23 09:17UTC
+
+Sole review accepts all141frozen skill rows (44historical accepted, five accepted repairs,92completed applications) and six component scopes. All49original decisions remain preserved, with concrete learner actions and actual source/method/native evidence linked. I12 integration and all six content units are accepted; one236collection runs from5295frozen inputs, followed by every mandatory local gate and exactHEADreview/CI/merge. I11 all12local gates/exactHEADreview pass and PR116CI continues. Content consistency is accepted; delivered goal readiness is still pending those gates. Clock/infra limits and automatic/manual/full-bank/mastery boundaries are unchanged.
+
+I12 single236collection passed09:32:47UTC with SHA256 a4a63dd727a9aa405edad251e660b6ecb8d5069501fe87186c053f246024d8be; all5295inputs unchanged and every generated report uses it. Fast passed; remaining mandatory local/current-consumer gates and exactHEADreview/greenvalidate/merge stay required. Actual inventory226route/229ready/236checked/24manual remains separate from141accepted skill rows and six components. Original full/foundation minima still fail as reported; no learner mastery or full-bank release/export is claimed.
+
+### Current delivery checkpoint, 2026-10-23 09:41UTC
+
+I11 PR116 finalc78a475d4afad55eb2a6715745571b9e56f513c2 passed all12local gates, sole exact-HEAD review and validate39927810390, then merged c7a178b8b27a951a52b8bbac0f31f0a2057fed1c at09:40:48UTC23Oct. Accepted inventory222route/225ready/232checked/22manual;13applications remain. Available execution upper bound192.88minutes, with no deductions/reset and infrastructure0.
+
+I12 sole content/integration/final141and6consistency review accepted; one236collection/all reports and fast pass.5295checker inputs remain frozen. Remaining local gates, exact final HEAD review and greenvalidate/merge are required. I11 dependency is now accepted. Original I12 clock07:50:22.220556→11:50:22.220556UTC has no deductions or infrastructure work. After the final merge, retain its actual PR/HEAD/CI/merge receipt and close this existing goal; no new controller or full-bank scope.
+
+### CI regression checkpoint, 2026-10-23
+
+PR117 validate39933918517 on ba919937 passed repository fast/race/vet/integration,
+but the bank collection detected only4of5 required mutants for the existing
+concurrent-counter-read-001: unlock-before-read survived. All235other packages
+passed. This is COUNTER-RACE-OVERLAP-01, a public workload gap, not a confirmed
+external outage; there is no blind retry or merge credit. The original local
+236collection remains an accurate old-input result and is superseded for final
+acceptance after repair.
+
+The sole reviewer approved one additional finite public case: four writers and
+four readers,1000calls each, one start gate after all eight readiness signals,
+Gosched between calls, private reader result slots, join before assertions and
+two exact final reads of4000. The serial case ensures at least two P and restores
+GOMAXPROCS. No timing threshold, private hook, profile or platform change.
+Existing three tests, TASK, API, reference, five mutants, route and external
+provenance pins are preserved. This is the seventh content unit ofI12 and adds
+no skill credit. Actual public/focused race evidence, fresh single236collection,
+all mandatory gates, renewed final-HEAD review and green CI remain required.
+The original07:50:22.220556 start and11:50:22.220556 UTC checkpoint remain;
+no clock reset or infrastructure fix.
+
+Counter actual acceptance, 2026-10-23 10:40 UTC: canonical5/5, fixed16scopes,
+15removed fixture copies, three ordinary and two race public diagnostics, and
+six predeclared focused race samples accepted. Correct reference and explicit
+local-read/unlock alternative pass. Fresh collection/all gates started10:40:49UTC;
+original batch clock and scope limits remain unchanged.

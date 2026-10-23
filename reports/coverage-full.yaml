@@ -1,6 +1,6 @@
 schema_version: 1
 report_contract: numeric-coverage/v1
-input_identity: ef96319d8ec56de349831eaaaaef34726fb5e36902f9647f340cc97f30ff0977
+input_identity: 59ef2d2d6a5033f75e1f7d86b0bf31c1aa1ca28151b5d37f9b1eb91e13fd5cf6
 selected_scope: full
 selected_skill_ids:
     - arrays.indexing-iteration
@@ -254,12 +254,12 @@ numeric:
         - skill_id: channels.operations-blocking
           domain_id: channels
           scope: foundation
-          actual_primary: 1
+          actual_primary: 2
           required_primary: 3
-          primary_deficit: 2
-          actual_total: 3
+          primary_deficit: 1
+          actual_total: 4
           required_total: 5
-          total_deficit: 2
+          total_deficit: 1
         - skill_id: channels.ownership
           domain_id: channels
           scope: foundation
@@ -671,9 +671,9 @@ numeric:
           actual_primary: 1
           required_primary: 3
           primary_deficit: 2
-          actual_total: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: goroutines.launch-lifecycle
           domain_id: goroutines
           scope: foundation
@@ -713,21 +713,21 @@ numeric:
         - skill_id: goroutines.state-ownership
           domain_id: goroutines
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 3
-          primary_deficit: 3
-          actual_total: 1
+          primary_deficit: 2
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: interfaces.dynamic-type-value
           domain_id: interfaces
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 3
-          primary_deficit: 3
-          actual_total: 1
+          primary_deficit: 2
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: interfaces.implicit-satisfaction
           domain_id: interfaces
           scope: foundation
@@ -752,9 +752,9 @@ numeric:
           actual_primary: 1
           required_primary: 2
           primary_deficit: 1
-          actual_total: 1
+          actual_total: 2
           required_total: 4
-          total_deficit: 3
+          total_deficit: 2
         - skill_id: interfaces.type-assertions
           domain_id: interfaces
           scope: foundation
@@ -779,9 +779,9 @@ numeric:
           actual_primary: 1
           required_primary: 4
           primary_deficit: 3
-          actual_total: 1
+          actual_total: 2
           required_total: 6
-          total_deficit: 5
+          total_deficit: 4
         - skill_id: io.buffered
           domain_id: io
           scope: foundation
@@ -1028,21 +1028,21 @@ numeric:
         - skill_id: slices.preallocation
           domain_id: slices
           scope: foundation
-          actual_primary: 1
+          actual_primary: 2
           required_primary: 2
-          primary_deficit: 1
-          actual_total: 1
+          primary_deficit: 0
+          actual_total: 2
           required_total: 4
-          total_deficit: 3
+          total_deficit: 2
         - skill_id: slices.subslice-retention
           domain_id: slices
           scope: foundation
           actual_primary: 1
           required_primary: 4
           primary_deficit: 3
-          actual_total: 1
+          actual_total: 2
           required_total: 6
-          total_deficit: 5
+          total_deficit: 4
         - skill_id: strings.building
           domain_id: strings
           scope: foundation
@@ -1157,9 +1157,9 @@ numeric:
           actual_primary: 0
           required_primary: 3
           primary_deficit: 3
-          actual_total: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: sync.once-initialization
           domain_id: sync
           scope: foundation
@@ -1600,12 +1600,12 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 225
+        actual_primary: 229
         required_primary: 410
-        primary_deficit: 193
-        actual_total: 270
+        primary_deficit: 189
+        actual_total: 279
         required_total: 692
-        total_deficit: 422
+        total_deficit: 413
         minima_met: false
     specialist:
         skill_ids:
@@ -1767,15 +1767,15 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 225
+        actual_primary: 229
         required_primary: 418
-        primary_deficit: 201
-        actual_total: 270
+        primary_deficit: 197
+        actual_total: 279
         required_total: 708
-        total_deficit: 438
+        total_deficit: 429
         minima_met: false
     ready_target:
-        actual: 225
+        actual: 229
         min: 350
         max: 500
         met: false

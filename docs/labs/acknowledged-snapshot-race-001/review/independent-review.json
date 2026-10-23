@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/reviewer",
+  "reviewed_at": "2026-10-23T08:26:58.464776+00:00",
+  "decision": "approve",
+  "scope": "Actual independent source/method/native evidence acceptance; finite manual applications only, final batch gates remain separate",
+  "unit": "acknowledged-snapshot-race-001",
+  "content_digest": "631b9916ea1b10cfb3159570d67b6a3d76fff62dff018f4f5b70a6202c4ba2cc",
+  "author_evidence_sha256": "a6c8100e7e7573c706afee004779b1c097ff89f5bce2cd08a6a676676cc89517",
+  "raw_execution_sha256": "b9850eed6e302173facc9d838807c44f0ee3f25bae710e2ed0e5a4c33fc4dee6",
+  "normalized_execution_sha256": "dcc2db36a6e8c138d63dd49e981e8503db7890dca4ed95e1dab85f8c357afeca",
+  "acceptance_notes_sha256": "52e92a199323f12270226eeebd00fd1fcd1ac056ce9fa950e01a637989fbe8ce",
+  "eligible_manual_applications": [
+    "sync.data-races-happens-before",
+    "testing.race-detector"
+  ],
+  "automatic_coverage_credit": false,
+  "findings": [],
+  "verified": {
+    "source_assets": 16,
+    "copies": 6,
+    "commands": 16,
+    "snapshots": 38,
+    "native_race_failures": 2,
+    "native_compiler_rejections": 0,
+    "ordinary_failure_commands": 1,
+    "max_command_seconds": 5.404244
+  },
+  "execution_assessment": [
+    "Actual approval preceded all executions; exact pinned script/manifest/source digests unchanged. Every argv/cwd/environment/version and expected status agrees with reviewed recipe.",
+    "Independently reconstructed every source snapshot from approved assets and recorded copy/replace events; all before/after hashes/text match. Public normalized receipt exactly equals raw except declared root/localbin substitution.",
+    "Fresh independent private offline roots removed; no retries, timeout, crash or unreviewed command. Ordinary failures separated from intentional native race/compiler observations."
+  ],
+  "method_assessment": [
+    "Unsafe-publication: real probe_test.go:12 reads of bothfields conflict with exchange.go:7/8 writes; unsafe-reuse reads conflict with next-packet assignment exchange.go:11. Actual tRunner/worker creation sites retained, writer creation probe_test.go:9. Observed packet values are not a correctness oracle or schedule guarantee.",
+    "Reference/alternate writes-before-out-send and receive-before-read establish publication; read/copy-before-ack-send and ackreceive-before-next-write return ownership. Learner regressions copy values, compare pointeridentity safely, acknowledge/drain/join before reporting.",
+    "Reference+alternate pass ordinary/fullrace. Synchronized wrongTwice native probe is clean but strong unchanged regression reports named values. Weak drain-only regression ordinary/race passes; reject its missing valueoracle by actual method review.",
+    "Only two manual application actions accepted. Supplied probe/type declaration has no learnercredit; clean detector evidence scoped to exercised paths, never proof of all schedules/mastery."
+  ],
+  "boundaries": [
+    "No automatic progress or coverage changes; readiness of materials is not learner mastery.",
+    "Integrate explicit prerequisites, actual receipt and provenance; independent final diff/HEAD review, local gates and green exactHEAD validate remain required."
+  ],
+  "reviewer_executed_authored_code": false
+}

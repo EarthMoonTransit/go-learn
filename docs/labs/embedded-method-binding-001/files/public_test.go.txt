@@ -1,0 +1,43 @@
+package binding
+
+import "testing"
+
+func TestBindings(t *testing.T) {
+	v := &ValueBox{Counter{Value: 10}}
+	p := PointerBox{&Counter{Value: -2}}
+	vr, va, pr, pa := Bind(v, p)
+	if vr == nil || va == nil || pr == nil || pa == nil {
+		t.Fatal("bindings must return four usable interfaces")
+	}
+	for _, n := range []int{3, -5, 0, 8} {
+		oldV, oldP := v.Value, p.Value
+		va.Add(n)
+		if v.Value != oldV+n || vr.Read() != oldV+n {
+			t.Errorf("live value binding delta=%d original=%d read=%d; want=%d", n, v.Value, vr.Read(), oldV+n)
+		}
+		if p.Value != oldP {
+			t.Errorf("value adder changed separate pointer counter")
+		}
+		pa.Add(-n)
+		if p.Value != oldP-n || pr.Read() != oldP-n {
+			t.Errorf("live pointer binding delta=%d original=%d read=%d; want=%d", -n, p.Value, pr.Read(), oldP-n)
+		}
+	}
+	v.Value, p.Value = 41, -19
+	if vr.Read() != 41 || pr.Read() != -19 {
+		t.Errorf("live external mutation: readers=(%d,%d); want=(41,-19)", vr.Read(), pr.Read())
+	}
+}
+func TestLabels(t *testing.T) {
+	for _, parts := range [][2]string{{"left", "right"}, {"", "R"}, {"L", ""}, {"", ""}, {"x|y", "z"}} {
+		j := Joined{Left{parts[0]}, Right{parts[1]}}
+		var label Labeler = j
+		want := parts[0] + "|" + parts[1]
+		if got := label.Label(); got != want {
+			t.Errorf("label parts=%q got=%q; want=%q", parts, got, want)
+		}
+		if j.Left.Name != parts[0] || j.Right.Name != parts[1] {
+			t.Error("label changed embedded values")
+		}
+	}
+}

@@ -1,0 +1,35 @@
+package snapshot
+
+import "testing"
+
+func TestSnapshots(t *testing.T) {
+	values := []int{0, -7, 12, -1, 4}
+	out, ack := make(chan *Packet), make(chan struct{})
+	done := make(chan struct{})
+	go func() { Exchange(values, out, ack); close(done) }()
+	var snapshots []Packet
+	var first *Packet
+	different := false
+	for packet := range out {
+		if first == nil {
+			first = packet
+		} else if packet != first {
+			different = true
+		}
+		snapshots = append(snapshots, Packet{Value: packet.Value, Twice: packet.Twice})
+		ack <- struct{}{}
+	}
+	<-done
+	if different {
+		t.Error("sender replaced the stable packet")
+	}
+	if len(snapshots) != len(values) {
+		t.Fatalf("snapshot count=%d; want %d", len(snapshots), len(values))
+	}
+	for i, value := range values {
+		want := Packet{Value: value, Twice: value * 2}
+		if snapshots[i] != want {
+			t.Errorf("snapshot case=%d input=%d got=%+v; want=%+v", i, value, snapshots[i], want)
+		}
+	}
+}

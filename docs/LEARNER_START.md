@@ -250,3 +250,25 @@ validation, atomic receiver updates and independent storage.
 Native evidence and finite method review remain separate from automatic coverage
 and learner progress. A clean tool command or passing weak oracle does not replace
 the substantive source and observed-output acceptance recorded with each unit.
+
+The final interface application follows greeter-dispatch, nested-stringers and
+typed-nil-result: own exact snapshot/live dynamic values, Stringer formatting and
+an absent interface return. The selected-window application follows reserved-copy
+and detached-prefix, and is placed after initial-structs: own the outer allocation plan and independently stored
+selected spans, with retention method evidence beyond capacity/alias behavior.
+Snapshot transfers follow gated-worker-arguments and channel blocking firsts;
+they own descriptor capture before return and independent receive/send phases.
+Copied journal handles follow join-all, mutex-counter and concurrent-counter-read;
+they own one private state/lock identity across copies and detached snapshots.
+
+| Manual placement | Unit | Independent action |
+| --- | --- | --- |
+| After value-average, receiver-speakers and embedded-cache, with pointer/interface preparation | [Embedded live bindings](labs/embedded-method-binding-001/TASK.md) | Predict and observe promoted method sets, preserve live interface aliases and explicitly resolve ambiguity |
+| After native-race, concurrent-counter-read and channel ownership/lifecycle preparation | [Acknowledged snapshots](labs/acknowledged-snapshot-race-001/TASK.md) | Author publication/acknowledgement ownership and a safe independent regression, then interpret actual native race evidence |
+
+All frozen outcomes and six integrated assessments are indexed in the
+[finite-v1 materials evidence](../reports/finite-v1-readiness.md). Native units
+remain outside automatic coverage and completion. A clean race run, exact slice
+capacity or equal formatted text does not substitute for the separately reviewed
+ownership, retention or dynamic-representation requirements. Material readiness
+does not establish learner mastery or the older full-bank numeric minima.

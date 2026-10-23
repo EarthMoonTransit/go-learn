@@ -1,0 +1,67 @@
+schema_version: 2
+id: snapshot-transfers-001
+title: Snapshot independent channel transfers
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: channels.operations-blocking
+    secondary:
+        - goroutines.capture-arguments
+prerequisites:
+    - goroutines.launch-lifecycle
+    - types.zero-values
+    - channels.close-semantics
+    - channels.directional
+    - functions.closure-capture
+    - functions.defer
+    - control-flow.range
+    - structs.literals-zero
+    - structs.copy-equality
+    - slices.len-cap-slicing
+    - sync.waitgroup-lifecycle
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 25
+    max: 45
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - wait-before-return
+        - nil-completion
+        - shared-completion
+        - ignore-start
+        - receive-before-start
+        - late-descriptor-read
+        - shared-loop-descriptor
+        - send-before-receive
+        - receive-default-drop
+        - serial-workers
+        - send-default-drop
+        - early-completion
+        - consume-twice
+        - ignore-source-ok
+        - wrong-offset
+        - leave-completion-open
+        - completion-payload
+        - close-destination
+        - erase-descriptors
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

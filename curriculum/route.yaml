@@ -583,6 +583,15 @@
           "skills": [
             "arrays.value-semantics"
           ]
+        },
+        {
+          "number": 42,
+          "task_id": "selected-window-copies-001",
+          "role": "transfer",
+          "skills": [
+            "slices.preallocation",
+            "slices.subslice-retention"
+          ]
         }
       ],
       "number": 3
@@ -1274,6 +1283,16 @@
             "errors.is",
             "errors.as"
           ]
+        },
+        {
+          "number": 59,
+          "task_id": "bound-stringer-pair-001",
+          "role": "transfer",
+          "skills": [
+            "interfaces.dynamic-type-value",
+            "interfaces.stringer-contract",
+            "interfaces.typed-nil"
+          ]
         }
       ],
       "number": 6
@@ -1886,6 +1905,24 @@
           "skills": [
             "time.timers-tickers",
             "time.duration-arithmetic"
+          ]
+        },
+        {
+          "number": 35,
+          "task_id": "snapshot-transfers-001",
+          "role": "transfer",
+          "skills": [
+            "channels.operations-blocking",
+            "goroutines.capture-arguments"
+          ]
+        },
+        {
+          "number": 36,
+          "task_id": "copied-journal-handles-001",
+          "role": "transfer",
+          "skills": [
+            "goroutines.state-ownership",
+            "sync.mutex-ownership"
           ]
         }
       ],

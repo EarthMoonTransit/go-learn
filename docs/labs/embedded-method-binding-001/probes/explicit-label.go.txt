@@ -1,0 +1,3 @@
+package binding
+
+func explicitProbe(j Joined) string { return j.Left.Label() }

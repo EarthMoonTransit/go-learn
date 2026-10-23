@@ -107,3 +107,13 @@ reports use SHA256 e0024874d887c6188b73a08c90484e2efe634d7aa8abcafdb7ffb3f346715
 Remaining mandatory local gates, exact-HEAD review and green validate/merge are
 required. At this checkpoint I10 PR115 has all12 local gates and exact-HEAD
 review accepted; its GitHub validate is running. No I11 delivery is claimed.
+
+Current follow-up: exact c78a475d4afad55eb2a6715745571b9e56f513c2 review was
+approved08:59:13UTC; PR116validate39927810390 is running. Local fast/race/vet
+have passed. Integration/current consumers and green CI/merge remain mandatory.
+I10 dependency merged08:54:14UTC with all gates. Earlier dated pending statements
+remain historical snapshots, not a new requirement for another unchanged review.
+
+## Accepted delivery, 2026-10-23
+
+I11 PR116 finalc78a475d4afad55eb2a6715745571b9e56f513c2 passed all12local gates, sole exact-HEAD review and validate39927810390, then merged c7a178b8b27a951a52b8bbac0f31f0a2057fed1c at09:40:48UTC23Oct. Accepted inventory222route/225ready/232checked/22manual;13applications remain. Available execution upper bound192.88minutes, with no deductions/reset and infrastructure0.

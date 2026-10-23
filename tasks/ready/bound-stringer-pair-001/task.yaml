@@ -1,0 +1,52 @@
+schema_version: 2
+id: bound-stringer-pair-001
+title: Bind snapshot and live Stringers
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: interfaces.dynamic-type-value
+    secondary:
+        - interfaces.stringer-contract
+        - interfaces.typed-nil
+prerequisites:
+    - types.declarations-inference
+    - functions.signatures-results
+    - interfaces.small-contracts
+    - methods.receiver-semantics
+    - strings.formatting
+    - pointers.address-deref-nil
+    - structs.literals-zero
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 20
+    max: 35
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - label-pointer
+        - counter-copy
+        - typed-nil-return
+        - omit-live
+        - trim-label
+        - absolute-count
+        - mutate-counter
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

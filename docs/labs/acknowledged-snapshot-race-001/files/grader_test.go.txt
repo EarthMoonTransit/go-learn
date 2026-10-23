@@ -1,0 +1,35 @@
+package snapshot
+
+import "testing"
+
+func TestProtocolBoundary(t *testing.T) {
+	for _, values := range [][]int{nil, {}, {3}, {-2, 0, 6, 1}} {
+		original := append([]int(nil), values...)
+		out, ack := make(chan *Packet), make(chan struct{})
+		done := make(chan struct{})
+		go func() { Exchange(values, out, ack); close(done) }()
+		var first *Packet
+		count, different := 0, false
+		for packet := range out {
+			if first == nil {
+				first = packet
+			} else if packet != first {
+				different = true
+			}
+			count++
+			ack <- struct{}{}
+		}
+		<-done
+		if count != len(values) {
+			t.Errorf("protocol count=%d; want %d", count, len(values))
+		}
+		if different {
+			t.Error("protocol must reuse one stable packet after acknowledgement")
+		}
+		for i := range values {
+			if values[i] != original[i] {
+				t.Errorf("input changed at %d", i)
+			}
+		}
+	}
+}
