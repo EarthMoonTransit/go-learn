@@ -1,0 +1,40 @@
+package channel
+
+type sender chan<- int
+type receiver <-chan int
+
+func fill(output sender, values []int) {
+	for index := 0; index < len(values); index++ {
+		output <- values[index]
+	}
+	close(output)
+}
+
+func sample(input receiver) Reading {
+	var result Reading
+	select {
+	case result.Value, result.OK = <-input:
+		result.Ready = true
+	default:
+	}
+	return result
+}
+
+func Observe(values []int) Report {
+	stream := make(chan int, len(values)+1)
+	fill(sender(stream), values)
+	result := Report{Readings: make([]Reading, len(values)+2)}
+	for index := range result.Readings {
+		result.Readings[index] = sample(receiver(stream))
+	}
+	attemptSend := func() {
+		select {
+		case stream <- -17:
+		default:
+		}
+	}
+	attemptClose := func() { close(stream) }
+	result.SendPanicked = observePanic(attemptSend)
+	result.ClosePanicked = observePanic(attemptClose)
+	return result
+}

@@ -1,0 +1,43 @@
+package sortbench
+
+// Insertion sorts values in place without allocating a scratch slice.
+func Insertion(values []int) {
+	for next := 1; next < len(values); next++ {
+		value := values[next]
+		place := next
+		for place > 0 && values[place-1] > value {
+			values[place] = values[place-1]
+			place--
+		}
+		values[place] = value
+	}
+}
+
+// Merge sorts values in place, allocating scratch storage within the operation.
+func Merge(values []int) {
+	if len(values) < 2 {
+		return
+	}
+	scratch := make([]int, len(values))
+	mergePart(values, scratch)
+}
+
+func mergePart(values, scratch []int) {
+	if len(values) < 2 {
+		return
+	}
+	mid := len(values) / 2
+	mergePart(values[:mid], scratch[:mid])
+	mergePart(values[mid:], scratch[mid:])
+	left, right := 0, mid
+	for target := range values {
+		if right == len(values) || (left < mid && values[left] <= values[right]) {
+			scratch[target] = values[left]
+			left++
+		} else {
+			scratch[target] = values[right]
+			right++
+		}
+	}
+	copy(values, scratch)
+}

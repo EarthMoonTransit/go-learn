@@ -1,0 +1,501 @@
+{
+  "batch": "I8",
+  "status": "All four new units actual source/evidence/method accepted and two pinned reuses integrated; final batch delivery gates pending",
+  "base": "5781a387e119d1a29cbe13bee7670d0fc076f7cc",
+  "units": 6,
+  "new_automatic_tasks": [
+    {
+      "id": "paced-forward-001",
+      "candidate_slots": [
+        "channels.nil-disabling"
+      ],
+      "source_decision": "Original ADR0008 creation and content digest, sources=[]; actual source/method/evidence accepted. Release commit binding deferred, not invented.",
+      "path": "tasks/ready/paced-forward-001",
+      "content_digest": "7bd89aad3a12207a1bfb0f069648dd0ef25490e97c2434e05b7b0182cb8bdace"
+    },
+    {
+      "id": "context-business-boundary-001",
+      "candidate_slots": [
+        "context.values-boundaries"
+      ],
+      "source_decision": "Original ADR0008 creation and content digest, sources=[]; actual source/method/evidence accepted. Release commit binding deferred, not invented.",
+      "path": "tasks/ready/context-business-boundary-001",
+      "content_digest": "2ba56b476806a77d449abaa5c2fb1cc6ce313b7f2cb0dbd8b0684371f54da9b8"
+    }
+  ],
+  "new_manual_units": [
+    {
+      "id": "channel-permissions-close-001",
+      "candidate_slots": [
+        "channels.directional",
+        "channels.close-semantics"
+      ],
+      "path": "docs/labs/channel-permissions-close-001",
+      "content_digest": "93eefaa8a73e8800fb9013708d28a329ad369ac257989295e1d2882d2e06622c",
+      "automatic_coverage_credit": false
+    },
+    {
+      "id": "reset-sort-benchmark-001",
+      "candidate_slots": [
+        "benchmarks.loops-timing",
+        "benchmarks.allocations",
+        "benchmarks.experimental-design"
+      ],
+      "path": "docs/labs/reset-sort-benchmark-001",
+      "content_digest": "1ebdd3243823e067d9f82df68803908d5d3289f49ab8b8a4f94f7e3b0db615d3",
+      "automatic_coverage_credit": false
+    }
+  ],
+  "contract_review": {
+    "decision": "approve-bounded-contracts-and-reuse-candidacy",
+    "scope": "bounded-I8-contract-and-source-reuse-candidacy-only",
+    "reviewer": "sole-independent-reviewer",
+    "reviewed_at": "2026-10-23T04:57:01.620797+00:00",
+    "proposal_sha256": {
+      "automatic-and-reuse-proposal.md": "9889e3f5deed52309a8434c8997f2d8a957450bc545ada14b58111f5f583290c",
+      "channel-native-proposal.md": "a58272841707d311a826dc046235a1bbf0cfab4279a71fd819954e19150c6095",
+      "benchmark-application-proposal.md": "112ecdd95476a9bd2cdfcefe4692ce283c41570efa6b510daf7a300b54aeb9c7"
+    },
+    "batch_units": 6,
+    "clock": "2026-10-22T20:35:39Z through 2026-10-23T00:35:39Z; unchanged",
+    "units": [
+      {
+        "unit": "paced-forward-001",
+        "decision": "approve-contract-for-authoring",
+        "candidate_slots": [
+          "independent-application:channels.nil-disabling"
+        ],
+        "distinctness": "Repeatedly disabling still-open input/release/output cases as pending/permission state changes differs from merge-two-streams-001 disabling only closed inputs. Actual local-nil/select construction is method evidence; behavior-equivalent non-nil architecture is not falsely declared behavior-invalid.",
+        "conditions": [
+          "Preserve the finite independent rescue/EOF/drain boundary and useful ordinary public diagnostics.",
+          "Place after merge-two-streams-001 and accepted first prerequisites; no ownership/launch application implied."
+        ],
+        "closed_finding": "PACE-PERMIT-01 (root alias PACE-TOKEN-01)"
+      },
+      {
+        "unit": "context-business-boundary-001",
+        "decision": "approve-contract",
+        "candidate_slots": [
+          "independent-application:context.values-boundaries"
+        ],
+        "distinctness": "The actual Apply repair removes computation dependencies on Context multiplier/value/options and injects no business parameters into Context. Conflicting Context values must not alter explicit value*multiplier; metadata crosses the callback boundary. This is a new exercised boundary, beyond Trace first key/accessor creation and written explanation.",
+        "boundaries": [
+          "Repeated Metadata helpers alone cannot earn the application.",
+          "No API-design, derivation, propagation, callback or arithmetic credit from supplied signatures/tests.",
+          "Context retention is a finite source/method check, not universally proven by behavior.",
+          "Observe metadata/control identity, not arbitrary Context-interface comparability."
+        ],
+        "prerequisites": [
+          "context.values-boundaries first trace-context-001",
+          "context.propagation-api",
+          "interfaces.dynamic-type-value",
+          "existing safe assertions/function values/signatures/arithmetic preparation"
+        ],
+        "remaining": "Actual compact TASK, source, public/grader/wrong/control matrix and provenance need content review after authoring."
+      },
+      {
+        "unit": "injected-config-project-001",
+        "decision": "approve-bounded-reuse-candidacy",
+        "source_commit": "a6f9644769b2a434b8a5cb8c834f4d4d4791d16b",
+        "content_digest": "cdf0426ae1668263f18cae52ae001328287464a5a1ec38ff7f0f35ee8a4b133a",
+        "candidate_slots": [
+          "independent-application:packages.imports-exports-naming",
+          "independent-application:packages.internal-boundaries"
+        ],
+        "actual_actions": "From package-only implementation stubs, author imports and exported Source/Collect/Format declarations, composition-root imports and legal delegation snapshot -> snapshot/internal/row. Native go list records the actual acyclic production graph; independent client compiles through snapshot; forbidden external client -> row import is rejected and explained by the parent-tree rule.",
+        "distinctness": "Package-inventory supplies the stock import/type/member layout and asks Describe/getters/setters. Package-boundaries first repairs a supplied same-module caller/facade. Here the learner constructs the cooperating production graph and internal implementation with an independent client module.",
+        "supplied_exclusions": [
+          "Package names, file tree, required exported function names and narrow internal location are specified; do not claim independent naming/layout/placement design.",
+          "Supplied client/provider/probe does not earn learner authorship credit.",
+          "No import-cycle diagnosis, test-package-choice, module/build/run, interfaces/seams or duplicate component credit."
+        ],
+        "evidence_paths": [
+          "tasks/ready/package-inventory-001/TASK.md",
+          "tasks/ready/package-inventory-001/starter/stock/item.go",
+          "tasks/ready/package-inventory-001/starter/subject/describe.go",
+          "docs/labs/package-boundaries-001/TASK.md",
+          "docs/labs/injected-config-project-001/TASK.md",
+          "docs/labs/injected-config-project-001/PROCEDURE.md",
+          "docs/labs/injected-config-project-001/review/execution.json",
+          "docs/labs/injected-config-project-001/review/independent-review.json"
+        ],
+        "remaining": "Complete all-file immutable pins and current-byte preservation proof before admission; preserve original I6 provenance, evidence and original credit scope. No ad hoc rerun is needed for unchanged native inputs."
+      },
+      {
+        "unit": "cancel-error-pipeline-001",
+        "decision": "approve-bounded-reuse-candidacy",
+        "content_digest": "303c874d94dbff47cc8e57b38fbe7d01710d9648034cacd91b42f7cb74cc9fde",
+        "source_commit": null,
+        "candidate_slots": [
+          "independent-application:channels.pipeline"
+        ],
+        "actual_actions": "Actual reference owns feeder/mapper communicating channel, separate send/close ownership, upstream shutdown on downstream callback error while caller input remains open, successful prefix and exact result publication only after both workers join. Fused single-worker control passes behavior and is explicitly method-rejected.",
+        "distinctness": "two-stage-stream-001 first depends on complete input EOF and full draining and excludes abandonment/cancellation. The new whole-pipeline termination decision coordinates intermediate failure and parent cancellation across owned stages.",
+        "evidence_paths": [
+          "tasks/ready/two-stage-stream-001/TASK.md",
+          "tasks/ready/cancel-error-pipeline-001/TASK.md",
+          "tasks/ready/cancel-error-pipeline-001/solution/reference/subject.go",
+          ".tmp/v1-applications-07/stream-content-review.json",
+          ".tmp/v1-applications-07/stream-author-receipt.json",
+          ".tmp/v1-applications-07/stream-fixture-results.json"
+        ],
+        "boundaries": "Exactly one separately assessed pipeline application; no new task/automatic coverage, second cancellation occurrence, ownership/WG/fanout/leak claim. Rejected v1 deadlock is zero-credit; corrected 23 fixtures remain the actual evidence.",
+        "remaining": "Immutable accepted I7 commit and complete unchanged file pins are required before admission; dependency delivery remains required before dependent merge."
+      },
+      {
+        "unit": "channel-permissions-close-001",
+        "decision": "approve-contract-for-authoring",
+        "candidate_slots": [
+          "independent-application:channels.directional",
+          "independent-application:channels.close-semantics"
+        ],
+        "copies": 11,
+        "commands": 40,
+        "distinctness": "Learner selects helper parameter permissions, actually passes an owned channel through them and observes real compiler rejections at those boundaries; independently constructs/fills/closes and predicts comma-ok buffered/closed observations plus actual safely recovered post-close operations. Supplied first signatures or already-prepared channel do not provide these actions.",
+        "method_boundaries": [
+          "Fixed Report/recovery/formatter earn no learner credit.",
+          "Unrestricted helper control compiles and passes behavior but is method-wrong; hardcoded flags pass behavior but do not prove actual post-close operations.",
+          "Finite missing-close path uses nonblocking receives/send and no goroutines; timeout/crash is not accepted evidence.",
+          "Correct helper names/named direction types and equivalent assembly remain permitted."
+        ],
+        "remaining": "Exact inert source, hashes, substitutions, argv, diagnostic families and finite disposable recipe require separate preexecution approval before any execution."
+      },
+      {
+        "unit": "reset-sort-benchmark-001",
+        "decision": "approve-contract-for-authoring",
+        "candidate_slots": [
+          "independent-application:benchmarks.loops-timing",
+          "independent-application:benchmarks.allocations",
+          "independent-application:benchmarks.experimental-design"
+        ],
+        "copies": 6,
+        "commands": 17,
+        "distinctness": "Unlike pure joins on static fixtures, learner restores mutable state for every implementation/iteration outside measured work, distinguishes working-buffer lifetime from measured algorithm scratch, and authors equivalence/case design across two sizes and three order families.",
+        "method_boundaries": [
+          "Supplied sorting bodies receive no authoring credit.",
+          "Use framework b.N with fixed native 50x receipt bound; no hardcoded source loop count.",
+          "Restoration/prestate/result validation outside timing; Merge scratch remains measured.",
+          "Reference and valid fresh-clone alternative each produce36 repeated observations; numeric results need not match and no universal winner or statistical significance is inferred.",
+          "Timed-clone and single-order may pass commands and are rejected by actual method/design review, not fabricated automatic failure.",
+          "No-restore public assertion and unequal-sort semantic failure must be real ordinary diagnostics."
+        ],
+        "remaining": "Exact inert source/manifest and one-off fixed recipe require separate preexecution approval; actual measured output and interpretation require subsequent acceptance."
+      }
+    ],
+    "sequencing": "Unique new task/lab paths may be authored on accepted I6 base while I7 gates run under owner productive-overlap steering. Fast-forward to committed I7 and resolve pins before integration/full gates; no shared route/backlog integration before then. The clock does not reset. This changes an internal sequencing restriction, not execution/isolation rules.",
+    "provenance": "New original tasks/labs keep project identity, real creation record, exact digest and sources=[]; old materials are contrast/evidence only, not donor copying. Preserve reuse provenance byte-identically and do not invent release commit binding.",
+    "acceptance_boundary": "No current readiness, automatic coverage, learner mastery or application/component credit is granted by this planning review. Actual content/method/evidence review, preservation/prerequisite integration, applicable single stable collection/current consumers, all mandatory gates, exact final HEAD review and green validate remain required.",
+    "reviewer_execution": "No authored Go/tests executed. Read-only inspection except this requested receipt.",
+    "closed_findings": [
+      {
+        "id": "PACE-PERMIT-01",
+        "unit": "paced-forward-001",
+        "severity": "contract-clarification-before-authoring",
+        "requirement": "Each release token permits one pending value, and valid implementations/public assertions must agree.",
+        "finding": "Release is only expressly disabled when no value is pending. With an already-permitted value blocked on output, the outline does not explicitly prohibit consuming further tokens for that same pending value.",
+        "required_resolution": "Consume exactly one token only for an unpermitted pending value; disable release after permission until that value is sent. Public case retains a second token while the first permitted output is held, then uses it for the next value. No co-ready priority requirement.",
+        "resolution": "Revised TASK explicitly disables release when no unpermitted value is pending and preserves further tokens after permission until send. Public observations explicitly hold first permitted output while retaining the second token for the next value. Closed before authoring."
+      }
+    ],
+    "findings": [],
+    "operational_hold": "Parent reports no new authoring/execution until the observed wall-clock gap and applicable checkpoint budget are reconciled. This content decision does not resolve or override clock limits."
+  },
+  "unchanged_reuses": {
+    "project": {
+      "id": "injected-config-project-001",
+      "source_commit": "a6f9644769b2a434b8a5cb8c834f4d4d4791d16b",
+      "files_sha256": {
+        "PROCEDURE.md": "96592f6d51457b4784ebe6e85909773cd3435dcded8c1b7452ea68e62c86da57",
+        "TASK.md": "ee8cd5a75e5e692bb6c057504ec8fbd4ef593c74813bef5d42245e341e16e547",
+        "files/client/accept_test.go.txt": "ef88bfcdb796b88da2d9393be3be34b0ebe25de9e040c4278ea64c33286a46da",
+        "files/client/go.mod.txt": "ea4fc63efdf9971f298281380d07ff137014bd1f29099e9a5dd087b92114ff5c",
+        "files/client/source.go.txt": "49c51351a2d2852aa6991eb018ea5b573e10e75635f0e750dcc21847af63e308",
+        "files/project/cmd/snapshot/main.go.txt": "a0d46d6934238e411d9222322abef1dc0055eedc58e559380ed5206b593a2549",
+        "files/project/processenv/source.go.txt": "9aa3bbca572fdfbb9955eef953041e256080bd40c9a083d119590152b2bf333a",
+        "files/project/snapshot/collect.go.txt": "c811bfd22a7dfb33000d07fe8cbe65cf74d15c1cd11741812fa24c77ac92287f",
+        "files/project/snapshot/contract_test.go.txt": "dec3d6491cffe158a2ea592759a9e63885c7cec431f897ac83abf1eb59079459",
+        "files/project/snapshot/internal/row/format.go.txt": "eb02c9757efdbc31ccadc5f920d543f3a74debeff1b138bd17dd7ac8310a5807",
+        "files/project/snapshot/internal/row/format_test.go.txt": "c956098418a312f7bb4237b8f6dfd549d53c860f94f14cde97cde23049aada5a",
+        "files/project/snapshot/learner_test.go.txt": "ade70e6e29f099b3bddca56ffe63541c3891587c5ad369139d6e104e484e6159",
+        "manifest.json": "2799cab0c9bfebafaeb72f8a38075a141137735813e79a5589bdbbb97bc4e3b9",
+        "provenance.json": "315b9471d16286b6c0430fd48630617b8ac7e9b508ac92e147589e7908b13113",
+        "reference/project/cmd/snapshot/main.go.txt": "05a24138ebc8d615492e1bd9572457b4941c86098f47de15660386cb2d316285",
+        "reference/project/go.mod.txt": "54cc73c28fd0e2b3a74d6a0671af11ba91eb4938a8ee1ce971bf9a7bc5036552",
+        "reference/project/snapshot/collect.go.txt": "006e586a1bab6c8fb71990a7c42705f367f43825cd9f1b407060c3645647fa2d",
+        "reference/project/snapshot/internal/row/format.go.txt": "457e823ed16b2552ee7e158925f0445e78e30dfde9eb36becf24b7f96188fd27",
+        "reference/project/snapshot/learner_test.go.txt": "f3881b6f5eaab6b7eda4bbe9399c51fad2030467c066ec1fcaf5a2c803a014ce",
+        "review/acceptance.md": "540923b03f29879f0bc0b4f4175b37f10cfb698b66ec673a142f562c08102c93",
+        "review/continuation-preexecution.json": "494a95dfaf2f3a11d64be7ff5883367764b13fd4515b20438757b9e01d5bef06",
+        "review/execution.json": "dc954ee2a985ce824e369791d9ee9365c2a48de5b30764b5d15717ce7947446c",
+        "review/independent-review.json": "4b0dafd9442e03295088bfe2e7bbbdfb3d83bbde144106e3c27539f46744ae73",
+        "review/preexecution.json": "2c8cb727aaf3c48f1ca6808df4ff34ad800a4f2aead12bbca8561e0157546e0d",
+        "wrong/any/project/snapshot/collect.go.txt": "1ed10371f5855d508ce377108043050292b27e265e2376daa1b451283f824027",
+        "wrong/bypass/project/snapshot/collect.go.txt": "6f494fae8448c4ad30ed483ca1472eb1cfe1abe4575e85aa6bfbc286a85226c3",
+        "wrong/concrete/project/snapshot/collect.go.txt": "399b1715070d670aaaaae465228895683f16cb2a55f71adc316c25d5cdb7e349",
+        "wrong/empty/project/snapshot/collect.go.txt": "8da2e48a115659453f0da31f62fd7dcaccf1a6670f9761ee320411ea62dbf3a3",
+        "wrong/internal/client/forbidden/probe_test.go.txt": "9bfed1f7fd411e7d5645a7e6e463a0c1b7f36e97a6aeb4d8913809b0eba2c447",
+        "wrong/module/project/go.mod.txt": "d9a74c7636ac878337de42888a3d65b9e6c5b5eb3057f0127e43a01930d544c3",
+        "wrong/overbroad/project/snapshot/collect.go.txt": "98f9870e6c13cb413578586e9b6f48a8b80f02b05167c40bdc0b2f46bade144b",
+        "wrong/twice/project/snapshot/collect.go.txt": "03ef32b78e61761d58a5bc68ed4b4c7501053fd8373119ccaa2975b300e74df0"
+      },
+      "all_current_bytes_match_actual_commit": true,
+      "candidate_slots": [
+        "packages.imports-exports-naming",
+        "packages.internal-boundaries"
+      ]
+    },
+    "pipeline": {
+      "id": "cancel-error-pipeline-001",
+      "source_commit": "5781a387e119d1a29cbe13bee7670d0fc076f7cc",
+      "source_worktree": "/Users/egor/.codex/worktrees/v1-applications-07/go-learn/tasks/ready/cancel-error-pipeline-001",
+      "commit_gate": "I7 source independently accepted and frozen; must bind actual I7commit and recheckpins before admission.",
+      "files_sha256": {
+        "ATTRIBUTION.md": "d2bd842ba73389714971521f908f14a70934695dd2352a127669f4a4cb8bdf01",
+        "TASK.md": "2e3207bcf1286405b1b767aac0506669dd4d04c39550d22ebe12811bbfb8ad50",
+        "go.mod": "347ecab77133f637932c4ca277db61f592a01e66df98f77e09a7b10eed131992",
+        "hints/HINTS.md": "5c7e0d657f82a764c6ecf547fdf84da335d824009234ee09ef557288a8e31db4",
+        "lifecycle.yaml": "4e8bbb77a4db35741cebd9387e8fbb286b566e03c067eb8d2d680c02a844ddb1",
+        "provenance.yaml": "9e94a1f7b3dc18720d53a5a31938064f5c0b92e1e75e068561293590c4d3a356",
+        "review/notes.md": "5451892f5efcd03e0ae61eda603b2e3c57b4b1da302bf1fc2c5b895d99ac138d",
+        "review/review.yaml": "1cf9bd04a69c3f4aa8272842d2107252fc93c3c1b1370fad784b686e985f88ae",
+        "solution/mutants/buffer-output/subject.go": "8925315b52bd2258246eb9d368339a7a406a3716b344f8c291de841fddf998e6",
+        "solution/mutants/cancel-waits-for-eof/subject.go": "a1ee2a7b8fef55fa7e5134dca4477a3ed0c5c5738a0fbe04dabbfa039e8b55c6",
+        "solution/mutants/collect-before-handles/subject.go": "ee72af0fabe2692428bf407c73d76a0b650ff651d27d422458862d73ef5f2c39",
+        "solution/mutants/continue-after-error/subject.go": "73d5f399c76141a7a28268505f15ee069f18059b148c9402c8fcf88b6155f0b9",
+        "solution/mutants/duplicate-result/subject.go": "1d7f146b6e220e4005618575a47dadb7a6aeb2556c25e0e1a2b7e19889502f88",
+        "solution/mutants/early-terminal/subject.go": "0e448d41d2020181c4decae71b78c5c6e0cda95e92ebd07cc37cc17e5c9f5e89",
+        "solution/mutants/emit-failing-value/subject.go": "89a23e4da329a0f51bf2b028adb9661edaf3a05e2d3e89e495fdb3626d72912f",
+        "solution/mutants/error-waits-for-eof/subject.go": "0d5d1aabaafb3329f257fa0ccf58673ae46a112d5c9dfb938a4a55a061110c0e",
+        "solution/mutants/nil-handles/subject.go": "5f675db2b903d51226605e3558d4b4c08ef6039b212fd110d93c1becfe870f5d",
+        "solution/mutants/open-output/subject.go": "55541f1eb11ea600eb693bff7f69b4403807459acee8c61ba4ed28b98a9fb7cc",
+        "solution/mutants/open-terminal/subject.go": "4c675f3ca1955464bea7afb59043d80f19c692f10fb29d2d9f93bfef150c1f63",
+        "solution/mutants/pre-canceled-read/subject.go": "b98785a539ca715355d54aff0d73033fbf70dc8ad0bbcbace9a698485f9845e8",
+        "solution/mutants/replace-error/subject.go": "fc2bc59dfdccac2d6a94bb68c8ee723c64efbc303626508d167e0ec7368b74d3",
+        "solution/mutants/skip-zero/subject.go": "b0d8a8aa340cf2330853c433e0c69265a956c14482094c9c3ddd581e3dbb98e8",
+        "solution/mutants/suppress-error/subject.go": "2840fa47939dcae1398b6b9cc5d5467384372902e9267d9d9833c46e67ea37e6",
+        "solution/mutants/two-terminal-results/subject.go": "095e7ed70033b2a3f1c7e739274e3c04bda5da9af38780ebc3704f73df0980ba",
+        "solution/mutants/unbuffer-terminal/subject.go": "d3e7162eec7cccfdda496850f97f772eb7516f8b90fd8c715f053d86d5e64dae",
+        "solution/mutants/uncancelable-output-send/subject.go": "c51b6ce29a88762bfe90b8683390c3f362580691df5b368c2e079d1f0fb64818",
+        "solution/reference/subject.go": "6d4d201401b5c5a7045d912b15f2880b1b47a6e99d4477823f6fd8dfb0b8032f",
+        "starter/subject.go": "5f675db2b903d51226605e3558d4b4c08ef6039b212fd110d93c1becfe870f5d",
+        "task.yaml": "7d14b212bed5f215beba21a399d0b6256be0c0567bf297ce5748cc0969596378",
+        "tests/grader/grader_test.go": "a76a7d5392313b22fc3c9e2dbe73a10b6e5232569b718e24c98606a1e57e7d6e",
+        "tests/public/public_test.go": "8cdfbee053a751a89c8a9ebc644254e83be966c276ab20d5a28acd3dd78e9a17"
+      },
+      "candidate_slots": [
+        "channels.pipeline"
+      ],
+      "all_file_pins_match": true,
+      "delivery_pending": "I7 PR112 exact HEAD5781a38 CI39903216626 pending"
+    },
+    "readiness": 0
+  },
+  "acceptance_boundary": "Actual method/native samples, useful public feedback and source review, official promotions, prerequisite/preservation integration, single fresh222collection with current consumers, mandatory fast/race/vet/integration, exactHEADreview and greenvalidate required. Manual evidence adds no automatic coverage, full-bank minimum pass or learner mastery.",
+  "actual_content_reviews": {
+    "context-content-review.json": {
+      "decision": "approve",
+      "scope": "actual-content-method-and-targeted-evidence",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T05:06:48.067597+00:00",
+      "unit": "context-business-boundary-001",
+      "content_digest": "2ba56b476806a77d449abaa5c2fb1cc6ce313b7f2cb0dbd8b0684371f54da9b8",
+      "findings": [],
+      "accepted_slots": [
+        "independent-application:context.values-boundaries"
+      ],
+      "distinctness": "Starter actually lets Context value/multiplier/options override computation and injects business input into a child Context. Learner repairs that computation/forwarding boundary to use explicit arguments only. This materially differs from trace-context-001 private metadata/accessor first; repeated key/accessor mechanics alone do not earn the application.",
+      "actual_method": [
+        "Reference owns private comparable metadataKey, stores only Metadata via WithValue, and uses two-result safe assertion with zero/false on absent or wrong dynamic type; empty Trace remains present.",
+        "Apply directly synchronously invokes next(ctx,value*multiplier) once, including canceled context, returns its exact error, does not read business context keys, inject values, create unnecessary child scope or retain context.",
+        "Nested metadata preserves original parent/unrelated values/deadline/cancellation. Public noncomparable Context wrapper prevents accidental equality assertions that would exclude valid Context implementations.",
+        "Private nonzero pointer-key alternative is valid and passes public/full. Retained global-context control passes public/full but violates no-retention source method; behavior is not misreported as universal retention detection. Same-context forwarding and synchronous construction are also actually inspected, not universally inferred from limited observations."
+      ],
+      "public_feedback": "Actual public cases cover conflicting business entries/product, changed/injected entries, request metadata/control forwarding, callback count including cancellation, original error identity, absent/wrong type/string-key collision/empty metadata/shadow/parent inheritance. Grader adds bounded product grid. All16 required wrong variants yield ordinary reference-full assertions with expected specific diagnostics when grader is emptied; no compile/panic/race/timeout credit.",
+      "evidence": {
+        "canonical": ".tmp/v1-applications-08/context-canonical-v2.yaml",
+        "canonical_sha256": "cbefdada231bc4729d4bc392a84e2d16600b150329e200b629de8a655f35f458",
+        "required_mutants": 16,
+        "detected_mutants": 16,
+        "reference_public_full_vet_determinism": "pass",
+        "race": "not-applicable; synchronous contract and no concurrent reference work",
+        "fixtures": 21,
+        "ordinary_public_diagnostics": 16,
+        "passing_baseline_and_controls": 5,
+        "removed_copies": 21,
+        "fixture_results": ".tmp/v1-applications-08/context-fixture-results.json",
+        "fixture_results_sha256": "0172ea326c08864598ffc30c15551a698d4b5f5034997a91d2837dfcfa7b7686",
+        "source_snapshot_hashes": ".tmp/v1-applications-08/context-source-snapshot-hashes.json",
+        "source_snapshot_sha256": "7b7be983ed165c6c56e69565660b62acbbe53986c7bd20e5c15cbb40a26af5fe",
+        "source_files_matched": 29,
+        "report_hashes_matched": 21,
+        "rejected_history": "Initial canonical static prompt/review preflight failure provides no runtime acceptance; current v2 passes. Author-preflight metadata is explicitly not independent acceptance."
+      },
+      "source_inspection": "TASK,starter,reference,public,grader,all16mutants,private-pointer correct alternative,retained-context method control,hints,metadata,provenance,review notes and exact fixture recipe read. Current29file hashes and all21 report hashes independently checked; no source edits.",
+      "provenance": "Original ADR0008 project identity, real2026-10-23 creation, empty sources and content digest; no external donor content or invented release commit.",
+      "credit_boundaries": "Exactly one context.values-boundaries independent application. No propagation,derivation,API-design,callback,arithmetic or additional component credit. Method review remains part of learner acceptance; no new checker mechanism or universal automatic proof.",
+      "remaining": "Root may record this independent review and promote through task-promote. Final committed-I7 dependency/pins, route/prerequisite integration, one fresh stable automatic collection and all mandatory gates/consumers, exact final HEAD review and green validate remain required. No merge or learner mastery claim.",
+      "reviewer_execution": "No authored code/tests executed. Read-only actual source/evidence inspection except this requested receipt."
+    },
+    "pace-content-review.json": {
+      "decision": "approve",
+      "reviewer": "sole independent reviewer /root/reviewer",
+      "reviewed_at": "2026-10-23T05:15:54.719020+00:00",
+      "task_id": "paced-forward-001",
+      "content_digest": "7bd89aad3a12207a1bfb0f069648dd0ef25490e97c2434e05b7b0182cb8bdace",
+      "source_manifest_sha256": "cd6012122856c1d26bf6d340caaebdcd34d8324d08a8f79d65715582c8fcc976",
+      "author_receipt_sha256": "365324701ceb7457d67161a3bc8e903216918003bf0237c722ecba527d6c7c11",
+      "fixture_results_sha256": "3032a3126f15cf38dda197e58b049cc2daed2603736c3d18861a8fd05029fc92",
+      "canonical_sha256": "4275617cc5172f15dd0a42251d638769b3423a623840d1f4fa939b7e3752324c",
+      "findings": [],
+      "actual_review": {
+        "source": "Read TASK, starter/reference, public/grader, all 13 wrong variants, hints/notes, metadata/provenance and both controls. Independently matched 26 task files plus 2 control hashes to frozen manifest, and all 19 report hashes to fixture records.",
+        "behavior": "Final canonical passes public/full, 13/13 mutants, deterministic checks, vet and race. All 13 public wrong-reference reports contain the intended ordinary assertion, without panic/timeout/compile/race credit. All fixture roots are removed.",
+        "method": "Reference uses one select-loop worker and nil local channels to disable input while holding a value, token receive when idle/already permitted, and output until permitted. Closed release permanently permits remaining values; held input is preserved through EOF. Persistent channel-state alternative independently passes public/full. Sequential range/receive/send control passes behavior but fails the required nil/select method.",
+        "cleanup": "Fixture independently closes caller-owned input/release, recovers late constructor handles and drains via finite nonblocking receive/Wait steps. Inspected wrong implementations terminate or leave a closed/drainable/inactive output under these rescues. Maximum duplicate output is 16 values versus 40 drain attempts; no deadline/crash evidence is credited.",
+        "public_regression": "Original TestPacePreservesSecondTokenWhileSendHeld detects consume-extra-token by its held-send token-count assertion. Copied public-only fixture removes exactly that test, blanks grader, selects only this mutant and substitutes it as reference: reference and race pass, the sole selected mutant survives. This establishes causal protection of the repaired held-output token preservation requirement, not survival statistics for the other 12 mutants.",
+        "provenance": "Original ADR0008 creation/project identity and empty external sources retained; no fabricated commit or external donor material."
+      },
+      "credit_boundary": "One substantive application of channels.nil-disabling, subject to official promotion and batch delivery gates. No extra skill, learner mastery, full-bank readiness or automatic proof of source method.",
+      "historical_noncredit": "Retained static first precheck and ignore-permission unused-local compile precheck receive zero behavioral defect credit. Final v3 and ordinary public evidence supersede them.",
+      "remaining_gates": "Official task-promote, stable collection and all mandatory consumers/repository checks, final exact-HEAD review and green validate before merge remain required."
+    },
+    "benchmark-actual-review.json": {
+      "decision": "approve",
+      "scope": "actual-manual-source-execution-method-and-interpretation",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T05:09:38.398646+00:00",
+      "unit": "reset-sort-benchmark-001",
+      "content_digest": "1ebdd3243823e067d9f82df68803908d5d3289f49ab8b8a4f94f7e3b0db615d3",
+      "execution_sha256": "9425f9551c22fc3330679b717b7ca1ec9bec31499f1c2c9f41d49d2153234fb0",
+      "source_manifest_sha256": "19abd6087641cdfcf99ed18dda1522be71023bd437e4978e39f0d90f9e751ee6",
+      "script_sha256": "ea09c2bf7be6446e869cf02301922892a341e49d73bf299a033ea99de178af0a",
+      "findings": [],
+      "accepted_slots": [
+        "independent-application:benchmarks.loops-timing",
+        "independent-application:benchmarks.allocations",
+        "independent-application:benchmarks.experimental-design"
+      ],
+      "execution_verification": "Exact17argv commands in6independent canonical private copies match preapprovedmanifest. Preapproval timestamp precedes execution. All13assets/script/provenance pins unchanged; all24 before/after installed file snapshots match exact approvedsource and stay unchanged. Raw and published execution JSON byte-identical. All6roots removed and currently absent.15zero exits,2expected ordinary assertion failures,no timeout/crash/buildfailure; maxcommand5.107178seconds.",
+      "method_acceptance": [
+        "Actual reference owns two sizes32/256 and sorted/reverse/duplicates inputs, independent equivalence assertions against separately sorted clones, b.N iteration/reset/timer boundaries and result observation.",
+        "Every sort starts with restored original state. Work allocation/copy/prestate/assertion/result validation are outside measured interval; only operation.run is timed. Both template preservation and nil/empty/signed/duplicate/exact-length equivalence are exercised.",
+        "Correct alternate owns64/256 cases and per-iteration clone while timing stopped. Its setup allocation lifetime differs legitimately; method remains valid and all36 measurements plus correctness pass.",
+        "Timing, allocation attribution and representative repeated design constitute separate actual applications beyond first static pure join benchmark; supplied sorting bodies do not earn learner action credit."
+      ],
+      "actual_measurements": {
+        "reference_rows": 36,
+        "correct_alternative_rows": 36,
+        "cases_per_valid_specimen": 6,
+        "operations_per_case": 2,
+        "repetitions_per_pair": 3,
+        "native_iterations_per_row": 50,
+        "timed_clone_rows": 36,
+        "single_order_rows": 2,
+        "reference_ranges": "All12 rows in acceptance.md recomputed from stdout and match min/max/B/allocs. NativeGo1.27.0 darwin/arm64 AppleM4Max retained."
+      },
+      "allocation_and_timing_interpretation": "Measured reference Insertion0B/0allocs; Merge1scratch allocation,256B at32 and2048B at256. Alternate Merge512B at64 and2048B at256 despite untimed fresh work allocations. Timed-clone adds actual work storage:Insertion256/2048B and1allocation,Merge512/4096B and2. These observations support exact source boundaries, never numeric grading. Untimed allocations/GC/cache context and distinct lifetimes are acknowledged; neither experiment globally allocation-free. Relative timings depend on case; short three50x repeats establish local ranges, not significance or universal winner.",
+      "wrong_controls": {
+        "no-restore": "Actual benchmark exit1 at iteration1 on non-sorted cases; useful pre-state/original diagnostic proves reused sorted input. Source method also required if assertion removed.",
+        "unequal-sort": "Actual equivalence exit1 names Merge signed/duplicate input and incorrect exactresult; no benchmark run.",
+        "timed-clone": "All commands pass36rows. Actual source lines50-60 wrongly include clone/check/validation/observation in timer; method rejected independently of observed numeric overhead.",
+        "single-order": "Commands pass2rows but only sorted32/one repetition; representative/repeated design absent, method rejected."
+      },
+      "analysis_review": "Author analysis including added concrete256reverse/sorted contrasts, nonmonotonic short-run scaling caution and concurrently shared repository-check host accepted. All cited ranges match actualstdout; no controlled-machine/significance/generalwinner inference. This receipt supplies independent decision.",
+      "provenance_and_boundaries": "Original project identity/realcreation/sources=[] preserved. Exactly one manual unit with three benchmark applications; no automatic coverage/progress,sorting skill,additional component or learner mastery claim. Release binding remains future actualcommit.",
+      "remaining": "Final I8 route/prerequisites/dependency integration, mandatory localgates/currentstablecollectionconsumers, exactHEADreview and greenvalidate/merge remain required.",
+      "reviewer_execution": "No authored code/tests rerun; read-only exact source/evidence/hash/measurement verification except this requested receipt.",
+      "analysis_sha256": "e9c3778b10f6977ffaa22e661ac0ea8fc84c434cb80eb8437aabb00dd7e345cc"
+    },
+    "channel-actual-review.json": {
+      "decision": "approve",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T05:17:21.069318+00:00",
+      "scope": "actual finite native evidence and method acceptance",
+      "unit": "channel-permissions-close-001",
+      "content_digest": "93eefaa8a73e8800fb9013708d28a329ad369ac257989295e1d2882d2e06622c",
+      "script_sha256": "33405aa6a941927031b65a8a855b91acd48e87de6e62f2d7b9ed79ac4381dd1a",
+      "manifest_sha256": "99316c5ab172256e27c6bc61acb7914f6b9eec30c91313180b027f6fa37716f1",
+      "preexecution_sha256": "32eff98efb44fe7ad0947990020b1c1c33921799e8dcca171ef905113e19a7f1",
+      "raw_execution_sha256": "7db66b62f2efe846b3dfb79296e745cb60429a6ee979718b771f17fb84711c21",
+      "normalized_execution_sha256": "7a0a4310137fca2f3e10c568927cfa5058e33efc98b5a1ce7774d648ed335cc6",
+      "author_receipt_sha256": "f8d87371b149e6b61072f126869d81a2c90d8b70688944cd30dc954208f9a5fe",
+      "findings": [],
+      "verified": {
+        "copies": 11,
+        "commands": 40,
+        "snapshots": 54,
+        "cleanup": 11,
+        "expected_nonzero": 8,
+        "ordinary_assertion_failures": 5,
+        "native_direction_compiler_failures": 3,
+        "timeouts": 0,
+        "uncaught_runtime_failures": 0,
+        "max_command_seconds": 2.492308,
+        "go_version": "go version go1.27.0 darwin/arm64"
+      },
+      "checks": [
+        "All 24 exact source assets, provenance/script/manifest approval pins are unchanged; actual execution started after exact preexecution approval.",
+        "Independently replayed every copy event into all 54 source snapshots; text and SHA256 match exact approved assets and replacement ordering. Reconstructed normalized execution exactly from raw.",
+        "All 40 argv sequences match the 11 manifest rows, run only in unique canonical private disposable projects. Private offline environment, pinned Go and 60-second bound retained; all roots absent and cleanup recorded.",
+        "Every actual exit matches the reviewed matrix; exact useful diagnostic fragments and demo stdout checked. Starter plus four behavior-wrong cases fail ordinary assertions. Three restricted operations fail native compilation at their actual helper source, then reference replacement build/test succeeds.",
+        "Completed predictions and per-specimen prediction events precede behavioral/compiler commands. Actual queued-zero/closed-empty/open-empty distinctions and post-close flags match the recorded predictions.",
+        "Reference and named-direction alternate tests/demo pass. Unrestricted parameter control and hardcoded true flags pass behavior as intended; compiler-only unrestricted probes pass and are never executed."
+      ],
+      "actual_method": [
+        "Learner-owned publish(chan<- int) and take(<-chan int) signatures restrict distinct helper operations; owner retains bidirectional handle and calls both. Restricted and wide probes demonstrate actual native permission difference without AST/checker mechanisms.",
+        "Reference creates sufficient buffered channel, sends all values then closes, and makes len(values)+2 real nonblocking comma-ok observations. Queued zero has OK=true; two closed-empty observations have OK=false and Ready=true. Missing-close produces Ready=false after exhaustion and remains finite.",
+        "Owner actually attempts send-after-close and second close in separate synchronous supplied recovery calls. Both produce true flags. Hardcoded flags omit these operations and are rejected by method review, despite passing tests.",
+        "Correct alternate named directional types, distinct private helpers, cap(len+1) and indexed assembly satisfy the same outcome. No invented exact source shape requirement."
+      ],
+      "credit_boundary": "Two manual independent applications only: channels.directional and channels.close-semantics. No automatic coverage, ownership/launch/panic-recovery/component or learner mastery credit. Supplied report types, recovery wrapper and fixed tests/demo are not learner-authored actions.",
+      "remaining_gates": "Batch integration/placement and immutable reuse pins, stable automatic collection and all required consumers/repository gates, final exact-HEAD independent review and green validate before merge.",
+      "reviewer_execution": "Read-only source/evidence/hash checks; no authored code or native commands executed by reviewer."
+    }
+  },
+  "reuse_pin_review": {
+    "decision": "approve-pin-verification",
+    "reviewer": "sole-independent-reviewer",
+    "reviewed_at": "2026-10-23T05:17:49.447338+00:00",
+    "rows": [
+      {
+        "id": "injected-config-project-001",
+        "source_commit": "a6f9644769b2a434b8a5cb8c834f4d4d4791d16b",
+        "files_verified": 32,
+        "findings": []
+      },
+      {
+        "id": "cancel-error-pipeline-001",
+        "source_commit": "5781a387e119d1a29cbe13bee7670d0fc076f7cc",
+        "files_verified": 31,
+        "findings": []
+      }
+    ],
+    "pins_sha256": "7d504f388e18cfdf187cdf9fb7128f4d4d853620f7206ca868477d0aa76c5575",
+    "boundary": "Exact unchanged source/evidence pin admission only; prior bounded semantic review applies to two packages manual applications and one pipeline application. No new source, extra skills, automatic coverage or merged readiness. I7 delivery must complete before dependent I8 merge; integration/gates/final exact HEAD review remain."
+  },
+  "I7_dependency_delivery": {
+    "batch": "I7",
+    "status": "accepted and merged",
+    "pr": 112,
+    "url": "https://github.com/EarthMoonTransit/go-learn/pull/112",
+    "final_head": "5781a387e119d1a29cbe13bee7670d0fc076f7cc",
+    "validate_run": 39903216626,
+    "validate_conclusion": "success",
+    "merge_commit": "01a98e6db074da2f253240486737e3cc7680ac81",
+    "merged_at": "2026-10-23T05:45:05+00:00",
+    "local_gates_passed": 12,
+    "one_collection_sha256": "ee53cbd71b86daeba551b21901c402ec84ad2bf5c87df5ee6f92c44aebed1357",
+    "independent_final_review": "approved exact final HEAD",
+    "available_execution_seconds_upper_bound": 9482.0,
+    "infrastructure_seconds": 0,
+    "host_sleep_seconds": 27903,
+    "clock_note": "47 independently verified disjoint actual Sleep->Wake/DarkWake intervals; no other deductions; productive overlap counts once."
+  },
+  "stable_collection": {
+    "sha256": "36d6a4153e41d589f81ad8a26d79fa759f5cad7e8741912d43204f1033532440",
+    "tasks": 222,
+    "exit": 0,
+    "ended_at": "2026-10-23T05:43:10.536093+00:00",
+    "remaining_gates": "all mandatory repository gates/check consumers/finalHEADreview/CI/merge required"
+  }
+}

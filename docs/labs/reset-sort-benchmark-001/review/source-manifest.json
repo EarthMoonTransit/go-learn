@@ -1,0 +1,277 @@
+{
+  "status": "exact source/argv proposed; execution not yet authorized",
+  "lab": "reset-sort-benchmark-001",
+  "files": {
+    "PROCEDURE.md": "f7e9c9af37dc50341ea14a0d55c50f76c3715b7e10c9519c84e7352cbde339da",
+    "TASK.md": "353842edbc2ee4fcb89349fd35cf924cc4bbebc6312e3b2d66557c77de2ac840",
+    "alternatives/clone-outside-timer/benchmark_test.go.txt": "9dc0ae59f31923078f16b6b14a08d5fcd63a26c41c6f660091434d02a31eb30b",
+    "files/go.mod.txt": "7af6e4493164e841555bd4ed730dec2580a91d89de1597ec85f82acaf18c1c77",
+    "files/sorts.go.txt": "855bee6393879e89ef66cb20d8d569b7f1c769415708ecec09a761bfbc57ed32",
+    "files/starter_benchmark_test.go.txt": "252c7bc906266eff6652bb6325dd1deafd9fdf472ac6f217480cc9427506d744",
+    "files/starter_equivalence_test.go.txt": "d0084088bd80cffe1328e1f3362d8d55edcae6af7241ecdf278242edeb42a386",
+    "reference/benchmark_test.go.txt": "72bdeefde4028de7f373e317734c2e0df94aa3653ae7a4025e80ebc6c13a7003",
+    "reference/equivalence_test.go.txt": "89ae8656a0b6c37cf3f246a67d90e77db0c86a95d643b653f357d509b01385a7",
+    "wrong/no-restore/benchmark_test.go.txt": "f5d6d90754c8d8ecc913ba4d705937171a69c5866adb55132a8cd10cad9ee897",
+    "wrong/single-order/benchmark_test.go.txt": "90ca3ca27ae80e8c9ed162ab843ccda495550f6cdd73800a4670b99700c31760",
+    "wrong/timed-clone/benchmark_test.go.txt": "18804b3c82e8d434b65d32737e5a39f01da47b54f91fac255d010fa0d86ab9f4",
+    "wrong/unequal-sort/sorts.go.txt": "8359b42b7e0985d2fcfafe609b9dee6d438c798dbdd93275d0ca3043ba7abb3c"
+  },
+  "content_digest": "1ebdd3243823e067d9f82df68803908d5d3289f49ab8b8a4f94f7e3b0db615d3",
+  "provenance_sha256": "668c9d3b29313a7e813c61024468577d10bd72bd81f8bfb19e0ac0ec5af9d814",
+  "execution_script": ".tmp/v1-applications-08/benchmark-execute.py",
+  "execution_script_sha256": "ea09c2bf7be6446e869cf02301922892a341e49d73bf299a033ea99de178af0a",
+  "command_manifest": [
+    {
+      "specimen": "reference",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "sorts.go": "files/sorts.go.txt",
+        "benchmark_test.go": "reference/benchmark_test.go.txt",
+        "equivalence_test.go": "reference/equivalence_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "timeout_seconds": 60,
+          "expected": "version"
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^TestSortEquivalence$",
+            "-count=1",
+            "./..."
+          ],
+          "timeout_seconds": 60,
+          "expected": "pass"
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^$",
+            "-bench=^BenchmarkSort$",
+            "-benchmem",
+            "-count=3",
+            "-benchtime=50x",
+            "./..."
+          ],
+          "timeout_seconds": 60,
+          "expected": "36-rows"
+        }
+      ]
+    },
+    {
+      "specimen": "clone-outside-timer",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "sorts.go": "files/sorts.go.txt",
+        "benchmark_test.go": "alternatives/clone-outside-timer/benchmark_test.go.txt",
+        "equivalence_test.go": "reference/equivalence_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "timeout_seconds": 60,
+          "expected": "version"
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^TestSortEquivalence$",
+            "-count=1",
+            "./..."
+          ],
+          "timeout_seconds": 60,
+          "expected": "pass"
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^$",
+            "-bench=^BenchmarkSort$",
+            "-benchmem",
+            "-count=3",
+            "-benchtime=50x",
+            "./..."
+          ],
+          "timeout_seconds": 60,
+          "expected": "36-rows"
+        }
+      ]
+    },
+    {
+      "specimen": "no-restore",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "sorts.go": "files/sorts.go.txt",
+        "benchmark_test.go": "wrong/no-restore/benchmark_test.go.txt",
+        "equivalence_test.go": "reference/equivalence_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "timeout_seconds": 60,
+          "expected": "version"
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^TestSortEquivalence$",
+            "-count=1",
+            "./..."
+          ],
+          "timeout_seconds": 60,
+          "expected": "pass"
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^$",
+            "-bench=^BenchmarkSort$",
+            "-benchmem",
+            "-count=3",
+            "-benchtime=50x",
+            "./..."
+          ],
+          "timeout_seconds": 60,
+          "expected": "pre-state-failure"
+        }
+      ]
+    },
+    {
+      "specimen": "timed-clone",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "sorts.go": "files/sorts.go.txt",
+        "benchmark_test.go": "wrong/timed-clone/benchmark_test.go.txt",
+        "equivalence_test.go": "reference/equivalence_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "timeout_seconds": 60,
+          "expected": "version"
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^TestSortEquivalence$",
+            "-count=1",
+            "./..."
+          ],
+          "timeout_seconds": 60,
+          "expected": "pass"
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^$",
+            "-bench=^BenchmarkSort$",
+            "-benchmem",
+            "-count=3",
+            "-benchtime=50x",
+            "./..."
+          ],
+          "timeout_seconds": 60,
+          "expected": "36-rows-method-wrong"
+        }
+      ]
+    },
+    {
+      "specimen": "single-order",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "sorts.go": "files/sorts.go.txt",
+        "benchmark_test.go": "wrong/single-order/benchmark_test.go.txt",
+        "equivalence_test.go": "reference/equivalence_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "timeout_seconds": 60,
+          "expected": "version"
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^TestSortEquivalence$",
+            "-count=1",
+            "./..."
+          ],
+          "timeout_seconds": 60,
+          "expected": "pass"
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^$",
+            "-bench=^BenchmarkSort$",
+            "-benchmem",
+            "-count=1",
+            "-benchtime=50x",
+            "./..."
+          ],
+          "timeout_seconds": 60,
+          "expected": "2-rows-method-wrong"
+        }
+      ]
+    },
+    {
+      "specimen": "unequal-sort",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "sorts.go": "wrong/unequal-sort/sorts.go.txt",
+        "benchmark_test.go": "reference/benchmark_test.go.txt",
+        "equivalence_test.go": "reference/equivalence_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "timeout_seconds": 60,
+          "expected": "version"
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^TestSortEquivalence$",
+            "-count=1",
+            "./..."
+          ],
+          "timeout_seconds": 60,
+          "expected": "equivalence-failure"
+        }
+      ]
+    }
+  ],
+  "copies": 6,
+  "commands": 17
+}

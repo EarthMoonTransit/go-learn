@@ -1,0 +1,7 @@
+package sortbench
+
+import "testing"
+
+func BenchmarkSort(b *testing.B) {
+	// TODO: own the cases, restoration, measured loop, and observation.
+}

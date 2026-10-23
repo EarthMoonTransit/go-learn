@@ -704,6 +704,24 @@ tasks:
         detected: 10
         survived: []
       legacy: false
+    - id: context-business-boundary-001
+      state: ready
+      input_digest: 580aae08b09392d5f4f5045efe43f63d4173f25bd8812d4f21bb6c6eb126fe5b
+      task_type: debug
+      primary_skill: context.values-boundaries
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: not-applicable
+      mutants:
+        required: 16
+        total: 16
+        detected: 16
+        survived: []
+      legacy: false
     - id: copy-final-element-001
       state: ready
       input_digest: abed54a288dad593fbadedef334b9291c341937c8fb8460da07d52a14c68065c
@@ -2381,6 +2399,24 @@ tasks:
         detected: 6
         survived: []
       legacy: false
+    - id: paced-forward-001
+      state: ready
+      input_digest: dd2c9c820d92b95bc632ada6b95e2bf6cc51a947702c88028057986b85ecb4c2
+      task_type: implement
+      primary_skill: channels.nil-disabling
+      technical_status: pass
+      review_status: pass
+      promotion_eligible: true
+      failing_gate_ids: []
+      starter_status: pass
+      reference_status: pass
+      race_status: pass
+      mutants:
+        required: 13
+        total: 13
+        detected: 13
+        survived: []
+      legacy: false
     - id: package-inventory-001
       state: ready
       input_digest: 3a08c4d8087f93af6eecb4a726755f044467efae477d60f379192a6579960196
@@ -3974,16 +4010,16 @@ states:
     - state: in-review
       count: 0
     - state: ready
-      count: 213
+      count: 215
     - state: rejected
       count: 1
     - state: retired
       count: 0
 task_types:
     - task_type: debug
-      count: 50
+      count: 51
     - task_type: implement
-      count: 117
+      count: 118
     - task_type: refactor
       count: 3
     - task_type: test-writing

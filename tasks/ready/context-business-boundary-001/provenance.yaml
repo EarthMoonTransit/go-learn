@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "2ba56b476806a77d449abaa5c2fb1cc6ce313b7f2cb0dbd8b0684371f54da9b8"
+  },
+  "creation": {
+    "author": "v1-applications-08-root-author",
+    "created_at": "2026-10-23",
+    "summary": "Original context business-boundary debugging application after independent contract approval and task-init; no external task sources."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/context-business-boundary-001.yaml"
+  }
+}

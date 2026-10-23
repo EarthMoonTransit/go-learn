@@ -1,0 +1,25 @@
+package channel
+
+// Reading distinguishes a completed receive from a nonblocking default.
+type Reading struct {
+	Value int
+	OK    bool
+	Ready bool
+}
+
+type Report struct {
+	Readings      []Reading
+	SendPanicked  bool
+	ClosePanicked bool
+}
+
+// observePanic is supplied safety infrastructure, not a learner-owned method.
+func observePanic(operation func()) (panicked bool) {
+	defer func() {
+		if recover() != nil {
+			panicked = true
+		}
+	}()
+	operation()
+	return false
+}

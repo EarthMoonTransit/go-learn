@@ -1,0 +1,46 @@
+{
+  "decision": "approve",
+  "scope": "actual-manual-source-execution-method-and-interpretation",
+  "reviewer": "sole-independent-reviewer",
+  "reviewed_at": "2026-10-23T05:09:38.398646+00:00",
+  "unit": "reset-sort-benchmark-001",
+  "content_digest": "1ebdd3243823e067d9f82df68803908d5d3289f49ab8b8a4f94f7e3b0db615d3",
+  "execution_sha256": "9425f9551c22fc3330679b717b7ca1ec9bec31499f1c2c9f41d49d2153234fb0",
+  "source_manifest_sha256": "19abd6087641cdfcf99ed18dda1522be71023bd437e4978e39f0d90f9e751ee6",
+  "script_sha256": "ea09c2bf7be6446e869cf02301922892a341e49d73bf299a033ea99de178af0a",
+  "findings": [],
+  "accepted_slots": [
+    "independent-application:benchmarks.loops-timing",
+    "independent-application:benchmarks.allocations",
+    "independent-application:benchmarks.experimental-design"
+  ],
+  "execution_verification": "Exact17argv commands in6independent canonical private copies match preapprovedmanifest. Preapproval timestamp precedes execution. All13assets/script/provenance pins unchanged; all24 before/after installed file snapshots match exact approvedsource and stay unchanged. Raw and published execution JSON byte-identical. All6roots removed and currently absent.15zero exits,2expected ordinary assertion failures,no timeout/crash/buildfailure; maxcommand5.107178seconds.",
+  "method_acceptance": [
+    "Actual reference owns two sizes32/256 and sorted/reverse/duplicates inputs, independent equivalence assertions against separately sorted clones, b.N iteration/reset/timer boundaries and result observation.",
+    "Every sort starts with restored original state. Work allocation/copy/prestate/assertion/result validation are outside measured interval; only operation.run is timed. Both template preservation and nil/empty/signed/duplicate/exact-length equivalence are exercised.",
+    "Correct alternate owns64/256 cases and per-iteration clone while timing stopped. Its setup allocation lifetime differs legitimately; method remains valid and all36 measurements plus correctness pass.",
+    "Timing, allocation attribution and representative repeated design constitute separate actual applications beyond first static pure join benchmark; supplied sorting bodies do not earn learner action credit."
+  ],
+  "actual_measurements": {
+    "reference_rows": 36,
+    "correct_alternative_rows": 36,
+    "cases_per_valid_specimen": 6,
+    "operations_per_case": 2,
+    "repetitions_per_pair": 3,
+    "native_iterations_per_row": 50,
+    "timed_clone_rows": 36,
+    "single_order_rows": 2,
+    "reference_ranges": "All12 rows in acceptance.md recomputed from stdout and match min/max/B/allocs. NativeGo1.27.0 darwin/arm64 AppleM4Max retained."
+  },
+  "allocation_and_timing_interpretation": "Measured reference Insertion0B/0allocs; Merge1scratch allocation,256B at32 and2048B at256. Alternate Merge512B at64 and2048B at256 despite untimed fresh work allocations. Timed-clone adds actual work storage:Insertion256/2048B and1allocation,Merge512/4096B and2. These observations support exact source boundaries, never numeric grading. Untimed allocations/GC/cache context and distinct lifetimes are acknowledged; neither experiment globally allocation-free. Relative timings depend on case; short three50x repeats establish local ranges, not significance or universal winner.",
+  "wrong_controls": {
+    "no-restore": "Actual benchmark exit1 at iteration1 on non-sorted cases; useful pre-state/original diagnostic proves reused sorted input. Source method also required if assertion removed.",
+    "unequal-sort": "Actual equivalence exit1 names Merge signed/duplicate input and incorrect exactresult; no benchmark run.",
+    "timed-clone": "All commands pass36rows. Actual source lines50-60 wrongly include clone/check/validation/observation in timer; method rejected independently of observed numeric overhead.",
+    "single-order": "Commands pass2rows but only sorted32/one repetition; representative/repeated design absent, method rejected."
+  },
+  "analysis_review": "review/acceptance.md author analysis accepted as accurate with explicit limits; this receipt supplies independent decision. No assertion or measured number invented.",
+  "provenance_and_boundaries": "Original project identity/realcreation/sources=[] preserved. Exactly one manual unit with three benchmark applications; no automatic coverage/progress,sorting skill,additional component or learner mastery claim. Release binding remains future actualcommit.",
+  "remaining": "Final I8 route/prerequisites/dependency integration, mandatory localgates/currentstablecollectionconsumers, exactHEADreview and greenvalidate/merge remain required.",
+  "reviewer_execution": "No authored code/tests rerun; read-only exact source/evidence/hash/measurement verification except this requested receipt."
+}

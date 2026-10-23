@@ -1780,6 +1780,22 @@
             "context.deadlines",
             "context.timeouts"
           ]
+        },
+        {
+          "number": 30,
+          "task_id": "paced-forward-001",
+          "role": "transfer",
+          "skills": [
+            "channels.nil-disabling"
+          ]
+        },
+        {
+          "number": 31,
+          "task_id": "context-business-boundary-001",
+          "role": "transfer",
+          "skills": [
+            "context.values-boundaries"
+          ]
         }
       ],
       "number": 9

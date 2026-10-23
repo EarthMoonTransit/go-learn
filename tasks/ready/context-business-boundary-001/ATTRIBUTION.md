@@ -1,0 +1,1 @@
+Original Go Learn material under config/project-identity.yaml, Apache-2.0. Creation and digest in provenance.yaml; external sources empty. Actual commit binding deferred to release manifest under ADR0008.
