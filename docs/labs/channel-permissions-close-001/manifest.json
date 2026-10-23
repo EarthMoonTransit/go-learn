@@ -1,0 +1,365 @@
+{
+  "unit": "channel-permissions-close-001",
+  "status": "prepared inert inputs; exact preexecution approval and actual execution pending",
+  "initial_files": {
+    "files/go.mod.txt": "go.mod",
+    "files/channel/report.go.txt": "channel/report.go",
+    "files/channel/observe.go.txt": "channel/observe.go",
+    "files/channel/observe_test.go.txt": "channel/observe_test.go",
+    "files/cmd/demo/main.go.txt": "cmd/demo/main.go",
+    "files/PREDICTIONS.md": "PREDICTIONS.md"
+  },
+  "editable_paths": [
+    "channel/observe.go",
+    "PREDICTIONS.md"
+  ],
+  "predictions_replacement": "reference/PREDICTIONS.md",
+  "module": "finite.local/channel-permissions",
+  "go_version": "1.27",
+  "go_executable": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+  "copies": 11,
+  "commands": 40,
+  "command_timeout_seconds": 60,
+  "demo_stdout": "reading 0: value=3 ok=true ready=true\nreading 1: value=0 ok=true ready=true\nreading 2: value=-2 ok=true ready=true\nreading 3: value=0 ok=false ready=true\nreading 4: value=0 ok=false ready=true\nsend-after-close panic: true\nsecond-close panic: true\n",
+  "compiler_diagnostics": {
+    "producer-receive": [
+      "channel/observe.go",
+      "receive from send-only channel"
+    ],
+    "receiver-send": [
+      "channel/observe.go",
+      "send to receive-only channel"
+    ],
+    "receiver-close": [
+      "channel/observe.go",
+      "close receive-only channel"
+    ]
+  },
+  "ordinary_failure_diagnostics": {
+    "missing-close": [
+      "Ready:false}; want",
+      "send-after-close panic = false; want true",
+      "second-close panic = false; want true"
+    ],
+    "discard-buffer": [
+      "reading[0]",
+      "want {Value:3 OK:true Ready:true}"
+    ],
+    "zero-as-closure": [
+      "reading[0] = {Value:0 OK:false Ready:true}; want {Value:0 OK:true Ready:true}"
+    ],
+    "suppress-panic-attempts": [
+      "send-after-close panic = false; want true",
+      "second-close panic = false; want true"
+    ]
+  },
+  "starter_diagnostics": [
+    "reading count = 0; want 2",
+    "send-after-close panic = false; want true"
+  ],
+  "specimens": [
+    {
+      "name": "reference",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        [
+          "run",
+          "./cmd/demo"
+        ]
+      ],
+      "replacements": [
+        "reference/channel/observe.go.txt"
+      ],
+      "interpretation": "Starter ordinary assertion failure, then correct tests/demo. Predictions before commands."
+    },
+    {
+      "name": "producer-receive",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "build",
+          "./..."
+        ],
+        [
+          "build",
+          "./..."
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ]
+      ],
+      "replacements": [
+        "probes/producer-receive/channel/observe.go.txt",
+        "reference/channel/observe.go.txt"
+      ],
+      "interpretation": "Native permission rejection; restore by removing only the inserted operation, preserving direction."
+    },
+    {
+      "name": "receiver-send",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "build",
+          "./..."
+        ],
+        [
+          "build",
+          "./..."
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ]
+      ],
+      "replacements": [
+        "probes/receiver-send/channel/observe.go.txt",
+        "reference/channel/observe.go.txt"
+      ],
+      "interpretation": "Native permission rejection; restore by removing only the inserted operation, preserving direction."
+    },
+    {
+      "name": "receiver-close",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "build",
+          "./..."
+        ],
+        [
+          "build",
+          "./..."
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ]
+      ],
+      "replacements": [
+        "probes/receiver-close/channel/observe.go.txt",
+        "reference/channel/observe.go.txt"
+      ],
+      "interpretation": "Native permission rejection; restore by removing only the inserted operation, preserving direction."
+    },
+    {
+      "name": "missing-close",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ]
+      ],
+      "replacements": [
+        "wrong/missing-close/channel/observe.go.txt",
+        "reference/channel/observe.go.txt"
+      ],
+      "interpretation": "Finite ordinary observation failure; correct replacement passes identical test command."
+    },
+    {
+      "name": "discard-buffer",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ]
+      ],
+      "replacements": [
+        "wrong/discard-buffer/channel/observe.go.txt",
+        "reference/channel/observe.go.txt"
+      ],
+      "interpretation": "Finite ordinary observation failure; correct replacement passes identical test command."
+    },
+    {
+      "name": "zero-as-closure",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ]
+      ],
+      "replacements": [
+        "wrong/zero-as-closure/channel/observe.go.txt",
+        "reference/channel/observe.go.txt"
+      ],
+      "interpretation": "Finite ordinary observation failure; correct replacement passes identical test command."
+    },
+    {
+      "name": "suppress-panic-attempts",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ]
+      ],
+      "replacements": [
+        "wrong/suppress-panic-attempts/channel/observe.go.txt",
+        "reference/channel/observe.go.txt"
+      ],
+      "interpretation": "Finite ordinary observation failure; correct replacement passes identical test command."
+    },
+    {
+      "name": "unrestricted-helpers",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        [
+          "run",
+          "./cmd/demo"
+        ],
+        [
+          "build",
+          "./..."
+        ],
+        [
+          "build",
+          "./..."
+        ],
+        [
+          "build",
+          "./..."
+        ]
+      ],
+      "replacements": [
+        "wrong/unrestricted-helpers/channel/observe.go.txt",
+        "probes/unrestricted-producer-receive/channel/observe.go.txt",
+        "probes/unrestricted-receiver-send/channel/observe.go.txt",
+        "probes/unrestricted-receiver-close/channel/observe.go.txt"
+      ],
+      "interpretation": "Behavior and all compiler probes pass; method rejects unrestricted parameters. Never run inserted probe bodies."
+    },
+    {
+      "name": "hardcoded-panic-flags",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        [
+          "run",
+          "./cmd/demo"
+        ]
+      ],
+      "replacements": [
+        "wrong/hardcoded-panic-flags/channel/observe.go.txt"
+      ],
+      "interpretation": "Behavior passes; method rejects absent actual post-close operations."
+    },
+    {
+      "name": "correct-alternate",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-count=1",
+          "./..."
+        ],
+        [
+          "run",
+          "./cmd/demo"
+        ]
+      ],
+      "replacements": [
+        "correct-alternate/channel/observe.go.txt"
+      ],
+      "interpretation": "Named directional channel types, distinct private helper names and allocation remain valid."
+    }
+  ],
+  "method_wrong_controls": [
+    "unrestricted-helpers",
+    "hardcoded-panic-flags"
+  ],
+  "skills": {
+    "primary": "channels.directional",
+    "secondary": [
+      "channels.close-semantics"
+    ]
+  },
+  "prerequisites": [
+    "channels.operations-blocking",
+    "channels.ownership",
+    "channels.select",
+    "functions.signatures-results",
+    "functions.function-values",
+    "functions.closure-capture",
+    "control-flow.for",
+    "slices.len-cap-slicing",
+    "structs.literals-zero"
+  ],
+  "unchanged_preparation_commit": "a6f9644769b2a434b8a5cb8c834f4d4d4791d16b",
+  "unchanged_preparation_paths": [
+    "tasks/ready/closed-receive-001",
+    "tasks/ready/owned-values-001",
+    "tasks/ready/owned-batch-channel-001"
+  ],
+  "execution_recipe": ".tmp/v1-applications-08/channel-execute.py --approved-execution",
+  "execution_boundary": "Only after exact source/content/script hash and argv preexecution approval. Fresh offline private copies; no checkout execution or automatic coverage."
+}

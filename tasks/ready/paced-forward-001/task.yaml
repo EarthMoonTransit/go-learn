@@ -1,0 +1,55 @@
+schema_version: 2
+id: paced-forward-001
+title: Pace a finite stream
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: channels.nil-disabling
+    secondary: []
+prerequisites:
+    - channels.select
+    - channels.operations-blocking
+    - channels.ownership
+    - channels.directional
+    - channels.range-drain
+    - goroutines.launch-lifecycle
+new_concepts: []
+difficulty: basic
+estimated_time_minutes:
+    min: 20
+    max: 40
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - nil-output
+        - buffered-output
+        - wait-eof-before-return
+        - ignore-permission
+        - consume-idle-token
+        - consume-extra-token
+        - read-ahead
+        - skip-zero
+        - duplicate-value
+        - reverse-batch
+        - drop-on-release-close
+        - never-close
+        - shared-output
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

@@ -1,0 +1,59 @@
+schema_version: 2
+id: context-business-boundary-001
+title: Separate request metadata from explicit business arguments
+activity: debugging
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: context.values-boundaries
+    secondary: []
+prerequisites:
+    - context.propagation-api
+    - context.cancellation
+    - interfaces.dynamic-type-value
+    - interfaces.type-assertions
+    - functions.function-values
+    - functions.signatures-results
+    - expressions.arithmetic
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 20
+    max: 35
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - context-multiplier
+        - context-value
+        - context-options
+        - inject-business
+        - detach-callback
+        - skip-canceled
+        - repeat-callback
+        - drop-error
+        - replace-error
+        - string-key
+        - empty-absent
+        - keep-ancestor
+        - wrong-type-present
+        - always-present
+        - drop-parent
+        - wrong-product
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

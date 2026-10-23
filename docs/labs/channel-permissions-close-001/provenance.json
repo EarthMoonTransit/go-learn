@@ -1,0 +1,40 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-applications-08-channel-author",
+    "created_at": "2026-10-23",
+    "summary": "Original finite channel helper permissions, buffered closure observations and safely recovered owner operations after sole I8 contract approval. Earlier tasks are unchanged preparation only; no external source text/code/tests used."
+  },
+  "sources": [],
+  "content_digest": "93eefaa8a73e8800fb9013708d28a329ad369ac257989295e1d2882d2e06622c",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "c84c57699f7b69da410a6f3010a333ab6a75b4d7b9f55627c807496197b009d1",
+    "TASK.md": "fbb484b772f84c6ad5980c8c7aad6fec47cafdfe82ef3bf99ba0f5bc1aee074b",
+    "correct-alternate/channel/observe.go.txt": "f3ff4b7abefe573c393a5c358cbc0d7d568542286d424f51cb4b76946597a035",
+    "files/PREDICTIONS.md": "ee623eb1e9e2400c7bb23b9aca8d2a991efaf19ab5d187f981f4c4ba69724849",
+    "files/channel/observe.go.txt": "561cb5c543133c5ec3b3f21939a6557d15f76fe57de072f5fab4ae7180506b25",
+    "files/channel/observe_test.go.txt": "f7147185681ed616eace923798ccb456117fa6b80c7156f29714636a110089fb",
+    "files/channel/report.go.txt": "aebd151f6673b38b2069b781c28d390eb68972efaa98faa784e8e690be3d066d",
+    "files/cmd/demo/main.go.txt": "1a15d9edd9b29639022d01a16c6f151b87940374f88746296d3fbd6105ba2f2d",
+    "files/go.mod.txt": "76e90fcbae731e4748fb689c1e1891e8e2a56cfa720f8a7cd58eb2ca940a340e",
+    "manifest.json": "99316c5ab172256e27c6bc61acb7914f6b9eec30c91313180b027f6fa37716f1",
+    "probes/producer-receive/channel/observe.go.txt": "b0f1f573c6c9016c6fda3f27b9a211b4658ae79f5a263bca175976c7d5d7dabc",
+    "probes/receiver-close/channel/observe.go.txt": "0b9f54c67bf51aee48d3512b8ba43c6509911190b0408f7917fcea4b4f77ff74",
+    "probes/receiver-send/channel/observe.go.txt": "0a98e343b825a53728b47a91ebe5c47fbab5e2d51a62d4e6ee38983519f113c1",
+    "probes/unrestricted-producer-receive/channel/observe.go.txt": "86a357e52cfecf01afe587a74f8446a5b4c2d37a6ccfb833fb45d537ae979e9b",
+    "probes/unrestricted-receiver-close/channel/observe.go.txt": "6f231be426dc08ba634e2582f08edf069c9b0ae2ac10c941bf4cdc7b754d9db4",
+    "probes/unrestricted-receiver-send/channel/observe.go.txt": "334d559b414e4e243bb94d030db4908f2a69b20d7ccf94bfb07a9e194d1b291d",
+    "reference/PREDICTIONS.md": "f10db63f8b105f5f6da01112ae3ec84846c8715f9830a31c681a637ef9a7b16f",
+    "reference/channel/observe.go.txt": "d023e091a48baaf6b6cf60ff73aaf3e592ca2fb0c69226c50795692db391d2fa",
+    "wrong/discard-buffer/channel/observe.go.txt": "17bd9574ba3b9626aaba4456ada41f4aa81c0bd0b353ee866d084d390e857334",
+    "wrong/hardcoded-panic-flags/channel/observe.go.txt": "953bd8cadc4c303ac62d9a4200a5a1d1295114cd670153380113fabcd26469cf",
+    "wrong/missing-close/channel/observe.go.txt": "fcce067b55967fdb6112b4d02842e1a2444ddde6bee33f0c411aa778c7c66cb3",
+    "wrong/suppress-panic-attempts/channel/observe.go.txt": "4cc1e486676bb50737e725a54a8aec6fc311f1d57b6fe05bec3018faabac3a13",
+    "wrong/unrestricted-helpers/channel/observe.go.txt": "15048fb360278ecf85e399e085c89a26aa2e997b70188571f34aae9e3b94e384",
+    "wrong/zero-as-closure/channel/observe.go.txt": "01c159854504ab4b3c2219f0378e3fc376606ccd2273aaef3e85e9c0b1edc55d"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

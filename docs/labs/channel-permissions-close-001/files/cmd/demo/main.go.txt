@@ -1,0 +1,16 @@
+package main
+
+import (
+	"fmt"
+
+	"finite.local/channel-permissions/channel"
+)
+
+func main() {
+	report := channel.Observe([]int{3, 0, -2})
+	for index, reading := range report.Readings {
+		fmt.Printf("reading %d: value=%d ok=%t ready=%t\n", index, reading.Value, reading.OK, reading.Ready)
+	}
+	fmt.Printf("send-after-close panic: %t\n", report.SendPanicked)
+	fmt.Printf("second-close panic: %t\n", report.ClosePanicked)
+}

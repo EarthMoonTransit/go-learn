@@ -1,0 +1,36 @@
+package sortbench
+
+import (
+	"slices"
+	"testing"
+)
+
+func TestSortEquivalence(t *testing.T) {
+	cases := []sortCase{
+		{"nil", nil},
+		{"empty", []int{}},
+		{"single-negative", []int{-9}},
+		{"signed-duplicates", []int{4, -3, 4, 0, -3, 2}},
+	}
+	cases = append(cases, benchmarkCases()...)
+	for _, fixture := range cases {
+		original := slices.Clone(fixture.input)
+		want := slices.Clone(original)
+		slices.Sort(want)
+		for _, operation := range []struct {
+			name string
+			run func([]int)
+		}{{"Insertion", Insertion}, {"Merge", Merge}} {
+			t.Run(fixture.name+"/"+operation.name, func(t *testing.T) {
+				work := slices.Clone(fixture.input)
+				operation.run(work)
+				if len(work) != len(original) || !slices.Equal(work, want) {
+					t.Errorf("%s input=%v: sorted=%v; want exact ascending=%v (length %d)", operation.name, original, work, want, len(original))
+				}
+				if !slices.Equal(fixture.input, original) {
+					t.Errorf("%s changed input template: got=%v want=%v", operation.name, fixture.input, original)
+				}
+			})
+		}
+	}
+}

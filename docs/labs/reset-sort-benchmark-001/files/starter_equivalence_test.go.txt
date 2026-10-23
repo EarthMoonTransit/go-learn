@@ -1,0 +1,7 @@
+package sortbench
+
+import "testing"
+
+func TestSortEquivalence(t *testing.T) {
+	// TODO: assert exact results independently, including all benchmark cases.
+}

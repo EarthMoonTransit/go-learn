@@ -1,0 +1,68 @@
+package sortbench
+
+import (
+	"fmt"
+	"slices"
+	"testing"
+)
+
+type sortCase struct {
+	name string
+	input []int
+}
+
+func benchmarkCases() []sortCase {
+	var cases []sortCase
+	for _, size := range []int{64, 256} {
+		ascending := make([]int, size)
+		reverse := make([]int, size)
+		repeated := make([]int, size)
+		for i := range ascending {
+			ascending[i] = i - size/2
+			reverse[i] = size/2 - i
+			repeated[i] = (i*7+3)%13 - 6
+		}
+		cases = append(cases,
+			sortCase{fmt.Sprintf("n%d/sorted", size), ascending},
+			sortCase{fmt.Sprintf("n%d/reverse", size), reverse},
+			sortCase{fmt.Sprintf("n%d/duplicates", size), repeated},
+		)
+	}
+	return cases
+}
+
+var observed int
+
+func BenchmarkSort(b *testing.B) {
+	for _, fixture := range benchmarkCases() {
+		for _, operation := range []struct {
+			name string
+			run func([]int)
+		}{{"Insertion", Insertion}, {"Merge", Merge}} {
+			b.Run(fixture.name+"/"+operation.name, func(b *testing.B) {
+				b.StopTimer()
+				original := slices.Clone(fixture.input)
+				want := slices.Clone(original)
+				slices.Sort(want)
+				b.ReportAllocs()
+				b.ResetTimer()
+				for iteration := 0; iteration < b.N; iteration++ {
+					work := slices.Clone(original)
+					if !slices.Equal(work, original) {
+						b.Fatalf("%s iteration %d pre-state=%v; want original=%v", fixture.name, iteration, work, original)
+					}
+					b.StartTimer()
+					operation.run(work)
+					b.StopTimer()
+					if !slices.Equal(work, want) {
+						b.Fatalf("%s iteration %d sorted=%v; want=%v", fixture.name, iteration, work, want)
+					}
+					observed = work[len(work)-1]
+				}
+				if !slices.Equal(fixture.input, original) {
+					b.Fatalf("%s template changed: got=%v want=%v", fixture.name, fixture.input, original)
+				}
+			})
+		}
+	}
+}

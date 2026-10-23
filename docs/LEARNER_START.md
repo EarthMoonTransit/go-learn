@@ -176,4 +176,23 @@ The unchanged bounded-job-pool is the finite concurrent assessment's complete
 work alternative: bounded execution admission, exact indexed results/errors,
 and joined closure. Cancellation and queue-capacity policy are outside that
 assessment. The unchanged owned-batch-channel separately applies worker launch
-and termination; it does not establish the still-open close-semantics application.
+and termination; it does not establish the close-semantics application, assessed separately below.
+
+Pace a finite stream follows merge-two-streams and the buffer-window application:
+review actual local-nil input/release/output gating in addition to behavior.
+The Context business-boundary repair follows trace-context; business arguments
+stay explicit, while request metadata crosses the callback boundary.
+
+Continue these manual applications with actual files/results and checklist review:
+
+| Placement | Unit | Independent action |
+| --- | --- | --- |
+| After owned-values, closed-receive and select preparation | [Channel permissions and closure](labs/channel-permissions-close-001/TASK.md) | Choose helper directions, predict comma-ok buffered closure and observe real compiler/post-close behavior |
+| After native join benchmark | [Mutable-input benchmark](labs/reset-sort-benchmark-001/TASK.md) | Own reset/timing/allocation boundaries and representative repeated comparisons with equivalent results |
+
+The unchanged injected-config-project also applies its actual production import
+graph and internal delegation with a separate client. Supplied names/layout,
+module commands, cycle diagnosis and test-package choice earn no extra credit.
+The unchanged cancel-error-pipeline separately applies whole-pipeline termination
+on intermediate failure or parent cancellation; this is no second cancellation
+encounter or new automatic task. Manual review never changes automatic progress.

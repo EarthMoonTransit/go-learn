@@ -1,0 +1,45 @@
+{
+  "decision": "approve",
+  "reviewer": "sole-independent-reviewer",
+  "reviewed_at": "2026-10-23T05:17:21.069318+00:00",
+  "scope": "actual finite native evidence and method acceptance",
+  "unit": "channel-permissions-close-001",
+  "content_digest": "93eefaa8a73e8800fb9013708d28a329ad369ac257989295e1d2882d2e06622c",
+  "script_sha256": "33405aa6a941927031b65a8a855b91acd48e87de6e62f2d7b9ed79ac4381dd1a",
+  "manifest_sha256": "99316c5ab172256e27c6bc61acb7914f6b9eec30c91313180b027f6fa37716f1",
+  "preexecution_sha256": "32eff98efb44fe7ad0947990020b1c1c33921799e8dcca171ef905113e19a7f1",
+  "raw_execution_sha256": "7db66b62f2efe846b3dfb79296e745cb60429a6ee979718b771f17fb84711c21",
+  "normalized_execution_sha256": "7a0a4310137fca2f3e10c568927cfa5058e33efc98b5a1ce7774d648ed335cc6",
+  "author_receipt_sha256": "f8d87371b149e6b61072f126869d81a2c90d8b70688944cd30dc954208f9a5fe",
+  "findings": [],
+  "verified": {
+    "copies": 11,
+    "commands": 40,
+    "snapshots": 54,
+    "cleanup": 11,
+    "expected_nonzero": 8,
+    "ordinary_assertion_failures": 5,
+    "native_direction_compiler_failures": 3,
+    "timeouts": 0,
+    "uncaught_runtime_failures": 0,
+    "max_command_seconds": 2.492308,
+    "go_version": "go version go1.27.0 darwin/arm64"
+  },
+  "checks": [
+    "All 24 exact source assets, provenance/script/manifest approval pins are unchanged; actual execution started after exact preexecution approval.",
+    "Independently replayed every copy event into all 54 source snapshots; text and SHA256 match exact approved assets and replacement ordering. Reconstructed normalized execution exactly from raw.",
+    "All 40 argv sequences match the 11 manifest rows, run only in unique canonical private disposable projects. Private offline environment, pinned Go and 60-second bound retained; all roots absent and cleanup recorded.",
+    "Every actual exit matches the reviewed matrix; exact useful diagnostic fragments and demo stdout checked. Starter plus four behavior-wrong cases fail ordinary assertions. Three restricted operations fail native compilation at their actual helper source, then reference replacement build/test succeeds.",
+    "Completed predictions and per-specimen prediction events precede behavioral/compiler commands. Actual queued-zero/closed-empty/open-empty distinctions and post-close flags match the recorded predictions.",
+    "Reference and named-direction alternate tests/demo pass. Unrestricted parameter control and hardcoded true flags pass behavior as intended; compiler-only unrestricted probes pass and are never executed."
+  ],
+  "actual_method": [
+    "Learner-owned publish(chan<- int) and take(<-chan int) signatures restrict distinct helper operations; owner retains bidirectional handle and calls both. Restricted and wide probes demonstrate actual native permission difference without AST/checker mechanisms.",
+    "Reference creates sufficient buffered channel, sends all values then closes, and makes len(values)+2 real nonblocking comma-ok observations. Queued zero has OK=true; two closed-empty observations have OK=false and Ready=true. Missing-close produces Ready=false after exhaustion and remains finite.",
+    "Owner actually attempts send-after-close and second close in separate synchronous supplied recovery calls. Both produce true flags. Hardcoded flags omit these operations and are rejected by method review, despite passing tests.",
+    "Correct alternate named directional types, distinct private helpers, cap(len+1) and indexed assembly satisfy the same outcome. No invented exact source shape requirement."
+  ],
+  "credit_boundary": "Two manual independent applications only: channels.directional and channels.close-semantics. No automatic coverage, ownership/launch/panic-recovery/component or learner mastery credit. Supplied report types, recovery wrapper and fixed tests/demo are not learner-authored actions.",
+  "remaining_gates": "Batch integration/placement and immutable reuse pins, stable automatic collection and all required consumers/repository gates, final exact-HEAD independent review and green validate before merge.",
+  "reviewer_execution": "Read-only source/evidence/hash checks; no authored code or native commands executed by reviewer."
+}

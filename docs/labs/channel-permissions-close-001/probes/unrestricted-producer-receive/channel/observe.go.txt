@@ -1,0 +1,35 @@
+package channel
+
+func publish(dst chan int, values []int) {
+	_ = <-dst // Native permission probe; compile only.
+	for _, value := range values {
+		dst <- value
+	}
+	close(dst)
+}
+
+func take(src chan int) Reading {
+	select {
+	case value, ok := <-src:
+		return Reading{Value: value, OK: ok, Ready: true}
+	default:
+		return Reading{}
+	}
+}
+
+func Observe(values []int) Report {
+	owner := make(chan int, len(values))
+	publish(owner, values)
+	report := Report{Readings: make([]Reading, 0, len(values)+2)}
+	for count := 0; count < len(values)+2; count++ {
+		report.Readings = append(report.Readings, take(owner))
+	}
+	report.SendPanicked = observePanic(func() {
+		select {
+		case owner <- 91:
+		default:
+		}
+	})
+	report.ClosePanicked = observePanic(func() { close(owner) })
+	return report
+}

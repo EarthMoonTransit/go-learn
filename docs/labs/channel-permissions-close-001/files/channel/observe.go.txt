@@ -1,0 +1,7 @@
+package channel
+
+// Observe reports the operations described in TASK.md.
+// Author the helper signatures and bodies yourself.
+func Observe(values []int) Report {
+	return Report{}
+}

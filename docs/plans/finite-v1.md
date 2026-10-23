@@ -94,15 +94,15 @@ debugging or learner-test profiles only when they assess the intended outcome.
   external outage; the same repeated failure blocks. No new controller; handoff
   preserves the goal and does not mean completion.
 
-## Current checkpoint: I6 accepted; I7 content accepted and local delivery gates
+## Current checkpoint: I7 accepted; I8 final gates; I9 in progress
 
 - I3 PR107 and diagnostic-only tooling PR108 are accepted. The sync.Once fixture was repaired without checker expansion. Modules/workspaces and native benchmarks met the batch-two deadline; all49original pair decisions remain preserved.
 - I4 PR109: final HEAD0241dbc, validate39836444522, merge2e1710a42381db9d60e5d3bc251c2702c7951804 at19:37:47UTC. All12local gates used one213collection; available87.07minutes, infrastructure≤4minutes.
 - I5 PR110: final HEAD1992244, validate39836802152, mergea1bd31ed7a1a8b87cca24d2a2dc987aa2902bb58 at19:39:56UTC. All8own gates passed; unchanged automatic inputs reused213collection. Native evidence retained19copies66commands; available67.45minutes, infrastructure0.
 - **All28original first slots were accepted by batch5.** I6 PR111 is now accepted: final HEADa6f9644, sole review, all12local gates plus fresh consumers, greenvalidate39845594369 and merge2ad4b90e2c65bf13ac51d424b1e0a87175c18d63 at20:37:43UTC. One216collection;18native copies45commands;41useful public diagnostics. Available125.23minutes, infrastructure≤5minutes; no interruption or productive-overlap deductions. The19:37reviewer outage and20:01owner resume are retained history, not a current blocker.
 - Accepted I6 inventory:206route/209ready/216checked/12manual. Remaining68independent applications, one component, zero old-pair repairs. Original49decisions remain preserved with separate accepted repairs. Manual evidence does not add automatic coverage; learner mastery is unknown.
-- I7 has six units: four newly accepted automatic applications and two unchanged reuses. Contracts and actual source/evidence/method review are approved.68distinct ordinary public defects,95copied fixtures, four behavior-passing method-rejected controls and a causal overlapping-call regression are retained. Invalid runtime specimens are preserved without credit. Eight official transitions preserve all4342old task files and206route objects/order. Final delivery requires the single fresh220collection, mandatory local gates, final diff/HEAD review and greenvalidate. Potential accepted remainder61applications/0components; no I7merge credit yet.
-- I7 clock began19:22UTC; documented47disjoint pmset sleep intervals exclude27903seconds, with all DarkWake activity counted. At04:56:50UTC23Oct, I7available109.79minutes, I8available36.14minutes; adjusted checkpoints07:07:03UTC and08:20:42UTC. No CI/owner-wait/productive-overlap deduction, infrastructure0. I8 bounded planning began20:35:39UTC in codex/v1-applications-08. Four new contracts and two bounded reuse candidates are approved; unique assets may be authored now, committed I7base/full immutable pins before integration/full gates. Native execution still needs exact preexecution review. Goal remains unfinished.
+- I7 has six units: four newly accepted automatic applications and two unchanged reuses. Contracts and actual source/evidence/method review are approved.68distinct ordinary public defects,95copied fixtures, four behavior-passing method-rejected controls and a causal overlapping-call regression are retained. Invalid runtime specimens are preserved without credit. Eight official transitions preserve all4342old task files and206route objects/order. Final HEAD5781a387e119d1a29cbe13bee7670d0fc076f7cc is independently approved; all12local gates passed05:11:53UTC23Oct using one220collection. PR112validate39903216626 succeeded and merged01a98e6db074da2f253240486737e3cc7680ac81 at05:45:05UTC23Oct. Accepted remainder61applications/0components; all six components delivered. I7 available execution upper bound158.03minutes, infrastructure0.
+- I7 clock began19:22UTC; documented47disjoint pmset sleep intervals exclude27903seconds, with all DarkWake activity counted. At04:56:50UTC23Oct, I7available109.79minutes, I8available36.14minutes; adjusted checkpoints07:07:03UTC and08:20:42UTC. No CI/owner-wait/productive-overlap deduction, infrastructure0. I8 bounded planning began20:35:39UTC in codex/v1-applications-08. The four new units now have actual source/method/evidence acceptance; both native recipes were approved before execution and their real results independently accepted. Both unchanged reuses have complete immutable pins. Root is based on committed I7; only final delivery/gates remain pending. Goal remains unfinished.
 
 
 ### Historical estimate after two accepted batches
@@ -234,3 +234,31 @@ mutant; the grader cannot mask removal of that assertion.
 Apply the same four-hour work checkpoint and separate overlapping local/CI
 intervals and host sleep. Stop after this batch and report results/time; no
 subsequent batch, P21 work or new checking engine is authorized.
+
+### I8 current content checkpoint (2026-10-23)
+
+Four new units and two unchanged reuses passed sole actual source/evidence/method
+review. Context and Pace passed29ordinary public defect checks across40removed
+fixtures, with correct alternatives, two passing method-wrong controls and one
+causal held-token regression. Two manual units passed17copies/57commands with
+actual compiler/runtime/benchmark evidence and separate method controls. Four
+official transitions preserve4650old task/manual files and210route objects/order.
+The allocation closes ten applications after delivery:51remain, zero components
+or old-pair repairs. Inventory becomes212route/215ready/222checked/14manual;
+manual results and unchanged reuses add no automatic coverage.
+
+I8 integration review and one fresh222collection passed05:43UTC; generated reports reuse it. Continue all mandatory
+local gates/current consumers, finalHEADreview and exact-head greenvalidate.
+I7 merge is mandatory before I8 merge. The existing clock remains unchanged:
+20:35:39UTC start,27903seconds documented sleep excluded,08:20:42UTC23Oct
+checkpoint; infrastructure0, no other deductions. No new scope or controller.
+
+I9 bounded contract planning began conservatively05:19UTC23Oct (checkpoint
+09:19UTC, no deductions) while I8local checks and I7CI run. The clean attached
+I5checkout is reused on codex/v1-applications-09; previous ignored receipts stay
+intact. Six proposed units address Once, fan-out/panic, Pipe/composition, recursion,
+shared-record import cycles/test-package choice and native generic constraints.
+At the initial05:19 planning checkpoint, no I9content credit or authored execution was claimed. Sole contracts precede authoring;
+committed I8base precedes integration/full gates, dependency merge precedes merge.
+
+I8 stable222collection completed05:43:10UTC23Oct and all generated reports were refreshed from it. I7 dependency is accepted; all remaining local gates and exact-final-HEAD independent review/greenvalidate still required. I9 six bounded contracts accepted, unique new paths authored on committed I7; fast-forward to committed I8 before shared integration/full gates.

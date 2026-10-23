@@ -1,0 +1,47 @@
+package channel_test
+
+import (
+	"testing"
+
+	"finite.local/channel-permissions/channel"
+)
+
+func TestClosureObservations(t *testing.T) {
+	cases := []struct {
+		name   string
+		values []int
+	}{
+		{"nil", nil},
+		{"empty", []int{}},
+		{"queued-zero", []int{0}},
+		{"mixed", []int{3, 0, -2}},
+		{"four", []int{-4, -4, 0, 8}},
+	}
+	for _, test := range cases {
+		t.Run(test.name, func(t *testing.T) {
+			got := channel.Observe(test.values)
+			want := make([]channel.Reading, 0, len(test.values)+2)
+			for _, value := range test.values {
+				want = append(want, channel.Reading{Value: value, OK: true, Ready: true})
+			}
+			want = append(want, channel.Reading{Ready: true}, channel.Reading{Ready: true})
+			if len(got.Readings) != len(want) {
+				t.Errorf("reading count = %d; want %d", len(got.Readings), len(want))
+			}
+			for index, expected := range want {
+				if index >= len(got.Readings) {
+					break
+				}
+				if got.Readings[index] != expected {
+					t.Errorf("reading[%d] = %+v; want %+v", index, got.Readings[index], expected)
+				}
+			}
+			if !got.SendPanicked {
+				t.Error("send-after-close panic = false; want true")
+			}
+			if !got.ClosePanicked {
+				t.Error("second-close panic = false; want true")
+			}
+		})
+	}
+}
