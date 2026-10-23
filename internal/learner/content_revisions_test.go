@@ -113,6 +113,11 @@ func TestPublicCheckRevisionIsExactAndDirectional(t *testing.T) {
 		name, id, stored, current string
 		want                      bool
 	}{
+		{"counter common-start update", "concurrent-counter-read-001", counterBeforeCommonStart, counterWithCommonStart, true},
+		{"counter rollback", "concurrent-counter-read-001", counterWithCommonStart, counterBeforeCommonStart, false},
+		{"counter unknown source", "concurrent-counter-read-001", "unknown", counterWithCommonStart, false},
+		{"counter unknown target", "concurrent-counter-read-001", counterBeforeCommonStart, "unknown", false},
+		{"counter other task", "mutex-counter-001", counterBeforeCommonStart, counterWithCommonStart, false},
 		{"Worker scaffold update", "worker-completion-tests-001", workerBeforeGatedScaffold, workerWithGatedScaffold, true},
 		{"Worker rollback", "worker-completion-tests-001", workerWithGatedScaffold, workerBeforeGatedScaffold, false},
 		{"Worker unknown source", "worker-completion-tests-001", "unknown", workerWithGatedScaffold, false},
