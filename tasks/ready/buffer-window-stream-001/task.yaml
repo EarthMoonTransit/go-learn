@@ -1,0 +1,51 @@
+schema_version: 2
+id: buffer-window-stream-001
+title: Bound queued and held stream values
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: channels.buffering-backpressure
+    secondary: []
+prerequisites:
+    - channels.close-semantics
+    - channels.operations-blocking
+    - channels.ownership
+    - control-flow.range
+    - goroutines.launch-lifecycle
+new_concepts: []
+difficulty: basic
+estimated_time_minutes:
+    min: 20
+    max: 40
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - nil-output
+        - collect-before-return
+        - forget-held-value
+        - under-buffer
+        - skip-zero
+        - duplicate-value
+        - reverse-pairs
+        - never-close
+        - reuse-output
+        - shared-current-input
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

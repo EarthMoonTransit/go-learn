@@ -1,0 +1,504 @@
+{
+  "date": "2026-10-22",
+  "batch": "I7",
+  "branch": "codex/v1-applications-07",
+  "status": "Allfournewautomatic and twounchangedreuse actual source/evidence/method decisions accepted; finalbatch gates pending",
+  "reviewer": "/root/reviewer",
+  "external_sources": [],
+  "new_tasks": [
+    {
+      "id": "buffer-window-stream-001",
+      "purpose": "buffering/backpressure independent application",
+      "path": "tasks/ready/buffer-window-stream-001",
+      "source_decision": "Original ADR0008 task-init creation, project identity/contentdigest, empty external sources; no invented creation commit.",
+      "contract_review": "approved",
+      "actual_source_review": "approved; actual_content_reviews and task review notes",
+      "content_digest": "79cf22619d45fab17d29123b06151d3a68e4259c9e32c015f4e80b7e0d86e7a0"
+    },
+    {
+      "id": "cancel-error-pipeline-001",
+      "purpose": "whole-chain cancellation independent application",
+      "path": "tasks/ready/cancel-error-pipeline-001",
+      "source_decision": "Original ADR0008 task-init creation, project identity/contentdigest, empty external sources; no invented creation commit.",
+      "contract_review": "approved",
+      "actual_source_review": "approved; actual_content_reviews and task review notes",
+      "content_digest": "303c874d94dbff47cc8e57b38fbe7d01710d9648034cacd91b42f7cb74cc9fde"
+    },
+    {
+      "id": "child-operation-scope-001",
+      "purpose": "derived sibling scopes and explicit context propagation independent applications",
+      "path": "tasks/ready/child-operation-scope-001",
+      "source_decision": "Original ADR0008 task-init creation, project identity/contentdigest, empty external sources; no invented creation commit.",
+      "contract_review": "approved",
+      "actual_source_review": "approved; actual_content_reviews and task review notes",
+      "content_digest": "9aebc77b5a918004731a3ec0822142321fb21ad4390f8d0b8f8d489bec9b5a85"
+    },
+    {
+      "id": "deadline-capped-batch-001",
+      "purpose": "absolute cap and shared relative timeout budget independent applications",
+      "path": "tasks/ready/deadline-capped-batch-001",
+      "source_decision": "Original ADR0008 task-init creation, project identity/contentdigest, empty external sources; no invented creation commit.",
+      "contract_review": "approved",
+      "actual_source_review": "approved; actual_content_reviews and task review notes",
+      "content_digest": "1367117291d3c8608c9e49a9e4833a3b5f641a341d2f1dbb56e837d910c7f2c2"
+    }
+  ],
+  "unchanged_reuses": [
+    {
+      "component": "component-concurrent-lifecycle",
+      "task_id": "bounded-job-pool-001",
+      "reuse_commit": "0241dbcdd56c1aefe63f7ab9ef66e308b92006b7",
+      "files_sha256": {
+        "ATTRIBUTION.md": "d8f42a10ae50c65bdac2d12b93108246b9da139a46d836dace57e04b6f135ffa",
+        "TASK.md": "47f38b4ef1961c8ddb240153449dc038cbea10216b90b52bd73a04ca9e2989f1",
+        "go.mod": "e702a485aed548f4f1dab8fbd0d6a96e48fd23618716d45298e8cbbc92a8aa9c",
+        "hints/HINTS.md": "aca327b17073f6141e8e88bd0898615d1504279ac0634ca526d90a015075d548",
+        "lifecycle.yaml": "1dc0a115cf26e94e1c44146108f4ea954d98cf504bef5c1b48364d8251b9bbbb",
+        "provenance.yaml": "9474fd3fb755ec8617acabd1e1e77be2a965817da2a5ba9363fc324b2c1ee73a",
+        "review/notes.md": "b6f2ab1c45b187fb1f08a28918d5fc4c54d0ee5d9b67ac8bec60e8f35e4ab0db",
+        "review/review.yaml": "1b67ce1f614f5f72ca5db56271baab8a15779dec5f3f68e13d83bc33185f530f",
+        "solution/mutants/drop-error/subject.go": "e7a6854ae6ca3063fee3e38df82836e546c0c537ff3d97f8962246a5877d8592",
+        "solution/mutants/drop-result/subject.go": "b3f091c05ab744493b1b9371569f8baf4ccb6f2dcb8501d932a865966d647036",
+        "solution/mutants/drop-value-with-error/subject.go": "91e4d96ed2d0effa3a799ae8148cf1bd1ecd16067e910a6d60b1100de8e2e127",
+        "solution/mutants/duplicate-index/subject.go": "f72eb0d177b506a2503e5de798f3e92ab5a7ecdf2b6a65cca4dd2d82bc8e610a",
+        "solution/mutants/failfast-workers/subject.go": "d495f96569d91bbadeec4d35fbb96a49256cf01a5a0cc697d1acce19aad1727b",
+        "solution/mutants/repeat-callback/subject.go": "955d6dde3111a5cf3787d28fecf15ea0a6eed75b5b66b89aa027d366d357f090",
+        "solution/mutants/return-before-join/subject.go": "ad2aeb4c3fefc1c05e1b17e69824ba7dce83b5919aba8d806e6321384cdd908f",
+        "solution/mutants/serial-workers/subject.go": "e817c7b650d448d45780576f9ce6d9b74a40b01be77741036a888727713908e2",
+        "solution/mutants/unbounded-workers/subject.go": "c5a6019c61d2d83c9176bb2653d4748a39593bf9363525df4b16142bd9dd7e36",
+        "solution/reference/subject.go": "a87bde71943ce54db4de06cdf3105a105b8e7068d9b092536089d387ed59be72",
+        "starter/subject.go": "d01cc0f03cfc8e6e8d99f59b51b16ab04b01291a4a0c19a2103194e645c5bc8c",
+        "task.yaml": "0cf9e1e5fb4fe857417cbdf26359c66f9cbf4c56955bd0ed4af854133fff3438",
+        "tests/grader/subject_test.go": "de4cfd8f084d460f9af954c9ce11360c6fa1771b0ef1232e12d96e2a97285e47",
+        "tests/public/subject_test.go": "5c7f46186704b111a6f0a2ef2e5d99a9b18e00484fe55f1c39a324cd800ac6c1"
+      },
+      "contract_review": {
+        "decision": "approve-bounded-unchanged-reuse",
+        "reviewer": "sole-independent-reviewer",
+        "reviewed_at": "2026-10-22T19:30:36.743001+00:00",
+        "scope": "I7 component recognition contract/source review; no late I6 change, authoring or execution.",
+        "findings": [],
+        "task_id": "bounded-job-pool-001",
+        "source_commit": "0241dbcdd56c1aefe63f7ab9ef66e308b92006b7",
+        "content_digest": "c01b269cb50ea13c17f6759e465a41e35944d5b14fe3710f9a62a2ac303b7855",
+        "proposal_sha256": "3ca55d36053bd843ddfc691ef3537a0f81dff81c2ce9e4ff02f881a08a856760",
+        "accepted_slot": "component-concurrent-lifecycle",
+        "frozen_outcome": "Complete or cancel finite concurrent work with defined ownership, backpressure, result and error behavior.",
+        "accepted_interpretation": "Complete alternative: finite callbacks exactly once, bounded execution admission, explicit shared-queue/worker/result-channel/WaitGroup ownership, exact indexed value/error retention and complete collection before return. Callback completion is assumed; cancellation is outside this contract.",
+        "source_and_evidence": [
+          "All22 current task files match both proposal SHA256 pins and actual0241dbc commit bytes. Original source identity/digest and empty external sources retained.",
+          "Starter supplies Result and stub only; learner owns queue, bounded workers, merged results, Add-before-launch/Done/Wait-before-single-close and drain. Reference satisfies actual named methods.",
+          "Actual I4 canonical/public/reversed-control reports pass9/9, race and reference gates; all9 concrete ordinary public diagnostic reports inspected again. No execution repeated or receipts relabeled as fresh I7 evidence.",
+          "Held callbacks observe active admission and nonreturn, release is closed before final checks, all results checked by index. Correct reversed-order control preserves unspecified output order.",
+          "Existing prerequisites and route remain unchanged; actual indexed-job-results WaitGroup first precedes pool. No provenance rewrite or external source borrowing."
+        ],
+        "boundaries": [
+          "Backpressure credit is finite execution admission: pending indices cannot execute while all bounded workers are held. No claim of upstream streaming producer backpressure, caller-selected queue capacity or downstream abandonment policy.",
+          "Method review proves queue/worker/WG ownership separately; active counts do not automatically prove implementation architecture or exact idle-worker count.",
+          "Zero additional independent applications, zero automatic packages, no duplicate lesson or new automatic coverage. I4 fan-out first and result/error/WG applications remain I4 evidence.",
+          "Cancellation, buffering capacity and independent fan-out application slots remain open. No difficult topic removed or substituted."
+        ],
+        "remaining_requirements": [
+          "Record this recognition in I7 only, with exact reuse/source and method boundaries.",
+          "Use I7 ordinary stable-input collection consumers/local gates/final diff/exact-HEAD validate; unchanged source does not require an extra ad hoc execution solely for this planning review.",
+          "I6 final HEAD review remains separate."
+        ],
+        "reviewer_execution": "Read-only files/receipts; no authored code executed."
+      },
+      "application_credits": [],
+      "automatic_metadata_changes": false,
+      "scope": "Complete finite work; owned shared queue, bounded execution admission, collected exact indexed results/errors and joined closure. No cancellation, streaming-producer or queue-capacity-policy claim.",
+      "actual_evidence": "I4 canonical/public/reversed correct alternative and9ordinary public diagnostics; no execution repeated for unchanged reuse.",
+      "delivery_gate": "I7 final review, own mandatory localgates, accepted dependencies and exactHEADgreenCI beforemerge"
+    },
+    {
+      "task_id": "owned-batch-channel-001",
+      "reuse_commit": "50412ef271c439cb8c7508341578a6ad03342353",
+      "files_sha256": {
+        "ATTRIBUTION.md": "bd9a807f60ded91069974b895d1b662a820abfda27b4af5f26e84abad9dd3329",
+        "TASK.md": "24f86fb3250661fd0802efc3c13ba74d0ff0caf04aff8f19c4128bf89d7d8dce",
+        "go.mod": "aacea8c129dd01c9a5373b4f1168469a362fc4360240761fe34509729b13dc4e",
+        "hints/HINTS.md": "8ae5d04be970066bb8456d09c72391ac8281172ec8fddec00f10392dd05cbe89",
+        "lifecycle.yaml": "c1c701ad5a80c0254b685605f0021c76e63f21242755563f7cdb3e195fd1abd4",
+        "provenance.yaml": "415a26d962fbe90ba3b45f96b5e20241922bf147da9a5e0c1826d5525e9ddeb8",
+        "review/notes.md": "d32c71aa0942aa147ee4ef16021698bb92216701be7bbafdb254032b462c0fa7",
+        "review/review.yaml": "6a658ac0d933d098a7d8890d4c1d249f6398fda2e265947562734af325e73ad9",
+        "solution/mutants/duplicate-values/subject.go": "8251e1c5a1d3afbf9a0187c0ed358c140e875cc484ebee11fe10b04ab6901b27",
+        "solution/mutants/erase-input/subject.go": "90baf2a00c92a95e0e7875380554e7db0a13c6aea8056c93625c8aacd14984ea",
+        "solution/mutants/ignore-gate/subject.go": "1738e535a19cda950dbe8f5ffe24f5dd4c53be2c207b14a7cf76fe5284f8863d",
+        "solution/mutants/never-close/subject.go": "1431ac86dc1d9fb1c8fa5146a67fe80c93fa2c6e5c6a3a83c77c4c13ae4211e8",
+        "solution/mutants/nil-output/subject.go": "9c57ad93772d70bac0afecc2cb9ced143cde507adfd685297684e3c12f4abfdb",
+        "solution/mutants/reverse-values/subject.go": "ae63f9151da544bc8bf810b2da5830674b011e30aa253ae0362d71803800b57c",
+        "solution/mutants/shared-output/subject.go": "1f60348aefabd7e7fe209706ec9702a0562aee6526ce1d015460a963197d6527",
+        "solution/mutants/shared-pending-values/subject.go": "d3e8b75dfa77eacdb5e1f891a9b772adfc27adb463a584cb9697789ed33266c2",
+        "solution/mutants/skip-last/subject.go": "663025039476fd6052205ee223dcfe3987f6352cb85485674e3e8a61dd93616e",
+        "solution/mutants/wait-before-return/subject.go": "59acad637aba761347de76ab4ed4ee1790f8a3cefb462f251a9c562489834914",
+        "solution/mutants/zero-ends-stream/subject.go": "a72872c3f5776df5a57bdaeb0c6880c4940bbe4a9e2b18f369bab8d1640cfff9",
+        "solution/reference/subject.go": "499da38682760386afb2d2ae7ed17863bd056b9caafe5c9bcbeef658fa32464b",
+        "starter/subject.go": "3a40bdd787bf6b84607a8383daa8f02d18e78b1b308bcefa1695d842f21802ac",
+        "task.yaml": "f273f5c74b08b44f0af68a9d588e7d2ec708e7f549c51f29fc978c3f17deb740",
+        "tests/grader/subject_test.go": "f899883fcb25df60230315d56dbf1c89ed0b3c6a992b0d7dc3286dc19e4e19b6",
+        "tests/public/subject_test.go": "ebb20d2624d5fb190114470b23b715097609ab823d36c2cd8242c58fed4f43d3"
+      },
+      "actual_review": {
+        "decision": "approve-bounded-unchanged-reuse",
+        "reviewer": "sole-independent-reviewer",
+        "reviewed_at": "2026-10-22T19:34:52.381160+00:00",
+        "findings": [],
+        "task_id": "owned-batch-channel-001",
+        "source_commit": "50412ef271c439cb8c7508341578a6ad03342353",
+        "content_digest": "8086a0ab904967f5c8afcdd52a54a7576cc7392a678a9196252bed01f61d5785",
+        "proposal_sha256": "6a3de690f6118f3797516d63a5b968732a19340e475a6066cb0fe0dca732a9e4",
+        "pins_sha256": "db669628c3550c2f6babc22d49381a4142ac13ca04f2b1a93513a446e06997b6",
+        "accepted_slot": "independent-application:goroutines.launch-lifecycle",
+        "actual_actions": "Own private output, launch one worker and return promptly, wait on explicit caller gate inside that worker, send every value, close after last send and terminate; independent calls own separate outputs/state. Eventual release/drain and caller input lifetime are explicit assumptions.",
+        "distinctness": "worker-completion-tests first authors verification of supplied Start; launch-provided-job delegates lifecycle internals to supplied Run/Handle. This implementation owns the producer start, gated work and terminal close rather than merely invoking supplied lifecycle. It is one separate implementation application, not an additional occurrence by restating I1 ownership credit.",
+        "verified": [
+          "All24current task files equal complete SHA256 pin map and actual50412ef merge commit; no task/source/provenance/route metadata changed.",
+          "Reference actual go/wait/send/close methods inspected. Public tests observe prompt return, pre-release blocking, finite completion, ordered data and independently held calls. Gates are released before final outcome checks. Grader extends32values.",
+          "Historical canonical/public/buffered-correct receipts actually show technical/reference/race pass11/11 and review_status fail while drafts awaited independent acceptance; they are not relabeled as ready approvals.",
+          "Current committed review/review.yaml is independently approved. Later promotion/accepted I1 merge establishes ready status. Existing omission experiment has passing reference/race and exactly shared-pending-values survivor10/11, protecting active-call public regression."
+        ],
+        "excluded_credit": [
+          "channels.close-semantics: buffered/post-close/comma-ok/panic reasoning remains test-owned or absent; slot stays open",
+          "No new ownership, range, channel direction, capture or buffering-capacity occurrence",
+          "No cancellation/early-consumer-exit guarantee or missing-close timeout credit",
+          "No new automatic package/route item/coverage metadata or human mastery"
+        ],
+        "historical_note": "Preserve introduction-only I1 notes as dated ownership acceptance; record this new I7 launch application decision separately with explicit scope.",
+        "conditions": [
+          "I7 integration records only this one slot and leaves prerequisites/address/order/task bytes unchanged.",
+          "I7 stable-input local gates/final diff/exact-HEAD validate remain required before delivery; no extra execution needed solely for recognition."
+        ],
+        "reviewer_execution": "Read-only source and historical receipts; no authored code executed."
+      },
+      "application_credits": [
+        "goroutines.launch-lifecycle"
+      ],
+      "excluded": "No close-semantics, new ownership/direction/capture or cancellation credit; supplied test observations are not learner actions."
+    }
+  ],
+  "scope_boundaries": [
+    "Four planned new automatic packages and two unchanged reuses: six units, not six new files.",
+    "No original firsts remain after acceptedI5; all28closed bybatch5.",
+    "No new manual lab, profile, checker, runner, AST/trace or tooling extension.",
+    "Final allocation follows actual accepted source/method/evidence; combined supplied mechanisms earn no credit.",
+    "Prerequisites, old taskbytes/addresses/order, provenance, progress and prior solutions remain intact."
+  ],
+  "base": "a6f9644769b2a434b8a5cb8c834f4d4d4791d16b",
+  "contract_reviews": {
+    "automatic-contract-review.json": {
+      "decision": "approve-bounded-contracts",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-22T20:05:59.870142+00:00",
+      "proposal_sha256": "b07ecd5b4daa10a76d0d867b14a3d6f8b116df2f5eccf2f20fc42d5e389cd8bc",
+      "findings": [],
+      "closed_findings": [
+        {
+          "unit": "buffer-window-stream-001",
+          "previous_gap": "In-flight bound alone permits reservation-before-receive with cap=limit, so prior exactcap=limit-1 assertion rejected a valid permitted strategy.",
+          "resolution": "TASK now explicitly requires one receive-then-send worker with no output-space reservation before receiving. At most one held value plus full output buffer makes cap+1<=limit; largest safe capacity islimit-1. General reservation strategy is explicitly valid outside this restricted method."
+        }
+      ],
+      "contracts": [
+        {
+          "unit": "buffer-window-stream-001",
+          "accepted_slot": "independent-application:channels.buffering-backpressure",
+          "distinct_action": "Derive live-worker capacity from queued+oneheld in-flight bound and explain blocking, versus owned-values first allocating whole finite snapshot before synchronous return.",
+          "required_actual_review": [
+            "Actual singleworker receive-then-send/no-reservation method plus capacity rationale, separate from capacity/in-flight observations.",
+            "Canonical/public/race/determinism and finite useful wrong diagnoses; cleanup closes input/retrieves latehandle/drains enough for each bounded wrong output without stranding a sender.",
+            "Correct held-value select state machine must pass; two-worker acknowledged behavior-equivalent control must be recorded as passing behavior/method-rejected.",
+            "No exact incidental prefetch schedule beyond explicitmethod, no generic assertion that cap=limit reservation algorithms are unsafe."
+          ]
+        },
+        {
+          "unit": "cancel-error-pipeline-001",
+          "accepted_slot": "independent-application:channels.cancellation",
+          "distinct_action": "Learner owns feeder+mapper, internal sibling cancellation on callback failure and joined terminal reporting with exactsuccessful-prefix policy; first cancelable-forward has one stage and no callback/error sibling or joinedterminal.",
+          "required_actual_review": [
+            "Every blocking internal/external pipeline operation observes ownedchild cancellation; ownchild derived from incomingparent, singleclose owners, joinbothstages before terminal; actualmethod source inspection required.",
+            "Finite normalEOF/drain, earlyfailure whileinputopen, inputwait cancellation, pausedoutput cancellation and heldcallback join cases; pre-canceledentry no reads/calls. No guarantee when caller supplies neither EOF/drain nor applicable failure/cancel.",
+            "Preserve exact callbackerror/valuepolicy and callerinput/parentownership. Accept matching prefixes/reasons for genuinely co-ready termination; no strictcancellationpriority.",
+            "Paused-output cancellation test must cancel with no readyreceiver and settle before observation; do not misclassify an allowed already-winning send as failure.",
+            "Each required wrong specimen must retain the stated external cleanup escape. Omitted inaccessible internal-send cancellation cannot be credited through deadlock/timeout; method checklist covers it.",
+            "Correct two-completion-channel coordinator alternative and behavior-correct fused method-wrong control must be actually checked. Supplied tests do not prove all leak absence or architecture."
+          ]
+        }
+      ],
+      "prerequisites": "Existing first encounters and taxonomy prerequisites are available; context.cancellation includes context.derivation transitively. Final placement must follow relevant I3/I4firsts/WaitGroup repair. No future I7 application is a prerequisite for another solely to justify credit.",
+      "source_decision": "New local originals under ADR0008/task-init with exact creation/contentdigest and sources[]; existing preparations read-only contrast, no upstream/reference-only source copying.",
+      "allocation": "Both units fit proposed6unitI7 with two unchanged reuses and separately pendingcontextcontracts. Readiness0; one application each, no extra pipeline/ownership/WG/leak/context credits.",
+      "conditions": [
+        "Actual source/TASK<=160 words/public/grader/mutants/alternatives/method/evidence review required before promotion or readiness.",
+        "Authoredcode executes onlytask-check disposable copies; no new checker/profile/AST/runner.",
+        "ExistingI7clock19:22UTC/deadline23:22UTC and limits remain; sourceapproval does not reset budgets.",
+        "Final integration/exactHEAD/localgates/greenvalidate remain required."
+      ],
+      "reviewer_execution": "Read-only planning/source contrast; no authoredcode executed."
+    },
+    "child-contract-review.json": {
+      "decision": "approve-bounded-contract",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-22T20:08:49.065733+00:00",
+      "unit": "child-operation-scope-001",
+      "proposal_file": "i7-context-contracts.md",
+      "reviewed_section_sha256": "665624d4b40cd062ef8c1ee5012f54ea13e1d1881e7975a1e6b8db13f3ae005d",
+      "section_definition": "Bytes from ## `child-operation-scope-001` inclusive to immediately before newline ## `deadline-capped-batch-001`; later deadline edits do not extend this approval.",
+      "observed_file_sha256": "2e7e5798dd0a2e06183e90ed36c1c8c3069ebf1423f8b34ff73c861323285d07",
+      "findings": [],
+      "accepted_slots": [
+        "independent-application:context.derivation",
+        "independent-application:context.propagation-api"
+      ],
+      "distinct_actual_actions": [
+        "Learner creates a fresh sibling child from original incoming parent per operation and selects release after synchronous operation return before next sibling/outer return, including error and canceledparent cases. This is beyond cancel-worker first single-child repair with suppliedworker.",
+        "Learner declares a private helper with context asfirstparameter, chooses remaining shape, and explicitly passes parent/child correctly through helper and callback boundaries. This application owns API and call choices beyond supplied CallWithContext first exact-parent singleforwarding. Supplied RunScoped/callback signatures alone earn no credit."
+      ],
+      "required_boundaries": [
+        "No wholebatch deferred cancellation: release must precede next sibling. Later scopes derive from originalparent, not canceledpreviouschild. Exact ordered value/error including valuewitherror; invokealloperations even after parentcancel/errors.",
+        "Behaviorchecks must preserve correct private names, constructor spelling, WithCancelCause(cancelnil), perinvocationdefer or loop-derivedchild+contextfirsthelper alternatives. No arbitrary context interface equality. Compare freshDone only while scopeslive and obtainedbeforecancel; canceledcontexts may share Done.",
+        "Method review inspects actual contextfirst helper, boundaries, childderivation/release, synchronous execution and no retainedglobal/structcontext. Correctinline loop passesbehavior but ismethodrejected under explicithelperrequirement; no AST.",
+        "Gatedcallbacks use independent rescue andcleanup release, bufferednotifications andrace-safe accounting. Always release andjoin before fatalexit; nilcontext safelydiagnosed. Each wrongspecimen finite and ordinaryassertion, never timeout/deadlock/racecredit.",
+        "Normal completion means synchronous callback return after its contract-defined cleanup, not arbitrary hidden asynchronous work spawnedbycallback.",
+        "No extra context.cancellation/goroutine/error/slice/struct application credit. Existing prerequisites available; finalroute after introductions."
+      ],
+      "source_decision": "Original ADR0008 creation/digest/sources[]; unchanged cancel-worker andpropagate-context at0dcd722 are contrast evidence, not donorcode.",
+      "approval_scope": "Authoring child unit only under thiscontract. Deadline placeholder remains unapproved. Actualsource/public/grader/mutants/validcontrols/race/determinism/method evidence must be independently reviewed beforepromotion/credit.",
+      "conditions": [
+        "Keep finalTASK within checkerwordlimit and preserve allfiveclauses.",
+        "Onlytask-check disposable execution; no newprofiles/runner/schema/AST.",
+        "I7clock19:22UTC/deadline23:22UTC andinfrastructurelimits unchanged; finalgates/exactHEADCI stillrequired."
+      ],
+      "reviewer_execution": "Read-only planning; no authoredcode executed."
+    },
+    "deadline": {
+      "decision": "approve-bounded-contract",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-22T20:14:11.991661+00:00",
+      "unit": "deadline-capped-batch-001",
+      "proposal_file": "i7-context-contracts.md",
+      "observed_file_sha256": "6a41e8d28d184d6a742bf9df8666c69d22da66f698ee28e69322574cb6fe014f",
+      "reviewed_section_sha256": "4d7b495931d5b9e00c05bc816362b3c38fc95e9b4a475e025a04ad29f0cdbe2b",
+      "section_definition": "Bytes from ## `deadline-capped-batch-001` inclusive to EOF; child section has its separate prior review.",
+      "findings": [],
+      "proposed_slots": [
+        "independent-application:context.deadlines",
+        "independent-application:context.timeouts"
+      ],
+      "current_readiness_credit": 0,
+      "distinct_actual_actions": [
+        "Learner composes a new absolute ceiling with a relative entry-time budget and inherited parent deadline, choosing the earliest without extending upstream. This adds independently chosen composition beyond timeout-operation-001 single callback inherited deadline.",
+        "Learner starts one budget outside a sequence of callbacks and preserves its remaining duration across later work, including errors/expiry, while releasing all owned cancellation resources. The mandatory two-callback 2/5-second specimen distinguishes renewal from the single-callback introduction."
+      ],
+      "accepted_contract_boundaries": [
+        "All callbacks run synchronously once in order even after error/expiry; retain each exact value/error pair. Context cancellation is cooperative and never substitutes ctx.Err for the callback result.",
+        "One shared final operation scope may use multiple internal constructor contexts; every owned cancel must be called. Valid constructor variants, synchronous helpers, cause-capable constructors and avoiding a redundant ceiling helper remain allowed.",
+        "Nil/empty input may return nil or empty Results. Nonpositive budget/past effective deadline means Done at invocation; already-canceled parent does not require DeadlineExceeded precedence. No co-ready cause priority.",
+        "Synctest observations at 4 and 6 seconds are anchored at entry, away from correct deadline 5 and renewed deadline 7. A first 2-second callback must be followed by a second held callback; a one-callback case cannot establish the timeout application.",
+        "Controller waits for second-callback entry OR wrapper return, so skipped callbacks/early returns produce ordinary diagnostics rather than blocked fixture setup. Observation timers are created at entry, so delayed/duplicate callbacks do not shift deadlines. This finite implementation clarification was supplied by root during review.",
+        "Use independent rescue and cleanup gates, race-safe callback facts and buffered notices; release once, cancel fixture parent and join wrapper/helpers before final failure. Nil context must be diagnosed without dereference. No timeout, deadlock or race failure is useful public evidence.",
+        "Compare live Done channels/deadlines, not arbitrary context interfaces. Already-canceled contexts may share closed Done. Review actual same-final-context forwarding in source.",
+        "An unreleased hidden intermediate context can pass output behavior after final-child cancellation. Reject by finite method review; do not claim automatic leak proof or add AST/checker mechanisms.",
+        "No extra timer, cancellation, goroutine, error, slice, struct or propagation application is credited. Place after existing timeout-operation-001 and the stated available prerequisites."
+      ],
+      "source_decision": "Original Task Contract v2 under ADR0008: real creation record, project identity, content digest, empty external sources. Existing timeout-operation-001 and propagate-context-001 at 0dcd72255ddf347197cc94f6d3ba40da6e8cf36c are unchanged preparation/contrast evidence, not donor code.",
+      "approval_scope": "Root may author this bounded task. This is contract approval only: actual source, public/grader tests, finite ordinary-failure specimens, valid alternative, deterministic/race results, release/join behavior and method checklist need independent acceptance before promotion or readiness credit.",
+      "conditions": [
+        "Preserve all six TASK requirements within the existing word limit.",
+        "Use existing fixed-tests/task-check disposable execution only; no new profile, runner, schema or AST mechanism.",
+        "I7 clock remains 19:22–23:22 UTC with existing infrastructure limits; final batch review, mandatory local gates and green validate at exact final HEAD remain required."
+      ],
+      "reviewer_execution": "Read-only contract/source evidence inspection; no authored code or tests executed."
+    }
+  },
+  "actual_content_reviews": {
+    "stream-content-review.json": {
+      "decision": "approve",
+      "scope": "actual-content-method-and-targeted-evidence",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-22T20:30:59.341419+00:00",
+      "findings": [],
+      "units": [
+        {
+          "unit": "buffer-window-stream-001",
+          "decision": "approve",
+          "content_digest": "79cf22619d45fab17d29123b06151d3a68e4259c9e32c015f4e80b7e0d86e7a0",
+          "accepted_slots": [
+            "independent-application:channels.buffering-backpressure"
+          ],
+          "method_acceptance": "Reference owns one receive-then-send worker and computes cap=limit-1: a full queue plus one held value must fit limit. Correct held-value select state machine obeys the same method and passes public/full/race. The two-forwarder acknowledgement control passes behavior but violates the explicit one-worker requirement and is method-rejected. Reservation-before-receive designs are valid outside this explicitly bounded method, not declared generally unsafe.",
+          "distinctness": "Streaming in-flight bound and largest capacity under held-value staging are independently authored, beyond owned-values-001 synchronous full-batch snapshot capacity rationale.",
+          "closed_findings": [
+            {
+              "id": "BUFFER-INDEPENDENCE-01",
+              "resolution": "Nonempty A/B overlap holds B while A must finish its own EOF and data, then drains B. Race-safe shared-current-input specimen now gives ordinary A/B mismatches. Public omission removes only this new test; with only that mutant selected, wrong reference/public/race pass and mutation coverage reports 0/1 with shared-current-input survivor. No claim of a full 9/10 omission matrix."
+            },
+            {
+              "id": "BUFFER-RUNTIME-02",
+              "resolution": "Required reuse-output shares only while worker active and clears global cache before closing output. Final public receipt shows ordinary calls-share-output assertion without cross-bubble runtime failure. Rejected permanent-cache v1 source/report retained and zero-credit."
+            }
+          ],
+          "automatic_evidence": {
+            "canonical": "stream-buffer-canonical-final.yaml",
+            "required_mutants": 10,
+            "detected_mutants": 10,
+            "ordinary_public_diagnostics": 10,
+            "passing_reference_controls": 5,
+            "omission_fixtures": 1,
+            "all_fixtures_removed": 16
+          },
+          "boundaries": "No extra ownership/launch/range application; actual capacity explanation and worker structure are reviewed manually, not inferred from signatures or universal automatic proof."
+        },
+        {
+          "unit": "cancel-error-pipeline-001",
+          "decision": "approve",
+          "content_digest": "303c874d94dbff47cc8e57b38fbe7d01710d9648034cacd91b42f7cb74cc9fde",
+          "accepted_slots": [
+            "independent-application:channels.cancellation"
+          ],
+          "method_acceptance": "Reference derives owned child from parent; feeder input receive/internal send and mapper internal receive/output send each select child.Done. Mapper alone assigns reason, invokes step sequentially, omits failing result and cancels sibling. Feeder alone closes bridge; mapper alone closes output; coordinator waits both before reading reason/publishing one terminal and releases cancellation. Pre-canceled fast path performs no reads/calls. WaitGroup ordering provides actual publication synchronization.",
+          "valid_and_invalid_controls": "Completion-channel coordinator is method-valid and passes public/full/race. Fused single worker passes behavior but is method-rejected for missing required feeder/mapper boundary. No extra WaitGroup/pipeline/context/leak application credited.",
+          "distinctness": "Learner-owned sibling shutdown on exact step failure plus successful-prefix policy and joined terminal differs from one-worker Forward cancellation first and uncancelable two-stage EOF/drain preparation.",
+          "rejected_evidence": "Original unbuffer-terminal v1 deadlocked before handle return on pre-canceled input and earns zero credit. Revised wrong-capacity fast path publishes asynchronously after handles; canonical and all23 fixtures rerun, ordinary terminal-capacity assertion verified.",
+          "automatic_evidence": {
+            "canonical": "stream-cancel-canonical-final.yaml",
+            "required_mutants": 18,
+            "detected_mutants": 18,
+            "ordinary_public_diagnostics": 18,
+            "passing_reference_controls": 5,
+            "all_fixtures_removed": 23
+          },
+          "boundaries": "Input/paused-output/held-callback cancellation and error-before-EOF observations have independent releases and bounded drains. No co-ready priority, exact prefetch, inaccessible internal-send deadlock detection or universal leak proof. Every internal cancellation arm and join order checked in actual source."
+        }
+      ],
+      "matched_current_source_files": {
+        "buffer-window-stream-001": 23,
+        "cancel-error-pipeline-001": 31
+      },
+      "source_manifest_sha256": "9680e3a9ace2c628d6cb450d57ab7c28bafc4877e44c12353562967c2ff72fde",
+      "source_inspection": "TASK/starter/reference/public/grader/all28 final mutants/correct and method-wrong controls/task metadata/provenance/review notes read. All manifest file hashes,39 execution report hashes and final canonical reports independently verified.",
+      "metadata_resolution": "Both new_concepts arrays empty for applications. Final canonical checked current metadata; unchanged executable content digest/Go/tests supports reuse of existing39 fixture receipts after metadata-only edit.",
+      "evidence": [
+        "stream-author-receipt.json",
+        "stream-source-manifest.json",
+        "stream-fixture-results.json",
+        "stream-buffer-canonical-final.yaml",
+        "stream-cancel-canonical-final.yaml"
+      ],
+      "provenance": "Both original ADR0008 with project identity, real creation record, content digest and empty sources; release commit binding deferred. No source donor copying or fictional commit.",
+      "remaining_gates": "Root may record independent reviews and use task-promote. Stable final collection, all batch gates, route/prerequisite review, exact final HEAD independent review and green validate remain required. No student mastery claim.",
+      "reviewer_execution": "No authored Go/tests executed; review read-only except this requested receipt."
+    },
+    "child-content-review.json": {
+      "decision": "approve",
+      "scope": "actual-content-method-and-targeted-evidence",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-22T20:26:35.988794+00:00",
+      "unit": "child-operation-scope-001",
+      "content_digest": "9aebc77b5a918004731a3ec0822142321fb21ad4390f8d0b8f8d489bec9b5a85",
+      "findings": [],
+      "reviewed_source": "TASK, starter, reference, public/grader tests, all 18 finite mutants, two correct controls, inline method-wrong control, hints, task metadata, provenance and review notes.",
+      "source_snapshot_sha256": "1a8cf373ecf27ac11f8fae6bd3a00c628666753c163de758b1409fc5044efbbc",
+      "matched_current_files": 31,
+      "actual_method_decisions": [
+        "Reference invokeScoped declares context first and receives original parent at every iteration. It derives a distinct child, directly invokes the callback with that child, cancels after normal callback cleanup, and returns the exact pair before the next sibling starts. RunScoped owns the helper call and result sequence; starter supplies none of that logic.",
+        "The loop-created WithCancelCause plus apply(context-first) and helper-local deferred cancel controls both satisfy the stated method; both passed public/full/race.",
+        "The inline-loop control passes public/full/race but omits the explicitly required learner-written context-first helper. Its method is rejected; no automatic method detection is claimed.",
+        "Fresh Done identity is checked only for live scopes with Done obtained before release; pre-canceled shared closed Done is allowed. Arbitrary context interfaces are not compared. Useful held-callback assertions occur before independent rescue/cleanup release; finite mutant invocations fit buffered notices and complete before bubble exit."
+      ],
+      "distinct_encounters": {
+        "context.derivation": "Fresh sibling children from original parent with release before next callback, including error/canceled-parent continuation, rather than supplied cancel-worker single-child preparation.",
+        "context.propagation-api": "Learner chooses a private context-first helper signature and forwards parent/child through actual helper and callback boundaries, rather than only filling a supplied single-call signature."
+      },
+      "accepted_slots": [
+        "independent-application:context.derivation",
+        "independent-application:context.propagation-api"
+      ],
+      "automatic_evidence": {
+        "canonical": "child-final-canonical.yaml",
+        "canonical_sha256": "19417ea5f1881b526a722a034549d9a2cbd2af31e95081eed1e15382d3e4d363",
+        "reference_public_full_race_vet_determinism": "pass",
+        "required_mutants_detected": 18,
+        "ordinary_public_diagnostics": 18,
+        "copied_fixtures": 25,
+        "fixtures_removed": 25,
+        "timeouts_or_runtime_failures_credited": 0,
+        "all_report_hashes_and_reference_test_gates_independently_checked": true
+      },
+      "method_evidence": "Actual reference and both valid controls read; behavior-passing inline control is expressly method-rejected. No general proof of arbitrary goroutine/resource leaks or hidden callback work.",
+      "evidence": [
+        "child-author-evidence.json",
+        "child-final-fixture-results.json",
+        "child-final-source-snapshot-hashes.json",
+        "child-final-source-snapshot"
+      ],
+      "historical_evidence_boundary": "Earlier bytes and initial predicate failure remain historical only. The release-only-on-error final receipt credits its ordinary reference-full assertion; separate vet lostcancel diagnostic is not credited as behavior.",
+      "provenance": "Original ADR0008 project identity, creation record and matching digest; sources empty; no invented commit, release binding deferred.",
+      "remaining_gates": "Root may record independent review and use task-promote. No learner mastery claim. Final shared collection, all batch gates, route/prerequisite review, exact final HEAD review and green validate remain required before merge.",
+      "reviewer_execution": "No authored code or tests executed; source and existing execution receipts inspected read-only."
+    },
+    "deadline-content-review.json": {
+      "decision": "approve",
+      "scope": "actual-content-method-and-targeted-evidence",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-22T20:34:41.866823+00:00",
+      "unit": "deadline-capped-batch-001",
+      "content_digest": "1367117291d3c8608c9e49a9e4833a3b5f641a341d2f1dbb56e837d910c7f2c2",
+      "findings": [],
+      "matched_current_source_files": 35,
+      "source_snapshot_sha256": "58caaf028537b0372f19ce401b539b7bcaf799982e1bd8d43fc48073c62e5138",
+      "reviewed_source": "Complete TASK/starter/reference/public/grader/all22mutants/provenance/metadata/review notes; correct alternative and hidden-helper method-wrong control. Final timer-rescue diff reviewed after runtime finding.",
+      "actual_method_acceptance": [
+        "Reference creates WithTimeout(parent,budget) once before the callback loop, optionally narrows with WithDeadline(base,ceiling), and forwards the same final scope synchronously to every callback. Deferred releaseCap/releaseBase cover every owned context. Exact callback pairs survive errors/expiry; all callbacks remain invoked.",
+        "Correct alternative skips a redundant ceiling helper while retaining an independently owned timeout child; actual source is method-valid and public/full/race pass.",
+        "Hidden-helper control omits releaseBase only when a ceiling is supplied. It passes public/full/race but violates explicit release-every-owned-context requirement and is method-rejected. Automatic behavior is not represented as a proof of hidden resource release.",
+        "Earliest entry-budget/ceiling/parent is checked without an invented co-ready error priority. Live Done identity and deadlines supplement source review; arbitrary context interface equality is not used."
+      ],
+      "accepted_slots": [
+        "independent-application:context.deadlines",
+        "independent-application:context.timeouts"
+      ],
+      "distinctness": {
+        "context.deadlines": "Learner composes an independently supplied absolute ceiling with inherited parent and relative entry budget; timeout-operation first handled one callback with inherited deadline only.",
+        "context.timeouts": "A single shared remaining budget spans sequential callbacks. Actual focused reference and renew-budget executions distinguish original deadline5 from erroneous deadline7 after two seconds of first-callback work."
+      },
+      "automatic_evidence": {
+        "canonical": "deadline-final-canonical.yaml",
+        "canonical_sha256": "59156bf6fb62a9ec4de537da6eada9c80f7edd86575150ebf20d86d74e8d6f36",
+        "reference_public_full_race_vet_determinism": "pass",
+        "required_mutants_detected": 22,
+        "ordinary_public_diagnostics": 22,
+        "full_public_control_fixtures": 27,
+        "additional_focused_fixtures": 4,
+        "all_fixtures_removed": 31,
+        "focused_observations": [
+          "Reference passes with original deadline5 and live-at4/expired-by6 observations.",
+          "Renewed-budget wrong reference reports deadline7 instead5 and missing expiry after earlier work.",
+          "Later-parent wrong reference reports missing shared entry deadline.",
+          "Early-return wrong reference produces ordinary returned-before-cleanup/result-count diagnostics and exits after independent rescue."
+        ],
+        "independent_hash_and_reference_gate_verification": true,
+        "runtime_failures_credited": 0
+      },
+      "closed_findings": [
+        {
+          "id": "DEADLINE-CLEANUP-01",
+          "resolution": "First callback now selects its two-second timer OR independent rescue and stops that timer. Normal timing observations happen before rescue release; early-return/late-start callbacks can still finish afterward. Fresh canonical,27 public/control copies and4 focused copies match final source. Original timer-only source and receipts, including focused runtime panic and clipped full-suite/parser interpretations, are retained historical zero-credit evidence."
+        }
+      ],
+      "finite_cleanup_boundary": "Both callback waiting paths have independent rescue; second cleanup is separately released. Controller accepts second entry OR wrapper return, timers4/6 are entry-anchored, buffered observations and mutex logs are finite/race-safe. Releases precede join and bubble exit. No general guarantee for arbitrary learner deadlocks or hidden asynchronous work is claimed.",
+      "provenance": "Original ADR0008 project identity/creation/content digest with sources=[] and deferred real release-manifest binding; unchanged preparation is not source-copy evidence.",
+      "evidence": [
+        "deadline-author-evidence.json",
+        "deadline-final-fixture-results.json",
+        "deadline-final-focused-results.json",
+        "deadline-final-source-snapshot-hashes.json",
+        "deadline-correct-alternate.go.txt",
+        "deadline-hidden-helper-control.go.txt"
+      ],
+      "remaining_gates": "Root may record independent review and use task-promote. No extra skill credit or student mastery claim. Stable final collection, all mandatory batch gates, full diff/route review, exact final HEAD review and green validate remain required before merge.",
+      "reviewer_execution": "No authored code/tests executed by reviewer; actual receipts and source inspected read-only except this requested review receipt."
+    }
+  }
+}

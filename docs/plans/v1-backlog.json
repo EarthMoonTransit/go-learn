@@ -370,13 +370,21 @@
       "slot": "independent-application:channels.buffering-backpressure",
       "skill_id": "channels.buffering-backpressure",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I7",
+      "delivered_task_id": "buffer-window-stream-001",
+      "assessment": "Actual independently reviewed learner action, public behavior and finite method; batch delivery gates separate",
+      "review_evidence": "tasks/ready/buffer-window-stream-001/review/notes.md"
     },
     {
       "slot": "independent-application:channels.cancellation",
       "skill_id": "channels.cancellation",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I7",
+      "delivered_task_id": "cancel-error-pipeline-001",
+      "assessment": "Actual independently reviewed learner action, public behavior and finite method; batch delivery gates separate",
+      "review_evidence": "tasks/ready/cancel-error-pipeline-001/review/notes.md"
     },
     {
       "slot": "independent-application:channels.close-semantics",
@@ -450,7 +458,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "timeout-operation-001"
-      ]
+      ],
+      "delivery_batch": "I7",
+      "delivered_task_id": "deadline-capped-batch-001",
+      "assessment": "Actual independently reviewed learner action, public behavior and finite method; batch delivery gates separate",
+      "review_evidence": "tasks/ready/deadline-capped-batch-001/review/notes.md"
     },
     {
       "slot": "independent-application:context.derivation",
@@ -458,7 +470,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "cancel-worker-001"
-      ]
+      ],
+      "delivery_batch": "I7",
+      "delivered_task_id": "child-operation-scope-001",
+      "assessment": "Actual independently reviewed learner action, public behavior and finite method; batch delivery gates separate",
+      "review_evidence": "tasks/ready/child-operation-scope-001/review/notes.md"
     },
     {
       "slot": "independent-application:context.propagation-api",
@@ -466,7 +482,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "propagate-context-001"
-      ]
+      ],
+      "delivery_batch": "I7",
+      "delivered_task_id": "child-operation-scope-001",
+      "assessment": "Actual independently reviewed learner action, public behavior and finite method; batch delivery gates separate",
+      "review_evidence": "tasks/ready/child-operation-scope-001/review/notes.md"
     },
     {
       "slot": "independent-application:context.timeouts",
@@ -474,7 +494,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "timeout-operation-001"
-      ]
+      ],
+      "delivery_batch": "I7",
+      "delivered_task_id": "deadline-capped-batch-001",
+      "assessment": "Actual independently reviewed learner action, public behavior and finite method; batch delivery gates separate",
+      "review_evidence": "tasks/ready/deadline-capped-batch-001/review/notes.md"
     },
     {
       "slot": "independent-application:context.values-boundaries",
@@ -655,7 +679,13 @@
       "existing_task_ids": [
         "worker-completion-tests-001",
         "launch-provided-job-001"
-      ]
+      ],
+      "delivery_batch": "I7",
+      "delivered_task_id": "owned-batch-channel-001",
+      "assessment": "Actual independently reviewed learner action, public behavior and finite method; batch delivery gates separate",
+      "review_evidence": "reports/v1-applications-07.md",
+      "reuse_commit": "50412ef271c439cb8c7508341578a6ad03342353",
+      "scope": "Own worker launch, gated finite production and termination; no close-semantics or duplicate ownership credit."
     },
     {
       "slot": "independent-application:goroutines.panic-boundaries",
@@ -1108,7 +1138,12 @@
     },
     {
       "slot": "component-concurrent-lifecycle",
-      "outcome": "Complete or cancel finite concurrent work with defined ownership, backpressure, result and error behavior."
+      "outcome": "Complete or cancel finite concurrent work with defined ownership, backpressure, result and error behavior.",
+      "delivery_batch": "I7",
+      "delivered_task_id": "bounded-job-pool-001",
+      "reuse_commit": "0241dbcdd56c1aefe63f7ab9ef66e308b92006b7",
+      "review_evidence": "reports/v1-applications-07.md",
+      "scope": "Complete alternative: owned shared queue, bounded execution admission, merged indexed results/errors and joined closure. No cancellation, streaming producer or queue capacity policy claim; no new application credit."
     },
     {
       "slot": "component-regression-testing",
@@ -1129,16 +1164,16 @@
     }
   ],
   "delivery": {
-    "batch": "I6",
-    "status": "all5actual content/native/method and integration accepted; dependencies merged; all12localgates passed; owner resumed same reviewer for final exactHEADreview; CI and merge pending",
-    "route_lessons_after": 206,
+    "batch": "I7",
+    "status": "all six units accepted for integration; PR delivery pending; local/final-review/CI receipts tracked separately",
+    "route_lessons_after": 210,
     "first_encounters_remaining": 0,
-    "independent_applications_remaining": 68,
-    "component_slots_remaining": 1,
-    "new_automatic_packages": 3,
-    "manual_units": 2,
-    "existing_pair_repairs_closed": 5,
-    "note": "Two repairedfirsts, typederror/smallinterface/constants applications and two components. Three original application slots closed; original49historical decisions preserved. No automatic credit from manual units or supplied mechanisms."
+    "independent_applications_remaining": 61,
+    "component_slots_remaining": 0,
+    "new_automatic_packages": 4,
+    "reused_automatic_packages": 2,
+    "manual_units": 0,
+    "note": "Seven distinct applications and final concurrent component; no new automatic credit from two unchanged reuses. Original49pair decisions/repairs, all28acceptedfirsts and manual boundaries preserved."
   },
   "delivery_history": [
     {
@@ -1260,6 +1295,23 @@
       "merge_commit": "a1bd31ed7a1a8b87cca24d2a2dc987aa2902bb58",
       "merged_at": "2026-10-22T19:39:56+00:00",
       "validate_run": 39836802152
+    },
+    {
+      "batch": "I6",
+      "status": "accepted after all12localgates, sole exactHEADreview and greenvalidate; PR111 merged",
+      "route_lessons_after": 206,
+      "first_encounters_remaining": 0,
+      "independent_applications_remaining": 68,
+      "component_slots_remaining": 1,
+      "new_automatic_packages": 3,
+      "manual_units": 2,
+      "existing_pair_repairs_closed": 5,
+      "note": "Two repairedfirsts, typederror/smallinterface/constants applications and two components. Three original application slots closed; original49historical decisions preserved. No automatic credit from manual units or supplied mechanisms.",
+      "final_head": "a6f9644769b2a434b8a5cb8c834f4d4d4791d16b",
+      "merge_commit": "2ad4b90e2c65bf13ac51d424b1e0a87175c18d63",
+      "merged_at": "2026-10-22T20:37:43+00:00",
+      "validate_run": 39845594369,
+      "available_execution_seconds_upper_bound": 7513.78
     }
   ],
   "existing_pair_reviews": {
@@ -1600,7 +1652,7 @@
           "batch": "I6",
           "unit": "array-copy-stages-001",
           "action": "first repaired; original array-copy-address-tests independent application preserved",
-          "assessment": "actual source/execution/method independently accepted; final delivery gates pending",
+          "assessment": "Actual source/execution/method independently accepted and delivered in I6 PR111 after all required gates.",
           "evidence": "tasks/ready/array-copy-stages-001/review/notes.md"
         },
         "historical_fields_note": "The dated status/assessment/planned_resolution above describe the original baseline review, including its then-open gap. Current actual repair resolution is recorded below in repair_acceptance; delivery still requires batch gates and merge."
@@ -1953,7 +2005,7 @@
           "batch": "I6",
           "unit": "struct-copy-comparability-001",
           "action": "first repaired; original reset-selected-state independent application preserved",
-          "assessment": "actual source/execution/method independently accepted; final delivery gates pending",
+          "assessment": "Actual source/execution/method independently accepted and delivered in I6 PR111 after all required gates.",
           "evidence": "tasks/ready/struct-copy-comparability-001/review/notes.md"
         },
         "historical_fields_note": "The dated status/assessment/planned_resolution above describe the original baseline review, including its then-open gap. Current actual repair resolution is recorded below in repair_acceptance; delivery still requires batch gates and merge."
@@ -2089,7 +2141,7 @@
           "batch": "I6",
           "unit": "bounded-record-read-001",
           "action": "independent typed-error construction/recovery application repaired",
-          "assessment": "actual source/execution/method independently accepted; final delivery gates pending",
+          "assessment": "Actual source/execution/method independently accepted and delivered in I6 PR111 after all required gates.",
           "evidence": "tasks/ready/bounded-record-read-001/review/notes.md"
         },
         "historical_fields_note": "The dated status/assessment/planned_resolution above describe the original baseline review, including its then-open gap. Current actual repair resolution is recorded below in repair_acceptance; delivery still requires batch gates and merge."
@@ -2147,7 +2199,7 @@
           "batch": "I6",
           "unit": "injected-config-project-001",
           "action": "independent consumer-owned dependency design and authored recording tests; I5consumer first separately preserved",
-          "assessment": "actual source/execution/method independently accepted; final delivery gates pending",
+          "assessment": "Actual source/execution/method independently accepted and delivered in I6 PR111 after all required gates.",
           "evidence": "docs/labs/injected-config-project-001/review/independent-review.json"
         },
         "historical_fields_note": "The dated status/assessment/planned_resolution above describe the original baseline review, including its then-open gap. Current actual repair resolution is recorded below in repair_acceptance; delivery still requires batch gates and merge."
@@ -2433,7 +2485,7 @@
           "batch": "I6",
           "unit": "constant-contexts-001",
           "action": "independent declarations and native representability/defaulting/typed-assignment contexts repaired",
-          "assessment": "actual source/execution/method independently accepted; final delivery gates pending",
+          "assessment": "Actual source/execution/method independently accepted and delivered in I6 PR111 after all required gates.",
           "evidence": "docs/labs/constant-contexts-001/review/independent-review.json"
         },
         "historical_fields_note": "The dated status/assessment/planned_resolution above describe the original baseline review, including its then-open gap. Current actual repair resolution is recorded below in repair_acceptance; delivery still requires batch gates and merge."
@@ -2590,7 +2642,7 @@
       ],
       "maximum_additional_units": 4,
       "design": "Two separate array and struct first repairs at their actual early prerequisite positions; one consumer-owned small-interface first (delivered I5); at most one constants application. Typed-error and small-interface applications integrated into allocated IO/packages components with distinct actual actions. The combined array/struct first was split after independent prerequisite review to preserve existing relative order and avoid a dependency cycle; global302 and141skills unchanged.",
-      "arithmetic": "After accepted I6:206automatic route +12manual units +0originalfirsts +68independentapplications +1component +0remainingrepairunits =287 <=302. Three combined component/application outcomes reduce the prior290planning upper bound; only actual independently accepted outcomes count.",
+      "arithmetic": "After accepted I7:210automatic route +12manual units +0originalfirsts +61independentapplications +0components +0remainingrepairunits =283 <=302. Seven actual applications and unchangedcomponent reuse reduce I6upperbound287. This is a planning ceiling, not new-file quota or learner mastery.",
       "note": "All49 baseline decisions are preserved. Five identified semantic repairs now have actual independently accepted evidence; zero repair pairs remain after accepted I6 delivery. Historical extra allowance4 is not four future units. No expanded ceiling, metadata-only credit or learner mastery.",
       "allocation_review": "Sole reviewer accepted separate early array/struct placement on2026-10-22; see reports/v1-introductions-05.md. Original49pair decisions preserved."
     },
@@ -2601,7 +2653,7 @@
       "repairs_actual_accepted": 5,
       "repair_pairs_remaining": 0,
       "historical_decisions_preserved": true,
-      "note": "Current repair evidence supplements original dated49pair decisions; finalbatch gates/merge still required. No repeated audit or learner mastery claim."
+      "note": "Current repair evidence supplements original dated49pair decisions; allfive repairs delivered by accepted I6 PR111. No repeated audit or learner mastery claim."
     }
   },
   "existing_single_encounter_reviews": {

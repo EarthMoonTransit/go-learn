@@ -1746,6 +1746,40 @@
           "skills": [
             "time.timers-tickers"
           ]
+        },
+        {
+          "number": 26,
+          "task_id": "buffer-window-stream-001",
+          "role": "transfer",
+          "skills": [
+            "channels.buffering-backpressure"
+          ]
+        },
+        {
+          "number": 27,
+          "task_id": "cancel-error-pipeline-001",
+          "role": "transfer",
+          "skills": [
+            "channels.cancellation"
+          ]
+        },
+        {
+          "number": 28,
+          "task_id": "child-operation-scope-001",
+          "role": "transfer",
+          "skills": [
+            "context.derivation",
+            "context.propagation-api"
+          ]
+        },
+        {
+          "number": 29,
+          "task_id": "deadline-capped-batch-001",
+          "role": "transfer",
+          "skills": [
+            "context.deadlines",
+            "context.timeouts"
+          ]
         }
       ],
       "number": 9

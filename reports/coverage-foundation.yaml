@@ -1,6 +1,6 @@
 schema_version: 1
 report_contract: numeric-coverage/v1
-input_identity: 243d21a579223bd6141211022104407908a031cb4c7064fcd016b1abc2d5cb62
+input_identity: 7389f059ce80ab4cb26c0df9a9a39f899e8b50d79c99eaf28c100e3cc892c823
 selected_scope: foundation
 selected_skill_ids:
     - arrays.indexing-iteration
@@ -196,21 +196,21 @@ numeric:
         - skill_id: channels.buffering-backpressure
           domain_id: channels
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 3
-          primary_deficit: 3
-          actual_total: 0
+          primary_deficit: 2
+          actual_total: 1
           required_total: 5
-          total_deficit: 5
+          total_deficit: 4
         - skill_id: channels.cancellation
           domain_id: channels
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 4
-          primary_deficit: 4
-          actual_total: 0
+          primary_deficit: 3
+          actual_total: 1
           required_total: 6
-          total_deficit: 6
+          total_deficit: 5
         - skill_id: channels.close-semantics
           domain_id: channels
           scope: foundation
@@ -304,39 +304,39 @@ numeric:
         - skill_id: context.deadlines
           domain_id: context
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 4
-          primary_deficit: 4
-          actual_total: 1
+          primary_deficit: 3
+          actual_total: 2
           required_total: 6
-          total_deficit: 5
+          total_deficit: 4
         - skill_id: context.derivation
           domain_id: context
           scope: foundation
-          actual_primary: 0
+          actual_primary: 1
           required_primary: 3
-          primary_deficit: 3
-          actual_total: 1
+          primary_deficit: 2
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: context.propagation-api
           domain_id: context
           scope: foundation
           actual_primary: 1
           required_primary: 4
           primary_deficit: 3
-          actual_total: 1
+          actual_total: 2
           required_total: 6
-          total_deficit: 5
+          total_deficit: 4
         - skill_id: context.timeouts
           domain_id: context
           scope: foundation
           actual_primary: 1
           required_primary: 3
           primary_deficit: 2
-          actual_total: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: context.values-boundaries
           domain_id: context
           scope: foundation
@@ -1596,12 +1596,12 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 209
+        actual_primary: 213
         required_primary: 410
-        primary_deficit: 209
-        actual_total: 241
+        primary_deficit: 205
+        actual_total: 247
         required_total: 692
-        total_deficit: 451
+        total_deficit: 445
         minima_met: false
     specialist:
         skill_ids:
@@ -1763,15 +1763,15 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 209
+        actual_primary: 213
         required_primary: 418
-        primary_deficit: 217
-        actual_total: 241
+        primary_deficit: 213
+        actual_total: 247
         required_total: 708
-        total_deficit: 467
+        total_deficit: 461
         minima_met: false
     ready_target:
-        actual: 209
+        actual: 213
         min: 350
         max: 500
         met: false

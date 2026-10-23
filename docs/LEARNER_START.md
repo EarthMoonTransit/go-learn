@@ -164,3 +164,16 @@ boundaries; supplied error signatures and harness calls earn no design credit.
 The injected-config-project manual unit is the packages/toolchain assessment and
 also requires actual minimal consumer contract, explicit injection and authored
 recording tests. Neither manual unit changes automatic completion or progress.
+
+The concurrency applications buffer-window-stream, cancel-error-pipeline,
+child-operation-scope and deadline-capped-batch follow their corresponding
+first encounters. A behavioral pass still requires the published finite method
+checklist: receive-then-send capacity reasoning, cancelable owned stages and
+joined termination, explicit context-first helpers with per-call child cleanup,
+and one shared budget with every owned context released.
+
+The unchanged bounded-job-pool is the finite concurrent assessment's complete
+work alternative: bounded execution admission, exact indexed results/errors,
+and joined closure. Cancellation and queue-capacity policy are outside that
+assessment. The unchanged owned-batch-channel separately applies worker launch
+and termination; it does not establish the still-open close-semantics application.

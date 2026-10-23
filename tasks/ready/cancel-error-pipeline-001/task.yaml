@@ -1,0 +1,61 @@
+schema_version: 2
+id: cancel-error-pipeline-001
+title: Cancel and join a failing pipeline
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: channels.cancellation
+    secondary: []
+prerequisites:
+    - channels.pipeline
+    - channels.select
+    - context.cancellation
+    - context.derivation
+    - errors.sentinels-creation
+    - goroutines.leak-prevention
+    - sync.waitgroup-lifecycle
+new_concepts: []
+difficulty: basic
+estimated_time_minutes:
+    min: 20
+    max: 40
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - nil-handles
+        - collect-before-handles
+        - buffer-output
+        - unbuffer-terminal
+        - skip-zero
+        - duplicate-result
+        - emit-failing-value
+        - continue-after-error
+        - replace-error
+        - suppress-error
+        - two-terminal-results
+        - error-waits-for-eof
+        - cancel-waits-for-eof
+        - uncancelable-output-send
+        - early-terminal
+        - pre-canceled-read
+        - open-output
+        - open-terminal
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

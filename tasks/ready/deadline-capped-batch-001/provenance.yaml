@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "1367117291d3c8608c9e49a9e4833a3b5f641a341d2f1dbb56e837d910c7f2c2"
+  },
+  "creation": {
+    "author": "v1-applications-07-root-author",
+    "created_at": "2026-10-22",
+    "summary": "Original bounded shared-budget application after independent contract approval and official task-init; existing timeout task inspected as unchanged preparation, no external source material."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/deadline-capped-batch-001.yaml"
+  }
+}
