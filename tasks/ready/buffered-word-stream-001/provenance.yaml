@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "5ffa425e217cad81baaeb0caaa9c3f2bd5627122ff504325f7ee8bea3d2f3217"
+  },
+  "creation": {
+    "author": "v1-applications-10-timer-scanner-author",
+    "created_at": "2026-10-23",
+    "summary": "Original timer/scanner application after sole I10 contract review; earlier firsts are unchanged preparation only. No external code or text."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/buffered-word-stream-001.yaml"
+  }
+}

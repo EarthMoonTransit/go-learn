@@ -1,0 +1,47 @@
+{
+  "decision": "approve",
+  "reviewer": "sole-independent-reviewer",
+  "reviewed_at": "2026-10-23T06:20:16.074330+00:00",
+  "unit": "run-compaction-fuzz-001",
+  "scope": "actual source, finite native execution and manual application method acceptance; final batch gates separate",
+  "content_digest": "a256a2f7db9f68b3c27578bc6da74a85d95a85574fa99d3e5200fb133bc04fa7",
+  "script_sha256": "c2ff46f4c899deadb4edeb8cee4c509636eb408da4bd5ab1461dc791d539aba8",
+  "manifest_sha256": "19c78dc2e62d0e5ce49fff6cf3d8f60fb7f17f6155ad47211be34714278a9c00",
+  "raw_execution_sha256": "5f88b8e1a757a0171cc94dd7e02dde501abf145f65c3eb2187844eb91ab1bdf6",
+  "normalized_execution_sha256": "7d93598fe7f573574f9db084383040fcad8b287840e0f4b3455d1e99f0cae618",
+  "findings": [],
+  "verified_counts": {
+    "unchanged_assets": 21,
+    "fresh_copies": 10,
+    "commands": 47,
+    "snapshots": 53,
+    "ordinary_nonzero": 13,
+    "roots_removed": 10,
+    "timeouts": 0,
+    "runtime_failures": 0,
+    "max_command_seconds": 2.68256
+  },
+  "checks": [
+    "All assets match preapproved provenance, script and manifest; actual approval hash precedes first execution. All 47 argv sequences equal the finite manifest, pinned Go1.27.0 darwin/arm64 and private/offline/readonly environment retained.",
+    "Independently replayed every copy event from exact source bytes into all 53 source snapshots; all states/hash/text match. Ten distinct roots are removed. Public normalized receipt is exactly raw observations with declared path substitutions only.",
+    "Observed aaabbba, aabba, aba fail with expected ab versus aba; ab/aa/ba pass. This finite manual reduction sequence and separate mathematical length argument support reproduction, without automatic minimization or random discovery.",
+    "Reference native corpus and ordinary Test are installed while compact.go remains broken; each isolated command fails. Only production is repaired, then the identical corpus and Test separately pass, followed by full tests.",
+    "Learner owns complete native byte target/seeds, original-input run-boundary oracle, preservation and supplemental idempotence. Reference uses last output comparison; alternative run-end oracle passes. Supplied fixed tests do not earn target authorship credit.",
+    "Five other concrete production defects each fail target-only ordinary assertions and pass after exact repair. Weak target and log-only regression succeed on broken code but unchanged stronger oracle/corpus exposes it; false global-uniqueness property rejects correct code and is explicitly invalid oracle evidence.",
+    "Both bounded native1x outputs report only baseline1/10 completed and PASS. Full ordinary test runs and individual seed/corpus commands are separate executed evidence; no mutation phase or exhaustive baseline claim is made."
+  ],
+  "accepted_manual_applications": {
+    "primary": "fuzzing.targets-seeds",
+    "secondary": [
+      "fuzzing.invariants",
+      "fuzzing.reproduction"
+    ]
+  },
+  "boundaries": [
+    "Exactly three fuzz application actions proposed by approved contract; no additional skill, component, automatic coverage or learner mastery credit.",
+    "Correct alternate starts from repaired production; generic before-repair helper label is not evidence of causal failure for that specimen. Causal before/after claim is established by reference specimen.",
+    "Thirteen nonzero results include invalid-oracle control; they are not thirteen distinct production defects.",
+    "Delivery remains conditional on integration, final diff/exact HEAD review and all mandatory local/CI gates."
+  ],
+  "reviewer_execution": "Read-only sources and data checks; no authored Go or native recipe executed."
+}

@@ -1264,6 +1264,16 @@
           "skills": [
             "functions.recursion"
           ]
+        },
+        {
+          "number": 58,
+          "task_id": "classified-stage-errors-001",
+          "role": "transfer",
+          "skills": [
+            "errors.wrapping",
+            "errors.is",
+            "errors.as"
+          ]
         }
       ],
       "number": 6
@@ -1469,6 +1479,24 @@
           "skills": [
             "io.pipe-lifecycle",
             "io.copy-limit-composition"
+          ]
+        },
+        {
+          "number": 25,
+          "task_id": "buffered-word-stream-001",
+          "role": "transfer",
+          "skills": [
+            "io.scanning",
+            "io.buffered"
+          ]
+        },
+        {
+          "number": 26,
+          "task_id": "json-record-patch-001",
+          "role": "transfer",
+          "skills": [
+            "encoding.json-shape-tags",
+            "structs.field-visibility-tags"
           ]
         }
       ],
@@ -1830,6 +1858,15 @@
           "skills": [
             "sync.once-initialization",
             "sync.mutex-critical-sections"
+          ]
+        },
+        {
+          "number": 34,
+          "task_id": "periodic-budget-001",
+          "role": "transfer",
+          "skills": [
+            "time.timers-tickers",
+            "time.duration-arithmetic"
           ]
         }
       ],

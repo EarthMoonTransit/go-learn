@@ -1,0 +1,39 @@
+{
+  "decision": "approve",
+  "reviewer": "sole-independent-reviewer",
+  "reviewed_at": "2026-10-23T07:23:38.356755+00:00",
+  "unit": "json-record-patch-001",
+  "scope": "actual final source/public feedback/method/evidence acceptance; final delivery gates separate",
+  "content_digest": "3be68a65959f1fccc7cf5cfe72d5cbe35a4b9434a4fa20967ac120d65bdd1997",
+  "author_receipt_sha256": "ec742ad3b96ccb413c0bb1ff47c7c683688f301194b8f0a33d6a1e9cb95e3564",
+  "canonical_report_sha256": "d4ad93f14d1fc8f04d54310810b67f1a6f378e86f817967be7760718185634e6",
+  "findings": [],
+  "counts": {
+    "verified_source_files": 50,
+    "verified_control_files": 4,
+    "canonical_required_mutants": 16,
+    "current_fixtures": 21,
+    "ordinary_public_diagnostics": 16,
+    "passing_reference_controls": 5
+  },
+  "source_method_checks": [
+    "Empty private recordState starter supplies no fields/tags. Learner declares exported Label/Quantity, private secret, New/accessors, and real subject consumer accesses model exports plus Secret/New across package boundary. Field visibility is not inferred from JSON tags alone.",
+    "Own typed optional pointer struct distinguishes absent/null from explicit empty/zero. Unmarshal failure returns original base before applying partial values; successful reconstruction preserves secret. Encode marshals declared model and never leaks secret.",
+    "Public guarded declaration tests assert concrete required export/tag/private shape without panic or compile-based detection. Wire tests compare parsed keys/values, preserving spelling/order freedom. Grader adds finite Unicode/number combinations.",
+    "Final harness uses external subject_test for all assertions and ./subject selectors, retaining imported model implementation and cross-package use. No assertion or implementation scope lost. Earlier multi-package order failure and superseded v1 fixtures retained without current credit.",
+    "Correct omitzero and anonymous-struct alternative passes public/full. Map-based consumer passes finite behavior but violates explicit learner-struct method and is method-rejected."
+  ],
+  "evidence_checks": [
+    "All50 final source hashes and four control hashes independently verified. Canonical-v5 all gates/16mutants and21 final-v2 report hashes verified. Each16 wrong variants produces required ordinary public reference failure, with no runtime/compile/timeout detection credit.",
+    "All21 disposable roots removed; two correct and two method controls plus public reference pass. Current acceptance uses only final single-test-package harness evidence."
+  ],
+  "accepted_applications": [
+    "encoding.json-shape-tags",
+    "structs.field-visibility-tags"
+  ],
+  "boundaries": [
+    "Exactly two application actions. No extra imported-package, interface, component, automatic method or learner mastery credit.",
+    "Promotion, stable collection, final exact HEAD review and mandatory local/CI gates remain required."
+  ],
+  "reviewer_execution": "Read-only source/evidence verification; no authored Go/test execution."
+}

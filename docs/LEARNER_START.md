@@ -214,3 +214,22 @@ compound lookup/insert locking and actual Once execution separately from behavio
 Retain actual native diagnostics, source snapshots, repairs and finite method
 review. Manual evidence and behavior-passing method controls do not add automatic
 coverage or learner completion. Supplied algorithms earn no authorship credit.
+
+The classified-stage application follows the three error-chain first encounters.
+It owns transparent/opaque error policy and classifies the returned boundary with
+actual errors.Is/errors.As. The word-stream application follows Scanner and
+buffer preparation; it owns word tokenization, bounds and a private buffered
+writer with explicit error/flush ownership. The JSON record patch follows JSON
+shape and package/receiver preparation; it owns exported fields, tags, private
+state and partial-update behavior across a real package boundary. Periodic-budget
+work follows duration arithmetic and idle-stream preparation, owning one Ticker,
+one independent budget Timer and actual elapsed/remaining duration calculations.
+
+| Manual placement | Unit | Independent action |
+| --- | --- | --- |
+| After modules-build | [Workspace/artifact consistency](labs/workspace-artifact-consistency-001/TASK.md) | Diagnose workspace-masked module replacement and prove source/run/binary freshness across explicit rebuild |
+| After hex-seed-classes, hex-wire-invariants and fuzz-regression | [Run-compaction fuzz](labs/run-compaction-fuzz-001/TASK.md) | Author a lossy-transform fuzz target/oracle, reduce an actual failure and preserve native plus ordinary regressions before repair |
+
+Retain finite actual source/method evidence alongside behavioral tests. Native
+manual work never grants automatic coverage or learner completion; the bounded
+native1x observations do not establish mutation search or automated minimization.

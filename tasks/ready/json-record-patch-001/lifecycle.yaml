@@ -1,0 +1,19 @@
+schema_version: 1
+state: ready
+updated_at: "2026-10-23"
+transitions:
+    - from: ""
+      to: draft
+      at: "2026-10-23"
+      actor: codex
+      reason: initialized v2 authoring package
+    - from: draft
+      to: in-review
+      at: "2026-10-23"
+      actor: codex-finite-v1
+      reason: I10 sole independent contract and actual source/public/method evidence accepted; official lifecycle transition
+    - from: in-review
+      to: ready
+      at: "2026-10-23"
+      actor: codex-finite-v1
+      reason: I10 sole independent contract and actual source/public/method evidence accepted; official lifecycle transition

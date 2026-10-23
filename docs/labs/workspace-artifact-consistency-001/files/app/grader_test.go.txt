@@ -1,0 +1,14 @@
+package main
+
+import (
+	"finite.local/core"
+	"testing"
+)
+
+func TestSelectedSignedValues(t *testing.T) {
+	for _, x := range []int{-2, 0, 4} {
+		if got := core.Double(x); got != 2*x {
+			t.Errorf("selected dependency Double(%d)=%d; want%d", x, got, 2*x)
+		}
+	}
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "931d3c219d660a8256c40a8a25fbc070a49917a9bd571a0bab1af21d94edaabb"
+  },
+  "creation": {
+    "author": "v1-applications-10-timer-scanner-author",
+    "created_at": "2026-10-23",
+    "summary": "Original timer/scanner application after sole I10 contract review; earlier firsts are unchanged preparation only. No external code or text."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/periodic-budget-001.yaml"
+  }
+}

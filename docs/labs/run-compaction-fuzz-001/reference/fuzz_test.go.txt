@@ -1,0 +1,40 @@
+package compact
+
+import (
+	"bytes"
+	"testing"
+)
+
+func FuzzCompact(f *testing.F) {
+	f.Add([]byte{})
+	f.Add([]byte("a"))
+	f.Add([]byte("aaa"))
+	f.Add([]byte{255, 0, 255})
+	f.Add([]byte("aaabbba"))
+	f.Add([]byte("aabba"))
+	f.Add([]byte("aba"))
+	f.Add([]byte("ab"))
+	f.Add([]byte("aa"))
+	f.Add([]byte("ba"))
+	f.Fuzz(func(t *testing.T, input []byte) {
+		before := append([]byte(nil), input...)
+		got := CompactRuns(input)
+		var want []byte
+		for i, b := range before {
+			if i == 0 || b != before[i-1] {
+				want = append(want, b)
+			}
+		}
+		if !bytes.Equal(got, want) {
+			t.Errorf("run boundaries input=%x got=%x want=%x", before, got, want)
+		}
+		if !bytes.Equal(input, before) {
+			t.Errorf("input changed: got=%x want=%x", input, before)
+		}
+		saved := append([]byte(nil), got...)
+		again := CompactRuns(got)
+		if !bytes.Equal(again, saved) {
+			t.Errorf("not idempotent: first=%x second=%x", saved, again)
+		}
+	})
+}

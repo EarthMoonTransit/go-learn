@@ -1,0 +1,14 @@
+package compact
+
+func CompactRuns(input []byte) []byte {
+	var result []byte
+	for _, b := range input {
+		if len(result) == 0 || result[len(result)-1] != b {
+			result = append(result, b)
+		}
+	}
+	if len(result) > 0 {
+		result = result[:len(result)-1]
+	}
+	return result
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "original",
+  "project": {
+    "identity": "go-practice-bank",
+    "repository": "https://github.com/EarthMoonTransit/go-learn",
+    "license": "Apache-2.0",
+    "content_digest": "3be68a65959f1fccc7cf5cfe72d5cbe35a4b9434a4fa20967ac120d65bdd1997"
+  },
+  "creation": {
+    "author": "codex",
+    "created_at": "2026-10-23",
+    "summary": "Original I10 learner-owned record export/tag representation and optional JSON patch across two packages under independently approved contract; official task-init creation."
+  },
+  "sources": [],
+  "attribution_file": "ATTRIBUTION.md",
+  "release": {
+    "binding": "deferred-to-release-manifest",
+    "manifest": "provenance/releases/json-record-patch-001.yaml"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-applications-10-root",
+    "created_at": "2026-10-23",
+    "summary": "Original local workspace/module selection and retained binary refresh application after sole contract approval. All sources original, no external source material."
+  },
+  "sources": [],
+  "content_digest": "f415ff6b46e8420172a3e39f16ecdbc6799a3e856f8cf8ae16fc58c89147e1ac",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "0583dfbd4a0f8abc4da272a2e42675a22298f82ed35cfc59b4db31b29081980e",
+    "TASK.md": "98a4065fd57afdc2194a0e93d05670dd3a9aa5a20165313681bb00d23349e3d2",
+    "files/app/go.mod.txt": "fe37367ebe56d416dacf890094f8b4b5812532579d98efbef15edf47f2d26bfb",
+    "files/app/grader_test.go.txt": "ef407ba7c0c5d799b0e10ca707f89b33f23f4a7bb7fe53328fb922ee52431bf1",
+    "files/app/label.go.txt": "00fa73edeec58e5fd2a113dd432273870930dcf507369bb8c8bd2dcb0a5d37e7",
+    "files/app/main.go.txt": "f06564b0e549f8e2baab92eb586c4c5bb9d079715a803f84847ea7355cdb1617",
+    "files/app/main_test.go.txt": "ed18d9b4bc1a12643a27919cc6b83f730410dd716f514c45eec67ab83debbed3",
+    "files/core/core.go.txt": "5f8bc0cc49a4ba62b50fe88dc7330b1fd01f107b333a9b8809c870f4266d5832",
+    "files/core/core_test.go.txt": "4de7ca0c0b4e91fddb17e53c2e88de522e676d7c48312874482073bd95a3dce9",
+    "files/core/go.mod.txt": "e34e1902259c6f2381f1d34c10f036d0d6e861658e7bdd3d5bf660e7687034d2",
+    "files/go.work.txt": "812a17b773506d5cd73975ccf0c3242827d0d260d289b6448fab82521913634b",
+    "files/shadow/core.go.txt": "3347542b3ef8fc6d257f428d20f4b665a2159d1c8cdf91259ae8caa5f14f0b53",
+    "files/shadow/go.mod.txt": "e34e1902259c6f2381f1d34c10f036d0d6e861658e7bdd3d5bf660e7687034d2",
+    "manifest.json": "53e9fb6d0ee0b12d83c2e9e75ec9d9c799b7c723d87d2e826c7753bdb9b13594",
+    "reference/app/label.go.txt": "28580dd01ffaa972cd33832a962f7db0ac9757abe1caeeaeeb028858f1a919b3"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

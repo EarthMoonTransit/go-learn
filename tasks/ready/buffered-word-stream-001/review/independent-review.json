@@ -1,0 +1,61 @@
+{
+  "decision": "approve",
+  "reviewer": "sole-independent-reviewer",
+  "reviewed_at": "2026-10-23T07:22:46.410959+00:00",
+  "scope": "actual source, public feedback, method and finite execution acceptance; promotion/integration/final gates remain separate",
+  "findings": [],
+  "reviewer_execution": "Read-only source and retained evidence review, no authored Go/tests executed.",
+  "units": {
+    "periodic-budget-001": {
+      "content_digest": "931d3c219d660a8256c40a8a25fbc070a49917a9bd571a0bab1af21d94edaabb",
+      "decision": "approve",
+      "canonical_sha256": "8567cc4571e776aec376c4bb9f33d0ab67cfdad8b4d0117ea9e163d5ae287d32",
+      "accepted_applications": [
+        "time.timers-tickers",
+        "time.duration-arithmetic"
+      ],
+      "method": [
+        "Own one Ticker and independent unreset budget Timer; current elapsed from entry origin and remaining subtraction, synchronous callbacks, no callback at expired budget, both Stop deferred on all returns.",
+        "Public synctest observations use owned timer advancement, record channels/atomics, release held callback before cleanup; finite wrong loops retain budget or callback-stop escape. No held mutex/Once, no fatal path bypasses release.",
+        "Delayed callback distinguishes actual entry time from tick count/timestamp; period>budget and held-beyond-budget exercise separate budget. No select priority or all missed ticks demanded.",
+        "Now.Sub and helper cleanup are valid controls. Omit-Stops passes finite behavior but fails actual ownership checklist; no automatic timer-leak/GC claim."
+      ]
+    },
+    "buffered-word-stream-001": {
+      "content_digest": "5ffa425e217cad81baaeb0caaa9c3f2bd5627122ff504325f7ee8bea3d2f3217",
+      "decision": "approve",
+      "canonical_sha256": "d7bab6402117231abc2d4166de9ef2a8651451f7341d803ee4bf669a92fff8ac",
+      "accepted_applications": [
+        "io.scanning",
+        "io.buffered"
+      ],
+      "method": [
+        "Learner configures Scanner/ScanWords and token bound, immediately writes each accepted token to a fresh own bufio.Writer, stops after Write error, always attempts own final Flush, and preserves write/flush-before-scan error identity.",
+        "Public cases exercise64-byte UTF8 tokens/1024 rejection, terminal bytes+error, partial accepted prefix, below16-byte buffered phase, nested caller buffer ownership, final short write, and reads only after actual destination failure. Streams remain open.",
+        "Zero Writer.Reset and writer-only wrapped32-byte/64KiB buffers are valid; Scanner128/512 alternatives pass. Tests impose no intermediate capacity-gap rule or read-ahead count.",
+        "Private bytes.Buffer staging passes finite behavior but fails required bufio.Writer streaming method; no method credit from API mentions alone."
+      ]
+    }
+  },
+  "author_receipt_sha256": "ce3947a3d257ce52ee1eca5c3a23ec45ca6efbc0c5bab72fe54f486a2ac07950",
+  "fixture_script_sha256": "98165be7367c540007fe21880f8448774d2ac5ff3f5f596d289bd8ab1d953105",
+  "counts": {
+    "canonical_pass": 2,
+    "public_reference_pass": 2,
+    "ordinary_public_wrong_assertions": 32,
+    "correct_public_and_full_pass": 8,
+    "method_wrong_behavior_public_and_full_pass": 4,
+    "fixtures_removed": 46,
+    "timeouts": 0,
+    "invalid_failure_credit": 0
+  },
+  "evidence_checks": [
+    "All58 task source hashes, six controls, two canonical report hashes and all46 fixture report hashes independently matched. All fixture roots removed.",
+    "32 copied public-only wrong references show required ordinary assertion text. Remaining14 reference/correct/method controls pass as declared. Scanned full retained reports for fatal/panic/DATA RACE/compile/timeout; none credited.",
+    "Canonical required mutants14/14 and18/18; timer race/vet/determinism pass, scanner vet/determinism pass with race not required."
+  ],
+  "boundaries": [
+    "Exactly four application actions across two tasks. No extra component/cancellation/ownership skill credit, automatic method proof or learner mastery.",
+    "Promotion, stable collection, final exact HEAD review and all mandatory local/CI gates remain required."
+  ]
+}

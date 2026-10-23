@@ -1,0 +1,56 @@
+schema_version: 2
+id: periodic-budget-001
+title: Periodic budget
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: time.timers-tickers
+    secondary:
+        - time.duration-arithmetic
+prerequisites:
+    - types.constants
+    - channels.select
+    - channels.operations-blocking
+    - functions.defer
+    - functions.function-values
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 25
+    max: 40
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - immediate-first
+        - half-period
+        - double-period
+        - tick-count-elapsed
+        - tick-timestamp-elapsed
+        - remaining-equals-budget
+        - restart-period-after-callback
+        - budget-only-on-tick
+        - reset-budget-after-visit
+        - false-budget-result
+        - ignore-visit-stop
+        - true-stop-result
+        - background-visit
+        - allow-expired-visit
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

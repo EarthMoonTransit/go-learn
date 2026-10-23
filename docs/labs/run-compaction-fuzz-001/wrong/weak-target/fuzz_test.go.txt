@@ -1,0 +1,30 @@
+package compact
+
+import (
+	"bytes"
+	"testing"
+)
+
+func FuzzCompact(f *testing.F) {
+	f.Add([]byte{})
+	f.Add([]byte("a"))
+	f.Add([]byte("aaa"))
+	f.Add([]byte{255, 0, 255})
+	f.Add([]byte("aaabbba"))
+	f.Add([]byte("aabba"))
+	f.Add([]byte("aba"))
+	f.Add([]byte("ab"))
+	f.Add([]byte("aa"))
+	f.Add([]byte("ba"))
+	f.Fuzz(func(t *testing.T, input []byte) {
+		got := CompactRuns(input)
+		for i := 1; i < len(got); i++ {
+			if got[i] == got[i-1] {
+				t.Errorf("adjacent repeat at%d", i)
+			}
+		}
+		if !bytes.Equal(got, CompactRuns(got)) {
+			t.Error("not idempotent")
+		}
+	})
+}

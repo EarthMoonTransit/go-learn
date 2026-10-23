@@ -1,0 +1,12 @@
+package main
+
+import (
+	"finite.local/core"
+	"testing"
+)
+
+func TestSelectedDependency(t *testing.T) {
+	if got := core.Double(3); got != 6 {
+		t.Errorf("selected dependency Double(3)=%d; want6", got)
+	}
+}

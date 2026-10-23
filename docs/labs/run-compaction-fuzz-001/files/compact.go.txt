@@ -1,0 +1,13 @@
+package compact
+
+func CompactRuns(input []byte) []byte {
+	var result []byte
+	seen := make(map[byte]bool)
+	for _, b := range input {
+		if !seen[b] {
+			seen[b] = true
+			result = append(result, b)
+		}
+	}
+	return result
+}

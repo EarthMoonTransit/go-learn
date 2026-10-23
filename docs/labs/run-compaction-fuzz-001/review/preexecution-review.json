@@ -1,0 +1,29 @@
+{
+  "decision": "approve",
+  "reviewer": "sole-independent-reviewer",
+  "reviewed_at": "2026-10-23T06:13:51.471161+00:00",
+  "scope": "I10 exact native fuzz source/finite command preexecution only",
+  "unit": "run-compaction-fuzz-001",
+  "content_digests": {
+    "run-compaction-fuzz-001": "a256a2f7db9f68b3c27578bc6da74a85d95a85574fa99d3e5200fb133bc04fa7"
+  },
+  "content_digest": "a256a2f7db9f68b3c27578bc6da74a85d95a85574fa99d3e5200fb133bc04fa7",
+  "script_sha256": "c2ff46f4c899deadb4edeb8cee4c509636eb408da4bd5ab1461dc791d539aba8",
+  "manifest_sha256": "19c78dc2e62d0e5ce49fff6cf3d8f60fb7f17f6155ad47211be34714278a9c00",
+  "copies": 10,
+  "commands": 47,
+  "assets": 21,
+  "findings": [],
+  "checks": [
+    "Complete21asset inventory, individual hashes and sorted-path content digest independently verified; original creation/project identity/sources[] retained. No prior execution receipt exists. Script/manifest define exactly10literal specimens47Go argv and fixed allowed edits.",
+    "Initial compiled tree contains only module/production/public/grader files; incomplete target comment template remains outside. All authored Go assets, fixed tests, references, five production defects and weak/false/log controls inspected.",
+    "Reference target authors all ten seeds and a deterministic []byte callback. Expected output comes from preserved original adjacent input pairs; production compares to last output byte, independent run-end traversal is valid alternate. Input preservation and idempotence supplement exact semantic oracle; nil/empty are compared by byte values.",
+    "Reference sequence executes seed#4 aaabbba,5 aabba,6 aba failures and7 ab,8 aa,9 ba passing controls. It then writes corpus and ordinary Test before repairing compact.go and separately reproduces both failures. Same target/corpus/Test remains unchanged through repair and passing replays/full suite/native invocation.",
+    "Five finite production defects run only FuzzCompact for useful ordinary assertions before exact repair. Weak target behavior-passes broken source, restored independent target exposes it. False global-uniqueness property rejects correct aba and is an invalid oracle, not a production defect. Log-only Test passes broken source while corpus still rejects it. Correct alternate specimen starts from correct production; its purpose is valid-alternative acceptance, not a before-fix causal claim.",
+    "Native corpus encoding is go test fuzz v1 with []byte(\"aba\"); run patterns select individual seed/corpus/ordinary Test as declared. Fuzz invocation uses -run^$,-fuzz^FuzzCompact$,-fuzztime1x,-parallel1,-timeout20s. Actual baseline-only output cannot be relabeled mutation/discovery/minimization.",
+    "Clean explicit private offline home/config/cache/modcache/tmp and telemetry-off locations, canonical disposable roots, no symlinks/escapes, pinned localGo1.27, readonly modules,60s outer command limits. Script validates sole approval/hash/counts, saves actual results before expectation checks, owns subprocess group timeout kill, and always removes its own copy after preserved evidence. No configurable runner/profile or source execution from checkout."
+  ],
+  "method_boundaries": "Three proposed manual applications remain conditional on actual executed/reviewed evidence. Independent target/seeds, lossy semantic oracle and retained reduction/corpus/regression are distinct actions. Minimum length3 explanation is separate from the finite three shorter executions; no exhaustive short-byte enumeration or automated minimizer. Fixed public/grader sources and supplied production earn no learner authorship credit.",
+  "authorization_boundary": "Exact reviewed recipe may execute once under existing authorized finite manual procedure. Any unexpected output must be retained and reviewed before a finite continuation; no silent rerun. Actual acceptance, route/integration, local/exactHEADCI gates remain separate. No automatic coverage or learner mastery.",
+  "reviewer_execution": "Read-only source/script/hash review; no authored code or recipe executed; requested ignored receipt only."
+}

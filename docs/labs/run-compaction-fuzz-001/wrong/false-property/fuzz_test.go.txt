@@ -1,0 +1,16 @@
+package compact
+
+import "testing"
+
+func FuzzCompact(f *testing.F) {
+	f.Add([]byte("aba"))
+	f.Fuzz(func(t *testing.T, input []byte) {
+		seen := make(map[byte]bool)
+		for _, b := range CompactRuns(input) {
+			if seen[b] {
+				t.Errorf("false global uniqueness: repeated byte%x", b)
+			}
+			seen[b] = true
+		}
+	})
+}

@@ -1,0 +1,388 @@
+{
+  "unit": "run-compaction-fuzz-001",
+  "status": "exact inert preexecution inputs; actual acceptance separate",
+  "copies": 10,
+  "commands": 47,
+  "command_timeout_seconds": 60,
+  "initial_files": {
+    "files/compact.go.txt": "compact.go",
+    "files/go.mod.txt": "go.mod",
+    "files/grader_test.go.txt": "grader_test.go",
+    "files/public_test.go.txt": "public_test.go"
+  },
+  "editable_paths": [
+    "compact.go",
+    "fuzz_test.go",
+    "regression_test.go",
+    "testdata/fuzz/FuzzCompact/separated-repeat"
+  ],
+  "specimens": [
+    {
+      "name": "reference",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact/seed#4$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact/seed#5$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact/seed#6$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact/seed#7$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact/seed#8$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact/seed#9$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact/separated-repeat$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^TestCompactRegression$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact/separated-repeat$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^TestCompactRegression$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "./...",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^$",
+          "-fuzz",
+          "^FuzzCompact$",
+          "-fuzztime=1x",
+          "-parallel=1",
+          "-timeout=20s"
+        ]
+      ]
+    },
+    {
+      "name": "keep-duplicates",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "./...",
+          "-count=1",
+          "-timeout=20s"
+        ]
+      ]
+    },
+    {
+      "name": "constant-empty",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "./...",
+          "-count=1",
+          "-timeout=20s"
+        ]
+      ]
+    },
+    {
+      "name": "drop-final",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "./...",
+          "-count=1",
+          "-timeout=20s"
+        ]
+      ]
+    },
+    {
+      "name": "reverse",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "./...",
+          "-count=1",
+          "-timeout=20s"
+        ]
+      ]
+    },
+    {
+      "name": "mutate-input",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "./...",
+          "-count=1",
+          "-timeout=20s"
+        ]
+      ]
+    },
+    {
+      "name": "weak-target",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "./...",
+          "-count=1",
+          "-timeout=20s"
+        ]
+      ]
+    },
+    {
+      "name": "false-property",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "./...",
+          "-count=1",
+          "-timeout=20s"
+        ]
+      ]
+    },
+    {
+      "name": "log-only",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "-run",
+          "^TestCompactRegression$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^FuzzCompact/separated-repeat$",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "./...",
+          "-count=1",
+          "-timeout=20s"
+        ]
+      ]
+    },
+    {
+      "name": "correct-alternate",
+      "argv_after_go": [
+        [
+          "version"
+        ],
+        [
+          "test",
+          "./...",
+          "-count=1",
+          "-timeout=20s"
+        ],
+        [
+          "test",
+          "-run",
+          "^$",
+          "-fuzz",
+          "^FuzzCompact$",
+          "-fuzztime=1x",
+          "-parallel=1",
+          "-timeout=20s"
+        ]
+      ]
+    }
+  ],
+  "skills": {
+    "primary": "fuzzing.targets-seeds",
+    "secondary": [
+      "fuzzing.invariants",
+      "fuzzing.reproduction"
+    ]
+  },
+  "ordinary_wrong": [
+    "keep-duplicates",
+    "constant-empty",
+    "drop-final",
+    "reverse",
+    "mutate-input"
+  ],
+  "reduction_failures": {
+    "4": "aaabbba",
+    "5": "aabba",
+    "6": "aba"
+  },
+  "shorter_controls": {
+    "7": "ab",
+    "8": "aa",
+    "9": "ba"
+  },
+  "module": "finite.local/run-compaction",
+  "execution_recipe": ".tmp/v1-applications-10/fuzz-execute.py --approved-execution",
+  "preparation_commit": "8a34aa90fbf07387c79b849587973917d22c4d62",
+  "preparation_paths": [
+    "tasks/ready/hex-seed-classes-001",
+    "tasks/ready/hex-wire-invariants-001",
+    "docs/labs/fuzz-regression-001"
+  ]
+}
