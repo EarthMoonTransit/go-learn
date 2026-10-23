@@ -1,6 +1,7 @@
 # Finite-v1 final application batch I12
 
-Six units address the final thirteen independent applications. Four automatic
+Six new units address the final thirteen independent applications. A seventh
+existing-task repair strengthens the counter public race workload exposed by CI. Four automatic
 packages combine nine outcomes; two native manual units combine four. The
 141-row companion evidence record reconciles these with the preserved49historical
 pair decisions and their five accepted repairs. All28original missing first slots
@@ -143,12 +144,13 @@ I11 all12mandatory local gates and exact c78a475 review have passed; PR116CI and
 merge remain pending. I12 single236collection is running from5295frozen checker
 inputs. Finite-v1 delivery remains pending all remaining gates and merges.
 
-## Stable automatic inventory and remaining full bank
+## Initial collection history and remaining full bank
 
 The single236collection passed09:32:47UTC23Oct, SHA256
 a4a63dd727a9aa405edad251e660b6ecb8d5069501fe87186c053f246024d8be.
-All5295frozen checker inputs remain unchanged. The task-quality and both numeric
-coverage reports are generated from it; every current consumer reuses this file.
+All5295frozen checker inputs were unchanged for that original acceptance. This
+collection is now superseded by the named counter repair; current reports and
+consumers must use the fresh repaired-input collection.
 Fast has passed; remaining race/vet/integration/current consumers, exactHEADreview
 and greenvalidate/merge remain mandatory.
 
@@ -173,3 +175,49 @@ claim is made. Numeric minima are not redefined to mark finite v1 complete.
 Dependency accepted: I11 PR116 finalc78a475d4afad55eb2a6715745571b9e56f513c2 passed all12local gates, sole exact-HEAD review and validate39927810390, then merged c7a178b8b27a951a52b8bbac0f31f0a2057fed1c at09:40:48UTC23Oct. Accepted inventory222route/225ready/232checked/22manual;13applications remain. Available execution upper bound192.88minutes, with no deductions/reset and infrastructure0.
 The final batch uses that same committed content base; no checker inputs changed
 when recording these delivery facts. All remaining I12 gates still apply.
+
+### CI regression checkpoint, 2026-10-23
+
+PR117 validate39933918517 on ba919937 passed repository fast/race/vet/integration,
+but the bank collection detected only4of5 required mutants for the existing
+concurrent-counter-read-001: unlock-before-read survived. All235other packages
+passed. This is COUNTER-RACE-OVERLAP-01, a public workload gap, not a confirmed
+external outage; there is no blind retry or merge credit. The original local
+236collection remains an accurate old-input result and is superseded for final
+acceptance after repair.
+
+The sole reviewer approved one additional finite public case: four writers and
+four readers,1000calls each, one start gate after all eight readiness signals,
+Gosched between calls, private reader result slots, join before assertions and
+two exact final reads of4000. The serial case ensures at least two P and restores
+GOMAXPROCS. No timing threshold, private hook, profile or platform change.
+Existing three tests, TASK, API, reference, five mutants, route and external
+provenance pins are preserved. This is the seventh content unit ofI12 and adds
+no skill credit. Actual public/focused race evidence, fresh single236collection,
+all mandatory gates, renewed final-HEAD review and green CI remain required.
+The original07:50:22.220556 start and11:50:22.220556 UTC checkpoint remain;
+no clock reset or infrastructure fix.
+
+## Accepted counter repair and current acceptance
+
+The sole actual review accepts the closed16scope matrix and all54evidence hashes.
+Canonical detects5/5. Fifteen copied fixtures were removed: three ordinary public
+diagnostics, two real race public diagnostics, six focused new-test race samples,
+a clean focused reference, a clean public reference and two correct alternative
+scopes. The original failed CI observation retains zero detection credit for its
+survivor; there was no retry until success. Dynamic evidence is limited to actual
+executed schedules, with no guarantee about every possible interleaving.
+
+The four named old-file exceptions are the counter public tests, project content
+digest, appended review notes and current review metadata. All other5502of5506
+old material files stay byte-identical, and every original TASK/API/reference/
+mutant/source pin/address/order is preserved. The new ci-regression-review.json
+retains the actual independent receipt. Seven content units remain within the
+batch limit; no new skill/application credit or tooling is added.
+
+The new5296checker inputs froze at10:40:49UTC. One fresh236collection and all
+mandatory gates are running. Final141rows and6components keep their accepted
+canonical meaning; current evidence pins and final-HEAD approval must refresh.
+The original four-hour checkpoint remains11:50:22UTC with no deductions/reset.
+
+Saved-workspace compatibility checkpoint, 11:07 UTC23Oct: the repaired236collection passed (SHA256 211457f7ceedf97476fb09aa9a0fc87a94330d60dcd81e84f6c3544854bd7ed1). Preservation review then found COUNTER-WORKSPACE-REVISION-01: the exact changed content digest is not yet in the existing directional compatibility list, so old saved counter workspaces are rejected before verification. A separate bounded tooling dependency, regression evidence and fresh affected repository gates are required. No reset or automatic readiness credit; original I12 clock remains.

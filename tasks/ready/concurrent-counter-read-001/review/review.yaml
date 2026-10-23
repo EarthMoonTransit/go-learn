@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "reviewer": "/root/ui_goal_reviewer",
-  "reviewed_at": "2026-09-09",
+  "reviewer": "/root/reviewer",
+  "reviewed_at": "2026-10-23",
   "decision": "approve",
   "story_free": true,
   "prompt_test_alignment": true,
@@ -11,5 +11,5 @@
   "reference_only_clean_room_verified": true,
   "solution_leakage_checked": true,
   "minimum_mutants": 5,
-  "notes": "Independent content and provenance review approved. Targeted technical report passes with 5/5 required defects detected and reference/race PASS. No authored code execution by reviewer or learner-home access. Full batch gates, promotion and human calibration remain separate."
+  "notes": "Historical 2026-09-09 content/provenance review is retained in notes.md. I12 COUNTER-RACE-OVERLAP-01 repair accepted in ci-regression-review.json: unchanged TASK/API/reference/mutants/source pins; original three public cases preserved; finite common-start public regression. Canonical 5/5 and fixed 16-scope public/focused evidence accepted; all current repository gates and exact-head CI remain required."
 }

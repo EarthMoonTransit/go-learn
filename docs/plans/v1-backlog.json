@@ -1443,7 +1443,7 @@
   ],
   "delivery": {
     "batch": "I12",
-    "status": "Six actual units, integration and141/6content consistency approved; stable236collection/reports/fast pass; remaining local gates, exactHEADreview, CI and merge required",
+    "status": "Content consistency accepted; new236collection passed; exact saved-workspace compatibility tooling dependency and final delivery gates remain",
     "route_lessons_after": 226,
     "first_encounters_remaining": 0,
     "independent_applications_remaining": 0,
@@ -1458,8 +1458,23 @@
       "reviewed_at": "2026-10-23T09:17:24.890133+00:00",
       "evidence": "catalog/intake/2026-10-23/v1-applications-12-source-review.json#readiness_review"
     },
-    "collection_sha256": "a4a63dd727a9aa405edad251e660b6ecb8d5069501fe87186c053f246024d8be",
-    "checker_inputs": 5295
+    "checker_inputs": 5296,
+    "ci_regression": {
+      "task_id": "concurrent-counter-read-001",
+      "finding": "COUNTER-RACE-OVERLAP-01",
+      "failed_head": "ba91993794afc1ecdc5dbe8a693328841b7add8b",
+      "run": 39933918517,
+      "detected": 4,
+      "required": 5,
+      "survived": "unlock-before-read",
+      "repair_scope": "Additional finite public overlap case; existing TASK/API/reference/mutants/route retained. Same sole reviewer; fresh collection and all gates required.",
+      "readiness_credit": "No additional slot or unit credit; restores reliable actual assessment of the existing first encounter.",
+      "decision": "actual repair approved",
+      "review_evidence": "tasks/ready/concurrent-counter-read-001/review/ci-regression-review.json"
+    },
+    "superseded_collection_sha256": "a4a63dd727a9aa405edad251e660b6ecb8d5069501fe87186c053f246024d8be",
+    "collection_sha256": "211457f7ceedf97476fb09aa9a0fc87a94330d60dcd81e84f6c3544854bd7ed1",
+    "workspace_compatibility_blocker": "COUNTER-WORKSPACE-REVISION-01"
   },
   "delivery_history": [
     {

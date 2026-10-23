@@ -1,6 +1,6 @@
 {
   "batch": "I12",
-  "status": "All six actual units, integration and141/6substantive consistency approved; stable236collection/generated reports/fast pass; final mandatory delivery gates pending",
+  "status": "Six new units, counter public regression and141row content consistency accepted; separate exact workspace compatibility tooling dependency and final gates remain",
   "base": "c78a475d4afad55eb2a6715745571b9e56f513c2",
   "new_automatic_tasks": [
     {
@@ -274,6 +274,66 @@
         "Integrate explicit prerequisites, actual receipt and provenance; independent final diff/HEAD review, local gates and green exactHEAD validate remain required."
       ],
       "reviewer_executed_authored_code": false
+    },
+    "counter-content-review.json": {
+      "reviewer": "/root/reviewer",
+      "reviewed_at": "2026-10-23T10:40:20.280225+00:00",
+      "decision": "approve",
+      "scope": "actual content/method/public-feedback acceptance of the named I12 counter CI repair; delivery gates remain separate",
+      "task_id": "concurrent-counter-read-001",
+      "base_head": "ba91993794afc1ecdc5dbe8a693328841b7add8b",
+      "content_digest": "0896d577d779512d5e773cd92130702056624033e3f3b138ab23e2cd49319c03",
+      "public_sha256": "09995fda2780b4573b32b514b24949d54cfad61c25ea9fc88f3b1a867512b141",
+      "contract_receipt": ".tmp/v1-applications-12/counter-contract-review.json",
+      "contract_sha256": "894d65b38a6bd13807effb11b8630ff7cfcd85ee10b8bc9da8c36810e953b2d0",
+      "author_receipt": ".tmp/v1-applications-12/counter-author-receipt.json",
+      "author_receipt_sha256": "c3d3f67f70bef42dc46b68717ae4b570f939a322b71afb14c829a3dc39e10ef8",
+      "source_preservation": {
+        "original_task_files": 18,
+        "changed_files": [
+          "tasks/ready/concurrent-counter-read-001/provenance.yaml",
+          "tasks/ready/concurrent-counter-read-001/review/notes.md",
+          "tasks/ready/concurrent-counter-read-001/tests/public/public_test.go"
+        ],
+        "other_original_files_exact": true,
+        "original_three_public_function_bodies_exact": true,
+        "historical_notes_prefix_exact": true,
+        "external_provenance_registry_commit_artifact_license_pins_exact": true
+      },
+      "actual_evidence": {
+        "canonical_pass": true,
+        "required_mutants_detected": 5,
+        "required_mutants_total": 5,
+        "canonical_report_sha256": "a47942c8edc28c4652d0fce76e8c5a07086a7c0eec44472aa05e53081efb3216",
+        "fixed_scopes": 16,
+        "copied_fixture_roots_removed": 15,
+        "passing_scopes": 5,
+        "ordinary_public_wrong_diagnostics": 3,
+        "race_public_wrong_diagnostics": 2,
+        "focused_only_new_test_race_samples": 6,
+        "focused_samples_per_unchanged_race_mutant": 3,
+        "fixed_matrix_sha256": "4abc3421dcb5a7d5b5b2f3b2ece3f6d41c1426ac4d5713dcc623fb710a5e3682",
+        "indexed_evidence_hashes_verified": 54,
+        "current_task_file_hashes_verified": 18,
+        "correct_reference_and_explicit_local_read_before_unlock_control_pass": true,
+        "focused_diagnostics_attribute_read_Value_write_Inc_and_creation_stacks_to_new_test": true,
+        "unintended_timeout_compile_panic_credit": false
+      },
+      "method_review": [
+        "Common gate opens only after eight readiness acknowledgements; four writers and four readers each perform exactly 1000 calls.",
+        "Gosched occurs between calls; no test hook enters the private counter implementation.",
+        "Each reader owns its diagnostic slot; WaitGroup joins all accesses before assertions and stable final reads.",
+        "Serial test changes GOMAXPROCS only when below two and restores it in Cleanup.",
+        "The focused reference passes and all six predeclared focused race samples actually fail with the intended DATA RACE; their test source contains none of the old cases."
+      ],
+      "boundaries": [
+        "Dynamic observations substantiate this finite workload; no guarantee for all schedules or probability estimate is claimed.",
+        "The original CI survivor is retained and receives no detection credit. This is a reviewed content fix, not a blind retry or confirmed external outage.",
+        "No new skill/application/component/mastery credit; frozen task meaning and existing race-required diagnostic contract remain unchanged.",
+        "Content approval does not approve delivery. Fresh stable full collection, all required consumers/local gates, exact final HEAD review and green validate are mandatory."
+      ],
+      "findings": [],
+      "source_execution_by_reviewer": false
     }
   },
   "contract_reviews": {
@@ -450,9 +510,58 @@
         "Root owns sharedintegration/route/backlog/finalHEAD/gates/CI; no new checker/profile/AST/rewriter/trace/runner/platform."
       ],
       "reviewer_executed_authored_code": false
+    },
+    "counter-contract-review.json": {
+      "reviewer": "/root/reviewer",
+      "reviewed_at": "2026-10-23T10:35:37.386178+00:00",
+      "decision": "approve-bounded-content-repair-contract",
+      "base_head": "ba91993794afc1ecdc5dbe8a693328841b7add8b",
+      "task_id": "concurrent-counter-read-001",
+      "blocker": "CI39933918517: unchanged required unlock-before-read mutant survived; original local pass is not evidence of a confirmed external transient",
+      "contract": [
+        "Preserve TASK, API, ID, skill meaning, reference, all five mutants, three existing public cases, route, original source and license pins.",
+        "Add one serial public test: four writers and four readers, each exactly 1000 calls, all eight readiness acknowledgements before one shared start gate opens.",
+        "Call runtime.Gosched only between operations; record each reader first invalid value in its private slot; join all workers before range and two final count=4000 assertions.",
+        "If ambient GOMAXPROCS is below two, temporarily raise it to two and restore through t.Cleanup. No t.Parallel, sleeps, deadlines, source/private instrumentation or new checker.",
+        "Update content digest and append truthful current review/evidence notes; old independent-review history remains historical."
+      ],
+      "evidence_required": [
+        "Fresh canonical task-check with current public bytes.",
+        "Clean locked reference and a valid explicit-unlock-after-local-read control under public/race checks.",
+        "Public-only and focused-new-test receipts for unchanged unlock-before-read and unlocked-read showing actual DATA RACE at Value/Inc with creation stacks.",
+        "Use a finite predeclared sample series; no repeat-until-green and no timeout/crash substitution for the intended race report.",
+        "Fresh stable full collection and every required gate after task input changes; exact final HEAD review and green validate before merge."
+      ],
+      "limits": [
+        "This workload exercises dynamic race detection; it cannot prove the private unlock/read instruction interleaving or detection on every schedule.",
+        "No mastery, new skill or extra encounter credit. Existing race-required contract explicitly permits native DATA RACE as diagnostic evidence.",
+        "Seven units remain within the batch limit. Existing final content approval does not waive the failed CI gate."
+      ],
+      "findings": [],
+      "base_task_sha256": {
+        "tasks/ready/concurrent-counter-read-001/ATTRIBUTION.md": "c2ae6dc63fae96828a73bf646432d5ad42b47965ca5cce24662d4bd60f7a1e37",
+        "tasks/ready/concurrent-counter-read-001/TASK.md": "e390233cf97f7fb08a1695cce82f6f8548d0b9cc00e4d274add73006e7cfccb0",
+        "tasks/ready/concurrent-counter-read-001/go.mod": "0a5934c95eb38b5282fd5b06fb6041ef617cb7256e00168d2c17928cf4b88710",
+        "tasks/ready/concurrent-counter-read-001/hints/HINTS.md": "c166ac7666f312d37f5c50cd431b84ca2903531dcf40366636f02b33a70dee13",
+        "tasks/ready/concurrent-counter-read-001/lifecycle.yaml": "2a359965dd05afa4ffde1f5c22da6201dcbdfd66acb708c6a7ca9667a6fc8f6b",
+        "tasks/ready/concurrent-counter-read-001/provenance.yaml": "78232aaf5cbd0b31525dc01f8e945308d94ea4f071963498dded9cc9018a3917",
+        "tasks/ready/concurrent-counter-read-001/review/notes.md": "0432499c10dc2dac73d59a194ba6458c208df943cee971d15fa9a0e4b8c4f287",
+        "tasks/ready/concurrent-counter-read-001/review/review.yaml": "02a77241958b6ef329eb85ed84eb45cef9083155f5e9f8863e316b67d80e1a6e",
+        "tasks/ready/concurrent-counter-read-001/solution/mutants/read-clears/subject.go": "a7373cc65849a6c9f9e3621dac9d101f6ee156e2d08542c0c0369a68143ec25a",
+        "tasks/ready/concurrent-counter-read-001/solution/mutants/read-increments/subject.go": "325301bcab88b9edc725f3a590f5bc7dda23df8494a7df054324351cde954c1b",
+        "tasks/ready/concurrent-counter-read-001/solution/mutants/unlock-before-read/subject.go": "c5741ba3882009f298715820f18177039a011061a18343eba40b20e1c341bc01",
+        "tasks/ready/concurrent-counter-read-001/solution/mutants/unlocked-read/subject.go": "25561c8765856493498fdeca81f605eb864c5c5bc4a413581da4fd1a9afc503a",
+        "tasks/ready/concurrent-counter-read-001/solution/mutants/zero-read/subject.go": "de1e025b730d6e7fdaf59ea9987adf5f43732470ab6d86942c44dfb221709523",
+        "tasks/ready/concurrent-counter-read-001/solution/reference/subject.go": "97418ee54d73c849f2cc4b94572a372ebe3daad8756462d5e394b267ff8d3110",
+        "tasks/ready/concurrent-counter-read-001/starter/subject.go": "7bb7eb800d5d094a560ad20c4372e0809b699615d7362b65f664cb0b048970ee",
+        "tasks/ready/concurrent-counter-read-001/task.yaml": "e96534ebc4723d722ce0864ea219f2773d3084c32ed5b8401b6c72afa9d782a9",
+        "tasks/ready/concurrent-counter-read-001/tests/grader/grader_test.go": "2dfe1443f83046d41b15ee76e6e8867ac535ed6c05fbca3dabd7a9ac01a38dd0",
+        "tasks/ready/concurrent-counter-read-001/tests/public/public_test.go": "93def86c11aec6719a9de9b1e959da55be25a71e1bb4d3dbcc33efbacfba1ce6"
+      },
+      "source_execution_by_reviewer": false
     }
   },
-  "provenance_rule": "Original project identity/creation/digest and empty external sources; release manifest binds actual commit, never invented.",
+  "provenance_rule": "The six new I12 units are original and retain project identity, creation record, content digest and empty external sources; release manifests bind actual commits, never invented commits. The seventh unit repairs the existing adapted concurrent-counter-read-001: learn-go-with-tests registry entry, exact commit4675d96ad50b815d3e9fdc2122ab3dbc14636252, source artifact paths/hashes and MIT license pins remain unchanged. Only its project content digest is refreshed for the original added public regression; historical provenance and review are retained.",
   "scope_boundary": "13applications, no extra skills/components/manualautomaticcoverage or mastery.",
   "integration_review": {
     "schema_version": 1,
@@ -608,14 +717,6 @@
       "I11 dependency and I12 must each merge only after green validate on their exact final HEAD. Content consistency approval does not waive delivery gates or declare learner mastery."
     ]
   },
-  "single_collection": {
-    "collection_sha256": "a4a63dd727a9aa405edad251e660b6ecb8d5069501fe87186c053f246024d8be",
-    "inputs": 5295,
-    "verified_at": "2026-10-23T09:37:32.615422+00:00",
-    "unchanged": true,
-    "collection_completed_at": "2026-10-23T09:32:47.741576+00:00",
-    "checked_packages": 236
-  },
   "accepted_dependency": {
     "batch": "I11",
     "status": "accepted and merged",
@@ -637,5 +738,255 @@
     "ready": 225,
     "checked": 232,
     "manual": 22
+  },
+  "ci_regression": {
+    "task_id": "concurrent-counter-read-001",
+    "finding": "COUNTER-RACE-OVERLAP-01",
+    "failed_head": "ba91993794afc1ecdc5dbe8a693328841b7add8b",
+    "run": 39933918517,
+    "detected": 4,
+    "required": 5,
+    "survived": "unlock-before-read",
+    "repair_scope": "Additional finite public overlap case; existing TASK/API/reference/mutants/route retained. Same sole reviewer; fresh collection and all gates required.",
+    "readiness_credit": "No additional slot or unit credit; restores reliable actual assessment of the existing first encounter.",
+    "failed_ci_collection_sha256": "2108928932a7d901854ca24fd591ba418b7ca64ab82a70b5405e0bfc3d2fa910",
+    "old_local_collection_status": "Passed on old inputs; preserved but superseded by repair for final acceptance",
+    "other_ci_packages_passed": 235,
+    "decision": "actual repair approved",
+    "task_content_digest": "0896d577d779512d5e773cd92130702056624033e3f3b138ab23e2cd49319c03",
+    "scope_count": 16,
+    "removed_fixture_copies": 15,
+    "ordinary_public_diagnostics": 3,
+    "race_public_diagnostics": 2,
+    "focused_race_samples": 6,
+    "canonical_mutants_detected": 5,
+    "repair_attempt": 1,
+    "unchanged_original_tests": true,
+    "scope_note": "Six new units plus one existing content repair; no tooling or additional readiness credit.",
+    "retained_failed_ci_log": {
+      "run": 39933918517,
+      "job": 120348670011,
+      "head": "ba91993794afc1ecdc5dbe8a693328841b7add8b",
+      "raw_decoded_log": "ci-attempt1-job.log",
+      "raw_log_sha256": "d69ddd58864e1a574ca7bd98c1ae5b1eafa80102f894b05b9d60859f41c3488b",
+      "collection": "ci-attempt1-checks.yaml",
+      "collection_note": "Reconstructed YAML from timestamped job log output; hash identifies the retained reconstruction, not an independently downloaded server artifact.",
+      "retained_collection_sha256": "2108928932a7d901854ca24fd591ba418b7ca64ab82a70b5405e0bfc3d2fa910",
+      "failed_task": "concurrent-counter-read-001",
+      "survived": "unlock-before-read",
+      "other235_passed": true,
+      "fix_attempts": 1,
+      "blind_reruns": 0
+    }
+  },
+  "post_repair_preservation": {
+    "base": "c78a475d4afad55eb2a6715745571b9e56f513c2",
+    "old_material_files_checked": 5506,
+    "unchanged_old_material_files": 5502,
+    "named_counter_repair_exceptions": [
+      "tasks/ready/concurrent-counter-read-001/provenance.yaml",
+      "tasks/ready/concurrent-counter-read-001/review/notes.md",
+      "tasks/ready/concurrent-counter-read-001/review/review.yaml",
+      "tasks/ready/concurrent-counter-read-001/tests/public/public_test.go"
+    ],
+    "all_old_solutions_prompts_mutants_addresses_and_relative_order_preserved": true,
+    "new_review_receipt": "tasks/ready/concurrent-counter-read-001/review/ci-regression-review.json",
+    "no_additional_skill_credit": true
+  },
+  "superseded_single_collection": {
+    "collection_sha256": "a4a63dd727a9aa405edad251e660b6ecb8d5069501fe87186c053f246024d8be",
+    "inputs": 5295,
+    "verified_at": "2026-10-23T09:37:32.615422+00:00",
+    "unchanged": true,
+    "collection_completed_at": "2026-10-23T09:32:47.741576+00:00",
+    "checked_packages": 236
+  },
+  "single_collection": {
+    "status": "passed; same current collection feeds reports and validator",
+    "input_count": 5296,
+    "frozen_at": "2026-10-23T10:40:49.884139+00:00",
+    "sha256": "211457f7ceedf97476fb09aa9a0fc87a94330d60dcd81e84f6c3544854bd7ed1",
+    "completed_at": "2026-10-23T11:03:26.344188+00:00",
+    "packages": 236
+  },
+  "counter_integration_review": {
+    "reviewer": "/root/reviewer",
+    "reviewed_at": "2026-10-23T10:44:01.399604+00:00",
+    "decision": "approve",
+    "scope": "I12 named counter-repair integration, not delivery or final-HEAD approval",
+    "base_reviewed_head": "ba91993794afc1ecdc5dbe8a693328841b7add8b",
+    "material_preservation_base": "c78a475d4afad55eb2a6715745571b9e56f513c2",
+    "content_approval": ".tmp/v1-applications-12/counter-content-review.json",
+    "content_approval_sha256": "bc5c0e47a27bcaae8af7338d7b0fdf4bd8fe699861f585429614b8e138de292d",
+    "checks": {
+      "old_material_files_compared_against_git_blobs": 5506,
+      "old_material_files_unchanged": 5502,
+      "named_changed_old_files": [
+        "tasks/ready/concurrent-counter-read-001/provenance.yaml",
+        "tasks/ready/concurrent-counter-read-001/review/notes.md",
+        "tasks/ready/concurrent-counter-read-001/review/review.yaml",
+        "tasks/ready/concurrent-counter-read-001/tests/public/public_test.go"
+      ],
+      "new_ci_regression_review_exact_copy": true,
+      "contract_and_actual_receipts_embedded_exactly_in_intake": true,
+      "current_review_metadata_approved_by_same_reviewer_and_historical_notes_preserved": true,
+      "all_route_and_pedagogical_order_files_unchanged_since_prior_approved_I12_HEAD": true,
+      "frozen_checker_inputs_rehashed_unchanged": 5296,
+      "evidence_pins_current": 473,
+      "canonical_141_rows_sha256": "e8e551bfeadc98d23b3b4e59121b8460fb5b2cc4016a49c8098ddad7a503cdf7",
+      "canonical_6_components_sha256": "88e317e1b5875d31249bdae103cb2f522c1dcefee3fea6253c54719792b23221",
+      "no_additional_skill_or_component_credit": true,
+      "batch_units": 7,
+      "provenance_rule_now_distinguishes_original_six_new_units_from_existing_adapted_counter": true
+    },
+    "resolved_findings": [
+      {
+        "id": "COUNTER-INTEGRATION-PROVENANCE-01",
+        "resolution": "Intake top-level rule explicitly limits original/empty-source rule to six new units and preserves the adapted counter registry, exact upstream commit, artifact/license pins; only its project content digest changes."
+      }
+    ],
+    "findings": [],
+    "current_acceptance": {
+      "frozen_at": "2026-10-23T10:40:49.884139+00:00",
+      "collection": ".tmp/v1-applications-12/repair-acceptance/task-checks.yaml",
+      "status": "fresh single236collection and mandatory gates in progress; original ba919937 collection/approval are historical superseded evidence",
+      "clock_start": "2026-10-23T07:50:22.220556Z",
+      "clock_checkpoint": "2026-10-23T11:50:22.220556Z",
+      "clock_reset_or_new_deductions": false
+    },
+    "remaining_requirements": [
+      "Complete fresh stable collection and all required consumers/local gates.",
+      "Generate current reports from that same collection and refresh factual evidence pins without changing approved row/component meanings.",
+      "Independent exact final HEAD/diff review; green validate on that HEAD before merge."
+    ],
+    "reviewer_executed_authored_code": false
+  },
+  "workspace_compatibility_blocker": {
+    "reviewer": "/root/reviewer",
+    "reviewed_at": "2026-10-23T11:00:48.174504+00:00",
+    "decision": "request-changes-before-delivery",
+    "finding_id": "COUNTER-WORKSPACE-REVISION-01",
+    "task_id": "concurrent-counter-read-001",
+    "stored_digest": "abff4eff554adc02cda1c3179cbd49291414e4e665f801c07d32844e3ad3f41a",
+    "current_digest": "0896d577d779512d5e773cd92130702056624033e3f3b138ab23e2cd49319c03",
+    "finding": "Existing saved workspaces carry the old digest. compatibleContentRevision has no counter pair; validateWorkspace rejects the marker at service.go:649 before Check/Complete can invoke the verifier, with a stale/reset error. Physical solution/progress preservation alone is insufficient.",
+    "requirements": [
+      "docs/DEBUGGING.md short-cycle item4 requires saved-workspace compatibility for task-content changes and no reset by default.",
+      "User requires preserving solutions/progress; AGENTS separates tooling fixes from content batches."
+    ],
+    "approved_narrow_tooling_contract": [
+      "Separate named tooling PR using the existing exact directional compatibility function, only concurrent-counter-read-001 and the listed old-to-new pair.",
+      "No generic revision acceptance, reverse compatibility, schema change, marker rewrite, solution rewrite, progress migration or reset.",
+      "Retain schema/task/submission/confinement/fixed-file guards and ordinary attempt/time/completion semantics.",
+      "Record the exact bounded decision in ADR documentation consistent with ADR0014.",
+      "Regression compares old/new learner-export paths, bytes and editable flags; create historical temporary-home workspaces from pinned old material rather than claiming current marker data is historical content.",
+      "Exercise legacy and generation markers; preserve existing in-progress/completed solution and progress/history on read/compatibility, and validate intentional ordinary Resume/Check/Complete effects separately.",
+      "Test exact pair, reverse, unknown source/target and wrong task rejection; actual Check/Complete through disposable existing verification on the corrected canonical public tests."
+    ],
+    "source_findings": [
+      "Public tests are not mapped into persistent implementation workspaces (learner.go buildLearnerWorkspaceFiles); TASK, go.mod and starter remain exact, so this specific revision is eligible for the existing bounded compatibility policy.",
+      "The actual corrected public-test acceptance remains valid; final integration/delivery cannot assert continuing saved-workspace availability until this blocker is resolved."
+    ],
+    "evidence_pins": {
+      "internal/learner/content_revisions.go": "bb001ba4814c36a9b553f99390a76db03912d9f353b9e8cc27dd23c8a166d562",
+      "internal/learner/service.go": "26ccfa36961ec89cacf7a73b1b501c5b3b42cd66da2dc18ca13b359c1558a0bf",
+      "internal/tasking/learner.go": "a2333cd5a5472fb096bdc6367da1b5f9fbc842ce474af9301ec165d1e5deebbf",
+      "docs/DEBUGGING.md": "fab18378837bd450438b991a527cad70abbfc25a56281ec5a09d7b2778d18930",
+      "docs/adr/0014-public-check-revision-compatibility.md": "61b24344fb7de062a0de55a3efff7cba4f6d2d60636c5739b8cc8a56e47bacbd"
+    },
+    "execution_by_reviewer": false,
+    "final_acceptance_conditions": [
+      "Independent actual tooling diff/HEAD review, required gates and green validate on the separate tooling PR.",
+      "Content PR includes the accepted dependency and receives renewed final review/checks with truthful freshness accounting.",
+      "Original I12 checkpoint and infrastructure time limits remain in force."
+    ]
+  },
+  "collection_reuse_review": {
+    "reviewer": "/root/reviewer",
+    "reviewed_at": "2026-10-23T11:07:02.690017+00:00",
+    "decision": "approve-conditional-collection-reuse",
+    "blocker": "COUNTER-WORKSPACE-REVISION-01",
+    "scope": "tooling-only exact learner compatibility pair and its regression tests/documentation",
+    "collection": "/Users/egor/.codex/worktrees/v1-repairs-06/go-learn/.tmp/v1-applications-11/task-checks.yaml",
+    "collection_sha256": "e0024874d887c6188b73a08c90484e2efe634d7aa8abcafdb7ffb3f346715844",
+    "checked_packages": 232,
+    "tooling_base": "c7a178b8b27a951a52b8bbac0f31f0a2057fed1c",
+    "basis": [
+      "Owner requires one stabilized local collection for its consumers; unchanged task-check inputs retain that actual evidence.",
+      "TaskInputDigest includes internal/tasking embedded verifier, isolation/native source digests, contracts, task files/modes and lifecycle. It does not include internal/learner service compatibility code or its tests.",
+      "ValidateCheckCollection rechecks exact inventory/order, input digests, execution topology, verifier source, toolchain policy and actual runtime."
+    ],
+    "requirements": [
+      "Actual final tooling diff must remain outside task-check input influence.",
+      "Fresh validator/task-report and both coverage-report checks must consume this exact accepted232 file on final tooling inputs.",
+      "Fresh targeted compatibility regressions and fast, race, vet, integration repository gates are required for changed learner inputs.",
+      "Independent final tooling HEAD review and green validate remain required; no bypass of AGENTS8 or CI.",
+      "The I12 repaired236 collection is distinct; use it only for its matching I12 task inventory.",
+      "Any changed task/verifier/contract/runtime input or rejected collection freshness invalidates reuse and requires a new full collection.",
+      "On the final combined I12 HEAD, rerun repository fast/race/vet/integration for the changed learner dependency; prior pre-dependency repository gates cannot establish its acceptance. Preserve old execution receipts without relabeling them as final-input runs."
+    ],
+    "source_execution_by_reviewer": false,
+    "findings": [],
+    "paired_i12_collection": {
+      "path": "/Users/egor/Documents/ChatGPT/go-learn/.tmp/v1-applications-12/repair-acceptance/task-checks.yaml",
+      "sha256": "211457f7ceedf97476fb09aa9a0fc87a94330d60dcd81e84f6c3544854bd7ed1",
+      "checked_packages": 236,
+      "completed_at": "2026-10-23T11:03:26Z",
+      "boundary": "Counter public repair is already included. Later exact learner-only compatibility dependency does not change TaskInputDigest inputs; this requires fresh consumer validation and unchanged task/verifier/contract/runtime evidence on the final combined HEAD."
+    }
+  },
+  "workspace_compatibility_actual_review": {
+    "reviewer": "/root/reviewer",
+    "reviewed_at": "2026-10-23T11:11:35.131163+00:00",
+    "decision": "approve",
+    "scope": "actual source and targeted-evidence review of separate COUNTER-WORKSPACE-REVISION-01 tooling; final HEAD and full delivery gates remain pending",
+    "worktree": "/Users/egor/.codex/worktrees/v1-repairs-06/go-learn",
+    "base_head": "c7a178b8b27a951a52b8bbac0f31f0a2057fed1c",
+    "blocker": "COUNTER-WORKSPACE-REVISION-01",
+    "exact_pair": {
+      "task_id": "concurrent-counter-read-001",
+      "stored": "abff4eff554adc02cda1c3179cbd49291414e4e665f801c07d32844e3ad3f41a",
+      "current": "0896d577d779512d5e773cd92130702056624033e3f3b138ab23e2cd49319c03",
+      "direction": "old to new only"
+    },
+    "source_sha256": {
+      "docs/adr/0014-public-check-revision-compatibility.md": "46553911944dfb0641bf4ff3c2675842f7e5e07afb35ac0c57a1dcebc005c656",
+      "internal/learner/content_revisions.go": "b74cdf347310a0f6307fa3534d31534a9323fb1b3d919c1518f0980bac04cdf1",
+      "internal/learner/content_revisions_test.go": "dd7c9a8509592530918ca559d6c77ec5ba75b79ca49eee5e408c2f13f8337319",
+      "internal/learner/counter_revision_test.go": "bffaa4a9937139756037f1e2ccccf7ca36d06cc6a252f7b42c8ee3240d9f0218",
+      "internal/learner/counter_revision_integration_test.go": "ad978d16c61c2b87dac7e8ab5c0ded5da5c31d07d5c5f204b5d726d7fc506e1f",
+      "internal/learner/testdata/counter-public-before.go.txt": "93def86c11aec6719a9de9b1e959da55be25a71e1bb4d3dbcc33efbacfba1ce6",
+      "internal/learner/testdata/counter-public-common-start.go.txt": "09995fda2780b4573b32b514b24949d54cfad61c25ea9fc88f3b1a867512b141"
+    },
+    "targeted_receipt": "/Users/egor/.codex/worktrees/v1-repairs-06/go-learn/.tmp/counter-workspace-compat/focused-receipt.json",
+    "targeted_receipt_sha256": "4ecaa9b1a32c96ebf99db04316a4c7b1bd9b3c9837aa701b0c65482924f8df05",
+    "targeted_evidence": {
+      "unit_exit": 0,
+      "unit_package_seconds": 2.752,
+      "integration_exit": 0,
+      "integration_package_seconds": 23.294,
+      "logs_sha256": {
+        ".tmp/counter-workspace-compat/focused-unit.log": "3e47622aa71626079faf589e38eac15968d4584d3ee3fa1e38bfd3f4e2d66d08",
+        ".tmp/counter-workspace-compat/focused-integration.log": "5dbfa06b0aafaf59cbea660d8277f039c90a519aa8afc85abd16278699a6fd28"
+      },
+      "historical_matrix": "legacy/generation markers × in-progress/completed history",
+      "real_verifier_matrix": "legacy/generation old workspaces: wrong race Check fails, correct reference Check and Complete pass, repeat Complete rejected without progress rewrite"
+    },
+    "review_findings": [],
+    "confirmed_boundaries": [
+      "Production change is two digest constants and one exact named directional branch; schema, task/submission, confinement, fixed-file and symlink validation remain unchanged.",
+      "Historical old public source is byte-identical to accepted I11 material and recreates old content before Start. New projected public source is byte-identical to accepted I12 repair. Helpers reject any third content digest.",
+      "Full learner-export path/content/editable comparison is unchanged; old marker generation/digest, solution edits, permissions and accumulated history are preserved during read/compatibility.",
+      "Resume changes only ordinary selection/session fields; actual public/full verification preserves prior hints/feedback/time while adding ordinary attempt and completion effects once.",
+      "Authored code executes only through the existing disposable integrationVerifier/CheckSession; no real learner home or new runner/profile/mechanism.",
+      "No task/checker input paths are modified by this tooling diff; accepted232 collection reuse requires fresh consumers on final tooling inputs."
+    ],
+    "remaining_requirements": [
+      "Independent final exact tooling HEAD/diff review.",
+      "Complete fresh repository fast/race/vet/integration and collection consumers, plus green validate before tooling merge.",
+      "The final combined I12 dependency must retain fresh repository gates and collection freshness; content delivery waits for both accepted PRs.",
+      "Original checkpoint and infrastructure time limits stay in force."
+    ],
+    "reviewer_executed_authored_code": false
   }
 }

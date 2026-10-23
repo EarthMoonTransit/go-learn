@@ -94,13 +94,28 @@ debugging or learner-test profiles only when they assess the intended outcome.
   external outage; the same repeated failure blocks. No new controller; handoff
   preserves the goal and does not mean completion.
 
-## Current checkpoint: I11 accepted; I12 final delivery gates
+## Current checkpoint: I11 accepted; I12 saved-workspace compatibility and final gates
 
-Current accepted delivery is I11 PR116. The final141-row substantive consistency
-and all six component scopes are approved. I12 content, official lifecycle and
-corrected prerequisite integration are approved; its single236collection/reports
-and fast gate pass. Finish remaining local gates, exact final HEAD review and
-green validate/merge. Zero final finite slots is conditional on that delivery.
+Current accepted delivery is I11 PR116. The final 141-row substantive consistency,
+all six new I12 units and all six component scopes are accepted. CI then exposed
+COUNTER-RACE-OVERLAP-01 in an existing counter first encounter. Its narrow public
+regression and fixed 16-scope actual evidence are now independently approved.
+The seven-unit batch retains every existing TASK, API, solution, mutant, address,
+relative order and external source pin. Four named old content/review files change;
+all other 5,502 old material files remain byte-identical.
+
+Repaired inputs froze at 10:40:49 UTC with 5,296 files. The fresh 236-package
+collection passed at 11:03:26 UTC; one collection feeds all consumers. The original
+collection and ba919937 approval remain historical evidence. A final preservation
+check exposed COUNTER-WORKSPACE-REVISION-01: old saved workspace markers reject
+the changed counter content digest before Check/Complete. A separate narrow
+tooling PR must add only the exact approved directional revision using the
+existing ADR0014 mechanism, with preserved solutions/history and actual disposable
+Check/Complete regressions. No reset, new runner or generic compatibility. Fresh
+affected repository gates, renewed exact-HEAD review and green validate followed
+by ordered dependency/content merges remain required. Infrastructure diagnosis
+and repair started conservatively at 10:59 UTC; the original four-hour checkpoint
+and rolling limits remain in force.
 Manual evidence, old full-bank minima and unknown learner mastery stay separate.
 
 The dated records below retain their original checkpoints.
@@ -348,3 +363,31 @@ I12 single236collection passed09:32:47UTC with SHA256 a4a63dd727a9aa405edad251e6
 I11 PR116 finalc78a475d4afad55eb2a6715745571b9e56f513c2 passed all12local gates, sole exact-HEAD review and validate39927810390, then merged c7a178b8b27a951a52b8bbac0f31f0a2057fed1c at09:40:48UTC23Oct. Accepted inventory222route/225ready/232checked/22manual;13applications remain. Available execution upper bound192.88minutes, with no deductions/reset and infrastructure0.
 
 I12 sole content/integration/final141and6consistency review accepted; one236collection/all reports and fast pass.5295checker inputs remain frozen. Remaining local gates, exact final HEAD review and greenvalidate/merge are required. I11 dependency is now accepted. Original I12 clock07:50:22.220556→11:50:22.220556UTC has no deductions or infrastructure work. After the final merge, retain its actual PR/HEAD/CI/merge receipt and close this existing goal; no new controller or full-bank scope.
+
+### CI regression checkpoint, 2026-10-23
+
+PR117 validate39933918517 on ba919937 passed repository fast/race/vet/integration,
+but the bank collection detected only4of5 required mutants for the existing
+concurrent-counter-read-001: unlock-before-read survived. All235other packages
+passed. This is COUNTER-RACE-OVERLAP-01, a public workload gap, not a confirmed
+external outage; there is no blind retry or merge credit. The original local
+236collection remains an accurate old-input result and is superseded for final
+acceptance after repair.
+
+The sole reviewer approved one additional finite public case: four writers and
+four readers,1000calls each, one start gate after all eight readiness signals,
+Gosched between calls, private reader result slots, join before assertions and
+two exact final reads of4000. The serial case ensures at least two P and restores
+GOMAXPROCS. No timing threshold, private hook, profile or platform change.
+Existing three tests, TASK, API, reference, five mutants, route and external
+provenance pins are preserved. This is the seventh content unit ofI12 and adds
+no skill credit. Actual public/focused race evidence, fresh single236collection,
+all mandatory gates, renewed final-HEAD review and green CI remain required.
+The original07:50:22.220556 start and11:50:22.220556 UTC checkpoint remain;
+no clock reset or infrastructure fix.
+
+Counter actual acceptance, 2026-10-23 10:40 UTC: canonical5/5, fixed16scopes,
+15removed fixture copies, three ordinary and two race public diagnostics, and
+six predeclared focused race samples accepted. Correct reference and explicit
+local-read/unlock alternative pass. Fresh collection/all gates started10:40:49UTC;
+original batch clock and scope limits remain unchanged.

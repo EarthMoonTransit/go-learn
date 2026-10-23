@@ -706,7 +706,7 @@ tasks:
       legacy: false
     - id: concurrent-counter-read-001
       state: ready
-      input_digest: bc057d88939fb3f1e79f873dd74b9bebdfd77ebee4af0a81d253f637f0998ab0
+      input_digest: deacf317f51019d5554ef3f5e7ae370f8070247bdc2a80ab2286845aed80313a
       task_type: implement
       primary_skill: sync.data-races-happens-before
       technical_status: pass
