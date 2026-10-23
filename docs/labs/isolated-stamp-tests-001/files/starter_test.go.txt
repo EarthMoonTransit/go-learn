@@ -1,0 +1,7 @@
+package stamp
+
+import "testing"
+
+func TestIsolatedStamps(t *testing.T) {
+	t.Fatal("TODO: introduce your clock seam and author isolated parallel fixture tests")
+}

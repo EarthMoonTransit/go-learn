@@ -1,0 +1,6 @@
+=== RUN   TestLogGolden
+    golden_test.go:58: golden mismatch at byte 435 line 25: got "TOTAL info=8 warn=8 error=8\n", want "<EOF>"
+--- FAIL: TestLogGolden (0.00s)
+FAIL
+FAIL	finite.local/logview	0.396s
+FAIL

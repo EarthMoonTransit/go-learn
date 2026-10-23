@@ -233,3 +233,20 @@ one independent budget Timer and actual elapsed/remaining duration calculations.
 Retain finite actual source/method evidence alongside behavioral tests. Native
 manual work never grants automatic coverage or learner completion; the bounded
 native1x observations do not establish mutation search or automated minimization.
+
+The atomic-count testing application follows interval-table-tests, named cases and diagnostic helpers.
+It owns stateful partitions, isolated mutable fixtures, serial named subtests and
+child-aware helper assertions. The dual-frame application follows binary-record
+and text-level preparation. It owns both marshaling method pairs, exact wire
+validation, atomic receiver updates and independent storage.
+
+| Manual placement | Unit | Independent action |
+| --- | --- | --- |
+| After initialization-values | [Initialization snapshot](labs/package-init-snapshot-001/TASK.md) | Diagnose file-order dependence and replace late registration with an explicit variable dependency |
+| After docs-environment and format-vet | [Selected tool diagnostics](labs/selected-tool-diagnostics-001/TASK.md) | Interpret actual source selection, formatting, vet and documentation before repairing API semantics |
+| After parallel-subtests, cleanup-order and worker-completion | [Isolated stamp tests](labs/isolated-stamp-tests-001/TASK.md) | Introduce a private clock seam and own parallel fixtures whose cleanup follows descendant completion |
+| After key-summary-examples and report-golden | [Log examples and golden](labs/log-examples-golden-001/TASK.md) | Author discoverable stateful examples and an independent complete golden baseline, then review an intentional update |
+
+Native evidence and finite method review remain separate from automatic coverage
+and learner progress. A clean tool command or passing weak oracle does not replace
+the substantive source and observed-output acceptance recorded with each unit.

@@ -1,0 +1,39 @@
+package logview_test
+
+import (
+    "fmt"
+    "finite.local/logview"
+)
+
+func ExampleLog() {
+    log := logview.NewLog()
+    _ = log.Append("warn", "tab\there")
+    _ = log.Append("info", "")
+    fmt.Print(log.Render())
+    // Output:
+    // 00 warn "tab\there"
+    // 01 info ""
+}
+
+func ExampleLog_Append_rejected() {
+    log := logview.NewLog()
+    _ = log.Append("info", "kept")
+    err := log.Append("debug", "must not appear")
+    fmt.Println("rejected:", err == logview.ErrLevel)
+    fmt.Print(log.Render())
+    // Output:
+    // rejected: true
+    // 00 info "kept"
+}
+
+func ExampleLog_Counts() {
+    log := logview.NewLog()
+    _ = log.Append("info", "a")
+    _ = log.Append("error", "b")
+    _ = log.Append("info", "c")
+    _ = log.Append("warn", "d")
+    for level, count := range log.Counts() {
+        fmt.Printf("%s=%d\n", level, count)
+    }
+    // This example has no executable output contract.
+}

@@ -1,0 +1,21 @@
+=== RUN   TestLogGolden
+--- PASS: TestLogGolden (0.00s)
+=== RUN   ExampleLog
+--- PASS: ExampleLog (0.00s)
+=== RUN   ExampleLog_Append_rejected
+--- PASS: ExampleLog_Append_rejected (0.00s)
+=== RUN   ExampleLog_Counts
+--- FAIL: ExampleLog_Counts (0.00s)
+got:
+info=2
+error=1
+warn=1
+
+want (unordered):
+error=1
+info=9
+warn=1
+
+FAIL
+FAIL	finite.local/logview	0.355s
+FAIL

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/reviewer",
+  "reviewed_at": "2026-10-23T08:15:09.545113+00:00",
+  "decision": "approve",
+  "scope": "Actual source, method, public/grader, finite error specimens, correct controls and authored execution evidence for dual-frame-codec-001; promotion and batch delivery gates remain separate",
+  "task_id": "dual-frame-codec-001",
+  "content_digest": "d778f6f6154080e3c8a41fe47564cb13ebe8c818cf7f3e99743d4ed5deee1fba",
+  "author_evidence_sha256": "2af9034bb948679a92b850843bf64474041b538baccd15ebae77ba6944bb578b",
+  "canonical_report_sha256": "b4be0c7234a023c179bd57c0943ef70b7d97690d0bd1cb4163110784e9a48a80",
+  "findings": [],
+  "evidence": {
+    "current_source_hashes_verified": 34,
+    "controls_hashes_verified": 3,
+    "canonical_mutants_detected": 21,
+    "current_fixture_reports_hash_verified": 28,
+    "ordinary_public_diagnostics": 21,
+    "public_reference_pass": 1,
+    "correct_controls_public_full_pass": 4,
+    "method_wrong_controls_public_full_pass": 2,
+    "current_fixture_roots_removed": 28,
+    "runtime_failure_credit": 0,
+    "old_fixture_attempts_retained_without_current_credit": 28
+  },
+  "method_assessment": [
+    "Learner implements all four marshaling methods from stubs. Reference validates header/version/bound/full encoded length before payload allocation; text nibble validation occurs before receiver commit, preserving prior backing storage and caller input on errors.",
+    "Both encodings have literal independent wire expectations and exact-input rejection, populated-receiver replacement, nil/empty equivalence, oversize nil/error, output independence and decoded storage ownership. Grader varies tag/length/octet patterns and every proper prefix without constraining a valid representation strategy.",
+    "Correct standard-hex/append and explicit-copy/nil-empty alternatives pass both scopes. Early bounded allocation passes behavior but violates the separately reviewed source ordering requirement; no automatic allocation-order proof is claimed.",
+    "Compared with the first binary-record test-writing and single-value text-level tasks, this is learner-owned implementation of both directions and full frame payload/state/ownership. Accept only encoding.binary-marshaling and encoding.text-marshaling applications, no supplied struct/interface/type credit."
+  ],
+  "feedback_assessment": "All21 frozen wrong references have ordinary public test assertion receipts containing the intended useful diagnostic; no panic/compile/race/timeout evidence is credited. Flattening vector/rejection subtest grouping preserved every assertion/case and named failures, verified against old snapshot.",
+  "provenance": "Original ADR0008 creation record, project identity, exact content digest and empty external sources preserved; prior tasks are preparation only.",
+  "boundaries": [
+    "Earlier static review-minimum schema rejection ran no authored code and earns no credit; required matrix remains21 with allowed metadata minimum20.",
+    "Old clipped-diagnostic fixture series remains historical zero-current-credit.",
+    "Root must synchronize truthful accepted review metadata and use official task-promote; one stable final collection/all gates/exact HEAD review/green validate still required."
+  ],
+  "reviewer_executed_authored_code": false
+}

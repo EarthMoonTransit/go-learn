@@ -1,0 +1,63 @@
+=== RUN   TestIsolatedStamps
+=== RUN   TestIsolatedStamps/cases
+=== RUN   TestIsolatedStamps/cases/first
+=== PAUSE TestIsolatedStamps/cases/first
+=== RUN   TestIsolatedStamps/cases/second
+=== PAUSE TestIsolatedStamps/cases/second
+=== RUN   TestIsolatedStamps/cases/third
+=== PAUSE TestIsolatedStamps/cases/third
+=== CONT  TestIsolatedStamps/cases/first
+=== RUN   TestIsolatedStamps/cases/first/readback
+=== PAUSE TestIsolatedStamps/cases/first/readback
+=== CONT  TestIsolatedStamps/cases/first/readback
+    stamp_test.go:57: stamp contents: got "alpha\n47\n", want "alpha\n11\n"
+=== CONT  TestIsolatedStamps/cases/third
+=== RUN   TestIsolatedStamps/cases/third/readback
+=== PAUSE TestIsolatedStamps/cases/third/readback
+=== CONT  TestIsolatedStamps/cases/third/readback
+=== CONT  TestIsolatedStamps/cases/second
+=== RUN   TestIsolatedStamps/cases/second/readback
+=== PAUSE TestIsolatedStamps/cases/second/readback
+=== CONT  TestIsolatedStamps/cases/second/readback
+    stamp_test.go:57: stamp contents: got "beta\n47\n", want "beta\n29\n"
+--- FAIL: TestIsolatedStamps (0.00s)
+    --- FAIL: TestIsolatedStamps/cases (0.00s)
+        --- FAIL: TestIsolatedStamps/cases/first (0.00s)
+            --- FAIL: TestIsolatedStamps/cases/first/readback (0.00s)
+        --- PASS: TestIsolatedStamps/cases/third (0.00s)
+            --- PASS: TestIsolatedStamps/cases/third/readback (0.00s)
+        --- FAIL: TestIsolatedStamps/cases/second (0.00s)
+            --- FAIL: TestIsolatedStamps/cases/second/readback (0.00s)
+=== RUN   TestIsolatedStamps
+=== RUN   TestIsolatedStamps/cases
+=== RUN   TestIsolatedStamps/cases/first
+=== PAUSE TestIsolatedStamps/cases/first
+=== RUN   TestIsolatedStamps/cases/second
+=== PAUSE TestIsolatedStamps/cases/second
+=== RUN   TestIsolatedStamps/cases/third
+=== PAUSE TestIsolatedStamps/cases/third
+=== CONT  TestIsolatedStamps/cases/first
+=== RUN   TestIsolatedStamps/cases/first/readback
+=== PAUSE TestIsolatedStamps/cases/first/readback
+=== CONT  TestIsolatedStamps/cases/first/readback
+    stamp_test.go:57: stamp contents: got "alpha\n47\n", want "alpha\n11\n"
+=== CONT  TestIsolatedStamps/cases/third
+=== RUN   TestIsolatedStamps/cases/third/readback
+=== PAUSE TestIsolatedStamps/cases/third/readback
+=== CONT  TestIsolatedStamps/cases/third/readback
+=== CONT  TestIsolatedStamps/cases/second
+=== RUN   TestIsolatedStamps/cases/second/readback
+=== PAUSE TestIsolatedStamps/cases/second/readback
+=== CONT  TestIsolatedStamps/cases/second/readback
+    stamp_test.go:57: stamp contents: got "beta\n47\n", want "beta\n29\n"
+--- FAIL: TestIsolatedStamps (0.00s)
+    --- FAIL: TestIsolatedStamps/cases (0.00s)
+        --- FAIL: TestIsolatedStamps/cases/first (0.00s)
+            --- FAIL: TestIsolatedStamps/cases/first/readback (0.00s)
+        --- PASS: TestIsolatedStamps/cases/third (0.00s)
+            --- PASS: TestIsolatedStamps/cases/third/readback (0.00s)
+        --- FAIL: TestIsolatedStamps/cases/second (0.00s)
+            --- FAIL: TestIsolatedStamps/cases/second/readback (0.00s)
+FAIL
+FAIL	finite.local/stamp	0.179s
+FAIL

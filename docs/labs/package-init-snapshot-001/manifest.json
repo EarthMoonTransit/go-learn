@@ -1,0 +1,686 @@
+{
+  "unit": "package-init-snapshot-001",
+  "copies": 7,
+  "commands": 62,
+  "initial_files": {
+    "files/assembly/a_snapshot.go.txt": "assembly/a_snapshot.go",
+    "files/assembly/grader_test.go.txt": "assembly/grader_test.go",
+    "files/assembly/public_test.go.txt": "assembly/public_test.go",
+    "files/assembly/registry.go.txt": "assembly/registry.go",
+    "files/assembly/z_register.go.txt": "assembly/z_register.go",
+    "files/cmd/inspect/main.go.txt": "cmd/inspect/main.go",
+    "files/go.mod.txt": "go.mod",
+    "files/seed/seed.go.txt": "seed/seed.go"
+  },
+  "specimens": [
+    {
+      "name": "reference",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "-run",
+            "^TestSnapshot$",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        }
+      ]
+    },
+    {
+      "name": "rename-only",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "-run",
+            "^TestSnapshot$",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        }
+      ]
+    },
+    {
+      "name": "constant-three",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "-run",
+            "^TestSnapshot$",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        }
+      ]
+    },
+    {
+      "name": "late-registration",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "-run",
+            "^TestSnapshot$",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        }
+      ]
+    },
+    {
+      "name": "lazy-read",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "-run",
+            "^TestSnapshot$",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        }
+      ]
+    },
+    {
+      "name": "repeated-capture",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "-run",
+            "^TestSnapshot$",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        }
+      ]
+    },
+    {
+      "name": "correct-alternate",
+      "commands": [
+        {
+          "program": "go",
+          "argv": [
+            "version"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-vet=off",
+            "-count=1",
+            "-run",
+            "^TestSnapshot$",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "vet",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "list",
+            "-f",
+            "{{.GoFiles}}",
+            "./assembly"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "test",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        },
+        {
+          "program": "go",
+          "argv": [
+            "run",
+            "./cmd/inspect"
+          ],
+          "cwd": ".",
+          "gowork": "off"
+        }
+      ]
+    }
+  ],
+  "original_stdout": "seed=4 port=8 snapshot=0 seedInits=1 captures=1\nseed=4 port=8 snapshot=0 seedInits=1 captures=1\n",
+  "repaired_stdout": "seed=4 port=8 snapshot=8 seedInits=1 captures=1\nseed=4 port=8 snapshot=8 seedInits=1 captures=1\n",
+  "original_files": "[a_snapshot.go registry.go z_register.go]\n",
+  "renamed_files": "[registry.go z_register.go zz_snapshot.go]\n",
+  "ordinary_diagnostics": [
+    "initial values seed=4 port=8 snapshot=0; want 4,8,8"
+  ],
+  "allowed_edits": [
+    "assembly/registry.go",
+    "assembly/z_register.go"
+  ],
+  "controlled_rename": [
+    "assembly/a_snapshot.go",
+    "assembly/zz_snapshot.go"
+  ]
+}

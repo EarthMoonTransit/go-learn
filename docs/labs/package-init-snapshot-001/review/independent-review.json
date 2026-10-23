@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/reviewer",
+  "reviewed_at": "2026-10-23T07:48:13.718701+00:00",
+  "decision": "approve",
+  "unit": "package-init-snapshot-001",
+  "content_digest": "de6c3d9e98f0da7c9ca781d4791d800f765dd5e73c0bb2f15d01cee4c8a29215",
+  "script_sha256": "3d19c4d59baebbb29cfe67aa5e9bf30c0945902b7264718deea8c924023e201e",
+  "manifest_sha256": "0bde11550ffd775f093831358ec66a16e283724cdca64862cb326c24eecb4da1",
+  "raw_execution_sha256": "43ff9588ddcb0113821e832e742967d7d61d2e69a19295a4bd588a3673f1907e",
+  "normalized_execution_sha256": "002c86a30e221e8277793e0e452c8cf303bab99cb01d7e8941900f742ea9f076",
+  "findings": [],
+  "actual_evidence": {
+    "copies": 7,
+    "commands": 62,
+    "snapshots_independently_replayed_from_source_copy_and_rename_events": 99,
+    "ordinary_TestSnapshot_failures": 7,
+    "source_assets_unchanged": 18,
+    "max_command_seconds": 2.257147,
+    "all_disposable_roots_removed": true,
+    "actual_go": "go version go1.27.0 darwin/arm64",
+    "exact_preapproved_recipe": true,
+    "normalized_receipt_matches_raw_except_declared_paths": true
+  },
+  "accepted_action": "One manual packages.initialization-order application: diagnose a cross-package initialization/file-order snapshot defect and repair with explicit variable initialization independent of observed assembly file order.",
+  "method_and_observations": [
+    "Actual original order observes seed4/port8/snapshot0, unchanged public failure; controlled later snapshot filename yields8, but restoring original name rejects rename-only.",
+    "Reviewed reference map initializer and helper-initializer alternative use seed.Base after its imported package completes and before assembly init; both actual file orders pass unchanged tests and native values.",
+    "Repeated reads preserve one seed init and one capture. Constant-three, late registration, lazy accessor masking and repeated capture produce named ordinary value/count assertions, then pass fixed repairs.",
+    "Only two allowed learner files change, apart from controlled filename; every retained snapshot independently reconstructed from exact inert sources/events.",
+    "Exact command arguments, environments, working directories, expected statuses and outputs, predictions, local version and actual cleanup verified against manifest and preapproval."
+  ],
+  "boundaries": [
+    "Finite manual/method evidence only, separate from automatic coverage. No arbitrary toolchain file-order guarantee or tracing mechanism.",
+    "No credit for supplied seed/snapshot/tests, no new first/component or extra skills.",
+    "No reviewer authored-code execution or rerun; final integration/exact HEAD/all gates/CI remain required."
+  ]
+}

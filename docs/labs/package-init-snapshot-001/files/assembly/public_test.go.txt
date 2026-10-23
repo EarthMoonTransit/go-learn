@@ -1,0 +1,25 @@
+package assembly_test
+
+import (
+ "testing"
+ "finite.local/init-snapshot/assembly"
+ "finite.local/init-snapshot/seed"
+)
+
+func TestSnapshot(t *testing.T) {
+ if seed.Base != 4 || assembly.Ports["port"] != 8 || assembly.Snapshot != 8 {
+  t.Errorf("initial values seed=%d port=%d snapshot=%d; want 4,8,8", seed.Base, assembly.Ports["port"], assembly.Snapshot)
+ }
+ if seed.InitCalls != 1 || assembly.CaptureCalls != 1 {
+  t.Errorf("initialization counts seed=%d capture=%d; want 1,1", seed.InitCalls, assembly.CaptureCalls)
+ }
+ for read := 0; read < 2; read++ {
+  base, port, snapshot, seedCalls, captures := assembly.ReadValues()
+  if base != 4 || port != 8 || snapshot != 8 || seedCalls != 1 || captures != 1 {
+   t.Errorf("read%d got seed=%d port=%d snapshot=%d seedInits=%d captures=%d; want 4,8,8,1,1", read, base, port, snapshot, seedCalls, captures)
+  }
+ }
+ if seed.InitCalls != 1 || assembly.CaptureCalls != 1 || assembly.Snapshot != 8 {
+  t.Errorf("reads changed initialization state: seed=%d capture=%d snapshot=%d; want 1,1,8", seed.InitCalls, assembly.CaptureCalls, assembly.Snapshot)
+ }
+}

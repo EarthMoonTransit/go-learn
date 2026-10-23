@@ -1,0 +1,10 @@
+=== RUN   TestLogGolden
+--- PASS: TestLogGolden (0.00s)
+=== RUN   ExampleLog
+--- PASS: ExampleLog (0.00s)
+=== RUN   ExampleLog_Append_rejected
+--- PASS: ExampleLog_Append_rejected (0.00s)
+=== RUN   ExampleLog_Counts
+--- PASS: ExampleLog_Counts (0.00s)
+PASS
+ok  	finite.local/logview	0.382s

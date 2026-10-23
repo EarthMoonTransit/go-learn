@@ -1,6 +1,6 @@
 schema_version: 1
 report_contract: numeric-coverage/v1
-input_identity: 2a696ef045f7a8890b0feb3e5d2782a54c8a677a6c984dedebe369734237dcf3
+input_identity: c4f9668bb0af129f2c23a7460f278cd59f0cf5d6d6a0053249f4423326db90e2
 selected_scope: foundation
 selected_skill_ids:
     - arrays.indexing-iteration
@@ -403,12 +403,12 @@ numeric:
         - skill_id: encoding.binary-marshaling
           domain_id: encoding
           scope: foundation
-          actual_primary: 1
+          actual_primary: 2
           required_primary: 2
-          primary_deficit: 1
-          actual_total: 1
+          primary_deficit: 0
+          actual_total: 2
           required_total: 4
-          total_deficit: 3
+          total_deficit: 2
         - skill_id: encoding.json-shape-tags
           domain_id: encoding
           scope: foundation
@@ -433,9 +433,9 @@ numeric:
           actual_primary: 1
           required_primary: 2
           primary_deficit: 1
-          actual_total: 1
+          actual_total: 2
           required_total: 4
-          total_deficit: 3
+          total_deficit: 2
         - skill_id: errors.as
           domain_id: errors
           scope: foundation
@@ -1243,9 +1243,9 @@ numeric:
           actual_primary: 1
           required_primary: 3
           primary_deficit: 2
-          actual_total: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: testing.parallel
           domain_id: testing
           scope: foundation
@@ -1279,18 +1279,18 @@ numeric:
           actual_primary: 1
           required_primary: 3
           primary_deficit: 2
-          actual_total: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: testing.table-driven
           domain_id: testing
           scope: foundation
-          actual_primary: 1
+          actual_primary: 2
           required_primary: 3
-          primary_deficit: 2
-          actual_total: 1
+          primary_deficit: 1
+          actual_total: 2
           required_total: 5
-          total_deficit: 4
+          total_deficit: 3
         - skill_id: time.duration-arithmetic
           domain_id: time
           scope: foundation
@@ -1596,12 +1596,12 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 223
+        actual_primary: 225
         required_primary: 410
-        primary_deficit: 195
-        actual_total: 265
+        primary_deficit: 193
+        actual_total: 270
         required_total: 692
-        total_deficit: 427
+        total_deficit: 422
         minima_met: false
     specialist:
         skill_ids:
@@ -1763,15 +1763,15 @@ numeric:
             - unicode.range-decoding
             - unicode.rune-model
             - unicode.utf8-encoding
-        actual_primary: 223
+        actual_primary: 225
         required_primary: 418
-        primary_deficit: 203
-        actual_total: 265
+        primary_deficit: 201
+        actual_total: 270
         required_total: 708
-        total_deficit: 443
+        total_deficit: 438
         minima_met: false
     ready_target:
-        actual: 223
+        actual: 225
         min: 350
         max: 500
         met: false

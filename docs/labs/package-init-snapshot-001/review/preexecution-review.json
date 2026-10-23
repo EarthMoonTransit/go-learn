@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/reviewer",
+  "reviewed_at": "2026-10-23T07:41:19.335445+00:00",
+  "decision": "approve",
+  "scope": "Exact bounded preexecution recipe only; actual results and method acceptance remain separate",
+  "unit": "package-init-snapshot-001",
+  "content_digests": {
+    "package-init-snapshot-001": "de6c3d9e98f0da7c9ca781d4791d800f765dd5e73c0bb2f15d01cee4c8a29215"
+  },
+  "script_sha256": "3d19c4d59baebbb29cfe67aa5e9bf30c0945902b7264718deea8c924023e201e",
+  "manifest_sha256": "0bde11550ffd775f093831358ec66a16e283724cdca64862cb326c24eecb4da1",
+  "copies": 7,
+  "commands": 62,
+  "source_assets_verified": 18,
+  "findings": [],
+  "verified": [
+    "All inert inventory hashes and sorted content digest match provenance; original sources=[] and release binding deferred.",
+    "Exact seven command sequences match script and manifest, including cwd/project boundaries, controlled snapshot filename changes, two editable learner files and fixed reference/alternate/wrong sources.",
+    "Pinned local Go1.27, fresh canonical private roots, private HOME/config/cache/modcache/tmp, GOWORK/GOENV/proxy/sumdb off, readonly modules, telemetry disabled, 60-second bound and own process-group cleanup on timeout.",
+    "Initial seed dependency completes Base4 before assembly; initial observed file order captures0 before late registration8. Explicit variable initialization repairs both observed orders; helper initializer is valid.",
+    "Fixed public TestSnapshot diagnoses wrong values, frozen snapshot and repeated capture counts. Rename-only successful order remains rejected as stable repair; lazy accessor cannot conceal direct Snapshot assertion.",
+    "Source snapshots, predictions before selected native observations, argv/environment/status/outputs/duration, actual Go version and removal receipts retained. Silent repeated recipe refused."
+  ],
+  "boundaries": [
+    "No authored execution performed by reviewer.",
+    "Approval covers only this script/hash, exact source digest and seven finite specimens; any changes need renewed preexecution review.",
+    "Actual native outcomes and causal interpretation must be independently reviewed before manual application acceptance.",
+    "Observed Go file presentation is a fact to check, not a claim about arbitrary build systems or initialization traces.",
+    "No automatic coverage, supplied-code authorship, package tracing engine or new profile credit."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/reviewer",
+  "reviewed_at": "2026-10-23T07:50:31.222518+00:00",
+  "decision": "approve",
+  "unit": "selected-tool-diagnostics-001",
+  "scope": "Exact bounded preexecution only; actual evidence/method acceptance remains separate",
+  "content_digests": {
+    "selected-tool-diagnostics-001": "12fe80ff2d9348a6f509d19178a3b65c48ad12d6ed4c2680eed958aa07e0f4c9"
+  },
+  "script_sha256": "7197bb6019d886332c147489509ec9ce1d37266d0be0798083cf1bf1d35e4864",
+  "manifest_sha256": "0ef2924dbeb3b34093205a3cb68f507c562c3de7e3d2411461b8483090cf54a2",
+  "copies": 6,
+  "commands": 69,
+  "source_assets_verified": 12,
+  "findings": [],
+  "resolved_findings": [
+    "DIAGNOSTICS-GOFMT-EXIT-01: initial nonempty diff expects native nonzero; formatting application and second empty diff still zero. Script delta is exactly expected-status argument; no commands or source assets expanded."
+  ],
+  "verified": [
+    "All12 hashes and content digest match; all6 exact command sequences match manifest.",
+    "Initial preview is well typed with terminal return after unreachable code; separate vet diagnoses unreachable; behavior tests disable implicit vet.",
+    "Only preview.go changes; default/preview GOFLAGS and native darwin/arm64 fixed, actual env read before predicted selection/list, QueryEscape/PathEscape interpretation before correct repair.",
+    "Formatting diff/apply/idempotence, analyzer finding, clean-vet wrong-API ordinary test failure and correct alias alternative are separately reviewed.",
+    "Fresh canonical private HOME/config/cache/modcache/tmp, telemetry disabled, local tools, network/toolchain/workspace config off,60s per-command bounds, source snapshots and own-root cleanup.",
+    "No silent rerun; approval hashes bind exact script, manifest and source inventory."
+  ],
+  "boundaries": [
+    "Initial formatting exit1 is expected tool observation, not ordinary behavior defect evidence.",
+    "Six specimens include distinct rejected explanations over the same wrong API; do not count these as new distinct implementation defects.",
+    "Actual native results and independent method acceptance still required; two application candidates only, no automatic coverage or supplied test-writing credit.",
+    "No authored execution by reviewer."
+  ]
+}

@@ -1,0 +1,23 @@
+package logview_test
+
+import "fmt"
+
+func ExampleLog() {
+    fmt.Print("00 warn \"tab\\there\"\n01 info \"\"\n")
+    // Output:
+    // 00 warn "tab\there"
+    // 01 info ""
+}
+func ExampleLog_Append_rejected() {
+    fmt.Print("rejected: true\n00 info \"kept\"\n")
+    // Output:
+    // rejected: true
+    // 00 info "kept"
+}
+func ExampleLog_Counts() {
+    fmt.Print("error=1\ninfo=2\nwarn=1\n")
+    // Output:
+    // error=1
+    // info=2
+    // warn=1
+}

@@ -1,0 +1,38 @@
+package logview
+
+import (
+	"errors"
+	"fmt"
+	"strconv"
+	"strings"
+)
+
+var ErrLevel = errors.New("unsupported level")
+
+type entry struct { level, message string }
+
+type Log struct { entries []entry }
+
+func NewLog() *Log { return &Log{} }
+
+func (l *Log) Append(level, message string) error {
+	if level != "info" && level != "warn" && level != "error" {
+		return ErrLevel
+	}
+	l.entries = append(l.entries, entry{level, message})
+	return nil
+}
+
+func (l *Log) Render() string {
+	var out strings.Builder
+	for i, row := range l.entries {
+		fmt.Fprintf(&out, "%02d %s %s\n", i, row.level, strconv.Quote(row.message))
+	}
+	return out.String()
+}
+
+func (l *Log) Counts() map[string]int {
+	counts := make(map[string]int)
+	for _, row := range l.entries { counts[row.level]++ }
+	return counts
+}

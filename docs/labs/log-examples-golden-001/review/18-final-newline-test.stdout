@@ -1,0 +1,12 @@
+=== RUN   TestLogGolden
+    golden_test.go:58: golden mismatch at byte 434 line 24: got "<EOF>", want "\n"
+--- FAIL: TestLogGolden (0.00s)
+=== RUN   ExampleLog
+--- PASS: ExampleLog (0.00s)
+=== RUN   ExampleLog_Append_rejected
+--- PASS: ExampleLog_Append_rejected (0.00s)
+=== RUN   ExampleLog_Counts
+--- PASS: ExampleLog_Counts (0.00s)
+FAIL
+FAIL	finite.local/logview	0.144s
+FAIL

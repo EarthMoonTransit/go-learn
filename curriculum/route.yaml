@@ -1498,6 +1498,15 @@
             "encoding.json-shape-tags",
             "structs.field-visibility-tags"
           ]
+        },
+        {
+          "number": 27,
+          "task_id": "dual-frame-codec-001",
+          "role": "transfer",
+          "skills": [
+            "encoding.binary-marshaling",
+            "encoding.text-marshaling"
+          ]
         }
       ],
       "number": 7
@@ -1568,6 +1577,16 @@
           "role": "introduction",
           "skills": [
             "testing.examples"
+          ]
+        },
+        {
+          "number": 9,
+          "task_id": "atomic-count-tests-001",
+          "role": "transfer",
+          "skills": [
+            "testing.table-driven",
+            "testing.subtests",
+            "testing.helpers"
           ]
         }
       ],

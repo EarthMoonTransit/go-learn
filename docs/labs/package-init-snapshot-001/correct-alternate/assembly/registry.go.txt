@@ -1,0 +1,13 @@
+package assembly
+
+import "finite.local/init-snapshot/seed"
+
+var Ports = initialPorts()
+
+func initialPorts() map[string]int {
+ return map[string]int{"port": seed.Base + seed.Base}
+}
+
+func ReadValues() (int, int, int, int, int) {
+ return seed.Base, Ports["port"], Snapshot, seed.InitCalls, CaptureCalls
+}

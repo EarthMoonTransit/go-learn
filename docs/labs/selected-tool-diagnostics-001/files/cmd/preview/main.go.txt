@@ -1,0 +1,8 @@
+package main
+
+import (
+	"finite.local/selected-tools/format"
+	"fmt"
+)
+
+func main() { fmt.Println(format.RenderQuery("a+b c")) }

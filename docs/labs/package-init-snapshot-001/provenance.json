@@ -1,0 +1,34 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-applications-11-root",
+    "created_at": "2026-10-23",
+    "summary": "Original cross-package initialization and file-order-independent snapshot application after sole contract approval; no external source material."
+  },
+  "sources": [],
+  "content_digest": "de6c3d9e98f0da7c9ca781d4791d800f765dd5e73c0bb2f15d01cee4c8a29215",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "eb13c9f23683534a883072eb302f6e378ed8e370ec169b7b84dac5d8bda86020",
+    "TASK.md": "9396bf8e61544660479e426addb4cfdeb24342526cf539d95de403f64dda3a8c",
+    "correct-alternate/assembly/registry.go.txt": "4b943a7d66dcc95b59a4e8502a9ecab516b7297bb66337deb61d07060817be06",
+    "correct-alternate/assembly/z_register.go.txt": "44877467a648cad35565756da67a7a40fd7587708b34ce399b6cbff1e7d1c213",
+    "files/assembly/a_snapshot.go.txt": "9bc999218d244538584196e1a6ba5d322ebf228751be27ce8c226843332c8850",
+    "files/assembly/grader_test.go.txt": "c24a53747e24c8b0eb1ceb119cf204e41d6ccc6d7777437ec7ded30029741fa8",
+    "files/assembly/public_test.go.txt": "436ad593eabb52ddfa53e1c5e2ec1453df6cd1383e87f0c2fcff82aaa88b99dd",
+    "files/assembly/registry.go.txt": "642314ac60086048dda0ad77b85c47f90ee6e42910aa8e09568f8f178d70b174",
+    "files/assembly/z_register.go.txt": "7dc584a44a657f1edd7f8935a56d9ba136d0c0b6db3273a0cdc8abd482d337f0",
+    "files/cmd/inspect/main.go.txt": "53631c4daec9f59228dd73c6ff5bae19b0b74e939c50bc7e4cbdd759f7fd6599",
+    "files/go.mod.txt": "bb70dccdfece9538aab02bc759845732d68ba4f9aaa1ebc7e293db7af7ea39f4",
+    "files/seed/seed.go.txt": "7a2fc63c81bb76553d64e8654fca4179675202d40a0e1404d0ca260dd81d1616",
+    "manifest.json": "0bde11550ffd775f093831358ec66a16e283724cdca64862cb326c24eecb4da1",
+    "reference/assembly/registry.go.txt": "6d9ada467bf74fec8e658820212d4668e8bf31ac6534b6b386826e3a684bd8f2",
+    "reference/assembly/z_register.go.txt": "6f7b36215503ab98aa48fd70e1a503ef720659f0d10fad1734126d3bb5b45ac4",
+    "wrong/constant-three/assembly/registry.go.txt": "151ea1ea6bdd174c6ba9c2b036d7728375b289331e773cf2b924531ff8be365c",
+    "wrong/lazy-read/assembly/registry.go.txt": "038df6fc26f1dbfa9666221e62bdc0dfcdc7907f96196eba807d4166acd2fcb9",
+    "wrong/repeated-capture/assembly/registry.go.txt": "e1086f9c676144a32a04ed22b5af58e0fac3f6a2649bc61e22319633cb990fcd"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

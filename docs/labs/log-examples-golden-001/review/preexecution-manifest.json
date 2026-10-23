@@ -1,0 +1,956 @@
+{
+  "schema_version": 1,
+  "unit": "log-examples-golden-001",
+  "local_go": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+  "source_lab": "docs/labs/log-examples-golden-001",
+  "source_hashes": {
+    "PROCEDURE.md": "a7843db58476a33769300435224d119fe66d1b961bff404f78808f166c44e880",
+    "TASK.md": "d829a03ddd32e3804d7896cac9e510d8696d033c8367a3e28a6b02a31d2704b6",
+    "alternative/examples_test.go.txt": "56d644623eec5249e3185e9c09df78958b8622ef65424b54aca69c8375c7ae6a",
+    "alternative/golden_test.go.txt": "6cf15cb12ecb25d2db970dff25f73ee2c51d6b5047c59dbe14c88ea0376c3e27",
+    "alternative/testdata/log.golden": "f7a7a2093e3ea3581ff4abae660d686229bcb3ef9d4c9ed1b68ded09b3b483a4",
+    "controls/auto-update_golden_test.go.txt": "53769cecc4d5a45d7092dc9fd021e5cc8b123f97a1ef34bd5177b89daf5f6e97",
+    "controls/constant-print_examples_test.go.txt": "efdce8e783bae09b577d9151a747707175cafb535f77b216bfe28cf7b168161d",
+    "controls/missing-output_examples_test.go.txt": "446ec3cd4bc554932acfd9091365d5b1c60a6392be6e734638e80975b755cd58",
+    "controls/prefix-only_golden_test.go.txt": "7d1842064f1b53c8df3248e7b315987d2a369ed960e1f878b7d1127f16e2eacf",
+    "files/go.mod.txt": "144168e958e24f54fa0fd0b217098730f50cd7867e27784d35a2cfffd8dea12c",
+    "files/log.go.txt": "064c34cecf42f772ae1da14e39209b26d16dedf1351ee82f4b20196ca22f01af",
+    "provenance.json": "754d42abe2bffbf56c60fa4a144180f8eb6741aa37266db3effb8fa3bc87d2c2",
+    "reference/examples_test.go.txt": "e5caed5c2ec4b4396bac740dd335918d684c3aa3db92697abe2e6f0ef3c68bc0",
+    "reference/golden_test.go.txt": "fbbec42f8f136444d2c302a2ba93889713c3b60d475dfe17f616c8d55f72e38e",
+    "reference/testdata/log.golden": "fd836deeb26dceea43e52a3917f6ca5d17add5aae5254eb83ca8000c197598f8",
+    "starter/examples_test.go.txt": "02f9e281bd1838742337350ba5961c615b8b065657330bf92498ebc704110449",
+    "starter/golden_test.go.txt": "6c8f25aee4c191688a3ece6c6f665672875409647d2e500ab4233a99c7269d2b",
+    "starter/testdata/log.golden": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "update/footer.go.txt": "8e5f2f1b0f72670958f84b0cc75f5dfc4f4027517d8d22bcb04aec72fd0c15d2",
+    "update/log-v2.golden": "db8935cd52b537f9ce88784b186776d25379802357b803bece7f40f127e1a223",
+    "wrong/append-rejected.go.txt": "c2d849c816f07e5ca73c562bbd675ddeb07af3b712b04d55b53db2ac94e5af7b",
+    "wrong/counts.go.txt": "b1fc7616899e2fa0c26c4bff2f1f12b8fb2bde295b57f1a49d5ee31f9606dd5f",
+    "wrong/drop-middle.go.txt": "fb18b096c88091b91341d13171af346618667692eaff72ba7a7e02f86a7a9b83",
+    "wrong/final-newline.go.txt": "33342a9a51a0c20955bdbf512ea0de627764fe91e47b6c9b02e23f335327869e",
+    "wrong/output_examples_test.go.txt": "afe08c821ba687e214eb9a49863e5e0f6e2be74ce884e020753438b81ced1397",
+    "wrong/reorder.go.txt": "6c3fe379df1156c91c05b2d695af1b85806a55ab49839df21ee83eb28c801f42"
+  },
+  "specimen_count": 13,
+  "command_count": 41,
+  "specimens": [
+    {
+      "name": "reference",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "log.go": "files/log.go.txt",
+        "examples_test.go": "reference/examples_test.go.txt",
+        "golden_test.go": "reference/golden_test.go.txt",
+        "testdata/log.golden": "reference/testdata/log.golden"
+      },
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "go version go1.27.0 darwin/arm64"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "discovery",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-list",
+            "^Example",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "ExampleLog",
+            "ExampleLog_Append_rejected",
+            "ExampleLog_Counts"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "test",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^(Example.*|TestLogGolden)$",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "PASS"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        }
+      ]
+    },
+    {
+      "name": "alternative",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "log.go": "files/log.go.txt",
+        "examples_test.go": "alternative/examples_test.go.txt",
+        "golden_test.go": "alternative/golden_test.go.txt",
+        "testdata/log.golden": "alternative/testdata/log.golden"
+      },
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "go version go1.27.0 darwin/arm64"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "discovery",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-list",
+            "^Example",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "ExampleLog",
+            "ExampleLog_Append_rejected",
+            "ExampleLog_Counts"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "test",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^(Example.*|TestLogGolden)$",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "PASS"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        }
+      ]
+    },
+    {
+      "name": "wrong-output",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "log.go": "files/log.go.txt",
+        "examples_test.go": "wrong/output_examples_test.go.txt",
+        "golden_test.go": "reference/golden_test.go.txt",
+        "testdata/log.golden": "reference/testdata/log.golden"
+      },
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "go version go1.27.0 darwin/arm64"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "discovery",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-list",
+            "^Example",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "ExampleLog",
+            "ExampleLog_Append_rejected",
+            "ExampleLog_Counts"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "test",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^(Example.*|TestLogGolden)$",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 1,
+          "required_output": [
+            "--- FAIL: ExampleLog_Counts"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        }
+      ]
+    },
+    {
+      "name": "drop-middle",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "log.go": "wrong/drop-middle.go.txt",
+        "examples_test.go": "reference/examples_test.go.txt",
+        "golden_test.go": "reference/golden_test.go.txt",
+        "testdata/log.golden": "reference/testdata/log.golden"
+      },
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "go version go1.27.0 darwin/arm64"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "discovery",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-list",
+            "^Example",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "ExampleLog",
+            "ExampleLog_Append_rejected",
+            "ExampleLog_Counts"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "test",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^(Example.*|TestLogGolden)$",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 1,
+          "required_output": [
+            "golden mismatch"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        }
+      ],
+      "update_decision": "reject: deleting index12 loses a required retained entry; baseline remains unchanged and no update command is permitted"
+    },
+    {
+      "name": "reorder",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "log.go": "wrong/reorder.go.txt",
+        "examples_test.go": "reference/examples_test.go.txt",
+        "golden_test.go": "reference/golden_test.go.txt",
+        "testdata/log.golden": "reference/testdata/log.golden"
+      },
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "go version go1.27.0 darwin/arm64"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "discovery",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-list",
+            "^Example",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "ExampleLog",
+            "ExampleLog_Append_rejected",
+            "ExampleLog_Counts"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "test",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^(Example.*|TestLogGolden)$",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 1,
+          "required_output": [
+            "golden mismatch"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        }
+      ]
+    },
+    {
+      "name": "final-newline",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "log.go": "wrong/final-newline.go.txt",
+        "examples_test.go": "reference/examples_test.go.txt",
+        "golden_test.go": "reference/golden_test.go.txt",
+        "testdata/log.golden": "reference/testdata/log.golden"
+      },
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "go version go1.27.0 darwin/arm64"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "discovery",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-list",
+            "^Example",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "ExampleLog",
+            "ExampleLog_Append_rejected",
+            "ExampleLog_Counts"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "test",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^(Example.*|TestLogGolden)$",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 1,
+          "required_output": [
+            "golden mismatch"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        }
+      ]
+    },
+    {
+      "name": "append-rejected",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "log.go": "wrong/append-rejected.go.txt",
+        "examples_test.go": "reference/examples_test.go.txt",
+        "golden_test.go": "reference/golden_test.go.txt",
+        "testdata/log.golden": "reference/testdata/log.golden"
+      },
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "go version go1.27.0 darwin/arm64"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "discovery",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-list",
+            "^Example",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "ExampleLog",
+            "ExampleLog_Append_rejected",
+            "ExampleLog_Counts"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "test",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^(Example.*|TestLogGolden)$",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 1,
+          "required_output": [
+            "--- FAIL: ExampleLog_Append_rejected"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        }
+      ]
+    },
+    {
+      "name": "counts",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "log.go": "wrong/counts.go.txt",
+        "examples_test.go": "reference/examples_test.go.txt",
+        "golden_test.go": "reference/golden_test.go.txt",
+        "testdata/log.golden": "reference/testdata/log.golden"
+      },
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "go version go1.27.0 darwin/arm64"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "discovery",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-list",
+            "^Example",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "ExampleLog",
+            "ExampleLog_Append_rejected",
+            "ExampleLog_Counts"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "test",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^(Example.*|TestLogGolden)$",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 1,
+          "required_output": [
+            "--- FAIL: ExampleLog_Counts"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        }
+      ]
+    },
+    {
+      "name": "missing-output",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "log.go": "files/log.go.txt",
+        "examples_test.go": "controls/missing-output_examples_test.go.txt",
+        "golden_test.go": "reference/golden_test.go.txt",
+        "testdata/log.golden": "reference/testdata/log.golden"
+      },
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "go version go1.27.0 darwin/arm64"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "discovery",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-list",
+            "^Example",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "ExampleLog",
+            "ExampleLog_Append_rejected"
+          ],
+          "forbidden_output": [
+            "ExampleLog_Counts"
+          ],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "test",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^(Example.*|TestLogGolden)$",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "PASS"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        }
+      ],
+      "method_rejection": "ExampleLog_Counts compiles but is not a runnable example in native discovery."
+    },
+    {
+      "name": "constant-print",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "log.go": "wrong/counts.go.txt",
+        "examples_test.go": "controls/constant-print_examples_test.go.txt",
+        "golden_test.go": "reference/golden_test.go.txt",
+        "testdata/log.golden": "reference/testdata/log.golden"
+      },
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "go version go1.27.0 darwin/arm64"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "discovery",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-list",
+            "^Example",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "ExampleLog",
+            "ExampleLog_Append_rejected",
+            "ExampleLog_Counts"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "test",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^(Example.*|TestLogGolden)$",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "PASS"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        }
+      ],
+      "method_rejection": "All examples print constants and fail to exercise the defective Counts API."
+    },
+    {
+      "name": "prefix-only",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "log.go": "wrong/drop-middle.go.txt",
+        "examples_test.go": "reference/examples_test.go.txt",
+        "golden_test.go": "controls/prefix-only_golden_test.go.txt",
+        "testdata/log.golden": "reference/testdata/log.golden"
+      },
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "go version go1.27.0 darwin/arm64"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "discovery",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-list",
+            "^Example",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "ExampleLog",
+            "ExampleLog_Append_rejected",
+            "ExampleLog_Counts"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "test",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^(Example.*|TestLogGolden)$",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "PASS"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        }
+      ],
+      "method_rejection": "First-line comparison does not check the independent full baseline; interior deletion passes."
+    },
+    {
+      "name": "auto-update",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "log.go": "wrong/drop-middle.go.txt",
+        "examples_test.go": "reference/examples_test.go.txt",
+        "golden_test.go": "controls/auto-update_golden_test.go.txt",
+        "testdata/log.golden": "reference/testdata/log.golden"
+      },
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "go version go1.27.0 darwin/arm64"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "discovery",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-list",
+            "^Example",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "ExampleLog",
+            "ExampleLog_Append_rejected",
+            "ExampleLog_Counts"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "test",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^(Example.*|TestLogGolden)$",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "PASS"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "changed",
+          "timeout_seconds": 60
+        }
+      ],
+      "method_rejection": "Normal execution silently writes its expectation; changed baseline rejects the method despite process success."
+    },
+    {
+      "name": "footer-update",
+      "files": {
+        "go.mod": "files/go.mod.txt",
+        "log.go": "update/footer.go.txt",
+        "examples_test.go": "reference/examples_test.go.txt",
+        "golden_test.go": "reference/golden_test.go.txt",
+        "testdata/log.golden": "reference/testdata/log.golden"
+      },
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "go version go1.27.0 darwin/arm64"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "discovery",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-list",
+            "^Example",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "ExampleLog",
+            "ExampleLog_Append_rejected",
+            "ExampleLog_Counts"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "golden-before",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^TestLogGolden$",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 1,
+          "required_output": [
+            "golden mismatch"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "explicit-update",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^TestLogGolden$",
+            "-timeout=20s",
+            "./...",
+            "-args",
+            "-update"
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "PASS"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "changed",
+          "timeout_seconds": 60
+        },
+        {
+          "name": "golden-after-review",
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "-run",
+            "^TestLogGolden$",
+            "-timeout=20s",
+            "./..."
+          ],
+          "expected_exit": 0,
+          "required_output": [
+            "PASS"
+          ],
+          "forbidden_output": [],
+          "baseline_policy": "unchanged",
+          "timeout_seconds": 60
+        }
+      ],
+      "pause_before_last": true,
+      "expected_updated_baseline": "update/log-v2.golden"
+    }
+  ],
+  "forbidden_failure_markers": [
+    "panic:",
+    "fatal error:",
+    "[build failed]",
+    "build failed",
+    "test timed out",
+    "syntax error"
+  ],
+  "execution_authority": "sole exact preexecution review required; no source-checkout execution",
+  "fresh_root_prefix": "i11-golden-"
+}

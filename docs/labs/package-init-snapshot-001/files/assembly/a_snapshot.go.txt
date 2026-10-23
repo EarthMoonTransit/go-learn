@@ -1,0 +1,9 @@
+package assembly
+
+var Snapshot int
+var CaptureCalls int
+
+func init() {
+ Snapshot = Ports["port"]
+ CaptureCalls++
+}

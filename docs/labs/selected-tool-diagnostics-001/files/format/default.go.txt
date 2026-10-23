@@ -1,0 +1,9 @@
+//go:build !preview
+
+package format
+
+import "net/url"
+
+func RenderQuery(text string) string {
+	return url.QueryEscape(text)
+}

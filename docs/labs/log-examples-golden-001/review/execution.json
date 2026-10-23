@@ -1,0 +1,1825 @@
+{
+  "unit": "log-examples-golden-001",
+  "status": "completed",
+  "started_at": "2026-10-23T07:59:56.268792+00:00",
+  "manifest_sha256": "61e4c72f366caa0df51a38f2ddc5d332b6d70afd80e01144532941a2008427f2",
+  "script_sha256": "d77219a492bce00509b2e4b4c34530bbf4cb5d9df28f2ce2f5f67f8e381d21f2",
+  "source_hashes": {
+    "PROCEDURE.md": "a7843db58476a33769300435224d119fe66d1b961bff404f78808f166c44e880",
+    "TASK.md": "d829a03ddd32e3804d7896cac9e510d8696d033c8367a3e28a6b02a31d2704b6",
+    "alternative/examples_test.go.txt": "56d644623eec5249e3185e9c09df78958b8622ef65424b54aca69c8375c7ae6a",
+    "alternative/golden_test.go.txt": "6cf15cb12ecb25d2db970dff25f73ee2c51d6b5047c59dbe14c88ea0376c3e27",
+    "alternative/testdata/log.golden": "f7a7a2093e3ea3581ff4abae660d686229bcb3ef9d4c9ed1b68ded09b3b483a4",
+    "controls/auto-update_golden_test.go.txt": "53769cecc4d5a45d7092dc9fd021e5cc8b123f97a1ef34bd5177b89daf5f6e97",
+    "controls/constant-print_examples_test.go.txt": "efdce8e783bae09b577d9151a747707175cafb535f77b216bfe28cf7b168161d",
+    "controls/missing-output_examples_test.go.txt": "446ec3cd4bc554932acfd9091365d5b1c60a6392be6e734638e80975b755cd58",
+    "controls/prefix-only_golden_test.go.txt": "7d1842064f1b53c8df3248e7b315987d2a369ed960e1f878b7d1127f16e2eacf",
+    "files/go.mod.txt": "144168e958e24f54fa0fd0b217098730f50cd7867e27784d35a2cfffd8dea12c",
+    "files/log.go.txt": "064c34cecf42f772ae1da14e39209b26d16dedf1351ee82f4b20196ca22f01af",
+    "provenance.json": "754d42abe2bffbf56c60fa4a144180f8eb6741aa37266db3effb8fa3bc87d2c2",
+    "reference/examples_test.go.txt": "e5caed5c2ec4b4396bac740dd335918d684c3aa3db92697abe2e6f0ef3c68bc0",
+    "reference/golden_test.go.txt": "fbbec42f8f136444d2c302a2ba93889713c3b60d475dfe17f616c8d55f72e38e",
+    "reference/testdata/log.golden": "fd836deeb26dceea43e52a3917f6ca5d17add5aae5254eb83ca8000c197598f8",
+    "starter/examples_test.go.txt": "02f9e281bd1838742337350ba5961c615b8b065657330bf92498ebc704110449",
+    "starter/golden_test.go.txt": "6c8f25aee4c191688a3ece6c6f665672875409647d2e500ab4233a99c7269d2b",
+    "starter/testdata/log.golden": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "update/footer.go.txt": "8e5f2f1b0f72670958f84b0cc75f5dfc4f4027517d8d22bcb04aec72fd0c15d2",
+    "update/log-v2.golden": "db8935cd52b537f9ce88784b186776d25379802357b803bece7f40f127e1a223",
+    "wrong/append-rejected.go.txt": "c2d849c816f07e5ca73c562bbd675ddeb07af3b712b04d55b53db2ac94e5af7b",
+    "wrong/counts.go.txt": "b1fc7616899e2fa0c26c4bff2f1f12b8fb2bde295b57f1a49d5ee31f9606dd5f",
+    "wrong/drop-middle.go.txt": "fb18b096c88091b91341d13171af346618667692eaff72ba7a7e02f86a7a9b83",
+    "wrong/final-newline.go.txt": "33342a9a51a0c20955bdbf512ea0de627764fe91e47b6c9b02e23f335327869e",
+    "wrong/output_examples_test.go.txt": "afe08c821ba687e214eb9a49863e5e0f6e2be74ce884e020753438b81ced1397",
+    "wrong/reorder.go.txt": "6c3fe379df1156c91c05b2d695af1b85806a55ab49839df21ee83eb28c801f42"
+  },
+  "specimen_count": 13,
+  "planned_commands": 41,
+  "commands": [
+    {
+      "serial": 1,
+      "specimen": "reference",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-zrilfbkt/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-zrilfbkt",
+      "started_at": "2026-10-23T07:59:56.271235+00:00",
+      "finished_at": "2026-10-23T07:59:56.278462+00:00",
+      "duration_seconds": 0.007239417056553066,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "01-reference-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "01-reference-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "01-reference-version-before.json",
+      "before_snapshot_sha256": "a0da6b81157529375168372ebcc75c093f48f1a2e0fc6b7bcb82ea144e41af53",
+      "after_snapshot": "01-reference-version-after.json",
+      "after_snapshot_sha256": "a0da6b81157529375168372ebcc75c093f48f1a2e0fc6b7bcb82ea144e41af53",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 2,
+      "specimen": "reference",
+      "command": {
+        "name": "discovery",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-list",
+          "^Example",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "ExampleLog",
+          "ExampleLog_Append_rejected",
+          "ExampleLog_Counts"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-zrilfbkt/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-zrilfbkt",
+      "started_at": "2026-10-23T07:59:56.279237+00:00",
+      "finished_at": "2026-10-23T08:00:00.341341+00:00",
+      "duration_seconds": 4.062136208987795,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "02-reference-discovery.stdout",
+      "stdout_sha256": "5070e0735573ff58e12f69f842fb45d122929dc478d5c61fb2dc5fe373fd1919",
+      "stderr": "02-reference-discovery.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "02-reference-discovery-before.json",
+      "before_snapshot_sha256": "a0da6b81157529375168372ebcc75c093f48f1a2e0fc6b7bcb82ea144e41af53",
+      "after_snapshot": "02-reference-discovery-after.json",
+      "after_snapshot_sha256": "a0da6b81157529375168372ebcc75c093f48f1a2e0fc6b7bcb82ea144e41af53",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 3,
+      "specimen": "reference",
+      "command": {
+        "name": "test",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^(Example.*|TestLogGolden)$",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "PASS"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-zrilfbkt/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-zrilfbkt",
+      "started_at": "2026-10-23T08:00:00.342084+00:00",
+      "finished_at": "2026-10-23T08:00:00.828397+00:00",
+      "duration_seconds": 0.4863210000330582,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "03-reference-test.stdout",
+      "stdout_sha256": "58668a03fc3f32fdd27980eec76e3ffb665c5c9a15e0669689b368bd7595f94a",
+      "stderr": "03-reference-test.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "03-reference-test-before.json",
+      "before_snapshot_sha256": "a0da6b81157529375168372ebcc75c093f48f1a2e0fc6b7bcb82ea144e41af53",
+      "after_snapshot": "03-reference-test-after.json",
+      "after_snapshot_sha256": "a0da6b81157529375168372ebcc75c093f48f1a2e0fc6b7bcb82ea144e41af53",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 4,
+      "specimen": "alternative",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-0l9gbtb1/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-0l9gbtb1",
+      "started_at": "2026-10-23T08:00:00.978894+00:00",
+      "finished_at": "2026-10-23T08:00:00.999095+00:00",
+      "duration_seconds": 0.02020433300640434,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "04-alternative-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "04-alternative-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "04-alternative-version-before.json",
+      "before_snapshot_sha256": "5a5d4997be687103f8baaea9664f572ec912105d6b686931374d7ecfef282329",
+      "after_snapshot": "04-alternative-version-after.json",
+      "after_snapshot_sha256": "5a5d4997be687103f8baaea9664f572ec912105d6b686931374d7ecfef282329",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 5,
+      "specimen": "alternative",
+      "command": {
+        "name": "discovery",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-list",
+          "^Example",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "ExampleLog",
+          "ExampleLog_Append_rejected",
+          "ExampleLog_Counts"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-0l9gbtb1/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-0l9gbtb1",
+      "started_at": "2026-10-23T08:00:01.004528+00:00",
+      "finished_at": "2026-10-23T08:00:05.546142+00:00",
+      "duration_seconds": 4.541651916923001,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "05-alternative-discovery.stdout",
+      "stdout_sha256": "6a189c0fa4d2e3e18d6b3ca9e04025e5fe9a8c018b64502d82a14babe74e4980",
+      "stderr": "05-alternative-discovery.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "05-alternative-discovery-before.json",
+      "before_snapshot_sha256": "5a5d4997be687103f8baaea9664f572ec912105d6b686931374d7ecfef282329",
+      "after_snapshot": "05-alternative-discovery-after.json",
+      "after_snapshot_sha256": "5a5d4997be687103f8baaea9664f572ec912105d6b686931374d7ecfef282329",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 6,
+      "specimen": "alternative",
+      "command": {
+        "name": "test",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^(Example.*|TestLogGolden)$",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "PASS"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-0l9gbtb1/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-0l9gbtb1",
+      "started_at": "2026-10-23T08:00:05.547166+00:00",
+      "finished_at": "2026-10-23T08:00:06.032123+00:00",
+      "duration_seconds": 0.48496937507297844,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "06-alternative-test.stdout",
+      "stdout_sha256": "3194ab3a7f23d972a68865683b0ed68e224659749220fe0fdfa7a6231568bf7f",
+      "stderr": "06-alternative-test.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "06-alternative-test-before.json",
+      "before_snapshot_sha256": "5a5d4997be687103f8baaea9664f572ec912105d6b686931374d7ecfef282329",
+      "after_snapshot": "06-alternative-test-after.json",
+      "after_snapshot_sha256": "5a5d4997be687103f8baaea9664f572ec912105d6b686931374d7ecfef282329",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 7,
+      "specimen": "wrong-output",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-7j4lhi5q/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-7j4lhi5q",
+      "started_at": "2026-10-23T08:00:06.344640+00:00",
+      "finished_at": "2026-10-23T08:00:06.358533+00:00",
+      "duration_seconds": 0.013886500033549964,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "07-wrong-output-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "07-wrong-output-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "07-wrong-output-version-before.json",
+      "before_snapshot_sha256": "b18dff2de04f16f31d921204b03f3f0f3512b2f142cf6d3ceae9f1c6929d23bc",
+      "after_snapshot": "07-wrong-output-version-after.json",
+      "after_snapshot_sha256": "b18dff2de04f16f31d921204b03f3f0f3512b2f142cf6d3ceae9f1c6929d23bc",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 8,
+      "specimen": "wrong-output",
+      "command": {
+        "name": "discovery",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-list",
+          "^Example",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "ExampleLog",
+          "ExampleLog_Append_rejected",
+          "ExampleLog_Counts"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-7j4lhi5q/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-7j4lhi5q",
+      "started_at": "2026-10-23T08:00:06.359600+00:00",
+      "finished_at": "2026-10-23T08:00:10.047375+00:00",
+      "duration_seconds": 3.6878063330659643,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "08-wrong-output-discovery.stdout",
+      "stdout_sha256": "5070e0735573ff58e12f69f842fb45d122929dc478d5c61fb2dc5fe373fd1919",
+      "stderr": "08-wrong-output-discovery.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "08-wrong-output-discovery-before.json",
+      "before_snapshot_sha256": "b18dff2de04f16f31d921204b03f3f0f3512b2f142cf6d3ceae9f1c6929d23bc",
+      "after_snapshot": "08-wrong-output-discovery-after.json",
+      "after_snapshot_sha256": "b18dff2de04f16f31d921204b03f3f0f3512b2f142cf6d3ceae9f1c6929d23bc",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 9,
+      "specimen": "wrong-output",
+      "command": {
+        "name": "test",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^(Example.*|TestLogGolden)$",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 1,
+        "required_output": [
+          "--- FAIL: ExampleLog_Counts"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-7j4lhi5q/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-7j4lhi5q",
+      "started_at": "2026-10-23T08:00:10.048680+00:00",
+      "finished_at": "2026-10-23T08:00:10.600151+00:00",
+      "duration_seconds": 0.5514807499712333,
+      "exit_status": 1,
+      "timed_out": false,
+      "stdout": "09-wrong-output-test.stdout",
+      "stdout_sha256": "ed062019fbfd7dae9bffb79bf337cfe8a756bd492b3d2c68fcdf3dfb91f8dc7c",
+      "stderr": "09-wrong-output-test.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "09-wrong-output-test-before.json",
+      "before_snapshot_sha256": "b18dff2de04f16f31d921204b03f3f0f3512b2f142cf6d3ceae9f1c6929d23bc",
+      "after_snapshot": "09-wrong-output-test-after.json",
+      "after_snapshot_sha256": "b18dff2de04f16f31d921204b03f3f0f3512b2f142cf6d3ceae9f1c6929d23bc",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 10,
+      "specimen": "drop-middle",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-dmbruo78/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-dmbruo78",
+      "started_at": "2026-10-23T08:00:10.673449+00:00",
+      "finished_at": "2026-10-23T08:00:10.681568+00:00",
+      "duration_seconds": 0.008120124926790595,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "10-drop-middle-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "10-drop-middle-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "10-drop-middle-version-before.json",
+      "before_snapshot_sha256": "624d62c0e244c66cb255f4c46fa13e049172af5aea34ad41bca5e1048b82fe78",
+      "after_snapshot": "10-drop-middle-version-after.json",
+      "after_snapshot_sha256": "624d62c0e244c66cb255f4c46fa13e049172af5aea34ad41bca5e1048b82fe78",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 11,
+      "specimen": "drop-middle",
+      "command": {
+        "name": "discovery",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-list",
+          "^Example",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "ExampleLog",
+          "ExampleLog_Append_rejected",
+          "ExampleLog_Counts"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-dmbruo78/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-dmbruo78",
+      "started_at": "2026-10-23T08:00:10.682219+00:00",
+      "finished_at": "2026-10-23T08:00:14.200727+00:00",
+      "duration_seconds": 3.5185421670321375,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "11-drop-middle-discovery.stdout",
+      "stdout_sha256": "9ef2e5cbf74bed5260d42496a3b554dc35e03b569f049601de22052ae6848191",
+      "stderr": "11-drop-middle-discovery.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "11-drop-middle-discovery-before.json",
+      "before_snapshot_sha256": "624d62c0e244c66cb255f4c46fa13e049172af5aea34ad41bca5e1048b82fe78",
+      "after_snapshot": "11-drop-middle-discovery-after.json",
+      "after_snapshot_sha256": "624d62c0e244c66cb255f4c46fa13e049172af5aea34ad41bca5e1048b82fe78",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 12,
+      "specimen": "drop-middle",
+      "command": {
+        "name": "test",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^(Example.*|TestLogGolden)$",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 1,
+        "required_output": [
+          "golden mismatch"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-dmbruo78/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-dmbruo78",
+      "started_at": "2026-10-23T08:00:14.201464+00:00",
+      "finished_at": "2026-10-23T08:00:14.741400+00:00",
+      "duration_seconds": 0.5399487499380484,
+      "exit_status": 1,
+      "timed_out": false,
+      "stdout": "12-drop-middle-test.stdout",
+      "stdout_sha256": "d0ac82c8daeef699ef008ccb81dedffa1dbe73bc9e0d19f797b3776028c158eb",
+      "stderr": "12-drop-middle-test.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "12-drop-middle-test-before.json",
+      "before_snapshot_sha256": "624d62c0e244c66cb255f4c46fa13e049172af5aea34ad41bca5e1048b82fe78",
+      "after_snapshot": "12-drop-middle-test-after.json",
+      "after_snapshot_sha256": "624d62c0e244c66cb255f4c46fa13e049172af5aea34ad41bca5e1048b82fe78",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 13,
+      "specimen": "reorder",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-6b4pbo47/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-6b4pbo47",
+      "started_at": "2026-10-23T08:00:14.860620+00:00",
+      "finished_at": "2026-10-23T08:00:14.874186+00:00",
+      "duration_seconds": 0.013568999944254756,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "13-reorder-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "13-reorder-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "13-reorder-version-before.json",
+      "before_snapshot_sha256": "b12b7bb93c822b70f2c1037d705140bec382b0e1fc497cc0ee5bedf58a4407cc",
+      "after_snapshot": "13-reorder-version-after.json",
+      "after_snapshot_sha256": "b12b7bb93c822b70f2c1037d705140bec382b0e1fc497cc0ee5bedf58a4407cc",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 14,
+      "specimen": "reorder",
+      "command": {
+        "name": "discovery",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-list",
+          "^Example",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "ExampleLog",
+          "ExampleLog_Append_rejected",
+          "ExampleLog_Counts"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-6b4pbo47/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-6b4pbo47",
+      "started_at": "2026-10-23T08:00:14.875050+00:00",
+      "finished_at": "2026-10-23T08:00:18.372978+00:00",
+      "duration_seconds": 3.4979595420882106,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "14-reorder-discovery.stdout",
+      "stdout_sha256": "b59106ce4231c8f9b843517c264e182a1419d3f32eccb4a4cea11483b5d772ee",
+      "stderr": "14-reorder-discovery.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "14-reorder-discovery-before.json",
+      "before_snapshot_sha256": "b12b7bb93c822b70f2c1037d705140bec382b0e1fc497cc0ee5bedf58a4407cc",
+      "after_snapshot": "14-reorder-discovery-after.json",
+      "after_snapshot_sha256": "b12b7bb93c822b70f2c1037d705140bec382b0e1fc497cc0ee5bedf58a4407cc",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 15,
+      "specimen": "reorder",
+      "command": {
+        "name": "test",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^(Example.*|TestLogGolden)$",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 1,
+        "required_output": [
+          "golden mismatch"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-6b4pbo47/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-6b4pbo47",
+      "started_at": "2026-10-23T08:00:18.373843+00:00",
+      "finished_at": "2026-10-23T08:00:18.871179+00:00",
+      "duration_seconds": 0.4973713749786839,
+      "exit_status": 1,
+      "timed_out": false,
+      "stdout": "15-reorder-test.stdout",
+      "stdout_sha256": "f34daeaef1ebe993fd46aa7f55f23221c4d726c949e5e7dd85761dd3073db60f",
+      "stderr": "15-reorder-test.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "15-reorder-test-before.json",
+      "before_snapshot_sha256": "b12b7bb93c822b70f2c1037d705140bec382b0e1fc497cc0ee5bedf58a4407cc",
+      "after_snapshot": "15-reorder-test-after.json",
+      "after_snapshot_sha256": "b12b7bb93c822b70f2c1037d705140bec382b0e1fc497cc0ee5bedf58a4407cc",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 16,
+      "specimen": "final-newline",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-oy_ykno8/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-oy_ykno8",
+      "started_at": "2026-10-23T08:00:18.967025+00:00",
+      "finished_at": "2026-10-23T08:00:19.001914+00:00",
+      "duration_seconds": 0.034892708994448185,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "16-final-newline-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "16-final-newline-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "16-final-newline-version-before.json",
+      "before_snapshot_sha256": "71eff44953f323284ad51142bfe775eb8bc2b85463062ff28f14255162bd3f73",
+      "after_snapshot": "16-final-newline-version-after.json",
+      "after_snapshot_sha256": "71eff44953f323284ad51142bfe775eb8bc2b85463062ff28f14255162bd3f73",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 17,
+      "specimen": "final-newline",
+      "command": {
+        "name": "discovery",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-list",
+          "^Example",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "ExampleLog",
+          "ExampleLog_Append_rejected",
+          "ExampleLog_Counts"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-oy_ykno8/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-oy_ykno8",
+      "started_at": "2026-10-23T08:00:19.002784+00:00",
+      "finished_at": "2026-10-23T08:00:22.441253+00:00",
+      "duration_seconds": 3.4384989590616897,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "17-final-newline-discovery.stdout",
+      "stdout_sha256": "b68bf3d22040b6762bcff7f6b88c0854491d7c8479d7a4e184ce3125533048a0",
+      "stderr": "17-final-newline-discovery.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "17-final-newline-discovery-before.json",
+      "before_snapshot_sha256": "71eff44953f323284ad51142bfe775eb8bc2b85463062ff28f14255162bd3f73",
+      "after_snapshot": "17-final-newline-discovery-after.json",
+      "after_snapshot_sha256": "71eff44953f323284ad51142bfe775eb8bc2b85463062ff28f14255162bd3f73",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 18,
+      "specimen": "final-newline",
+      "command": {
+        "name": "test",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^(Example.*|TestLogGolden)$",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 1,
+        "required_output": [
+          "golden mismatch"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-oy_ykno8/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-oy_ykno8",
+      "started_at": "2026-10-23T08:00:22.442205+00:00",
+      "finished_at": "2026-10-23T08:00:22.838095+00:00",
+      "duration_seconds": 0.3959007920930162,
+      "exit_status": 1,
+      "timed_out": false,
+      "stdout": "18-final-newline-test.stdout",
+      "stdout_sha256": "3205511f27fbf1969e7d9d29558c77ba7b40397edc39ee90ede40e333b73880a",
+      "stderr": "18-final-newline-test.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "18-final-newline-test-before.json",
+      "before_snapshot_sha256": "71eff44953f323284ad51142bfe775eb8bc2b85463062ff28f14255162bd3f73",
+      "after_snapshot": "18-final-newline-test-after.json",
+      "after_snapshot_sha256": "71eff44953f323284ad51142bfe775eb8bc2b85463062ff28f14255162bd3f73",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 19,
+      "specimen": "append-rejected",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-75vhuu17/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-75vhuu17",
+      "started_at": "2026-10-23T08:00:23.375950+00:00",
+      "finished_at": "2026-10-23T08:00:23.390082+00:00",
+      "duration_seconds": 0.014132166048511863,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "19-append-rejected-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "19-append-rejected-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "19-append-rejected-version-before.json",
+      "before_snapshot_sha256": "8289a861275f94b8662c7f2767346c8ab922f9ad36b3acd841e973f0e2a234ef",
+      "after_snapshot": "19-append-rejected-version-after.json",
+      "after_snapshot_sha256": "8289a861275f94b8662c7f2767346c8ab922f9ad36b3acd841e973f0e2a234ef",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 20,
+      "specimen": "append-rejected",
+      "command": {
+        "name": "discovery",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-list",
+          "^Example",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "ExampleLog",
+          "ExampleLog_Append_rejected",
+          "ExampleLog_Counts"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-75vhuu17/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-75vhuu17",
+      "started_at": "2026-10-23T08:00:23.391129+00:00",
+      "finished_at": "2026-10-23T08:00:27.428003+00:00",
+      "duration_seconds": 4.036908959038556,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "20-append-rejected-discovery.stdout",
+      "stdout_sha256": "e515e963e0de48dac147c43b721dd2c0915e7367fb0ed9537da5e71a074c311e",
+      "stderr": "20-append-rejected-discovery.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "20-append-rejected-discovery-before.json",
+      "before_snapshot_sha256": "8289a861275f94b8662c7f2767346c8ab922f9ad36b3acd841e973f0e2a234ef",
+      "after_snapshot": "20-append-rejected-discovery-after.json",
+      "after_snapshot_sha256": "8289a861275f94b8662c7f2767346c8ab922f9ad36b3acd841e973f0e2a234ef",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 21,
+      "specimen": "append-rejected",
+      "command": {
+        "name": "test",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^(Example.*|TestLogGolden)$",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 1,
+        "required_output": [
+          "--- FAIL: ExampleLog_Append_rejected"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-75vhuu17/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-75vhuu17",
+      "started_at": "2026-10-23T08:00:27.429298+00:00",
+      "finished_at": "2026-10-23T08:00:28.046061+00:00",
+      "duration_seconds": 0.6167707920540124,
+      "exit_status": 1,
+      "timed_out": false,
+      "stdout": "21-append-rejected-test.stdout",
+      "stdout_sha256": "9c795d4638e8f89b23504adb6e54ed48716c7c5c40477d7dd3105f0a5f27f64d",
+      "stderr": "21-append-rejected-test.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "21-append-rejected-test-before.json",
+      "before_snapshot_sha256": "8289a861275f94b8662c7f2767346c8ab922f9ad36b3acd841e973f0e2a234ef",
+      "after_snapshot": "21-append-rejected-test-after.json",
+      "after_snapshot_sha256": "8289a861275f94b8662c7f2767346c8ab922f9ad36b3acd841e973f0e2a234ef",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 22,
+      "specimen": "counts",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-knxcj2k7/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-knxcj2k7",
+      "started_at": "2026-10-23T08:00:28.118608+00:00",
+      "finished_at": "2026-10-23T08:00:28.126726+00:00",
+      "duration_seconds": 0.008117625024169683,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "22-counts-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "22-counts-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "22-counts-version-before.json",
+      "before_snapshot_sha256": "d48c837c01bf89ad5b061a17a33a9bc559160cf95ee18994f5f3da6e39ae4b30",
+      "after_snapshot": "22-counts-version-after.json",
+      "after_snapshot_sha256": "d48c837c01bf89ad5b061a17a33a9bc559160cf95ee18994f5f3da6e39ae4b30",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 23,
+      "specimen": "counts",
+      "command": {
+        "name": "discovery",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-list",
+          "^Example",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "ExampleLog",
+          "ExampleLog_Append_rejected",
+          "ExampleLog_Counts"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-knxcj2k7/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-knxcj2k7",
+      "started_at": "2026-10-23T08:00:28.127468+00:00",
+      "finished_at": "2026-10-23T08:00:31.884440+00:00",
+      "duration_seconds": 3.7569947500014678,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "23-counts-discovery.stdout",
+      "stdout_sha256": "6a221c85855750fbe56d6ddad6cdb6f110945b8f3ebf7235d6f1057f70d5b8e6",
+      "stderr": "23-counts-discovery.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "23-counts-discovery-before.json",
+      "before_snapshot_sha256": "d48c837c01bf89ad5b061a17a33a9bc559160cf95ee18994f5f3da6e39ae4b30",
+      "after_snapshot": "23-counts-discovery-after.json",
+      "after_snapshot_sha256": "d48c837c01bf89ad5b061a17a33a9bc559160cf95ee18994f5f3da6e39ae4b30",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 24,
+      "specimen": "counts",
+      "command": {
+        "name": "test",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^(Example.*|TestLogGolden)$",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 1,
+        "required_output": [
+          "--- FAIL: ExampleLog_Counts"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-knxcj2k7/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-knxcj2k7",
+      "started_at": "2026-10-23T08:00:31.885186+00:00",
+      "finished_at": "2026-10-23T08:00:32.569115+00:00",
+      "duration_seconds": 0.6839394170092419,
+      "exit_status": 1,
+      "timed_out": false,
+      "stdout": "24-counts-test.stdout",
+      "stdout_sha256": "9c976f9a88e84fb79eaa898bad8761e2c045efb35b529df064dde346960141da",
+      "stderr": "24-counts-test.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "24-counts-test-before.json",
+      "before_snapshot_sha256": "d48c837c01bf89ad5b061a17a33a9bc559160cf95ee18994f5f3da6e39ae4b30",
+      "after_snapshot": "24-counts-test-after.json",
+      "after_snapshot_sha256": "d48c837c01bf89ad5b061a17a33a9bc559160cf95ee18994f5f3da6e39ae4b30",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 25,
+      "specimen": "missing-output",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-t03ferg4/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-t03ferg4",
+      "started_at": "2026-10-23T08:00:32.642363+00:00",
+      "finished_at": "2026-10-23T08:00:32.650688+00:00",
+      "duration_seconds": 0.008327041985467076,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "25-missing-output-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "25-missing-output-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "25-missing-output-version-before.json",
+      "before_snapshot_sha256": "49b843286ac9b3d8477058014ea48570751969fc2ecec9f0cf49c9aff9095336",
+      "after_snapshot": "25-missing-output-version-after.json",
+      "after_snapshot_sha256": "49b843286ac9b3d8477058014ea48570751969fc2ecec9f0cf49c9aff9095336",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 26,
+      "specimen": "missing-output",
+      "command": {
+        "name": "discovery",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-list",
+          "^Example",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "ExampleLog",
+          "ExampleLog_Append_rejected"
+        ],
+        "forbidden_output": [
+          "ExampleLog_Counts"
+        ],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-t03ferg4/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-t03ferg4",
+      "started_at": "2026-10-23T08:00:32.651438+00:00",
+      "finished_at": "2026-10-23T08:00:35.537990+00:00",
+      "duration_seconds": 2.886578332982026,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "26-missing-output-discovery.stdout",
+      "stdout_sha256": "890de0a50ac3ddb3fc131559e431bbeef3d222597f77c5675ab57fb5cdb03bea",
+      "stderr": "26-missing-output-discovery.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "26-missing-output-discovery-before.json",
+      "before_snapshot_sha256": "49b843286ac9b3d8477058014ea48570751969fc2ecec9f0cf49c9aff9095336",
+      "after_snapshot": "26-missing-output-discovery-after.json",
+      "after_snapshot_sha256": "49b843286ac9b3d8477058014ea48570751969fc2ecec9f0cf49c9aff9095336",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 27,
+      "specimen": "missing-output",
+      "command": {
+        "name": "test",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^(Example.*|TestLogGolden)$",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "PASS"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-t03ferg4/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-t03ferg4",
+      "started_at": "2026-10-23T08:00:35.538795+00:00",
+      "finished_at": "2026-10-23T08:00:36.070348+00:00",
+      "duration_seconds": 0.531562541029416,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "27-missing-output-test.stdout",
+      "stdout_sha256": "3d4d8a2bdf8e5ba039cecfda20f6ae954fe4cb5e9b629e911545b49f2e504426",
+      "stderr": "27-missing-output-test.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "27-missing-output-test-before.json",
+      "before_snapshot_sha256": "49b843286ac9b3d8477058014ea48570751969fc2ecec9f0cf49c9aff9095336",
+      "after_snapshot": "27-missing-output-test-after.json",
+      "after_snapshot_sha256": "49b843286ac9b3d8477058014ea48570751969fc2ecec9f0cf49c9aff9095336",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 28,
+      "specimen": "constant-print",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-455rlclw/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-455rlclw",
+      "started_at": "2026-10-23T08:00:36.137951+00:00",
+      "finished_at": "2026-10-23T08:00:36.145887+00:00",
+      "duration_seconds": 0.007941582938656211,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "28-constant-print-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "28-constant-print-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "28-constant-print-version-before.json",
+      "before_snapshot_sha256": "564fcf630a9507ddbda6ed49c2ea4e367fafb0611d0400157f59e58a441e6063",
+      "after_snapshot": "28-constant-print-version-after.json",
+      "after_snapshot_sha256": "564fcf630a9507ddbda6ed49c2ea4e367fafb0611d0400157f59e58a441e6063",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 29,
+      "specimen": "constant-print",
+      "command": {
+        "name": "discovery",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-list",
+          "^Example",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "ExampleLog",
+          "ExampleLog_Append_rejected",
+          "ExampleLog_Counts"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-455rlclw/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-455rlclw",
+      "started_at": "2026-10-23T08:00:36.146579+00:00",
+      "finished_at": "2026-10-23T08:00:38.908655+00:00",
+      "duration_seconds": 2.762100624968298,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "29-constant-print-discovery.stdout",
+      "stdout_sha256": "15cf5e53132f535768646674e6cdc408ece3c34a864e45be58e8ba85c49019db",
+      "stderr": "29-constant-print-discovery.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "29-constant-print-discovery-before.json",
+      "before_snapshot_sha256": "564fcf630a9507ddbda6ed49c2ea4e367fafb0611d0400157f59e58a441e6063",
+      "after_snapshot": "29-constant-print-discovery-after.json",
+      "after_snapshot_sha256": "564fcf630a9507ddbda6ed49c2ea4e367fafb0611d0400157f59e58a441e6063",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 30,
+      "specimen": "constant-print",
+      "command": {
+        "name": "test",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^(Example.*|TestLogGolden)$",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "PASS"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-455rlclw/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-455rlclw",
+      "started_at": "2026-10-23T08:00:38.909809+00:00",
+      "finished_at": "2026-10-23T08:00:39.285667+00:00",
+      "duration_seconds": 0.37591654201969504,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "30-constant-print-test.stdout",
+      "stdout_sha256": "dbf3c5ed1caa44c7f97d88bd47fc81673f76a9aa32e5f1a2c526ca0e7e8868ed",
+      "stderr": "30-constant-print-test.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "30-constant-print-test-before.json",
+      "before_snapshot_sha256": "564fcf630a9507ddbda6ed49c2ea4e367fafb0611d0400157f59e58a441e6063",
+      "after_snapshot": "30-constant-print-test-after.json",
+      "after_snapshot_sha256": "564fcf630a9507ddbda6ed49c2ea4e367fafb0611d0400157f59e58a441e6063",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 31,
+      "specimen": "prefix-only",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-2vdsx0b8/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-2vdsx0b8",
+      "started_at": "2026-10-23T08:00:39.416882+00:00",
+      "finished_at": "2026-10-23T08:00:39.425042+00:00",
+      "duration_seconds": 0.00816029089037329,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "31-prefix-only-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "31-prefix-only-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "31-prefix-only-version-before.json",
+      "before_snapshot_sha256": "b7e90e55d67c7855e75f01bb984f6ab21b169a8d6ada73949b53825e3dcb1aa7",
+      "after_snapshot": "31-prefix-only-version-after.json",
+      "after_snapshot_sha256": "b7e90e55d67c7855e75f01bb984f6ab21b169a8d6ada73949b53825e3dcb1aa7",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 32,
+      "specimen": "prefix-only",
+      "command": {
+        "name": "discovery",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-list",
+          "^Example",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "ExampleLog",
+          "ExampleLog_Append_rejected",
+          "ExampleLog_Counts"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-2vdsx0b8/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-2vdsx0b8",
+      "started_at": "2026-10-23T08:00:39.425999+00:00",
+      "finished_at": "2026-10-23T08:00:42.942656+00:00",
+      "duration_seconds": 3.516684832982719,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "32-prefix-only-discovery.stdout",
+      "stdout_sha256": "7db08a73a947e7520e034b6f14929bc5338334357c98d3fc9fd744b9d631a3c7",
+      "stderr": "32-prefix-only-discovery.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "32-prefix-only-discovery-before.json",
+      "before_snapshot_sha256": "b7e90e55d67c7855e75f01bb984f6ab21b169a8d6ada73949b53825e3dcb1aa7",
+      "after_snapshot": "32-prefix-only-discovery-after.json",
+      "after_snapshot_sha256": "b7e90e55d67c7855e75f01bb984f6ab21b169a8d6ada73949b53825e3dcb1aa7",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 33,
+      "specimen": "prefix-only",
+      "command": {
+        "name": "test",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^(Example.*|TestLogGolden)$",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "PASS"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-2vdsx0b8/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-2vdsx0b8",
+      "started_at": "2026-10-23T08:00:42.943496+00:00",
+      "finished_at": "2026-10-23T08:00:43.358445+00:00",
+      "duration_seconds": 0.4149535420583561,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "33-prefix-only-test.stdout",
+      "stdout_sha256": "52e9b9f47dbabe7b1df0f6bffbbcbd7d6eb8a57e5807b05b3466af4cd5856439",
+      "stderr": "33-prefix-only-test.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "33-prefix-only-test-before.json",
+      "before_snapshot_sha256": "b7e90e55d67c7855e75f01bb984f6ab21b169a8d6ada73949b53825e3dcb1aa7",
+      "after_snapshot": "33-prefix-only-test-after.json",
+      "after_snapshot_sha256": "b7e90e55d67c7855e75f01bb984f6ab21b169a8d6ada73949b53825e3dcb1aa7",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 34,
+      "specimen": "auto-update",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-h59um4o6/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-h59um4o6",
+      "started_at": "2026-10-23T08:00:43.437141+00:00",
+      "finished_at": "2026-10-23T08:00:43.445970+00:00",
+      "duration_seconds": 0.008831167011521757,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "34-auto-update-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "34-auto-update-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "34-auto-update-version-before.json",
+      "before_snapshot_sha256": "d30b3808a94cfca4618ada6d1dbc2d9299df6969f8cfec0eb039038d084be82e",
+      "after_snapshot": "34-auto-update-version-after.json",
+      "after_snapshot_sha256": "d30b3808a94cfca4618ada6d1dbc2d9299df6969f8cfec0eb039038d084be82e",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 35,
+      "specimen": "auto-update",
+      "command": {
+        "name": "discovery",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-list",
+          "^Example",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "ExampleLog",
+          "ExampleLog_Append_rejected",
+          "ExampleLog_Counts"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-h59um4o6/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-h59um4o6",
+      "started_at": "2026-10-23T08:00:43.446802+00:00",
+      "finished_at": "2026-10-23T08:00:46.572884+00:00",
+      "duration_seconds": 3.1261082079727203,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "35-auto-update-discovery.stdout",
+      "stdout_sha256": "21b038137116553a471c3d8a5047967d5d7cc36155c708d956e321bef1242273",
+      "stderr": "35-auto-update-discovery.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "35-auto-update-discovery-before.json",
+      "before_snapshot_sha256": "d30b3808a94cfca4618ada6d1dbc2d9299df6969f8cfec0eb039038d084be82e",
+      "after_snapshot": "35-auto-update-discovery-after.json",
+      "after_snapshot_sha256": "d30b3808a94cfca4618ada6d1dbc2d9299df6969f8cfec0eb039038d084be82e",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 36,
+      "specimen": "auto-update",
+      "command": {
+        "name": "test",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^(Example.*|TestLogGolden)$",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "PASS"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "changed",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-h59um4o6/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-h59um4o6",
+      "started_at": "2026-10-23T08:00:46.573688+00:00",
+      "finished_at": "2026-10-23T08:00:47.104258+00:00",
+      "duration_seconds": 0.5305792909348384,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "36-auto-update-test.stdout",
+      "stdout_sha256": "1320af611f46dae23e3f6382edf92516f3d09f0322839fa60fdcbcee5cabe2a9",
+      "stderr": "36-auto-update-test.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "36-auto-update-test-before.json",
+      "before_snapshot_sha256": "d30b3808a94cfca4618ada6d1dbc2d9299df6969f8cfec0eb039038d084be82e",
+      "after_snapshot": "36-auto-update-test-after.json",
+      "after_snapshot_sha256": "b77a8e1c7fbaff3df633b059c63c012fd9369c610a17299c8d6c18f06116064d",
+      "changed_paths": [
+        "testdata/log.golden"
+      ],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 37,
+      "specimen": "footer-update",
+      "command": {
+        "name": "version",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "version"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "go version go1.27.0 darwin/arm64"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-l2njp5e0/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-l2njp5e0",
+      "started_at": "2026-10-23T08:00:47.175648+00:00",
+      "finished_at": "2026-10-23T08:00:47.183500+00:00",
+      "duration_seconds": 0.007856791955418885,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "37-footer-update-version.stdout",
+      "stdout_sha256": "c4a5200d52279a5227d4b3bced622c76081c45d24dba750db29903f9b14641c3",
+      "stderr": "37-footer-update-version.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "37-footer-update-version-before.json",
+      "before_snapshot_sha256": "a82d360795b3a9c4f27ab55f1cb974c7c566dab52011336141e1c4ddc84f5c04",
+      "after_snapshot": "37-footer-update-version-after.json",
+      "after_snapshot_sha256": "a82d360795b3a9c4f27ab55f1cb974c7c566dab52011336141e1c4ddc84f5c04",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 38,
+      "specimen": "footer-update",
+      "command": {
+        "name": "discovery",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-list",
+          "^Example",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "ExampleLog",
+          "ExampleLog_Append_rejected",
+          "ExampleLog_Counts"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-l2njp5e0/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-l2njp5e0",
+      "started_at": "2026-10-23T08:00:47.184287+00:00",
+      "finished_at": "2026-10-23T08:00:49.995207+00:00",
+      "duration_seconds": 2.810946665937081,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "38-footer-update-discovery.stdout",
+      "stdout_sha256": "fe7d163e32eac1a36af3ee2b7bf86faf409583e89b1aedcca1e6836e111dd57c",
+      "stderr": "38-footer-update-discovery.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "38-footer-update-discovery-before.json",
+      "before_snapshot_sha256": "a82d360795b3a9c4f27ab55f1cb974c7c566dab52011336141e1c4ddc84f5c04",
+      "after_snapshot": "38-footer-update-discovery-after.json",
+      "after_snapshot_sha256": "a82d360795b3a9c4f27ab55f1cb974c7c566dab52011336141e1c4ddc84f5c04",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 39,
+      "specimen": "footer-update",
+      "command": {
+        "name": "golden-before",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^TestLogGolden$",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 1,
+        "required_output": [
+          "golden mismatch"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-l2njp5e0/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-l2njp5e0",
+      "started_at": "2026-10-23T08:00:49.996018+00:00",
+      "finished_at": "2026-10-23T08:00:50.539933+00:00",
+      "duration_seconds": 0.5439234171062708,
+      "exit_status": 1,
+      "timed_out": false,
+      "stdout": "39-footer-update-golden-before.stdout",
+      "stdout_sha256": "9107e9da10f76458ae65ae5e1c8aaa62f70270ab6dca0484d83c48e7ee9fdd22",
+      "stderr": "39-footer-update-golden-before.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "39-footer-update-golden-before-before.json",
+      "before_snapshot_sha256": "a82d360795b3a9c4f27ab55f1cb974c7c566dab52011336141e1c4ddc84f5c04",
+      "after_snapshot": "39-footer-update-golden-before-after.json",
+      "after_snapshot_sha256": "a82d360795b3a9c4f27ab55f1cb974c7c566dab52011336141e1c4ddc84f5c04",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 40,
+      "specimen": "footer-update",
+      "command": {
+        "name": "explicit-update",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^TestLogGolden$",
+          "-timeout=20s",
+          "./...",
+          "-args",
+          "-update"
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "PASS"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "changed",
+        "timeout_seconds": 60
+      },
+      "cwd": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-l2njp5e0/project",
+      "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-l2njp5e0",
+      "started_at": "2026-10-23T08:00:50.540737+00:00",
+      "finished_at": "2026-10-23T08:00:51.103328+00:00",
+      "duration_seconds": 0.5626005840022117,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "40-footer-update-explicit-update.stdout",
+      "stdout_sha256": "22532795130a25b4dbbda5738791602766df5c7d83abdd764c84d8cc78ce9bd6",
+      "stderr": "40-footer-update-explicit-update.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "40-footer-update-explicit-update-before.json",
+      "before_snapshot_sha256": "a82d360795b3a9c4f27ab55f1cb974c7c566dab52011336141e1c4ddc84f5c04",
+      "after_snapshot": "40-footer-update-explicit-update-after.json",
+      "after_snapshot_sha256": "f58a086f9584010eba13801a1183eeeee346362a45fd821ab82f9719c0951652",
+      "changed_paths": [
+        "testdata/log.golden"
+      ],
+      "verified": true,
+      "problems": []
+    },
+    {
+      "serial": 41,
+      "specimen": "footer-update",
+      "command": {
+        "name": "golden-after-review",
+        "argv": [
+          "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+          "test",
+          "-v",
+          "-count=1",
+          "-run",
+          "^TestLogGolden$",
+          "-timeout=20s",
+          "./..."
+        ],
+        "expected_exit": 0,
+        "required_output": [
+          "PASS"
+        ],
+        "forbidden_output": [],
+        "baseline_policy": "unchanged",
+        "timeout_seconds": 60
+      },
+      "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-l2njp5e0/project",
+      "private_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-l2njp5e0",
+      "started_at": "2026-10-23T08:02:37.831420+00:00",
+      "finished_at": "2026-10-23T08:02:38.084168+00:00",
+      "duration_seconds": 0.2526563750579953,
+      "exit_status": 0,
+      "timed_out": false,
+      "stdout": "41-footer-update-golden-after-review.stdout",
+      "stdout_sha256": "7634ffb87a37d84241231a49183b15aa6de2782512ec69eca3649e0de8d7d12e",
+      "stderr": "41-footer-update-golden-after-review.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_snapshot": "41-footer-update-golden-after-review-before.json",
+      "before_snapshot_sha256": "f58a086f9584010eba13801a1183eeeee346362a45fd821ab82f9719c0951652",
+      "after_snapshot": "41-footer-update-golden-after-review-after.json",
+      "after_snapshot_sha256": "f58a086f9584010eba13801a1183eeeee346362a45fd821ab82f9719c0951652",
+      "changed_paths": [],
+      "verified": true,
+      "problems": []
+    }
+  ],
+  "cleanup": [
+    {
+      "specimen": "reference",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-zrilfbkt",
+      "removed": true
+    },
+    {
+      "specimen": "alternative",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-0l9gbtb1",
+      "removed": true
+    },
+    {
+      "specimen": "wrong-output",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-7j4lhi5q",
+      "removed": true
+    },
+    {
+      "specimen": "drop-middle",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-dmbruo78",
+      "removed": true
+    },
+    {
+      "specimen": "reorder",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-6b4pbo47",
+      "removed": true
+    },
+    {
+      "specimen": "final-newline",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-oy_ykno8",
+      "removed": true
+    },
+    {
+      "specimen": "append-rejected",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-75vhuu17",
+      "removed": true
+    },
+    {
+      "specimen": "counts",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-knxcj2k7",
+      "removed": true
+    },
+    {
+      "specimen": "missing-output",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-t03ferg4",
+      "removed": true
+    },
+    {
+      "specimen": "constant-print",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-455rlclw",
+      "removed": true
+    },
+    {
+      "specimen": "prefix-only",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-2vdsx0b8",
+      "removed": true
+    },
+    {
+      "specimen": "auto-update",
+      "root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-h59um4o6",
+      "removed": true
+    },
+    {
+      "specimen": "footer-update",
+      "root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-l2njp5e0",
+      "removed": true
+    }
+  ],
+  "method_controls": [
+    {
+      "specimen": "missing-output",
+      "rejection": "ExampleLog_Counts compiles but is not a runnable example in native discovery."
+    },
+    {
+      "specimen": "constant-print",
+      "rejection": "All examples print constants and fail to exercise the defective Counts API."
+    },
+    {
+      "specimen": "prefix-only",
+      "rejection": "First-line comparison does not check the independent full baseline; interior deletion passes."
+    },
+    {
+      "specimen": "auto-update",
+      "rejection": "Normal execution silently writes its expectation; changed baseline rejects the method despite process success."
+    }
+  ],
+  "update_decisions": [
+    {
+      "specimen": "drop-middle",
+      "decision": "reject: deleting index12 loses a required retained entry; baseline remains unchanged and no update command is permitted"
+    }
+  ],
+  "pending_update": {
+    "private_root": "/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/i11-golden-l2njp5e0",
+    "snapshot": {
+      "examples_test.go": {
+        "sha256": "e5caed5c2ec4b4396bac740dd335918d684c3aa3db92697abe2e6f0ef3c68bc0",
+        "text": "package logview_test\n\nimport (\n    \"fmt\"\n    \"finite.local/logview\"\n)\n\nfunc ExampleLog() {\n    log := logview.NewLog()\n    _ = log.Append(\"warn\", \"tab\\there\")\n    _ = log.Append(\"info\", \"\")\n    fmt.Print(log.Render())\n    // Output:\n    // 00 warn \"tab\\there\"\n    // 01 info \"\"\n}\n\nfunc ExampleLog_Append_rejected() {\n    log := logview.NewLog()\n    _ = log.Append(\"info\", \"kept\")\n    err := log.Append(\"debug\", \"must not appear\")\n    fmt.Println(\"rejected:\", err == logview.ErrLevel)\n    fmt.Print(log.Render())\n    // Output:\n    // rejected: true\n    // 00 info \"kept\"\n}\n\nfunc ExampleLog_Counts() {\n    log := logview.NewLog()\n    _ = log.Append(\"info\", \"a\")\n    _ = log.Append(\"error\", \"b\")\n    _ = log.Append(\"info\", \"c\")\n    _ = log.Append(\"warn\", \"d\")\n    for level, count := range log.Counts() {\n        fmt.Printf(\"%s=%d\\n\", level, count)\n    }\n    // Unordered output:\n    // error=1\n    // info=2\n    // warn=1\n}\n"
+      },
+      "go.mod": {
+        "sha256": "144168e958e24f54fa0fd0b217098730f50cd7867e27784d35a2cfffd8dea12c",
+        "text": "module finite.local/logview\n\ngo 1.27.0\n"
+      },
+      "golden_test.go": {
+        "sha256": "fbbec42f8f136444d2c302a2ba93889713c3b60d475dfe17f616c8d55f72e38e",
+        "text": "package logview_test\n\nimport (\n    \"bytes\"\n    \"flag\"\n    \"os\"\n    \"strings\"\n    \"testing\"\n    \"finite.local/logview\"\n)\n\nvar update = flag.Bool(\"update\", false, \"propose a golden update for explicit review\")\n\nfunc TestLogGolden(t *testing.T) {\n    log := logview.NewLog()\n    for _, row := range []struct { level, message string }{\n        {\"info\", \"start\"},\n        {\"warn\", \"\"},\n        {\"error\", \"quote \\\"inside\\\"\"},\n        {\"info\", \"line\\nbreak\"},\n        {\"warn\", \"tab\\tstop\"},\n        {\"error\", \"\u03bb\"},\n        {\"info\", \"repeat\"},\n        {\"warn\", \"repeat\"},\n        {\"error\", \"back\\\\slash\"},\n        {\"info\", \"zero 0\"},\n        {\"warn\", \"one 1\"},\n        {\"error\", \"two 2\"},\n        {\"info\", \"middle retained\"},\n        {\"warn\", \"following retained\"},\n        {\"error\", \"\u96ea\"},\n        {\"info\", \"alpha\"},\n        {\"warn\", \"beta\"},\n        {\"error\", \"gamma\"},\n        {\"info\", \"delta\"},\n        {\"warn\", \"epsilon\"},\n        {\"error\", \"zeta\"},\n        {\"info\", \"tail-a\"},\n        {\"warn\", \"tail-b\"},\n        {\"error\", \"end\"},\n    } {\n        if err := log.Append(row.level, row.message); err != nil {\n            t.Fatalf(\"append fixture: %v\", err)\n        }\n    }\n    got := []byte(log.Render())\n    const name = \"testdata/log.golden\"\n    want, err := os.ReadFile(name)\n    if err != nil { t.Fatalf(\"read complete baseline: %v\", err) }\n    if *update {\n        if err := os.WriteFile(name, got, 0600); err != nil { t.Fatalf(\"write candidate baseline: %v\", err) }\n        return\n    }\n    if !bytes.Equal(got, want) {\n        at := 0\n        for at < len(got) && at < len(want) && got[at] == want[at] { at++ }\n        line := strings.Count(string(want[:at]), \"\\n\") + 1\n        t.Errorf(\"golden mismatch at byte %d line %d: got %q, want %q\", at, line, tail(got, at), tail(want, at))\n    }\n}\n\nfunc tail(data []byte, at int) string {\n    if at >= len(data) { return \"<EOF>\" }\n    end := at + 36\n    if end > len(data) { end = len(data) }\n    return string(data[at:end])\n}\n"
+      },
+      "log.go": {
+        "sha256": "8e5f2f1b0f72670958f84b0cc75f5dfc4f4027517d8d22bcb04aec72fd0c15d2",
+        "text": "package logview\n\nimport (\n\t\"errors\"\n\t\"fmt\"\n\t\"strconv\"\n\t\"strings\"\n)\n\nvar ErrLevel = errors.New(\"unsupported level\")\n\ntype entry struct { level, message string }\n\ntype Log struct { entries []entry }\n\nfunc NewLog() *Log { return &Log{} }\n\nfunc (l *Log) Append(level, message string) error {\n\tif level != \"info\" && level != \"warn\" && level != \"error\" {\n\t\treturn ErrLevel\n\t}\n\tl.entries = append(l.entries, entry{level, message})\n\treturn nil\n}\n\nfunc (l *Log) Render() string {\n\tvar out strings.Builder\n\tfor i, row := range l.entries {\n\t\tfmt.Fprintf(&out, \"%02d %s %s\\n\", i, row.level, strconv.Quote(row.message))\n\t}\n\tcounts := l.Counts()\n\tfmt.Fprintf(&out, \"TOTAL info=%d warn=%d error=%d\\n\", counts[\"info\"], counts[\"warn\"], counts[\"error\"])\n\treturn out.String()\n}\n\nfunc (l *Log) Counts() map[string]int {\n\tcounts := make(map[string]int)\n\tfor _, row := range l.entries { counts[row.level]++ }\n\treturn counts\n}\n"
+      },
+      "testdata/log.golden": {
+        "sha256": "db8935cd52b537f9ce88784b186776d25379802357b803bece7f40f127e1a223",
+        "text": "00 info \"start\"\n01 warn \"\"\n02 error \"quote \\\"inside\\\"\"\n03 info \"line\\nbreak\"\n04 warn \"tab\\tstop\"\n05 error \"\u03bb\"\n06 info \"repeat\"\n07 warn \"repeat\"\n08 error \"back\\\\slash\"\n09 info \"zero 0\"\n10 warn \"one 1\"\n11 error \"two 2\"\n12 info \"middle retained\"\n13 warn \"following retained\"\n14 error \"\u96ea\"\n15 info \"alpha\"\n16 warn \"beta\"\n17 error \"gamma\"\n18 info \"delta\"\n19 warn \"epsilon\"\n20 error \"zeta\"\n21 info \"tail-a\"\n22 warn \"tail-b\"\n23 error \"end\"\nTOTAL info=8 warn=8 error=8\n"
+      }
+    },
+    "before_baseline_sha256": "fd836deeb26dceea43e52a3917f6ca5d17add5aae5254eb83ca8000c197598f8",
+    "expected_baseline_sha256": "db8935cd52b537f9ce88784b186776d25379802357b803bece7f40f127e1a223",
+    "diff_file": "actual-footer-update.diff",
+    "diff_sha256": "66d6b61ad5e93c9b1eec5a633e50a63fd26601e7a60c46cb1e9281769bbf8ca7",
+    "remaining_argv": [
+      "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+      "test",
+      "-v",
+      "-count=1",
+      "-run",
+      "^TestLogGolden$",
+      "-timeout=20s",
+      "./..."
+    ]
+  },
+  "update_approval": {
+    "path": ".tmp/v1-applications-11/parallel-golden-update-review.json",
+    "sha256": "ad5a0bb39ff4325ac3467e64bc0b00404062450663f9311f46f43070d270523d"
+  },
+  "finished_at": "2026-10-23T08:02:38.084549+00:00"
+}

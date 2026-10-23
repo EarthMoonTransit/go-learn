@@ -1,0 +1,32 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-applications-11-parallel-golden-author",
+    "created_at": "2026-10-23",
+    "summary": "Original native parallel case-owned filesystem fixtures and learner-introduced clock seam; no external donor code, tests or prose."
+  },
+  "sources": [],
+  "content_digest": "73dd8fc284361f6c028e891c283343ed2f151c2e82d69024162d634e3ddebc05",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "0bc86c063ad0fada20ffd69f81c69badbac94c72f06b769fa7a0b87383212136",
+    "TASK.md": "b689d7117765dd4141020a6fb6726faffb57bc549b93bb4e207a4da17da4a59a",
+    "alternative/stamp.go.txt": "1cfea2cfd9fef7894d33431c45bb41751dd3aac20113e555066d57c99b9cc06c",
+    "alternative/stamp_test.go.txt": "30755f3e5dc0d5e2fbceb9c259d66602787624dfc30d415ab1bb3da5b65bf9d4",
+    "controls/no-parallel_test.go.txt": "1bdcd4c48eeeb55965d491f8cb4d56f6bbdb81e1f273dde84e27dbdd4282020b",
+    "controls/weak-clock-oracle_test.go.txt": "5d4a2bd1a7a3d7fe7038d61896b5301bc3402d52840cab73ed688b6827df3be7",
+    "files/go.mod.txt": "8ae011f749ec70eec7d03e125198ca60f84e85fbb7beb882eb50cf8d645e3cb5",
+    "files/stamp.go.txt": "07a5aedb060050301bc4a56510ccd940cbe247d5286cd4ee9bff26d7e25176f6",
+    "files/starter_test.go.txt": "aed17d254389807a94349cda31ff6819a8bd767f600d38ba307d63708f345788",
+    "reference/stamp.go.txt": "fb83d51c641691bd52b8e28de660bf664e11cf319723b64fd56db81f3fe03501",
+    "reference/stamp_test.go.txt": "ecab6c7a8f251ed7befa6c7a781ff49c17ae02fdaa37bfd4c768a270ca63a894",
+    "wrong/ancestor-cleanup_test.go.txt": "c0b7a38ab4897da6dbe00cb352f8e8af536263ca2eaf8627e7247bacfb9531ec",
+    "wrong/defer-cleanup_test.go.txt": "11231cf3e53259c6f3e84a4e218215d0ee19e3277280e428359285c1bab60163",
+    "wrong/ignore-clock.go.txt": "5d9ac3f33ffa9c5be2283791d4705bc1029c076017bceecb0333ed1bd88c9075",
+    "wrong/shared-clock_test.go.txt": "0b23cd4a461d6098879412e7467789887d41b28ec11dbe379b19223777aef78f",
+    "wrong/shared-directory_test.go.txt": "ec8a0d4ab57866b20e005e61ae4c71124caa64a7cc8e6522a8dbcfbc5c2dd6de"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

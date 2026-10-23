@@ -1,0 +1,67 @@
+package logview_test
+
+import (
+    "bytes"
+    "flag"
+    "os"
+    "strings"
+    "testing"
+    "finite.local/logview"
+)
+
+var update = flag.Bool("update", false, "propose a golden update for explicit review")
+
+func TestLogGolden(t *testing.T) {
+    log := logview.NewLog()
+    for _, row := range []struct { level, message string }{
+        {"info", "start"},
+        {"warn", ""},
+        {"error", "quote \"inside\""},
+        {"info", "line\nbreak"},
+        {"warn", "tab\tstop"},
+        {"error", "λ"},
+        {"info", "repeat"},
+        {"warn", "repeat"},
+        {"error", "back\\slash"},
+        {"info", "zero 0"},
+        {"warn", "one 1"},
+        {"error", "two 2"},
+        {"info", "middle retained"},
+        {"warn", "following retained"},
+        {"error", "雪"},
+        {"info", "alpha"},
+        {"warn", "beta"},
+        {"error", "gamma"},
+        {"info", "delta"},
+        {"warn", "epsilon"},
+        {"error", "zeta"},
+        {"info", "tail-a"},
+        {"warn", "tail-b"},
+        {"error", "end"},
+    } {
+        if err := log.Append(row.level, row.message); err != nil {
+            t.Fatalf("append fixture: %v", err)
+        }
+    }
+    got := []byte(log.Render())
+    const name = "testdata/log.golden"
+    want, err := os.ReadFile(name)
+    if err != nil { t.Fatalf("read complete baseline: %v", err) }
+    if true {
+        if err := os.WriteFile(name, got, 0600); err != nil { t.Fatalf("write candidate baseline: %v", err) }
+        return
+    }
+    if !bytes.Equal(got, want) {
+        at := 0
+        for at < len(got) && at < len(want) && got[at] == want[at] { at++ }
+        line := strings.Count(string(want[:at]), "\n") + 1
+        t.Errorf("golden mismatch at byte %d line %d: got %q, want %q", at, line, tail(got, at), tail(want, at))
+    }
+}
+
+func tail(data []byte, at int) string {
+    if at >= len(data) { return "<EOF>" }
+    end := at + 36
+    if end > len(data) { end = len(data) }
+    return string(data[at:end])
+}
