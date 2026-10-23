@@ -1,0 +1,16 @@
+package sliceops
+
+type Key interface{ ~int | ~string }
+
+func Below[S ~[]E, E Key](input S, limit E) []E {
+	if input == nil {
+		return nil
+	}
+	result := make([]E, 0, len(input))
+	for _, value := range input {
+		if value < limit {
+			result = append(result, value)
+		}
+	}
+	return result
+}

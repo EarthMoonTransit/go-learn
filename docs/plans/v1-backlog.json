@@ -431,7 +431,11 @@
       "slot": "independent-application:channels.fan-out-in",
       "skill_id": "channels.fan-out-in",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I9",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-09.md",
+      "delivered_task_id": "stream-job-outcomes-001"
     },
     {
       "slot": "independent-application:channels.nil-disabling",
@@ -663,7 +667,11 @@
       "slot": "independent-application:functions.recursion",
       "skill_id": "functions.recursion",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I9",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-09.md",
+      "delivered_task_id": "branch-paths-001"
     },
     {
       "slot": "independent-application:fuzzing.invariants",
@@ -693,7 +701,12 @@
       "role": "independent-application",
       "existing_task_ids": [
         "named-numeric-constraint-001"
-      ]
+      ],
+      "delivery_batch": "I9",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-09.md",
+      "delivered_unit_path": "docs/labs/named-slice-selection-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:generics.constraints-type-sets",
@@ -701,7 +714,12 @@
       "role": "independent-application",
       "existing_task_ids": [
         "named-numeric-constraint-001"
-      ]
+      ],
+      "delivery_batch": "I9",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-09.md",
+      "delivered_unit_path": "docs/labs/named-slice-selection-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:goroutines.capture-arguments",
@@ -730,7 +748,11 @@
       "slot": "independent-application:goroutines.panic-boundaries",
       "skill_id": "goroutines.panic-boundaries",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I9",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-09.md",
+      "delivered_task_id": "stream-job-outcomes-001"
     },
     {
       "slot": "independent-application:goroutines.result-error-collection",
@@ -802,13 +824,21 @@
       "role": "independent-application",
       "existing_task_ids": [
         "bounded-copy-001"
-      ]
+      ],
+      "delivery_batch": "I9",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-09.md",
+      "delivered_task_id": "limited-pipe-relay-001"
     },
     {
       "slot": "independent-application:io.pipe-lifecycle",
       "skill_id": "io.pipe-lifecycle",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I9",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-09.md",
+      "delivered_task_id": "limited-pipe-relay-001"
     },
     {
       "slot": "independent-application:io.reader-writer-contracts",
@@ -852,7 +882,12 @@
       "slot": "independent-application:packages.import-cycles",
       "skill_id": "packages.import-cycles",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I9",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-09.md",
+      "delivered_unit_path": "docs/labs/shared-record-boundaries-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:packages.imports-exports-naming",
@@ -896,7 +931,12 @@
       "role": "independent-application",
       "existing_task_ids": [
         "external-window-tests-001"
-      ]
+      ],
+      "delivery_batch": "I9",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-09.md",
+      "delivered_unit_path": "docs/labs/shared-record-boundaries-001",
+      "automatic_coverage_credit": false
     },
     {
       "slot": "independent-application:pointers.mutation-sharing",
@@ -994,7 +1034,11 @@
       "role": "independent-application",
       "existing_task_ids": [
         "mutex-counter-001"
-      ]
+      ],
+      "delivery_batch": "I9",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-09.md",
+      "delivered_task_id": "keyed-once-registry-001"
     },
     {
       "slot": "independent-application:sync.mutex-ownership",
@@ -1008,7 +1052,11 @@
       "slot": "independent-application:sync.once-initialization",
       "skill_id": "sync.once-initialization",
       "role": "independent-application",
-      "existing_task_ids": []
+      "existing_task_ids": [],
+      "delivery_batch": "I9",
+      "assessment": "Actual independent source/method and public/native evidence accepted; final batch delivery separate",
+      "review_evidence": "reports/v1-applications-09.md",
+      "delivered_task_id": "keyed-once-registry-001"
     },
     {
       "slot": "independent-application:sync.waitgroup-lifecycle",
@@ -1217,17 +1265,16 @@
     }
   ],
   "delivery": {
-    "batch": "I8",
-    "status": "six content units and integration accepted; one222collection/reports passed; remaining local gates and finalHEADreview/CI/merge pending",
-    "route_lessons_after": 212,
+    "batch": "I9",
+    "status": "six actual units and integration accepted; stable226collection/generated reports/fast passed; remaining local gates/finalHEADreview/CI/merge pending",
+    "route_lessons_after": 216,
     "first_encounters_remaining": 0,
-    "independent_applications_remaining": 51,
+    "independent_applications_remaining": 40,
     "component_slots_remaining": 0,
-    "new_automatic_packages": 2,
-    "reused_automatic_packages": 1,
+    "new_automatic_packages": 4,
     "new_manual_units": 2,
-    "reused_manual_units": 1,
-    "note": "Ten actual independent applications, no new components; manual units/reuses do not add automatic coverage. All historical49pair decisions/repairs and28acceptedoriginalfirsts preserved."
+    "note": "Eleven independent applications; no supplied implementation, extra ownership or automatic method/manual credit. All49dated baseline decisions, fiveacceptedrepairs,28firsts and sixcomponents preserved.",
+    "one_collection_sha256": "c6f25a5a071a717a46d6ed62a54d5f2616615463a6b3da39fd9c50ccc652bea6"
   },
   "delivery_history": [
     {
@@ -1392,6 +1439,32 @@
       "infrastructure_seconds": 0,
       "host_sleep_seconds": 27903,
       "clock_note": "47 independently verified disjoint actual Sleep->Wake/DarkWake intervals; no other deductions; productive overlap counts once."
+    },
+    {
+      "batch": "I8",
+      "status": "accepted and merged",
+      "route_lessons_after": 212,
+      "first_encounters_remaining": 0,
+      "independent_applications_remaining": 51,
+      "component_slots_remaining": 0,
+      "new_automatic_packages": 2,
+      "reused_automatic_packages": 1,
+      "new_manual_units": 2,
+      "reused_manual_units": 1,
+      "note": "Ten actual independent applications, no new components; manual units/reuses do not add automatic coverage. All historical49pair decisions/repairs and28acceptedoriginalfirsts preserved.",
+      "final_head": "8a34aa90fbf07387c79b849587973917d22c4d62",
+      "pr": 113,
+      "validate_run": 39908133023,
+      "local_gates_passed": 12,
+      "independent_final_review": "approved exact final HEAD",
+      "one_collection_sha256": "36d6a4153e41d589f81ad8a26d79fa759f5cad7e8741912d43204f1033532440",
+      "url": "https://github.com/EarthMoonTransit/go-learn/pull/113",
+      "validate_conclusion": "success",
+      "merge_commit": "6c14199a66fc5d52b4be08e4b2e6ae98551f64ea",
+      "merged_at": "2026-10-23T07:26:53+00:00",
+      "available_execution_seconds_upper_bound": 11170.904090999997,
+      "infrastructure_seconds": 0,
+      "clock_note": "Only previously independently verified27903seconds host sleep deducted. Later wall-clock/monotonic differences and productive overlap fully counted; no inferred deduction."
     }
   ],
   "existing_pair_reviews": {
@@ -2722,7 +2795,7 @@
       ],
       "maximum_additional_units": 4,
       "design": "Two separate array and struct first repairs at their actual early prerequisite positions; one consumer-owned small-interface first (delivered I5); at most one constants application. Typed-error and small-interface applications integrated into allocated IO/packages components with distinct actual actions. The combined array/struct first was split after independent prerequisite review to preserve existing relative order and avoid a dependency cycle; global302 and141skills unchanged.",
-      "arithmetic": "After accepted I8:212automatic route +14manual units +51remaining applications =277 <=302. A planning ceiling, not a new-file quota, full-bank completion or learner mastery.",
+      "arithmetic": "After accepted I9:216automatic route +16manual units +40remaining applications =272 <=302. Planning ceiling, not a new-file quota, full-bank completion or learner mastery.",
       "note": "All49 baseline decisions are preserved. Five identified semantic repairs now have actual independently accepted evidence; zero repair pairs remain after accepted I6 delivery. Historical extra allowance4 is not four future units. No expanded ceiling, metadata-only credit or learner mastery.",
       "allocation_review": "Sole reviewer accepted separate early array/struct placement on2026-10-22; see reports/v1-introductions-05.md. Original49pair decisions preserved."
     },

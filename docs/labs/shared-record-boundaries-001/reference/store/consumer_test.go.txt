@@ -1,0 +1,14 @@
+package store_test
+
+import (
+	"finite.local/shared-record/store"
+	"testing"
+)
+
+func TestLearnerConsumerLoad(t *testing.T) {
+	got := store.Load("  item  ")
+	want := store.Entry{Name: "item", Count: 1}
+	if got != want {
+		t.Errorf("consumer Load=%+v; want %+v", got, want)
+	}
+}

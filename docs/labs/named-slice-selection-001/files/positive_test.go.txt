@@ -1,0 +1,37 @@
+package sliceops_test
+
+import (
+	"slices"
+	"testing"
+	"finite.local/sliceops"
+)
+
+type Number int
+type Word string
+type Numbers []Number
+type Words []Word
+func (Numbers) Kind() string { return "numbers" }
+func (Words) Kind() string { return "words" }
+type NumberAlias = Number
+type NumbersAlias = Numbers
+type kindValue interface{ Kind() string }
+
+func TestNamedResultMethods(t *testing.T) {
+	got := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))
+	if got.Kind() != "numbers" || !slices.Equal(got, Numbers{-1, -1}) {
+		t.Errorf("named integer result=%v kind=%q; want [-1 -1], numbers", got, got.Kind())
+	}
+	var value kindValue = got
+	if value.Kind() != "numbers" { t.Error("basic method interface lost result method") }
+	words := sliceops.Below(Words{"a", "z", "a"}, Word("m"))
+	if words.Kind() != "words" || !slices.Equal(words, Words{"a", "a"}) {
+		t.Errorf("named string result=%v kind=%q; want [a a], words", words, words.Kind())
+	}
+	alias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))
+	if alias.Kind() != "numbers" || !slices.Equal(alias, NumbersAlias{1}) {
+		t.Errorf("alias result=%v; want [1] with named methods", alias)
+	}
+	var empty Numbers
+	zero := sliceops.Below(empty, Number(0))
+	if zero != nil || zero.Kind() != "numbers" { t.Errorf("nil named result=%v; want nil Numbers", zero) }
+}

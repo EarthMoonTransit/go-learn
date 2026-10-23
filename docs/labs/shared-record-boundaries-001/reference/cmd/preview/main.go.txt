@@ -1,0 +1,9 @@
+package main
+
+import (
+	"finite.local/shared-record/codec"
+	"finite.local/shared-record/store"
+	"fmt"
+)
+
+func main() { fmt.Println(codec.Encode(store.Load("  alpha  "))) }

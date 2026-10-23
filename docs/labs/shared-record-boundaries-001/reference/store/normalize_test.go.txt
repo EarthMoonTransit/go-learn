@@ -1,0 +1,11 @@
+package store
+
+import "testing"
+
+func TestLearnerPrivateNormalization(t *testing.T) {
+	for _, tc := range []struct{ in, want string }{{"  a  ", "a"}, {"\t\n", ""}, {" λ ", "λ"}} {
+		if got := normalize(tc.in); got != tc.want {
+			t.Errorf("private normalize(%q)=%q; want %q", tc.in, got, tc.want)
+		}
+	}
+}

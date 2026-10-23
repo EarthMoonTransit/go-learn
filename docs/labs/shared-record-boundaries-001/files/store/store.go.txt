@@ -1,0 +1,15 @@
+package store
+
+import (
+	"finite.local/shared-record/codec"
+	"strings"
+)
+
+type Entry struct {
+	Name  string
+	Count int
+}
+
+func normalize(name string) string { return strings.TrimSpace(name) }
+func Load(name string) Entry       { return Entry{Name: normalize(name), Count: 1} }
+func Preview(name string) string   { return codec.Encode(Load(name)) }

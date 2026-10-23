@@ -1,0 +1,8 @@
+package sliceops
+
+type Key interface{}
+
+func Below[S, E any](input S, limit E) S {
+	// TODO: author the related constraints and complete operation.
+	return input
+}

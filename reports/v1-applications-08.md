@@ -101,3 +101,7 @@ is unknown. Infrastructure changes/time are zero.
 Collection SHA256 36d6a4153e41d589f81ad8a26d79fa759f5cad7e8741912d43204f1033532440.
 Remaining local acceptance is running on unchanged inputs; exact-final-HEAD review
 and greenvalidate are separate mandatory delivery gates. No second bank run.
+
+## Post-merge acceptance
+
+PR113 validate39908133023 succeeded on final8a34aa90fbf07387c79b849587973917d22c4d62. It merged6c14199a66fc5d52b4be08e4b2e6ae98551f64ea at07:26:53UTC23Oct after sole final review and all12local gates. One222collection SHA25636d6a4153e41d589f81ad8a26d79fa759f5cad7e8741912d43204f1033532440 feeds all consumers. Accepted inventory212route/215ready/222checked/14manual;51applications remain, zero firsts/components/old-pair repairs. Conservative available execution186.18minutes excludes only the previously verified27903seconds of sleep; infrastructure0. No later wall-clock gap or productive overlap is deducted.

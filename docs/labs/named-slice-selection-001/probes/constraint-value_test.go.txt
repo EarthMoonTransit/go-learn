@@ -1,0 +1,8 @@
+package sliceops_test
+
+import "finite.local/sliceops"
+
+func uncalledTypeProbe() {
+	var value sliceops.Key
+	_ = value
+}

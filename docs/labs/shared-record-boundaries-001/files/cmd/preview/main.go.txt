@@ -1,0 +1,8 @@
+package main
+
+import (
+	"finite.local/shared-record/store"
+	"fmt"
+)
+
+func main() { fmt.Println(store.Preview("  alpha  ")) }

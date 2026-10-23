@@ -1,0 +1,22 @@
+package sliceops
+
+type integerKey interface{ ~int }
+type stringKey interface{ ~string }
+type Key interface{ integerKey | stringKey }
+type sliceShape[E Key] interface{ ~[]E }
+
+func Below[S sliceShape[E], E Key](input S, limit E) S {
+	var result S
+	if input == nil {
+		return result
+	}
+	result = make(S, len(input))
+	selected := 0
+	for _, value := range input {
+		if value < limit {
+			result[selected] = value
+			selected++
+		}
+	}
+	return result[:selected]
+}

@@ -1,0 +1,13 @@
+package store
+
+import (
+	"finite.local/shared-record/codec"
+	"finite.local/shared-record/record"
+	"strings"
+)
+
+type Entry = record.Entry
+
+func normalize(name string) string { return strings.TrimSpace(name) }
+func Load(name string) Entry       { return Entry{Name: normalize(name), Count: 1} }
+func Preview(name string) string   { return codec.Encode(Load(name)) }

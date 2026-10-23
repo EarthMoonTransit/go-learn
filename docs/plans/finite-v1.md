@@ -94,7 +94,7 @@ debugging or learner-test profiles only when they assess the intended outcome.
   external outage; the same repeated failure blocks. No new controller; handoff
   preserves the goal and does not mean completion.
 
-## Current checkpoint: I7 accepted; I8 final gates; I9 in progress
+## Current checkpoint: I8 accepted; I9 final gates; I10 integration; I11 planning
 
 - I3 PR107 and diagnostic-only tooling PR108 are accepted. The sync.Once fixture was repaired without checker expansion. Modules/workspaces and native benchmarks met the batch-two deadline; all49original pair decisions remain preserved.
 - I4 PR109: final HEAD0241dbc, validate39836444522, merge2e1710a42381db9d60e5d3bc251c2702c7951804 at19:37:47UTC. All12local gates used one213collection; available87.07minutes, infrastructure≤4minutes.
@@ -262,3 +262,30 @@ At the initial05:19 planning checkpoint, no I9content credit or authored executi
 committed I8base precedes integration/full gates, dependency merge precedes merge.
 
 I8 stable222collection completed05:43:10UTC23Oct and all generated reports were refreshed from it. I7 dependency is accepted; all remaining local gates and exact-final-HEAD independent review/greenvalidate still required. I9 six bounded contracts accepted, unique new paths authored on committed I7; fast-forward to committed I8 before shared integration/full gates.
+
+### I9 current content checkpoint (2026-10-23)
+
+Six actual source/method/evidence reviews are accepted: four new automatic tasks
+and two native manual units, eleven applications.76valid automatic fixtures give
+52ordinary public diagnoses; native23copies64commands remain manual. Invalid
+static/vet specimens are retained with zero credit. Official promotions and
+integration precede one226collection and every mandatory gate. I8final8a34aa9 is
+the committed base; I8merge remains required before I9merge. Expected remaining
+40applications; no I9delivery credit yet. Original clock05:19→09:19UTC, no
+deductions or infrastructure work. All old first/pair/component decisions remain.
+
+I10 bounded six-unit contract planning began05:55:54.897979UTC in the reused clean
+I7checkout on codex/v1-applications-10, initially based on committed I8. Its clock
+ends09:55:54.897979UTC with no deductions. Candidates cover timer/duration,
+scanner/buffering, errors, JSON/field boundaries, native workspace/artifact
+consistency and native fuzz properties/reproduction. Contracts precede authoring;
+FFcommittedI9 precedes integration/fullgates and dependency merges precede merge.
+No I10authored source, execution or readiness is claimed at this planning stage.
+
+At06:05UTC23Oct I8 all12local gates and sole exact8a34aa9 HEADreview have passed. PR113validate39908133023 and merge remain pending; unchanged222collection feeds all consumers. This is a delivery checkpoint, not I8merge credit.
+
+### Current delivery checkpoint, 2026-10-23 07:27UTC
+
+I8 PR113 final8a34aa9 passed validate39908133023 and merged6c14199a66fc5d52b4be08e4b2e6ae98551f64ea at07:26:53UTC. All12local gates and sole exact-HEAD review passed; accepted remainder51applications. Available execution upper bound186.18minutes, infrastructure0; only previously verified27903seconds of sleep deducted.
+
+I9 final integration accepted, all4752old material files/212route objects preserved, stable226collection and generated reports passed; fast passed, remaining gates and finalHEADreview/CI/merge required. Clock05:19→09:19UTC remains conservative with no deductions. I10 all six actual content units accepted and official promotions underway, no readiness/merge credit yet;14application credits proposed. I11 bounded six-unit planning began06:27:55.371190UTC in reused I6checkout/codex/v1-applications-11, deadline10:27:55.371190UTC with no deductions. Root two native contracts accepted; four other proposals in preparation, no I11 authored source/execution yet at this checkpoint. FFcommittedI9 before I10 integration/fullgates; FFcommittedI10 before I11 integration/fullgates. Each dependent merge waits accepted predecessors. No new controller/tooling/scope.

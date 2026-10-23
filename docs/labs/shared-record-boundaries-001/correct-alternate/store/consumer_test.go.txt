@@ -1,0 +1,18 @@
+package store_test
+
+import (
+	"finite.local/shared-record/store"
+	"testing"
+)
+
+func TestLearnerConsumerLoad(t *testing.T) {
+	for _, input := range []string{"item", " item "} {
+		value := store.Load(input)
+		if value.Name != "item" {
+			t.Errorf("public name=%q", value.Name)
+		}
+		if value.Count != 1 {
+			t.Errorf("public count=%d; want1", value.Count)
+		}
+	}
+}

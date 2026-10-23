@@ -1,0 +1,36 @@
+{
+  "kind": "original-manual-unit",
+  "project_identity": "config/project-identity.yaml",
+  "license": "Apache-2.0",
+  "creation": {
+    "author": "v1-applications-09-generics-author",
+    "created_at": "2026-10-23",
+    "summary": "Original related-container/element generic API, static named-method clients and finite native type-boundary probes; no external donor content."
+  },
+  "sources": [],
+  "content_digest": "05066c3c89e0aece9f611dfbed2adb68162ffd3d8aade62406d67970cfef1dd4",
+  "digest_definition": "SHA256 of sorted relative-path LF file-SHA256 LF records; excludes review evidence and provenance.json",
+  "files": {
+    "PROCEDURE.md": "1f44e26bed20c14b44c690b5dd5e95f068fc30bb6ac43ef200cfc4bb77081915",
+    "TASK.md": "7234378c3fc39f4d22ae7586495b1f04de45852c97b9468d9ff93077332d7f5d",
+    "alternatives/embedded/api.go.txt": "384c558e28bf185d96372084f79f9e23f3b883b07f9972946916d4853c978324",
+    "files/go.mod.txt": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+    "files/positive_test.go.txt": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+    "files/semantics_test.go.txt": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+    "files/starter_api.go.txt": "f28b8c73ffa3a88eb75f4f7c3f5178129427abc19566ce46b822ac36f6a247b9",
+    "probes/array_test.go.txt": "db10667eb21e1c6274378371a17b0eb5ade1b80155ec9abbb13a0a72a3946cc2",
+    "probes/bool_test.go.txt": "ec821234839532aca304d28baeb2e1b2e7233978fec06714c8fe5494a0e19c9d",
+    "probes/constraint-value_test.go.txt": "58e4115e2df967c1e01a5dc75255cffd2e12c9fd6d4fcaada75b0bdbb90dfcb1",
+    "probes/float_test.go.txt": "74babbccefe5fb62d30b25b17150c2808e45b0abc2a52dc122b3f5e5dff92ada",
+    "probes/mismatch_test.go.txt": "65585399a32626f6b68286e04a550a307b69c5ae9463bf442e0d6b235b8dc74d",
+    "reference/api.go.txt": "42726bf20a3eb5820e391ae3efe26305d24bb298831012425975e762d65873b2",
+    "wrong/alias-input/api.go.txt": "32af31ec6b12b8c53d6b6dd5153b7636d765217a50abaa80824dc550af3fe3b8",
+    "wrong/any-element/api.go.txt": "1da0e8791abb5faddc0dcbc662f4aff17bd9a84a5e58f43eeafe92fd44b1f844",
+    "wrong/erased-container/api.go.txt": "3305069371b115625e7a05df52cc7e603c4a2d56e43fad18dbe099ea150a7ef5",
+    "wrong/exact-container/api.go.txt": "71c489f96346bbf8baf1f15697f524c5ae516ae2e8abda563d3b194cf6704623",
+    "wrong/exact-elements/api.go.txt": "f42e08703447f8521f6d8ec6f1369e063ff2e1b7d13589020599c7256b51e5dd",
+    "wrong/inclusive-cutoff/api.go.txt": "366880918c51b9ba6a47203c2d4516b5a6e40f80a8e88605a4fbb1eeda7eba64",
+    "wrong/overbroad-float/api.go.txt": "5752614d0f47dcb0503489ae660d847e0ef08623030f3c72498f5efb5dd44465"
+  },
+  "release_binding": "deferred to actual commit in release manifest; no commit invented"
+}

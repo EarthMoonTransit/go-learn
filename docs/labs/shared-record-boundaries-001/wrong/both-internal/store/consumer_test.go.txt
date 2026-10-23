@@ -1,0 +1,13 @@
+package store
+
+import (
+	"testing"
+)
+
+func TestLearnerConsumerLoad(t *testing.T) {
+	got := Load("  item  ")
+	want := Entry{Name: "item", Count: 1}
+	if got != want {
+		t.Errorf("consumer Load=%+v; want %+v", got, want)
+	}
+}

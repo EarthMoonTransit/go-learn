@@ -1,0 +1,1 @@
+Separate the current prefix from the completed path storage. A leaf has no nonnil child, regardless of slice length. State what becomes strictly smaller in each recursive call and where every child result contributes.

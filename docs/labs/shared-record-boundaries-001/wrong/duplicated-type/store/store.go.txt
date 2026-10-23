@@ -1,0 +1,11 @@
+package store
+
+import "strings"
+
+type Entry struct {
+	Name  string
+	Count int
+}
+
+func normalize(name string) string { return strings.TrimSpace(name) }
+func Load(name string) Entry       { return Entry{Name: normalize(name), Count: 1} }

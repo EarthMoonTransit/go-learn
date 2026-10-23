@@ -1256,6 +1256,14 @@
           "skills": [
             "structs.copy-equality"
           ]
+        },
+        {
+          "number": 57,
+          "task_id": "branch-paths-001",
+          "role": "transfer",
+          "skills": [
+            "functions.recursion"
+          ]
         }
       ],
       "number": 6
@@ -1452,6 +1460,15 @@
             "errors.typed",
             "io.reader-writer-contracts",
             "encoding.streaming-strictness"
+          ]
+        },
+        {
+          "number": 24,
+          "task_id": "limited-pipe-relay-001",
+          "role": "transfer",
+          "skills": [
+            "io.pipe-lifecycle",
+            "io.copy-limit-composition"
           ]
         }
       ],
@@ -1795,6 +1812,24 @@
           "role": "transfer",
           "skills": [
             "context.values-boundaries"
+          ]
+        },
+        {
+          "number": 32,
+          "task_id": "stream-job-outcomes-001",
+          "role": "transfer",
+          "skills": [
+            "channels.fan-out-in",
+            "goroutines.panic-boundaries"
+          ]
+        },
+        {
+          "number": 33,
+          "task_id": "keyed-once-registry-001",
+          "role": "transfer",
+          "skills": [
+            "sync.once-initialization",
+            "sync.mutex-critical-sections"
           ]
         }
       ],

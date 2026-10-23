@@ -1,0 +1,71 @@
+{
+  "decision": "approve",
+  "reviewer": "sole-independent-reviewer",
+  "reviewed_at": "2026-10-23T05:47:57.659895+00:00",
+  "scope": "Exact source and finite native command preexecution only",
+  "unit": "shared-record-boundaries-001",
+  "content_digests": {
+    "shared-record-boundaries-001": "33094a307d5b78fc46dccb02932c503dafdbbfba714bb008c6fbc0a402ded9f8"
+  },
+  "script_sha256": "08c9de86d49c1761ad18b86c91dd73b1b7cf1000e7393fb6067937335aaa82f1",
+  "manifest_sha256": "6eebd54f01fd28d40b962e17868d4beab2fe311e3db7b386158d7ca9e5e56f16",
+  "copies": 9,
+  "commands": 36,
+  "timeout_seconds_each": 60,
+  "findings": [],
+  "closed_findings": [
+    {
+      "id": "RECORD-PREPARATION-PATH-01",
+      "detail": "Wrong tasks/ready/package-boundaries reference corrected to actual docs/labs/package-boundaries-001; all three preparation paths exist."
+    },
+    {
+      "id": "RECORD-INITIAL-TEST-01",
+      "detail": "Initial copy now only five production/module files. Comment-only test templates stay inert outside compiled tree until complete authored declarations are installed. Avoids unrelated package-header parse errors masking initial cycle; local Go1.27 go/build and modindex header scanning inspected read-only."
+    }
+  ],
+  "source_files": {
+    "PROCEDURE.md": "98bc00e91fe1193aee0efb76b071756af29da10e34ec48bd103bb0c75b805c8c",
+    "TASK.md": "fa14da02361f713e21111beeceb74325de17af9287332045287c714f2569800d",
+    "checks/store/public_test.go.txt": "c6e147245984ad63593b526f44568a988b8fbc18d3e851daf7c0403fdd73368e",
+    "correct-alternate/store/consumer_test.go.txt": "52ea0af45e61ab9cf75d555bc405a29720efdbc30aad5a7a21eb056ef8a7ca32",
+    "correct-alternate/store/normalize_test.go.txt": "fa82e727fc08b821675642513364342af928b345206c9d0e55ab4bd4bc47b72a",
+    "files/cmd/preview/main.go.txt": "d26d418c124a478b44fb49a1530319fc882dd1844179ec2259bc2860707f0748",
+    "files/codec/codec.go.txt": "3605632ce452a8a1d39b47655e824e6ce425b81604bfe173da669fe683d1405d",
+    "files/go.mod.txt": "44dc6374ad0276d5ef105bbb92553d9d5bd5208fa24458dd5138b1b5733beccb",
+    "files/record/entry.go.txt": "6f80006c2966bc83766db5376edaf6d59a55dea8dc2a8644b637f9ab0b0ac5b8",
+    "files/store/consumer_test.go.txt": "9ae372769280634700d7d49e264468aaadd7bf40ef4dccb604dadf27a9fd92d8",
+    "files/store/normalize_test.go.txt": "f442fa090f33c6550c4e3086f3e49e8b5b303db1f52a5bbcf2d6576067002262",
+    "files/store/store.go.txt": "49f1da56897a7fcece6968ac641d31e1fff38cde78e73965a82476555e98336b",
+    "manifest.json": "6eebd54f01fd28d40b962e17868d4beab2fe311e3db7b386158d7ca9e5e56f16",
+    "reference/cmd/preview/main.go.txt": "51e07b0dee008295baacb38e07e12a6642d3d0ffad734d86dd063ad8d3f79730",
+    "reference/codec/codec.go.txt": "90cec47f52ef8c7347e1b3682e03bf976413fb4d341ef44bfa09cf593f3a6e62",
+    "reference/record/entry.go.txt": "84158704dc26145f71c0effac152a5b6ede70d58a9abcaf6c00bdf6bb6e1baad",
+    "reference/store/consumer_test.go.txt": "75169d1eae324be82ef05e97853f92ac0fdc9637f189f017f47f8567ccf3275f",
+    "reference/store/normalize_test.go.txt": "bcdcc175534694b8049221c75d1ddb13db216a49dd87019777126f8758a889d3",
+    "reference/store/store.go.txt": "abb8a0f872ec56cffd9e605cf4a95180429b3c51c7363deeffd66932aa8d834a",
+    "wrong/alias-only/codec/codec.go.txt": "3605632ce452a8a1d39b47655e824e6ce425b81604bfe173da669fe683d1405d",
+    "wrong/alias-only/store/store.go.txt": "ae07c945328b1b120376520ea3314bf7ebe9f27cb3094eac884a1d071257b53b",
+    "wrong/both-internal/store/consumer_test.go.txt": "6eae30bc2d9b8089234690664fc4a803b398d4d80aa586dfe9976178a9d235ec",
+    "wrong/broken-load/store/store.go.txt": "b7a7cd9350f486294d60b95814914692e96635a30bfde12e946ad8a89424b1c3",
+    "wrong/broken-normalize/store/store.go.txt": "693791ec565796ffcc6ee6521e665c48a08f4b6a38732f6cf9c2ddbdeb7b5b9c",
+    "wrong/duplicated-type/store/store.go.txt": "4b96686488c1e5687ccdb4e248ca9110dc6553c1c1382e1f84acd9fe129cda75",
+    "wrong/exported-private/store/normalize_test.go.txt": "733d8959169eb1d6234d27fcf06652af6709dc91fd4c0bfb1cc1d58cc0e3738b",
+    "wrong/exported-private/store/store.go.txt": "a0afff6843d56831d91cff6e7d45833252958f602da2f16ebf509de0b6f70e09",
+    "wrong/external-private/store/normalize_test.go.txt": "f57bf0be540b41978f4b152a3dda425108141b3809f86ebcf175fc280a41484d"
+  },
+  "provenance_sha256": "0faa0969d9db43b7f4715a42f58dcb1374197b7a895f626ac61d2e413a935f0c",
+  "source_and_method": [
+    "Read all28 inert content assets, full script and manifest; inventory/file hashes/content digest independently recomputed. All sources original with real creation/project identity and sources=[]; no source execution yet.",
+    "Initial store owns Entry and Preview importing codec; codec imports store for Entry. Reference relocates Entry to record, preserves store.Entry alias and moves composition into cmd/preview. Load/normalize/Encode bodies retain behavior; graph requires only neutral record among project library imports.",
+    "Both initial test templates have no package declaration or tests. Reference owns package store private normalize assertions and package store_test exported Load/Entry assertion. Public fixed checks compile alias compatibility and exercise behavior separately; no supplied-test authorship credit.",
+    "Broken normalize and Load are compilable finite behavior defects. -run ^TestLearner prevents supplied TestPublic assertion execution; exact private/consumer diagnostic fragments prove each authored assertion after actual run. Restoring production leaves same learner tests and requires passing rerun.",
+    "Alias-only still has real import cycle. Duplicate named Entry fails actual fixed compatibility assignment. External test cannot select store.normalize; compiler-only go test -c -o /dev/null never runs its body. Each exact repair is reviewed and repeats compilation/full behavior.",
+    "Both-internal and exported-private controls deliberately pass behavior but violate actual test-package/API boundaries and must be source-rejected. Different test case structures/assertions in correct alternate remain valid."
+  ],
+  "command_matrix": "Reference6 commands; alias-only4; duplicated-type4; external-private4; broken-normalize4; broken-load4; both-internal3; exported-private3; correct-alternate4 =36 across9 fresh independent copies. Version, initial cycle build, learner-only/full test, production graph and exact alpha:1 output commands reviewed. No extra commands/retries/probes authorized.",
+  "isolation": "Fixed script accepts only --approved-execution, exact approval/self/content/manifest pins, literal specimen list and manifest-checked argv; refuses prior actual records. Fresh canonical private project/home/config/cache/modcache/tmp, explicit clean offline environment/readonly/local pinnedGo1.27/GOWORKoff/GOENVoff/telemetryoff. Regular file/symlink/path checks retained. Every process60s bound with only own process-group termination on timeout; preserve actual output before expectation guard, cleanup finally; no authored checkout execution.",
+  "evidence_required": "Actual36 argv/cwd/version/status/stdout/stderr/duration records, source snapshots/edit chronology and predictions before relevant commands, intended native/ordinary diagnostics and repairs, actual import listing/demo stdout, all9 cleanup. Unexpected results stop and remain; approval is not expected-output acceptance.",
+  "credit_boundary": "Exactly two proposed manual applications: packages.import-cycles and packages.test-package-boundaries. No component/module/internal/interface/build/naming/automatic coverage/mastery. Sole actual evidence/method acceptance and I9 integration/delivery gates still required.",
+  "clock": "Existing I9 05:19–09:19UTC unchanged; no deductions or scope expansion.",
+  "reviewer_execution": "No authored code or native recipe run; read-only source/manifest/hash/local installed Go source checks and this requested receipt only."
+}

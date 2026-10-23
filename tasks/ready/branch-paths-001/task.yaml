@@ -1,0 +1,55 @@
+schema_version: 2
+id: branch-paths-001
+title: Construct independent root-to-leaf paths recursively
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: functions.recursion
+    secondary: []
+prerequisites:
+    - control-flow.if
+    - control-flow.range
+    - functions.signatures-results
+    - pointers.address-deref-nil
+    - structs.literals-zero
+    - slices.len-cap-slicing
+    - slices.append-growth
+    - slices.backing-array-aliasing
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 25
+    max: 40
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - nil-as-leaf
+        - skip-first-child
+        - skip-last-child
+        - reverse-children
+        - duplicate-leaf
+        - omit-parent-label
+        - shared-path-backing
+        - mutate-label
+        - carry-sibling-prefix
+        - skip-negative
+        - ignore-leaf
+    race_required: false
+    vet: true
+    limits:
+        command_timeout_seconds: 30
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready
