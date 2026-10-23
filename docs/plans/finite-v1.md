@@ -258,7 +258,7 @@ I9 bounded contract planning began conservatively05:19UTC23Oct (checkpoint
 I5checkout is reused on codex/v1-applications-09; previous ignored receipts stay
 intact. Six proposed units address Once, fan-out/panic, Pipe/composition, recursion,
 shared-record import cycles/test-package choice and native generic constraints.
-No I9content credit or authored execution yet. Sole contracts precede authoring;
+At the initial05:19 planning checkpoint, no I9content credit or authored execution was claimed. Sole contracts precede authoring;
 committed I8base precedes integration/full gates, dependency merge precedes merge.
 
 I8 stable222collection completed05:43:10UTC23Oct and all generated reports were refreshed from it. I7 dependency is accepted; all remaining local gates and exact-final-HEAD independent review/greenvalidate still required. I9 six bounded contracts accepted, unique new paths authored on committed I7; fast-forward to committed I8 before shared integration/full gates.
