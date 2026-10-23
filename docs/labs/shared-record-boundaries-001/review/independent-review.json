@@ -1,0 +1,39 @@
+{
+  "decision": "approve",
+  "reviewer": "sole-independent-reviewer",
+  "reviewed_at": "2026-10-23T05:55:18.105008+00:00",
+  "unit": "shared-record-boundaries-001",
+  "scope": "Actual finite native source/method/evidence acceptance",
+  "content_digest": "33094a307d5b78fc46dccb02932c503dafdbbfba714bb008c6fbc0a402ded9f8",
+  "script_sha256": "08c9de86d49c1761ad18b86c91dd73b1b7cf1000e7393fb6067937335aaa82f1",
+  "manifest_sha256": "6eebd54f01fd28d40b962e17868d4beab2fe311e3db7b386158d7ca9e5e56f16",
+  "preexecution_sha256": "30bad68e554d47fd249172122686aae097de7f95132c63e4654701a8a5bdd61b",
+  "raw_execution_sha256": "1869cd84fe81387f3c0e425544ba728982be7d767a1628e7a36ded833adac1fc",
+  "normalized_execution_sha256": "4765a889f5a9cd25ebfb2fc03785d15feb4d5a94ff4194fc97b2a93f99f864b0",
+  "findings": [],
+  "verified": {
+    "assets": 28,
+    "copies": 9,
+    "commands": 36,
+    "snapshots": 40,
+    "cleanup": 9,
+    "expected_nonzero": 6,
+    "ordinary_assertion_failures": 2,
+    "native_build_compiler_failures": 4,
+    "timeouts": 0,
+    "runtime_failures": 0,
+    "max_command_seconds": 3.346634
+  },
+  "checks": [
+    "Approval predates every execution; exact approved script, manifest,28assets and provenance digest unchanged. All36 argv/expected statuses match literal nine-specimen manifest.",
+    "Independently replayed every source-copy event into every recorded snapshot; complete path/text/SHA states match. Reconstructed normalized receipt byte-for-byte from raw. Every canonical private root is removed. Clean private offline environment and60s bound retained.",
+    "Initial five-file graph produces actual store->codec->store import-cycle diagnostic before test templates enter compilation. Alias-only repair still cycles; exact dependency/composition repair then passes. Native go list confirms record-only shared production dependency; actual command prints alpha:1.",
+    "Duplicated named Entry fails fixed compatibility assignments; preserving store.Entry alias repairs compiler failure. Outside private normalize selector is rejected before test execution; correct same-package declaration repairs it.",
+    "Only ^TestLearner tests run for the two ordinary defects. Real private assertions reject untrimmed whitespace/Unicode and independent external consumer assertion rejects Count2; unchanged learner tests pass after production repair. Supplied TestPublic bodies do not supply this causal evidence.",
+    "Both-internal and exported-private controls pass behavior and are method-rejected for absent external consumer boundary and changed private API respectively. Different case/assertion organization passes with the required actual package choices."
+  ],
+  "actual_method": "Learner relocates shared Entry ownership into record while retaining legacy type identity via alias, removes library composition/cycle and authors command-level composition. Separately authors store and store_test package clauses and meaningful private/consumer assertions. These are distinct independent applications from earlier interface-cycle inversion and supplied external-test scaffold; package/file names and original normalize/Load algorithms earn no authorship credit.",
+  "credit_boundary": "Exactly two manual independent applications: packages.import-cycles and packages.test-package-boundaries. No automatic coverage, additional imports/internal/module/build/interface/component, learner completion or mastery credit.",
+  "remaining_gates": "Batch route/prerequisite integration, all required local/current-collection consumers, final exact-HEAD independent review and green validate before dependent merge remain mandatory.",
+  "reviewer_execution": "No authored code/tests run; data-only read/hash/replay and requested ignored receipt written."
+}

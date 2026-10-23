@@ -1,0 +1,13 @@
+package store
+
+import "testing"
+
+func TestLearnerPrivateNormalization(t *testing.T) {
+	inputs := []string{"  a  ", "", " λ "}
+	wants := []string{"a", "", "λ"}
+	for i, input := range inputs {
+		if normalize(input) != wants[i] {
+			t.Errorf("private case %d was not trimmed", i)
+		}
+	}
+}

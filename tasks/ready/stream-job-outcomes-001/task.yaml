@@ -1,0 +1,62 @@
+schema_version: 2
+id: stream-job-outcomes-001
+title: Stream job outcomes
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: channels.fan-out-in
+    secondary:
+        - goroutines.panic-boundaries
+prerequisites:
+    - channels.pipeline
+    - channels.ownership
+    - channels.range-drain
+    - channels.select
+    - sync.waitgroup-lifecycle
+    - goroutines.launch-lifecycle
+    - errors.panic-recover-boundaries
+    - functions.defer
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 25
+    max: 40
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - serial-workers
+        - unbounded-workers
+        - nil-output
+        - inline-until-complete
+        - drop-panic-flag
+        - replace-panic-value
+        - panic-as-normal-error
+        - drop-error
+        - drop-value-with-error
+        - duplicate-index
+        - repeat-callback
+        - drop-result
+        - leave-output-open
+        - stale-job-state
+        - recover-whole-worker
+        - collect-before-publish
+        - premature-empty-stream
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

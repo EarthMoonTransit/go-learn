@@ -1,0 +1,8 @@
+package codec
+
+import (
+	"finite.local/shared-record/store"
+	"fmt"
+)
+
+func Encode(entry store.Entry) string { return fmt.Sprintf("%s:%d", entry.Name, entry.Count) }

@@ -1,0 +1,51 @@
+package sliceops_test
+
+import (
+	"slices"
+	"testing"
+	"finite.local/sliceops"
+)
+
+func TestIntegerSelection(t *testing.T) {
+	input := []int{3, -2, -2, 0, 1, 2}
+	original := slices.Clone(input)
+	got := sliceops.Below(input, 3)
+	want := []int{-2, -2, 0, 1, 2}
+	if !slices.Equal(got, want) {
+		t.Errorf("integer selection=%v; want strict ordered values %v", got, want)
+	}
+	if !slices.Equal(input, original) {
+		t.Errorf("input changed during selection: got=%v want=%v", input, original)
+	}
+	if len(got) > 0 { got[0] = 9 }
+	if !slices.Equal(input, original) {
+		t.Errorf("result storage aliases input: got=%v want=%v", input, original)
+	}
+}
+
+func TestStringSelection(t *testing.T) {
+	input := []string{"b", "a", "b", "", "a", "c"}
+	original := slices.Clone(input)
+	got := sliceops.Below(input, "b")
+	want := []string{"a", "", "a"}
+	if !slices.Equal(got, want) {
+		t.Errorf("string selection=%v; want strict ordered values %v", got, want)
+	}
+	if len(got) > 0 { got[0] = "z" }
+	if !slices.Equal(input, original) {
+		t.Errorf("string input changed or aliases result: got=%v want=%v", input, original)
+	}
+}
+
+func TestEmptySelection(t *testing.T) {
+	var input []int
+	if got := sliceops.Below(input, 0); got != nil {
+		t.Errorf("nil input yielded nonnil result=%v", got)
+	}
+	if got := sliceops.Below([]int{}, 0); len(got) != 0 {
+		t.Errorf("empty selection=%v; want no values", got)
+	}
+	if got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {
+		t.Errorf("no qualifying values: got=%v; want no values", got)
+	}
+}

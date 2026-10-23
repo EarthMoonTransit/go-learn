@@ -1,0 +1,7 @@
+package sliceops_test
+
+import "finite.local/sliceops"
+
+func uncalledTypeProbe() {
+	_ = sliceops.Below([]float64{1.25}, float64(2))
+}

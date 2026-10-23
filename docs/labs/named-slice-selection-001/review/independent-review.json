@@ -1,0 +1,39 @@
+{
+  "decision": "approve",
+  "reviewer": "sole-independent-reviewer",
+  "reviewed_at": "2026-10-23T05:59:45.720376+00:00",
+  "unit": "named-slice-selection-001",
+  "scope": "Actual finite native method and evidence acceptance",
+  "content_digest": "05066c3c89e0aece9f611dfbed2adb68162ffd3d8aade62406d67970cfef1dd4",
+  "script_sha256": "49685622c8424b04e1f483fb6d5b8782d38f062d88995bd0bbf6276cd898bbd0",
+  "manifest_sha256": "2c14b90664f7e46d4949f26e85d8b34609622ef9c9e08c0b3fdfcd187dd34e29",
+  "preexecution_sha256": "c59c4ae3a2f3b17480efe599bfd192b8da29404cb07070ac273d37ca843e1abf",
+  "execution_sha256": "97d1d6beae64a6cb57a601c302fa7612f5ded0318d3271ed7a52ce9003536d1d",
+  "analysis_sha256": "32bb8afc953e0e7b7a8010751303d4f6159df7c4a55bba0ef39912c18bab39bd",
+  "findings": [],
+  "verified": {
+    "assets": 20,
+    "copies": 14,
+    "commands": 28,
+    "before_after_snapshots": 28,
+    "cleanup": 14,
+    "expected_nonzero": 11,
+    "compiler_rejections": 9,
+    "ordinary_semantic_assertions": 2,
+    "timeouts": 0,
+    "max_command_seconds": 2.831857
+  },
+  "checks": [
+    "Exact20assets/script/manifest unchanged and approval predates execution; copied approval equals original. Published/raw receipts identical. All28 argv correspond exactly to literal approved manifest.",
+    "Every before/after snapshot independently rebuilt from exact asset bindings and matches path/text/hash; all canonical private roots absent after cleanup. Explicit private offline environment retained, every command within60s.",
+    "Reference and equivalent embedded constraints pass all four public tests; named result methods and basic method-interface assignment genuinely compile and execute.",
+    "Missing container approximation rejects Numbers/Words; missing element approximation rejects Number/Word. Erased result fails real Kind selector and interface assignment; unconstrained E fails generic < at api.go.",
+    "Five exact reference probes reject float64, bool, array, mismatched S/E and non-basic Key value for intended native diagnostics. Probes stay in uncalled functions and -run=^$ selects no tests.",
+    "Alias-input and inclusive-cutoff compile then fail actual ordinary preservation/storage and strict-selection assertions. No compiler/panic/timeout is counted for these semantic defects.",
+    "Overbroad float compiles successfully with no tests selected, exactly as predicted, and is method/type-contract rejected. Actual analysis correctly separates successful command from admissible type set."
+  ],
+  "actual_method": "Learner owns exact Key underlying-int-or-string union, related S~[]E with sameE, resultS preserving named methods, and generic comparisons/construction justified by constraints. Reference allocates fresh S and selects strictly/ordered with nil handling. Embedded decomposition and indexed selected-prefix builder are valid alternatives. Source inspection establishes universal intended type-set boundary; finite clients merely witness selected positive/negative cases. Supplied clients/probes/scaffold are not authored learner actions.",
+  "credit_boundary": "Exactly two manual independent applications: generics.constraints-type-sets and generics.approximation-unions. Distinct container/element relationship and result methods from earlier supplied scalar Double. No automatic coverage, new type-inference/slice/testing/toolchain/component or learner mastery credit.",
+  "remaining_gates": "Integration/prerequisite placement and actual batch evidence, all mandatory local/current collection consumers, final exactHEAD independent review and exactHEAD green validate before merge remain required.",
+  "reviewer_execution": "Read-only source/hash/receipt checks; no authored code or recipe execution."
+}

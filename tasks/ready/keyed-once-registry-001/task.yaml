@@ -1,0 +1,54 @@
+schema_version: 2
+id: keyed-once-registry-001
+title: Cache initialization by key
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: sync.once-initialization
+    secondary:
+        - sync.mutex-critical-sections
+prerequisites:
+    - sync.mutex-ownership
+    - maps.operations-comma-ok
+    - maps.nil-delete-clear
+    - methods.receiver-semantics
+    - functions.function-values
+    - functions.defer
+    - goroutines.state-ownership
+    - errors.sentinels-creation
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 25
+    max: 45
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - eager-load
+        - new-entry-per-call
+        - one-entry-all-keys
+        - retry-failure
+        - drop-value
+        - drop-error
+        - wrong-key
+        - shared-registry-state
+        - return-before-load
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

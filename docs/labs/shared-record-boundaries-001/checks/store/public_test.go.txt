@@ -1,0 +1,26 @@
+package store_test
+
+import (
+	"finite.local/shared-record/codec"
+	"finite.local/shared-record/record"
+	"finite.local/shared-record/store"
+	"testing"
+)
+
+func TestPublicCompatibilityAndBehavior(t *testing.T) {
+	var e record.Entry = store.Entry{Name: "x", Count: 3}
+	var legacy store.Entry = e
+	if got := codec.Encode(legacy); got != "x:3" {
+		t.Errorf("Encode=%q; want x:3", got)
+	}
+	for _, name := range []string{"", "alpha", "  alpha  "} {
+		want := "alpha"
+		if name == "" {
+			want = ""
+		}
+		got := store.Load(name)
+		if got.Name != want || got.Count != 1 {
+			t.Errorf("Load(%q)=%+v; want Name=%q Count=1", name, got, want)
+		}
+	}
+}

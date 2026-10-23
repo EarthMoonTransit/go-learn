@@ -1,0 +1,1716 @@
+{
+  "status": "all 28 finite observations recorded; independent actual review pending",
+  "started_at": "2026-10-23T05:53:55.090459+00:00",
+  "source_manifest_sha256": "2c14b90664f7e46d4949f26e85d8b34609622ef9c9e08c0b3fdfcd187dd34e29",
+  "execution_script_sha256": "49685622c8424b04e1f483fb6d5b8782d38f062d88995bd0bbf6276cd898bbd0",
+  "content_digest": "05066c3c89e0aece9f611dfbed2adb68162ffd3d8aade62406d67970cfef1dd4",
+  "specimens": [
+    {
+      "specimen": "reference",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reference-6eroz8pe",
+      "started_at": "2026-10-23T05:53:55.091188+00:00",
+      "file_bindings": {
+        "go.mod": "files/go.mod.txt",
+        "api.go": "reference/api.go.txt",
+        "semantics_test.go": "files/semantics_test.go.txt",
+        "positive_test.go": "files/positive_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reference-6eroz8pe/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reference-6eroz8pe/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reference-6eroz8pe/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reference-6eroz8pe/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reference-6eroz8pe/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reference-6eroz8pe/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "version",
+          "started_at": "2026-10-23T05:53:55.093178+00:00",
+          "ended_at": "2026-10-23T05:53:55.099487+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reference-6eroz8pe/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reference-6eroz8pe/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reference-6eroz8pe/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reference-6eroz8pe/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reference-6eroz8pe/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reference-6eroz8pe/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "pass",
+          "started_at": "2026-10-23T05:53:55.100184+00:00",
+          "ended_at": "2026-10-23T05:53:57.653777+00:00",
+          "exit_status": 0,
+          "stdout": "=== RUN   TestNamedResultMethods\n--- PASS: TestNamedResultMethods (0.00s)\n=== RUN   TestIntegerSelection\n--- PASS: TestIntegerSelection (0.00s)\n=== RUN   TestStringSelection\n--- PASS: TestStringSelection (0.00s)\n=== RUN   TestEmptySelection\n--- PASS: TestEmptySelection (0.00s)\nPASS\nok  \tfinite.local/sliceops\t0.224s\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        }
+      ],
+      "source_snapshot_before": {
+        "api.go": {
+          "sha256": "42726bf20a3eb5820e391ae3efe26305d24bb298831012425975e762d65873b2",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "status": "expected finite observation recorded; actual review pending",
+      "source_snapshot_after": {
+        "api.go": {
+          "sha256": "42726bf20a3eb5820e391ae3efe26305d24bb298831012425975e762d65873b2",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "source_unchanged": true,
+      "ended_at": "2026-10-23T05:53:57.780787+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "specimen": "embedded",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-embedded-mpcviuxb",
+      "started_at": "2026-10-23T05:53:57.781302+00:00",
+      "file_bindings": {
+        "go.mod": "files/go.mod.txt",
+        "api.go": "alternatives/embedded/api.go.txt",
+        "semantics_test.go": "files/semantics_test.go.txt",
+        "positive_test.go": "files/positive_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-embedded-mpcviuxb/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-embedded-mpcviuxb/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-embedded-mpcviuxb/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-embedded-mpcviuxb/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-embedded-mpcviuxb/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-embedded-mpcviuxb/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "version",
+          "started_at": "2026-10-23T05:53:57.783294+00:00",
+          "ended_at": "2026-10-23T05:53:57.790004+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-embedded-mpcviuxb/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-embedded-mpcviuxb/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-embedded-mpcviuxb/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-embedded-mpcviuxb/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-embedded-mpcviuxb/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-embedded-mpcviuxb/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "pass",
+          "started_at": "2026-10-23T05:53:57.790511+00:00",
+          "ended_at": "2026-10-23T05:54:00.340058+00:00",
+          "exit_status": 0,
+          "stdout": "=== RUN   TestNamedResultMethods\n--- PASS: TestNamedResultMethods (0.00s)\n=== RUN   TestIntegerSelection\n--- PASS: TestIntegerSelection (0.00s)\n=== RUN   TestStringSelection\n--- PASS: TestStringSelection (0.00s)\n=== RUN   TestEmptySelection\n--- PASS: TestEmptySelection (0.00s)\nPASS\nok  \tfinite.local/sliceops\t0.164s\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        }
+      ],
+      "source_snapshot_before": {
+        "api.go": {
+          "sha256": "384c558e28bf185d96372084f79f9e23f3b883b07f9972946916d4853c978324",
+          "text": "package sliceops\n\ntype integerKey interface{ ~int }\ntype stringKey interface{ ~string }\ntype Key interface{ integerKey | stringKey }\ntype sliceShape[E Key] interface{ ~[]E }\n\nfunc Below[S sliceShape[E], E Key](input S, limit E) S {\n\tvar result S\n\tif input == nil {\n\t\treturn result\n\t}\n\tresult = make(S, len(input))\n\tselected := 0\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult[selected] = value\n\t\t\tselected++\n\t\t}\n\t}\n\treturn result[:selected]\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "status": "expected finite observation recorded; actual review pending",
+      "source_snapshot_after": {
+        "api.go": {
+          "sha256": "384c558e28bf185d96372084f79f9e23f3b883b07f9972946916d4853c978324",
+          "text": "package sliceops\n\ntype integerKey interface{ ~int }\ntype stringKey interface{ ~string }\ntype Key interface{ integerKey | stringKey }\ntype sliceShape[E Key] interface{ ~[]E }\n\nfunc Below[S sliceShape[E], E Key](input S, limit E) S {\n\tvar result S\n\tif input == nil {\n\t\treturn result\n\t}\n\tresult = make(S, len(input))\n\tselected := 0\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult[selected] = value\n\t\t\tselected++\n\t\t}\n\t}\n\treturn result[:selected]\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "source_unchanged": true,
+      "ended_at": "2026-10-23T05:54:00.404620+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "specimen": "exact-container",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-container-4fu_r5ch",
+      "started_at": "2026-10-23T05:54:00.405606+00:00",
+      "file_bindings": {
+        "go.mod": "files/go.mod.txt",
+        "api.go": "wrong/exact-container/api.go.txt",
+        "semantics_test.go": "files/semantics_test.go.txt",
+        "positive_test.go": "files/positive_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-container-4fu_r5ch/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-container-4fu_r5ch/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-container-4fu_r5ch/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-container-4fu_r5ch/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-container-4fu_r5ch/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-container-4fu_r5ch/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "version",
+          "started_at": "2026-10-23T05:54:00.407482+00:00",
+          "ended_at": "2026-10-23T05:54:00.414532+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-container-4fu_r5ch/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-container-4fu_r5ch/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-container-4fu_r5ch/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-container-4fu_r5ch/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-container-4fu_r5ch/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-container-4fu_r5ch/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "container-rejection",
+          "started_at": "2026-10-23T05:54:00.415091+00:00",
+          "ended_at": "2026-10-23T05:54:02.501168+00:00",
+          "exit_status": 1,
+          "stdout": "FAIL\tfinite.local/sliceops [build failed]\nFAIL\n",
+          "stderr": "# finite.local/sliceops_test [finite.local/sliceops.test]\n./positive_test.go:20:23: Numbers does not satisfy []Number (possibly missing ~ for []Number in []Number)\n./positive_test.go:26:25: Words does not satisfy []Word (possibly missing ~ for []Word in []Word)\n./positive_test.go:30:25: NumbersAlias does not satisfy []NumberAlias (possibly missing ~ for []NumberAlias in []NumberAlias)\n./positive_test.go:35:24: Numbers does not satisfy []Number (possibly missing ~ for []Number in []Number)\n",
+          "timed_out": false,
+          "matches_expected": true
+        }
+      ],
+      "source_snapshot_before": {
+        "api.go": {
+          "sha256": "71c489f96346bbf8baf1f15697f524c5ae516ae2e8abda563d3b194cf6704623",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S []E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "status": "expected finite observation recorded; actual review pending",
+      "source_snapshot_after": {
+        "api.go": {
+          "sha256": "71c489f96346bbf8baf1f15697f524c5ae516ae2e8abda563d3b194cf6704623",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S []E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "source_unchanged": true,
+      "ended_at": "2026-10-23T05:54:02.590263+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "specimen": "exact-elements",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-elements-9fuyc4o2",
+      "started_at": "2026-10-23T05:54:02.591015+00:00",
+      "file_bindings": {
+        "go.mod": "files/go.mod.txt",
+        "api.go": "wrong/exact-elements/api.go.txt",
+        "semantics_test.go": "files/semantics_test.go.txt",
+        "positive_test.go": "files/positive_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-elements-9fuyc4o2/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-elements-9fuyc4o2/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-elements-9fuyc4o2/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-elements-9fuyc4o2/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-elements-9fuyc4o2/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-elements-9fuyc4o2/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "version",
+          "started_at": "2026-10-23T05:54:02.593201+00:00",
+          "ended_at": "2026-10-23T05:54:02.599912+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-elements-9fuyc4o2/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-elements-9fuyc4o2/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-elements-9fuyc4o2/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-elements-9fuyc4o2/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-elements-9fuyc4o2/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-exact-elements-9fuyc4o2/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "element-rejection",
+          "started_at": "2026-10-23T05:54:02.600477+00:00",
+          "ended_at": "2026-10-23T05:54:04.522967+00:00",
+          "exit_status": 1,
+          "stdout": "FAIL\tfinite.local/sliceops [build failed]\nFAIL\n",
+          "stderr": "# finite.local/sliceops_test [finite.local/sliceops.test]\n./positive_test.go:20:23: Number does not satisfy sliceops.Key (possibly missing ~ for int in sliceops.Key)\n./positive_test.go:26:25: Word does not satisfy sliceops.Key (possibly missing ~ for string in sliceops.Key)\n./positive_test.go:30:25: NumberAlias does not satisfy sliceops.Key (possibly missing ~ for int in sliceops.Key)\n./positive_test.go:35:24: Number does not satisfy sliceops.Key (possibly missing ~ for int in sliceops.Key)\n",
+          "timed_out": false,
+          "matches_expected": true
+        }
+      ],
+      "source_snapshot_before": {
+        "api.go": {
+          "sha256": "f42e08703447f8521f6d8ec6f1369e063ff2e1b7d13589020599c7256b51e5dd",
+          "text": "package sliceops\n\ntype Key interface{ int | string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "status": "expected finite observation recorded; actual review pending",
+      "source_snapshot_after": {
+        "api.go": {
+          "sha256": "f42e08703447f8521f6d8ec6f1369e063ff2e1b7d13589020599c7256b51e5dd",
+          "text": "package sliceops\n\ntype Key interface{ int | string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "source_unchanged": true,
+      "ended_at": "2026-10-23T05:54:04.980728+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "specimen": "erased-container",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-erased-container-3rr_fj2l",
+      "started_at": "2026-10-23T05:54:04.981610+00:00",
+      "file_bindings": {
+        "go.mod": "files/go.mod.txt",
+        "api.go": "wrong/erased-container/api.go.txt",
+        "semantics_test.go": "files/semantics_test.go.txt",
+        "positive_test.go": "files/positive_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-erased-container-3rr_fj2l/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-erased-container-3rr_fj2l/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-erased-container-3rr_fj2l/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-erased-container-3rr_fj2l/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-erased-container-3rr_fj2l/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-erased-container-3rr_fj2l/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "version",
+          "started_at": "2026-10-23T05:54:04.985173+00:00",
+          "ended_at": "2026-10-23T05:54:04.994739+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-erased-container-3rr_fj2l/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-erased-container-3rr_fj2l/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-erased-container-3rr_fj2l/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-erased-container-3rr_fj2l/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-erased-container-3rr_fj2l/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-erased-container-3rr_fj2l/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "method-rejection",
+          "started_at": "2026-10-23T05:54:04.995663+00:00",
+          "ended_at": "2026-10-23T05:54:06.920400+00:00",
+          "exit_status": 1,
+          "stdout": "FAIL\tfinite.local/sliceops [build failed]\nFAIL\n",
+          "stderr": "# finite.local/sliceops_test [finite.local/sliceops.test]\n./positive_test.go:21:9: got.Kind undefined (type []Number has no field or method Kind)\n./positive_test.go:22:79: got.Kind undefined (type []Number has no field or method Kind)\n./positive_test.go:24:24: cannot use got (variable of type []Number) as kindValue value in variable declaration: []Number does not implement kindValue (missing method Kind)\n./positive_test.go:27:11: words.Kind undefined (type []Word has no field or method Kind)\n./positive_test.go:28:78: words.Kind undefined (type []Word has no field or method Kind)\n./positive_test.go:31:11: alias.Kind undefined (type []NumberAlias has no field or method Kind)\n./positive_test.go:36:25: zero.Kind undefined (type []Number has no field or method Kind)\n",
+          "timed_out": false,
+          "matches_expected": true
+        }
+      ],
+      "source_snapshot_before": {
+        "api.go": {
+          "sha256": "3305069371b115625e7a05df52cc7e603c4a2d56e43fad18dbe099ea150a7ef5",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) []E {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make([]E, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "status": "expected finite observation recorded; actual review pending",
+      "source_snapshot_after": {
+        "api.go": {
+          "sha256": "3305069371b115625e7a05df52cc7e603c4a2d56e43fad18dbe099ea150a7ef5",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) []E {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make([]E, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "source_unchanged": true,
+      "ended_at": "2026-10-23T05:54:06.985521+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "specimen": "any-element",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-any-element-sykj21uo",
+      "started_at": "2026-10-23T05:54:06.986619+00:00",
+      "file_bindings": {
+        "go.mod": "files/go.mod.txt",
+        "api.go": "wrong/any-element/api.go.txt",
+        "semantics_test.go": "files/semantics_test.go.txt",
+        "positive_test.go": "files/positive_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-any-element-sykj21uo/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-any-element-sykj21uo/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-any-element-sykj21uo/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-any-element-sykj21uo/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-any-element-sykj21uo/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-any-element-sykj21uo/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "version",
+          "started_at": "2026-10-23T05:54:06.988714+00:00",
+          "ended_at": "2026-10-23T05:54:06.995342+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-any-element-sykj21uo/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-any-element-sykj21uo/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-any-element-sykj21uo/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-any-element-sykj21uo/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-any-element-sykj21uo/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-any-element-sykj21uo/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "operator-rejection",
+          "started_at": "2026-10-23T05:54:06.996118+00:00",
+          "ended_at": "2026-10-23T05:54:08.860801+00:00",
+          "exit_status": 1,
+          "stdout": "FAIL\tfinite.local/sliceops [build failed]\nFAIL\n",
+          "stderr": "# finite.local/sliceops\n./api.go:11:6: invalid operation: value < limit (type parameter E cannot use operator <)\n",
+          "timed_out": false,
+          "matches_expected": true
+        }
+      ],
+      "source_snapshot_before": {
+        "api.go": {
+          "sha256": "1da0e8791abb5faddc0dcbc662f4aff17bd9a84a5e58f43eeafe92fd44b1f844",
+          "text": "package sliceops\n\ntype Key interface{}\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "status": "expected finite observation recorded; actual review pending",
+      "source_snapshot_after": {
+        "api.go": {
+          "sha256": "1da0e8791abb5faddc0dcbc662f4aff17bd9a84a5e58f43eeafe92fd44b1f844",
+          "text": "package sliceops\n\ntype Key interface{}\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "source_unchanged": true,
+      "ended_at": "2026-10-23T05:54:08.933146+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "specimen": "alias-input",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-alias-input-iaazzy8j",
+      "started_at": "2026-10-23T05:54:08.933894+00:00",
+      "file_bindings": {
+        "go.mod": "files/go.mod.txt",
+        "api.go": "wrong/alias-input/api.go.txt",
+        "semantics_test.go": "files/semantics_test.go.txt",
+        "positive_test.go": "files/positive_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-alias-input-iaazzy8j/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-alias-input-iaazzy8j/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-alias-input-iaazzy8j/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-alias-input-iaazzy8j/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-alias-input-iaazzy8j/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-alias-input-iaazzy8j/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "version",
+          "started_at": "2026-10-23T05:54:08.936190+00:00",
+          "ended_at": "2026-10-23T05:54:08.943384+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-alias-input-iaazzy8j/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-alias-input-iaazzy8j/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-alias-input-iaazzy8j/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-alias-input-iaazzy8j/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-alias-input-iaazzy8j/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-alias-input-iaazzy8j/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "alias-assertion",
+          "started_at": "2026-10-23T05:54:08.944337+00:00",
+          "ended_at": "2026-10-23T05:54:11.280543+00:00",
+          "exit_status": 1,
+          "stdout": "=== RUN   TestNamedResultMethods\n--- PASS: TestNamedResultMethods (0.00s)\n=== RUN   TestIntegerSelection\n    semantics_test.go:18: input changed during selection: got=[-2 -2 0 1 2 2] want=[3 -2 -2 0 1 2]\n    semantics_test.go:22: result storage aliases input: got=[9 -2 0 1 2 2] want=[3 -2 -2 0 1 2]\n--- FAIL: TestIntegerSelection (0.00s)\n=== RUN   TestStringSelection\n    semantics_test.go:36: string input changed or aliases result: got=[z  a  a c] want=[b a b  a c]\n--- FAIL: TestStringSelection (0.00s)\n=== RUN   TestEmptySelection\n--- PASS: TestEmptySelection (0.00s)\nFAIL\nFAIL\tfinite.local/sliceops\t0.167s\nFAIL\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        }
+      ],
+      "source_snapshot_before": {
+        "api.go": {
+          "sha256": "32af31ec6b12b8c53d6b6dd5153b7636d765217a50abaa80824dc550af3fe3b8",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := input[:0]\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "status": "expected finite observation recorded; actual review pending",
+      "source_snapshot_after": {
+        "api.go": {
+          "sha256": "32af31ec6b12b8c53d6b6dd5153b7636d765217a50abaa80824dc550af3fe3b8",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := input[:0]\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "source_unchanged": true,
+      "ended_at": "2026-10-23T05:54:11.349165+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "specimen": "inclusive-cutoff",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-inclusive-cutoff-24xic_68",
+      "started_at": "2026-10-23T05:54:11.350344+00:00",
+      "file_bindings": {
+        "go.mod": "files/go.mod.txt",
+        "api.go": "wrong/inclusive-cutoff/api.go.txt",
+        "semantics_test.go": "files/semantics_test.go.txt",
+        "positive_test.go": "files/positive_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-inclusive-cutoff-24xic_68/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-inclusive-cutoff-24xic_68/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-inclusive-cutoff-24xic_68/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-inclusive-cutoff-24xic_68/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-inclusive-cutoff-24xic_68/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-inclusive-cutoff-24xic_68/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "version",
+          "started_at": "2026-10-23T05:54:11.352702+00:00",
+          "ended_at": "2026-10-23T05:54:11.359213+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-v",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-inclusive-cutoff-24xic_68/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-inclusive-cutoff-24xic_68/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-inclusive-cutoff-24xic_68/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-inclusive-cutoff-24xic_68/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-inclusive-cutoff-24xic_68/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-inclusive-cutoff-24xic_68/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "cutoff-assertion",
+          "started_at": "2026-10-23T05:54:11.360049+00:00",
+          "ended_at": "2026-10-23T05:54:13.583923+00:00",
+          "exit_status": 1,
+          "stdout": "=== RUN   TestNamedResultMethods\n    positive_test.go:22: named integer result=[-1 -1 2] kind=\"numbers\"; want [-1 -1], numbers\n    positive_test.go:32: alias result=[2 1]; want [1] with named methods\n--- FAIL: TestNamedResultMethods (0.00s)\n=== RUN   TestIntegerSelection\n    semantics_test.go:15: integer selection=[3 -2 -2 0 1 2]; want strict ordered values [-2 -2 0 1 2]\n--- FAIL: TestIntegerSelection (0.00s)\n=== RUN   TestStringSelection\n    semantics_test.go:32: string selection=[b a b  a]; want strict ordered values [a  a]\n--- FAIL: TestStringSelection (0.00s)\n=== RUN   TestEmptySelection\n--- PASS: TestEmptySelection (0.00s)\nFAIL\nFAIL\tfinite.local/sliceops\t0.161s\nFAIL\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        }
+      ],
+      "source_snapshot_before": {
+        "api.go": {
+          "sha256": "366880918c51b9ba6a47203c2d4516b5a6e40f80a8e88605a4fbb1eeda7eba64",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value <= limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "status": "expected finite observation recorded; actual review pending",
+      "source_snapshot_after": {
+        "api.go": {
+          "sha256": "366880918c51b9ba6a47203c2d4516b5a6e40f80a8e88605a4fbb1eeda7eba64",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value <= limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "source_unchanged": true,
+      "ended_at": "2026-10-23T05:54:13.651584+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "specimen": "reject-float",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-float-zzsek5vw",
+      "started_at": "2026-10-23T05:54:13.652357+00:00",
+      "file_bindings": {
+        "go.mod": "files/go.mod.txt",
+        "api.go": "reference/api.go.txt",
+        "semantics_test.go": "files/semantics_test.go.txt",
+        "positive_test.go": "files/positive_test.go.txt",
+        "probe_test.go": "probes/float_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-float-zzsek5vw/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-float-zzsek5vw/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-float-zzsek5vw/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-float-zzsek5vw/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-float-zzsek5vw/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-float-zzsek5vw/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "version",
+          "started_at": "2026-10-23T05:54:13.655070+00:00",
+          "ended_at": "2026-10-23T05:54:13.661978+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^$",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-float-zzsek5vw/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-float-zzsek5vw/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-float-zzsek5vw/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-float-zzsek5vw/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-float-zzsek5vw/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-float-zzsek5vw/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "float-rejection",
+          "started_at": "2026-10-23T05:54:13.662796+00:00",
+          "ended_at": "2026-10-23T05:54:15.663189+00:00",
+          "exit_status": 1,
+          "stdout": "FAIL\tfinite.local/sliceops [build failed]\nFAIL\n",
+          "stderr": "# finite.local/sliceops_test [finite.local/sliceops.test]\n./probe_test.go:6:20: float64 does not satisfy sliceops.Key (float64 missing in ~int | ~string)\n",
+          "timed_out": false,
+          "matches_expected": true
+        }
+      ],
+      "source_snapshot_before": {
+        "api.go": {
+          "sha256": "42726bf20a3eb5820e391ae3efe26305d24bb298831012425975e762d65873b2",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "probe_test.go": {
+          "sha256": "74babbccefe5fb62d30b25b17150c2808e45b0abc2a52dc122b3f5e5dff92ada",
+          "text": "package sliceops_test\n\nimport \"finite.local/sliceops\"\n\nfunc uncalledTypeProbe() {\n\t_ = sliceops.Below([]float64{1.25}, float64(2))\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "status": "expected finite observation recorded; actual review pending",
+      "source_snapshot_after": {
+        "api.go": {
+          "sha256": "42726bf20a3eb5820e391ae3efe26305d24bb298831012425975e762d65873b2",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "probe_test.go": {
+          "sha256": "74babbccefe5fb62d30b25b17150c2808e45b0abc2a52dc122b3f5e5dff92ada",
+          "text": "package sliceops_test\n\nimport \"finite.local/sliceops\"\n\nfunc uncalledTypeProbe() {\n\t_ = sliceops.Below([]float64{1.25}, float64(2))\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "source_unchanged": true,
+      "ended_at": "2026-10-23T05:54:15.734290+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "specimen": "reject-bool",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-bool-h2wzl901",
+      "started_at": "2026-10-23T05:54:15.735453+00:00",
+      "file_bindings": {
+        "go.mod": "files/go.mod.txt",
+        "api.go": "reference/api.go.txt",
+        "semantics_test.go": "files/semantics_test.go.txt",
+        "positive_test.go": "files/positive_test.go.txt",
+        "probe_test.go": "probes/bool_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-bool-h2wzl901/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-bool-h2wzl901/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-bool-h2wzl901/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-bool-h2wzl901/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-bool-h2wzl901/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-bool-h2wzl901/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "version",
+          "started_at": "2026-10-23T05:54:15.738049+00:00",
+          "ended_at": "2026-10-23T05:54:15.744747+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^$",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-bool-h2wzl901/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-bool-h2wzl901/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-bool-h2wzl901/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-bool-h2wzl901/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-bool-h2wzl901/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-bool-h2wzl901/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "bool-rejection",
+          "started_at": "2026-10-23T05:54:15.745589+00:00",
+          "ended_at": "2026-10-23T05:54:17.672742+00:00",
+          "exit_status": 1,
+          "stdout": "FAIL\tfinite.local/sliceops [build failed]\nFAIL\n",
+          "stderr": "# finite.local/sliceops_test [finite.local/sliceops.test]\n./probe_test.go:6:20: bool does not satisfy sliceops.Key (bool missing in ~int | ~string)\n",
+          "timed_out": false,
+          "matches_expected": true
+        }
+      ],
+      "source_snapshot_before": {
+        "api.go": {
+          "sha256": "42726bf20a3eb5820e391ae3efe26305d24bb298831012425975e762d65873b2",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "probe_test.go": {
+          "sha256": "ec821234839532aca304d28baeb2e1b2e7233978fec06714c8fe5494a0e19c9d",
+          "text": "package sliceops_test\n\nimport \"finite.local/sliceops\"\n\nfunc uncalledTypeProbe() {\n\t_ = sliceops.Below([]bool{true}, false)\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "status": "expected finite observation recorded; actual review pending",
+      "source_snapshot_after": {
+        "api.go": {
+          "sha256": "42726bf20a3eb5820e391ae3efe26305d24bb298831012425975e762d65873b2",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "probe_test.go": {
+          "sha256": "ec821234839532aca304d28baeb2e1b2e7233978fec06714c8fe5494a0e19c9d",
+          "text": "package sliceops_test\n\nimport \"finite.local/sliceops\"\n\nfunc uncalledTypeProbe() {\n\t_ = sliceops.Below([]bool{true}, false)\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "source_unchanged": true,
+      "ended_at": "2026-10-23T05:54:17.741810+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "specimen": "reject-array",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-array-jf941hqa",
+      "started_at": "2026-10-23T05:54:17.742589+00:00",
+      "file_bindings": {
+        "go.mod": "files/go.mod.txt",
+        "api.go": "reference/api.go.txt",
+        "semantics_test.go": "files/semantics_test.go.txt",
+        "positive_test.go": "files/positive_test.go.txt",
+        "probe_test.go": "probes/array_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-array-jf941hqa/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-array-jf941hqa/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-array-jf941hqa/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-array-jf941hqa/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-array-jf941hqa/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-array-jf941hqa/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "version",
+          "started_at": "2026-10-23T05:54:17.745317+00:00",
+          "ended_at": "2026-10-23T05:54:17.752094+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^$",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-array-jf941hqa/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-array-jf941hqa/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-array-jf941hqa/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-array-jf941hqa/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-array-jf941hqa/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-array-jf941hqa/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "array-rejection",
+          "started_at": "2026-10-23T05:54:17.753020+00:00",
+          "ended_at": "2026-10-23T05:54:19.726944+00:00",
+          "exit_status": 1,
+          "stdout": "FAIL\tfinite.local/sliceops [build failed]\nFAIL\n",
+          "stderr": "# finite.local/sliceops_test [finite.local/sliceops.test]\n./probe_test.go:6:20: in call to sliceops.Below, S (type [2]int) does not satisfy ~[]E\n",
+          "timed_out": false,
+          "matches_expected": true
+        }
+      ],
+      "source_snapshot_before": {
+        "api.go": {
+          "sha256": "42726bf20a3eb5820e391ae3efe26305d24bb298831012425975e762d65873b2",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "probe_test.go": {
+          "sha256": "db10667eb21e1c6274378371a17b0eb5ade1b80155ec9abbb13a0a72a3946cc2",
+          "text": "package sliceops_test\n\nimport \"finite.local/sliceops\"\n\nfunc uncalledTypeProbe() {\n\t_ = sliceops.Below([2]int{1, 2}, 2)\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "status": "expected finite observation recorded; actual review pending",
+      "source_snapshot_after": {
+        "api.go": {
+          "sha256": "42726bf20a3eb5820e391ae3efe26305d24bb298831012425975e762d65873b2",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "probe_test.go": {
+          "sha256": "db10667eb21e1c6274378371a17b0eb5ade1b80155ec9abbb13a0a72a3946cc2",
+          "text": "package sliceops_test\n\nimport \"finite.local/sliceops\"\n\nfunc uncalledTypeProbe() {\n\t_ = sliceops.Below([2]int{1, 2}, 2)\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "source_unchanged": true,
+      "ended_at": "2026-10-23T05:54:19.794531+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "specimen": "reject-mismatch",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-mismatch-yocgtqe1",
+      "started_at": "2026-10-23T05:54:19.795286+00:00",
+      "file_bindings": {
+        "go.mod": "files/go.mod.txt",
+        "api.go": "reference/api.go.txt",
+        "semantics_test.go": "files/semantics_test.go.txt",
+        "positive_test.go": "files/positive_test.go.txt",
+        "probe_test.go": "probes/mismatch_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-mismatch-yocgtqe1/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-mismatch-yocgtqe1/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-mismatch-yocgtqe1/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-mismatch-yocgtqe1/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-mismatch-yocgtqe1/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-mismatch-yocgtqe1/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "version",
+          "started_at": "2026-10-23T05:54:19.798099+00:00",
+          "ended_at": "2026-10-23T05:54:19.804811+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^$",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-mismatch-yocgtqe1/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-mismatch-yocgtqe1/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-mismatch-yocgtqe1/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-mismatch-yocgtqe1/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-mismatch-yocgtqe1/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-mismatch-yocgtqe1/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "mismatch-rejection",
+          "started_at": "2026-10-23T05:54:19.805774+00:00",
+          "ended_at": "2026-10-23T05:54:22.124365+00:00",
+          "exit_status": 1,
+          "stdout": "FAIL\tfinite.local/sliceops [build failed]\nFAIL\n",
+          "stderr": "# finite.local/sliceops_test [finite.local/sliceops.test]\n./probe_test.go:6:21: Numbers does not satisfy ~[]string (Numbers missing in ~[]string)\n",
+          "timed_out": false,
+          "matches_expected": true
+        }
+      ],
+      "source_snapshot_before": {
+        "api.go": {
+          "sha256": "42726bf20a3eb5820e391ae3efe26305d24bb298831012425975e762d65873b2",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "probe_test.go": {
+          "sha256": "65585399a32626f6b68286e04a550a307b69c5ae9463bf442e0d6b235b8dc74d",
+          "text": "package sliceops_test\n\nimport \"finite.local/sliceops\"\n\nfunc uncalledTypeProbe() {\n\t_ = sliceops.Below[Numbers, string](Numbers{1}, \"m\")\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "status": "expected finite observation recorded; actual review pending",
+      "source_snapshot_after": {
+        "api.go": {
+          "sha256": "42726bf20a3eb5820e391ae3efe26305d24bb298831012425975e762d65873b2",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "probe_test.go": {
+          "sha256": "65585399a32626f6b68286e04a550a307b69c5ae9463bf442e0d6b235b8dc74d",
+          "text": "package sliceops_test\n\nimport \"finite.local/sliceops\"\n\nfunc uncalledTypeProbe() {\n\t_ = sliceops.Below[Numbers, string](Numbers{1}, \"m\")\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "source_unchanged": true,
+      "ended_at": "2026-10-23T05:54:22.202491+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "specimen": "reject-constraint-value",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-constraint-value-dxqjdqq9",
+      "started_at": "2026-10-23T05:54:22.203435+00:00",
+      "file_bindings": {
+        "go.mod": "files/go.mod.txt",
+        "api.go": "reference/api.go.txt",
+        "semantics_test.go": "files/semantics_test.go.txt",
+        "positive_test.go": "files/positive_test.go.txt",
+        "probe_test.go": "probes/constraint-value_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-constraint-value-dxqjdqq9/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-constraint-value-dxqjdqq9/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-constraint-value-dxqjdqq9/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-constraint-value-dxqjdqq9/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-constraint-value-dxqjdqq9/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-constraint-value-dxqjdqq9/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "version",
+          "started_at": "2026-10-23T05:54:22.206477+00:00",
+          "ended_at": "2026-10-23T05:54:22.213401+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^$",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-constraint-value-dxqjdqq9/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-constraint-value-dxqjdqq9/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-constraint-value-dxqjdqq9/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-constraint-value-dxqjdqq9/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-constraint-value-dxqjdqq9/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-reject-constraint-value-dxqjdqq9/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "nonbasic-rejection",
+          "started_at": "2026-10-23T05:54:22.214572+00:00",
+          "ended_at": "2026-10-23T05:54:25.046429+00:00",
+          "exit_status": 1,
+          "stdout": "FAIL\tfinite.local/sliceops [build failed]\nFAIL\n",
+          "stderr": "# finite.local/sliceops_test [finite.local/sliceops.test]\n./probe_test.go:6:12: cannot use type sliceops.Key outside a type constraint: interface contains type constraints\n",
+          "timed_out": false,
+          "matches_expected": true
+        }
+      ],
+      "source_snapshot_before": {
+        "api.go": {
+          "sha256": "42726bf20a3eb5820e391ae3efe26305d24bb298831012425975e762d65873b2",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "probe_test.go": {
+          "sha256": "58e4115e2df967c1e01a5dc75255cffd2e12c9fd6d4fcaada75b0bdbb90dfcb1",
+          "text": "package sliceops_test\n\nimport \"finite.local/sliceops\"\n\nfunc uncalledTypeProbe() {\n\tvar value sliceops.Key\n\t_ = value\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "status": "expected finite observation recorded; actual review pending",
+      "source_snapshot_after": {
+        "api.go": {
+          "sha256": "42726bf20a3eb5820e391ae3efe26305d24bb298831012425975e762d65873b2",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "probe_test.go": {
+          "sha256": "58e4115e2df967c1e01a5dc75255cffd2e12c9fd6d4fcaada75b0bdbb90dfcb1",
+          "text": "package sliceops_test\n\nimport \"finite.local/sliceops\"\n\nfunc uncalledTypeProbe() {\n\tvar value sliceops.Key\n\t_ = value\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "source_unchanged": true,
+      "ended_at": "2026-10-23T05:54:25.124736+00:00",
+      "disposable_root_removed": true
+    },
+    {
+      "specimen": "overbroad-float",
+      "disposable_root": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-overbroad-float-yt3g2a1v",
+      "started_at": "2026-10-23T05:54:25.125590+00:00",
+      "file_bindings": {
+        "go.mod": "files/go.mod.txt",
+        "api.go": "wrong/overbroad-float/api.go.txt",
+        "semantics_test.go": "files/semantics_test.go.txt",
+        "positive_test.go": "files/positive_test.go.txt",
+        "probe_test.go": "probes/float_test.go.txt"
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "version"
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-overbroad-float-yt3g2a1v/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-overbroad-float-yt3g2a1v/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-overbroad-float-yt3g2a1v/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-overbroad-float-yt3g2a1v/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-overbroad-float-yt3g2a1v/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-overbroad-float-yt3g2a1v/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "version",
+          "started_at": "2026-10-23T05:54:25.128799+00:00",
+          "ended_at": "2026-10-23T05:54:25.136430+00:00",
+          "exit_status": 0,
+          "stdout": "go version go1.27.0 darwin/arm64\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        },
+        {
+          "argv": [
+            "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+            "test",
+            "-run=^$",
+            "-count=1",
+            "./..."
+          ],
+          "cwd": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-overbroad-float-yt3g2a1v/project",
+          "environment": {
+            "PATH": "/Users/egor/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin:/usr/bin:/bin",
+            "HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-overbroad-float-yt3g2a1v/home",
+            "XDG_CONFIG_HOME": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-overbroad-float-yt3g2a1v/config",
+            "GOCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-overbroad-float-yt3g2a1v/cache",
+            "GOMODCACHE": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-overbroad-float-yt3g2a1v/modcache",
+            "TMPDIR": "/private/var/folders/ds/lqxshxwx1vv7bd9hvjn2pv_m0000gn/T/go-learn-I9-generics-overbroad-float-yt3g2a1v/tmp",
+            "GOENV": "off",
+            "GOTOOLCHAIN": "local",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "GOWORK": "off",
+            "CGO_ENABLED": "0",
+            "GOFLAGS": "-mod=readonly"
+          },
+          "timeout_seconds": 60,
+          "expected": "overbroad-pass",
+          "started_at": "2026-10-23T05:54:25.137621+00:00",
+          "ended_at": "2026-10-23T05:54:27.643544+00:00",
+          "exit_status": 0,
+          "stdout": "ok  \tfinite.local/sliceops\t0.160s [no tests to run]\n",
+          "stderr": "",
+          "timed_out": false,
+          "matches_expected": true
+        }
+      ],
+      "source_snapshot_before": {
+        "api.go": {
+          "sha256": "5752614d0f47dcb0503489ae660d847e0ef08623030f3c72498f5efb5dd44465",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string | ~float64 }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "probe_test.go": {
+          "sha256": "74babbccefe5fb62d30b25b17150c2808e45b0abc2a52dc122b3f5e5dff92ada",
+          "text": "package sliceops_test\n\nimport \"finite.local/sliceops\"\n\nfunc uncalledTypeProbe() {\n\t_ = sliceops.Below([]float64{1.25}, float64(2))\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "status": "expected finite observation recorded; actual review pending",
+      "source_snapshot_after": {
+        "api.go": {
+          "sha256": "5752614d0f47dcb0503489ae660d847e0ef08623030f3c72498f5efb5dd44465",
+          "text": "package sliceops\n\ntype Key interface{ ~int | ~string | ~float64 }\n\nfunc Below[S ~[]E, E Key](input S, limit E) S {\n\tif input == nil {\n\t\treturn nil\n\t}\n\tresult := make(S, 0, len(input))\n\tfor _, value := range input {\n\t\tif value < limit {\n\t\t\tresult = append(result, value)\n\t\t}\n\t}\n\treturn result\n}\n"
+        },
+        "go.mod": {
+          "sha256": "a01f0a959c12e651bb9f3d63a4bf1e41ab6f52670dfeefda023ea1b9a489dbe5",
+          "text": "module finite.local/sliceops\n\ngo 1.27.0\n"
+        },
+        "positive_test.go": {
+          "sha256": "e4c681034dba11ca982c1fb0767bd07cb76cef9d9b0a9c118cb0a18951c060e6",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\ntype Number int\ntype Word string\ntype Numbers []Number\ntype Words []Word\nfunc (Numbers) Kind() string { return \"numbers\" }\nfunc (Words) Kind() string { return \"words\" }\ntype NumberAlias = Number\ntype NumbersAlias = Numbers\ntype kindValue interface{ Kind() string }\n\nfunc TestNamedResultMethods(t *testing.T) {\n\tgot := sliceops.Below(Numbers{4, -1, -1, 2}, Number(2))\n\tif got.Kind() != \"numbers\" || !slices.Equal(got, Numbers{-1, -1}) {\n\t\tt.Errorf(\"named integer result=%v kind=%q; want [-1 -1], numbers\", got, got.Kind())\n\t}\n\tvar value kindValue = got\n\tif value.Kind() != \"numbers\" { t.Error(\"basic method interface lost result method\") }\n\twords := sliceops.Below(Words{\"a\", \"z\", \"a\"}, Word(\"m\"))\n\tif words.Kind() != \"words\" || !slices.Equal(words, Words{\"a\", \"a\"}) {\n\t\tt.Errorf(\"named string result=%v kind=%q; want [a a], words\", words, words.Kind())\n\t}\n\talias := sliceops.Below(NumbersAlias{2, 1}, NumberAlias(2))\n\tif alias.Kind() != \"numbers\" || !slices.Equal(alias, NumbersAlias{1}) {\n\t\tt.Errorf(\"alias result=%v; want [1] with named methods\", alias)\n\t}\n\tvar empty Numbers\n\tzero := sliceops.Below(empty, Number(0))\n\tif zero != nil || zero.Kind() != \"numbers\" { t.Errorf(\"nil named result=%v; want nil Numbers\", zero) }\n}\n"
+        },
+        "probe_test.go": {
+          "sha256": "74babbccefe5fb62d30b25b17150c2808e45b0abc2a52dc122b3f5e5dff92ada",
+          "text": "package sliceops_test\n\nimport \"finite.local/sliceops\"\n\nfunc uncalledTypeProbe() {\n\t_ = sliceops.Below([]float64{1.25}, float64(2))\n}\n"
+        },
+        "semantics_test.go": {
+          "sha256": "6e2253631abb37babcb6dd01ad8e513edae74a220c9f7107a032d0c69a9e12d0",
+          "text": "package sliceops_test\n\nimport (\n\t\"slices\"\n\t\"testing\"\n\t\"finite.local/sliceops\"\n)\n\nfunc TestIntegerSelection(t *testing.T) {\n\tinput := []int{3, -2, -2, 0, 1, 2}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, 3)\n\twant := []int{-2, -2, 0, 1, 2}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"integer selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"input changed during selection: got=%v want=%v\", input, original)\n\t}\n\tif len(got) > 0 { got[0] = 9 }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"result storage aliases input: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestStringSelection(t *testing.T) {\n\tinput := []string{\"b\", \"a\", \"b\", \"\", \"a\", \"c\"}\n\toriginal := slices.Clone(input)\n\tgot := sliceops.Below(input, \"b\")\n\twant := []string{\"a\", \"\", \"a\"}\n\tif !slices.Equal(got, want) {\n\t\tt.Errorf(\"string selection=%v; want strict ordered values %v\", got, want)\n\t}\n\tif len(got) > 0 { got[0] = \"z\" }\n\tif !slices.Equal(input, original) {\n\t\tt.Errorf(\"string input changed or aliases result: got=%v want=%v\", input, original)\n\t}\n}\n\nfunc TestEmptySelection(t *testing.T) {\n\tvar input []int\n\tif got := sliceops.Below(input, 0); got != nil {\n\t\tt.Errorf(\"nil input yielded nonnil result=%v\", got)\n\t}\n\tif got := sliceops.Below([]int{}, 0); len(got) != 0 {\n\t\tt.Errorf(\"empty selection=%v; want no values\", got)\n\t}\n\tif got := sliceops.Below([]int{2, 3}, -1); len(got) != 0 {\n\t\tt.Errorf(\"no qualifying values: got=%v; want no values\", got)\n\t}\n}\n"
+        }
+      },
+      "source_unchanged": true,
+      "ended_at": "2026-10-23T05:54:27.731933+00:00",
+      "disposable_root_removed": true
+    }
+  ],
+  "ended_at": "2026-10-23T05:54:27.732667+00:00"
+}

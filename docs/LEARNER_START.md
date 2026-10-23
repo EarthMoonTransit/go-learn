@@ -196,3 +196,21 @@ module commands, cycle diagnosis and test-package choice earn no extra credit.
 The unchanged cancel-error-pipeline separately applies whole-pipeline termination
 on intermediate failure or parent cancellation; this is no second cancellation
 encounter or new automatic task. Manual review never changes automatic progress.
+
+The branching-path recursion application follows pointer/struct preparation and
+requires actual recursive branch work, complete paths and independent storage.
+The streamed job-outcome application follows pool/recovery preparation; review
+per-job recovery and continued bounded-worker work alongside indexed output.
+The limited Pipe relay follows PipeExchange; it owns the bounded consumer and
+producer join across limit/EOF/destination-error endings. The keyed Once registry
+follows once-result and mutex preparation; review stable per-key entry identity,
+compound lookup/insert locking and actual Once execution separately from behavior.
+
+| Manual placement | Unit | Independent action |
+| --- | --- | --- |
+| After generic type-set first encounter | [Named-slice selection](labs/named-slice-selection-001/TASK.md) | Design exact element/slice constraints and preserve the named result's static methods |
+| After package-boundaries, external-window and injected-config-project | [Shared record boundaries](labs/shared-record-boundaries-001/TASK.md) | Relocate shared data/composition to break a real cycle and independently choose private/external test packages |
+
+Retain actual native diagnostics, source snapshots, repairs and finite method
+review. Manual evidence and behavior-passing method controls do not add automatic
+coverage or learner completion. Supplied algorithms earn no authorship credit.

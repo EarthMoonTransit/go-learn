@@ -1,0 +1,6 @@
+package record
+
+type Entry struct {
+	Name  string
+	Count int
+}

@@ -1,0 +1,58 @@
+schema_version: 2
+id: limited-pipe-relay-001
+title: Limited pipe relay
+activity: implementation
+submission:
+    kind: implementation
+    editable_paths: []
+    workspace_skeleton: []
+skills:
+    primary: io.pipe-lifecycle
+    secondary:
+        - io.copy-limit-composition
+prerequisites:
+    - io.reader-writer-contracts
+    - goroutines.launch-lifecycle
+    - channels.operations-blocking
+    - channels.close-semantics
+    - functions.defer
+    - errors.sentinels-creation
+new_concepts: []
+difficulty: intermediate
+estimated_time_minutes:
+    min: 25
+    max: 40
+verification:
+    profile: fixed-tests
+    packages:
+        - ./subject
+    public_checks:
+        - ./subject
+    grader_checks:
+        - ./subject
+    reference_checks:
+        - ./subject
+    required_mutants:
+        - unlimited-copy
+        - zero-means-unlimited
+        - copy-exact-count
+        - drop-writer-close-error
+        - missing-writer-close
+        - missing-reader-close
+        - drop-reader-close-error
+        - drop-producer-error
+        - swallow-copy-error
+        - conflate-errors
+        - return-before-join
+        - accept-short-write
+        - close-dst
+        - repeat-producer
+        - limit-after-copy
+    race_required: true
+    vet: true
+    limits:
+        command_timeout_seconds: 60
+        determinism_runs: 2
+        fuzz_seconds: 0
+        benchmark_runs: 1
+quality_status: ready

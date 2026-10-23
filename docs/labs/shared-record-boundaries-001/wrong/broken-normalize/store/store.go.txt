@@ -1,0 +1,11 @@
+package store
+
+import (
+	"finite.local/shared-record/record"
+	"strings"
+)
+
+type Entry = record.Entry
+
+func normalize(name string) string { return name + strings.TrimSpace("") }
+func Load(name string) Entry       { return Entry{Name: normalize(name), Count: 1} }

@@ -1,0 +1,499 @@
+{
+  "batch": "I9",
+  "status": "Six actual content units and integration accepted; one226collection passed; remaining gates/finalHEAD/CI/merge pending",
+  "base": "8a34aa90fbf07387c79b849587973917d22c4d62",
+  "new_automatic_tasks": [
+    {
+      "id": "branch-paths-001",
+      "path": "tasks/ready/branch-paths-001",
+      "content_digest": "fd9dae1ef98ca0e195056550f4f019546696d1b0601864ee185deed79bebfb88",
+      "source_decision": "Original task-init ADR0008 creation, empty external sources; release binding deferred."
+    },
+    {
+      "id": "limited-pipe-relay-001",
+      "path": "tasks/ready/limited-pipe-relay-001",
+      "content_digest": "c1568c66bb712437fa2b113c22de43e925b290a7149a76c4159dac2294836f29",
+      "source_decision": "Original task-init ADR0008 creation, empty external sources; release binding deferred."
+    },
+    {
+      "id": "stream-job-outcomes-001",
+      "path": "tasks/ready/stream-job-outcomes-001",
+      "content_digest": "824728f6bf5320b2be3631c222f1df09d7369a2e73bf64c6a8e85a42e9a94512",
+      "source_decision": "Original task-init ADR0008 creation, empty external sources; release binding deferred."
+    },
+    {
+      "id": "keyed-once-registry-001",
+      "path": "tasks/ready/keyed-once-registry-001",
+      "content_digest": "a25b0fc5c6e997bd52898ced41104af36aa0b3b79d423faec85b3e6c17b12fff",
+      "source_decision": "Original task-init ADR0008 creation, empty external sources; release binding deferred."
+    }
+  ],
+  "new_manual_units": [
+    {
+      "id": "named-slice-selection-001",
+      "path": "docs/labs/named-slice-selection-001",
+      "content_digest": "05066c3c89e0aece9f611dfbed2adb68162ffd3d8aade62406d67970cfef1dd4",
+      "automatic_coverage_credit": false
+    },
+    {
+      "id": "shared-record-boundaries-001",
+      "path": "docs/labs/shared-record-boundaries-001",
+      "content_digest": "33094a307d5b78fc46dccb02932c503dafdbbfba714bb008c6fbc0a402ded9f8",
+      "automatic_coverage_credit": false
+    }
+  ],
+  "actual_content_reviews": {
+    "recursion-content-review.json": {
+      "decision": "approve",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T05:44:48.828591+00:00",
+      "unit": "branch-paths-001",
+      "content_digest": "fd9dae1ef98ca0e195056550f4f019546696d1b0601864ee185deed79bebfb88",
+      "source_snapshot_manifest_sha256": "70302b5cd7b75d5785151d62345454d012e74be7943456f6b527d508f95e95fe",
+      "author_evidence_sha256": "b7c0e9768a452c90b5d477f00dbc00474098ab49333363e5bab86442f8ba67dd",
+      "fixture_results_sha256": "d713b47c817f6fd27c6699aaf5bb233547a900814cfb7e381d1589f3493b078a",
+      "canonical_sha256": "fdf84df98108858c8e9ca942fbfa3961f4f74e5ae9cd1567659642663105416f",
+      "current_notes_sha256": "917589493fc40eb67ff3d5e9350b0d3c38028d8497403e3e236ad72cd869d675",
+      "control_sha256": {
+        "recursion-correct-alternate.go.txt": "6a52fd0453fcad78e5cb0232f38d5d68e1eaf7034715f41671549701f18221e1",
+        "recursion-iterative-control.go.txt": "aaa8cbc008e4e175b2f82f4dc6f8aeb3855dda79f8f34aa65d678a92effc4fbf"
+      },
+      "findings": [],
+      "source_check": "Read actual TASK/starter/reference/public/grader, all11 mutant diffs, hints/notes/provenance/lifecycle and both controls.23 of24 snapshot files unchanged; only review/notes.md acquired the declared factual author-evidence summary, inspected separately. All executable/source/assessment files match frozen execution snapshot.",
+      "actual_method": [
+        "Reference recursively visits children with an accumulated prefix; nil returns and no-nonnil-child leaf emission terminate. Non-nil child subtree height strictly decreases; each leaf emits a copy, so recursive branch work directly determines every ordered result. No decorative unused recursion.",
+        "Input nodes/child pointers are never written. A fresh complete-path copy at each leaf isolates shared prefix work, sibling results and subsequent calls. Child slice order is preserved, nil children ignored, zero/signed/duplicate labels retained.",
+        "Bottom-up recursive alternate gathers child subpaths and prepends parent into fresh storage; public/full pass and method accepted. Explicit stack control gives correct behavior/public/full but lacks learner-authored recursion, so method rejected. No source-shape/AST mechanism."
+      ],
+      "public_evidence": "Canonical passes11/11, reference/public/full, deterministic and vet gates; race appropriately not applicable to synchronous bounded task. Independently verified all16 report hashes and expected outcomes:11 ordinary public wrong-reference diagnoses, public reference and4 alternate/method controls. No compiler/panic/race/timeout evidence. Script uses task-check disposable repositories from a preserved snapshot and records all16 removed.",
+      "public_contract_mapping": "Shape/count cases cover nil/minimal/only-nil/mixed/unequal branches and exact ordered full paths; preservation snapshots check all existing node labels/child pointers; storage test mutates returned paths and checks siblings, other calls and original nodes. All wrong specimens terminate on bounded trees. Grader depth0–3 binary trees stay within15 nodes and labels, with separate depth6 chain. Nil/empty top-level no-path results accepted by length.",
+      "distinctness_and_credit": "One functions.recursion independent application beyond flat recursive-total scalar summation: branch history and complete collection of distinct root-to-leaf results. No extra slice/pointer/struct/traversal or automatic method/mastery credit.",
+      "provenance": "Original ADR0008/task-init real2026-10-23 creation and project identity, empty external sources, exactcontentdigest; actual release binding deferred. Active prerequisites match corrected contract.",
+      "remaining_gates": "Official task-promote only after this actual acceptance; place after pointer/struct and recursion firsts. Fresh I9 stable collection/current consumers, all mandatory repository gates, final integration/exactHEAD review and green validate before dependent merge remain.",
+      "reviewer_execution": "Read-only code/evidence/hash checks; no authored code/tests executed."
+    },
+    "stream-pipe-content-review.json": {
+      "decision": "approve",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T05:58:52.068850+00:00",
+      "scope": "Actual content/method/public feedback acceptance for two I9 automatic drafts",
+      "findings": [],
+      "units": {
+        "stream-job-outcomes-001": {
+          "decision": "approve",
+          "content_digest": "824728f6bf5320b2be3631c222f1df09d7369a2e73bf64c6a8e85a42e9a94512",
+          "source_files": 30,
+          "canonical": {
+            "report": "stream-canonical-v2.yaml",
+            "sha256": "68fb26c3ce0251536a2353d0152f0a82d011849fa9a67edf5bb942589aac4589",
+            "passed": true
+          },
+          "accepted_fixtures": 24,
+          "public_ordinary_mutants": 17,
+          "files_sha256": {
+            "ATTRIBUTION.md": "18b8c494c7f6896ec5c46f37d33a3c51f02523cdd879ea035717d4553e1780a5",
+            "TASK.md": "be9245e6a3a2d7f6de146d9c6e08ff230d8a6d5276077a6cb94b5255d0f3b8ee",
+            "go.mod": "40ec2a47a9ec25091625b25d7b9cccca28c2e2315c5a8c572c46d907eb723d16",
+            "hints/HINTS.md": "88f4528b8908d45c650ee45d41e39da959727fa2ce4fb48f37c2cc9fdf12dd96",
+            "lifecycle.yaml": "fe122810be38a51cb856c37096cec4b2439f23197a83de34bb04cac70744ab20",
+            "provenance.yaml": "6fb47c14c5624c75e246216d6cd81f6a30a89d4ad2f1b893342eaf9436c39e80",
+            "review/notes.md": "5d197eda2903acfcc419efee20dd2da2b80d51facd28d8c196a7a26e59f6a8ed",
+            "review/review.yaml": "399a1d94301a65140e0f20a9e888434aec86c0f30968569a9d72e7785535c016",
+            "solution/mutants/collect-before-publish/subject.go": "bb16b30a57dbbef640e043578088303b580cf296517ede439e5541222ff6e4ad",
+            "solution/mutants/drop-error/subject.go": "2a9f9d347bd2add06f0c651fe19dd80dc40f874edd3a2e5714ea4e9fcf3915d1",
+            "solution/mutants/drop-panic-flag/subject.go": "9a2ec74a7dea3bc9e3b7b84ee8282d4aec01d77db1cc407faed0df4319750b45",
+            "solution/mutants/drop-result/subject.go": "274ba4365cb0fe1ce5426fc4885382c8de8ba6360ed22397511437f1e9d9ae88",
+            "solution/mutants/drop-value-with-error/subject.go": "b71a2542712e5723296dc6f03c4d75932cc59dfd4b4869569aad90c9d654ae43",
+            "solution/mutants/duplicate-index/subject.go": "8f594d7bf6954972a301900a0194819934dc17b7c3638c5ba5159809f16425bd",
+            "solution/mutants/inline-until-complete/subject.go": "314a337903eb5cb37d048f00ed5f8bdef534094cb0a39238c6ff99a94c53d292",
+            "solution/mutants/leave-output-open/subject.go": "bc077047b23f200def48807c0a0ef0e4c2f1663b812ba9c196ac5b3003e8b7a2",
+            "solution/mutants/nil-output/subject.go": "571c275bdeddc4e4172e5e9b79b3016b68460a4f5a08eeb09d2e493f1d09a5a3",
+            "solution/mutants/panic-as-normal-error/subject.go": "5b3939076f613971624e0f2d30a0a7f1626bc65f55ef9c7279d6ac5251796673",
+            "solution/mutants/premature-empty-stream/subject.go": "5521b62cf14c6eabb6d0c1e7fbeb2ad104deb81b1bfcd954613e5f6f8266fed0",
+            "solution/mutants/recover-whole-worker/subject.go": "83bb6155216de6dd86bbb8c83302bf5b0e5b28fcc245a5510844b60fb593b12f",
+            "solution/mutants/repeat-callback/subject.go": "015f478999e90b1310d57645f139fe00612e0813d12b4899fd9ebc564741fe39",
+            "solution/mutants/replace-panic-value/subject.go": "1fa34b51792863bc2ebaf72e81c713a3e100d93f222a0a4c6fd4acf9790f8b2f",
+            "solution/mutants/serial-workers/subject.go": "ea96db99b37752d300d1d9806eff343962a856c683890678736e75580a05ad8e",
+            "solution/mutants/stale-job-state/subject.go": "8ceda3eec97541991840e4594f5f600d2ad1a21516f6b1af8bd16658806aea56",
+            "solution/mutants/unbounded-workers/subject.go": "d975b164a70c96c84da17bfc09bf911e73b85972052231f7dbc61f7b7c449fc3",
+            "solution/reference/subject.go": "e513ef9d23104259a270927b56a7fec408ccdbdc3efde0c5ef00f7b6dfeeb3e2",
+            "starter/subject.go": "571c275bdeddc4e4172e5e9b79b3016b68460a4f5a08eeb09d2e493f1d09a5a3",
+            "task.yaml": "4187398c70d908045aaaec92e7c4c683ceaed14c9375bf526ae8a44d5b9aab3e",
+            "tests/grader/grader_test.go": "bf93ce4b65dbc9b021e94adb4f183982af18b9cd36d958e4ef9901ba1566feea",
+            "tests/public/public_test.go": "3ddb581834c770d678e3a8448682dbb26db681d950844a797bbd3fcdec831b55"
+          }
+        },
+        "limited-pipe-relay-001": {
+          "decision": "approve",
+          "content_digest": "c1568c66bb712437fa2b113c22de43e925b290a7149a76c4159dac2294836f29",
+          "source_files": 28,
+          "canonical": {
+            "report": "pipe-canonical.yaml",
+            "sha256": "bb4c79646cfed363c78678cebf759f785a571ae7e4ac51bf77a21c11df9b50e4",
+            "passed": true
+          },
+          "accepted_fixtures": 20,
+          "public_ordinary_mutants": 15,
+          "files_sha256": {
+            "ATTRIBUTION.md": "18b8c494c7f6896ec5c46f37d33a3c51f02523cdd879ea035717d4553e1780a5",
+            "TASK.md": "fd79c7bd3474785d32f0b4e527b65cee7f906e6c75e40251c2097c70859366b2",
+            "go.mod": "82c7b421a30f83663b2269c35d8815a78be347e6c1fc8dc916abf13def8e927c",
+            "hints/HINTS.md": "d56d6f2e7a1514aa4ac5429f2b175c96acadf113bca8cd3be9d5581eab86b0a1",
+            "lifecycle.yaml": "fe122810be38a51cb856c37096cec4b2439f23197a83de34bb04cac70744ab20",
+            "provenance.yaml": "a9a7f93da29b0c16d5a5fb58b33bfd48bd8d5a4dac2b5ea2af3bb14213168d8f",
+            "review/notes.md": "46ef45e0f55d83f914ef7213f1f1fde9221b538cc204cb2bd175dabd4983decb",
+            "review/review.yaml": "23248214f10573361b52c15c3899e6e168e2e12bb554870d88267955e0e07b4d",
+            "solution/mutants/accept-short-write/subject.go": "6d7053ef73fe2b85261fb32959443001f848da3bdec269304b9b0f5695bec1d1",
+            "solution/mutants/close-dst/subject.go": "936756d2f988ba237023f90af46f4dfe7be986d58c687dd8e9ed57c828ee8197",
+            "solution/mutants/conflate-errors/subject.go": "d740e6ba8e38a1855b1350cc1e6a7d4e3cda999f8a7bbafcbaa64da0e82657b2",
+            "solution/mutants/copy-exact-count/subject.go": "8aadbf1c7b4dc84135ef71d94f820043c55607e83db6c3b1ec63df4ea2337e12",
+            "solution/mutants/drop-producer-error/subject.go": "853d8c9bea3c9938ea3eff5b425e98e53d53ceff1f39e472e5322e7bec934de7",
+            "solution/mutants/drop-reader-close-error/subject.go": "c7c6dafd80ee845f14f90df040dc2141a7e4c53762a03116846a61974e012cb7",
+            "solution/mutants/drop-writer-close-error/subject.go": "7bcdd743050e4db234d3254417e556110c61382fbb63e80a216ddfa5e233915e",
+            "solution/mutants/limit-after-copy/subject.go": "a8190067d658be8f06993c601ca4ad915095f5cf417fc48bb0ec793ceea9e988",
+            "solution/mutants/missing-reader-close/subject.go": "f35a9d099eb152a2e62722a3171aa56bfa95b7d1ecc57575616042bde962baf1",
+            "solution/mutants/missing-writer-close/subject.go": "bcead5176443d3c168f2a5bc6bd050e69bcb74cb98ecc069eecd982bf3b29dc4",
+            "solution/mutants/repeat-producer/subject.go": "4b814581a85476de68236cf0c1e59f278a4f8b295cb1fdd07c35a5804ac0f79a",
+            "solution/mutants/return-before-join/subject.go": "b96639d9f8ead273aee8e602b448ab5de444e53324c5359b800e3e1a930d29dd",
+            "solution/mutants/swallow-copy-error/subject.go": "a1532e4213490357d58c410406897f416b9dbce0d9f18cbbd0c43a56aa1b868d",
+            "solution/mutants/unlimited-copy/subject.go": "9094574728c865e6f8dfa57af9da41f102396aa32bbb11f1f02e502fc52b8e8a",
+            "solution/mutants/zero-means-unlimited/subject.go": "0facfc7b02bb155bec2e2cd76e1507362c9194c17cdac948d67cdabe8e3e2b8c",
+            "solution/reference/subject.go": "632981fbdab857ad9e6c6d4958854ce17af43777e32f601e818a654026836671",
+            "starter/subject.go": "73b4f7030f91734d833a17e7409841f66f97150567eb81a756c2969b6b0df13e",
+            "task.yaml": "a68e2da71431f345cef782a53a499254040b4f4164972b59f3fe995581e42514",
+            "tests/grader/grader_test.go": "593651ef20244e0f04e3d1760f5e913b95558583beead4f29fa54819ffe20df8",
+            "tests/public/public_test.go": "174fe4a8ed37a20570675498d58e242d8028684e34a430f4b558d7005267947d"
+          }
+        }
+      },
+      "author_evidence_sha256": "3d39bd41a232a0c2b4779b3e25d66b873422a5485ece33891288232b591f1846",
+      "evidence_checks": [
+        "All58 current task files and5 controls match frozen receipt hashes. Both canonical reports match exact hashes and pass17/17 stream,15/15 pipe, reference/public/full, vet, race and determinism.",
+        "All44 accepted fixture report hashes, expected statuses and32 named ordinary public assertion diagnostics independently verified. All fixture roots absent; no panic/fatal/DATA RACE/timeout/compiler signal is used as accepted defect evidence.",
+        "Initial stream snapshot differs only at nil-output mutant and provenance; pipe snapshot unchanged. Unaffected actual fixture evidence remains applicable. Repaired nil-output is a finite nil-return body without unreachable-code vet error; current canonical and one affected public diagnostic pass expected outcomes. Original invalid mixed assertion/vet receipt and static prechecks retain zero credit.",
+        "Fixture recipe empties grader for public probes; wrong reference is exactly selected mutant; actual assertions come from fixed public tests. Correct/control fixtures run public and full checks through task-check disposable isolation."
+      ],
+      "stream_method": "Reference owns a prefilled shared index queue, exactly min(workers,len(jobs)) worker goroutines, direct synchronous per-job runJob with deferred recover and next iteration after panic. Each completed indexed outcome is published incrementally before unrelated held work completes; joined close follows all workers. Single-worker alternating panic/normal tests prove continuation and state reset, preserving error and raw panic identity. Supplied Result/API and active counts alone receive no method credit.",
+      "stream_finite_cleanup": "All callback gates release before collection; max8 jobs/finite32-or-less result observations fit40 receive/Wait attempts. Wrong whole-worker recovery is safe with buffered finite undispatched indices; premature visible close uses separate bounded sink, never send-on-closed. Empty/nil and open-output failures are ordinary diagnostics. No mutex/Once-held waits, time thresholds or strict select tie claims.",
+      "stream_controls": "Buffered result output and completion-channel join both pass public/full and satisfy the method. Child callback goroutine control passes behavior but is method-rejected: recovery is not in the worker that directly invokes each job. No exact WaitGroup/helper-name/output-capacity requirement.",
+      "pipe_method": "Actual io.Pipe with one callback worker, io.Copy through bounded reader in caller, writer.CloseWithError(callbackErr), reader.CloseWithError(copyErr) on completion and joined exact callback result. It does not stage full input or conflate independent producer/copy errors. Tests cover early EOF, exact cap without terminal probe, zero cap, interrupted producer, destination partial failure, short nil writes, exact error identity, no dst close and once-only callback.",
+      "pipe_finite_cleanup": "Independent callback release precedes finish/join. Known omitted-close failures first emit useful progress assertion, then close only actual captured endpoint for rescue. The limited32-byte producer and finite repeat specimen fit8 endpoint/observation buffers. Correct hidden-Closer wrapper passes without rescue; inaccessible broken omission is explicitly method-only, never timeout credit.",
+      "pipe_controls": "io.LimitedReader and a writer wrapper hiding io.Closer both pass full/public and satisfy permitted composition. Tests impose no read chunk size and allow accepted reader bytes to exceed dst written count while staying within limit.",
+      "credit_boundary": "Exactly four independent applications: channels.fan-out-in, goroutines.panic-boundaries, io.pipe-lifecycle, io.copy-limit-composition. Distinct from whole-batch pool and single-job recovery firsts; Pipe combines independently bounded consumer termination with producer lifetime unlike earlier callback Exchange and caller-owned reader copy. No additional WG/ownership/error/launch/component credit or learner mastery.",
+      "provenance": "Original ADR0008 project identity/creation/digest and sources[] retained; preparation at immutable5781a38 is comparison only. No external donor code, checker/profile/AST/runner/platform changes.",
+      "remaining_gates": "Root may record independent approval and use official task-promote; integration/prerequisite placement/preservation, one stable final collection/current consumers and all mandatory local/exact-HEAD CI/final review gates remain.",
+      "reviewer_execution": "Read-only source/mutant/control/evidence/hash inspection; no authored execution and no task edits."
+    },
+    "once-content-review.json": {
+      "decision": "approve",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T06:01:07.029389+00:00",
+      "scope": "Actual I9 per-key Once content/method/public feedback acceptance",
+      "unit": "keyed-once-registry-001",
+      "content_digest": "a25b0fc5c6e997bd52898ced41104af36aa0b3b79d423faec85b3e6c17b12fff",
+      "author_evidence_sha256": "e76295c810fb58c33f08dad40dce11e70101c2ff5ab711f5437c3f5a1a3fe5c6",
+      "findings": [],
+      "verified": {
+        "task_files": 22,
+        "controls": 3,
+        "report_hashes": 17,
+        "canonical_mutants": 9,
+        "public_ordinary_diagnostics": 9,
+        "fixtures": 16,
+        "cleanup": 16,
+        "runtime_failure_credit": 0
+      },
+      "checks": [
+        "All22 current task file hashes,3 controls and17 canonical/fixture report hashes independently match frozen receipt. Every16 fixture root is removed; all expected statuses and nine useful ordinary public diagnostic fragments verified.",
+        "Canonical/public/reference/full/race/vet/determinism pass with9/9 required mutants. Public diagnostic copies blank grader, use exactly selected wrong reference and preserve fixed public assertions. No panic/fatal/DATA RACE/compile/timeout used as accepted defect evidence.",
+        "Initial exported-struct private-field mismatch is retained as static-only rejected evidence. Common public declaration type Registry registryState keeps existing checker stable while the starter private registryState is empty. No state representation, mutex, map, Once or loader storage is supplied.",
+        "Actual reference selects/installs one stable entry pointer under registry-owned mutex, releases it before per-entry Once.Do/load, writes complete value/error inside Once, and reads only after completion. All map accesses share the same lock; entries remain stable and failures are retained without retry.",
+        "Finite tests cover lazy construction, first held initializer not returning early, complete nonzero-error/zero-success pairs, per-key counts/late cached reads and separate registries. The compound identity invariant is assessed in source, not inferred solely from counters.",
+        "Constructor and first Get are observed before contenders exist. After additional callers acknowledge before Get, every callback gate including fallback is released before Wait; no acknowledgement is claimed to prove actual Once contention. Grader callbacks return immediately. Fixture counters/logs synchronized; no held-mutex wait, sleep, timeout or inaccessible deadlock detection."
+      ],
+      "valid_and_method_controls": [
+        "Private locked lookup helper with lazy map and result-pair layout passes public/full and satisfies invariant.",
+        "Per-entry mutex/ready cache passes public/full behavior but lacks required sync.Once and is method-rejected.",
+        "Registry lock held across Once/callback passes these finite behavior probes but violates required lock scope and is method-rejected. Tests intentionally do not claim cross-key held progress or universal contention proof."
+      ],
+      "credit_boundary": "Exactly two independent applications: sync.once-initialization and sync.mutex-critical-sections. Per-key permanent entry identity and compound lookup/install with publication are substantively different from single captured Memoize first and supplied Counter increment first. No extra mutex-ownership/state-ownership/application/component or learner mastery credit.",
+      "provenance": "Original ADR0008 identity/creation/digest/sources[] retained; unchanged firsts only preparation. No new checker, profile, source rewrite or platform change.",
+      "remaining_gates": "Root may record acceptance and official task-promote. Integration/prerequisite placement and preservation, one final stable collection/current consumers, mandatory local gates, final exactHEAD review and green validate before merge remain.",
+      "reviewer_execution": "Read-only source/mutant/control/report/hash review; no authored execution or task edits.",
+      "source_files_sha256": {
+        "tasks/drafts/keyed-once-registry-001/ATTRIBUTION.md": "5f82cc5a46a61060c77dbf70722608069b1eb807a1a41af28fc3536d9af09a4b",
+        "tasks/drafts/keyed-once-registry-001/TASK.md": "a299358491cd237b85be9295e96e4957e0f52b5e7c35e933dfacc33853e39304",
+        "tasks/drafts/keyed-once-registry-001/go.mod": "ad23646db2b82feb10eeae540b738b62326b4d78c4e6f713fd90714a715c2747",
+        "tasks/drafts/keyed-once-registry-001/hints/HINTS.md": "d5ae33dc1649c154014e64ab671e5640c07a55e723eda672494d0b4b3e7f8ed4",
+        "tasks/drafts/keyed-once-registry-001/lifecycle.yaml": "eac503d091963a49e891ef67a0bc2cdfc3234c84e79d73f9b312c3acc91bf9c5",
+        "tasks/drafts/keyed-once-registry-001/provenance.yaml": "6bfd2ad2b16ebc09ec405b770cf4ecc625e54f6fc77acfb10ea48461d2bd3839",
+        "tasks/drafts/keyed-once-registry-001/review/notes.md": "0ae8438cfe88916c41090c26b1abbe6751680a831069a601fc2d1ca7330666af",
+        "tasks/drafts/keyed-once-registry-001/review/review.yaml": "52fd1fb4e3cbef56c8f272a025e664a778484efcbbeb1f66007339718e38575d",
+        "tasks/drafts/keyed-once-registry-001/solution/mutants/drop-error/subject.go": "03c81fd0cf68d85a29c71723ba0cecfb834959cd4c1df9d1a055201043a54930",
+        "tasks/drafts/keyed-once-registry-001/solution/mutants/drop-value/subject.go": "167294b5d06aa6fbb4969a1c5edb020ef5a356fe122b9214e3a4a9d131842c8d",
+        "tasks/drafts/keyed-once-registry-001/solution/mutants/eager-load/subject.go": "496f31a43d528587667d6868d50dd653658d0cfa92cc3c4e899c99843665cd6d",
+        "tasks/drafts/keyed-once-registry-001/solution/mutants/new-entry-per-call/subject.go": "db709e0bfa390cc5726169f36604983b84bf0d9a84ac1a69440b711e5f26f838",
+        "tasks/drafts/keyed-once-registry-001/solution/mutants/one-entry-all-keys/subject.go": "714ed47c992de31cfb02039484a9fa048d4df543df7ee7b78264015e68065b03",
+        "tasks/drafts/keyed-once-registry-001/solution/mutants/retry-failure/subject.go": "3593a766022de9d6bbe538944b22e42d9f2497c88a80dbc9120254e6fb66e880",
+        "tasks/drafts/keyed-once-registry-001/solution/mutants/return-before-load/subject.go": "aca673f0b73363c55dba8a15e07581f73d8c74b488bf1c8082d7464f752e276e",
+        "tasks/drafts/keyed-once-registry-001/solution/mutants/shared-registry-state/subject.go": "bdcc38b81bc8492414f56a83e4929d2a2bff72d2b601799a96a365d21971578d",
+        "tasks/drafts/keyed-once-registry-001/solution/mutants/wrong-key/subject.go": "0cffd1cf932e450cdeda5b64b3645c7aae0e0906487a990b1af07c74f0897dc7",
+        "tasks/drafts/keyed-once-registry-001/solution/reference/subject.go": "15d12645d650a055a5191c509e3e495e180e441eb04bcc1bbf146e9c48d6e45c",
+        "tasks/drafts/keyed-once-registry-001/starter/subject.go": "1bc18d5982368f9bda2c6905141f569de18cf44b4366a83eea8a7d2fcafbfbc8",
+        "tasks/drafts/keyed-once-registry-001/task.yaml": "b501a3db068afc9b1cac9645311fa376a51375cb1545db8cd2c576b3bd01f4a5",
+        "tasks/drafts/keyed-once-registry-001/tests/grader/grader_test.go": "0376fb18f16419c1e54a0423a1f18776f93b3174724abc5edde2ff00558bc2cc",
+        "tasks/drafts/keyed-once-registry-001/tests/public/public_test.go": "997335dfcaa3d4b1c52c1262b7d9702c420c9ff004add282f7f9fd453b1010f1"
+      },
+      "control_files_sha256": {
+        ".tmp/v1-applications-09/once-correct-alternative.go": "8687dc53c42420420bd7219f89772002abe52dac1345db85722c795a53d30daf",
+        ".tmp/v1-applications-09/once-method-global-lock.go": "8d7a69f0e5ddefac8d7c426235996ad31693e562fe935877186c4da304592bb9",
+        ".tmp/v1-applications-09/once-method-no-once.go": "6eaaf3f97bacb17faab84b207fc4db504dadcf126cdab4c15799da2894f5730a"
+      }
+    },
+    "record-actual-review.json": {
+      "decision": "approve",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T05:55:18.105008+00:00",
+      "unit": "shared-record-boundaries-001",
+      "scope": "Actual finite native source/method/evidence acceptance",
+      "content_digest": "33094a307d5b78fc46dccb02932c503dafdbbfba714bb008c6fbc0a402ded9f8",
+      "script_sha256": "08c9de86d49c1761ad18b86c91dd73b1b7cf1000e7393fb6067937335aaa82f1",
+      "manifest_sha256": "6eebd54f01fd28d40b962e17868d4beab2fe311e3db7b386158d7ca9e5e56f16",
+      "preexecution_sha256": "30bad68e554d47fd249172122686aae097de7f95132c63e4654701a8a5bdd61b",
+      "raw_execution_sha256": "1869cd84fe81387f3c0e425544ba728982be7d767a1628e7a36ded833adac1fc",
+      "normalized_execution_sha256": "4765a889f5a9cd25ebfb2fc03785d15feb4d5a94ff4194fc97b2a93f99f864b0",
+      "findings": [],
+      "verified": {
+        "assets": 28,
+        "copies": 9,
+        "commands": 36,
+        "snapshots": 40,
+        "cleanup": 9,
+        "expected_nonzero": 6,
+        "ordinary_assertion_failures": 2,
+        "native_build_compiler_failures": 4,
+        "timeouts": 0,
+        "runtime_failures": 0,
+        "max_command_seconds": 3.346634
+      },
+      "checks": [
+        "Approval predates every execution; exact approved script, manifest,28assets and provenance digest unchanged. All36 argv/expected statuses match literal nine-specimen manifest.",
+        "Independently replayed every source-copy event into every recorded snapshot; complete path/text/SHA states match. Reconstructed normalized receipt byte-for-byte from raw. Every canonical private root is removed. Clean private offline environment and60s bound retained.",
+        "Initial five-file graph produces actual store->codec->store import-cycle diagnostic before test templates enter compilation. Alias-only repair still cycles; exact dependency/composition repair then passes. Native go list confirms record-only shared production dependency; actual command prints alpha:1.",
+        "Duplicated named Entry fails fixed compatibility assignments; preserving store.Entry alias repairs compiler failure. Outside private normalize selector is rejected before test execution; correct same-package declaration repairs it.",
+        "Only ^TestLearner tests run for the two ordinary defects. Real private assertions reject untrimmed whitespace/Unicode and independent external consumer assertion rejects Count2; unchanged learner tests pass after production repair. Supplied TestPublic bodies do not supply this causal evidence.",
+        "Both-internal and exported-private controls pass behavior and are method-rejected for absent external consumer boundary and changed private API respectively. Different case/assertion organization passes with the required actual package choices."
+      ],
+      "actual_method": "Learner relocates shared Entry ownership into record while retaining legacy type identity via alias, removes library composition/cycle and authors command-level composition. Separately authors store and store_test package clauses and meaningful private/consumer assertions. These are distinct independent applications from earlier interface-cycle inversion and supplied external-test scaffold; package/file names and original normalize/Load algorithms earn no authorship credit.",
+      "credit_boundary": "Exactly two manual independent applications: packages.import-cycles and packages.test-package-boundaries. No automatic coverage, additional imports/internal/module/build/interface/component, learner completion or mastery credit.",
+      "remaining_gates": "Batch route/prerequisite integration, all required local/current-collection consumers, final exact-HEAD independent review and green validate before dependent merge remain mandatory.",
+      "reviewer_execution": "No authored code/tests run; data-only read/hash/replay and requested ignored receipt written."
+    },
+    "generics-actual-review.json": {
+      "decision": "approve",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T05:59:45.720376+00:00",
+      "unit": "named-slice-selection-001",
+      "scope": "Actual finite native method and evidence acceptance",
+      "content_digest": "05066c3c89e0aece9f611dfbed2adb68162ffd3d8aade62406d67970cfef1dd4",
+      "script_sha256": "49685622c8424b04e1f483fb6d5b8782d38f062d88995bd0bbf6276cd898bbd0",
+      "manifest_sha256": "2c14b90664f7e46d4949f26e85d8b34609622ef9c9e08c0b3fdfcd187dd34e29",
+      "preexecution_sha256": "c59c4ae3a2f3b17480efe599bfd192b8da29404cb07070ac273d37ca843e1abf",
+      "execution_sha256": "97d1d6beae64a6cb57a601c302fa7612f5ded0318d3271ed7a52ce9003536d1d",
+      "analysis_sha256": "32bb8afc953e0e7b7a8010751303d4f6159df7c4a55bba0ef39912c18bab39bd",
+      "findings": [],
+      "verified": {
+        "assets": 20,
+        "copies": 14,
+        "commands": 28,
+        "before_after_snapshots": 28,
+        "cleanup": 14,
+        "expected_nonzero": 11,
+        "compiler_rejections": 9,
+        "ordinary_semantic_assertions": 2,
+        "timeouts": 0,
+        "max_command_seconds": 2.831857
+      },
+      "checks": [
+        "Exact20assets/script/manifest unchanged and approval predates execution; copied approval equals original. Published/raw receipts identical. All28 argv correspond exactly to literal approved manifest.",
+        "Every before/after snapshot independently rebuilt from exact asset bindings and matches path/text/hash; all canonical private roots absent after cleanup. Explicit private offline environment retained, every command within60s.",
+        "Reference and equivalent embedded constraints pass all four public tests; named result methods and basic method-interface assignment genuinely compile and execute.",
+        "Missing container approximation rejects Numbers/Words; missing element approximation rejects Number/Word. Erased result fails real Kind selector and interface assignment; unconstrained E fails generic < at api.go.",
+        "Five exact reference probes reject float64, bool, array, mismatched S/E and non-basic Key value for intended native diagnostics. Probes stay in uncalled functions and -run=^$ selects no tests.",
+        "Alias-input and inclusive-cutoff compile then fail actual ordinary preservation/storage and strict-selection assertions. No compiler/panic/timeout is counted for these semantic defects.",
+        "Overbroad float compiles successfully with no tests selected, exactly as predicted, and is method/type-contract rejected. Actual analysis correctly separates successful command from admissible type set."
+      ],
+      "actual_method": "Learner owns exact Key underlying-int-or-string union, related S~[]E with sameE, resultS preserving named methods, and generic comparisons/construction justified by constraints. Reference allocates fresh S and selects strictly/ordered with nil handling. Embedded decomposition and indexed selected-prefix builder are valid alternatives. Source inspection establishes universal intended type-set boundary; finite clients merely witness selected positive/negative cases. Supplied clients/probes/scaffold are not authored learner actions.",
+      "credit_boundary": "Exactly two manual independent applications: generics.constraints-type-sets and generics.approximation-unions. Distinct container/element relationship and result methods from earlier supplied scalar Double. No automatic coverage, new type-inference/slice/testing/toolchain/component or learner mastery credit.",
+      "remaining_gates": "Integration/prerequisite placement and actual batch evidence, all mandatory local/current collection consumers, final exactHEAD independent review and exactHEAD green validate before merge remain required.",
+      "reviewer_execution": "Read-only source/hash/receipt checks; no authored code or recipe execution."
+    }
+  },
+  "contract_reviews": {
+    "root-contract-review.json": {
+      "decision": "approve-contracts-for-authoring",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T05:30:54.541708+00:00",
+      "proposal_sha256": "d4ca31f3d5d42f3898f20c345de215af78dccc71429112e85595953bc76a80c7",
+      "base": "5781a387e119d1a29cbe13bee7670d0fc076f7cc",
+      "scope": "Two bounded root I9 contracts only; no source, execution or readiness acceptance",
+      "findings": [],
+      "closed_findings": [
+        {
+          "id": "I9-RECURSION-PREREQ-01",
+          "detail": "Deprecated nonassignable slices.append-aliasing replaced with active append-growth and backing-array-aliasing. len-cap prerequisite retained."
+        }
+      ],
+      "units": [
+        {
+          "unit": "branch-paths-001",
+          "decision": "approve-contract-for-authoring",
+          "candidate_slots": [
+            "independent-application:functions.recursion"
+          ],
+          "distinctness": "Read actual recursive-total TASK/starter/reference: divide a flat slice and combine scalar totals. New task traverses unequal tree branches, contributes one complete root-to-leaf path per leaf, combines collections in child order and isolates branch history. This is substantive independent recursive decomposition, not renamed scalar summation.",
+          "contract_and_method": "Bounded15 nodes/depth6, no cycles/shared nodes, nil children ignored, explicit nil-result equivalence, deterministic order/input preservation/independent returned paths. Recursion must perform actual decomposition and contribute every required path. Prefix recursion with leaf-result accumulation and bottom-up returned subpaths are both valid; no exact recursive source shape or AST rule. Explicit-stack behavior-equivalent control is method-rejected.",
+          "public_and_error_boundary": "Public matrix covers nil/minimal/only-nil/unequal branches/duplicates/signed paths, preservation and cross-path/cross-call independence. Finite branch omissions/duplications/order/current-label/history/alias/preservation mutants must produce ordinary named assertions. Do not introduce nonprogressing recursion, panic or runtime limit as defect evidence. Actual public-only wrong-reference and valid/method controls remain necessary.",
+          "prerequisites_and_placement": "Primary recursion first is pedagogical preparation; active prerequisites include if/range/signatures, address-deref-nil, structs.literals-zero, len-cap, append-growth, backing-array-aliasing. Place after pointer/struct introductions as well as recursive-total (current first positions49/91–94), preserving old order. Do not place immediately after early recursion while pointer/struct preparation is still missing.",
+          "source_decision": "Original ADR0008 task-init creation/content digest, external sources empty; read earlier local task only for scope comparison, no new external donor."
+        },
+        {
+          "unit": "shared-record-boundaries-001",
+          "decision": "approve-contract-for-authoring",
+          "candidate_slots": [
+            "independent-application:packages.import-cycles",
+            "independent-application:packages.test-package-boundaries"
+          ],
+          "distinctness": "Read package-boundaries actual first TASK/PROCEDURE and external-window TASK/starter: first fixes concrete cycle by consumer-owned interface, and supplied subject_test declaration restricts public tests. New learner relocates neutral data and command composition, retains compatibility alias, then authors both unsupplied test declarations and meaningful assertions for private versus external consumer observations. Distinct from both firsts and from injected-config production/internal work.",
+          "graph_contract": "Specified record-only dependency and command composition are legitimate narrow exercise outcomes; they assess relocation without claiming all acyclic architectures must use this graph. Preserve exact supplied Load/Encode behavior and store.Entry alias compatibility; no code duplication/export-private workaround.",
+          "native_matrix_boundary": "Reproduce real initial cycle using go build ./cmd/preview before installing full test declarations, so empty learner test files cannot mask it with parser errors. Review actual graph listing and exact repaired command output. Alias-only retained cycle, distinct named Entry incompatibility and external private access require genuine corresponding native diagnostics and repaired controls. Compiler probes are compile-only.",
+          "learner_agency_and_controls": "Run fixed public checks separately from learner-only assertions. Broken normalize must fail authored same-package test, wrong Load result authored external consumer test; retain causal ordinary diagnostics. Both-tests-in-store and exported-private-helper controls may pass behavior and are explicitly method-rejected. Different case structure/assertions with correct package choices is valid. Supplied parsing/formatting/module/public checks/fixtures receive no authorship credit.",
+          "prerequisites_and_placement": "After package-boundaries first, external-window first and injected-config-project; imports/exports, testing basics, type aliases and earlier string/equality/slice preparation available. No extra module/internal/interface/component/build or naming application claimed.",
+          "execution_gate": "Approval permits inert exact source authoring only. Complete finite file/argv/copy count, private offline environment, <=60s per command, snapshot/diagnostic/repair/cleanup recipe must receive separate exact preexecution review before any authored native execution.",
+          "source_decision": "Original manual real creation/content digest, sources=[]; release binding deferred to actual commit."
+        }
+      ],
+      "batch_boundary": "Two of six planned I9 units. Existing conservative05:19–09:19UTC clock unchanged, no new deductions. FF to committed I8 before shared integration/full gates; I8 delivery before dependent I9 merge. No new profiles/runners/platform/schema/taxonomy mechanism. Actual source/method/evidence, final integration/HEAD review and mandatory gates still required."
+    },
+    "stream-pipe-contract-review.json": {
+      "decision": "approve-contracts-for-authoring",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T05:32:37.010710+00:00",
+      "proposal_sha256": "2ec07e13499513aa8b822ea0750c5ddc3a3de8bc1ec2e09b9ce7bfdbf9f5ef50",
+      "base": "5781a387e119d1a29cbe13bee7670d0fc076f7cc",
+      "findings": [],
+      "source_review": "Read actual first TASKs and relevant reference implementations. Verified all16 listed preparation path hashes against exact5781a38 and current bytes. Earlier tasks are unchanged comparison/preparation, not new donor material. New tasks original ADR0008 with empty external sources.",
+      "units": [
+        {
+          "unit": "stream-job-outcomes-001",
+          "decision": "approve-contract-for-authoring",
+          "candidate_slots": [
+            "independent-application:channels.fan-out-in",
+            "independent-application:goroutines.panic-boundaries"
+          ],
+          "distinctness": "RunPool first returns only completed collection and excludes callback panics. Launch first recovers one callback then terminates worker with formatted error. New actual learner code must merge completed results while another callback remains held and recover each job within a reused worker, resetting state and continuing subsequent jobs. Raw panic identity supplies additional concrete outcome; supplied Result/API alone earns no credit.",
+          "method": "Exactly min(workers,jobs) job-consuming workers and one shared queue; synchronous per-job deferred recovery within worker; real streamed merge and close only after all worker sends finish. Join-owner/helper goroutines are not extra callback workers. WaitGroup is not mandated: completion-channel join and buffered/unbuffered output controls remain valid. Child callback goroutines may pass behavior but fail declared execution boundary.",
+          "finite_matrix": "Held callbacks are released before draining/joining, queue is finite buffered/closed in the worker-exit wrong specimen, and every required panic specimen retains recovery. Whole-worker recovery yields missing later calls/results with ordinary assertions. Early-close control routes workers into a finite internal sink rather than sending on a closed output. Open-output control exits producers; finite drain diagnoses the open handle. Incremental observation has one callback still held, so no select priority/time assumptions. Actual fixture implementations/ordinary diagnostic receipts remain to be reviewed.",
+          "prerequisites": "Place after bounded-job-pool, recover-worker, pipeline/WG/select/channel/defer preparation and current I7/I8 transfers. References to primary/secondary firsts are placement requirements, not self-prerequisite metadata. Use only active actual prerequisite IDs.",
+          "credit_boundary": "Only fan-out-in and goroutines.panic-boundaries applications. No extra WaitGroup/result/error/ownership/launch/recover/component claim."
+        },
+        {
+          "unit": "limited-pipe-relay-001",
+          "decision": "approve-contract-for-authoring",
+          "candidate_slots": [
+            "independent-application:io.pipe-lifecycle",
+            "independent-application:io.copy-limit-composition"
+          ],
+          "distinctness": "Exchange first delegates consumer policy to callback; bounded-copy first operates on caller-owned streams without producer lifetime. New learner composes real pipe consumer/limit adapter and separately handles cap completion, source EOF/error and destination failure to release unfinished writes and join producer. Independent callback error and consumer copy error are preserved, including partial transfer and cap0.",
+          "method": "Actual io.Pipe producer worker plus caller-side io.Copy over bounded reader, reader closure for every consumer terminal outcome and join. io.LimitReader, io.LimitedReader or equivalent bounded adapter permitted; no full-input buffering. Never close dst. Wrapper hiding io.Closer is valid when owner retains endpoint and normal completion succeeds.",
+          "finite_matrix": "Known missing-writer-close short/empty case and missing-reader-close long-write case expose real captured endpoint only for cleanup after useful failure. Release callback gates and then, on failed progress, close captured endpoint to unblock own pending I/O, finally join. Correct hidden-Closer wrapper never needs rescue. Inaccessible hidden-closer omission is method-only, not a required timeout/crash specimen. No closing learner-owned output as test rescue.",
+          "error_boundaries": "Check dst accepted byte count and exact error, not internal read chunk size. Source may supply more bytes than dst accepts but never beyond cap. EOF before cap succeeds; short nil-error writes become ErrShortWrite. Reaching exact cap performs no extra read: copyErr=nil can coexist with nonnil joined producerErr. Destination-error closure must reach an unfinished producer; callback may return a distinct marker and both errors stay separate.",
+          "prerequisites": "Place after bounded-copy08.08 and pipe-exchange09.24, relevant reader/writer, launch/channel/defer/sentinel preparation. Primary/secondary first mentions are pedagogical placement, not metadata self-prerequisites.",
+          "credit_boundary": "Only pipe-lifecycle and copy-limit-composition applications. No cancellation/timeout/panic/interface/API/extra error or component credit."
+        }
+      ],
+      "remaining": "Inert source authoring may proceed. Actual source/public/grader/mutants/valid controls and ordinary public diagnostics require separate independent acceptance before promotion; official task-check disposable isolation and all eventual collection/consumer/local/HEAD/CI gates remain.",
+      "batch_boundary": "Two of six I9 units, four candidate application slots only, readiness0. Conservative05:19–09:19UTC clock unchanged. FF to committedI8 before shared integration/fullgates; I8 merge before dependentI9 merge. No tooling/profile/schema/platform expansion."
+    },
+    "once-generics-contract-review.json": {
+      "decision": "approve-contracts-for-authoring",
+      "reviewer": "sole-independent-reviewer",
+      "reviewed_at": "2026-10-23T05:42:44.786569+00:00",
+      "proposal_sha256": "1ced4e5c231a99e38e62f9607f02c9206eb5e2122fdef4a7beb2456f0b7d9a5b",
+      "base": "5781a387e119d1a29cbe13bee7670d0fc076f7cc",
+      "findings": [],
+      "closed_findings": [
+        {
+          "id": "I9-ONCE-PREREQ-01",
+          "detail": "Deprecated errors.creation-propagation removed; active errors.sentinels-creation retained for identity, no unnecessary propagation-context dependency."
+        },
+        {
+          "id": "I9-GENERIC-TASK-SIZE-01",
+          "detail": "Complete TASKs including actual headings now133 Once /142 generics words by current check.go countWords separators; semantic requirements retained."
+        }
+      ],
+      "units": [
+        {
+          "unit": "keyed-once-registry-001",
+          "decision": "approve-contract-for-authoring",
+          "candidate_slots": [
+            "independent-application:sync.once-initialization",
+            "independent-application:sync.mutex-critical-sections"
+          ],
+          "first_source_evidence": [
+            "tasks/ready/once-result-001/TASK.md",
+            "tasks/ready/once-result-001/solution/reference/subject.go",
+            "tasks/ready/mutex-counter-001/TASK.md",
+            "tasks/ready/mutex-counter-001/starter/subject.go"
+          ],
+          "distinctness": "Actual Once first captures one lazy result per Memoize; counter first supplies mutex/value/NewCounter/Value and asks one increment. New learner owns per-key permanent entry identity and synchronized compound lookup/install, with independent per-entry Once publication and error caching. Two different substantive decisions, not added metadata on existing single-Once behavior.",
+          "method": "Review registry-owned lock, complete map access discipline, atomic missing-entry publication, stable uncopied entry pointers and per-entry Once/result lifetime. Unlock before Do/callback. Loader errors remain cached; no eviction/reset/copy/teardown/reentry/panic scope. No fixed helper or constructor-versus-lazy map-allocation requirement.",
+          "fixture_boundary": "First held Get observed alone before contenders; eager constructor has independent rescue. After launching additional callers and collecting pre-call acknowledgements, close ALL loader gates independently of entry/Get result before any synctest.Wait. Then quiesce/collect and inspect finite counts/pairs. Acknowledgements do not prove entry into Once. This proves selected publication/count/result behavior, not B progress while A remains held or universal lock scheduling.",
+          "controls": "Explicit-ready cache without Once and global lock around callbacks may pass finite behavior and are method-rejected. Correct private lookup helper/pair struct/lazy map are valid. Race-safe early-result wrong specimen must be released/joined; split-install races/copied-used-Once deadlocks are not ordinary defect evidence. Public-only named ordinary assertions and actual source review remain required.",
+          "prerequisites_and_placement": "After mutex-counter and once-result firsts (current191/193), underlying active state/lock/defer/map/method/callback/error prerequisites. First primary/secondary mentions determine placement, not metadata self-prerequisites. Ownership remains prerequisite/method boundary, uncredited as an application.",
+          "credit_boundary": "Only Once initialization and mutex critical-section applications; no extra ownership/map/race/launch/error/component credit."
+        },
+        {
+          "unit": "named-slice-selection-001",
+          "decision": "approve-contract-for-inert-authoring",
+          "candidate_slots": [
+            "independent-application:generics.constraints-type-sets",
+            "independent-application:generics.approximation-unions"
+          ],
+          "first_source_evidence": [
+            "tasks/ready/named-numeric-constraint-001/TASK.md",
+            "tasks/ready/named-numeric-constraint-001/starter/subject.go",
+            "tasks/ready/named-numeric-constraint-001/solution/reference/subject.go"
+          ],
+          "distinctness": "Actual first supplies scalar Double and repairs approximate numeric union. New learner authors Key plus related S/E constraints, approximate named slice admission and static S result with methods, while operations require E comparison and S slicing. Runtime filtering/order/storage and basic-method-interface versus non-basic Key value distinction are real additional work; merely different scalar type terms would not suffice.",
+          "method": "Reference relation S~[]E and E Key with exact ~int|~string set is valid. Equivalent embedded/parameterized constraints and append/indexed implementations allowed. Static direct result.Kind plus basic-interface assignment witnesses preserved container; assignment to a named slice alone would be insufficient. Fresh storage and nil/order/duplicates are independently behavior-tested.",
+          "native_matrix": "Proposed14 fresh copies/28 commands: version plus actual test or compile-only no-test command for each. Reference/embedded alternative pass; exact container/elements, erased result and any comparison show native API/body failures. Alias storage and inclusive cutoff fail ordinary semantics. Five invalid clients separately show float/bool/array/mismatched S-E/non-basic constraint value rejection. Overbroad float must compile successfully as a method/type-contract rejection, not fabricated compiler failure.",
+          "execution_boundary": "Finite probes cannot enumerate every Go type; exact source/method review establishes full declared set/relationship. Invalid probes remain in uncalled functions and C executes no test/probe body. Exact source bytes, permitted edits,14-copy/28-command argv manifest, source/script hashes and diagnostic families need separate preexecution approval. No source checkout execution or custom runner/typechecker/AST/profile.",
+          "prerequisites_and_placement": "After named-numeric-constraint current161, existing inference, small contracts, method sets, defined-type/alias and slice/comparison/range preparation. No future I9 prerequisite.",
+          "credit_boundary": "Only two generic applications, manual evidence only. No inference/slice/testing/tooling/component or automatic credit; supplied clients/tests are assessment not learner-authored work."
+        }
+      ],
+      "source_boundary": "Original technical content, real creation/project identity/content digest/sources=[]; existing tasks and local installed Go sources serve comparison/API-fact checks only. Actual release commit binding deferred.",
+      "remaining": "Both contracts permit source authoring only; no readiness/execution acceptance. Sole actual source/public/native/method reviews, official lifecycle, integrated prerequisites/preservation, stable collection/consumers/local gates and exactHEAD CI/merge still mandatory.",
+      "clock_and_dependency": "Six-unit I9 allocation unchanged;05:19–09:19UTC no deductions. FF committedI8 before shared integration/fullgates; mergeI8 before I9. Same sole reviewer/controller."
+    }
+  },
+  "provenance_rule": "Original project identity/creation/digest and empty external sources; release manifest binds actual commit, never invented.",
+  "scope_boundary": "11applications, no extra skills/components/manualautomaticcoverage or mastery.",
+  "accepted_dependency": {
+    "batch": "I8",
+    "pr": 113,
+    "url": "https://github.com/EarthMoonTransit/go-learn/pull/113",
+    "final_head": "8a34aa90fbf07387c79b849587973917d22c4d62",
+    "validate_run": 39908133023,
+    "validate_conclusion": "success",
+    "merge_commit": "6c14199a66fc5d52b4be08e4b2e6ae98551f64ea",
+    "merged_at": "2026-10-23T07:26:53+00:00",
+    "local_gates_passed": 12,
+    "independent_final_review": "approved exact final HEAD",
+    "one_collection_sha256": "36d6a4153e41d589f81ad8a26d79fa759f5cad7e8741912d43204f1033532440",
+    "available_execution_seconds_upper_bound": 11170.904090999997,
+    "infrastructure_seconds": 0,
+    "clock_note": "Only previously independently verified27903seconds host sleep deducted. Later wall-clock/monotonic differences and productive overlap fully counted; no inferred deduction."
+  }
+}
